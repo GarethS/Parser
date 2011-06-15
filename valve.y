@@ -15,70 +15,95 @@
 }
 
 %token INPUTS OUTPUTS LBRACE RBRACE COMMA BANG LPAREN RPAREN
-%token <string> LINE BANG
-%token <int> 	AND OR
-%type  <string> line_level
-%type  <string> line_sequence line_level_sequence
+%token <int> 	EQUAL PLUS MINUS MULT DIV XOR GEQ LEQ GTR LSS AND OR TEST_FOR_EQUAL CONST SEMI
+%token <string>	VAR VAR_METHOD
+
+%type <int>	opBinary
 %type  <string> pattern_action
-%type  <pNode>  expr term action
+%type  <pNode>  pattern action statement expression
+
+/* %left pattern */
 
 %start program
 
+/*
+	N.B. TERMINALS in upper-case
+		intermediates in lower-case
+*/
 %% /* Grammar rules and actions */
-program: 	input output pattern_action_list
+program: 	pattern_action_list
 ;
 
-input:	INPUTS LBRACE line_sequence RBRACE
-;
-
-output: OUTPUTS LBRACE line_level_sequence RBRACE	{printf("\nwhile (TRUE) {");}
-;
-
-line_sequence:	LINE line_sequence_remainder	{pushInputLine($1);}
-;
-
-line_sequence_remainder:	/* empty */
-							|
-							COMMA line_sequence
-;
-
-line_level_sequence:	line_level line_level_sequence_remainder	{pushOutputLine($1);}	
-;
-
-line_level_sequence_remainder:	/* empty */
-								|
-								COMMA line_level_sequence
-;
-
-line_level:	LINE	   
-			|
-			BANG LINE	{$$ = $1; $$ = strcat($$, $2);}	
-;
-
-pattern_action_list: /* empty */
+pattern_action_list: /* empty */	{}
                      |
 				     pattern_action_list pattern_action	
 ;
 
-pattern_action: expr LBRACE action RBRACE	{doPatternAction($1, $3);}
+pattern_action: pattern LBRACE action RBRACE	{doPatternAction($1, $3);}
 ;
 
-action: action COMMA line_level	{$$ = addNodeOperatorAction($1, $3);}
+action: /* empty */	{}
 		|
-		line_level	{$$ = addNodeActionId($1);}
+		action statement	{$$ = addNodeOperatorAction($1, $2);}
 ;
 
-expr: expr AND term	{$$ = addNodeOperator(AND, $1, $3);}
-	  |
-	  expr OR term	{$$ = addNodeOperator(OR, $1, $3);}
-	  |
-	  term
+statement:	var EQUAL expression SEMI	{}	/* Check if var in symbol table. If not, insert. */
+;			
+
+expression:	LPAREN expression RPAREN	{}
+			|
+			identifier op identifier	{}
+;			
+
+pattern: 	LPAREN pattern RPAREN	{}
+			| 
+			compare opBinary pattern	{/*$$ = addNodeOperator($2, $1, $3);*/}
+			|
+			compare	{}
 ;
 
-term: LPAREN expr RPAREN	{$$ = $2;}	
-      |
-	  line_level	{$$ = addNodeId($1);}
+op:	PLUS
+	|
+	MINUS
+	|
+	MULT
+	|
+	DIV
+	|
+	XOR
+;	
+
+opBinary:	AND
+			|
+			OR
+;			
+
+opTest:	TEST_FOR_EQUAL
+		|
+		GEQ
+		|
+		LEQ
+		|
+		GTR
+		|
+		LSS
 ;
+
+compare:	identifier opTest identifier
+			|
+			identifier
+;
+
+identifier:	var
+			|
+			CONST
+;			
+
+var:		VAR
+			|
+			VAR_METHOD
+;			
+
 
 
 %% /* Additional C code */

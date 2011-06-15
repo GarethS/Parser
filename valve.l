@@ -5,9 +5,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "y.tab.h"	// To see the %union in valve.y
 %}
 
 line			[A-Ha-h][0-7]
+digit			[0-9]
+alpha			[A-Za-z]
+alphanum		[A-za-z0-9]
 lparen			[(]
 rparen			[)]
 lbrace			[{]
@@ -15,8 +19,21 @@ rbrace			[}]
 comma			[,]
 semi			[;]
 bang			[!]
+period			[.]
+equal			[=]
+plus			[+]
+minus			[-]
+mult			[*]
+div				[/]
+xor				"^"
+geq				">="
+leq				"<="
+neql			"!="
+gtr				[>]
+lss				[<]
 or				"||"
 and				"&&"
+testForEqual	"=="
 %x		comment
 
 %%
@@ -30,8 +47,23 @@ inputs	 	{return INPUTS;}
 {comma}		{return COMMA;}
 {semi}		{return SEMI;}
 {bang}		{yylval.string = strdup(yytext); return BANG;}
+{equal}		{return EQUAL;}
+{plus}		{return PLUS;}
+{minus}		{return MINUS;}
+{mult}		{return MULT;}
+{div}		{return DIV;}
+{xor}		{return XOR;}
+{geq}		{return GEQ;}
+{leq}		{return LEQ;}
+{neql}		{return NEQL;}
+{gtr}		{return GTR;}
+{lss}		{return LSS;}
 {or}		{return OR;}
 {and}  		{return AND;}
+{testForEqual}	{return TEST_FOR_EQUAL;}
+{digit}+		{yylval.number = atoi(yytext); return CONST;}	/* constants */
+{alpha}{alphanum}*	{yylval.string = strdup(yytext); return VAR;}	/* variable */
+{alpha}{alphanum}*{period}{alpha}{alphanum}*	{yylval.string = strdup(yytext); return METHOD;}	/* method */
 
 "/*"				BEGIN(comment);
 <comment>[^*\n]*	/* eat anything that's not a '*' */

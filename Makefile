@@ -1,4 +1,5 @@
 
+.PHONY: all clean
 
 all: lex.yy.c valve.tab.c
 
