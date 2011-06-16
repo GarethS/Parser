@@ -67,7 +67,7 @@
 /* Copy the first part of user declarations.  */
 
 /* Line 189 of yacc.c  */
-#line 14 "valve.y"
+#line 15 "valve.y"
 
 /* #define YYDEBUG 1 */
 #include <stdio.h>
@@ -141,7 +141,7 @@ typedef union YYSTYPE
 {
 
 /* Line 214 of yacc.c  */
-#line 23 "valve.y"
+#line 24 "valve.y"
 
 	int number;
 	char* string;
@@ -456,10 +456,10 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    48,    48,    51,    53,    56,    59,    61,    64,    67,
-      69,    72,    74,    76,    79,    81,    83,    85,    87,    90,
-      92,    95,    97,    99,   101,   103,   106,   108,   111,   113,
-     116,   118
+       0,    49,    49,    52,    54,    57,    60,    62,    65,    68,
+      70,    73,    75,    77,    80,    82,    84,    86,    88,    91,
+      93,    96,    98,   100,   102,   104,   107,   109,   112,   114,
+     117,   119
 };
 #endif
 
@@ -1399,70 +1399,70 @@ yyreduce:
         case 3:
 
 /* Line 1464 of yacc.c  */
-#line 51 "valve.y"
+#line 52 "valve.y"
     {;}
     break;
 
   case 5:
 
 /* Line 1464 of yacc.c  */
-#line 56 "valve.y"
+#line 57 "valve.y"
     {doPatternAction((yyvsp[(1) - (4)].pNode), (yyvsp[(3) - (4)].pNode));;}
     break;
 
   case 6:
 
 /* Line 1464 of yacc.c  */
-#line 59 "valve.y"
+#line 60 "valve.y"
     {;}
     break;
 
   case 7:
 
 /* Line 1464 of yacc.c  */
-#line 61 "valve.y"
+#line 62 "valve.y"
     {(yyval.pNode) = addNodeOperatorAction((yyvsp[(1) - (2)].pNode), (yyvsp[(2) - (2)].pNode));;}
     break;
 
   case 8:
 
 /* Line 1464 of yacc.c  */
-#line 64 "valve.y"
+#line 65 "valve.y"
     {;}
     break;
 
   case 9:
 
 /* Line 1464 of yacc.c  */
-#line 67 "valve.y"
+#line 68 "valve.y"
     {;}
     break;
 
   case 10:
 
 /* Line 1464 of yacc.c  */
-#line 69 "valve.y"
+#line 70 "valve.y"
     {;}
     break;
 
   case 11:
 
 /* Line 1464 of yacc.c  */
-#line 72 "valve.y"
+#line 73 "valve.y"
     {;}
     break;
 
   case 12:
 
 /* Line 1464 of yacc.c  */
-#line 74 "valve.y"
+#line 75 "valve.y"
     {/*$$ = addNodeOperator($2, $1, $3);*/;}
     break;
 
   case 13:
 
 /* Line 1464 of yacc.c  */
-#line 76 "valve.y"
+#line 77 "valve.y"
     {;}
     break;
 
@@ -1681,7 +1681,7 @@ yyreturn:
 
 
 /* Line 1684 of yacc.c  */
-#line 123 "valve.y"
+#line 124 "valve.y"
  /* Additional C code */
 
 

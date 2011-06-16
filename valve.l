@@ -1,4 +1,6 @@
 
+/* Copyright (c) 2011, Gareth Scott */
+
 %option noyywrap
 
 %{
@@ -8,6 +10,8 @@
 
 #include "compiler.h"
 #include "valve.tab.h"	// To see the %union in valve.y
+
+void debugPrintf(const char* pc);
 
 YYSTYPE yylval;
 %}
@@ -24,7 +28,7 @@ comma			[,]
 semi			[;]
 bang			[!]
 period			[.]
-equal			[=]
+equal			"="
 plus			[+]
 minus			[-]
 mult			[*]
@@ -39,40 +43,48 @@ or				"||"
 and				"&&"
 testForEqual	"=="
 %x		comment
+%x 		commentNew
 
 %%
-outputs		{return OUTPUTS;}
-inputs	 	{return INPUTS;}
-{lbrace}	{return LBRACE;}
-{rbrace}	{return RBRACE;}
-{lparen}	{return LPAREN;}
-{rparen}	{return RPAREN;}
-{comma}		{return COMMA;}
-{semi}		{return SEMI;}
-{bang}		{yylval.string = strdup(yytext); return BANG;}
-{equal}		{return EQUAL;}
-{plus}		{return PLUS;}
-{minus}		{return MINUS;}
-{mult}		{return MULT;}
-{div}		{return DIV;}
-{xor}		{return XOR;}
-{geq}		{return GEQ;}
-{leq}		{return LEQ;}
-{neq}		{return NEQ;}
-{gtr}		{return GTR;}
-{lss}		{return LSS;}
-{or}		{return OR;}
-{and}  		{return AND;}
-{testForEqual}	{return TEST_FOR_EQUAL;}
-{digit}+		{yylval.number = atoi(yytext); /*ECHO;*/ return CONST;}	/* constants */
-{alpha}{alphanum}*	{yylval.string = strdup(yytext); /*ECHO;*/ return VAR;}	/* variable */
-{alpha}{alphanum}*{period}{alpha}{alphanum}*	{yylval.string = strdup(yytext); return VAR_METHOD;}	/* method */
+outputs		{debugPrintf("OUTPUTS"); return OUTPUTS;}
+inputs	 	{debugPrintf("INPUTS"); return INPUTS;}
+{lbrace}	{debugPrintf("LBRACE"); return LBRACE;}
+{rbrace}	{debugPrintf("RBRACE"); return RBRACE;}
+{lparen}	{debugPrintf("LPAREN"); return LPAREN;}
+{rparen}	{debugPrintf("RPAREN"); return RPAREN;}
+{comma}		{debugPrintf("COMMA"); return COMMA;}
+{semi}		{debugPrintf("SEMI"); return SEMI;}
+{bang}		{debugPrintf("BANG"); yylval.string = strdup(yytext); return BANG;}
+{equal}		{debugPrintf("EQUAL"); return EQUAL;}
+{plus}		{debugPrintf("PLUS"); return PLUS;}
+{minus}		{debugPrintf("MINUS"); return MINUS;}
+{mult}		{debugPrintf("MULT"); return MULT;}
+{div}		{debugPrintf("DIV"); return DIV;}
+{xor}		{debugPrintf("XOR"); return XOR;}
+{geq}		{debugPrintf("GEQ"); return GEQ;}
+{leq}		{debugPrintf("LEQ"); return LEQ;}
+{neq}		{debugPrintf("NEQ"); return NEQ;}
+{gtr}		{debugPrintf("GTR"); return GTR;}
+{lss}		{debugPrintf("LSS"); return LSS;}
+{or}		{debugPrintf("OR"); return OR;}
+{and}  		{debugPrintf("AND"); return AND;}
+{testForEqual}	{debugPrintf("TEST_FOR_EQUAL"); return TEST_FOR_EQUAL;}
+{digit}+		{debugPrintf("DIGIT"); yylval.number = atoi(yytext); return CONST;}	/* constants */
+{alpha}{alphanum}*	{debugPrintf("VAR"); yylval.string = strdup(yytext); return VAR;}	/* variable */
+{alpha}{alphanum}*{period}{alpha}{alphanum}*	{debugPrintf("VAR_METHOD"); yylval.string = strdup(yytext); return VAR_METHOD;}	/* method */
 
 "/*"				BEGIN(comment);
 
 <comment>[^*\n]*	/* eat anything that's not a '*' */
 
 <comment>"*/"		BEGIN(INITIAL);
+
+"//"				BEGIN(commentNew);
+
+<commentNew>.		/* eat anything that's not a '\n' */
+
+<commentNew>[\n]	BEGIN(INITIAL);
+
 
 %%
 /* Start of user defined code section. */
@@ -86,17 +98,36 @@ inputs	 	{return INPUTS;}
 
 extern int yylex();
 
+#define ECHO_DEBUG	1
+
+#if !ECHO_DEBUG
+// Turn off ECHO
+#ifdef ECHO
+#undef ECHO
+#endif /* ECHO */
+#define ECHO
+#endif /* not ECHO_DEBUG */
+
+void debugPrintf(const char* pc) {
+// FLEX_DEBUG defined with -d command line option
+#if ECHO_DEBUG
+	printf("[%s]", pc);
+#endif /* ECHO_DEBUG */
+}
+
 int main( argc, argv )
 int argc;
 char *argv[];
 	{
-	printf("start scanner"); fflush(stdout);
+	printf("Start scanner\n"); fflush(stdout);
     yyin = fopen( "valve.def", "r" );
 	int r = yylex();
 	while (r != 0) {
-		//printf("%d\n", r);
+		ECHO;
+		//printf("%d %s\n", r, yylval.string);
 		r = yylex();
 	}
+	printf("\n\nEnd scanner"); fflush(stdout);
 	//return yylex();
 	}
 

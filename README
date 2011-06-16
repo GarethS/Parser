@@ -16,5 +16,8 @@ An example is shown below:
 	  
 
 	  
-Pending tasks:
-1. Allow each 'pattern{action}' phrase to specify the priority level it should be run at.	   
+Pending tasks (* = addressed this issue):
+1. Allow each 'pattern{action}' phrase to specify the priority level it should be run at.
+2.*Detect new style comment, //
+3. Add regression test for scanner.
+4.*Remove ECHO for non-debug version of scanner.	   

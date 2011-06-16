@@ -1,7 +1,8 @@
 
-/*
+/* Copyright (c) 2011, Gareth Scott */
 
-		// Sample of motor control language:
+/*
+       Sample of motor control language:
 		
 	   counter == 4 && (m1.position >= 3 || m1.velocity < 0) {
 			counter = counter + 1;
