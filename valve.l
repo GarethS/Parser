@@ -5,7 +5,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "y.tab.h"	// To see the %union in valve.y
+
+#include "compiler.h"
+#include "valve.tab.h"	// To see the %union in valve.y
+
+YYSTYPE yylval;
 %}
 
 line			[A-Ha-h][0-7]
@@ -28,7 +32,7 @@ div				[/]
 xor				"^"
 geq				">="
 leq				"<="
-neql			"!="
+neq				"!="
 gtr				[>]
 lss				[<]
 or				"||"
@@ -37,7 +41,6 @@ testForEqual	"=="
 %x		comment
 
 %%
-{line}		{yylval.string = strdup(yytext); return LINE;}
 outputs		{return OUTPUTS;}
 inputs	 	{return INPUTS;}
 {lbrace}	{return LBRACE;}
@@ -55,17 +58,18 @@ inputs	 	{return INPUTS;}
 {xor}		{return XOR;}
 {geq}		{return GEQ;}
 {leq}		{return LEQ;}
-{neql}		{return NEQL;}
+{neq}		{return NEQ;}
 {gtr}		{return GTR;}
 {lss}		{return LSS;}
 {or}		{return OR;}
 {and}  		{return AND;}
 {testForEqual}	{return TEST_FOR_EQUAL;}
-{digit}+		{yylval.number = atoi(yytext); return CONST;}	/* constants */
-{alpha}{alphanum}*	{yylval.string = strdup(yytext); return VAR;}	/* variable */
-{alpha}{alphanum}*{period}{alpha}{alphanum}*	{yylval.string = strdup(yytext); return METHOD;}	/* method */
+{digit}+		{yylval.number = atoi(yytext); /*ECHO;*/ return CONST;}	/* constants */
+{alpha}{alphanum}*	{yylval.string = strdup(yytext); /*ECHO;*/ return VAR;}	/* variable */
+{alpha}{alphanum}*{period}{alpha}{alphanum}*	{yylval.string = strdup(yytext); return VAR_METHOD;}	/* method */
 
 "/*"				BEGIN(comment);
+
 <comment>[^*\n]*	/* eat anything that's not a '*' */
 
 <comment>"*/"		BEGIN(INITIAL);
@@ -79,15 +83,21 @@ inputs	 	{return INPUTS;}
 	with 'port_tab.c' file outputted by bison.
 */
 
-/*
+
 extern int yylex();
 
 int main( argc, argv )
 int argc;
 char *argv[];
 	{
-    yyin = fopen( "\\dev\\parser\\port1\\port.def", "r" );
-	return yylex();
+	printf("start scanner"); fflush(stdout);
+    yyin = fopen( "valve.def", "r" );
+	int r = yylex();
+	while (r != 0) {
+		//printf("%d\n", r);
+		r = yylex();
 	}
-*/
+	//return yylex();
+	}
+
 /* End of user defined code section. */

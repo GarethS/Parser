@@ -1,4 +1,16 @@
 
+/*
+
+		// Sample of motor control language:
+		
+	   counter == 4 && (m1.position >= 3 || m1.velocity < 0) {
+			counter = counter + 1;
+			m1.position = 2;
+			
+	   }
+
+*/
+
 %{
 /* #define YYDEBUG 1 */
 #include <stdio.h>
@@ -15,12 +27,14 @@
 }
 
 %token INPUTS OUTPUTS LBRACE RBRACE COMMA BANG LPAREN RPAREN
-%token <int> 	EQUAL PLUS MINUS MULT DIV XOR GEQ LEQ GTR LSS AND OR TEST_FOR_EQUAL CONST SEMI
+%token <int> 	EQUAL PLUS MINUS MULT DIV XOR GEQ LEQ NEQ GTR LSS AND OR TEST_FOR_EQUAL CONST SEMI
 %token <string>	VAR VAR_METHOD
 
-%type <int>	opBinary
+%type <int>	andOr
 %type  <string> pattern_action
 %type  <pNode>  pattern action statement expression
+
+%defines
 
 /* %left pattern */
 
@@ -57,7 +71,7 @@ expression:	LPAREN expression RPAREN	{}
 
 pattern: 	LPAREN pattern RPAREN	{}
 			| 
-			compare opBinary pattern	{/*$$ = addNodeOperator($2, $1, $3);*/}
+			compare andOr pattern	{/*$$ = addNodeOperator($2, $1, $3);*/}
 			|
 			compare	{}
 ;
@@ -73,9 +87,9 @@ op:	PLUS
 	XOR
 ;	
 
-opBinary:	AND
-			|
-			OR
+andOr:	AND
+		|
+		OR
 ;			
 
 opTest:	TEST_FOR_EQUAL
