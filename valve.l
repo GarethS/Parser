@@ -69,7 +69,7 @@ inputs	 	{debugPrintf("INPUTS"); return INPUTS;}
 {or}		{debugPrintf("OR"); return OR;}
 {and}  		{debugPrintf("AND"); return AND;}
 {testForEqual}	{debugPrintf("TEST_FOR_EQUAL"); return TEST_FOR_EQUAL;}
-{digit}+		{debugPrintf("DIGIT"); yylval.number = atoi(yytext); return CONST;}	/* constants */
+{digit}+		{debugPrintf("DIGIT"); yylval.string = strdup(yytext); return CONST;}	/* constant */
 {alpha}{alphanum}*	{debugPrintf("VAR"); yylval.string = strdup(yytext); return VAR;}	/* variable */
 {alpha}{alphanum}*{period}{alpha}{alphanum}*	{debugPrintf("VAR_METHOD"); yylval.string = strdup(yytext); return VAR_METHOD;}	/* method */
 
@@ -81,7 +81,7 @@ inputs	 	{debugPrintf("INPUTS"); return INPUTS;}
 
 "//"				BEGIN(commentNew);
 
-<commentNew>.		/* eat anything that's not a '\n' */
+<commentNew>.		/* eat everything until '\n' */
 
 <commentNew>[\n]	BEGIN(INITIAL);
 
@@ -98,7 +98,11 @@ inputs	 	{debugPrintf("INPUTS"); return INPUTS;}
 
 extern int yylex();
 
+#if BISON_PHASE
+#define ECHO_DEBUG	0
+#else /* not BISON_PHASE */
 #define ECHO_DEBUG	1
+#endif /* BISON_PHASE */
 
 #if !ECHO_DEBUG
 // Turn off ECHO
@@ -115,10 +119,9 @@ void debugPrintf(const char* pc) {
 #endif /* ECHO_DEBUG */
 }
 
-int main( argc, argv )
-int argc;
-char *argv[];
-	{
+#if !BISON_PHASE
+int main(int argc, char* argv[])
+{
 	printf("Start scanner\n"); fflush(stdout);
     yyin = fopen( "valve.def", "r" );
 	int r = yylex();
@@ -128,7 +131,9 @@ char *argv[];
 		r = yylex();
 	}
 	printf("\n\nEnd scanner"); fflush(stdout);
+	return r;
 	//return yylex();
-	}
+}
+#endif /* BISON_PHASE */
 
 /* End of user defined code section. */

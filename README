@@ -6,6 +6,9 @@ The grammar specifices a declarative language without function calls where the a
 executed when the pattern test evaluates to true.
 An example is shown below:
 
+-------------------------------------------------------------------------------	   
+
+
 	   /* Try to parse this as an experiment: */
 	   counter == 4 && (m1.position >= 3 || m1.velocity < 0) {
 			counter = counter + 1;
@@ -13,11 +16,29 @@ An example is shown below:
 			
 	   }
 
-	  
+	   /* test short circuit evaluation */
+	   true && (t1.time == 27 || counter == 3) || s1.open { //test
+			m1.velocity = 0;	/* stop motor */
+			counter ^= 2;	// new style comment
+	   }
+
+-------------------------------------------------------------------------------	   
+	   
+Predefined variables and their access methods and whether read-only [r] or read-write [r/w]:
+1. Motor.velocity[r/w]
+	    .position[r/w]
+2. Timer.timeRemaining[r]
+        .reset[w]
+        .set[r/w]	// Set value of timer in ms
+3. Switch.open[r]
+         .closed[r]	
+4. priority[interrupt, high, normal, low]	// 'interrupt' is the highest, 'high' runs in a normal thread, but at elevated priority		 
 
 	  
 Pending tasks (* = addressed this issue):
 1. Allow each 'pattern{action}' phrase to specify the priority level it should be run at.
 2.*Detect new style comment, //
 3. Add regression test for scanner.
-4.*Remove ECHO for non-debug version of scanner.	   
+4.*Remove ECHO for non-debug version of scanner.
+5. Print line number on parse error. See yylineno
+6. Set operator precedence	   

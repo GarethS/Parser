@@ -3,7 +3,6 @@
 
 /*
        Sample of motor control language:
-		
 	   counter == 4 && (m1.position >= 3 || m1.velocity < 0) {
 			counter = counter + 1;
 			m1.position = 2;
@@ -21,104 +20,98 @@
 
 %}
 
+/* See compiler.h for definition of 'node' */
 %union {
 	int number;
 	char* string;
 	node* pNode;	
 }
 
+/* TERMINALS */
 %token INPUTS OUTPUTS LBRACE RBRACE COMMA BANG LPAREN RPAREN
-%token <int> 	EQUAL PLUS MINUS MULT DIV XOR GEQ LEQ NEQ GTR LSS AND OR TEST_FOR_EQUAL CONST SEMI
-%token <string>	VAR VAR_METHOD
+%token <int> 	EQUAL PLUS MINUS MULT DIV XOR GEQ LEQ NEQ GTR LSS AND OR TEST_FOR_EQUAL SEMI
+%token <string>	VAR VAR_METHOD CONST
 
-%type <int>	andOr
-%type  <string> pattern_action
-%type  <pNode>  pattern action statement expression
+%left PLUS MINUS
+%left MULT DIV	/* last one gets highest precedence */
 
-%defines
+/* non-terminals */
+%type <int>	binaryPredicate operandTest operator 
+%type <string> patternAction var
+%type <pNode>  pattern action statementAction arithmeticExpression patternCompare identifier
+
+%defines	/* generate valve.tab.h for use with lex.yy.c */
 
 /* %left pattern */
 
 %start program
 
-/*
-	N.B. TERMINALS in upper-case
-		intermediates in lower-case
-*/
 %% /* Grammar rules and actions */
-program: 	pattern_action_list
+program: 	patternActionList	{return 0;}
 ;
 
-pattern_action_list: /* empty */	{}
-                     |
-				     pattern_action_list pattern_action	
+patternActionList: /* empty */	{}
+					| patternActionList patternAction	
 ;
 
-pattern_action: pattern LBRACE action RBRACE	{doPatternAction($1, $3);}
+patternAction: pattern LBRACE action RBRACE	{doPatternAction($1, $3);}
 ;
 
 action: /* empty */	{}
-		|
-		action statement	{$$ = addNodeOperatorAction($1, $2);}
+		| action statementAction	{/*$$ = addNodeOperatorAction($1, $2);*/}
 ;
 
-statement:	var EQUAL expression SEMI	{}	/* Check if var in symbol table. If not, insert. */
+statementAction:	var EQUAL arithmeticExpression SEMI	{}	/* Check if var in symbol table. If not, insert. */
 ;			
 
-expression:	LPAREN expression RPAREN	{}
-			|
-			identifier op identifier	{}
-;			
-
-pattern: 	LPAREN pattern RPAREN	{}
-			| 
-			compare andOr pattern	{/*$$ = addNodeOperator($2, $1, $3);*/}
-			|
-			compare	{}
+/* eg: patternCompare && patternCompare */
+pattern: 	LPAREN pattern RPAREN	{$$ = $2;}
+			| patternCompare binaryPredicate pattern	{/*$$ = addNodeOperator($2, $1, $3);*/}
+			| patternCompare	{}
 ;
 
-op:	PLUS
-	|
-	MINUS
-	|
-	MULT
-	|
-	DIV
-	|
-	XOR
-;	
-
-andOr:	AND
-		|
-		OR
-;			
-
-opTest:	TEST_FOR_EQUAL
-		|
-		GEQ
-		|
-		LEQ
-		|
-		GTR
-		|
-		LSS
+/* eg:  c1 == c2 + c3 + 4;
+		45
+		c5
+*/
+patternCompare:	var operandTest arithmeticExpression	{}
+				| identifier {}
 ;
 
-compare:	identifier opTest identifier
-			|
-			identifier
-;
+/* eg: 	45
+		c2
+		c2 + (c3 * 4)
+*/   
+arithmeticExpression:	LPAREN arithmeticExpression RPAREN	{$$ = $2;}
+						| identifier	{}
+						| arithmeticExpression operator arithmeticExpression	{}
+;						
 
-identifier:	var
-			|
-			CONST
+identifier:	var	{$$ = addNodeVar($1);}
+			| CONST {/*$$ = addNodeConst($1);*/}
 ;			
 
 var:		VAR
-			|
-			VAR_METHOD
+			| VAR_METHOD
 ;			
 
+binaryPredicate:	AND
+					| OR
+;			
+
+operandTest:	TEST_FOR_EQUAL
+				| GEQ
+				| LEQ
+				| GTR
+				| LSS
+;
+
+operator:	PLUS
+			| MINUS
+			| MULT
+			| DIV
+			| XOR
+;			
 
 
 %% /* Additional C code */
@@ -133,6 +126,7 @@ void yyerror (char* s)
 
 main ()
 {
+#if 0
 	/* Initialize IO boilerplate code. */
 	FILE* stream = fopen("\\dev\\parser\\port1\\boilerplate.c", "r" );
 	if (stream == NULL) {
@@ -146,11 +140,12 @@ main ()
 		}
 		fclose(stream);
 	}
+#endif
 
 	// To turn on debugging, make sure the next line is uncommented and
 	//  turn on the -t (also use -v -l) options in bison.exe.
-	// yydebug = 1; 
-    yyin = fopen("\\dev\\parser\\port1\\port.def", "r" );
+	yydebug = 1; 
+    yyin = fopen("valve2.def", "r" );
 	yyparse ();
 	// The closing braces for 'main()' and 'while (TRUE)'.
 	printf("\n} /* while */");
@@ -203,6 +198,25 @@ node* addNodeId(char* id) {
 	p->pRight = NULL;
 	return p;	
 }
+
+node* getAvailNode(void) {
+	return NULL;
+}
+
+node* addNodeVar(char* var) {
+	//assert(id != NULL);
+	node* pn = getAvailNode();
+	if (pn == NULL) {
+		//assert(p != NULL);
+		yyerror("malloc() failed in call to addNodeId()");
+	}
+	pn->type = nodeVar;
+	//pn->value = findVarInSymbolTable(var);
+	pn->pLeft = NULL;
+	pn->pRight = NULL;
+	return pn;	
+}
+
 
 // The following 2 functions are only used by 'action' in the 
 //  'pattern {action} part of the grammar.
@@ -356,4 +370,31 @@ void freeNode(node* pNode) {
 		freeNode(pNode->pRight);
 	}
 	free(pNode);
+}
+
+
+int infixPatternTraversal(node* pn) {
+	if (pn->type == nodeOperator) {
+		int valueLeft = infixPatternTraversal(pn->pLeft);
+		// Short-circuit evaluation
+		if (pn->value == OP_OR && valueLeft != FALSE) {
+			return valueLeft;
+		}
+		int valueRight = infixPatternTraversal(pn->pRight);
+		switch (pn->value) {
+		case OP_PLUS:
+			return valueLeft + valueRight;
+		case OP_MINUS:
+			return valueLeft - valueRight;
+		case OP_MULT:
+			return valueLeft * valueRight;
+		case OP_DIV:
+			return valueLeft / valueRight;
+		default:
+			// Got unrecognized opcode!
+			break;
+		}
+	}
+	// It's an operand so just return its value.
+	return pn->value;
 }

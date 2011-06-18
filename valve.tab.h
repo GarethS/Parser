@@ -60,10 +60,10 @@
      AND = 277,
      OR = 278,
      TEST_FOR_EQUAL = 279,
-     CONST = 280,
-     SEMI = 281,
-     VAR = 282,
-     VAR_METHOD = 283
+     SEMI = 280,
+     VAR = 281,
+     VAR_METHOD = 282,
+     CONST = 283
    };
 #endif
 

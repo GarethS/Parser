@@ -894,7 +894,7 @@ YY_RULE_SETUP
 case 24:
 YY_RULE_SETUP
 #line 72 "valve.l"
-{debugPrintf("DIGIT"); yylval.number = atoi(yytext); return CONST;}	/* constants */
+{debugPrintf("DIGIT"); yylval.string = strdup(yytext); return CONST;}	/* constant */
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
@@ -929,7 +929,7 @@ BEGIN(commentNew);
 case 31:
 YY_RULE_SETUP
 #line 84 "valve.l"
-/* eat anything that's not a '\n' */
+/* eat everything until '\n' */
 	YY_BREAK
 case 32:
 /* rule 32 can match eol */
@@ -1956,7 +1956,11 @@ void yyfree (void * ptr )
 
 extern int yylex();
 
+#if BISON_PHASE
+#define ECHO_DEBUG	0
+#else /* not BISON_PHASE */
 #define ECHO_DEBUG	1
+#endif /* BISON_PHASE */
 
 #if !ECHO_DEBUG
 // Turn off ECHO
@@ -1973,10 +1977,9 @@ void debugPrintf(const char* pc) {
 #endif /* ECHO_DEBUG */
 }
 
-int main( argc, argv )
-int argc;
-char *argv[];
-	{
+#if !BISON_PHASE
+int main(int argc, char* argv[])
+{
 	printf("Start scanner\n"); fflush(stdout);
     yyin = fopen( "valve.def", "r" );
 	int r = yylex();
@@ -1986,8 +1989,10 @@ char *argv[];
 		r = yylex();
 	}
 	printf("\n\nEnd scanner"); fflush(stdout);
+	return r;
 	//return yylex();
-	}
+}
+#endif /* BISON_PHASE */
 
 /* End of user defined code section. */
 
