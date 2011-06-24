@@ -75,10 +75,14 @@
 #include <string.h>
 #include "compiler.h"
 
+// Variable symbol table
+varNode varTable[VAR_ITEMS];
+unsigned int varTableFreeIndex = 0;
+
 
 
 /* Line 189 of yacc.c  */
-#line 82 "valve.tab.c"
+#line 86 "valve.tab.c"
 
 /* Enabling traces.  */
 #ifndef YYDEBUG
@@ -141,7 +145,7 @@ typedef union YYSTYPE
 {
 
 /* Line 214 of yacc.c  */
-#line 24 "valve.y"
+#line 28 "valve.y"
 
 	int number;
 	char* string;
@@ -150,7 +154,7 @@ typedef union YYSTYPE
 
 
 /* Line 214 of yacc.c  */
-#line 154 "valve.tab.c"
+#line 158 "valve.tab.c"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
@@ -162,7 +166,7 @@ typedef union YYSTYPE
 
 
 /* Line 264 of yacc.c  */
-#line 166 "valve.tab.c"
+#line 170 "valve.tab.c"
 
 #ifdef short
 # undef short
@@ -435,7 +439,7 @@ static const yytype_uint8 yytranslate[] =
 static const yytype_uint8 yyprhs[] =
 {
        0,     0,     3,     5,     6,     9,    14,    15,    18,    23,
-      27,    31,    33,    37,    39,    43,    45,    49,    51,    53,
+      27,    31,    33,    37,    39,    43,    47,    49,    51,    53,
       55,    57,    59,    61,    63,    65,    67,    69,    71,    73,
       75,    77,    79
 };
@@ -447,7 +451,7 @@ static const yytype_int8 yyrhs[] =
        5,    33,     6,    -1,    -1,    33,    34,    -1,    39,    11,
       37,    25,    -1,     9,    35,    10,    -1,    36,    40,    35,
       -1,    36,    -1,    39,    41,    37,    -1,    38,    -1,     9,
-      37,    10,    -1,    38,    -1,    37,    42,    37,    -1,    39,
+      37,    10,    -1,    37,    42,    37,    -1,    38,    -1,    39,
       -1,    28,    -1,    26,    -1,    27,    -1,    22,    -1,    23,
       -1,    24,    -1,    17,    -1,    18,    -1,    20,    -1,    21,
       -1,    12,    -1,    13,    -1,    14,    -1,    15,    -1,    16,
@@ -457,10 +461,10 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    50,    50,    53,    54,    57,    60,    61,    64,    68,
-      69,    70,    77,    78,    85,    86,    87,    90,    91,    94,
-      95,    98,    99,   102,   103,   104,   105,   106,   109,   110,
-     111,   112,   113
+       0,    55,    55,    58,    59,    62,    65,    66,    69,    73,
+      74,    75,    82,    83,    90,    91,    92,    95,    96,    99,
+     100,   103,   104,   107,   108,   109,   110,   111,   114,   115,
+     116,   117,   118
 };
 #endif
 
@@ -503,7 +507,7 @@ static const yytype_uint8 yyr1[] =
 static const yytype_uint8 yyr2[] =
 {
        0,     2,     1,     0,     2,     4,     0,     2,     4,     3,
-       3,     1,     3,     1,     3,     1,     3,     1,     1,     1,
+       3,     1,     3,     1,     3,     3,     1,     1,     1,     1,
        1,     1,     1,     1,     1,     1,     1,     1,     1,     1,
        1,     1,     1
 };
@@ -515,9 +519,9 @@ static const yytype_uint8 yydefact[] =
 {
        3,     0,     2,     1,     0,    19,    20,    18,     4,     0,
       11,    13,    17,     0,     6,    21,    22,     0,    24,    25,
-      26,    27,    23,     0,     9,     0,    10,     0,    12,    15,
+      26,    27,    23,     0,     9,     0,    10,     0,    12,    16,
       17,     5,     7,     0,     0,    28,    29,    30,    31,    32,
-       0,     0,    14,    16,     0,     8
+       0,     0,    14,    15,     0,     8
 };
 
 /* YYDEFGOTO[NTERM-NUM].  */
@@ -1402,119 +1406,119 @@ yyreduce:
         case 2:
 
 /* Line 1464 of yacc.c  */
-#line 50 "valve.y"
+#line 55 "valve.y"
     {return 0;;}
     break;
 
   case 3:
 
 /* Line 1464 of yacc.c  */
-#line 53 "valve.y"
+#line 58 "valve.y"
     {;}
     break;
 
   case 5:
 
 /* Line 1464 of yacc.c  */
-#line 57 "valve.y"
+#line 62 "valve.y"
     {doPatternAction((yyvsp[(1) - (4)].pNode), (yyvsp[(3) - (4)].pNode));;}
     break;
 
   case 6:
 
 /* Line 1464 of yacc.c  */
-#line 60 "valve.y"
+#line 65 "valve.y"
     {;}
     break;
 
   case 7:
 
 /* Line 1464 of yacc.c  */
-#line 61 "valve.y"
+#line 66 "valve.y"
     {/*$$ = addNodeOperatorAction($1, $2);*/;}
     break;
 
   case 8:
 
 /* Line 1464 of yacc.c  */
-#line 64 "valve.y"
+#line 69 "valve.y"
     {;}
     break;
 
   case 9:
 
 /* Line 1464 of yacc.c  */
-#line 68 "valve.y"
+#line 73 "valve.y"
     {(yyval.pNode) = (yyvsp[(2) - (3)].pNode);;}
     break;
 
   case 10:
 
 /* Line 1464 of yacc.c  */
-#line 69 "valve.y"
+#line 74 "valve.y"
     {/*$$ = addNodeOperator($2, $1, $3);*/;}
     break;
 
   case 11:
 
 /* Line 1464 of yacc.c  */
-#line 70 "valve.y"
+#line 75 "valve.y"
     {;}
     break;
 
   case 12:
 
 /* Line 1464 of yacc.c  */
-#line 77 "valve.y"
+#line 82 "valve.y"
     {;}
     break;
 
   case 13:
 
 /* Line 1464 of yacc.c  */
-#line 78 "valve.y"
+#line 83 "valve.y"
     {;}
     break;
 
   case 14:
 
 /* Line 1464 of yacc.c  */
-#line 85 "valve.y"
+#line 90 "valve.y"
     {(yyval.pNode) = (yyvsp[(2) - (3)].pNode);;}
     break;
 
   case 15:
 
 /* Line 1464 of yacc.c  */
-#line 86 "valve.y"
-    {;}
+#line 91 "valve.y"
+    {(yyval.pNode) = addNodeOperator((yyvsp[(2) - (3)].number), (yyvsp[(1) - (3)].pNode), (yyvsp[(3) - (3)].pNode));;}
     break;
 
   case 16:
 
 /* Line 1464 of yacc.c  */
-#line 87 "valve.y"
-    {;}
+#line 92 "valve.y"
+    {(yyval.pNode) = addNodeId((yyvsp[(1) - (1)].number));;}
     break;
 
   case 17:
 
 /* Line 1464 of yacc.c  */
-#line 90 "valve.y"
-    {(yyval.pNode) = addNodeVar((yyvsp[(1) - (1)].string));;}
+#line 95 "valve.y"
+    {(yyval.number) = addNodeVar((yyvsp[(1) - (1)].string));;}
     break;
 
   case 18:
 
 /* Line 1464 of yacc.c  */
-#line 91 "valve.y"
-    {/*$$ = addNodeConst($1);*/;}
+#line 96 "valve.y"
+    {(yyval.number) = addNodeVar((yyvsp[(1) - (1)].string));;}
     break;
 
 
 
 /* Line 1464 of yacc.c  */
-#line 1518 "valve.tab.c"
+#line 1522 "valve.tab.c"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -1726,7 +1730,7 @@ yyreturn:
 
 
 /* Line 1684 of yacc.c  */
-#line 117 "valve.y"
+#line 122 "valve.y"
  /* Additional C code */
 
 
@@ -1765,6 +1769,54 @@ main ()
 	printf("\n} /* main */\n");
 }
 
+void initVarTable(varNode* pTable, unsigned int len) {
+	--len;
+	for (; len >= 0; --len) {
+		pTable[len].name[0] = EOS;
+		pTable[len].val = 0;	// Initialize variable to 0;
+	}
+}
+
+// Return index of variable or constant in symbol table
+int insertVariable(varNode* pTable, varNode* pVar) {
+	if (varTableFreeIndex < VAR_ITEMS) {
+		pTable[varTableFreeIndex] = *pVar;
+		return varTableFreeIndex++;
+	}
+	return VAR_TABLE_LIMIT;
+}
+
+int getVariable(varNode* pTable, varNode* pVar) {
+	int found = findVariable(pTable, pVar);
+	if (found != VAR_NOT_FOUND) {
+		// found it
+		pVar->val = pTable[found].val;
+	}
+	return found;
+}
+
+int setVariable(varNode* pTable, varNode* pVar) {
+	int found = findVariable(pTable, pVar);
+	if (found == VAR_NOT_FOUND) {
+		insertVariable(pTable, pVar);
+	} else {
+		// found it
+		pTable[found].val = pVar->val;
+	}
+	return found;
+}
+
+// Return index where variable is located in varTable, or -1 on failure.
+int findVariable(varNode* pTable, varNode* pVar) {
+	int i;
+	for (i = 0; i < varTableFreeIndex; ++i) {
+		if (strncmp(pTable[i].name, pVar->name, VAR_NAME_LENGTH-1) == 0) {
+			return i;
+		}
+	}
+	return VAR_NOT_FOUND;
+}
+
 void pushInputLine(char* line) {
 	printf("\nsetLineAsInput(\"%s\");", line);
 }
@@ -1781,7 +1833,7 @@ node* addNodeOperator(int type, node* pLeft, node* pRight) {
 		//assert(p != NULL);
 		yyerror("malloc() failed in call to addNodeOperator()");
 	}
-	p->idValue[0] = '\0';
+	p->idValue[0] = EOS;
 	if (type == AND) {
 		p->operand = enumAnd;
 	} else if (type == OR) {
@@ -1792,7 +1844,8 @@ node* addNodeOperator(int type, node* pLeft, node* pRight) {
 	return p;	
 }
 
-node* addNodeId(char* id) {
+node* addNodeId(int varIndex) {
+#if 0
 	//assert(id != NULL);
 	node* p = malloc(sizeof(node));
 	if (p == NULL) {
@@ -1810,13 +1863,30 @@ node* addNodeId(char* id) {
 	p->pLeft = NULL;
 	p->pRight = NULL;
 	return p;	
+#endif
 }
 
 node* getAvailNode(void) {
 	return NULL;
 }
 
-node* addNodeVar(char* var) {
+int addNodeVar(char* var) {
+	varNode tmp;
+	strncpy(tmp.name, var, VAR_NAME_LENGTH-1);
+	tmp.name[VAR_NAME_LENGTH-1] = EOS;
+	tmp.val = 0;
+	if (isdigit(var[0])) {
+		// Assume it's a constant, but can just treat it like a variable, making sure that
+		//  any variable that starts with a numberic (i.e. a constant) is never altered.
+		tmp.val = atoi(var);
+	}
+	int found = findVariable(varTable, &tmp);
+	if (found == VAR_NOT_FOUND) {
+		return insertVariable(varTable, &tmp);
+	}
+	return found;
+	
+	#if 0
 	//assert(id != NULL);
 	node* pn = getAvailNode();
 	if (pn == NULL) {
@@ -1828,6 +1898,7 @@ node* addNodeVar(char* var) {
 	pn->pLeft = NULL;
 	pn->pRight = NULL;
 	return pn;	
+	#endif
 }
 
 

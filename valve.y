@@ -18,6 +18,10 @@
 #include <string.h>
 #include "compiler.h"
 
+// Variable symbol table
+varNode varTable[VAR_ITEMS];
+unsigned int varTableFreeIndex = 0;
+
 %}
 
 /* See compiler.h for definition of 'node' */
@@ -29,16 +33,17 @@
 
 /* TERMINALS */
 %token INPUTS OUTPUTS LBRACE RBRACE COMMA BANG LPAREN RPAREN
-%token <int> 	EQUAL PLUS MINUS MULT DIV XOR GEQ LEQ NEQ GTR LSS AND OR TEST_FOR_EQUAL SEMI
+%token <number> 	EQUAL PLUS MINUS MULT DIV XOR GEQ LEQ NEQ GTR LSS AND OR TEST_FOR_EQUAL SEMI
 %token <string>	VAR VAR_METHOD CONST
 
 %left PLUS MINUS
 %left MULT DIV	/* last one gets highest precedence */
 
 /* non-terminals */
-%type <int>	binaryPredicate operandTest operator 
+/* %type <int>	*/
+%type <number> identifier operator binaryPredicate operandTest
 %type <string> patternAction var
-%type <pNode>  pattern action statementAction arithmeticExpression patternCompare identifier
+%type <pNode>  pattern action statementAction arithmeticExpression patternCompare
 
 %defines	/* generate valve.tab.h for use with lex.yy.c */
 
@@ -83,12 +88,12 @@ patternCompare:	var operandTest arithmeticExpression	{}
 		c2 + (c3 * 4)
 */   
 arithmeticExpression:	LPAREN arithmeticExpression RPAREN	{$$ = $2;}
-						| identifier	{}
-						| arithmeticExpression operator arithmeticExpression	{}
+						| arithmeticExpression operator arithmeticExpression	{$$ = addNodeOperator($2, $1, $3);}
+						| identifier	{$$ = addNodeId($1);}
 ;						
 
-identifier:	var	{$$ = addNodeVar($1);}
-			| CONST {/*$$ = addNodeConst($1);*/}
+identifier:	var	{$$ = addNodeVar($1);}	/* Set top of stack to index of this variable. */
+			| CONST {$$ = addNodeVar($1);}
 ;			
 
 var:		VAR
@@ -152,6 +157,54 @@ main ()
 	printf("\n} /* main */\n");
 }
 
+void initVarTable(varNode* pTable, unsigned int len) {
+	--len;
+	for (; len >= 0; --len) {
+		pTable[len].name[0] = EOS;
+		pTable[len].val = 0;	// Initialize variable to 0;
+	}
+}
+
+// Return index of variable or constant in symbol table
+int insertVariable(varNode* pTable, varNode* pVar) {
+	if (varTableFreeIndex < VAR_ITEMS) {
+		pTable[varTableFreeIndex] = *pVar;
+		return varTableFreeIndex++;
+	}
+	return VAR_TABLE_LIMIT;
+}
+
+int getVariable(varNode* pTable, varNode* pVar) {
+	int found = findVariable(pTable, pVar);
+	if (found != VAR_NOT_FOUND) {
+		// found it
+		pVar->val = pTable[found].val;
+	}
+	return found;
+}
+
+int setVariable(varNode* pTable, varNode* pVar) {
+	int found = findVariable(pTable, pVar);
+	if (found == VAR_NOT_FOUND) {
+		insertVariable(pTable, pVar);
+	} else {
+		// found it
+		pTable[found].val = pVar->val;
+	}
+	return found;
+}
+
+// Return index where variable is located in varTable, or -1 on failure.
+int findVariable(varNode* pTable, varNode* pVar) {
+	int i;
+	for (i = 0; i < varTableFreeIndex; ++i) {
+		if (strncmp(pTable[i].name, pVar->name, VAR_NAME_LENGTH-1) == 0) {
+			return i;
+		}
+	}
+	return VAR_NOT_FOUND;
+}
+
 void pushInputLine(char* line) {
 	printf("\nsetLineAsInput(\"%s\");", line);
 }
@@ -168,7 +221,7 @@ node* addNodeOperator(int type, node* pLeft, node* pRight) {
 		//assert(p != NULL);
 		yyerror("malloc() failed in call to addNodeOperator()");
 	}
-	p->idValue[0] = '\0';
+	p->idValue[0] = EOS;
 	if (type == AND) {
 		p->operand = enumAnd;
 	} else if (type == OR) {
@@ -179,7 +232,8 @@ node* addNodeOperator(int type, node* pLeft, node* pRight) {
 	return p;	
 }
 
-node* addNodeId(char* id) {
+node* addNodeId(int varIndex) {
+#if 0
 	//assert(id != NULL);
 	node* p = malloc(sizeof(node));
 	if (p == NULL) {
@@ -197,13 +251,30 @@ node* addNodeId(char* id) {
 	p->pLeft = NULL;
 	p->pRight = NULL;
 	return p;	
+#endif
 }
 
 node* getAvailNode(void) {
 	return NULL;
 }
 
-node* addNodeVar(char* var) {
+int addNodeVar(char* var) {
+	varNode tmp;
+	strncpy(tmp.name, var, VAR_NAME_LENGTH-1);
+	tmp.name[VAR_NAME_LENGTH-1] = EOS;
+	tmp.val = 0;
+	if (isdigit(var[0])) {
+		// Assume it's a constant, but can just treat it like a variable, making sure that
+		//  any variable that starts with a numberic (i.e. a constant) is never altered.
+		tmp.val = atoi(var);
+	}
+	int found = findVariable(varTable, &tmp);
+	if (found == VAR_NOT_FOUND) {
+		return insertVariable(varTable, &tmp);
+	}
+	return found;
+	
+	#if 0
 	//assert(id != NULL);
 	node* pn = getAvailNode();
 	if (pn == NULL) {
@@ -215,6 +286,7 @@ node* addNodeVar(char* var) {
 	pn->pLeft = NULL;
 	pn->pRight = NULL;
 	return pn;	
+	#endif
 }
 
 

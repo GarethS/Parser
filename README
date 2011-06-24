@@ -41,4 +41,9 @@ Pending tasks (* = addressed this issue):
 3. Add regression test for scanner.
 4.*Remove ECHO for non-debug version of scanner.
 5. Print line number on parse error. See yylineno
-6. Set operator precedence	   
+6. Set operator precedence
+7. Upgrade to C++ classes (yacc uses -C option, #define _CPP_IOSTREAMS too). Use g++ rather than gcc. And rename valve.y valve.ypp	
+
+Limitations
+1. There are no scoping rules. All variables are at global scope.
+2. All variables are integers. There is currently no floating point support. 
