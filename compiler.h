@@ -20,7 +20,8 @@ typedef enum {OP_PLUS, OP_MINUS, OP_MULT, OP_DIV, OP_XOR, OP_AND, OP_OR, OP_EQUA
 
 
 #define EOS				'\0'	// End of string
-#define VAR_ITEMS		(1000)
+#define VAR_ITEMS		(200)
+#define ARITH_ITEMS		(200)
 //#define VAR_MAX_INDEX	(VAR_ITEMS-1)
 #define VAR_NAME_LENGTH	(12)
 #define VAR_NOT_FOUND	(-1)
@@ -34,7 +35,7 @@ typedef struct thisVariableNode {
 // OLD: This node can contain either a line id (e.g. a3) or an operator. Operators
 //  will always have 2 operand nodes.
 // Generic node structure that the syntax tree is made of.
-typedef struct thisNode {
+typedef struct thisArithmeticNode {
 	// old stuff
 	operandType operand;	// &&, ||
 	char   idValue[4];		// Only used when operand = enumId
@@ -43,9 +44,9 @@ typedef struct thisNode {
 	nodeType type;
 	int	value;	// If nodeConst, this is the value. If nodeVar, this is the index into symbol table. If nodeOperator, this is the operatorType.
 	
-	struct thisNode* pLeft;
-	struct thisNode* pRight;
-} node;
+	struct thisArithmeticNode* pLeft;
+	struct thisArithmeticNode* pRight;
+} arithNode;
 
 
 // Function prototypes.
@@ -57,27 +58,33 @@ void printBoilerplate(void);
 
 // The following 2 functions are only used by 'pattern' in the 
 //  'pattern {action} part of the grammar.
-node* addNodeOperator(int type, node* pLeft, node* pRight);
-node* addNodeId(int varIndex);
+arithNode* addNodeOperator(int operator, arithNode* pLeft, arithNode* pRight);
+arithNode* addNodeVarOperand(int operator, int varIndex, arithNode* pRight);
+arithNode* addNodeId(int varIndex);
 
 // The following 2 functions are only used by 'action' in the 
 //  'pattern {action} part of the grammar.
-node* addNodeOperatorAction(node* pNode, char* id);
-node* addNodeActionId(char* id);
+arithNode* addNodeOperatorAction(arithNode* pNode, char* id);
+arithNode* addNodeActionId(char* id);
 
 // New functions
-node* getAvailNode(void);
+arithNode* getAvailNode(void);
 int addNodeVar(char* var);
-int infixPatternTraversal(node* pn);
+int infixPatternTraversal(arithNode* pn);
 
-void initVarTable(varNode* pvn, unsigned int len);
-int insertVariable(varNode* pTable, varNode* pVar);
-int findVariable(varNode* pTable, varNode* pVar);
+void initVarTable(void);
+int insertVariable(varNode* pVar);
+//int getVariableIndex(varNode* pVar);
+//int setVariable(varNode* pVar);
+int findVariable(varNode* pVar);
+int isConstant(varNode* pVar);
+
+arithNode* getNextArithNode(void);
 
 
-void doPatternAction(node* pPattern, node* pAction);
-void walkPatternTree(node* pNode, char complement);
-void walkActionTree(node* pNode, char complement);
-void freeNode(node* pNode);
+void doPatternAction(arithNode* pPattern, arithNode* pAction);
+void walkPatternTree(arithNode* pNode, char complement);
+void walkActionTree(arithNode* pNode, char complement);
+//void freeNode(node* pNode);
 
 #endif /* compiler_h */

@@ -18,9 +18,13 @@
 #include <string.h>
 #include "compiler.h"
 
-// Variable symbol table
+// Variable symbol table (also contains constants).
 varNode varTable[VAR_ITEMS];
 unsigned int varTableFreeIndex = 0;
+
+// Arithmetic parse table
+arithNode arithTable[ARITH_ITEMS];
+unsigned int arithTableFreeIndex = 0;
 
 %}
 
@@ -28,7 +32,7 @@ unsigned int varTableFreeIndex = 0;
 %union {
 	int number;
 	char* string;
-	node* pNode;	
+	arithNode* pArithNode;	
 }
 
 /* TERMINALS */
@@ -40,10 +44,9 @@ unsigned int varTableFreeIndex = 0;
 %left MULT DIV	/* last one gets highest precedence */
 
 /* non-terminals */
-/* %type <int>	*/
 %type <number> identifier operator binaryPredicate operandTest
 %type <string> patternAction var
-%type <pNode>  pattern action statementAction arithmeticExpression patternCompare
+%type <pArithNode>  pattern action statementAction arithmeticExpression patternCompare
 
 %defines	/* generate valve.tab.h for use with lex.yy.c */
 
@@ -66,21 +69,21 @@ action: /* empty */	{}
 		| action statementAction	{/*$$ = addNodeOperatorAction($1, $2);*/}
 ;
 
-statementAction:	var EQUAL arithmeticExpression SEMI	{}	/* Check if var in symbol table. If not, insert. */
+statementAction:	var EQUAL arithmeticExpression SEMI	{$$ = addNodeVarOperand($2, addNodeVar($1), $3);}
 ;			
 
 /* eg: patternCompare && patternCompare */
 pattern: 	LPAREN pattern RPAREN	{$$ = $2;}
-			| patternCompare binaryPredicate pattern	{/*$$ = addNodeOperator($2, $1, $3);*/}
-			| patternCompare	{}
+			| pattern binaryPredicate patternCompare	{$$ = addNodeOperator($2, $1, $3);}
+			| patternCompare	{$$ = $1;}
 ;
 
 /* eg:  c1 == c2 + c3 + 4;
 		45
 		c5
 */
-patternCompare:	var operandTest arithmeticExpression	{}
-				| identifier {}
+patternCompare:	var operandTest arithmeticExpression	{$$ = addNodeVarOperand($2, addNodeVar($1), $3);}
+				| identifier {$$ = addNodeId($1);}
 ;
 
 /* eg: 	45
@@ -92,7 +95,7 @@ arithmeticExpression:	LPAREN arithmeticExpression RPAREN	{$$ = $2;}
 						| identifier	{$$ = addNodeId($1);}
 ;						
 
-identifier:	var	{$$ = addNodeVar($1);}	/* Set top of stack to index of this variable. */
+identifier:	var	{$$ = addNodeVar($1);}	/* Set top of stack to index of this variable in symbol table. */
 			| CONST {$$ = addNodeVar($1);}
 ;			
 
@@ -147,6 +150,7 @@ main ()
 	}
 #endif
 
+	initVarTable();
 	// To turn on debugging, make sure the next line is uncommented and
 	//  turn on the -t (also use -v -l) options in bison.exe.
 	yydebug = 1; 
@@ -157,48 +161,53 @@ main ()
 	printf("\n} /* main */\n");
 }
 
-void initVarTable(varNode* pTable, unsigned int len) {
-	--len;
+void initVarTable(void) {
+	unsigned int len = VAR_ITEMS - 1;
 	for (; len >= 0; --len) {
-		pTable[len].name[0] = EOS;
-		pTable[len].val = 0;	// Initialize variable to 0;
+		varTable[len].name[0] = EOS;
+		varTable[len].val = 0;	// Initialize variable to 0;
 	}
 }
 
 // Return index of variable or constant in symbol table
-int insertVariable(varNode* pTable, varNode* pVar) {
+int insertVariable(varNode* pVar) {
 	if (varTableFreeIndex < VAR_ITEMS) {
-		pTable[varTableFreeIndex] = *pVar;
+		varTable[varTableFreeIndex] = *pVar;
 		return varTableFreeIndex++;
 	}
 	return VAR_TABLE_LIMIT;
 }
 
-int getVariable(varNode* pTable, varNode* pVar) {
-	int found = findVariable(pTable, pVar);
-	if (found != VAR_NOT_FOUND) {
-		// found it
-		pVar->val = pTable[found].val;
+#if 0
+// Get value of variable or constant.
+// Return index where variable is located in varTable, or -1 on failure.
+int getVariableIndex(varNode* pVar) {
+	int found = findVariable(pVar);
+	if (found == VAR_NOT_FOUND) {
+		return insertVariable(pVar);
 	}
 	return found;
 }
 
-int setVariable(varNode* pTable, varNode* pVar) {
-	int found = findVariable(pTable, pVar);
+// Set value of variable but not of constant.
+// Return index of variable or constant in symbol table
+int setVariable(varNode* pVar) {
+	int found = findVariable(pVar);
 	if (found == VAR_NOT_FOUND) {
-		insertVariable(pTable, pVar);
+		return insertVariable(pVar);
 	} else {
 		// found it
-		pTable[found].val = pVar->val;
+		varTable[found].val = pVar->val;
 	}
 	return found;
 }
+#endif
 
 // Return index where variable is located in varTable, or -1 on failure.
-int findVariable(varNode* pTable, varNode* pVar) {
+int findVariable(varNode* pVar) {
 	int i;
 	for (i = 0; i < varTableFreeIndex; ++i) {
-		if (strncmp(pTable[i].name, pVar->name, VAR_NAME_LENGTH-1) == 0) {
+		if (strncmp(varTable[i].name, pVar->name, VAR_NAME_LENGTH-1) == 0) {
 			return i;
 		}
 	}
@@ -213,49 +222,67 @@ void pushOutputLine(char* line) {
 	printf("\nsetLineAsOutput(\"%s\");", line);
 }
 
-// The following 2 functions are only used by 'pattern' in the 
-//  'pattern {action} part of the grammar.
-node* addNodeOperator(int type, node* pLeft, node* pRight) {
-	node* p = malloc(sizeof(node));
+arithNode* addNodeOperator(int operator, arithNode* pLeft, arithNode* pRight) {
+	arithNode* p = getNextArithNode();
 	if (p == NULL) {
 		//assert(p != NULL);
-		yyerror("malloc() failed in call to addNodeOperator()");
+		return p;
 	}
-	p->idValue[0] = EOS;
-	if (type == AND) {
-		p->operand = enumAnd;
-	} else if (type == OR) {
-		p->operand = enumOr;
-	}
+	p->type = nodeOperator;
+	p->value = operator;
 	p->pLeft = pLeft;
 	p->pRight = pRight;
 	return p;	
 }
 
-node* addNodeId(int varIndex) {
-#if 0
-	//assert(id != NULL);
-	node* p = malloc(sizeof(node));
+// e.g. c3 == 4 * c1;
+arithNode* addNodeVarOperand(int operator, int varIndex, arithNode* pRight) {
+	arithNode* p = getNextArithNode();
 	if (p == NULL) {
 		//assert(p != NULL);
-		yyerror("malloc() failed in call to addNodeId()");
+		return p;
 	}
-	p->operand = enumId;
-	// Remember an id can be 'a3' or '!g7'.
-	p->idValue[0] = id[0];
-	p->idValue[1] = id[1];
-	p->idValue[2] = id[2];
-	if (id[0] == '!') {
-		p->idValue[3] = id[3];
+	p->type = nodeOperator;
+	p->value = operator;
+
+	p->pLeft = getNextArithNode();
+	if (p->pLeft == NULL) {
+		//assert(p->pLeft != NULL);
+		return p->pLeft;
 	}
+	p->pLeft->type = nodeVar;
+	p->pLeft->value = varIndex;
+
+	p->pRight = pRight;
+	return p;	
+}
+
+arithNode* addNodeId(int varIndex) {
+	arithNode* p = getNextArithNode();
+	if (p == NULL) {
+		//assert(p != NULL);
+		return p;
+	}
+	p->type = nodeVar;
+	p->value = varIndex;
 	p->pLeft = NULL;
 	p->pRight = NULL;
 	return p;	
-#endif
 }
 
-node* getAvailNode(void) {
+arithNode* getNextArithNode(void) {
+	if (arithTableFreeIndex < ARITH_ITEMS) {
+		return arithTable + arithTableFreeIndex++;
+	}
 	return NULL;
+}
+
+// A variable may not start with a number. One that does we'll consider a constant.
+int isConstant(varNode* pVar) {
+	if (isdigit(pVar->name[0])) {
+		return TRUE;
+	}
+	return FALSE;
 }
 
 int addNodeVar(char* var) {
@@ -263,37 +290,23 @@ int addNodeVar(char* var) {
 	strncpy(tmp.name, var, VAR_NAME_LENGTH-1);
 	tmp.name[VAR_NAME_LENGTH-1] = EOS;
 	tmp.val = 0;
-	if (isdigit(var[0])) {
+	if (isConstant(&tmp)) {
 		// Assume it's a constant, but can just treat it like a variable, making sure that
 		//  any variable that starts with a numberic (i.e. a constant) is never altered.
 		tmp.val = atoi(var);
 	}
-	int found = findVariable(varTable, &tmp);
+	int found = findVariable(&tmp);
 	if (found == VAR_NOT_FOUND) {
-		return insertVariable(varTable, &tmp);
+		return insertVariable(&tmp);
 	}
 	return found;
-	
-	#if 0
-	//assert(id != NULL);
-	node* pn = getAvailNode();
-	if (pn == NULL) {
-		//assert(p != NULL);
-		yyerror("malloc() failed in call to addNodeId()");
-	}
-	pn->type = nodeVar;
-	//pn->value = findVarInSymbolTable(var);
-	pn->pLeft = NULL;
-	pn->pRight = NULL;
-	return pn;	
-	#endif
 }
 
 
 // The following 2 functions are only used by 'action' in the 
 //  'pattern {action} part of the grammar.
-node* addNodeOperatorAction(node* pNode, char* id) {
-	node* p = malloc(sizeof(node));
+arithNode* addNodeOperatorAction(arithNode* pArithNode, char* id) {
+	arithNode* p = malloc(sizeof(arithNode));
 	if (p == NULL) {
 		//assert(p != NULL);
 		yyerror("malloc() failed in call to addNodeOperator()");
@@ -307,13 +320,13 @@ node* addNodeOperatorAction(node* pNode, char* id) {
 		p->idValue[3] = id[3];
 	}
 	p->pLeft = NULL;
-	p->pRight = pNode;
+	p->pRight = pArithNode;
 	return p;	
 }
 
-node* addNodeActionId(char* id) {
+arithNode* addNodeActionId(char* id) {
 	//assert(id != NULL);
-	node* p = malloc(sizeof(node));
+	arithNode* p = malloc(sizeof(arithNode));
 	if (p == NULL) {
 		//assert(p != NULL);
 		yyerror("malloc() failed in call to addActionNodeId()");
@@ -331,7 +344,7 @@ node* addNodeActionId(char* id) {
 	return p;	
 }
 
-void doPatternAction(node* pPattern, node* pAction)
+void doPatternAction(arithNode* pPattern, arithNode* pAction)
 {
 	{
 	/* Output statement. */
@@ -365,36 +378,36 @@ void doPatternAction(node* pPattern, node* pAction)
 	printf("\n} /* if */\n");
 	}
 
-	freeNode(pPattern);
-	freeNode(pAction);
+	//freeNode(pPattern);
+	//freeNode(pAction);
 }
 
 // Walk tree in infix mode; left, root right.
-void walkPatternTree(node* pNode, char complement) {
-	if (pNode == NULL) {
+void walkPatternTree(arithNode* pArithNode, char complement) {
+	if (pArithNode == NULL) {
 		return;
 	}
 	printf(" ( ");
-	walkPatternTree(pNode->pLeft, complement);
-	if (pNode->operand == enumId) {
+	walkPatternTree(pArithNode->pLeft, complement);
+	if (pArithNode->operand == enumId) {
 		if (complement) {
-			if (pNode->idValue[0] == '!') {
+			if (pArithNode->idValue[0] == '!') {
 				// Don't want to preceed an ! with another !. Our language can't
 				//  handle that so we'll just strip off the first !.
-				printf(" getInput(\"%s\") ", &pNode->idValue[1]);
+				printf(" getInput(\"%s\") ", &pArithNode->idValue[1]);
 			} else {
-				printf(" getInput(\"!%s\") ", pNode->idValue);
+				printf(" getInput(\"!%s\") ", pArithNode->idValue);
 			}
 		} else {
-			printf(" getInput(\"%s\") ", pNode->idValue);
+			printf(" getInput(\"%s\") ", pArithNode->idValue);
 		}
-	} else if (pNode->operand == enumAnd) {
+	} else if (pArithNode->operand == enumAnd) {
 		if (complement) {
 			printf(" || ");
 		} else {
 			printf(" && ");
 		}
-	} else if (pNode->operand == enumOr) {
+	} else if (pArithNode->operand == enumOr) {
 		if (complement) {
 			printf(" && ");
 		} else {
@@ -403,49 +416,33 @@ void walkPatternTree(node* pNode, char complement) {
 	} else {
 		//assert(false);
 	}
-	walkPatternTree(pNode->pRight, complement);
+	walkPatternTree(pArithNode->pRight, complement);
 	printf(" ) ");
 }
 
-void walkActionTree(node* pNode, char complement) {
-	if (pNode == NULL) {
+void walkActionTree(arithNode* pArithNode, char complement) {
+	if (pArithNode == NULL) {
 		return;
 	}
-	walkActionTree(pNode->pRight, complement);
-	if (pNode->operand == enumAction) {
+	walkActionTree(pArithNode->pRight, complement);
+	if (pArithNode->operand == enumAction) {
 		if (complement) {
-			if (pNode->idValue[0] == '!') {
+			if (pArithNode->idValue[0] == '!') {
 				// Don't want to preceed an ! with another !. Our language can't
 				//  handle that so we'll just strip off the first !.
-				printf("\nsetOutput(\"%s\"); ", &pNode->idValue[1]);
+				printf("\nsetOutput(\"%s\"); ", &pArithNode->idValue[1]);
 			} else {
-				printf("\nsetOutput(\"!%s\"); ", pNode->idValue);
+				printf("\nsetOutput(\"!%s\"); ", pArithNode->idValue);
 			}
 		} else {
-			printf("\nsetOutput(\"%s\"); ", pNode->idValue);
+			printf("\nsetOutput(\"%s\"); ", pArithNode->idValue);
 		}
 	} else {
 		//assert(false);
 	}
 }
 
-void freeNode(node* pNode) {
-	if (pNode == NULL) {
-		//assert(pNode != NULL);
-		return;
-	}
-	if (pNode->operand != enumId) {
-		// It's not an Id, it's an operand.
-		//assert(pNode->pLeft != NULL);	
-		//assert(pNode->pRight != NULL);	
-		freeNode(pNode->pLeft);
-		freeNode(pNode->pRight);
-	}
-	free(pNode);
-}
-
-
-int infixPatternTraversal(node* pn) {
+int infixPatternTraversal(arithNode* pn) {
 	if (pn->type == nodeOperator) {
 		int valueLeft = infixPatternTraversal(pn->pLeft);
 		// Short-circuit evaluation

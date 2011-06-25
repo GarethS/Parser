@@ -75,14 +75,18 @@
 #include <string.h>
 #include "compiler.h"
 
-// Variable symbol table
+// Variable symbol table (also contains constants).
 varNode varTable[VAR_ITEMS];
 unsigned int varTableFreeIndex = 0;
+
+// Arithmetic parse table
+arithNode arithTable[ARITH_ITEMS];
+unsigned int arithTableFreeIndex = 0;
 
 
 
 /* Line 189 of yacc.c  */
-#line 86 "valve.tab.c"
+#line 90 "valve.tab.c"
 
 /* Enabling traces.  */
 #ifndef YYDEBUG
@@ -145,16 +149,16 @@ typedef union YYSTYPE
 {
 
 /* Line 214 of yacc.c  */
-#line 28 "valve.y"
+#line 32 "valve.y"
 
 	int number;
 	char* string;
-	node* pNode;	
+	arithNode* pArithNode;	
 
 
 
 /* Line 214 of yacc.c  */
-#line 158 "valve.tab.c"
+#line 162 "valve.tab.c"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
@@ -166,7 +170,7 @@ typedef union YYSTYPE
 
 
 /* Line 264 of yacc.c  */
-#line 170 "valve.tab.c"
+#line 174 "valve.tab.c"
 
 #ifdef short
 # undef short
@@ -381,7 +385,7 @@ union yyalloc
 /* YYFINAL -- State number of the termination state.  */
 #define YYFINAL  3
 /* YYLAST -- Last index in YYTABLE.  */
-#define YYLAST   51
+#define YYLAST   62
 
 /* YYNTOKENS -- Number of terminals.  */
 #define YYNTOKENS  29
@@ -449,7 +453,7 @@ static const yytype_int8 yyrhs[] =
 {
       30,     0,    -1,    31,    -1,    -1,    31,    32,    -1,    35,
        5,    33,     6,    -1,    -1,    33,    34,    -1,    39,    11,
-      37,    25,    -1,     9,    35,    10,    -1,    36,    40,    35,
+      37,    25,    -1,     9,    35,    10,    -1,    35,    40,    36,
       -1,    36,    -1,    39,    41,    37,    -1,    38,    -1,     9,
       37,    10,    -1,    37,    42,    37,    -1,    38,    -1,    39,
       -1,    28,    -1,    26,    -1,    27,    -1,    22,    -1,    23,
@@ -461,10 +465,10 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    55,    55,    58,    59,    62,    65,    66,    69,    73,
-      74,    75,    82,    83,    90,    91,    92,    95,    96,    99,
-     100,   103,   104,   107,   108,   109,   110,   111,   114,   115,
-     116,   117,   118
+       0,    58,    58,    61,    62,    65,    68,    69,    72,    76,
+      77,    78,    85,    86,    93,    94,    95,    98,    99,   102,
+     103,   106,   107,   110,   111,   112,   113,   114,   117,   118,
+     119,   120,   121
 };
 #endif
 
@@ -537,16 +541,16 @@ static const yytype_int8 yydefgoto[] =
 static const yytype_int8 yypact[] =
 {
      -22,     7,    -1,   -22,    -1,   -22,   -22,   -22,   -22,     9,
-      28,   -22,    -8,    14,   -22,   -22,   -22,    -1,   -22,   -22,
-     -22,   -22,   -22,     2,   -22,    -5,   -22,     2,    33,   -22,
-     -22,   -22,   -22,    32,    26,   -22,   -22,   -22,   -22,   -22,
-       2,     2,   -22,    33,    19,   -22
+     -22,   -22,    23,    -6,   -22,   -22,   -22,    34,   -22,   -22,
+     -22,   -22,   -22,     2,   -22,    -5,   -22,     2,    43,   -22,
+     -22,   -22,   -22,    13,    38,   -22,   -22,   -22,   -22,   -22,
+       2,     2,   -22,    43,    21,   -22
 };
 
 /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int8 yypgoto[] =
 {
-     -22,   -22,   -22,   -22,   -22,   -22,     0,   -22,   -21,     1,
+     -22,   -22,   -22,   -22,   -22,   -22,     5,    -7,   -21,     1,
       -2,   -22,   -22,   -22
 };
 
@@ -557,22 +561,24 @@ static const yytype_int8 yypgoto[] =
 #define YYTABLE_NINF -1
 static const yytype_uint8 yytable[] =
 {
-      12,    31,    12,    11,    13,    11,    34,     3,     4,    18,
-      19,    27,    20,    21,    14,    12,    22,    26,    11,    43,
-      44,     5,     6,    33,    24,     5,     6,     7,     5,     6,
-       7,    35,    36,    37,    38,    39,    42,     0,    35,    36,
-      37,    38,    39,    41,    45,    35,    36,    37,    38,    39,
-      15,    16
+      12,    31,    12,    11,    24,    11,    34,     3,     4,    13,
+      26,    27,     0,     0,    14,    12,    15,    16,    11,    43,
+      44,     5,     6,    33,    41,     5,     6,     7,     5,     6,
+       7,    15,    16,    35,    36,    37,    38,    39,     0,     0,
+      18,    19,     0,    20,    21,     0,    45,    22,    42,     0,
+      35,    36,    37,    38,    39,    35,    36,    37,    38,    39,
+       5,     6,     7
 };
 
 static const yytype_int8 yycheck[] =
 {
-       2,     6,     4,     2,     4,     4,    27,     0,     9,    17,
-      18,     9,    20,    21,     5,    17,    24,    17,    17,    40,
-      41,    26,    27,    25,    10,    26,    27,    28,    26,    27,
-      28,    12,    13,    14,    15,    16,    10,    -1,    12,    13,
-      14,    15,    16,    11,    25,    12,    13,    14,    15,    16,
-      22,    23
+       2,     6,     4,     2,    10,     4,    27,     0,     9,     4,
+      17,     9,    -1,    -1,     5,    17,    22,    23,    17,    40,
+      41,    26,    27,    25,    11,    26,    27,    28,    26,    27,
+      28,    22,    23,    12,    13,    14,    15,    16,    -1,    -1,
+      17,    18,    -1,    20,    21,    -1,    25,    24,    10,    -1,
+      12,    13,    14,    15,    16,    12,    13,    14,    15,    16,
+      26,    27,    28
 };
 
 /* YYSTOS[STATE-NUM] -- The (internal number of the) accessing
@@ -581,7 +587,7 @@ static const yytype_uint8 yystos[] =
 {
        0,    30,    31,     0,     9,    26,    27,    28,    32,    35,
       36,    38,    39,    35,     5,    22,    23,    40,    17,    18,
-      20,    21,    24,    41,    10,    33,    35,     9,    37,    38,
+      20,    21,    24,    41,    10,    33,    36,     9,    37,    38,
       39,     6,    34,    39,    37,    12,    13,    14,    15,    16,
       42,    11,    10,    37,    37,    25
 };
@@ -1406,119 +1412,119 @@ yyreduce:
         case 2:
 
 /* Line 1464 of yacc.c  */
-#line 55 "valve.y"
+#line 58 "valve.y"
     {return 0;;}
     break;
 
   case 3:
 
 /* Line 1464 of yacc.c  */
-#line 58 "valve.y"
+#line 61 "valve.y"
     {;}
     break;
 
   case 5:
 
 /* Line 1464 of yacc.c  */
-#line 62 "valve.y"
-    {doPatternAction((yyvsp[(1) - (4)].pNode), (yyvsp[(3) - (4)].pNode));;}
+#line 65 "valve.y"
+    {doPatternAction((yyvsp[(1) - (4)].pArithNode), (yyvsp[(3) - (4)].pArithNode));;}
     break;
 
   case 6:
 
 /* Line 1464 of yacc.c  */
-#line 65 "valve.y"
+#line 68 "valve.y"
     {;}
     break;
 
   case 7:
 
 /* Line 1464 of yacc.c  */
-#line 66 "valve.y"
+#line 69 "valve.y"
     {/*$$ = addNodeOperatorAction($1, $2);*/;}
     break;
 
   case 8:
 
 /* Line 1464 of yacc.c  */
-#line 69 "valve.y"
-    {;}
+#line 72 "valve.y"
+    {(yyval.pArithNode) = addNodeVarOperand((yyvsp[(2) - (4)].number), addNodeVar((yyvsp[(1) - (4)].string)), (yyvsp[(3) - (4)].pArithNode));;}
     break;
 
   case 9:
 
 /* Line 1464 of yacc.c  */
-#line 73 "valve.y"
-    {(yyval.pNode) = (yyvsp[(2) - (3)].pNode);;}
+#line 76 "valve.y"
+    {(yyval.pArithNode) = (yyvsp[(2) - (3)].pArithNode);;}
     break;
 
   case 10:
 
 /* Line 1464 of yacc.c  */
-#line 74 "valve.y"
-    {/*$$ = addNodeOperator($2, $1, $3);*/;}
+#line 77 "valve.y"
+    {(yyval.pArithNode) = addNodeOperator((yyvsp[(2) - (3)].number), (yyvsp[(1) - (3)].pArithNode), (yyvsp[(3) - (3)].pArithNode));;}
     break;
 
   case 11:
 
 /* Line 1464 of yacc.c  */
-#line 75 "valve.y"
-    {;}
+#line 78 "valve.y"
+    {(yyval.pArithNode) = (yyvsp[(1) - (1)].pArithNode);;}
     break;
 
   case 12:
 
 /* Line 1464 of yacc.c  */
-#line 82 "valve.y"
-    {;}
+#line 85 "valve.y"
+    {(yyval.pArithNode) = addNodeVarOperand((yyvsp[(2) - (3)].number), addNodeVar((yyvsp[(1) - (3)].string)), (yyvsp[(3) - (3)].pArithNode));;}
     break;
 
   case 13:
 
 /* Line 1464 of yacc.c  */
-#line 83 "valve.y"
-    {;}
+#line 86 "valve.y"
+    {(yyval.pArithNode) = addNodeId((yyvsp[(1) - (1)].number));;}
     break;
 
   case 14:
 
 /* Line 1464 of yacc.c  */
-#line 90 "valve.y"
-    {(yyval.pNode) = (yyvsp[(2) - (3)].pNode);;}
+#line 93 "valve.y"
+    {(yyval.pArithNode) = (yyvsp[(2) - (3)].pArithNode);;}
     break;
 
   case 15:
 
 /* Line 1464 of yacc.c  */
-#line 91 "valve.y"
-    {(yyval.pNode) = addNodeOperator((yyvsp[(2) - (3)].number), (yyvsp[(1) - (3)].pNode), (yyvsp[(3) - (3)].pNode));;}
+#line 94 "valve.y"
+    {(yyval.pArithNode) = addNodeOperator((yyvsp[(2) - (3)].number), (yyvsp[(1) - (3)].pArithNode), (yyvsp[(3) - (3)].pArithNode));;}
     break;
 
   case 16:
 
 /* Line 1464 of yacc.c  */
-#line 92 "valve.y"
-    {(yyval.pNode) = addNodeId((yyvsp[(1) - (1)].number));;}
+#line 95 "valve.y"
+    {(yyval.pArithNode) = addNodeId((yyvsp[(1) - (1)].number));;}
     break;
 
   case 17:
 
 /* Line 1464 of yacc.c  */
-#line 95 "valve.y"
+#line 98 "valve.y"
     {(yyval.number) = addNodeVar((yyvsp[(1) - (1)].string));;}
     break;
 
   case 18:
 
 /* Line 1464 of yacc.c  */
-#line 96 "valve.y"
+#line 99 "valve.y"
     {(yyval.number) = addNodeVar((yyvsp[(1) - (1)].string));;}
     break;
 
 
 
 /* Line 1464 of yacc.c  */
-#line 1522 "valve.tab.c"
+#line 1528 "valve.tab.c"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -1730,7 +1736,7 @@ yyreturn:
 
 
 /* Line 1684 of yacc.c  */
-#line 122 "valve.y"
+#line 125 "valve.y"
  /* Additional C code */
 
 
@@ -1759,6 +1765,7 @@ main ()
 	}
 #endif
 
+	initVarTable();
 	// To turn on debugging, make sure the next line is uncommented and
 	//  turn on the -t (also use -v -l) options in bison.exe.
 	yydebug = 1; 
@@ -1769,48 +1776,53 @@ main ()
 	printf("\n} /* main */\n");
 }
 
-void initVarTable(varNode* pTable, unsigned int len) {
-	--len;
+void initVarTable(void) {
+	unsigned int len = VAR_ITEMS - 1;
 	for (; len >= 0; --len) {
-		pTable[len].name[0] = EOS;
-		pTable[len].val = 0;	// Initialize variable to 0;
+		varTable[len].name[0] = EOS;
+		varTable[len].val = 0;	// Initialize variable to 0;
 	}
 }
 
 // Return index of variable or constant in symbol table
-int insertVariable(varNode* pTable, varNode* pVar) {
+int insertVariable(varNode* pVar) {
 	if (varTableFreeIndex < VAR_ITEMS) {
-		pTable[varTableFreeIndex] = *pVar;
+		varTable[varTableFreeIndex] = *pVar;
 		return varTableFreeIndex++;
 	}
 	return VAR_TABLE_LIMIT;
 }
 
-int getVariable(varNode* pTable, varNode* pVar) {
-	int found = findVariable(pTable, pVar);
-	if (found != VAR_NOT_FOUND) {
-		// found it
-		pVar->val = pTable[found].val;
+#if 0
+// Get value of variable or constant.
+// Return index where variable is located in varTable, or -1 on failure.
+int getVariableIndex(varNode* pVar) {
+	int found = findVariable(pVar);
+	if (found == VAR_NOT_FOUND) {
+		return insertVariable(pVar);
 	}
 	return found;
 }
 
-int setVariable(varNode* pTable, varNode* pVar) {
-	int found = findVariable(pTable, pVar);
+// Set value of variable but not of constant.
+// Return index of variable or constant in symbol table
+int setVariable(varNode* pVar) {
+	int found = findVariable(pVar);
 	if (found == VAR_NOT_FOUND) {
-		insertVariable(pTable, pVar);
+		return insertVariable(pVar);
 	} else {
 		// found it
-		pTable[found].val = pVar->val;
+		varTable[found].val = pVar->val;
 	}
 	return found;
 }
+#endif
 
 // Return index where variable is located in varTable, or -1 on failure.
-int findVariable(varNode* pTable, varNode* pVar) {
+int findVariable(varNode* pVar) {
 	int i;
 	for (i = 0; i < varTableFreeIndex; ++i) {
-		if (strncmp(pTable[i].name, pVar->name, VAR_NAME_LENGTH-1) == 0) {
+		if (strncmp(varTable[i].name, pVar->name, VAR_NAME_LENGTH-1) == 0) {
 			return i;
 		}
 	}
@@ -1825,49 +1837,67 @@ void pushOutputLine(char* line) {
 	printf("\nsetLineAsOutput(\"%s\");", line);
 }
 
-// The following 2 functions are only used by 'pattern' in the 
-//  'pattern {action} part of the grammar.
-node* addNodeOperator(int type, node* pLeft, node* pRight) {
-	node* p = malloc(sizeof(node));
+arithNode* addNodeOperator(int operator, arithNode* pLeft, arithNode* pRight) {
+	arithNode* p = getNextArithNode();
 	if (p == NULL) {
 		//assert(p != NULL);
-		yyerror("malloc() failed in call to addNodeOperator()");
+		return p;
 	}
-	p->idValue[0] = EOS;
-	if (type == AND) {
-		p->operand = enumAnd;
-	} else if (type == OR) {
-		p->operand = enumOr;
-	}
+	p->type = nodeOperator;
+	p->value = operator;
 	p->pLeft = pLeft;
 	p->pRight = pRight;
 	return p;	
 }
 
-node* addNodeId(int varIndex) {
-#if 0
-	//assert(id != NULL);
-	node* p = malloc(sizeof(node));
+// e.g. c3 == 4 * c1;
+arithNode* addNodeVarOperand(int operator, int varIndex, arithNode* pRight) {
+	arithNode* p = getNextArithNode();
 	if (p == NULL) {
 		//assert(p != NULL);
-		yyerror("malloc() failed in call to addNodeId()");
+		return p;
 	}
-	p->operand = enumId;
-	// Remember an id can be 'a3' or '!g7'.
-	p->idValue[0] = id[0];
-	p->idValue[1] = id[1];
-	p->idValue[2] = id[2];
-	if (id[0] == '!') {
-		p->idValue[3] = id[3];
+	p->type = nodeOperator;
+	p->value = operator;
+
+	p->pLeft = getNextArithNode();
+	if (p->pLeft == NULL) {
+		//assert(p->pLeft != NULL);
+		return p->pLeft;
 	}
+	p->pLeft->type = nodeVar;
+	p->pLeft->value = varIndex;
+
+	p->pRight = pRight;
+	return p;	
+}
+
+arithNode* addNodeId(int varIndex) {
+	arithNode* p = getNextArithNode();
+	if (p == NULL) {
+		//assert(p != NULL);
+		return p;
+	}
+	p->type = nodeVar;
+	p->value = varIndex;
 	p->pLeft = NULL;
 	p->pRight = NULL;
 	return p;	
-#endif
 }
 
-node* getAvailNode(void) {
+arithNode* getNextArithNode(void) {
+	if (arithTableFreeIndex < ARITH_ITEMS) {
+		return arithTable + arithTableFreeIndex++;
+	}
 	return NULL;
+}
+
+// A variable may not start with a number. One that does we'll consider a constant.
+int isConstant(varNode* pVar) {
+	if (isdigit(pVar->name[0])) {
+		return TRUE;
+	}
+	return FALSE;
 }
 
 int addNodeVar(char* var) {
@@ -1875,37 +1905,23 @@ int addNodeVar(char* var) {
 	strncpy(tmp.name, var, VAR_NAME_LENGTH-1);
 	tmp.name[VAR_NAME_LENGTH-1] = EOS;
 	tmp.val = 0;
-	if (isdigit(var[0])) {
+	if (isConstant(&tmp)) {
 		// Assume it's a constant, but can just treat it like a variable, making sure that
 		//  any variable that starts with a numberic (i.e. a constant) is never altered.
 		tmp.val = atoi(var);
 	}
-	int found = findVariable(varTable, &tmp);
+	int found = findVariable(&tmp);
 	if (found == VAR_NOT_FOUND) {
-		return insertVariable(varTable, &tmp);
+		return insertVariable(&tmp);
 	}
 	return found;
-	
-	#if 0
-	//assert(id != NULL);
-	node* pn = getAvailNode();
-	if (pn == NULL) {
-		//assert(p != NULL);
-		yyerror("malloc() failed in call to addNodeId()");
-	}
-	pn->type = nodeVar;
-	//pn->value = findVarInSymbolTable(var);
-	pn->pLeft = NULL;
-	pn->pRight = NULL;
-	return pn;	
-	#endif
 }
 
 
 // The following 2 functions are only used by 'action' in the 
 //  'pattern {action} part of the grammar.
-node* addNodeOperatorAction(node* pNode, char* id) {
-	node* p = malloc(sizeof(node));
+arithNode* addNodeOperatorAction(arithNode* pArithNode, char* id) {
+	arithNode* p = malloc(sizeof(arithNode));
 	if (p == NULL) {
 		//assert(p != NULL);
 		yyerror("malloc() failed in call to addNodeOperator()");
@@ -1919,13 +1935,13 @@ node* addNodeOperatorAction(node* pNode, char* id) {
 		p->idValue[3] = id[3];
 	}
 	p->pLeft = NULL;
-	p->pRight = pNode;
+	p->pRight = pArithNode;
 	return p;	
 }
 
-node* addNodeActionId(char* id) {
+arithNode* addNodeActionId(char* id) {
 	//assert(id != NULL);
-	node* p = malloc(sizeof(node));
+	arithNode* p = malloc(sizeof(arithNode));
 	if (p == NULL) {
 		//assert(p != NULL);
 		yyerror("malloc() failed in call to addActionNodeId()");
@@ -1943,7 +1959,7 @@ node* addNodeActionId(char* id) {
 	return p;	
 }
 
-void doPatternAction(node* pPattern, node* pAction)
+void doPatternAction(arithNode* pPattern, arithNode* pAction)
 {
 	{
 	/* Output statement. */
@@ -1977,36 +1993,36 @@ void doPatternAction(node* pPattern, node* pAction)
 	printf("\n} /* if */\n");
 	}
 
-	freeNode(pPattern);
-	freeNode(pAction);
+	//freeNode(pPattern);
+	//freeNode(pAction);
 }
 
 // Walk tree in infix mode; left, root right.
-void walkPatternTree(node* pNode, char complement) {
-	if (pNode == NULL) {
+void walkPatternTree(arithNode* pArithNode, char complement) {
+	if (pArithNode == NULL) {
 		return;
 	}
 	printf(" ( ");
-	walkPatternTree(pNode->pLeft, complement);
-	if (pNode->operand == enumId) {
+	walkPatternTree(pArithNode->pLeft, complement);
+	if (pArithNode->operand == enumId) {
 		if (complement) {
-			if (pNode->idValue[0] == '!') {
+			if (pArithNode->idValue[0] == '!') {
 				// Don't want to preceed an ! with another !. Our language can't
 				//  handle that so we'll just strip off the first !.
-				printf(" getInput(\"%s\") ", &pNode->idValue[1]);
+				printf(" getInput(\"%s\") ", &pArithNode->idValue[1]);
 			} else {
-				printf(" getInput(\"!%s\") ", pNode->idValue);
+				printf(" getInput(\"!%s\") ", pArithNode->idValue);
 			}
 		} else {
-			printf(" getInput(\"%s\") ", pNode->idValue);
+			printf(" getInput(\"%s\") ", pArithNode->idValue);
 		}
-	} else if (pNode->operand == enumAnd) {
+	} else if (pArithNode->operand == enumAnd) {
 		if (complement) {
 			printf(" || ");
 		} else {
 			printf(" && ");
 		}
-	} else if (pNode->operand == enumOr) {
+	} else if (pArithNode->operand == enumOr) {
 		if (complement) {
 			printf(" && ");
 		} else {
@@ -2015,49 +2031,33 @@ void walkPatternTree(node* pNode, char complement) {
 	} else {
 		//assert(false);
 	}
-	walkPatternTree(pNode->pRight, complement);
+	walkPatternTree(pArithNode->pRight, complement);
 	printf(" ) ");
 }
 
-void walkActionTree(node* pNode, char complement) {
-	if (pNode == NULL) {
+void walkActionTree(arithNode* pArithNode, char complement) {
+	if (pArithNode == NULL) {
 		return;
 	}
-	walkActionTree(pNode->pRight, complement);
-	if (pNode->operand == enumAction) {
+	walkActionTree(pArithNode->pRight, complement);
+	if (pArithNode->operand == enumAction) {
 		if (complement) {
-			if (pNode->idValue[0] == '!') {
+			if (pArithNode->idValue[0] == '!') {
 				// Don't want to preceed an ! with another !. Our language can't
 				//  handle that so we'll just strip off the first !.
-				printf("\nsetOutput(\"%s\"); ", &pNode->idValue[1]);
+				printf("\nsetOutput(\"%s\"); ", &pArithNode->idValue[1]);
 			} else {
-				printf("\nsetOutput(\"!%s\"); ", pNode->idValue);
+				printf("\nsetOutput(\"!%s\"); ", pArithNode->idValue);
 			}
 		} else {
-			printf("\nsetOutput(\"%s\"); ", pNode->idValue);
+			printf("\nsetOutput(\"%s\"); ", pArithNode->idValue);
 		}
 	} else {
 		//assert(false);
 	}
 }
 
-void freeNode(node* pNode) {
-	if (pNode == NULL) {
-		//assert(pNode != NULL);
-		return;
-	}
-	if (pNode->operand != enumId) {
-		// It's not an Id, it's an operand.
-		//assert(pNode->pLeft != NULL);	
-		//assert(pNode->pRight != NULL);	
-		freeNode(pNode->pLeft);
-		freeNode(pNode->pRight);
-	}
-	free(pNode);
-}
-
-
-int infixPatternTraversal(node* pn) {
+int infixPatternTraversal(arithNode* pn) {
 	if (pn->type == nodeOperator) {
 		int valueLeft = infixPatternTraversal(pn->pLeft);
 		// Short-circuit evaluation

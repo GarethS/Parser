@@ -74,11 +74,11 @@ typedef union YYSTYPE
 {
 
 /* Line 1685 of yacc.c  */
-#line 28 "valve.y"
+#line 32 "valve.y"
 
 	int number;
 	char* string;
-	node* pNode;	
+	arithNode* pArithNode;	
 
 
 
