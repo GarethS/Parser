@@ -28,5 +28,5 @@ parsetest.exe: valve.tab.c valve.tab.h lex.yy.c
 lex.yy.c: valve.l Makefile
 	flex $(FLEX_FLAGS) valve.l		# flex version 2.5.35
 	
-valve.tab.c valve.tab.h:	valve.y
+valve.tab.c valve.tab.h:	valve.y compiler.h
 	bison $(BISON_FLAGS) valve.y	# bison version 2.4.2

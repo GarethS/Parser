@@ -26,13 +26,17 @@ unsigned int varTableFreeIndex = 0;
 arithNode arithTable[ARITH_ITEMS];
 unsigned int arithTableFreeIndex = 0;
 
+actionNode actionTable[ACTION_ITEMS];
+unsigned int actionTableFreeIndex = 0;
+
 %}
 
 /* See compiler.h for definition of 'node' */
 %union {
 	int number;
 	char* string;
-	arithNode* pArithNode;	
+	arithNode* pArithNode;
+	actionNode* pActionNode;
 }
 
 /* TERMINALS */
@@ -46,7 +50,8 @@ unsigned int arithTableFreeIndex = 0;
 /* non-terminals */
 %type <number> identifier operator binaryPredicate operandTest
 %type <string> patternAction var
-%type <pArithNode>  pattern action statementAction arithmeticExpression patternCompare
+%type <pArithNode>  pattern statementAction arithmeticExpression patternCompare
+%type <pActionNode>  action
 
 %defines	/* generate valve.tab.h for use with lex.yy.c */
 
@@ -62,11 +67,11 @@ patternActionList: /* empty */	{}
 					| patternActionList patternAction	
 ;
 
-patternAction: pattern LBRACE action RBRACE	{doPatternAction($1, $3);}
+patternAction: pattern LBRACE action RBRACE	{/*doPatternAction($1, $3);*/}
 ;
 
 action: /* empty */	{}
-		| action statementAction	{/*$$ = addNodeOperatorAction($1, $2);*/}
+		| action statementAction	{$$ = addNodeOperatorAction($1, $2);}
 ;
 
 statementAction:	var EQUAL arithmeticExpression SEMI	{$$ = addNodeVarOperand($2, addNodeVar($1), $3);}
@@ -277,6 +282,13 @@ arithNode* getNextArithNode(void) {
 	return NULL;
 }
 
+actionNode* getNextActionNode(void) {
+	if (actionTableFreeIndex < ACTION_ITEMS) {
+		return actionTable + actionTableFreeIndex++;
+	}
+	return NULL;
+}
+
 // A variable may not start with a number. One that does we'll consider a constant.
 int isConstant(varNode* pVar) {
 	if (isdigit(pVar->name[0])) {
@@ -305,7 +317,16 @@ int addNodeVar(char* var) {
 
 // The following 2 functions are only used by 'action' in the 
 //  'pattern {action} part of the grammar.
-arithNode* addNodeOperatorAction(arithNode* pArithNode, char* id) {
+actionNode* addNodeOperatorAction(actionNode* pActionNode, arithNode* pArithNode) {
+	actionNode* p = getNextActionNode();
+	if (p == NULL) {
+		//assert(p != NULL);
+		return p;
+	}
+	p->pArith = pArithNode;
+	p->pNext = pActionNode;
+	return p;
+#if 0
 	arithNode* p = malloc(sizeof(arithNode));
 	if (p == NULL) {
 		//assert(p != NULL);
@@ -322,6 +343,7 @@ arithNode* addNodeOperatorAction(arithNode* pArithNode, char* id) {
 	p->pLeft = NULL;
 	p->pRight = pArithNode;
 	return p;	
+#endif
 }
 
 arithNode* addNodeActionId(char* id) {

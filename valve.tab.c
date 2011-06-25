@@ -83,10 +83,13 @@ unsigned int varTableFreeIndex = 0;
 arithNode arithTable[ARITH_ITEMS];
 unsigned int arithTableFreeIndex = 0;
 
+actionNode actionTable[ACTION_ITEMS];
+unsigned int actionTableFreeIndex = 0;
+
 
 
 /* Line 189 of yacc.c  */
-#line 90 "valve.tab.c"
+#line 93 "valve.tab.c"
 
 /* Enabling traces.  */
 #ifndef YYDEBUG
@@ -149,16 +152,17 @@ typedef union YYSTYPE
 {
 
 /* Line 214 of yacc.c  */
-#line 32 "valve.y"
+#line 35 "valve.y"
 
 	int number;
 	char* string;
-	arithNode* pArithNode;	
+	arithNode* pArithNode;
+	actionNode* pActionNode;
 
 
 
 /* Line 214 of yacc.c  */
-#line 162 "valve.tab.c"
+#line 166 "valve.tab.c"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
@@ -170,7 +174,7 @@ typedef union YYSTYPE
 
 
 /* Line 264 of yacc.c  */
-#line 174 "valve.tab.c"
+#line 178 "valve.tab.c"
 
 #ifdef short
 # undef short
@@ -465,10 +469,10 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    58,    58,    61,    62,    65,    68,    69,    72,    76,
-      77,    78,    85,    86,    93,    94,    95,    98,    99,   102,
-     103,   106,   107,   110,   111,   112,   113,   114,   117,   118,
-     119,   120,   121
+       0,    63,    63,    66,    67,    70,    73,    74,    77,    81,
+      82,    83,    90,    91,    98,    99,   100,   103,   104,   107,
+     108,   111,   112,   115,   116,   117,   118,   119,   122,   123,
+     124,   125,   126
 };
 #endif
 
@@ -1412,119 +1416,119 @@ yyreduce:
         case 2:
 
 /* Line 1464 of yacc.c  */
-#line 58 "valve.y"
+#line 63 "valve.y"
     {return 0;;}
     break;
 
   case 3:
 
 /* Line 1464 of yacc.c  */
-#line 61 "valve.y"
+#line 66 "valve.y"
     {;}
     break;
 
   case 5:
 
 /* Line 1464 of yacc.c  */
-#line 65 "valve.y"
-    {doPatternAction((yyvsp[(1) - (4)].pArithNode), (yyvsp[(3) - (4)].pArithNode));;}
+#line 70 "valve.y"
+    {/*doPatternAction($1, $3);*/;}
     break;
 
   case 6:
 
 /* Line 1464 of yacc.c  */
-#line 68 "valve.y"
+#line 73 "valve.y"
     {;}
     break;
 
   case 7:
 
 /* Line 1464 of yacc.c  */
-#line 69 "valve.y"
-    {/*$$ = addNodeOperatorAction($1, $2);*/;}
+#line 74 "valve.y"
+    {(yyval.pActionNode) = addNodeOperatorAction((yyvsp[(1) - (2)].pActionNode), (yyvsp[(2) - (2)].pArithNode));;}
     break;
 
   case 8:
 
 /* Line 1464 of yacc.c  */
-#line 72 "valve.y"
+#line 77 "valve.y"
     {(yyval.pArithNode) = addNodeVarOperand((yyvsp[(2) - (4)].number), addNodeVar((yyvsp[(1) - (4)].string)), (yyvsp[(3) - (4)].pArithNode));;}
     break;
 
   case 9:
 
 /* Line 1464 of yacc.c  */
-#line 76 "valve.y"
+#line 81 "valve.y"
     {(yyval.pArithNode) = (yyvsp[(2) - (3)].pArithNode);;}
     break;
 
   case 10:
 
 /* Line 1464 of yacc.c  */
-#line 77 "valve.y"
+#line 82 "valve.y"
     {(yyval.pArithNode) = addNodeOperator((yyvsp[(2) - (3)].number), (yyvsp[(1) - (3)].pArithNode), (yyvsp[(3) - (3)].pArithNode));;}
     break;
 
   case 11:
 
 /* Line 1464 of yacc.c  */
-#line 78 "valve.y"
+#line 83 "valve.y"
     {(yyval.pArithNode) = (yyvsp[(1) - (1)].pArithNode);;}
     break;
 
   case 12:
 
 /* Line 1464 of yacc.c  */
-#line 85 "valve.y"
+#line 90 "valve.y"
     {(yyval.pArithNode) = addNodeVarOperand((yyvsp[(2) - (3)].number), addNodeVar((yyvsp[(1) - (3)].string)), (yyvsp[(3) - (3)].pArithNode));;}
     break;
 
   case 13:
 
 /* Line 1464 of yacc.c  */
-#line 86 "valve.y"
+#line 91 "valve.y"
     {(yyval.pArithNode) = addNodeId((yyvsp[(1) - (1)].number));;}
     break;
 
   case 14:
 
 /* Line 1464 of yacc.c  */
-#line 93 "valve.y"
+#line 98 "valve.y"
     {(yyval.pArithNode) = (yyvsp[(2) - (3)].pArithNode);;}
     break;
 
   case 15:
 
 /* Line 1464 of yacc.c  */
-#line 94 "valve.y"
+#line 99 "valve.y"
     {(yyval.pArithNode) = addNodeOperator((yyvsp[(2) - (3)].number), (yyvsp[(1) - (3)].pArithNode), (yyvsp[(3) - (3)].pArithNode));;}
     break;
 
   case 16:
 
 /* Line 1464 of yacc.c  */
-#line 95 "valve.y"
+#line 100 "valve.y"
     {(yyval.pArithNode) = addNodeId((yyvsp[(1) - (1)].number));;}
     break;
 
   case 17:
 
 /* Line 1464 of yacc.c  */
-#line 98 "valve.y"
+#line 103 "valve.y"
     {(yyval.number) = addNodeVar((yyvsp[(1) - (1)].string));;}
     break;
 
   case 18:
 
 /* Line 1464 of yacc.c  */
-#line 99 "valve.y"
+#line 104 "valve.y"
     {(yyval.number) = addNodeVar((yyvsp[(1) - (1)].string));;}
     break;
 
 
 
 /* Line 1464 of yacc.c  */
-#line 1528 "valve.tab.c"
+#line 1532 "valve.tab.c"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -1736,7 +1740,7 @@ yyreturn:
 
 
 /* Line 1684 of yacc.c  */
-#line 125 "valve.y"
+#line 130 "valve.y"
  /* Additional C code */
 
 
@@ -1892,6 +1896,13 @@ arithNode* getNextArithNode(void) {
 	return NULL;
 }
 
+actionNode* getNextActionNode(void) {
+	if (actionTableFreeIndex < ACTION_ITEMS) {
+		return actionTable + actionTableFreeIndex++;
+	}
+	return NULL;
+}
+
 // A variable may not start with a number. One that does we'll consider a constant.
 int isConstant(varNode* pVar) {
 	if (isdigit(pVar->name[0])) {
@@ -1920,7 +1931,16 @@ int addNodeVar(char* var) {
 
 // The following 2 functions are only used by 'action' in the 
 //  'pattern {action} part of the grammar.
-arithNode* addNodeOperatorAction(arithNode* pArithNode, char* id) {
+actionNode* addNodeOperatorAction(actionNode* pActionNode, arithNode* pArithNode) {
+	actionNode* p = getNextActionNode();
+	if (p == NULL) {
+		//assert(p != NULL);
+		return p;
+	}
+	p->pArith = pArithNode;
+	p->pNext = pActionNode;
+	return p;
+#if 0
 	arithNode* p = malloc(sizeof(arithNode));
 	if (p == NULL) {
 		//assert(p != NULL);
@@ -1937,6 +1957,7 @@ arithNode* addNodeOperatorAction(arithNode* pArithNode, char* id) {
 	p->pLeft = NULL;
 	p->pRight = pArithNode;
 	return p;	
+#endif
 }
 
 arithNode* addNodeActionId(char* id) {

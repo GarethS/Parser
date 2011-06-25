@@ -22,6 +22,7 @@ typedef enum {OP_PLUS, OP_MINUS, OP_MULT, OP_DIV, OP_XOR, OP_AND, OP_OR, OP_EQUA
 #define EOS				'\0'	// End of string
 #define VAR_ITEMS		(200)
 #define ARITH_ITEMS		(200)
+#define ACTION_ITEMS	(200)
 //#define VAR_MAX_INDEX	(VAR_ITEMS-1)
 #define VAR_NAME_LENGTH	(12)
 #define VAR_NOT_FOUND	(-1)
@@ -48,6 +49,11 @@ typedef struct thisArithmeticNode {
 	struct thisArithmeticNode* pRight;
 } arithNode;
 
+typedef struct thisActionNode {
+	struct thisArithmeticNode* pArith;
+	struct thisActionNode* pNext;
+} actionNode;
+
 
 // Function prototypes.
 void yyerror (char* s);
@@ -62,12 +68,11 @@ arithNode* addNodeOperator(int operator, arithNode* pLeft, arithNode* pRight);
 arithNode* addNodeVarOperand(int operator, int varIndex, arithNode* pRight);
 arithNode* addNodeId(int varIndex);
 
-// The following 2 functions are only used by 'action' in the 
-//  'pattern {action} part of the grammar.
-arithNode* addNodeOperatorAction(arithNode* pNode, char* id);
+//arithNode* addNodeOperatorAction(arithNode* pNode, char* id);
+actionNode* addNodeOperatorAction(actionNode* pActionNode, arithNode* pArithNode);
 arithNode* addNodeActionId(char* id);
 
-// New functions
+// New functions 
 arithNode* getAvailNode(void);
 int addNodeVar(char* var);
 int infixPatternTraversal(arithNode* pn);
@@ -80,7 +85,7 @@ int findVariable(varNode* pVar);
 int isConstant(varNode* pVar);
 
 arithNode* getNextArithNode(void);
-
+actionNode* getNextActionNode(void);
 
 void doPatternAction(arithNode* pPattern, arithNode* pAction);
 void walkPatternTree(arithNode* pNode, char complement);
