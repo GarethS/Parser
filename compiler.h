@@ -88,8 +88,10 @@ arithNode* getNextArithNode(void);
 actionNode* getNextActionNode(void);
 
 void doPatternAction(arithNode* pPattern, arithNode* pAction);
-void walkPatternTree(arithNode* pNode, char complement);
-void walkActionTree(arithNode* pNode, char complement);
+void walkPatternTree(arithNode* pNode);
+void walkActionTree(arithNode* pNode);
+void dumpSymbolTable(void);
+void dumpSymbol(int i);
 //void freeNode(node* pNode);
 
 #endif /* compiler_h */

@@ -12,6 +12,8 @@ BISON_FLAGS = --verbose --debug --report=state
 #FLEX_FLAGS = -d
 FLEX_FLAGS =
 
+GCC_FLAGS = -g
+
 all: lextest.exe parsetest.exe lex.yy.c valve.tab.c
 
 clean:
@@ -20,10 +22,10 @@ clean:
 	#rm valve.dot
 
 lextest.exe: lex.yy.c
-	gcc lex.yy.c -lfl -o lextest.exe
+	gcc $(GCC_FLAGS) lex.yy.c -lfl -o lextest.exe
 	
 parsetest.exe: valve.tab.c valve.tab.h lex.yy.c
-	gcc -D BISON_PHASE valve.tab.c -lfl -o parsetest.exe
+	gcc $(GCC_FLAGS) -D BISON_PHASE valve.tab.c -lfl -o parsetest.exe
 	
 lex.yy.c: valve.l Makefile
 	flex $(FLEX_FLAGS) valve.l		# flex version 2.5.35

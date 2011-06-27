@@ -1417,7 +1417,7 @@ yyreduce:
 
 /* Line 1464 of yacc.c  */
 #line 63 "valve.y"
-    {return 0;;}
+    {dumpSymbolTable();;}
     break;
 
   case 3:
@@ -1431,7 +1431,7 @@ yyreduce:
 
 /* Line 1464 of yacc.c  */
 #line 70 "valve.y"
-    {/*doPatternAction($1, $3);*/;}
+    {walkPatternTree((yyvsp[(1) - (4)].pArithNode)); /*walkActionTree($3);*/;}
     break;
 
   case 6:
@@ -1781,8 +1781,8 @@ main ()
 }
 
 void initVarTable(void) {
-	unsigned int len = VAR_ITEMS - 1;
-	for (; len >= 0; --len) {
+	int len = VAR_ITEMS - 1;
+	for (; len >= 0; len--) {
 		varTable[len].name[0] = EOS;
 		varTable[len].val = 0;	// Initialize variable to 0;
 	}
@@ -1980,6 +1980,7 @@ arithNode* addNodeActionId(char* id) {
 	return p;	
 }
 
+#if 0
 void doPatternAction(arithNode* pPattern, arithNode* pAction)
 {
 	{
@@ -2017,62 +2018,35 @@ void doPatternAction(arithNode* pPattern, arithNode* pAction)
 	//freeNode(pPattern);
 	//freeNode(pAction);
 }
+#endif
 
 // Walk tree in infix mode; left, root right.
-void walkPatternTree(arithNode* pArithNode, char complement) {
+void walkPatternTree(arithNode* pArithNode) {
 	if (pArithNode == NULL) {
 		return;
 	}
 	printf(" ( ");
-	walkPatternTree(pArithNode->pLeft, complement);
+	walkPatternTree(pArithNode->pLeft);
 	if (pArithNode->operand == enumId) {
-		if (complement) {
-			if (pArithNode->idValue[0] == '!') {
-				// Don't want to preceed an ! with another !. Our language can't
-				//  handle that so we'll just strip off the first !.
-				printf(" getInput(\"%s\") ", &pArithNode->idValue[1]);
-			} else {
-				printf(" getInput(\"!%s\") ", pArithNode->idValue);
-			}
-		} else {
 			printf(" getInput(\"%s\") ", pArithNode->idValue);
-		}
 	} else if (pArithNode->operand == enumAnd) {
-		if (complement) {
-			printf(" || ");
-		} else {
 			printf(" && ");
-		}
 	} else if (pArithNode->operand == enumOr) {
-		if (complement) {
-			printf(" && ");
-		} else {
 			printf(" || ");
-		}
 	} else {
 		//assert(false);
 	}
-	walkPatternTree(pArithNode->pRight, complement);
+	walkPatternTree(pArithNode->pRight);
 	printf(" ) ");
 }
 
-void walkActionTree(arithNode* pArithNode, char complement) {
+void walkActionTree(arithNode* pArithNode) {
 	if (pArithNode == NULL) {
 		return;
 	}
-	walkActionTree(pArithNode->pRight, complement);
+	walkActionTree(pArithNode->pRight);
 	if (pArithNode->operand == enumAction) {
-		if (complement) {
-			if (pArithNode->idValue[0] == '!') {
-				// Don't want to preceed an ! with another !. Our language can't
-				//  handle that so we'll just strip off the first !.
-				printf("\nsetOutput(\"%s\"); ", &pArithNode->idValue[1]);
-			} else {
-				printf("\nsetOutput(\"!%s\"); ", pArithNode->idValue);
-			}
-		} else {
 			printf("\nsetOutput(\"%s\"); ", pArithNode->idValue);
-		}
 	} else {
 		//assert(false);
 	}
@@ -2104,3 +2078,13 @@ int infixPatternTraversal(arithNode* pn) {
 	return pn->value;
 }
 
+void dumpSymbolTable(void) {
+	int i;
+	for (i = 0; i < varTableFreeIndex; ++i) {
+		dumpSymbol(i);
+	}
+}
+
+void dumpSymbol(int i) {
+	printf("\nindex:%d, name:%s, val:%d", i, varTable[i].name, varTable[i].val);
+}

@@ -43,6 +43,7 @@ Pending tasks (* = addressed this issue):
 5. Print line number on parse error. See yylineno
 6. Set operator precedence
 7. Upgrade to C++ classes (yacc uses -C option, #define _CPP_IOSTREAMS too). Use g++ rather than gcc. And rename valve.y valve.ypp	
+8. Dump pattern and action arrays to build table. Switch to using indices rather than pointers. Code executing in controller will do the actual infix tree traversal.
 
 Limitations
 1. There are no scoping rules. All variables are at global scope.
