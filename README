@@ -48,3 +48,6 @@ Pending tasks (* = addressed this issue):
 Limitations
 1. There are no scoping rules. All variables are at global scope.
 2. All variables are integers. There is currently no floating point support. 
+
+Notes
+1. Under Cygwin, to redirect output to a file use: ./parsetest >parse.txt 2>bison.txt

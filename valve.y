@@ -31,7 +31,7 @@ unsigned int actionTableFreeIndex = 0;
 
 %}
 
-/* See compiler.h for definition of 'node' */
+/* See compiler.h for definition */
 %union {
 	int number;
 	char* string;
@@ -40,16 +40,16 @@ unsigned int actionTableFreeIndex = 0;
 }
 
 /* TERMINALS */
-%token INPUTS OUTPUTS LBRACE RBRACE COMMA BANG LPAREN RPAREN
-%token <number> 	EQUAL PLUS MINUS MULT DIV XOR GEQ LEQ NEQ GTR LSS AND OR TEST_FOR_EQUAL SEMI
+%token INPUTS OUTPUTS  COMMA BANG
+%token <number> 	EQUAL PLUS MINUS MULT DIV XOR GEQ LEQ NEQ GTR LSS AND OR TEST_FOR_EQUAL SEMI LBRACE RBRACE LPAREN RPAREN
 %token <string>	VAR VAR_METHOD CONST
 
 %left PLUS MINUS
 %left MULT DIV	/* last one gets highest precedence */
 
 /* non-terminals */
-%type <number> identifier operator binaryPredicate operandTest
-%type <string> patternAction var
+%type <number> identifier operator binaryPredicate operandTest var
+%type <string> patternAction
 %type <pArithNode>  pattern statementAction arithmeticExpression patternCompare
 %type <pActionNode>  action
 
@@ -60,7 +60,10 @@ unsigned int actionTableFreeIndex = 0;
 %start program
 
 %% /* Grammar rules and actions */
-program: 	patternActionList	{dumpSymbolTable();}
+program: 	test1/*patternActionList*/	{dumpSymbolTable();}
+;
+
+test1: CONST operandTest 	{printf("\n**test1: %d", $2);}
 ;
 
 patternActionList: /* empty */	{}
@@ -74,7 +77,7 @@ action: /* empty */	{}
 		| action statementAction	{$$ = addNodeOperatorAction($1, $2);}
 ;
 
-statementAction:	var EQUAL arithmeticExpression SEMI	{$$ = addNodeVarOperand($2, addNodeVar($1), $3);}
+statementAction:	var EQUAL arithmeticExpression SEMI	{$$ = addNodeVarOperand($2, $1, $3);}
 ;			
 
 /* eg: patternCompare && patternCompare */
@@ -87,7 +90,7 @@ pattern: 	LPAREN pattern RPAREN	{$$ = $2;}
 		45
 		c5
 */
-patternCompare:	var operandTest arithmeticExpression	{$$ = addNodeVarOperand($2, addNodeVar($1), $3);}
+patternCompare:	var operandTest arithmeticExpression	{printf("** patternCompare:%d, %s, %d, %s", $1, $1, $2, $2); $$ = addNodeVarOperand($2, $1, $3);}
 				| identifier {$$ = addNodeId($1);}
 ;
 
@@ -100,30 +103,30 @@ arithmeticExpression:	LPAREN arithmeticExpression RPAREN	{$$ = $2;}
 						| identifier	{$$ = addNodeId($1);}
 ;						
 
-identifier:	var	{$$ = addNodeVar($1);}	/* Set top of stack to index of this variable in symbol table. */
+identifier:	var	{$$ = $1;}	/* Set top of stack to index of this variable in symbol table. */
 			| CONST {$$ = addNodeVar($1);}
 ;			
 
-var:		VAR
-			| VAR_METHOD
+var:		VAR	{$$ = addNodeVar($1);}
+			| VAR_METHOD	{$$ = addNodeVar($1);}
 ;			
 
-binaryPredicate:	AND
-					| OR
+binaryPredicate:	AND		{$$ = AND;}
+					| OR	{$$ = OR;}
 ;			
 
-operandTest:	TEST_FOR_EQUAL
-				| GEQ
-				| LEQ
-				| GTR
-				| LSS
+operandTest:	TEST_FOR_EQUAL	{$$ = TEST_FOR_EQUAL;}
+				| GEQ			{$$ = GEQ;}
+				| LEQ			{$$ = LEQ;}
+				| GTR			{$$ = GTR;}
+				| LSS			{$$ = LSS;}
 ;
 
-operator:	PLUS
-			| MINUS
-			| MULT
-			| DIV
-			| XOR
+operator:	PLUS		{$$ = PLUS;}
+			| MINUS		{$$ = MINUS;}
+			| MULT		{$$ = MULT;}
+			| DIV		{$$ = DIV;}
+			| XOR		{$$ = XOR;}
 ;			
 
 
@@ -161,9 +164,6 @@ main ()
 	yydebug = 1; 
     yyin = fopen("valve2.def", "r" );
 	yyparse ();
-	// The closing braces for 'main()' and 'while (TRUE)'.
-	printf("\n} /* while */");
-	printf("\n} /* main */\n");
 }
 
 void initVarTable(void) {
@@ -249,6 +249,7 @@ arithNode* addNodeVarOperand(int operator, int varIndex, arithNode* pRight) {
 	}
 	p->type = nodeOperator;
 	p->value = operator;
+	//printf("** operator=%d", operator);
 
 	p->pLeft = getNextArithNode();
 	if (p->pLeft == NULL) {
@@ -326,24 +327,6 @@ actionNode* addNodeOperatorAction(actionNode* pActionNode, arithNode* pArithNode
 	p->pArith = pArithNode;
 	p->pNext = pActionNode;
 	return p;
-#if 0
-	arithNode* p = malloc(sizeof(arithNode));
-	if (p == NULL) {
-		//assert(p != NULL);
-		yyerror("malloc() failed in call to addNodeOperator()");
-	}
-	p->operand = enumAction;
-	// Remember an id can be 'a3' or '!g7'.
-	p->idValue[0] = id[0];
-	p->idValue[1] = id[1];
-	p->idValue[2] = id[2];
-	if (id[0] == '!') {
-		p->idValue[3] = id[3];
-	}
-	p->pLeft = NULL;
-	p->pRight = pArithNode;
-	return p;	
-#endif
 }
 
 arithNode* addNodeActionId(char* id) {
@@ -411,8 +394,21 @@ void walkPatternTree(arithNode* pArithNode) {
 	if (pArithNode == NULL) {
 		return;
 	}
-	printf(" ( ");
+	//printf("Start pattern walk");
 	walkPatternTree(pArithNode->pLeft);
+#if 1
+	switch (pArithNode->type) {
+	case (nodeOperator):
+		printf("\nOperator: %d", pArithNode->value);
+		break;
+	case (nodeVar):
+		printf("\nVar: index,%d name,%s", pArithNode->value, varTable[pArithNode->value].name);
+		break;
+	default:
+		printf("\nwalkPatternTree: Unknown type");
+		break;
+	}
+#else	
 	if (pArithNode->operand == enumId) {
 			printf(" getInput(\"%s\") ", pArithNode->idValue);
 	} else if (pArithNode->operand == enumAnd) {
@@ -422,8 +418,9 @@ void walkPatternTree(arithNode* pArithNode) {
 	} else {
 		//assert(false);
 	}
+#endif
 	walkPatternTree(pArithNode->pRight);
-	printf(" ) ");
+	//printf("End pattern walk");
 }
 
 void walkActionTree(arithNode* pArithNode) {

@@ -1981,7 +1981,7 @@ void debugPrintf(const char* pc) {
 int main(int argc, char* argv[])
 {
 	printf("Start scanner\n"); fflush(stdout);
-    yyin = fopen( "valve.def", "r" );
+    yyin = fopen( "valve2.def", "r" );
 	int r = yylex();
 	while (r != 0) {
 		ECHO;

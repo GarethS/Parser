@@ -2,17 +2,22 @@
 # Need to run bison first to generate valve.tab.h file which is included in output of flex (lex.yy.c).
 # Build in a GNU bash shell v4.1.10(4)-release (i686-pc-cygwin) from Cygwin running under Windows 7
 
+# 1 = debug build, 0 = release
+myDebug := 1
+
 .PHONY: all clean
 
-# -v = verbose
-# -l = no #line directives
-#BISON_FLAGS = --verbose --debug --report=all
-BISON_FLAGS = --verbose --debug --report=state
-
+ifeq ($(myDebug), 1)
 #FLEX_FLAGS = -d
 FLEX_FLAGS =
-
+BISON_FLAGS = --verbose --debug --report=state
 GCC_FLAGS = -g
+else
+FLEX_FLAGS =
+BISON_FLAGS = --verbose --debug --report=state
+GCC_FLAGS =
+endif 
+
 
 all: lextest.exe parsetest.exe lex.yy.c valve.tab.c
 

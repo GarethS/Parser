@@ -43,7 +43,7 @@ typedef struct thisArithmeticNode {
 
     // new stuff
 	nodeType type;
-	int	value;	// If nodeConst, this is the value. If nodeVar, this is the index into symbol table. If nodeOperator, this is the operatorType.
+	int	value;	// If nodeConst, this is the value. If nodeVar, this is the index into symbol table. If nodeOperator, this is the operator.
 	
 	struct thisArithmeticNode* pLeft;
 	struct thisArithmeticNode* pRight;
