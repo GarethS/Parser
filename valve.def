@@ -8,5 +8,5 @@
 	   /* test short circuit evaluation */
 	   true && (t1.time == 27 || counter == 3) || s1.open { //test
 			m1.velocity = 0;	/* stop motor */
-			counter ^= 2;	// new style comment
+			counter = counter ^ 2;	// new style comment
 	   }

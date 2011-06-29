@@ -48,7 +48,7 @@ unsigned int actionTableFreeIndex = 0;
 %left MULT DIV	/* last one gets highest precedence */
 
 /* non-terminals */
-%type <number> identifier operator binaryPredicate operandTest var
+%type <number> identifier operator andOr operandTest var
 %type <string> patternAction
 %type <pArithNode>  pattern statementAction arithmeticExpression patternCompare
 %type <pActionNode>  action
@@ -79,22 +79,14 @@ statementAction:	var EQUAL arithmeticExpression SEMI	{$$ = addNodeVarOperand($2,
 
 /* eg: patternCompare && patternCompare */
 pattern: 	LPAREN pattern RPAREN	{$$ = $2;}
-			| pattern binaryPredicate patternCompare	{$$ = addNodeOperator($2, $1, $3);}
-			| patternCompare	{$$ = $1;}
+			| pattern andOr pattern	{$$ = addNodeOperator($2, $1, $3);}
+			| patternCompare		{$$ = $1;}
 ;
 
-/* eg:  c1 == c2 + c3 + 4;
-		45
-		c5
-*/
 patternCompare:	var operandTest arithmeticExpression	{$$ = addNodeVarOperand($2, $1, $3);}
-				| identifier {$$ = addNodeId($1);}
+				| identifier 							{$$ = addNodeId($1);}
 ;
 
-/* eg: 	45
-		c2
-		c2 + (c3 * 4)
-*/   
 arithmeticExpression:	LPAREN arithmeticExpression RPAREN						{$$ = $2;}
 						| arithmeticExpression operator arithmeticExpression	{$$ = addNodeOperator($2, $1, $3);}
 						| identifier											{$$ = addNodeId($1);}
@@ -108,8 +100,8 @@ var:		VAR				{$$ = addNodeVar($1);}
 			| VAR_METHOD	{$$ = addNodeVar($1);}
 ;			
 
-binaryPredicate:	AND		{$$ = AND;}
-					| OR	{$$ = OR;}
+andOr:	AND		{$$ = AND;}
+		| OR	{$$ = OR;}
 ;			
 
 operandTest:	TEST_FOR_EQUAL	{$$ = TEST_FOR_EQUAL;}
@@ -159,7 +151,7 @@ main ()
 	// To turn on debugging, make sure the next line is uncommented and
 	//  turn on the -t (also use -v -l) options in bison.exe.
 	yydebug = 1; 
-    yyin = fopen("valve2.def", "r" );
+    yyin = fopen("valve.def", "r" );
 	yyparse ();
 }
 
