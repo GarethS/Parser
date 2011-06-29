@@ -60,10 +60,7 @@ unsigned int actionTableFreeIndex = 0;
 %start program
 
 %% /* Grammar rules and actions */
-program: 	test1/*patternActionList*/	{dumpSymbolTable();}
-;
-
-test1: CONST operandTest 	{printf("\n**test1: %d", $2);}
+program: 	patternActionList	{dumpSymbolTable();}
 ;
 
 patternActionList: /* empty */	{}
@@ -90,7 +87,7 @@ pattern: 	LPAREN pattern RPAREN	{$$ = $2;}
 		45
 		c5
 */
-patternCompare:	var operandTest arithmeticExpression	{printf("** patternCompare:%d, %s, %d, %s", $1, $1, $2, $2); $$ = addNodeVarOperand($2, $1, $3);}
+patternCompare:	var operandTest arithmeticExpression	{$$ = addNodeVarOperand($2, $1, $3);}
 				| identifier {$$ = addNodeId($1);}
 ;
 
@@ -98,16 +95,16 @@ patternCompare:	var operandTest arithmeticExpression	{printf("** patternCompare:
 		c2
 		c2 + (c3 * 4)
 */   
-arithmeticExpression:	LPAREN arithmeticExpression RPAREN	{$$ = $2;}
+arithmeticExpression:	LPAREN arithmeticExpression RPAREN						{$$ = $2;}
 						| arithmeticExpression operator arithmeticExpression	{$$ = addNodeOperator($2, $1, $3);}
-						| identifier	{$$ = addNodeId($1);}
+						| identifier											{$$ = addNodeId($1);}
 ;						
 
-identifier:	var	{$$ = $1;}	/* Set top of stack to index of this variable in symbol table. */
+identifier:	var		{$$ = $1;}	/* Set top of stack to index of this variable in symbol table. */
 			| CONST {$$ = addNodeVar($1);}
 ;			
 
-var:		VAR	{$$ = addNodeVar($1);}
+var:		VAR				{$$ = addNodeVar($1);}
 			| VAR_METHOD	{$$ = addNodeVar($1);}
 ;			
 
