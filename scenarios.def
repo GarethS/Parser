@@ -1,0 +1,91 @@
+
+1
+    // Like AWK, have a routine that gets called once, at startup
+    // Assume that motor is homed
+    // Can't figure out why I used m1.velocity below. What was I thinking?
+    
+    start {
+        counter = 0;
+        p1 = 400;
+        p2 = 900;
+        m1.position = p1;   // starts motor moving towards p1
+        motion = 1;
+    }
+
+    // Motor oscillates between 2 positions
+    // predicates here form the: 'pattern {action}' structure
+    m1.velocity > 1 && m1.position >= p1 && counter < 4 {
+        // statements here
+        m1.position = p2;
+        ++counter;
+        motion = 2;
+    }
+    m1.position == p2 && motion == 2 {
+        m1.position = p1;
+        motion = 1;
+    }
+
+-------------------------------------------------------------------------------
+2
+    // Simplified version of 1
+    start {
+        counter = 0;
+        p1 = 900;
+        p2 = 400;
+        m1.position = p1;   // starts motor moving towards p1
+    }
+
+    // Motor oscillates between 2 positions for 4 cycles.
+    // predicates here form the: 'pattern {action}' structure
+    m1.position == p1 && counter < 4 {
+        // statements here
+        m1.position = p2;
+        ++counter;
+    }
+    m1.position == p2 {
+        m1.position = p1;
+    }
+
+-------------------------------------------------------------------------------
+3
+    // Same as 2, but p1 < p2
+    start {
+        counter = 0;
+        p1 = 400;
+        p2 = 900;
+        delta = m1.position - p1;   // if delta > 0, we're currently at position > p1; otherwise we're at position < p1
+        m1.position = p1;   // starts motor moving towards p1
+        state = 1;
+    }
+
+    state == 1 && m1.position == p1 {
+        // Got to p1 for the first time, now start the cycle
+        state = 2;
+    }
+
+    // Motor oscillates between 2 positions for 4 cycles.
+    // N.B. This relies on p1 > p2
+    // predicates here form the: 'pattern {action}' structure
+    state == 2 && m1.position == p1 && counter < 4 {
+        m1.position = p2;
+        ++counter;
+    }
+    
+    state == 2 && m1.position == p2 {
+        m1.position = p1;
+    }
+
+-------------------------------------------------------------------------------
+
+	   /* Try to parse this as an experiment: */
+	   counter == 4 && (m1.position >= 3 || m1.velocity < 0) {
+			counter = counter + 1;	/* inc */
+			m1.position = 2;
+			
+	   }
+
+	   /* test short circuit evaluation */
+	   true && (t1.time == 27 || counter == 3) || s1.open { //test
+			m1.velocity = 0;	/* stop motor */
+			counter = counter ^ 2;	// new style comment
+	   }
