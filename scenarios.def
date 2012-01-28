@@ -76,6 +76,92 @@
     }
 
 -------------------------------------------------------------------------------
+4
+    // Do we need subroutines, like homed, to avoid lots of copy and paste? AWK uses: @include "xxxx"
+    // How does someone invoke 'home' in the middle of doing something else?
+    // Note one of the subtleties of homeing is to always home coming from the same direction to avoid any hysteresis effects.
+    
+    NAMESPACE home {    // Definition of a namespace called home
+    
+        BEGIN {
+            homed(false);
+            positivePosition(10000);
+            negativePosition(-positivePosition);
+            homePosition(0);
+            readyPosition = 100;    // Could be written: readyPosition(100);
+            m1.position(homePosition);
+            initialHomedSwitch = s1.value;
+            
+            towardsHome = true;                 // declared here so the scoping of the braces don't make it disappear
+            if (initialHomedSwitch == open) {
+                m1.moveTo(negativePosition);    // move towards home
+            } else {
+                m1.moveTo(positivePosition);    // move away from home
+                towardsHome = false;
+            }
+        }
+
+        s1.value == !initialHomedSwitch && !homed {
+            // Switch just flipped from on to off or off to on
+            m1.position(0);     // Set the motor position to 0. If we're homing from the wrong direction we'll get it when we trip the home flag next time
+            m1.moveTo(readyPosition);   // Want the motor to take up a position away from home
+            if (towardsHome) {
+                homed(true);
+                namespace(cycle);    // Switch to cycle namespace. This namespace becomes inactive
+            } else {
+                // Since we were moving away from home, move a little further, then reverse direction
+            }
+        }
+
+        !homed && m1.position() == readyPosition {
+            // Only get here if we're not homed and the motor moved out of the home position to the ready position
+            m1.moveTo(negativePosition);
+            // Now the normal home routine will pick up the home going in the correct direction
+        }
+    
+    }
+    
+    NAMESPACE default { // This is the namespace that is in effect at startup
+        BEGIN {
+            namespace(home);    // Activate the home namespace. The default namespace is inactive until reactivated in home above.
+        }
+    }
+
+    NAMESPACE cycle { // This comes in effect after homing
+        BEGIN {
+            farPosition = 900;
+            timerSet = false;
+        }
+    
+        m1.position == farPosition && !timerSet {
+            t1(1000);   // Set time 1 to 1000 ms.
+            timerSet = true;
+        }
+        
+        m1.position == farPosition && timerSet && t1.count == 0 {
+            // We're at farPosition and the timer has expired, now move to readyPosition.
+            m1.moveTo(readyPosition);
+        }
+        
+        m1.position == readyPosition {
+            m1.moveTo(farPosition);
+            timerSet = false;
+        }
+    
+    }
+    
+    ....
+    
+    // Taking note from above, suppose on the 500th iteration of a move we want to home. Do something like this, make home a user defined function:
+    
+    function home() {
+    }
+    
+    count == 500 {
+        home();
+    }
+    
+-------------------------------------------------------------------------------
 
 	   /* Try to parse this as an experiment: */
 	   counter == 4 && (m1.position >= 3 || m1.velocity < 0) {
