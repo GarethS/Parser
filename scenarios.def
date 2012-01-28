@@ -80,74 +80,104 @@
     // Do we need subroutines, like homed, to avoid lots of copy and paste? AWK uses: @include "xxxx"
     // How does someone invoke 'home' in the middle of doing something else?
     // Note one of the subtleties of homeing is to always home coming from the same direction to avoid any hysteresis effects.
+ 
+Questions: Is this language too complex? Can you think of an easier way
+to express motor movements?
+ 
+Example of the declarative language for motor control. It's similar to AWK,
+used for language processing. There are no function
+calls. Everything happens at once. The code inside a NAMESPACE can be turned on
+or off so that not all code is active at once. Note that the default namespace
+calls the home namespace which, in turn, calls cycle namespace when the homeing
+is finished.
+The cycle namespace moves the motor between 2 points, waiting 1 sec at 
+farPosition.
+Something else to note about this language is that there is no equals (=) sign.
+Instead x = 2; is written x(2);
     
     NAMESPACE home {    // Definition of a namespace called home
-    
+        // Note that if the flag is in the home gate, we'll move away and
+        //  approach it from one direction to detect home.
         BEGIN {
-            homed(false);
-            positivePosition(10000);
-            negativePosition(-positivePosition);
-            homePosition(0);
-            readyPosition = 100;    // Could be written: readyPosition(100);
-            m1.position(homePosition);
-            initialHomedSwitch = s1.value;
+            // BEGIN happens once, when a namespace is invoked.
+            awayFromHome(1000);
+            towardsHome(-awayFromHome); 
+            readyPosition(100);
+            // Don't know the current position yet.
+            // We'll just set it to 0, even thought we don't really know
+            //  where we are yet.
+            m1.position(0);  
+            initialHomedSwitch(s1.value);
             
-            towardsHome = true;                 // declared here so the scoping of the braces don't make it disappear
+            approachDirectionOK(true);
             if (initialHomedSwitch == open) {
-                m1.moveTo(negativePosition);    // move towards home
+                m1.moveTo(towardsHome);
             } else {
-                m1.moveTo(positivePosition);    // move away from home
-                towardsHome = false;
+                // We need to come out of the home gate and then start moving
+                //  towards it.
+                approachDirectionOK(false);
+                m1.moveTo(awayFromHome);
             }
         }
 
-        s1.value == !initialHomedSwitch && !homed {
+        s1.value == !initialHomedSwitch {
             // Switch just flipped from on to off or off to on
-            m1.position(0);     // Set the motor position to 0. If we're homing from the wrong direction we'll get it when we trip the home flag next time
-            m1.moveTo(readyPosition);   // Want the motor to take up a position away from home
-            if (towardsHome) {
-                homed(true);
-                namespace(cycle);    // Switch to cycle namespace. This namespace becomes inactive
-            } else {
-                // Since we were moving away from home, move a little further, then reverse direction
-            }
+            m1.position(0);     // Set the motor position to 0.
+            // If we're homing from the wrong direction we'll get it when we 
+            //  trip the home flag next time
+            m1.moveTo(readyPosition);  
         }
 
-        !homed && m1.position() == readyPosition {
-            // Only get here if we're not homed and the motor moved out of the home position to the ready position
-            m1.moveTo(negativePosition);
-            // Now the normal home routine will pick up the home going in the correct direction
+        m1.position() == readyPosition {
+            if (approachDirectionOK) {
+                namespace(cycle);       // Done homeing!
+                // Switch to cycle namespace. This namespace is now inactive
+            } else {
+                // Only get here if we're not homed and the motor moved out
+                //  of the home position to the ready position
+                approachDirectionOK(true);
+                m1.moveTo(towardsHome);
+                // Now the normal home routine will pick up the home going
+                //  in the correct direction
+            }
         }
-    
     }
     
     NAMESPACE default { // This is the namespace that is in effect at startup
         BEGIN {
-            namespace(home);    // Activate the home namespace. The default namespace is inactive until reactivated in home above.
+            // Activate the home namespace. The default namespace is inactive
+            //  until reactivated in home above.
+            namespace(home);    
         }
     }
 
     NAMESPACE cycle { // This comes in effect after homing
+        // This namespace moves the motor to farPostion, waits 1s, then
+        //  returns to readyPosition. It repeats this 20x.
         BEGIN {
-            farPosition = 900;
-            timerSet = false;
+            farPosition(900);
+            t1.set(0);
+            setTimer(false);    // Just a variable, setTimer.
+            m1.moveTo(farPosition);
         }
     
-        m1.position == farPosition && !timerSet {
-            t1(1000);   // Set time 1 to 1000 ms.
-            timerSet = true;
-        }
-        
-        m1.position == farPosition && timerSet && t1.count == 0 {
-            // We're at farPosition and the timer has expired, now move to readyPosition.
-            m1.moveTo(readyPosition);
+        m1.position() == farPosition {
+            if (!setTimer) {
+                setTimer(true);
+                t1.set(1000);   // Set timer1 to 1000 ms and start counting.
+            } else {
+                if (t1.tick() == 0) {
+                    // We're at farPosition and the timer has expired, 
+                    //  now move to readyPosition.
+                    m1.moveTo(readyPosition);
+                }
+            }
         }
         
         m1.position == readyPosition {
+            setTimer(false);
             m1.moveTo(farPosition);
-            timerSet = false;
         }
-    
     }
     
     ....
