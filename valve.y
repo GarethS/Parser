@@ -41,14 +41,14 @@ unsigned int actionTableFreeIndex = 0;
 
 /* TERMINALS */
 %token INPUTS OUTPUTS  COMMA BANG
-%token <number> 	EQUAL PLUS MINUS MULT DIV XOR GEQ LEQ NEQ GTR LSS AND OR TEST_FOR_EQUAL SEMI LBRACE RBRACE LPAREN RPAREN
+%token <number> 	EQUAL PLUS MINUS MULT DIV XOR GEQ LEQ NEQ GTR LSS AND OR TEST_FOR_EQUAL SEMI LBRACE RBRACE LPAREN RPAREN LBRACKET RBRACKET
 %token <string>	VAR VAR_METHOD CONST
 
 %left PLUS MINUS
 %left MULT DIV	/* last one gets highest precedence */
 
 /* non-terminals */
-%type <number> identifier operator andOr operandTest var
+%type <number> identifier operator andOr operandTest var array
 %type <string> patternAction
 %type <pArithNode>  pattern statementAction arithmeticExpression patternCompare
 %type <pActionNode>  action
@@ -67,7 +67,7 @@ patternActionList: /* empty */	{}
 					| patternActionList patternAction	
 ;
 
-patternAction: pattern LBRACE action RBRACE	{walkPatternTree($1); /*walkActionTree($3);*/}
+patternAction: pattern LBRACE action RBRACE	{walkPatternTree($1, "\nSTART"); /*walkActionTree($3);*/}
 ;
 
 action: /* empty */	{}
@@ -98,7 +98,11 @@ identifier:	var		{$$ = $1;}	/* Set top of stack to index of this variable in sym
 
 var:		VAR				{$$ = addNodeVar($1);}
 			| VAR_METHOD	{$$ = addNodeVar($1);}
+            | array         {$$ = $1;}
 ;			
+
+array:      LBRACKET identifier RBRACKET    {$$ = $2;}
+;
 
 andOr:	AND		{$$ = AND;}
 		| OR	{$$ = OR;}
@@ -151,7 +155,7 @@ main ()
 	// To turn on debugging, make sure the next line is uncommented and
 	//  turn on the -t (also use -v -l) options in bison.exe.
 	yydebug = 1; 
-    yyin = fopen("valve.def", "r" );
+    yyin = fopen("valve3.def", "r" );
 	yyparse ();
 }
 
@@ -379,13 +383,14 @@ void doPatternAction(arithNode* pPattern, arithNode* pAction)
 #endif
 
 // Walk tree in infix mode; left, root right.
-void walkPatternTree(arithNode* pArithNode) {
+void walkPatternTree(arithNode* pArithNode, char* position) {
 	if (pArithNode == NULL) {
 		return;
 	}
 	//printf("Start pattern walk");
-	walkPatternTree(pArithNode->pLeft);
+	walkPatternTree(pArithNode->pLeft, "\nLEFT");
 #if 1
+    printf("%s", position);
 	switch (pArithNode->type) {
 	case (nodeOperator):
 		printf("\nOperator: %d", pArithNode->value);
@@ -408,7 +413,7 @@ void walkPatternTree(arithNode* pArithNode) {
 		//assert(false);
 	}
 #endif
-	walkPatternTree(pArithNode->pRight);
+	walkPatternTree(pArithNode->pRight, "\nRIGHT");
 	//printf("End pattern walk");
 }
 

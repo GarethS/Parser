@@ -1,0 +1,4 @@
+counter >= 4 {
+    counter = 5;
+    x = x + 1;
+}		

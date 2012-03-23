@@ -61,9 +61,11 @@
      RBRACE = 278,
      LPAREN = 279,
      RPAREN = 280,
-     VAR = 281,
-     VAR_METHOD = 282,
-     CONST = 283
+     LBRACKET = 281,
+     RBRACKET = 282,
+     VAR = 283,
+     VAR_METHOD = 284,
+     CONST = 285
    };
 #endif
 
@@ -84,7 +86,7 @@ typedef union YYSTYPE
 
 
 /* Line 1685 of yacc.c  */
-#line 88 "valve.tab.h"
+#line 90 "valve.tab.h"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */

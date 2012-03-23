@@ -8,8 +8,8 @@ myDebug := 1
 .PHONY: all clean
 
 ifeq ($(myDebug), 1)
-#FLEX_FLAGS = -d
-FLEX_FLAGS =
+FLEX_FLAGS = -d
+#FLEX_FLAGS =
 BISON_FLAGS = --verbose --debug --report=state
 GCC_FLAGS = -g
 else
@@ -32,7 +32,7 @@ lextest.exe: lex.yy.c
 parsetest.exe: valve.tab.c valve.tab.h lex.yy.c
 	gcc $(GCC_FLAGS) -D BISON_PHASE valve.tab.c -lfl -o parsetest.exe
 	
-lex.yy.c: valve.l Makefile
+lex.yy.c: valve.l Makefile valve.tab.h
 	flex $(FLEX_FLAGS) valve.l		# flex version 2.5.35
 	
 valve.tab.c valve.tab.h:	valve.y compiler.h

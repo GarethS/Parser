@@ -24,6 +24,7 @@ lparen			[(]
 rparen			[)]
 lbrace			[{]
 rbrace			[}]
+rbracket		"v"
 comma			[,]
 semi			[;]
 bang			[!]
@@ -50,6 +51,7 @@ outputs		{debugPrintf("OUTPUTS"); return OUTPUTS;}
 inputs	 	{debugPrintf("INPUTS"); return INPUTS;}
 {lbrace}	{debugPrintf("LBRACE"); return LBRACE;}
 {rbrace}	{debugPrintf("RBRACE"); return RBRACE;}
+{rbracket}	{debugPrintf("RBRACKET"); return RBRACKET;}
 {lparen}	{debugPrintf("LPAREN"); return LPAREN;}
 {rparen}	{debugPrintf("RPAREN"); return RPAREN;}
 {comma}		{debugPrintf("COMMA"); return COMMA;}
