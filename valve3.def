@@ -1,4 +1,4 @@
-counter >= 4 {
+counter >= 4 && time == 43 {
     counter = 5;
     x = x + 1;
 }		

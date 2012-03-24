@@ -67,7 +67,7 @@ patternActionList: /* empty */	{}
 					| patternActionList patternAction	
 ;
 
-patternAction: pattern LBRACE action RBRACE	{walkPatternTree($1, "\nSTART"); /*walkActionTree($3);*/}
+patternAction: pattern LBRACE action RBRACE	{walkPatternTree($1, "ROOT", 0); /*walkActionTree($3);*/}
 ;
 
 action: /* empty */	{}
@@ -383,23 +383,27 @@ void doPatternAction(arithNode* pPattern, arithNode* pAction)
 #endif
 
 // Walk tree in infix mode; left, root right.
-void walkPatternTree(arithNode* pArithNode, char* position) {
+void walkPatternTree(arithNode* pArithNode, char* position, int indent) {
 	if (pArithNode == NULL) {
 		return;
 	}
+    if (indent == 0) {
+        printf("Pattern tree:");
+    }
 	//printf("Start pattern walk");
-	walkPatternTree(pArithNode->pLeft, "\nLEFT");
+	walkPatternTree(pArithNode->pLeft, "LEFT", indent + 1);
 #if 1
+    printIndent(indent);
     printf("%s", position);
 	switch (pArithNode->type) {
 	case (nodeOperator):
-		printf("\nOperator: %d", pArithNode->value);
+		printf(" Operator: %d", pArithNode->value);
 		break;
 	case (nodeVar):
-		printf("\nVar: index,%d name,%s", pArithNode->value, varTable[pArithNode->value].name);
+		printf(" Var: index,%d name,%s", pArithNode->value, varTable[pArithNode->value].name);
 		break;
 	default:
-		printf("\nwalkPatternTree: Unknown type");
+		printf(" walkPatternTree: Unknown type");
 		break;
 	}
 #else	
@@ -413,8 +417,16 @@ void walkPatternTree(arithNode* pArithNode, char* position) {
 		//assert(false);
 	}
 #endif
-	walkPatternTree(pArithNode->pRight, "\nRIGHT");
+	walkPatternTree(pArithNode->pRight, "RIGHT", indent + 1);
 	//printf("End pattern walk");
+}
+
+void printIndent(unsigned int indent) {
+    int i;
+    printf("\n");
+    for (i = indent; i > 0; --i) {
+        printf("*");
+    }
 }
 
 void walkActionTree(arithNode* pArithNode) {
@@ -457,6 +469,7 @@ int infixPatternTraversal(arithNode* pn) {
 
 void dumpSymbolTable(void) {
 	int i;
+    printf("\n\nSymbol table:");
 	for (i = 0; i < varTableFreeIndex; ++i) {
 		dumpSymbol(i);
 	}
