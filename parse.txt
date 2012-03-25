@@ -2,13 +2,13 @@
       
         
 Pattern tree:
-**<0>LEFT Var: index,0 name,counter
-*<0>LEFT Operator: 268
-**<0>RIGHT Var: index,1 name,4
-<0>ROOT Operator: 273
-**<0>LEFT Var: index,2 name,time
-*<0>RIGHT Operator: 275
-**<0>RIGHT Var: index,3 name,43		
+**LEFT Var: index,0 name,counter
+**RIGHT Var: index,1 name,4
+*LEFT Operator: 268
+**LEFT Var: index,2 name,time
+**RIGHT Var: index,3 name,43
+*RIGHT Operator: 275
+ROOT Operator: 273		
 
 Symbol table:
 index:0, name:counter, val:0

@@ -392,6 +392,7 @@ void walkPatternTree(arithNode* pArithNode, char* position, int indent) {
     }
 	//printf("Start pattern walk");
 	walkPatternTree(pArithNode->pLeft, "LEFT", indent + 1);
+	walkPatternTree(pArithNode->pRight, "RIGHT", indent + 1);
 #if 1
     printIndent(indent);
     printf("%s", position);
@@ -417,7 +418,7 @@ void walkPatternTree(arithNode* pArithNode, char* position, int indent) {
 		//assert(false);
 	}
 #endif
-	walkPatternTree(pArithNode->pRight, "RIGHT", indent + 1);
+	//walkPatternTree(pArithNode->pRight, "RIGHT", indent + 1);
 	//printf("End pattern walk");
 }
 

@@ -1,5 +1,5 @@
 
-Gareth Scott (c) 2011, garethjscott@gmail.com
+Gareth Scott (c) 2011, 2012  garethjscott@gmail.com
 
 This project describes a language to run a motor and is based on the generic 'pattern{action}' syntax used by the AWK language.
 The grammar specifices a declarative language without function calls where the action statements (within { and }) are only
@@ -44,6 +44,9 @@ Pending tasks (* = addressed this issue):
 6. Set operator precedence
 7. Upgrade to C++ classes (yacc uses -C option, #define _CPP_IOSTREAMS too). Use g++ rather than gcc. And rename valve.y valve.ypp	
 8. Dump pattern and action arrays to build table. Switch to using indices rather than pointers. Code executing in controller will do the actual infix tree traversal.
+
+25Mar12
+1. Pattern tree output succesful to table in RPN order. Now write interpreter to evaluate table.
 
 Limitations
 1. There are no scoping rules. All variables are at global scope.
