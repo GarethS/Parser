@@ -1,0 +1,20 @@
+       
+      
+        
+Pattern tree:
+**<0>LEFT Var: index,0 name,counter
+*<0>LEFT Operator: 268
+**<0>RIGHT Var: index,1 name,4
+<0>ROOT Operator: 273
+**<0>LEFT Var: index,2 name,time
+*<0>RIGHT Operator: 275
+**<0>RIGHT Var: index,3 name,43		
+
+Symbol table:
+index:0, name:counter, val:0
+index:1, name:4, val:4
+index:2, name:time, val:0
+index:3, name:43, val:43
+index:4, name:5, val:5
+index:5, name:x, val:0
+index:6, name:1, val:1
