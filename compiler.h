@@ -37,7 +37,7 @@ typedef struct thisVariableNode {
 //  will always have 2 operand nodes.
 // Generic node structure that the syntax tree is made of.
 typedef struct thisArithmeticNode {
-	// old stuff
+	// old stuff - meaning left over from first compiler done for Circuit Cellar
 	operandType operand;	// &&, ||
 	char   idValue[4];		// Only used when operand = enumId
 

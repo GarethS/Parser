@@ -2117,7 +2117,7 @@ void doPatternAction(arithNode* pPattern, arithNode* pAction)
 }
 #endif
 
-// Walk tree in infix mode; left, root right.
+// Walk tree in infix mode; left, right, root.
 void walkPatternTree(arithNode* pArithNode, char* position, int indent) {
 	if (pArithNode == NULL) {
 		return;
