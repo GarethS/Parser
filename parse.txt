@@ -2,17 +2,17 @@
       
         
 Pattern tree:
-**LEFT Var: index,0 name,counter
-**RIGHT Var: index,1 name,4
-*LEFT Operator: 268
+***LEFT Var: index,0 name,counter
+***RIGHT Var: index,1 name,4
+**LEFT Operator: >=
 ***LEFT Var: index,2 name,time
 ***RIGHT Var: index,3 name,43
-**LEFT Operator: 275
-***LEFT Var: index,4 name,x
-***RIGHT Var: index,5 name,5
-**RIGHT Operator: 272
-*RIGHT Operator: 274
-ROOT Operator: 273		
+**RIGHT Operator: ==
+*LEFT Operator: &&
+**LEFT Var: index,4 name,x
+**RIGHT Var: index,5 name,5
+*RIGHT Operator: <
+ROOT Operator: ||		
 
 Symbol table:
 index:0, name:counter, val:0

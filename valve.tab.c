@@ -2117,6 +2117,59 @@ void doPatternAction(arithNode* pPattern, arithNode* pAction)
 }
 #endif
 
+void printOperator(int value) {
+    switch (value) {
+    case BANG:
+        printf("!");
+        break;
+    case EQUAL:
+        printf("=");
+        break;
+    case PLUS:
+        printf("+");
+        break;
+    case MINUS:
+        printf("-");
+        break;
+    case MULT:
+        printf("*");
+        break;
+    case DIV:
+        printf("/");
+        break;
+    case XOR:
+        printf("^");
+        break;
+    case GEQ:
+        printf(">=");
+        break;
+    case LEQ:
+        printf("<=");
+        break;
+    case NEQ:
+        printf("!=");
+        break;
+    case GTR:
+        printf(">");
+        break;
+    case LSS:
+        printf("<");
+        break;
+    case AND:
+        printf("&&");
+        break;
+    case OR:
+        printf("||");
+        break;
+    case TEST_FOR_EQUAL:
+        printf("==");
+        break;
+    default:
+        printf("Unknown operator");
+        break;
+    }
+}
+
 // Walk tree in infix mode; left, right, root.
 void walkPatternTree(arithNode* pArithNode, char* position, int indent) {
 	if (pArithNode == NULL) {
@@ -2133,7 +2186,8 @@ void walkPatternTree(arithNode* pArithNode, char* position, int indent) {
     printf("%s", position);
 	switch (pArithNode->type) {
 	case (nodeOperator):
-		printf(" Operator: %d", pArithNode->value);
+		printf(" Operator: ");
+        printOperator(pArithNode->value);
 		break;
 	case (nodeVar):
 		printf(" Var: index,%d name,%s", pArithNode->value, varTable[pArithNode->value].name);
