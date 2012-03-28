@@ -85,11 +85,12 @@ unsigned int arithTableFreeIndex = 0;
 
 actionNode actionTable[ACTION_ITEMS];
 unsigned int actionTableFreeIndex = 0;
+FILE* fp = NULL;
 
 
 
 /* Line 189 of yacc.c  */
-#line 93 "valve.tab.c"
+#line 94 "valve.tab.c"
 
 /* Enabling traces.  */
 #ifndef YYDEBUG
@@ -154,7 +155,7 @@ typedef union YYSTYPE
 {
 
 /* Line 214 of yacc.c  */
-#line 35 "valve.y"
+#line 36 "valve.y"
 
 	int number;
 	char* string;
@@ -164,7 +165,7 @@ typedef union YYSTYPE
 
 
 /* Line 214 of yacc.c  */
-#line 168 "valve.tab.c"
+#line 169 "valve.tab.c"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
@@ -176,7 +177,7 @@ typedef union YYSTYPE
 
 
 /* Line 264 of yacc.c  */
-#line 180 "valve.tab.c"
+#line 181 "valve.tab.c"
 
 #ifdef short
 # undef short
@@ -471,10 +472,10 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    63,    63,    66,    67,    70,    73,    74,    77,    81,
-      82,    83,    86,    87,    90,    91,    92,    95,    96,    99,
-     100,   101,   104,   107,   108,   111,   112,   113,   114,   115,
-     118,   119,   120,   121,   122
+       0,    64,    64,    67,    68,    71,    77,    78,    81,    85,
+      86,    87,    90,    91,    94,    95,    96,    99,   100,   103,
+     104,   105,   108,   111,   112,   115,   116,   117,   118,   119,
+     122,   123,   124,   125,   126
 };
 #endif
 
@@ -1421,231 +1422,234 @@ yyreduce:
         case 2:
 
 /* Line 1464 of yacc.c  */
-#line 63 "valve.y"
+#line 64 "valve.y"
     {dumpSymbolTable();;}
     break;
 
   case 3:
 
 /* Line 1464 of yacc.c  */
-#line 66 "valve.y"
+#line 67 "valve.y"
     {;}
     break;
 
   case 5:
 
 /* Line 1464 of yacc.c  */
-#line 70 "valve.y"
-    {walkPatternTree((yyvsp[(1) - (4)].pArithNode), "ROOT", 0); /*walkActionTree($3);*/;}
+#line 71 "valve.y"
+    {fp = fopen("parseTree.txt", "wb");
+                                                //fwrite("dog", 1, 3, fp);
+                                                walkPatternTree((yyvsp[(1) - (4)].pArithNode), "ROOT", 0);
+                                                fclose(fp); /*walkActionTree($3);*/;}
     break;
 
   case 6:
 
 /* Line 1464 of yacc.c  */
-#line 73 "valve.y"
+#line 77 "valve.y"
     {;}
     break;
 
   case 7:
 
 /* Line 1464 of yacc.c  */
-#line 74 "valve.y"
+#line 78 "valve.y"
     {(yyval.pActionNode) = addNodeOperatorAction((yyvsp[(1) - (2)].pActionNode), (yyvsp[(2) - (2)].pArithNode));;}
     break;
 
   case 8:
 
 /* Line 1464 of yacc.c  */
-#line 77 "valve.y"
+#line 81 "valve.y"
     {(yyval.pArithNode) = addNodeVarOperand((yyvsp[(2) - (4)].number), (yyvsp[(1) - (4)].number), (yyvsp[(3) - (4)].pArithNode));;}
     break;
 
   case 9:
 
 /* Line 1464 of yacc.c  */
-#line 81 "valve.y"
+#line 85 "valve.y"
     {(yyval.pArithNode) = (yyvsp[(2) - (3)].pArithNode);;}
     break;
 
   case 10:
 
 /* Line 1464 of yacc.c  */
-#line 82 "valve.y"
+#line 86 "valve.y"
     {(yyval.pArithNode) = addNodeOperator((yyvsp[(2) - (3)].number), (yyvsp[(1) - (3)].pArithNode), (yyvsp[(3) - (3)].pArithNode));;}
     break;
 
   case 11:
 
 /* Line 1464 of yacc.c  */
-#line 83 "valve.y"
+#line 87 "valve.y"
     {(yyval.pArithNode) = (yyvsp[(1) - (1)].pArithNode);;}
     break;
 
   case 12:
 
 /* Line 1464 of yacc.c  */
-#line 86 "valve.y"
+#line 90 "valve.y"
     {(yyval.pArithNode) = addNodeVarOperand((yyvsp[(2) - (3)].number), (yyvsp[(1) - (3)].number), (yyvsp[(3) - (3)].pArithNode));;}
     break;
 
   case 13:
 
 /* Line 1464 of yacc.c  */
-#line 87 "valve.y"
+#line 91 "valve.y"
     {(yyval.pArithNode) = addNodeId((yyvsp[(1) - (1)].number));;}
     break;
 
   case 14:
 
 /* Line 1464 of yacc.c  */
-#line 90 "valve.y"
+#line 94 "valve.y"
     {(yyval.pArithNode) = (yyvsp[(2) - (3)].pArithNode);;}
     break;
 
   case 15:
 
 /* Line 1464 of yacc.c  */
-#line 91 "valve.y"
+#line 95 "valve.y"
     {(yyval.pArithNode) = addNodeOperator((yyvsp[(2) - (3)].number), (yyvsp[(1) - (3)].pArithNode), (yyvsp[(3) - (3)].pArithNode));;}
     break;
 
   case 16:
 
 /* Line 1464 of yacc.c  */
-#line 92 "valve.y"
+#line 96 "valve.y"
     {(yyval.pArithNode) = addNodeId((yyvsp[(1) - (1)].number));;}
     break;
 
   case 17:
 
 /* Line 1464 of yacc.c  */
-#line 95 "valve.y"
+#line 99 "valve.y"
     {(yyval.number) = (yyvsp[(1) - (1)].number);;}
     break;
 
   case 18:
 
 /* Line 1464 of yacc.c  */
-#line 96 "valve.y"
+#line 100 "valve.y"
     {(yyval.number) = addNodeVar((yyvsp[(1) - (1)].string));;}
     break;
 
   case 19:
 
 /* Line 1464 of yacc.c  */
-#line 99 "valve.y"
+#line 103 "valve.y"
     {(yyval.number) = addNodeVar((yyvsp[(1) - (1)].string));;}
     break;
 
   case 20:
 
 /* Line 1464 of yacc.c  */
-#line 100 "valve.y"
+#line 104 "valve.y"
     {(yyval.number) = addNodeVar((yyvsp[(1) - (1)].string));;}
     break;
 
   case 21:
 
 /* Line 1464 of yacc.c  */
-#line 101 "valve.y"
+#line 105 "valve.y"
     {(yyval.number) = (yyvsp[(1) - (1)].number);;}
     break;
 
   case 22:
 
 /* Line 1464 of yacc.c  */
-#line 104 "valve.y"
+#line 108 "valve.y"
     {(yyval.number) = (yyvsp[(2) - (3)].number);;}
     break;
 
   case 23:
 
 /* Line 1464 of yacc.c  */
-#line 107 "valve.y"
+#line 111 "valve.y"
     {(yyval.number) = AND;;}
     break;
 
   case 24:
 
 /* Line 1464 of yacc.c  */
-#line 108 "valve.y"
+#line 112 "valve.y"
     {(yyval.number) = OR;;}
     break;
 
   case 25:
 
 /* Line 1464 of yacc.c  */
-#line 111 "valve.y"
+#line 115 "valve.y"
     {(yyval.number) = TEST_FOR_EQUAL;;}
     break;
 
   case 26:
 
 /* Line 1464 of yacc.c  */
-#line 112 "valve.y"
+#line 116 "valve.y"
     {(yyval.number) = GEQ;;}
     break;
 
   case 27:
 
 /* Line 1464 of yacc.c  */
-#line 113 "valve.y"
+#line 117 "valve.y"
     {(yyval.number) = LEQ;;}
     break;
 
   case 28:
 
 /* Line 1464 of yacc.c  */
-#line 114 "valve.y"
+#line 118 "valve.y"
     {(yyval.number) = GTR;;}
     break;
 
   case 29:
 
 /* Line 1464 of yacc.c  */
-#line 115 "valve.y"
+#line 119 "valve.y"
     {(yyval.number) = LSS;;}
     break;
 
   case 30:
 
 /* Line 1464 of yacc.c  */
-#line 118 "valve.y"
+#line 122 "valve.y"
     {(yyval.number) = PLUS;;}
     break;
 
   case 31:
 
 /* Line 1464 of yacc.c  */
-#line 119 "valve.y"
+#line 123 "valve.y"
     {(yyval.number) = MINUS;;}
     break;
 
   case 32:
 
 /* Line 1464 of yacc.c  */
-#line 120 "valve.y"
+#line 124 "valve.y"
     {(yyval.number) = MULT;;}
     break;
 
   case 33:
 
 /* Line 1464 of yacc.c  */
-#line 121 "valve.y"
+#line 125 "valve.y"
     {(yyval.number) = DIV;;}
     break;
 
   case 34:
 
 /* Line 1464 of yacc.c  */
-#line 122 "valve.y"
+#line 126 "valve.y"
     {(yyval.number) = XOR;;}
     break;
 
 
 
 /* Line 1464 of yacc.c  */
-#line 1649 "valve.tab.c"
+#line 1653 "valve.tab.c"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -1857,7 +1861,7 @@ yyreturn:
 
 
 /* Line 1684 of yacc.c  */
-#line 126 "valve.y"
+#line 130 "valve.y"
  /* Additional C code */
 
 
@@ -2168,6 +2172,7 @@ void printOperator(int value) {
         printf("Unknown operator");
         break;
     }
+    printf(" %d", value);
 }
 
 // Walk tree in infix mode; left, right, root.
@@ -2184,12 +2189,19 @@ void walkPatternTree(arithNode* pArithNode, char* position, int indent) {
 #if 1
     printIndent(indent);
     printf("%s", position);
+    char tmp[64];
 	switch (pArithNode->type) {
 	case (nodeOperator):
+        sprintf(tmp, "%d Operator %d\n", indent, pArithNode->value);
+        fwrite(tmp, 1, strlen(tmp), fp);
+
 		printf(" Operator: ");
         printOperator(pArithNode->value);
 		break;
 	case (nodeVar):
+        sprintf(tmp, "%d Variable %d\n", indent, pArithNode->value);
+        fwrite(tmp, 1, strlen(tmp), fp);
+
 		printf(" Var: index,%d name,%s", pArithNode->value, varTable[pArithNode->value].name);
 		break;
 	default:

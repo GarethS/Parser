@@ -4,15 +4,15 @@
 Pattern tree:
 ***LEFT Var: index,0 name,counter
 ***RIGHT Var: index,1 name,4
-**LEFT Operator: >=
+**LEFT Operator: >= 268
 ***LEFT Var: index,2 name,time
 ***RIGHT Var: index,3 name,43
-**RIGHT Operator: ==
-*LEFT Operator: &&
+**RIGHT Operator: == 275
+*LEFT Operator: && 273
 **LEFT Var: index,4 name,x
 **RIGHT Var: index,5 name,5
-*RIGHT Operator: <
-ROOT Operator: ||		
+*RIGHT Operator: < 272
+ROOT Operator: || 274		
 
 Symbol table:
 index:0, name:counter, val:0

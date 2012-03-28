@@ -1,0 +1,11 @@
+3 Variable 0
+3 Variable 1
+2 Operator 268
+3 Variable 2
+3 Variable 3
+2 Operator 275
+1 Operator 273
+2 Variable 4
+2 Variable 5
+1 Operator 272
+0 Operator 274

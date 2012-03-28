@@ -28,6 +28,7 @@ unsigned int arithTableFreeIndex = 0;
 
 actionNode actionTable[ACTION_ITEMS];
 unsigned int actionTableFreeIndex = 0;
+FILE* fp = NULL;
 
 %}
 
@@ -67,7 +68,10 @@ patternActionList: /* empty */	{}
 					| patternActionList patternAction	
 ;
 
-patternAction: pattern LBRACE action RBRACE	{walkPatternTree($1, "ROOT", 0); /*walkActionTree($3);*/}
+patternAction: pattern LBRACE action RBRACE	{fp = fopen("parseTree.txt", "wb");
+                                                //fwrite("dog", 1, 3, fp);
+                                                walkPatternTree($1, "ROOT", 0);
+                                                fclose(fp); /*walkActionTree($3);*/}
 ;
 
 action: /* empty */	{}
@@ -433,6 +437,7 @@ void printOperator(int value) {
         printf("Unknown operator");
         break;
     }
+    printf(" %d", value);
 }
 
 // Walk tree in infix mode; left, right, root.
@@ -449,12 +454,19 @@ void walkPatternTree(arithNode* pArithNode, char* position, int indent) {
 #if 1
     printIndent(indent);
     printf("%s", position);
+    char tmp[64];
 	switch (pArithNode->type) {
 	case (nodeOperator):
+        sprintf(tmp, "%d Operator %d\n", indent, pArithNode->value);
+        fwrite(tmp, 1, strlen(tmp), fp);
+
 		printf(" Operator: ");
         printOperator(pArithNode->value);
 		break;
 	case (nodeVar):
+        sprintf(tmp, "%d Variable %d\n", indent, pArithNode->value);
+        fwrite(tmp, 1, strlen(tmp), fp);
+
 		printf(" Var: index,%d name,%s", pArithNode->value, varTable[pArithNode->value].name);
 		break;
 	default:

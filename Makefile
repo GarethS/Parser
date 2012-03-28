@@ -12,14 +12,18 @@ FLEX_FLAGS = -d
 #FLEX_FLAGS =
 BISON_FLAGS = --verbose --debug --report=state
 GCC_FLAGS = -g
+GPP_FLAGS = -Wall
+DEBUG_FLAGS = -D CYGWIN=1 -D DUMP=1 -D REGRESS_1=1
 else
 FLEX_FLAGS =
 BISON_FLAGS = --verbose --debug --report=state
 GCC_FLAGS =
+GPP_FLAGS = 
+DEBUG_FLAGS = -D CYGWIN=1
 endif 
 
 
-all: lextest.exe parsetest.exe lex.yy.c valve.tab.c
+all: lextest.exe parsetest.exe lex.yy.c valve.tab.c interpret.exe
 
 clean:
 	rm lex.yy.c
@@ -37,3 +41,7 @@ lex.yy.c: valve.l Makefile valve.tab.h
 	
 valve.tab.c valve.tab.h:	valve.y compiler.h
 	bison $(BISON_FLAGS) valve.y	# bison version 2.4.2
+
+interpret.exe: interpret.cpp interpret.h ../motor/log.cpp ../motor/log.h
+	g++ $(GPP_FLAGS) $(DEBUG_FLAGS) -I. -I../motor interpret.cpp ../motor/log.cpp -o interpret.exe 
+    
