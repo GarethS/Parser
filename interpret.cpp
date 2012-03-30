@@ -62,15 +62,62 @@ void interpret::run(void) {
 }
 
 void interpret::evaluate(unsigned int op) {
-    int lhs, rhs;   // left and right-hand side of evaluation
     switch (op) {
+    case BANG:
+        assert(_evaluationStack.size() >= 1);
+        _evaluationStack.push_front(!_value());
+        break;
     case PLUS:
         assert(_evaluationStack.size() >= 2);
-        lhs = _evaluationStack.front();
-        _evaluationStack.pop_front();
-        rhs = _evaluationStack.front();
-        _evaluationStack.pop_front();
-        _evaluationStack.push_front(lhs + rhs);
+        _evaluationStack.push_front(_value() + _value());
+        break;
+    case MINUS:
+        assert(_evaluationStack.size() >= 2);
+        _evaluationStack.push_front(_value() - _value());
+        break;
+    case MULT:
+        assert(_evaluationStack.size() >= 2);
+        _evaluationStack.push_front(_value() * _value());
+        break;
+    case DIV:
+        assert(_evaluationStack.size() >= 2);
+        _evaluationStack.push_front(_value() / _value());
+        break;
+    case XOR:
+        assert(_evaluationStack.size() >= 2);
+        _evaluationStack.push_front(_value() ^ _value());
+        break;
+    case GEQ:
+        assert(_evaluationStack.size() >= 2);
+        _evaluationStack.push_front(_value() >= _value()/* ? TRUE : FALSE*/);
+        break;
+    case LEQ:
+        assert(_evaluationStack.size() >= 2);
+        _evaluationStack.push_front(_value() <= _value());
+        break;
+    case NEQ:
+        assert(_evaluationStack.size() >= 2);
+        _evaluationStack.push_front(_value() != _value());
+        break;
+    case GTR:
+        assert(_evaluationStack.size() >= 2);
+        _evaluationStack.push_front(_value() > _value());
+        break;
+    case LSS:
+        assert(_evaluationStack.size() >= 2);
+        _evaluationStack.push_front(_value() < _value());
+        break;
+    case AND:
+        assert(_evaluationStack.size() >= 2);
+        _evaluationStack.push_front(_value() && _value());
+        break;
+    case OR:
+        assert(_evaluationStack.size() >= 2);
+        _evaluationStack.push_front(_value() || _value());
+        break;
+    case TEST_FOR_EQUAL:
+        assert(_evaluationStack.size() >= 2);
+        _evaluationStack.push_front(_value() == _value());
         break;
     default:
         assert(false);

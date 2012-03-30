@@ -36,6 +36,8 @@ public:
 private:
     nodeType _currentNodeType(void) {return _program[_programIndex].type();}
     unsigned int _currentNodeValue(void) {return _program[_programIndex].value();}
+    
+    int _value(void) {int _value = _evaluationStack.front(); _evaluationStack.pop_front(); return _value;}
 
     parseTreeEntry _program[MAX_PROGRAM_ENTRY];
     unsigned int _programIndex;
