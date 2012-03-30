@@ -27,8 +27,9 @@
 */
 
 #include "interpret.h"
-//#include "lmi_timer.h"
-//#include <math.h>
+#define YYSTYPE_IS_DECLARED // prevent compile errors from valve.tab.h
+#define YYSTYPE int         // ditto
+#include "valve.tab.h"
 #include <assert.h>
 
 interpret::interpret() :
@@ -37,6 +38,43 @@ interpret::interpret() :
 #endif /* CYGWIN */					
 					//_positionCurrent(0), _directionPositive(true), _timerRunning(false), _superState(IDLE) {
                     {
+    for (int i = 0; i < MAX_PROGRAM_ENTRY; ++i) {
+        _program[i].type(nodeInvalid);
+    }
+}
+
+void interpret::run(void) {
+    _programIndex = 0;
+    while (_program[_programIndex].type() != nodeInvalid) {
+        switch (_currentNodeType()) {
+        case nodeVar:
+        case nodeConst:
+            _evaluationStack.push_back(_currentNodeValue());
+            break;
+        case nodeOperator:
+            evaluate(_currentNodeValue());
+            break;
+        default:
+            assert(false);
+            break;
+        }
+    }
+}
+
+void interpret::evaluate(unsigned int op) {
+    switch (op) {
+    case PLUS:
+        // assert(_evaluationStack.size() >= 2;);
+        // unsigned int x = _evaluationStack.front();
+        // _evaluationStack.pop();
+        // unsigned int y = _evaluationStack.front();
+        // _evaluationStack.pop();
+        // _evaluationStack.push(x + y);
+        break;
+    default:
+        assert(false);
+        break;
+    }
 }
 
 #if 0

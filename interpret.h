@@ -8,15 +8,8 @@
 #ifndef _INTERPRET_H_
 #define _INTERPRET_H_
 
-#if 0
-#include "hw_ints.h"
-#include "hw_memmap.h"
-#include "hw_types.h"
-#include "gpio.h"
-#include "lmi_timer.h"
-
-#include "accel.h"
-#endif
+#include "parseTreeEntry.h"
+#include <vector>
 
 #if CYGWIN
 //#include <iostream>
@@ -26,15 +19,7 @@
 using namespace std;
 #endif /* CYGWIN */
 
-#if 0
-#define OPTIMIZE_CURVE_CALC 1
-
-#define PIN_ENABLE  (GPIO_PIN_4)
-#define PIN_SLEEP   (GPIO_PIN_5)
-#define PIN_STEP    (GPIO_PIN_6)
-#define PIN_DIR     (GPIO_PIN_7)
-#define PIN_ALL     (PIN_ENABLE | PIN_SLEEP | PIN_STEP | PIN_DIR)
-#endif
+#define MAX_PROGRAM_ENTRY   200
 
 class interpret
 #if CYGWIN
@@ -44,7 +29,18 @@ class interpret
 public:
     interpret();
     ~interpret() {}
+    
+    void run(void);
+    void evaluate(unsigned int op);
 
+private:
+    nodeType _currentNodeType(void) {return _program[_programIndex].type();}
+    unsigned int _currentNodeValue(void) {return _program[_programIndex].value();}
+
+    parseTreeEntry _program[MAX_PROGRAM_ENTRY];
+    unsigned int _programIndex;
+    vector<int> _evaluationStack;   // FIXME: need a stack here
+    
 #if 0    
 	accel a;
 	

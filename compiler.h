@@ -8,13 +8,10 @@
 
 #include <stdio.h>
 //#include <assert.h>
-
-#define FALSE (0)
-#define TRUE  (!FALSE)
+#include "compilerHelper.h"
 
 typedef enum {enumId, enumAnd, enumOr, enumAction} operandType;	// old stuff
 
-typedef enum {nodeVar, nodeConst, nodeOperator} nodeType;
 typedef enum {OP_PLUS, OP_MINUS, OP_MULT, OP_DIV, OP_XOR, OP_AND, OP_OR, OP_EQUALS, OP_TEST_FOR_EQUAL} operatorType;
 
 
