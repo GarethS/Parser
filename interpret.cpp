@@ -62,14 +62,15 @@ void interpret::run(void) {
 }
 
 void interpret::evaluate(unsigned int op) {
+    int lhs, rhs;   // left and right-hand side of evaluation
     switch (op) {
     case PLUS:
-        // assert(_evaluationStack.size() >= 2;);
-        // unsigned int x = _evaluationStack.front();
-        // _evaluationStack.pop();
-        // unsigned int y = _evaluationStack.front();
-        // _evaluationStack.pop();
-        // _evaluationStack.push(x + y);
+        assert(_evaluationStack.size() >= 2);
+        lhs = _evaluationStack.front();
+        _evaluationStack.pop_front();
+        rhs = _evaluationStack.front();
+        _evaluationStack.pop_front();
+        _evaluationStack.push_front(lhs + rhs);
         break;
     default:
         assert(false);

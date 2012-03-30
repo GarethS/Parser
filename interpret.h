@@ -9,7 +9,7 @@
 #define _INTERPRET_H_
 
 #include "parseTreeEntry.h"
-#include <vector>
+#include <deque>
 
 #if CYGWIN
 //#include <iostream>
@@ -39,7 +39,7 @@ private:
 
     parseTreeEntry _program[MAX_PROGRAM_ENTRY];
     unsigned int _programIndex;
-    vector<int> _evaluationStack;   // FIXME: need a stack here
+    deque<int> _evaluationStack;   // TODO: Initial version only use int. In future, floats.
     
 #if 0    
 	accel a;
