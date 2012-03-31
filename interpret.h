@@ -9,7 +9,10 @@
 #define _INTERPRET_H_
 
 #include "parseTreeEntry.h"
-#include <deque>
+#define YYSTYPE_IS_DECLARED // prevent compile errors from valve.tab.h
+#define YYSTYPE int         // ditto
+#include "valve.tab.h"
+#include <deque>    // TODO: Replace with tinyQueue, perhaps. Look at space utilization.
 
 #if CYGWIN
 //#include <iostream>
@@ -38,10 +41,12 @@ private:
     unsigned int _currentNodeValue(void) {return _program[_programIndex].value();}
     
     int _value(void) {int _value = _evaluationStack.front(); _evaluationStack.pop_front(); return _value;}
+    int _findParseTreeEntry(nodeType t, nodePosition p, int value, unsigned int level);
 
     parseTreeEntry _program[MAX_PROGRAM_ENTRY];
     unsigned int _programIndex;
-    deque<int> _evaluationStack;   // TODO: Initial version only use int. In future, floats.
+    unsigned int _programIndexMax;  // Set when program loaded
+    deque<int> _evaluationStack;    // TODO: Initial version only use int. In future, floats.
     
 #if 0    
 	accel a;

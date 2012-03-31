@@ -27,9 +27,6 @@
 */
 
 #include "interpret.h"
-#define YYSTYPE_IS_DECLARED // prevent compile errors from valve.tab.h
-#define YYSTYPE int         // ditto
-#include "valve.tab.h"
 #include <assert.h>
 
 interpret::interpret() :
@@ -49,7 +46,13 @@ void interpret::run(void) {
         switch (_currentNodeType()) {
         case nodeVar:
         case nodeConst:
-            _evaluationStack.push_back(_currentNodeValue());
+            // Do short-circuit optimization. If left-hand value TRUE, no need to evaluate right-hand side.
+            // To implement this, before pushing the RHS, look to see if the operator one level
+            //  above is OR. If it is and LHS is TRUE
+            // If left-hand value and true and node operator at level-1 == OR then
+            //  _programIndex = index of node operator + 1 (making sure not to run off end of program if that's the end)
+            //  Need to look this up for operators too once it's been done for one variable!
+            _evaluationStack.push_front(_currentNodeValue());
             break;
         case nodeOperator:
             evaluate(_currentNodeValue());
@@ -59,6 +62,16 @@ void interpret::run(void) {
             break;
         }
     }
+}
+
+int interpret::_findParseTreeEntry(nodeType t, nodePosition p, int value, unsigned int level) {
+    parseTreeEntry pte(t, p, value, level);
+    for (unsigned int i = _programIndex; i < _programIndexMax; ++i) {
+        if (_program[i] == pte) {
+            return true;
+        }
+    }
+    return NOT_FOUND;
 }
 
 void interpret::evaluate(unsigned int op) {

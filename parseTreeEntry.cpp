@@ -17,3 +17,20 @@ parseTreeEntry::parseTreeEntry() :
 					//_positionCurrent(0), _directionPositive(true), _timerRunning(false), _superState(IDLE) {
                     {
 }
+
+parseTreeEntry::parseTreeEntry(nodeType t, nodePosition p, int value, unsigned int level) :
+#if CYGWIN 
+					logc(std::string("PARSETREEENTRY"))
+#endif /* CYGWIN */					
+					, _type(t), _position(p), _level(level), _value(value) {
+}
+
+bool parseTreeEntry::operator==(parseTreeEntry& p) {
+    if (this == &p) {
+        return true;
+    }
+    if (p.type() == type() && p.position() == position() && p.value() == value() && p.level() == level()) {
+        return true;
+    }
+    return false;
+}

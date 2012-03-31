@@ -2192,14 +2192,14 @@ void walkPatternTree(arithNode* pArithNode, char* position, int indent) {
     char tmp[64];
 	switch (pArithNode->type) {
 	case (nodeOperator):
-        sprintf(tmp, "%d Operator %d\n", indent, pArithNode->value);
+        sprintf(tmp, "%d %s Operator %d\n", indent, position, pArithNode->value);
         fwrite(tmp, 1, strlen(tmp), fp);
 
 		printf(" Operator: ");
         printOperator(pArithNode->value);
 		break;
 	case (nodeVar):
-        sprintf(tmp, "%d Variable %d\n", indent, pArithNode->value);
+        sprintf(tmp, "%d %s Variable %d\n", indent, position, pArithNode->value);
         fwrite(tmp, 1, strlen(tmp), fp);
 
 		printf(" Var: index,%d name,%s", pArithNode->value, varTable[pArithNode->value].name);
