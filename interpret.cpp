@@ -35,6 +35,7 @@ interpret::interpret() :
 #endif /* CYGWIN */					
 					//_positionCurrent(0), _directionPositive(true), _timerRunning(false), _superState(IDLE) {
                     {
+    // TODO: Really need this? Doesn't constructor take care of initializing everything to nodeInvalid?
     for (int i = 0; i < MAX_PROGRAM_ENTRY; ++i) {
         _program[i].type(nodeInvalid);
     }
@@ -43,19 +44,30 @@ interpret::interpret() :
 void interpret::run(void) {
     _programIndex = 0;
     while (_program[_programIndex].type() != nodeInvalid) {
-        switch (_currentNodeType()) {
+        switch (_currentProgramNodeType()) {
         case nodeVar:
         case nodeConst:
-            // Do short-circuit optimization. If left-hand value TRUE, no need to evaluate right-hand side.
-            // To implement this, before pushing the RHS, look to see if the operator one level
-            //  above is OR. If it is and LHS is TRUE
-            // If left-hand value and true and node operator at level-1 == OR then
-            //  _programIndex = index of node operator + 1 (making sure not to run off end of program if that's the end)
-            //  Need to look this up for operators too once it's been done for one variable!
-            _evaluationStack.push_front(_currentNodeValue());
+#if 0        
+            {
+            parseTreeEntry pte(nodeOperator, OR, _currentProgramNodeLevel() - 1);  // Look for the first operator at level - 1. Going further will detect an incorrect node.
+            if (int tmpProgramIndex = _findFirstParseTreeEntry(pte) != NOT_FOUND) {
+                //if (_findParseTreeEntry(nodeOperator, nodeLeft, OR, _currentProgramNodeLevel() - 1)) {
+                if (_currentProgramNodeValue() != false) {
+                    // Left-hand side is true and next operator is OR so skip evaluation of right-hand
+                    //  side by moving _programIndex
+                    _evaluationStack.push_front(true);  // The net result of the OR would be true so put it on the evaluation stack now
+                    _programIndex = tmpProgramIndex;
+                    continue;
+                }
+            }
+            }
+#endif            
+            _evaluationStack.push_front(_currentProgramNodeValue());
+            _shortCircuitOptimization();
             break;
         case nodeOperator:
-            evaluate(_currentNodeValue());
+            evaluate(_currentProgramNodeValue());
+            _shortCircuitOptimization();
             break;
         default:
             assert(false);
@@ -64,6 +76,36 @@ void interpret::run(void) {
     }
 }
 
+void interpret::_shortCircuitOptimization(void) {
+    parseTreeEntry pte(nodeOperator, OR, _currentProgramNodeLevel() - 1);  // Look for the first operator at (level - 1). Going further will detect an incorrect node.
+    if (int candidateProgramIndex = _findFirstParseTreeEntry(pte) != NOT_FOUND) {
+        // We found the parse tree entry we were looking for so let's see if the left-hand side it true, or, rather, !false.
+        //if (_currentProgramNodeValue() != false) {
+        if (_evalValuePeek() != false) { 
+            // Left-hand side is true and next operator is OR so skip evaluation of right-hand
+            //  side by moving _programIndex. But first, pop the value we just looked at.
+            _evaluationStack.pop_front();
+            _evaluationStack.push_front(true);  // The net result of the OR would be true so put it on the evaluation stack now
+            _programIndex = candidateProgramIndex;    // Point to the OR operator we just evaluated
+            return;
+        }
+    }
+}
+
+// Return programIndex location of the found entry
+int interpret::_findFirstParseTreeEntry(const parseTreeEntry& p) {
+    for (unsigned int i = _programIndex; i < _programIndexMax; ++i) {
+        if (_program[i].type() == p.type() && _program[i].level() == p.level()) {
+            if (_program[i].value() == p.value()) {
+                return true;
+            }
+            return NOT_FOUND;
+        }
+    }
+    return NOT_FOUND;
+}
+
+#if 0
 int interpret::_findParseTreeEntry(nodeType t, nodePosition p, int value, unsigned int level) {
     parseTreeEntry pte(t, p, value, level);
     for (unsigned int i = _programIndex; i < _programIndexMax; ++i) {
@@ -73,64 +115,65 @@ int interpret::_findParseTreeEntry(nodeType t, nodePosition p, int value, unsign
     }
     return NOT_FOUND;
 }
+#endif
 
 void interpret::evaluate(unsigned int op) {
     switch (op) {
     case BANG:
         assert(_evaluationStack.size() >= 1);
-        _evaluationStack.push_front(!_value());
+        _evaluationStack.push_front(!_evalValue());
         break;
     case PLUS:
         assert(_evaluationStack.size() >= 2);
-        _evaluationStack.push_front(_value() + _value());
+        _evaluationStack.push_front(_evalValue() + _evalValue());
         break;
     case MINUS:
         assert(_evaluationStack.size() >= 2);
-        _evaluationStack.push_front(_value() - _value());
+        _evaluationStack.push_front(_evalValue() - _evalValue());
         break;
     case MULT:
         assert(_evaluationStack.size() >= 2);
-        _evaluationStack.push_front(_value() * _value());
+        _evaluationStack.push_front(_evalValue() * _evalValue());
         break;
     case DIV:
         assert(_evaluationStack.size() >= 2);
-        _evaluationStack.push_front(_value() / _value());
+        _evaluationStack.push_front(_evalValue() / _evalValue());
         break;
     case XOR:
         assert(_evaluationStack.size() >= 2);
-        _evaluationStack.push_front(_value() ^ _value());
+        _evaluationStack.push_front(_evalValue() ^ _evalValue());
         break;
     case GEQ:
         assert(_evaluationStack.size() >= 2);
-        _evaluationStack.push_front(_value() >= _value()/* ? TRUE : FALSE*/);
+        _evaluationStack.push_front(_evalValue() >= _evalValue()/* ? TRUE : FALSE*/);
         break;
     case LEQ:
         assert(_evaluationStack.size() >= 2);
-        _evaluationStack.push_front(_value() <= _value());
+        _evaluationStack.push_front(_evalValue() <= _evalValue());
         break;
     case NEQ:
         assert(_evaluationStack.size() >= 2);
-        _evaluationStack.push_front(_value() != _value());
+        _evaluationStack.push_front(_evalValue() != _evalValue());
         break;
     case GTR:
         assert(_evaluationStack.size() >= 2);
-        _evaluationStack.push_front(_value() > _value());
+        _evaluationStack.push_front(_evalValue() > _evalValue());
         break;
     case LSS:
         assert(_evaluationStack.size() >= 2);
-        _evaluationStack.push_front(_value() < _value());
+        _evaluationStack.push_front(_evalValue() < _evalValue());
         break;
     case AND:
         assert(_evaluationStack.size() >= 2);
-        _evaluationStack.push_front(_value() && _value());
+        _evaluationStack.push_front(_evalValue() && _evalValue());
         break;
     case OR:
         assert(_evaluationStack.size() >= 2);
-        _evaluationStack.push_front(_value() || _value());
+        _evaluationStack.push_front(_evalValue() || _evalValue());
         break;
     case TEST_FOR_EQUAL:
         assert(_evaluationStack.size() >= 2);
-        _evaluationStack.push_front(_value() == _value());
+        _evaluationStack.push_front(_evalValue() == _evalValue());
         break;
     default:
         assert(false);

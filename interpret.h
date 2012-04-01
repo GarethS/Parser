@@ -37,11 +37,15 @@ public:
     void evaluate(unsigned int op);
 
 private:
-    nodeType _currentNodeType(void) {return _program[_programIndex].type();}
-    unsigned int _currentNodeValue(void) {return _program[_programIndex].value();}
+    nodeType _currentProgramNodeType(void) const {return _program[_programIndex].type();}
+    unsigned int _currentProgramNodeValue(void) const {return _program[_programIndex].value();}
+    unsigned int _currentProgramNodeLevel(void) const {return _program[_programIndex].level();}
     
-    int _value(void) {int _value = _evaluationStack.front(); _evaluationStack.pop_front(); return _value;}
-    int _findParseTreeEntry(nodeType t, nodePosition p, int value, unsigned int level);
+    int _evalValue(void) {int _value = _evaluationStack.front(); _evaluationStack.pop_front(); return _value;}
+    int _evalValuePeek(void) const {return _evaluationStack.front();}
+    int _findFirstParseTreeEntry(const parseTreeEntry& p);
+    //int _findParseTreeEntry(nodeType t, nodePosition p, int value, unsigned int level);
+    void _shortCircuitOptimization(void);
 
     parseTreeEntry _program[MAX_PROGRAM_ENTRY];
     unsigned int _programIndex;
