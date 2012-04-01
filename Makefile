@@ -14,7 +14,7 @@ BISON_FLAGS = --verbose --debug --report=state
 GCC_FLAGS = -g
 GPP_FLAGS = -Wall
 DEBUG_FLAGS = -D CYGWIN=1 -D DUMP=1 -D REGRESS_1=1
-else
+else    # not Debug
 FLEX_FLAGS =
 BISON_FLAGS = --verbose --debug --report=state
 GCC_FLAGS =

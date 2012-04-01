@@ -33,11 +33,15 @@ public:
     interpret();
     ~interpret() {}
     
+#if CYGWIN    
+    void load(void);
+#endif /* CYGWIN */    
     void run(void);
     void evaluate(unsigned int op);
 
 private:
     nodeType _currentProgramNodeType(void) const {return _program[_programIndex].type();}
+    nodeType _programNodeType(unsigned int i) const {return _program[i].type();}
     unsigned int _currentProgramNodeValue(void) const {return _program[_programIndex].value();}
     unsigned int _currentProgramNodeLevel(void) const {return _program[_programIndex].level();}
     
@@ -49,7 +53,7 @@ private:
 
     parseTreeEntry _program[MAX_PROGRAM_ENTRY];
     unsigned int _programIndex;
-    unsigned int _programIndexMax;  // Set when program loaded
+    //unsigned int _programIndexMax;  // Set when program loaded
     deque<int> _evaluationStack;    // TODO: Initial version only use int. In future, floats.
     
 #if 0    

@@ -27,6 +27,10 @@
 */
 
 #include "interpret.h"
+#if CYGWIN
+#include <string>
+#include <istream>
+#endif /* CYGWIN */
 #include <assert.h>
 
 interpret::interpret() :
@@ -41,27 +45,27 @@ interpret::interpret() :
     }
 }
 
+#if CYGWIN
+void interpret::load(void) {
+    ifstream ifs("parseTree.txt");
+    if (!ifs) {
+        return;
+    }
+    // Typical line to read: '3 LEFT Variable 0'
+    unsigned int level;
+    string leftRight;
+    string variableOperator;
+    int value;
+    ifs >> level >> leftRight >> variableOperator >> value;
+    ifs.close();
+}
+#endif /* CYGWIN */
+
 void interpret::run(void) {
-    _programIndex = 0;
-    while (_program[_programIndex].type() != nodeInvalid) {
+    for (_programIndex = 0; _program[_programIndex].type() != nodeInvalid; ++_programIndex) {
         switch (_currentProgramNodeType()) {
         case nodeVar:
         case nodeConst:
-#if 0        
-            {
-            parseTreeEntry pte(nodeOperator, OR, _currentProgramNodeLevel() - 1);  // Look for the first operator at level - 1. Going further will detect an incorrect node.
-            if (int tmpProgramIndex = _findFirstParseTreeEntry(pte) != NOT_FOUND) {
-                //if (_findParseTreeEntry(nodeOperator, nodeLeft, OR, _currentProgramNodeLevel() - 1)) {
-                if (_currentProgramNodeValue() != false) {
-                    // Left-hand side is true and next operator is OR so skip evaluation of right-hand
-                    //  side by moving _programIndex
-                    _evaluationStack.push_front(true);  // The net result of the OR would be true so put it on the evaluation stack now
-                    _programIndex = tmpProgramIndex;
-                    continue;
-                }
-            }
-            }
-#endif            
             _evaluationStack.push_front(_currentProgramNodeValue());
             _shortCircuitOptimization();
             break;
@@ -94,7 +98,7 @@ void interpret::_shortCircuitOptimization(void) {
 
 // Return programIndex location of the found entry
 int interpret::_findFirstParseTreeEntry(const parseTreeEntry& p) {
-    for (unsigned int i = _programIndex; i < _programIndexMax; ++i) {
+    for (unsigned int i = _programIndex; _programNodeType(i) != nodeInvalid/*_programIndexMax*/; ++i) {
         if (_program[i].type() == p.type() && _program[i].level() == p.level()) {
             if (_program[i].value() == p.value()) {
                 return true;
