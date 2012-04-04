@@ -45,6 +45,12 @@ Pending tasks (* = addressed this issue):
 7. Upgrade to C++ classes (yacc uses -C option, #define _CPP_IOSTREAMS too). Use g++ rather than gcc. And rename valve.y valve.ypp	
 8. Dump pattern and action arrays to build table. Switch to using indices rather than pointers. Code executing in controller will do the actual infix tree traversal.
 
+TODO:
+1. Test on actual hardware
+2. Implement TCP/IP communications
+3. Add arrays to language
+4. Advertising - create ad copy we'd like to see
+
 25Mar12
 1. Pattern tree output succesful to table in RPN order. Now write interpreter to evaluate table.
 

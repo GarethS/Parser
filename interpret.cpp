@@ -56,7 +56,9 @@ void interpret::load(void) {
     string leftRight;
     string variableOperator;
     int value;
-    ifs >> level >> leftRight >> variableOperator >> value;
+    while (!ifs.eof()) {
+        ifs >> level >> leftRight >> variableOperator >> value;
+    }
     ifs.close();
 }
 #endif /* CYGWIN */
