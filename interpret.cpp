@@ -143,7 +143,15 @@ void interpret::evaluate(unsigned int op) {
         break;
     case DIV:
         assert(_evaluationStack.size() >= 2);
-        _evaluationStack.push_front(_evalValue() / _evalValue());
+        {
+        int numerator = _evalValue();
+        int denominator = _evalValue();
+        if (denominator == 0) {
+            _evaluationStack.push_front(0);
+        } else {
+            _evaluationStack.push_front(numerator / denominator);
+        }
+        }
         break;
     case XOR:
         assert(_evaluationStack.size() >= 2);
