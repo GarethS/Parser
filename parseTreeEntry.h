@@ -29,6 +29,9 @@ public:
     parseTreeEntry(nodeType t, int value, unsigned int level);
     ~parseTreeEntry() {}
     
+#if CYGWIN
+    void dumpEntry(void);
+#endif /* CYGWIN */
     parseTreeEntry& operator=(const parseTreeEntry& p);
     bool operator==(parseTreeEntry& p) const ;
     

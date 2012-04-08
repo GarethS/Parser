@@ -14,7 +14,6 @@ parseTreeEntry::parseTreeEntry() :
 #if CYGWIN 
 					logc(std::string("PARSETREEENTRY"))
 #endif /* CYGWIN */					
-					//_positionCurrent(0), _directionPositive(true), _timerRunning(false), _superState(IDLE) {
                     , _type(nodeInvalid) {
 }
 
@@ -51,3 +50,27 @@ bool parseTreeEntry::operator==(parseTreeEntry& p) const {
     }
     return false;
 }
+
+#if CYGWIN
+void parseTreeEntry::dumpEntry(void) {
+    switch (type()) {
+    case nodeVar:
+        oss() << "nodeVar";
+        break;
+    case nodeConst:
+        oss() << "nodeConst";
+        break;
+    case nodeOperator:
+        oss() << "nodeOperator";
+        break;
+    case nodeInvalid:
+        oss() << "nodeInvalid";
+        break;
+    default:
+        oss() << "nodeUnknown";
+        break;
+    }
+    oss() << " " << level() << " " << value();
+    dump();
+}
+#endif /* CYGWIN */

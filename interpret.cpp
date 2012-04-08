@@ -28,52 +28,122 @@
 
 #include "interpret.h"
 #if CYGWIN
+//#include <iostream>
+//#include <fstream>
 #include <string>
 #include <istream>
+#include <sstream>
 #endif /* CYGWIN */
 #include <assert.h>
 
 interpret::interpret() :
 #if CYGWIN 
-					logc(std::string("INTERPRET"))
-#endif /* CYGWIN */					
-					//_positionCurrent(0), _directionPositive(true), _timerRunning(false), _superState(IDLE) {
-                    {
-    // TODO: Really need this? Doesn't constructor take care of initializing everything to nodeInvalid?
+					logc(std::string("INTERPRETER"))
+#endif /* CYGWIN */		
+                    , _programIndex(0) {
+#if 0                    
     for (int i = 0; i < MAX_PROGRAM_ENTRY; ++i) {
-        _program[i].type(nodeInvalid);
+        //printf("%d %d\n", i, _program[i].type());
+        oss() << i << " " << _program[i].type();
+        dump();
+        //_program[i].type(nodeInvalid);
     }
+#endif    
 }
 
 #if CYGWIN
 void interpret::load(void) {
+    // TODO: Read symbol table.
     ifstream ifs("parseTree.txt");
     if (!ifs) {
         return;
     }
+    oss() << "interpret::load";
+    dump();
     // Typical line to read: '3 LEFT Variable 0'
     unsigned int level;
     string leftRight;
     string variableOperator;
     int value;
     while (!ifs.eof()) {
-        ifs >> level >> leftRight >> variableOperator >> value;
+#if 1
+        string inputString;
+        //ifs.getline(inputString);
+        getline(ifs, inputString);
+        cout << "IFS:" << inputString << endl;
+        if (inputString == "") {
+            cout << "Got endln" << endl;
+            break;
+        }
+        istringstream iss(inputString);
+        iss >> level >> leftRight >> variableOperator >> value;
+#else    
+        ifs >> level >> leftRight >> variableOperator >> value; // TODO: eat eol character
+#endif        
+        parseTreeEntry pte;
+        pte.level(level);
+        pte.value(value);
+        if (variableOperator == "Variable") {
+            pte.type(nodeVar);
+        } else if (variableOperator == "Operator") {
+            pte.type(nodeOperator);
+        }
+        _program[_programIndex++] = pte;
+        if (_programIndex >= MAX_PROGRAM_ENTRY) {
+            oss() << "Out of program memory. Aborting.";
+            dump();
+            break;
+        }
+        //oss() << level << " " << leftRight << " " << variableOperator << " " << value;
+        //dump();
     }
     ifs.close();
+}
+
+void interpret::dumpProgram(void) {
+    oss() << "interpret::dumpProgram";
+    dump();
+    for (int i = 0; _program[i].type() != nodeInvalid; ++i) {
+        _program[i].dumpEntry();
+    }
+}
+
+void interpret::dumpEvaluationStack(void) {
+    oss() << "Enter interpret::dumpEvaluationStack";
+    dump();
+    // 1. Save current eval stack
+    tinyQueue<int> _evaluationCopy;
+    _evaluationCopy = _evaluationStack;
+    // 2. Dump contents of the copy
+    while (!_evaluationCopy.empty()) {
+        oss() << _evaluationCopy.front();
+        dump();
+        _evaluationCopy.pop_front();
+    }
+    oss() << "Leave interpret::dumpEvaluationStack";
+    dump();
 }
 #endif /* CYGWIN */
 
 void interpret::run(void) {
+    assert(_evaluationStack.empty());
     for (_programIndex = 0; _program[_programIndex].type() != nodeInvalid; ++_programIndex) {
+#if CYGWIN
+        oss() << "Run programIndex=" << _programIndex;
+        dump();
+        dumpEvaluationStack();
+#endif /* CYGWIN */    
         switch (_currentProgramNodeType()) {
         case nodeVar:
         case nodeConst:
+            printf("nodeVar or nodeConst\n");
             _evaluationStack.push_front(_currentProgramNodeValue());
-            _shortCircuitOptimization();
+            //_shortCircuitOptimization();
             break;
         case nodeOperator:
+            printf("nodeOperator\n");
             evaluate(_currentProgramNodeValue());
-            _shortCircuitOptimization();
+            //_shortCircuitOptimization();
             break;
         default:
             assert(false);
@@ -124,70 +194,80 @@ int interpret::_findParseTreeEntry(nodeType t, nodePosition p, int value, unsign
 #endif
 
 void interpret::evaluate(unsigned int op) {
+    assert(_evaluationStack.size() >= 1);
+    int tmp = _evalValue(); // this is usually the right-hand side of the parse node
     switch (op) {
     case BANG:
-        assert(_evaluationStack.size() >= 1);
-        _evaluationStack.push_front(!_evalValue());
+        _evaluationStack.push_front(!tmp);
         break;
     case PLUS:
-        assert(_evaluationStack.size() >= 2);
-        _evaluationStack.push_front(_evalValue() + _evalValue());
+        assert(_evaluationStack.size() >= 1);
+        _evaluationStack.push_front(_evalValue() + tmp);
         break;
     case MINUS:
-        assert(_evaluationStack.size() >= 2);
-        _evaluationStack.push_front(_evalValue() - _evalValue());
+        assert(_evaluationStack.size() >= 1);
+        _evaluationStack.push_front(_evalValue() - tmp);
         break;
     case MULT:
-        assert(_evaluationStack.size() >= 2);
-        _evaluationStack.push_front(_evalValue() * _evalValue());
+        assert(_evaluationStack.size() >= 1);
+        _evaluationStack.push_front(_evalValue() * tmp);
         break;
     case DIV:
-        assert(_evaluationStack.size() >= 2);
+        assert(_evaluationStack.size() >= 1);
         {
-        int numerator = _evalValue();
-        int denominator = _evalValue();
-        if (denominator == 0) {
-            _evaluationStack.push_front(0);
-        } else {
-            _evaluationStack.push_front(numerator / denominator);
-        }
+            // tmp = denominator
+            int numerator = _evalValue();
+            if (tmp == 0) {
+                _evaluationStack.push_front(0);
+            } else {
+                _evaluationStack.push_front(numerator / tmp);
+            }
         }
         break;
     case XOR:
-        assert(_evaluationStack.size() >= 2);
-        _evaluationStack.push_front(_evalValue() ^ _evalValue());
+        assert(_evaluationStack.size() >= 1);
+        _evaluationStack.push_front(_evalValue() ^ tmp);
         break;
     case GEQ:
-        assert(_evaluationStack.size() >= 2);
-        _evaluationStack.push_front(_evalValue() >= _evalValue()/* ? TRUE : FALSE*/);
+        assert(_evaluationStack.size() >= 1);
+        _evaluationStack.push_front(_evalValue() >= tmp/* ? TRUE : FALSE*/);
         break;
     case LEQ:
-        assert(_evaluationStack.size() >= 2);
-        _evaluationStack.push_front(_evalValue() <= _evalValue());
+        assert(_evaluationStack.size() >= 1);
+        _evaluationStack.push_front(_evalValue() <= tmp);
         break;
     case NEQ:
-        assert(_evaluationStack.size() >= 2);
-        _evaluationStack.push_front(_evalValue() != _evalValue());
+        assert(_evaluationStack.size() >= 1);
+        _evaluationStack.push_front(_evalValue() != tmp);
         break;
     case GTR:
-        assert(_evaluationStack.size() >= 2);
-        _evaluationStack.push_front(_evalValue() > _evalValue());
+        assert(_evaluationStack.size() >= 1);
+        _evaluationStack.push_front(_evalValue() > tmp);
         break;
     case LSS:
-        assert(_evaluationStack.size() >= 2);
-        _evaluationStack.push_front(_evalValue() < _evalValue());
+        assert(_evaluationStack.size() >= 1);
+        _evaluationStack.push_front(_evalValue() < tmp);
         break;
     case AND:
-        assert(_evaluationStack.size() >= 2);
-        _evaluationStack.push_front(_evalValue() && _evalValue());
+        assert(_evaluationStack.size() >= 1);
+        _evaluationStack.push_front(_evalValue() && tmp);
         break;
     case OR:
-        assert(_evaluationStack.size() >= 2);
-        _evaluationStack.push_front(_evalValue() || _evalValue());
+        assert(_evaluationStack.size() >= 1);
+        _evaluationStack.push_front(_evalValue() || tmp);
         break;
     case TEST_FOR_EQUAL:
-        assert(_evaluationStack.size() >= 2);
-        _evaluationStack.push_front(_evalValue() == _evalValue());
+        assert(_evaluationStack.size() >= 1);
+        _evaluationStack.push_front(_evalValue() == tmp);
+        break;
+    case EQUAL:
+        assert(_evaluationStack.size() >= 1);
+        {
+            // left-hand side = right-hand side
+            int lhs = _evalValue(); // returns symbol table index
+            // Set symbol table entry = tmp;
+            //_evaluationStack.push_front(_evalValue() == _evalValue());
+        }
         break;
     default:
         assert(false);
@@ -503,5 +583,11 @@ void stepper::_timerStart(bool start /* = true */) {
 #endif
 
 int main(void) {
+    interpret i;
+    i.load();
+#if CYGWIN
+    i.dumpProgram();
+#endif /* CYGWIN */ 
+    i.run();
     return 0;
 }

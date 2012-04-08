@@ -12,7 +12,10 @@
 #define YYSTYPE_IS_DECLARED // prevent compile errors from valve.tab.h
 #define YYSTYPE int         // ditto
 #include "valve.tab.h"
-#include <deque>    // TODO: Replace with tinyQueue, perhaps. Look at space utilization.
+
+// Can use either tinyQueue or an official deque
+#include "tinyQueue.h"
+//#include <deque>
 
 #if CYGWIN
 //#include <iostream>
@@ -35,6 +38,8 @@ public:
     
 #if CYGWIN    
     void load(void);
+    void dumpProgram(void);
+    void dumpEvaluationStack(void);
 #endif /* CYGWIN */    
     void run(void);
     void evaluate(unsigned int op);
@@ -53,8 +58,8 @@ private:
 
     parseTreeEntry _program[MAX_PROGRAM_ENTRY];
     unsigned int _programIndex;
-    //unsigned int _programIndexMax;  // Set when program loaded
-    deque<int> _evaluationStack;    // TODO: Initial version only use int. In future, floats.
+    tinyQueue<int> _evaluationStack;
+    //deque<int> _evaluationStack;    // TODO: Initial version only use int. In future, floats or fixed-point arithmetic
     
 #if 0    
 	accel a;
