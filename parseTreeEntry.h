@@ -51,7 +51,7 @@ private:
     nodeType _type; // What kind of entry we are
     nodePosition _position; // Left or right of the next highest node? // TODO: Do we really need this?
     unsigned int _level; // Root = 0, children = 1, grandchildren = 2, etc.
-    unsigned int _value; // If operator, its value; if variable, its symbol table index
+    int _value; // If operator, its value; if variable, its symbol table index
 };    
 
 #endif /* _PARSETREEENTRY_H_ */

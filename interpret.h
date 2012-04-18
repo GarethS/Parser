@@ -9,6 +9,7 @@
 #define _INTERPRET_H_
 
 #include "parseTreeEntry.h"
+#include "symbolTableEntry.h"
 #define YYSTYPE_IS_DECLARED // prevent compile errors from valve.tab.h
 #define YYSTYPE int         // ditto
 #include "valve.tab.h"
@@ -25,7 +26,8 @@
 using namespace std;
 #endif /* CYGWIN */
 
-#define MAX_PROGRAM_ENTRY   200
+#define MAX_PROGRAM_ENTRY   (200)
+#define MAX_SYMBOL_TABLE_ENTRY  (20)
 
 class interpret
 #if CYGWIN
@@ -45,6 +47,8 @@ public:
     void evaluate(unsigned int op);
 
 private:
+    void _loadParseTree(void);
+    void _loadSymbolTable(void);
     nodeType _currentProgramNodeType(void) const {return _program[_programIndex].type();}
     nodeType _programNodeType(unsigned int i) const {return _program[i].type();}
     unsigned int _currentProgramNodeValue(void) const {return _program[_programIndex].value();}
@@ -57,7 +61,9 @@ private:
     void _shortCircuitOptimization(void);
 
     parseTreeEntry _program[MAX_PROGRAM_ENTRY];
+    symbolTableEntry _symbolTable[MAX_SYMBOL_TABLE_ENTRY];
     unsigned int _programIndex;
+    unsigned int _symbolTableIndex;
     tinyQueue<int> _evaluationStack;
     //deque<int> _evaluationStack;    // TODO: Initial version only use int. In future, floats or fixed-point arithmetic
     

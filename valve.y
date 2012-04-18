@@ -28,7 +28,8 @@ unsigned int arithTableFreeIndex = 0;
 
 actionNode actionTable[ACTION_ITEMS];
 unsigned int actionTableFreeIndex = 0;
-FILE* fp = NULL;
+FILE* fp = NULL; // Parse tree file pointer
+FILE* fpSymbol = NULL;  // Symbol table file point
 
 %}
 
@@ -61,7 +62,9 @@ FILE* fp = NULL;
 %start program
 
 %% /* Grammar rules and actions */
-program: 	patternActionList	{dumpSymbolTable();}
+program: 	patternActionList	{fpSymbol = fopen("symbolTable.txt", "wb");
+                                    dumpSymbolTable();
+                                    fclose(fpSymbol);}
 ;
 
 patternActionList: /* empty */	{}
@@ -543,5 +546,9 @@ void dumpSymbolTable(void) {
 }
 
 void dumpSymbol(int i) {
-	printf("\nindex:%d, name:%s, val:%d", i, varTable[i].name, varTable[i].val);
+    nodeType symbolType = isConstant(&varTable[i]) ? nodeConst : nodeVar;
+	printf("\nindex:%d, name:%s, type:%d, val:%d", i, varTable[i].name, symbolType, varTable[i].val);
+    char tmp[64];
+    sprintf(tmp, "%d %d\n", /*varTable[i].name,*/ symbolType, varTable[i].val);
+    fwrite(tmp, 1, strlen(tmp), fpSymbol);
 }

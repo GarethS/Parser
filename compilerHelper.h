@@ -15,7 +15,7 @@
 
 #define NOT_FOUND   (-1)
 
-typedef enum {nodeVar, nodeConst, nodeOperator, nodeInvalid} nodeType;
+typedef enum {nodeVar, nodeConst, nodeOperator, nodeInvalid, nodeMotorMove, nodeMotorGetPosition} nodeType;
 typedef enum {nodeLeft, nodeRight, nodeRoot} nodePosition;
 
 #endif /* _COMPILERHELPER_H_ */

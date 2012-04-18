@@ -40,7 +40,7 @@ interpret::interpret() :
 #if CYGWIN 
 					logc(std::string("INTERPRETER"))
 #endif /* CYGWIN */		
-                    , _programIndex(0) {
+                    , _programIndex(0), _symbolTableIndex(0) {
 #if 0                    
     for (int i = 0; i < MAX_PROGRAM_ENTRY; ++i) {
         //printf("%d %d\n", i, _program[i].type());
@@ -53,12 +53,16 @@ interpret::interpret() :
 
 #if CYGWIN
 void interpret::load(void) {
-    // TODO: Read symbol table.
+    _loadParseTree();
+    _loadSymbolTable();
+}
+
+void interpret::_loadParseTree(void) {
     ifstream ifs("parseTree.txt");
     if (!ifs) {
         return;
     }
-    oss() << "interpret::load";
+    oss() << "interpret::loadParseTree";
     dump();
     // Typical line to read: '3 LEFT Variable 0'
     unsigned int level;
@@ -66,7 +70,6 @@ void interpret::load(void) {
     string variableOperator;
     int value;
     while (!ifs.eof()) {
-#if 1
         string inputString;
         //ifs.getline(inputString);
         getline(ifs, inputString);
@@ -77,9 +80,6 @@ void interpret::load(void) {
         }
         istringstream iss(inputString);
         iss >> level >> leftRight >> variableOperator >> value;
-#else    
-        ifs >> level >> leftRight >> variableOperator >> value; // TODO: eat eol character
-#endif        
         parseTreeEntry pte;
         pte.level(level);
         pte.value(value);
@@ -91,6 +91,42 @@ void interpret::load(void) {
         _program[_programIndex++] = pte;
         if (_programIndex >= MAX_PROGRAM_ENTRY) {
             oss() << "Out of program memory. Aborting.";
+            dump();
+            break;
+        }
+        //oss() << level << " " << leftRight << " " << variableOperator << " " << value;
+        //dump();
+    }
+    ifs.close();
+}
+
+void interpret::_loadSymbolTable(void) {
+    ifstream ifs("symbolTable.txt");
+    if (!ifs) {
+        return;
+    }
+    oss() << "interpret::loadSymbolTable";
+    dump();
+    // Typical line to read: '1 4', where 1 = nodeType, 4 = value. In this case it's a constant with value = 4.
+    unsigned int type;
+    int value;
+    while (!ifs.eof()) {
+        string inputString;
+        //ifs.getline(inputString);
+        getline(ifs, inputString);
+        cout << "IFS:" << inputString << endl;
+        if (inputString == "") {
+            cout << "Got endln" << endl;
+            break;
+        }
+        istringstream iss(inputString);
+        iss >> type >> value;
+        symbolTableEntry ste;
+        ste.type((nodeType)type);
+        ste.value(value);
+        _symbolTable[_symbolTableIndex++] = ste;
+        if (_symbolTableIndex >= MAX_SYMBOL_TABLE_ENTRY) {
+            oss() << "Exceeded symbol table size. Aborting.";
             dump();
             break;
         }
@@ -195,14 +231,14 @@ int interpret::_findParseTreeEntry(nodeType t, nodePosition p, int value, unsign
 
 void interpret::evaluate(unsigned int op) {
     assert(_evaluationStack.size() >= 1);
-    int tmp = _evalValue(); // this is usually the right-hand side of the parse node
+    int tmp = _symbolTable[_evalValue()].value(); // this is usually the right-hand side of the parse node, the exception being BANG below
     switch (op) {
     case BANG:
         _evaluationStack.push_front(!tmp);
         break;
     case PLUS:
         assert(_evaluationStack.size() >= 1);
-        _evaluationStack.push_front(_evalValue() + tmp);
+        _evaluationStack.push_front(_symbolTable[_evalValue()].value() + tmp);
         break;
     case MINUS:
         assert(_evaluationStack.size() >= 1);
@@ -264,8 +300,9 @@ void interpret::evaluate(unsigned int op) {
         assert(_evaluationStack.size() >= 1);
         {
             // left-hand side = right-hand side
-            int lhs = _evalValue(); // returns symbol table index
+            int leftHandSymbolTableIndex = _evalValue(); // returns symbol table index
             // Set symbol table entry = tmp;
+            _symbolTable[leftHandSymbolTableIndex].value(tmp);
             //_evaluationStack.push_front(_evalValue() == _evalValue());
         }
         break;

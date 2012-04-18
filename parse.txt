@@ -15,10 +15,10 @@ Pattern tree:
 ROOT Operator: || 274		
 
 Symbol table:
-index:0, name:counter, val:0
-index:1, name:4, val:4
-index:2, name:time, val:0
-index:3, name:43, val:43
-index:4, name:x, val:0
-index:5, name:5, val:5
-index:6, name:1, val:1
+index:0, name:counter, type:0, val:0
+index:1, name:4, type:1, val:4
+index:2, name:time, type:0, val:0
+index:3, name:43, type:1, val:43
+index:4, name:x, type:0, val:0
+index:5, name:5, type:1, val:5
+index:6, name:1, type:1, val:1
