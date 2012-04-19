@@ -60,6 +60,8 @@ Limitations
 
 Notes
 1. Under Cygwin, to redirect output to a file use: ./parsetest >parse.txt 2>bison.txt
+    This yields: parseTree.txt and symbolTable.txt
+    Then run ./interpret which will put its output in log.txt
 2. Note that ./parsetest is run from a cygwin command window. It needs access to c:\cygwin\bin\cygwin1.dll to run.
     Install a minimal cygwin to get this. To run from a DOS command prompt, add cygwin to your path using the following:
 	"set Path=%Path%;c:\cygwin\bin" and then type "parsetest". It's really best just to install cygwin in the first place.

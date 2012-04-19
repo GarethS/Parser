@@ -17,7 +17,7 @@ symbolTableEntry::symbolTableEntry() :
 
 symbolTableEntry::symbolTableEntry(nodeType t, int value) :
 #if CYGWIN 
-					logc(std::string("PARSETREEENTRY2"))
+					logc(std::string("SYMBOLTABLEENTRY2"))
 #endif /* CYGWIN */					
 					, _type(t), _value(value) {
 }

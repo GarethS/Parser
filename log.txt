@@ -1,0 +1,1588 @@
+0 3
+1 3
+2 3
+3 3
+4 3
+5 3
+6 3
+7 3
+8 3
+9 3
+10 3
+11 3
+12 3
+13 3
+14 3
+15 3
+16 3
+17 3
+18 3
+19 3
+Found parseTree.txt
+3 LEFT Variable 0
+3 RIGHT Variable 1
+2 LEFT Operator 268
+3 LEFT Variable 2
+3 RIGHT Variable 3
+2 RIGHT Operator 275
+1 LEFT Operator 274
+2 LEFT Variable 4
+2 RIGHT Variable 5
+1 RIGHT Operator 272
+0 ROOT Operator 274
+0 ROOT Operator 274
+0 3
+1 3
+2 3
+3 3
+4 3
+5 3
+6 3
+7 3
+8 3
+9 3
+10 3
+11 3
+12 3
+13 3
+14 3
+15 3
+16 3
+17 3
+18 3
+19 3
+Found parseTree.txt
+3 LEFT Variable 0
+3 RIGHT Variable 1
+2 LEFT Operator 268
+3 LEFT Variable 2
+3 RIGHT Variable 3
+2 RIGHT Operator 275
+1 LEFT Operator 274
+2 LEFT Variable 4
+2 RIGHT Variable 5
+1 RIGHT Operator 272
+0 ROOT Operator 274
+0 ROOT Operator 274
+0 3
+1 3
+2 3
+3 3
+4 3
+5 3
+6 3
+7 3
+8 3
+9 3
+10 3
+11 3
+12 3
+13 3
+14 3
+15 3
+16 3
+17 3
+18 3
+19 3
+Found parseTree.txt w
+3 LEFT Variable 0
+3 RIGHT Variable 1
+2 LEFT Operator 268
+3 LEFT Variable 2
+3 RIGHT Variable 3
+2 RIGHT Operator 275
+1 LEFT Operator 274
+2 LEFT Variable 4
+2 RIGHT Variable 5
+1 RIGHT Operator 272
+0 ROOT Operator 274
+0 ROOT Operator 274
+0 3
+1 3
+2 3
+3 3
+4 3
+5 3
+6 3
+7 3
+8 3
+9 3
+10 3
+11 3
+12 3
+13 3
+14 3
+15 3
+16 3
+17 3
+18 3
+19 3
+Found parseTree.txt
+0 3
+1 3
+2 3
+3 3
+4 3
+5 3
+6 3
+7 3
+8 3
+9 3
+10 3
+11 3
+12 3
+13 3
+14 3
+15 3
+16 3
+17 3
+18 3
+19 3
+Found parseTree.txt
+Found parseTree.txt
+Found parseTree.txt
+Found parseTree.txt
+Found parseTree.txt
+Found parseTree.txt
+Found parseTree.txt
+
+
+
+
+
+
+
+
+
+
+
+
+Found parseTree.txt
+nodeInvalid 2 4
+
+nodeInvalid 2 4
+
+nodeInvalid 2 4
+
+nodeInvalid 2 4
+
+nodeInvalid 2 4
+
+nodeInvalid 2 4
+
+nodeInvalid 2 4
+
+nodeInvalid 2 4
+
+nodeInvalid 2 4
+
+nodeInvalid 2 4
+
+nodeInvalid 2 4
+
+nodeInvalid 2 4
+
+Found parseTree.txt
+nodeInvalid 3 0
+
+nodeInvalid 3 1
+
+nodeInvalid 2 268
+
+nodeInvalid 3 2
+
+nodeInvalid 3 3
+
+nodeInvalid 2 275
+
+nodeInvalid 1 274
+
+nodeInvalid 2 4
+
+nodeInvalid 2 5
+
+nodeInvalid 1 272
+
+nodeInvalid 0 274
+
+nodeInvalid 0 274
+
+Found parseTree.txt
+nodeInvalid 3 0
+
+nodeInvalid 3 1
+
+nodeInvalid 2 268
+
+nodeInvalid 3 2
+
+nodeInvalid 3 3
+
+nodeInvalid 2 275
+
+nodeInvalid 1 274
+
+nodeInvalid 2 4
+
+nodeInvalid 2 5
+
+nodeInvalid 1 272
+
+nodeInvalid 0 274
+
+nodeInvalid 0 274
+
+Found parseTree.txt
+nodeInvalid 3 0
+
+nodeInvalid 3 1
+
+nodeInvalid 2 268
+
+nodeInvalid 3 2
+
+nodeInvalid 3 3
+
+nodeInvalid 2 275
+
+nodeInvalid 1 274
+
+nodeInvalid 2 4
+
+nodeInvalid 2 5
+
+nodeInvalid 1 272
+
+nodeInvalid 0 274
+
+nodeInvalid 0 274
+
+Fri 06/Apr/12 09:32:29 INTERPRET Found parseTree.txt
+Fri 06/Apr/12 09:33:52 INTERPRET Found parseTree.txt
+Fri 06/Apr/12 09:35:52 INTERPRET interpret::load
+Fri 06/Apr/12 09:35:52 INTERPRET interpret::dumpProgram
+Fri 06/Apr/12 09:36:13 INTERPRET interpret::load
+Fri 06/Apr/12 09:36:13 PARSETREEENTRY nodeInvalid 3 0
+Fri 06/Apr/12 09:36:13 PARSETREEENTRY nodeInvalid 3 1
+Fri 06/Apr/12 09:36:13 PARSETREEENTRY nodeInvalid 2 268
+Fri 06/Apr/12 09:36:13 PARSETREEENTRY nodeInvalid 3 2
+Fri 06/Apr/12 09:36:13 PARSETREEENTRY nodeInvalid 3 3
+Fri 06/Apr/12 09:36:13 PARSETREEENTRY nodeInvalid 2 275
+Fri 06/Apr/12 09:36:13 PARSETREEENTRY nodeInvalid 1 274
+Fri 06/Apr/12 09:36:13 PARSETREEENTRY nodeInvalid 2 4
+Fri 06/Apr/12 09:36:13 PARSETREEENTRY nodeInvalid 2 5
+Fri 06/Apr/12 09:36:13 PARSETREEENTRY nodeInvalid 1 272
+Fri 06/Apr/12 09:36:13 PARSETREEENTRY nodeInvalid 0 274
+Fri 06/Apr/12 09:36:13 PARSETREEENTRY nodeInvalid 0 274
+Fri 06/Apr/12 09:36:13 INTERPRET interpret::dumpProgram
+Fri 06/Apr/12 09:39:08 INTERPRET interpret::load
+Fri 06/Apr/12 09:39:08 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 09:39:08 PARSETREEENTRY nodeVar 3 1
+Fri 06/Apr/12 09:39:08 PARSETREEENTRY nodeOperator 2 268
+Fri 06/Apr/12 09:39:08 PARSETREEENTRY nodeVar 3 2
+Fri 06/Apr/12 09:39:08 PARSETREEENTRY nodeVar 3 3
+Fri 06/Apr/12 09:39:08 PARSETREEENTRY nodeOperator 2 275
+Fri 06/Apr/12 09:39:08 PARSETREEENTRY nodeOperator 1 274
+Fri 06/Apr/12 09:39:08 PARSETREEENTRY nodeVar 2 4
+Fri 06/Apr/12 09:39:08 PARSETREEENTRY nodeVar 2 5
+Fri 06/Apr/12 09:39:08 PARSETREEENTRY nodeOperator 1 272
+Fri 06/Apr/12 09:39:08 PARSETREEENTRY nodeOperator 0 274
+Fri 06/Apr/12 09:39:08 PARSETREEENTRY nodeOperator 0 274
+Fri 06/Apr/12 09:39:08 INTERPRET interpret::dumpProgram
+Fri 06/Apr/12 09:39:08 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 09:39:08 PARSETREEENTRY nodeVar 3 1
+Fri 06/Apr/12 09:39:08 PARSETREEENTRY nodeOperator 2 268
+Fri 06/Apr/12 09:39:08 PARSETREEENTRY nodeVar 3 2
+Fri 06/Apr/12 09:39:08 PARSETREEENTRY nodeVar 3 3
+Fri 06/Apr/12 09:39:08 PARSETREEENTRY nodeOperator 2 275
+Fri 06/Apr/12 09:39:08 PARSETREEENTRY nodeOperator 1 274
+Fri 06/Apr/12 09:39:08 PARSETREEENTRY nodeVar 2 4
+Fri 06/Apr/12 09:39:08 PARSETREEENTRY nodeVar 2 5
+Fri 06/Apr/12 09:39:08 PARSETREEENTRY nodeOperator 1 272
+Fri 06/Apr/12 09:39:08 PARSETREEENTRY nodeOperator 0 274
+Fri 06/Apr/12 09:39:08 PARSETREEENTRY nodeOperator 0 274
+Fri 06/Apr/12 09:39:50 INTERPRET interpret::load
+Fri 06/Apr/12 09:39:50 INTERPRET interpret::dumpProgram
+Fri 06/Apr/12 09:39:50 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 09:39:50 PARSETREEENTRY nodeVar 3 1
+Fri 06/Apr/12 09:39:50 PARSETREEENTRY nodeOperator 2 268
+Fri 06/Apr/12 09:39:50 PARSETREEENTRY nodeVar 3 2
+Fri 06/Apr/12 09:39:50 PARSETREEENTRY nodeVar 3 3
+Fri 06/Apr/12 09:39:50 PARSETREEENTRY nodeOperator 2 275
+Fri 06/Apr/12 09:39:50 PARSETREEENTRY nodeOperator 1 274
+Fri 06/Apr/12 09:39:50 PARSETREEENTRY nodeVar 2 4
+Fri 06/Apr/12 09:39:50 PARSETREEENTRY nodeVar 2 5
+Fri 06/Apr/12 09:39:50 PARSETREEENTRY nodeOperator 1 272
+Fri 06/Apr/12 09:39:50 PARSETREEENTRY nodeOperator 0 274
+Fri 06/Apr/12 09:39:50 PARSETREEENTRY nodeOperator 0 274
+Fri 06/Apr/12 14:57:07 INTERPRETER interpret::load
+Fri 06/Apr/12 14:57:07 INTERPRETER Out of program memory. Aborting.
+Fri 06/Apr/12 14:57:07 INTERPRETER interpret::dumpProgram
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:57:07 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:58:16 INTERPRETER interpret::load
+Fri 06/Apr/12 14:58:16 INTERPRETER interpret::dumpProgram
+Fri 06/Apr/12 14:58:16 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 14:58:16 PARSETREEENTRY nodeVar 3 1
+Fri 06/Apr/12 14:58:16 PARSETREEENTRY nodeOperator 2 268
+Fri 06/Apr/12 14:58:16 PARSETREEENTRY nodeVar 3 2
+Fri 06/Apr/12 14:58:16 PARSETREEENTRY nodeVar 3 3
+Fri 06/Apr/12 14:58:16 PARSETREEENTRY nodeOperator 2 275
+Fri 06/Apr/12 14:58:16 PARSETREEENTRY nodeOperator 1 274
+Fri 06/Apr/12 14:58:16 PARSETREEENTRY nodeVar 2 4
+Fri 06/Apr/12 14:58:16 PARSETREEENTRY nodeVar 2 5
+Fri 06/Apr/12 14:58:16 PARSETREEENTRY nodeOperator 1 272
+Fri 06/Apr/12 14:58:16 PARSETREEENTRY nodeOperator 0 274
+Fri 06/Apr/12 14:58:16 PARSETREEENTRY nodeOperator 0 274
+Fri 06/Apr/12 15:11:26 INTERPRETER interpret::load
+Fri 06/Apr/12 17:01:43 INTERPRETER interpret::load
+Fri 06/Apr/12 17:01:43 INTERPRETER interpret::dumpProgram
+Fri 06/Apr/12 17:01:43 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 17:01:43 PARSETREEENTRY nodeVar 3 1
+Fri 06/Apr/12 17:01:43 PARSETREEENTRY nodeOperator 2 268
+Fri 06/Apr/12 17:01:43 PARSETREEENTRY nodeVar 3 2
+Fri 06/Apr/12 17:01:43 PARSETREEENTRY nodeVar 3 3
+Fri 06/Apr/12 17:01:43 PARSETREEENTRY nodeOperator 2 275
+Fri 06/Apr/12 17:01:43 PARSETREEENTRY nodeOperator 1 274
+Fri 06/Apr/12 17:01:43 PARSETREEENTRY nodeVar 2 4
+Fri 06/Apr/12 17:01:43 PARSETREEENTRY nodeVar 2 5
+Fri 06/Apr/12 17:01:43 PARSETREEENTRY nodeOperator 1 272
+Fri 06/Apr/12 17:01:43 PARSETREEENTRY nodeOperator 0 274
+Fri 06/Apr/12 17:01:43 PARSETREEENTRY nodeOperator 0 274
+Fri 06/Apr/12 17:03:27 INTERPRETER interpret::load
+Fri 06/Apr/12 17:03:27 INTERPRETER interpret::dumpProgram
+Fri 06/Apr/12 17:03:27 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 17:03:27 PARSETREEENTRY nodeVar 3 1
+Fri 06/Apr/12 17:03:27 PARSETREEENTRY nodeOperator 2 268
+Fri 06/Apr/12 17:03:27 PARSETREEENTRY nodeVar 3 2
+Fri 06/Apr/12 17:03:27 PARSETREEENTRY nodeVar 3 3
+Fri 06/Apr/12 17:03:27 PARSETREEENTRY nodeOperator 2 275
+Fri 06/Apr/12 17:03:27 PARSETREEENTRY nodeOperator 1 274
+Fri 06/Apr/12 17:03:27 PARSETREEENTRY nodeVar 2 4
+Fri 06/Apr/12 17:03:27 PARSETREEENTRY nodeVar 2 5
+Fri 06/Apr/12 17:03:27 PARSETREEENTRY nodeOperator 1 272
+Fri 06/Apr/12 17:03:27 PARSETREEENTRY nodeOperator 0 274
+Fri 06/Apr/12 17:03:27 PARSETREEENTRY nodeOperator 0 274
+Fri 06/Apr/12 17:06:13 INTERPRETER interpret::load
+Fri 06/Apr/12 17:06:13 INTERPRETER interpret::dumpProgram
+Fri 06/Apr/12 17:06:13 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 17:06:13 PARSETREEENTRY nodeVar 3 1
+Fri 06/Apr/12 17:06:13 PARSETREEENTRY nodeOperator 2 268
+Fri 06/Apr/12 17:06:13 PARSETREEENTRY nodeVar 3 2
+Fri 06/Apr/12 17:06:13 PARSETREEENTRY nodeVar 3 3
+Fri 06/Apr/12 17:06:13 PARSETREEENTRY nodeOperator 2 275
+Fri 06/Apr/12 17:06:13 PARSETREEENTRY nodeOperator 1 274
+Fri 06/Apr/12 17:06:13 PARSETREEENTRY nodeVar 2 4
+Fri 06/Apr/12 17:06:13 PARSETREEENTRY nodeVar 2 5
+Fri 06/Apr/12 17:06:13 PARSETREEENTRY nodeOperator 1 272
+Fri 06/Apr/12 17:06:13 PARSETREEENTRY nodeOperator 0 274
+Fri 06/Apr/12 17:06:13 PARSETREEENTRY nodeOperator 0 274
+Fri 06/Apr/12 17:09:40 INTERPRETER interpret::load
+Fri 06/Apr/12 17:09:40 INTERPRETER interpret::dumpProgram
+Fri 06/Apr/12 17:09:40 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 17:09:40 PARSETREEENTRY nodeVar 3 1
+Fri 06/Apr/12 17:09:40 PARSETREEENTRY nodeOperator 2 268
+Fri 06/Apr/12 17:09:40 PARSETREEENTRY nodeVar 3 2
+Fri 06/Apr/12 17:09:40 PARSETREEENTRY nodeVar 3 3
+Fri 06/Apr/12 17:09:40 PARSETREEENTRY nodeOperator 2 275
+Fri 06/Apr/12 17:09:40 PARSETREEENTRY nodeOperator 1 274
+Fri 06/Apr/12 17:09:40 PARSETREEENTRY nodeVar 2 4
+Fri 06/Apr/12 17:09:40 PARSETREEENTRY nodeVar 2 5
+Fri 06/Apr/12 17:09:40 PARSETREEENTRY nodeOperator 1 272
+Fri 06/Apr/12 17:09:40 PARSETREEENTRY nodeOperator 0 274
+Fri 06/Apr/12 17:09:40 PARSETREEENTRY nodeOperator 0 274
+Fri 06/Apr/12 17:15:58 INTERPRETER interpret::load
+Fri 06/Apr/12 17:15:58 INTERPRETER interpret::dumpProgram
+Fri 06/Apr/12 17:15:58 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 17:15:58 PARSETREEENTRY nodeVar 3 1
+Fri 06/Apr/12 17:15:58 PARSETREEENTRY nodeOperator 2 268
+Fri 06/Apr/12 17:15:58 PARSETREEENTRY nodeVar 3 2
+Fri 06/Apr/12 17:15:58 PARSETREEENTRY nodeVar 3 3
+Fri 06/Apr/12 17:15:58 PARSETREEENTRY nodeOperator 2 275
+Fri 06/Apr/12 17:15:58 PARSETREEENTRY nodeOperator 1 274
+Fri 06/Apr/12 17:15:58 PARSETREEENTRY nodeVar 2 4
+Fri 06/Apr/12 17:15:58 PARSETREEENTRY nodeVar 2 5
+Fri 06/Apr/12 17:15:58 PARSETREEENTRY nodeOperator 1 272
+Fri 06/Apr/12 17:15:58 PARSETREEENTRY nodeOperator 0 274
+Fri 06/Apr/12 17:15:58 PARSETREEENTRY nodeOperator 0 274
+Fri 06/Apr/12 17:15:58 INTERPRETER interpret::dumpEvaluationStack
+Fri 06/Apr/12 17:15:58 INTERPRETER Begin evaluation stackEnd evaluation stack
+Fri 06/Apr/12 17:20:41 INTERPRETER interpret::load
+Fri 06/Apr/12 17:20:41 INTERPRETER interpret::dumpProgram
+Fri 06/Apr/12 17:20:41 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 17:20:41 PARSETREEENTRY nodeVar 3 1
+Fri 06/Apr/12 17:20:42 PARSETREEENTRY nodeOperator 2 268
+Fri 06/Apr/12 17:20:42 PARSETREEENTRY nodeVar 3 2
+Fri 06/Apr/12 17:20:42 PARSETREEENTRY nodeVar 3 3
+Fri 06/Apr/12 17:20:42 PARSETREEENTRY nodeOperator 2 275
+Fri 06/Apr/12 17:20:42 PARSETREEENTRY nodeOperator 1 274
+Fri 06/Apr/12 17:20:42 PARSETREEENTRY nodeVar 2 4
+Fri 06/Apr/12 17:20:42 PARSETREEENTRY nodeVar 2 5
+Fri 06/Apr/12 17:20:42 PARSETREEENTRY nodeOperator 1 272
+Fri 06/Apr/12 17:20:42 PARSETREEENTRY nodeOperator 0 274
+Fri 06/Apr/12 17:20:42 PARSETREEENTRY nodeOperator 0 274
+Fri 06/Apr/12 17:20:42 INTERPRETER interpret::dumpEvaluationStack
+Fri 06/Apr/12 17:20:42 INTERPRETER Begin evaluation stackEnd evaluation stack
+Fri 06/Apr/12 17:22:04 INTERPRETER interpret::load
+Fri 06/Apr/12 17:22:04 INTERPRETER interpret::dumpProgram
+Fri 06/Apr/12 17:22:04 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 17:22:04 PARSETREEENTRY nodeVar 3 1
+Fri 06/Apr/12 17:22:04 PARSETREEENTRY nodeOperator 2 268
+Fri 06/Apr/12 17:22:04 PARSETREEENTRY nodeVar 3 2
+Fri 06/Apr/12 17:22:04 PARSETREEENTRY nodeVar 3 3
+Fri 06/Apr/12 17:22:04 PARSETREEENTRY nodeOperator 2 275
+Fri 06/Apr/12 17:22:04 PARSETREEENTRY nodeOperator 1 274
+Fri 06/Apr/12 17:22:04 PARSETREEENTRY nodeVar 2 4
+Fri 06/Apr/12 17:22:04 PARSETREEENTRY nodeVar 2 5
+Fri 06/Apr/12 17:22:04 PARSETREEENTRY nodeOperator 1 272
+Fri 06/Apr/12 17:22:04 PARSETREEENTRY nodeOperator 0 274
+Fri 06/Apr/12 17:22:04 PARSETREEENTRY nodeOperator 0 274
+Fri 06/Apr/12 17:22:04 INTERPRETER Run index=0
+Fri 06/Apr/12 17:22:04 INTERPRETER interpret::dumpEvaluationStack
+Fri 06/Apr/12 17:22:04 INTERPRETER Begin evaluation stackEnd evaluation stack
+Fri 06/Apr/12 17:22:04 INTERPRETER Run index=1
+Fri 06/Apr/12 17:22:04 INTERPRETER interpret::dumpEvaluationStack
+Fri 06/Apr/12 17:22:04 INTERPRETER Begin evaluation stackEnd evaluation stack
+Fri 06/Apr/12 17:22:04 INTERPRETER Run index=2
+Fri 06/Apr/12 17:22:04 INTERPRETER interpret::dumpEvaluationStack
+Fri 06/Apr/12 17:22:04 INTERPRETER Begin evaluation stackEnd evaluation stack
+Fri 06/Apr/12 17:33:44 INTERPRETER interpret::load
+Fri 06/Apr/12 17:33:44 INTERPRETER interpret::dumpProgram
+Fri 06/Apr/12 17:33:44 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 17:33:44 PARSETREEENTRY nodeVar 3 1
+Fri 06/Apr/12 17:33:44 PARSETREEENTRY nodeOperator 2 268
+Fri 06/Apr/12 17:33:44 PARSETREEENTRY nodeVar 3 2
+Fri 06/Apr/12 17:33:44 PARSETREEENTRY nodeVar 3 3
+Fri 06/Apr/12 17:33:44 PARSETREEENTRY nodeOperator 2 275
+Fri 06/Apr/12 17:33:44 PARSETREEENTRY nodeOperator 1 274
+Fri 06/Apr/12 17:33:44 PARSETREEENTRY nodeVar 2 4
+Fri 06/Apr/12 17:33:44 PARSETREEENTRY nodeVar 2 5
+Fri 06/Apr/12 17:33:44 PARSETREEENTRY nodeOperator 1 272
+Fri 06/Apr/12 17:33:44 PARSETREEENTRY nodeOperator 0 274
+Fri 06/Apr/12 17:33:44 PARSETREEENTRY nodeOperator 0 274
+Fri 06/Apr/12 17:33:44 INTERPRETER Run programIndex=0
+Fri 06/Apr/12 17:33:44 INTERPRETER interpret::dumpEvaluationStack
+Fri 06/Apr/12 17:33:44 INTERPRETER Begin evaluation stackEnd evaluation stack
+Fri 06/Apr/12 17:33:44 INTERPRETER Run programIndex=1
+Fri 06/Apr/12 17:33:44 INTERPRETER interpret::dumpEvaluationStack
+Fri 06/Apr/12 17:33:44 INTERPRETER Begin evaluation stackEnd evaluation stack
+Fri 06/Apr/12 17:33:44 INTERPRETER Run programIndex=2
+Fri 06/Apr/12 17:33:44 INTERPRETER interpret::dumpEvaluationStack
+Fri 06/Apr/12 17:33:44 INTERPRETER Begin evaluation stackEnd evaluation stack
+Fri 06/Apr/12 17:37:52 INTERPRETER interpret::load
+Fri 06/Apr/12 17:37:53 INTERPRETER interpret::dumpProgram
+Fri 06/Apr/12 17:37:53 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 17:37:53 PARSETREEENTRY nodeVar 3 1
+Fri 06/Apr/12 17:37:53 PARSETREEENTRY nodeOperator 2 268
+Fri 06/Apr/12 17:37:53 PARSETREEENTRY nodeVar 3 2
+Fri 06/Apr/12 17:37:53 PARSETREEENTRY nodeVar 3 3
+Fri 06/Apr/12 17:37:53 PARSETREEENTRY nodeOperator 2 275
+Fri 06/Apr/12 17:37:53 PARSETREEENTRY nodeOperator 1 274
+Fri 06/Apr/12 17:37:53 PARSETREEENTRY nodeVar 2 4
+Fri 06/Apr/12 17:37:53 PARSETREEENTRY nodeVar 2 5
+Fri 06/Apr/12 17:37:53 PARSETREEENTRY nodeOperator 1 272
+Fri 06/Apr/12 17:37:53 PARSETREEENTRY nodeOperator 0 274
+Fri 06/Apr/12 17:37:53 PARSETREEENTRY nodeOperator 0 274
+Fri 06/Apr/12 17:37:53 INTERPRETER Run programIndex=0
+Fri 06/Apr/12 17:37:53 INTERPRETER interpret::dumpEvaluationStack
+Fri 06/Apr/12 17:37:53 INTERPRETER Begin evaluation stackEnd evaluation stack
+Fri 06/Apr/12 17:37:53 INTERPRETER Run programIndex=1
+Fri 06/Apr/12 17:37:53 INTERPRETER interpret::dumpEvaluationStack
+Fri 06/Apr/12 17:37:53 INTERPRETER Begin evaluation stack0
+Fri 06/Apr/12 17:37:53 INTERPRETER End evaluation stack
+Fri 06/Apr/12 17:37:53 INTERPRETER Run programIndex=2
+Fri 06/Apr/12 17:37:53 INTERPRETER interpret::dumpEvaluationStack
+Fri 06/Apr/12 17:37:53 INTERPRETER Begin evaluation stack1
+Fri 06/Apr/12 17:37:53 INTERPRETER 0
+Fri 06/Apr/12 17:37:53 INTERPRETER End evaluation stack
+Fri 06/Apr/12 17:37:53 INTERPRETER Run programIndex=3
+Fri 06/Apr/12 17:37:53 INTERPRETER interpret::dumpEvaluationStack
+Fri 06/Apr/12 17:37:53 INTERPRETER Begin evaluation stack0
+Fri 06/Apr/12 17:37:53 INTERPRETER End evaluation stack
+Fri 06/Apr/12 17:37:53 INTERPRETER Run programIndex=4
+Fri 06/Apr/12 17:37:53 INTERPRETER interpret::dumpEvaluationStack
+Fri 06/Apr/12 17:37:53 INTERPRETER Begin evaluation stack2
+Fri 06/Apr/12 17:37:53 INTERPRETER 0
+Fri 06/Apr/12 17:37:53 INTERPRETER End evaluation stack
+Fri 06/Apr/12 17:37:53 INTERPRETER Run programIndex=5
+Fri 06/Apr/12 17:37:53 INTERPRETER interpret::dumpEvaluationStack
+Fri 06/Apr/12 17:37:53 INTERPRETER Begin evaluation stack3
+Fri 06/Apr/12 17:37:53 INTERPRETER 2
+Fri 06/Apr/12 17:37:53 INTERPRETER 0
+Fri 06/Apr/12 17:37:53 INTERPRETER End evaluation stack
+Fri 06/Apr/12 17:37:53 INTERPRETER Run programIndex=6
+Fri 06/Apr/12 17:37:53 INTERPRETER interpret::dumpEvaluationStack
+Fri 06/Apr/12 17:37:53 INTERPRETER Begin evaluation stack0
+Fri 06/Apr/12 17:37:53 INTERPRETER 0
+Fri 06/Apr/12 17:37:53 INTERPRETER End evaluation stack
+Fri 06/Apr/12 17:37:53 INTERPRETER Run programIndex=7
+Fri 06/Apr/12 17:37:53 INTERPRETER interpret::dumpEvaluationStack
+Fri 06/Apr/12 17:37:53 INTERPRETER Begin evaluation stack0
+Fri 06/Apr/12 17:37:53 INTERPRETER End evaluation stack
+Fri 06/Apr/12 17:37:53 INTERPRETER Run programIndex=8
+Fri 06/Apr/12 17:37:53 INTERPRETER interpret::dumpEvaluationStack
+Fri 06/Apr/12 17:37:53 INTERPRETER Begin evaluation stack4
+Fri 06/Apr/12 17:37:53 INTERPRETER 0
+Fri 06/Apr/12 17:37:53 INTERPRETER End evaluation stack
+Fri 06/Apr/12 17:37:53 INTERPRETER Run programIndex=9
+Fri 06/Apr/12 17:37:53 INTERPRETER interpret::dumpEvaluationStack
+Fri 06/Apr/12 17:37:53 INTERPRETER Begin evaluation stack5
+Fri 06/Apr/12 17:37:53 INTERPRETER 4
+Fri 06/Apr/12 17:37:53 INTERPRETER 0
+Fri 06/Apr/12 17:37:53 INTERPRETER End evaluation stack
+Fri 06/Apr/12 17:37:53 INTERPRETER Run programIndex=10
+Fri 06/Apr/12 17:37:53 INTERPRETER interpret::dumpEvaluationStack
+Fri 06/Apr/12 17:37:53 INTERPRETER Begin evaluation stack1
+Fri 06/Apr/12 17:37:53 INTERPRETER 0
+Fri 06/Apr/12 17:37:53 INTERPRETER End evaluation stack
+Fri 06/Apr/12 17:37:53 INTERPRETER Run programIndex=11
+Fri 06/Apr/12 17:37:53 INTERPRETER interpret::dumpEvaluationStack
+Fri 06/Apr/12 17:37:53 INTERPRETER Begin evaluation stack1
+Fri 06/Apr/12 17:37:53 INTERPRETER End evaluation stack
+Fri 06/Apr/12 17:41:09 INTERPRETER interpret::load
+Fri 06/Apr/12 17:41:09 INTERPRETER interpret::dumpProgram
+Fri 06/Apr/12 17:41:09 PARSETREEENTRY nodeVar 3 0
+Fri 06/Apr/12 17:41:09 PARSETREEENTRY nodeVar 3 1
+Fri 06/Apr/12 17:41:09 PARSETREEENTRY nodeOperator 2 268
+Fri 06/Apr/12 17:41:09 PARSETREEENTRY nodeVar 3 2
+Fri 06/Apr/12 17:41:09 PARSETREEENTRY nodeVar 3 3
+Fri 06/Apr/12 17:41:09 PARSETREEENTRY nodeOperator 2 275
+Fri 06/Apr/12 17:41:09 PARSETREEENTRY nodeOperator 1 274
+Fri 06/Apr/12 17:41:09 PARSETREEENTRY nodeVar 2 4
+Fri 06/Apr/12 17:41:09 PARSETREEENTRY nodeVar 2 5
+Fri 06/Apr/12 17:41:09 PARSETREEENTRY nodeOperator 1 272
+Fri 06/Apr/12 17:41:09 PARSETREEENTRY nodeOperator 0 274
+Fri 06/Apr/12 17:41:09 PARSETREEENTRY nodeOperator 0 274
+Fri 06/Apr/12 17:41:09 INTERPRETER Run programIndex=0
+Fri 06/Apr/12 17:41:09 INTERPRETER Enter interpret::dumpEvaluationStack
+Fri 06/Apr/12 17:41:09 INTERPRETER Leave interpret::dumpEvaluationStack
+Fri 06/Apr/12 17:41:09 INTERPRETER Run programIndex=1
+Fri 06/Apr/12 17:41:09 INTERPRETER Enter interpret::dumpEvaluationStack
+Fri 06/Apr/12 17:41:09 INTERPRETER 0
+Fri 06/Apr/12 17:41:09 INTERPRETER Leave interpret::dumpEvaluationStack
+Fri 06/Apr/12 17:41:09 INTERPRETER Run programIndex=2
+Fri 06/Apr/12 17:41:09 INTERPRETER Enter interpret::dumpEvaluationStack
+Fri 06/Apr/12 17:41:09 INTERPRETER 1
+Fri 06/Apr/12 17:41:09 INTERPRETER 0
+Fri 06/Apr/12 17:41:09 INTERPRETER Leave interpret::dumpEvaluationStack
+Fri 06/Apr/12 17:41:09 INTERPRETER Run programIndex=3
+Fri 06/Apr/12 17:41:09 INTERPRETER Enter interpret::dumpEvaluationStack
+Fri 06/Apr/12 17:41:09 INTERPRETER 0
+Fri 06/Apr/12 17:41:09 INTERPRETER Leave interpret::dumpEvaluationStack
+Fri 06/Apr/12 17:41:09 INTERPRETER Run programIndex=4
+Fri 06/Apr/12 17:41:09 INTERPRETER Enter interpret::dumpEvaluationStack
+Fri 06/Apr/12 17:41:09 INTERPRETER 2
+Fri 06/Apr/12 17:41:09 INTERPRETER 0
+Fri 06/Apr/12 17:41:09 INTERPRETER Leave interpret::dumpEvaluationStack
+Fri 06/Apr/12 17:41:09 INTERPRETER Run programIndex=5
+Fri 06/Apr/12 17:41:09 INTERPRETER Enter interpret::dumpEvaluationStack
+Fri 06/Apr/12 17:41:09 INTERPRETER 3
+Fri 06/Apr/12 17:41:09 INTERPRETER 2
+Fri 06/Apr/12 17:41:09 INTERPRETER 0
+Fri 06/Apr/12 17:41:09 INTERPRETER Leave interpret::dumpEvaluationStack
+Fri 06/Apr/12 17:41:09 INTERPRETER Run programIndex=6
+Fri 06/Apr/12 17:41:09 INTERPRETER Enter interpret::dumpEvaluationStack
+Fri 06/Apr/12 17:41:09 INTERPRETER 0
+Fri 06/Apr/12 17:41:09 INTERPRETER 0
+Fri 06/Apr/12 17:41:09 INTERPRETER Leave interpret::dumpEvaluationStack
+Fri 06/Apr/12 17:41:09 INTERPRETER Run programIndex=7
+Fri 06/Apr/12 17:41:09 INTERPRETER Enter interpret::dumpEvaluationStack
+Fri 06/Apr/12 17:41:09 INTERPRETER 0
+Fri 06/Apr/12 17:41:09 INTERPRETER Leave interpret::dumpEvaluationStack
+Fri 06/Apr/12 17:41:09 INTERPRETER Run programIndex=8
+Fri 06/Apr/12 17:41:09 INTERPRETER Enter interpret::dumpEvaluationStack
+Fri 06/Apr/12 17:41:09 INTERPRETER 4
+Fri 06/Apr/12 17:41:09 INTERPRETER 0
+Fri 06/Apr/12 17:41:09 INTERPRETER Leave interpret::dumpEvaluationStack
+Fri 06/Apr/12 17:41:09 INTERPRETER Run programIndex=9
+Fri 06/Apr/12 17:41:09 INTERPRETER Enter interpret::dumpEvaluationStack
+Fri 06/Apr/12 17:41:09 INTERPRETER 5
+Fri 06/Apr/12 17:41:09 INTERPRETER 4
+Fri 06/Apr/12 17:41:09 INTERPRETER 0
+Fri 06/Apr/12 17:41:09 INTERPRETER Leave interpret::dumpEvaluationStack
+Fri 06/Apr/12 17:41:09 INTERPRETER Run programIndex=10
+Fri 06/Apr/12 17:41:09 INTERPRETER Enter interpret::dumpEvaluationStack
+Fri 06/Apr/12 17:41:09 INTERPRETER 1
+Fri 06/Apr/12 17:41:09 INTERPRETER 0
+Fri 06/Apr/12 17:41:09 INTERPRETER Leave interpret::dumpEvaluationStack
+Fri 06/Apr/12 17:41:09 INTERPRETER Run programIndex=11
+Fri 06/Apr/12 17:41:09 INTERPRETER Enter interpret::dumpEvaluationStack
+Fri 06/Apr/12 17:41:09 INTERPRETER 1
+Fri 06/Apr/12 17:41:09 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:18:13 INTERPRETER interpret::load
+Sat 07/Apr/12 15:18:13 INTERPRETER interpret::dumpProgram
+Sat 07/Apr/12 15:18:13 PARSETREEENTRY nodeVar 3 0
+Sat 07/Apr/12 15:18:13 PARSETREEENTRY nodeVar 3 1
+Sat 07/Apr/12 15:18:13 PARSETREEENTRY nodeOperator 2 268
+Sat 07/Apr/12 15:18:13 PARSETREEENTRY nodeVar 3 2
+Sat 07/Apr/12 15:18:13 PARSETREEENTRY nodeVar 3 3
+Sat 07/Apr/12 15:18:13 PARSETREEENTRY nodeOperator 2 275
+Sat 07/Apr/12 15:18:13 PARSETREEENTRY nodeOperator 1 274
+Sat 07/Apr/12 15:18:13 PARSETREEENTRY nodeVar 2 4
+Sat 07/Apr/12 15:18:13 PARSETREEENTRY nodeVar 2 5
+Sat 07/Apr/12 15:18:13 PARSETREEENTRY nodeOperator 1 272
+Sat 07/Apr/12 15:18:13 PARSETREEENTRY nodeOperator 0 274
+Sat 07/Apr/12 15:18:13 PARSETREEENTRY nodeOperator 0 274
+Sat 07/Apr/12 15:18:13 INTERPRETER Run programIndex=0
+Sat 07/Apr/12 15:18:13 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:18:13 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:18:13 INTERPRETER Run programIndex=1
+Sat 07/Apr/12 15:18:13 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:18:13 INTERPRETER 0
+Sat 07/Apr/12 15:18:13 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:18:13 INTERPRETER Run programIndex=2
+Sat 07/Apr/12 15:18:13 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:18:13 INTERPRETER 1
+Sat 07/Apr/12 15:18:13 INTERPRETER 0
+Sat 07/Apr/12 15:18:13 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:18:14 INTERPRETER Run programIndex=3
+Sat 07/Apr/12 15:18:14 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:18:14 INTERPRETER 0
+Sat 07/Apr/12 15:18:14 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:18:14 INTERPRETER Run programIndex=4
+Sat 07/Apr/12 15:18:14 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:18:14 INTERPRETER 2
+Sat 07/Apr/12 15:18:14 INTERPRETER 0
+Sat 07/Apr/12 15:18:14 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:18:14 INTERPRETER Run programIndex=5
+Sat 07/Apr/12 15:18:14 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:18:14 INTERPRETER 3
+Sat 07/Apr/12 15:18:14 INTERPRETER 2
+Sat 07/Apr/12 15:18:14 INTERPRETER 0
+Sat 07/Apr/12 15:18:14 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:18:14 INTERPRETER Run programIndex=6
+Sat 07/Apr/12 15:18:14 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:18:14 INTERPRETER 0
+Sat 07/Apr/12 15:18:14 INTERPRETER 0
+Sat 07/Apr/12 15:18:14 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:18:14 INTERPRETER Run programIndex=7
+Sat 07/Apr/12 15:18:14 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:18:14 INTERPRETER 0
+Sat 07/Apr/12 15:18:14 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:18:14 INTERPRETER Run programIndex=8
+Sat 07/Apr/12 15:18:14 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:18:14 INTERPRETER 4
+Sat 07/Apr/12 15:18:14 INTERPRETER 0
+Sat 07/Apr/12 15:18:14 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:18:14 INTERPRETER Run programIndex=9
+Sat 07/Apr/12 15:18:14 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:18:14 INTERPRETER 5
+Sat 07/Apr/12 15:18:14 INTERPRETER 4
+Sat 07/Apr/12 15:18:14 INTERPRETER 0
+Sat 07/Apr/12 15:18:14 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:18:14 INTERPRETER Run programIndex=10
+Sat 07/Apr/12 15:18:14 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:18:14 INTERPRETER 1
+Sat 07/Apr/12 15:18:14 INTERPRETER 0
+Sat 07/Apr/12 15:18:14 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:18:14 INTERPRETER Run programIndex=11
+Sat 07/Apr/12 15:18:14 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:18:14 INTERPRETER 1
+Sat 07/Apr/12 15:18:14 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:21:47 INTERPRETER interpret::load
+Sat 07/Apr/12 15:21:47 INTERPRETER interpret::dumpProgram
+Sat 07/Apr/12 15:21:47 PARSETREEENTRY nodeVar 3 0
+Sat 07/Apr/12 15:21:47 PARSETREEENTRY nodeVar 3 1
+Sat 07/Apr/12 15:21:47 PARSETREEENTRY nodeOperator 2 268
+Sat 07/Apr/12 15:21:47 PARSETREEENTRY nodeVar 3 2
+Sat 07/Apr/12 15:21:47 PARSETREEENTRY nodeVar 3 3
+Sat 07/Apr/12 15:21:47 PARSETREEENTRY nodeOperator 2 275
+Sat 07/Apr/12 15:21:47 PARSETREEENTRY nodeOperator 1 274
+Sat 07/Apr/12 15:21:47 PARSETREEENTRY nodeVar 2 4
+Sat 07/Apr/12 15:21:47 PARSETREEENTRY nodeVar 2 5
+Sat 07/Apr/12 15:21:47 PARSETREEENTRY nodeOperator 1 272
+Sat 07/Apr/12 15:21:47 PARSETREEENTRY nodeOperator 0 274
+Sat 07/Apr/12 15:21:47 PARSETREEENTRY nodeOperator 0 274
+Sat 07/Apr/12 15:21:47 INTERPRETER Run programIndex=0
+Sat 07/Apr/12 15:21:47 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:21:47 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:21:47 INTERPRETER Run programIndex=1
+Sat 07/Apr/12 15:21:47 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:21:47 INTERPRETER 0
+Sat 07/Apr/12 15:21:47 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:21:47 INTERPRETER Run programIndex=2
+Sat 07/Apr/12 15:21:47 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:21:47 INTERPRETER 1
+Sat 07/Apr/12 15:21:47 INTERPRETER 0
+Sat 07/Apr/12 15:21:47 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:21:47 INTERPRETER Run programIndex=3
+Sat 07/Apr/12 15:21:47 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:21:47 INTERPRETER 0
+Sat 07/Apr/12 15:21:47 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:21:47 INTERPRETER Run programIndex=4
+Sat 07/Apr/12 15:21:47 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:21:47 INTERPRETER 2
+Sat 07/Apr/12 15:21:47 INTERPRETER 0
+Sat 07/Apr/12 15:21:47 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:21:47 INTERPRETER Run programIndex=5
+Sat 07/Apr/12 15:21:47 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:21:47 INTERPRETER 3
+Sat 07/Apr/12 15:21:47 INTERPRETER 2
+Sat 07/Apr/12 15:21:47 INTERPRETER 0
+Sat 07/Apr/12 15:21:47 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:21:48 INTERPRETER Run programIndex=6
+Sat 07/Apr/12 15:21:48 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:21:48 INTERPRETER 0
+Sat 07/Apr/12 15:21:48 INTERPRETER 0
+Sat 07/Apr/12 15:21:48 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:21:48 INTERPRETER Run programIndex=7
+Sat 07/Apr/12 15:21:48 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:21:48 INTERPRETER 0
+Sat 07/Apr/12 15:21:48 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:21:48 INTERPRETER Run programIndex=8
+Sat 07/Apr/12 15:21:48 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:21:48 INTERPRETER 4
+Sat 07/Apr/12 15:21:48 INTERPRETER 0
+Sat 07/Apr/12 15:21:48 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:21:48 INTERPRETER Run programIndex=9
+Sat 07/Apr/12 15:21:48 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:21:48 INTERPRETER 5
+Sat 07/Apr/12 15:21:48 INTERPRETER 4
+Sat 07/Apr/12 15:21:48 INTERPRETER 0
+Sat 07/Apr/12 15:21:48 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:21:48 INTERPRETER Run programIndex=10
+Sat 07/Apr/12 15:21:48 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:21:48 INTERPRETER 1
+Sat 07/Apr/12 15:21:48 INTERPRETER 0
+Sat 07/Apr/12 15:21:48 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:21:48 INTERPRETER Run programIndex=11
+Sat 07/Apr/12 15:21:48 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:21:48 INTERPRETER 1
+Sat 07/Apr/12 15:21:48 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:23:13 INTERPRETER interpret::load
+Sat 07/Apr/12 15:23:13 INTERPRETER interpret::dumpProgram
+Sat 07/Apr/12 15:23:13 PARSETREEENTRY nodeVar 3 0
+Sat 07/Apr/12 15:23:13 PARSETREEENTRY nodeVar 3 1
+Sat 07/Apr/12 15:23:13 PARSETREEENTRY nodeOperator 2 268
+Sat 07/Apr/12 15:23:13 PARSETREEENTRY nodeVar 3 2
+Sat 07/Apr/12 15:23:13 PARSETREEENTRY nodeVar 3 3
+Sat 07/Apr/12 15:23:13 PARSETREEENTRY nodeOperator 2 275
+Sat 07/Apr/12 15:23:13 PARSETREEENTRY nodeOperator 1 274
+Sat 07/Apr/12 15:23:13 PARSETREEENTRY nodeVar 2 4
+Sat 07/Apr/12 15:23:13 PARSETREEENTRY nodeVar 2 5
+Sat 07/Apr/12 15:23:13 PARSETREEENTRY nodeOperator 1 272
+Sat 07/Apr/12 15:23:13 PARSETREEENTRY nodeOperator 0 274
+Sat 07/Apr/12 15:23:13 PARSETREEENTRY nodeOperator 0 274
+Sat 07/Apr/12 15:23:13 INTERPRETER Run programIndex=0
+Sat 07/Apr/12 15:23:13 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:23:13 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:23:13 INTERPRETER Run programIndex=1
+Sat 07/Apr/12 15:23:13 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:23:13 INTERPRETER 0
+Sat 07/Apr/12 15:23:13 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:23:13 INTERPRETER Run programIndex=2
+Sat 07/Apr/12 15:23:13 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:23:13 INTERPRETER 1
+Sat 07/Apr/12 15:23:13 INTERPRETER 0
+Sat 07/Apr/12 15:23:13 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:23:13 INTERPRETER Run programIndex=3
+Sat 07/Apr/12 15:23:13 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:23:13 INTERPRETER 0
+Sat 07/Apr/12 15:23:13 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:23:13 INTERPRETER Run programIndex=4
+Sat 07/Apr/12 15:23:13 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:23:13 INTERPRETER 2
+Sat 07/Apr/12 15:23:13 INTERPRETER 0
+Sat 07/Apr/12 15:23:13 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:23:13 INTERPRETER Run programIndex=5
+Sat 07/Apr/12 15:23:13 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:23:13 INTERPRETER 3
+Sat 07/Apr/12 15:23:13 INTERPRETER 2
+Sat 07/Apr/12 15:23:13 INTERPRETER 0
+Sat 07/Apr/12 15:23:13 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:23:13 INTERPRETER Run programIndex=6
+Sat 07/Apr/12 15:23:13 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:23:13 INTERPRETER 0
+Sat 07/Apr/12 15:23:13 INTERPRETER 0
+Sat 07/Apr/12 15:23:13 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:23:13 INTERPRETER Run programIndex=7
+Sat 07/Apr/12 15:23:13 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:23:13 INTERPRETER 0
+Sat 07/Apr/12 15:23:13 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:23:13 INTERPRETER Run programIndex=8
+Sat 07/Apr/12 15:23:13 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:23:13 INTERPRETER 4
+Sat 07/Apr/12 15:23:13 INTERPRETER 0
+Sat 07/Apr/12 15:23:13 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:23:13 INTERPRETER Run programIndex=9
+Sat 07/Apr/12 15:23:13 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:23:13 INTERPRETER 5
+Sat 07/Apr/12 15:23:13 INTERPRETER 4
+Sat 07/Apr/12 15:23:13 INTERPRETER 0
+Sat 07/Apr/12 15:23:13 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:23:13 INTERPRETER Run programIndex=10
+Sat 07/Apr/12 15:23:13 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:23:13 INTERPRETER 1
+Sat 07/Apr/12 15:23:13 INTERPRETER 0
+Sat 07/Apr/12 15:23:13 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:23:13 INTERPRETER Run programIndex=11
+Sat 07/Apr/12 15:23:13 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:23:13 INTERPRETER 1
+Sat 07/Apr/12 15:23:13 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:24:30 INTERPRETER interpret::load
+Sat 07/Apr/12 15:24:30 INTERPRETER interpret::dumpProgram
+Sat 07/Apr/12 15:24:30 PARSETREEENTRY nodeVar 3 0
+Sat 07/Apr/12 15:24:30 PARSETREEENTRY nodeVar 3 1
+Sat 07/Apr/12 15:24:30 PARSETREEENTRY nodeOperator 2 268
+Sat 07/Apr/12 15:24:30 PARSETREEENTRY nodeVar 3 2
+Sat 07/Apr/12 15:24:30 PARSETREEENTRY nodeVar 3 3
+Sat 07/Apr/12 15:24:30 PARSETREEENTRY nodeOperator 2 275
+Sat 07/Apr/12 15:24:30 PARSETREEENTRY nodeOperator 1 274
+Sat 07/Apr/12 15:24:30 PARSETREEENTRY nodeVar 2 4
+Sat 07/Apr/12 15:24:30 PARSETREEENTRY nodeVar 2 5
+Sat 07/Apr/12 15:24:30 PARSETREEENTRY nodeOperator 1 272
+Sat 07/Apr/12 15:24:30 PARSETREEENTRY nodeOperator 0 274
+Sat 07/Apr/12 15:24:30 PARSETREEENTRY nodeOperator 0 274
+Sat 07/Apr/12 15:24:30 INTERPRETER Run programIndex=0
+Sat 07/Apr/12 15:24:30 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:24:30 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:24:30 INTERPRETER Run programIndex=1
+Sat 07/Apr/12 15:24:30 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:24:30 INTERPRETER 0
+Sat 07/Apr/12 15:24:30 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:24:30 INTERPRETER Run programIndex=2
+Sat 07/Apr/12 15:24:30 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:24:30 INTERPRETER 1
+Sat 07/Apr/12 15:24:30 INTERPRETER 0
+Sat 07/Apr/12 15:24:30 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:24:30 INTERPRETER Run programIndex=3
+Sat 07/Apr/12 15:24:30 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:24:30 INTERPRETER 0
+Sat 07/Apr/12 15:24:30 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:24:30 INTERPRETER Run programIndex=4
+Sat 07/Apr/12 15:24:30 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:24:30 INTERPRETER 2
+Sat 07/Apr/12 15:24:30 INTERPRETER 0
+Sat 07/Apr/12 15:24:30 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:24:30 INTERPRETER Run programIndex=5
+Sat 07/Apr/12 15:24:30 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:24:30 INTERPRETER 3
+Sat 07/Apr/12 15:24:30 INTERPRETER 2
+Sat 07/Apr/12 15:24:30 INTERPRETER 0
+Sat 07/Apr/12 15:24:30 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:24:30 INTERPRETER Run programIndex=6
+Sat 07/Apr/12 15:24:30 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:24:30 INTERPRETER 0
+Sat 07/Apr/12 15:24:30 INTERPRETER 0
+Sat 07/Apr/12 15:24:30 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:24:30 INTERPRETER Run programIndex=7
+Sat 07/Apr/12 15:24:30 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:24:30 INTERPRETER 0
+Sat 07/Apr/12 15:24:30 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:24:30 INTERPRETER Run programIndex=8
+Sat 07/Apr/12 15:24:30 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:24:30 INTERPRETER 4
+Sat 07/Apr/12 15:24:30 INTERPRETER 0
+Sat 07/Apr/12 15:24:30 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:24:30 INTERPRETER Run programIndex=9
+Sat 07/Apr/12 15:24:30 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:24:30 INTERPRETER 5
+Sat 07/Apr/12 15:24:30 INTERPRETER 4
+Sat 07/Apr/12 15:24:30 INTERPRETER 0
+Sat 07/Apr/12 15:24:30 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:24:30 INTERPRETER Run programIndex=10
+Sat 07/Apr/12 15:24:30 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:24:30 INTERPRETER 1
+Sat 07/Apr/12 15:24:30 INTERPRETER 0
+Sat 07/Apr/12 15:24:30 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:24:30 INTERPRETER Run programIndex=11
+Sat 07/Apr/12 15:24:30 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:24:30 INTERPRETER 1
+Sat 07/Apr/12 15:24:30 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:25:36 INTERPRETER interpret::load
+Sat 07/Apr/12 15:25:36 INTERPRETER interpret::dumpProgram
+Sat 07/Apr/12 15:25:36 PARSETREEENTRY nodeVar 3 0
+Sat 07/Apr/12 15:25:36 PARSETREEENTRY nodeVar 3 1
+Sat 07/Apr/12 15:25:36 PARSETREEENTRY nodeOperator 2 268
+Sat 07/Apr/12 15:25:36 PARSETREEENTRY nodeVar 3 2
+Sat 07/Apr/12 15:25:36 PARSETREEENTRY nodeVar 3 3
+Sat 07/Apr/12 15:25:36 PARSETREEENTRY nodeOperator 2 275
+Sat 07/Apr/12 15:25:36 PARSETREEENTRY nodeOperator 1 274
+Sat 07/Apr/12 15:25:36 PARSETREEENTRY nodeVar 2 4
+Sat 07/Apr/12 15:25:36 PARSETREEENTRY nodeVar 2 5
+Sat 07/Apr/12 15:25:36 PARSETREEENTRY nodeOperator 1 272
+Sat 07/Apr/12 15:25:36 PARSETREEENTRY nodeOperator 0 274
+Sat 07/Apr/12 15:25:36 PARSETREEENTRY nodeOperator 0 274
+Sat 07/Apr/12 15:25:36 INTERPRETER Run programIndex=0
+Sat 07/Apr/12 15:25:36 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:25:36 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:25:36 INTERPRETER Run programIndex=1
+Sat 07/Apr/12 15:25:36 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:25:36 INTERPRETER 0
+Sat 07/Apr/12 15:25:36 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:25:36 INTERPRETER Run programIndex=2
+Sat 07/Apr/12 15:25:36 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:25:36 INTERPRETER 1
+Sat 07/Apr/12 15:25:36 INTERPRETER 0
+Sat 07/Apr/12 15:25:36 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:25:36 INTERPRETER Run programIndex=3
+Sat 07/Apr/12 15:25:36 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:25:36 INTERPRETER 0
+Sat 07/Apr/12 15:25:36 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:25:36 INTERPRETER Run programIndex=4
+Sat 07/Apr/12 15:25:36 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:25:36 INTERPRETER 2
+Sat 07/Apr/12 15:25:36 INTERPRETER 0
+Sat 07/Apr/12 15:25:36 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:25:36 INTERPRETER Run programIndex=5
+Sat 07/Apr/12 15:25:36 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:25:36 INTERPRETER 3
+Sat 07/Apr/12 15:25:36 INTERPRETER 2
+Sat 07/Apr/12 15:25:36 INTERPRETER 0
+Sat 07/Apr/12 15:25:36 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:25:36 INTERPRETER Run programIndex=6
+Sat 07/Apr/12 15:25:36 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:25:36 INTERPRETER 0
+Sat 07/Apr/12 15:25:36 INTERPRETER 0
+Sat 07/Apr/12 15:25:36 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:25:36 INTERPRETER Run programIndex=7
+Sat 07/Apr/12 15:25:36 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:25:36 INTERPRETER 0
+Sat 07/Apr/12 15:25:36 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:25:36 INTERPRETER Run programIndex=8
+Sat 07/Apr/12 15:25:36 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:25:36 INTERPRETER 4
+Sat 07/Apr/12 15:25:36 INTERPRETER 0
+Sat 07/Apr/12 15:25:36 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:25:36 INTERPRETER Run programIndex=9
+Sat 07/Apr/12 15:25:36 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:25:36 INTERPRETER 5
+Sat 07/Apr/12 15:25:36 INTERPRETER 4
+Sat 07/Apr/12 15:25:36 INTERPRETER 0
+Sat 07/Apr/12 15:25:36 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:25:36 INTERPRETER Run programIndex=10
+Sat 07/Apr/12 15:25:36 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:25:36 INTERPRETER 1
+Sat 07/Apr/12 15:25:36 INTERPRETER 0
+Sat 07/Apr/12 15:25:36 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:25:36 INTERPRETER Run programIndex=11
+Sat 07/Apr/12 15:25:36 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:25:36 INTERPRETER 1
+Sat 07/Apr/12 15:25:36 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:26:01 INTERPRETER interpret::load
+Sat 07/Apr/12 15:26:01 INTERPRETER interpret::dumpProgram
+Sat 07/Apr/12 15:26:01 PARSETREEENTRY nodeVar 3 0
+Sat 07/Apr/12 15:26:01 PARSETREEENTRY nodeVar 3 1
+Sat 07/Apr/12 15:26:01 PARSETREEENTRY nodeOperator 2 268
+Sat 07/Apr/12 15:26:01 PARSETREEENTRY nodeVar 3 2
+Sat 07/Apr/12 15:26:01 PARSETREEENTRY nodeVar 3 3
+Sat 07/Apr/12 15:26:01 PARSETREEENTRY nodeOperator 2 275
+Sat 07/Apr/12 15:26:01 PARSETREEENTRY nodeOperator 1 274
+Sat 07/Apr/12 15:26:01 PARSETREEENTRY nodeVar 2 4
+Sat 07/Apr/12 15:26:01 PARSETREEENTRY nodeVar 2 5
+Sat 07/Apr/12 15:26:01 PARSETREEENTRY nodeOperator 1 272
+Sat 07/Apr/12 15:26:01 PARSETREEENTRY nodeOperator 0 274
+Sat 07/Apr/12 15:26:01 PARSETREEENTRY nodeOperator 0 274
+Sat 07/Apr/12 15:26:01 INTERPRETER Run programIndex=0
+Sat 07/Apr/12 15:26:01 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:26:01 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:26:01 INTERPRETER Run programIndex=1
+Sat 07/Apr/12 15:26:01 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:26:01 INTERPRETER 0
+Sat 07/Apr/12 15:26:01 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:26:01 INTERPRETER Run programIndex=2
+Sat 07/Apr/12 15:26:01 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:26:01 INTERPRETER 1
+Sat 07/Apr/12 15:26:01 INTERPRETER 0
+Sat 07/Apr/12 15:26:01 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:26:01 INTERPRETER Run programIndex=3
+Sat 07/Apr/12 15:26:01 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:26:01 INTERPRETER 0
+Sat 07/Apr/12 15:26:01 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:26:01 INTERPRETER Run programIndex=4
+Sat 07/Apr/12 15:26:01 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:26:01 INTERPRETER 2
+Sat 07/Apr/12 15:26:01 INTERPRETER 0
+Sat 07/Apr/12 15:26:01 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:26:01 INTERPRETER Run programIndex=5
+Sat 07/Apr/12 15:26:01 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:26:01 INTERPRETER 3
+Sat 07/Apr/12 15:26:01 INTERPRETER 2
+Sat 07/Apr/12 15:26:01 INTERPRETER 0
+Sat 07/Apr/12 15:26:01 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:26:01 INTERPRETER Run programIndex=6
+Sat 07/Apr/12 15:26:01 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:26:01 INTERPRETER 0
+Sat 07/Apr/12 15:26:01 INTERPRETER 0
+Sat 07/Apr/12 15:26:01 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:26:01 INTERPRETER Run programIndex=7
+Sat 07/Apr/12 15:26:01 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:26:01 INTERPRETER 0
+Sat 07/Apr/12 15:26:01 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:26:01 INTERPRETER Run programIndex=8
+Sat 07/Apr/12 15:26:01 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:26:01 INTERPRETER 4
+Sat 07/Apr/12 15:26:01 INTERPRETER 0
+Sat 07/Apr/12 15:26:01 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:26:01 INTERPRETER Run programIndex=9
+Sat 07/Apr/12 15:26:01 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:26:01 INTERPRETER 5
+Sat 07/Apr/12 15:26:01 INTERPRETER 4
+Sat 07/Apr/12 15:26:01 INTERPRETER 0
+Sat 07/Apr/12 15:26:01 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:26:01 INTERPRETER Run programIndex=10
+Sat 07/Apr/12 15:26:01 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:26:01 INTERPRETER 1
+Sat 07/Apr/12 15:26:01 INTERPRETER 0
+Sat 07/Apr/12 15:26:01 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:26:01 INTERPRETER Run programIndex=11
+Sat 07/Apr/12 15:26:01 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 15:26:01 INTERPRETER 1
+Sat 07/Apr/12 15:26:01 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 17:05:52 INTERPRETER interpret::load
+Sat 07/Apr/12 17:05:52 INTERPRETER interpret::dumpProgram
+Sat 07/Apr/12 17:05:52 PARSETREEENTRY nodeVar 3 0
+Sat 07/Apr/12 17:05:52 PARSETREEENTRY nodeVar 3 1
+Sat 07/Apr/12 17:05:52 PARSETREEENTRY nodeOperator 2 268
+Sat 07/Apr/12 17:05:52 PARSETREEENTRY nodeVar 3 2
+Sat 07/Apr/12 17:05:52 PARSETREEENTRY nodeVar 3 3
+Sat 07/Apr/12 17:05:52 PARSETREEENTRY nodeOperator 2 275
+Sat 07/Apr/12 17:05:52 PARSETREEENTRY nodeOperator 1 274
+Sat 07/Apr/12 17:05:52 PARSETREEENTRY nodeVar 2 4
+Sat 07/Apr/12 17:05:52 PARSETREEENTRY nodeVar 2 5
+Sat 07/Apr/12 17:05:52 PARSETREEENTRY nodeOperator 1 272
+Sat 07/Apr/12 17:05:52 PARSETREEENTRY nodeOperator 0 274
+Sat 07/Apr/12 17:05:52 INTERPRETER Run programIndex=0
+Sat 07/Apr/12 17:05:52 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 17:05:52 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 17:05:52 INTERPRETER Run programIndex=1
+Sat 07/Apr/12 17:05:52 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 17:05:52 INTERPRETER 0
+Sat 07/Apr/12 17:05:52 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 17:05:52 INTERPRETER Run programIndex=2
+Sat 07/Apr/12 17:05:52 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 17:05:52 INTERPRETER 1
+Sat 07/Apr/12 17:05:52 INTERPRETER 0
+Sat 07/Apr/12 17:05:52 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 17:05:52 INTERPRETER Run programIndex=3
+Sat 07/Apr/12 17:05:52 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 17:05:52 INTERPRETER 0
+Sat 07/Apr/12 17:05:52 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 17:05:52 INTERPRETER Run programIndex=4
+Sat 07/Apr/12 17:05:52 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 17:05:52 INTERPRETER 2
+Sat 07/Apr/12 17:05:52 INTERPRETER 0
+Sat 07/Apr/12 17:05:52 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 17:05:52 INTERPRETER Run programIndex=5
+Sat 07/Apr/12 17:05:52 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 17:05:52 INTERPRETER 3
+Sat 07/Apr/12 17:05:52 INTERPRETER 2
+Sat 07/Apr/12 17:05:52 INTERPRETER 0
+Sat 07/Apr/12 17:05:52 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 17:05:52 INTERPRETER Run programIndex=6
+Sat 07/Apr/12 17:05:52 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 17:05:52 INTERPRETER 0
+Sat 07/Apr/12 17:05:52 INTERPRETER 0
+Sat 07/Apr/12 17:05:52 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 17:05:52 INTERPRETER Run programIndex=7
+Sat 07/Apr/12 17:05:52 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 17:05:52 INTERPRETER 0
+Sat 07/Apr/12 17:05:52 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 17:05:52 INTERPRETER Run programIndex=8
+Sat 07/Apr/12 17:05:52 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 17:05:52 INTERPRETER 4
+Sat 07/Apr/12 17:05:52 INTERPRETER 0
+Sat 07/Apr/12 17:05:52 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 17:05:52 INTERPRETER Run programIndex=9
+Sat 07/Apr/12 17:05:52 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 17:05:52 INTERPRETER 5
+Sat 07/Apr/12 17:05:52 INTERPRETER 4
+Sat 07/Apr/12 17:05:52 INTERPRETER 0
+Sat 07/Apr/12 17:05:52 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 17:05:52 INTERPRETER Run programIndex=10
+Sat 07/Apr/12 17:05:52 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 17:05:52 INTERPRETER 1
+Sat 07/Apr/12 17:05:52 INTERPRETER 0
+Sat 07/Apr/12 17:05:52 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 17:07:30 INTERPRETER interpret::load
+Sat 07/Apr/12 17:07:30 INTERPRETER interpret::dumpProgram
+Sat 07/Apr/12 17:07:30 PARSETREEENTRY nodeVar 3 0
+Sat 07/Apr/12 17:07:30 PARSETREEENTRY nodeVar 3 1
+Sat 07/Apr/12 17:07:30 PARSETREEENTRY nodeOperator 2 268
+Sat 07/Apr/12 17:07:30 PARSETREEENTRY nodeVar 3 2
+Sat 07/Apr/12 17:07:30 PARSETREEENTRY nodeVar 3 3
+Sat 07/Apr/12 17:07:30 PARSETREEENTRY nodeOperator 2 275
+Sat 07/Apr/12 17:07:30 PARSETREEENTRY nodeOperator 1 274
+Sat 07/Apr/12 17:07:30 PARSETREEENTRY nodeVar 2 4
+Sat 07/Apr/12 17:07:30 PARSETREEENTRY nodeVar 2 5
+Sat 07/Apr/12 17:07:30 PARSETREEENTRY nodeOperator 1 272
+Sat 07/Apr/12 17:07:30 PARSETREEENTRY nodeOperator 0 274
+Sat 07/Apr/12 17:07:30 INTERPRETER Run programIndex=0
+Sat 07/Apr/12 17:07:30 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 17:07:30 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 17:07:30 INTERPRETER Run programIndex=1
+Sat 07/Apr/12 17:07:30 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 17:07:30 INTERPRETER 0
+Sat 07/Apr/12 17:07:30 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 17:07:30 INTERPRETER Run programIndex=2
+Sat 07/Apr/12 17:07:30 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 17:07:30 INTERPRETER 1
+Sat 07/Apr/12 17:07:30 INTERPRETER 0
+Sat 07/Apr/12 17:07:30 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 17:07:30 INTERPRETER Run programIndex=3
+Sat 07/Apr/12 17:07:30 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 17:07:30 INTERPRETER 0
+Sat 07/Apr/12 17:07:30 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 17:07:30 INTERPRETER Run programIndex=4
+Sat 07/Apr/12 17:07:30 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 17:07:30 INTERPRETER 2
+Sat 07/Apr/12 17:07:30 INTERPRETER 0
+Sat 07/Apr/12 17:07:30 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 17:07:30 INTERPRETER Run programIndex=5
+Sat 07/Apr/12 17:07:30 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 17:07:30 INTERPRETER 3
+Sat 07/Apr/12 17:07:30 INTERPRETER 2
+Sat 07/Apr/12 17:07:30 INTERPRETER 0
+Sat 07/Apr/12 17:07:30 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 17:07:30 INTERPRETER Run programIndex=6
+Sat 07/Apr/12 17:07:30 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 17:07:30 INTERPRETER 0
+Sat 07/Apr/12 17:07:30 INTERPRETER 0
+Sat 07/Apr/12 17:07:30 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 17:07:30 INTERPRETER Run programIndex=7
+Sat 07/Apr/12 17:07:30 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 17:07:30 INTERPRETER 0
+Sat 07/Apr/12 17:07:30 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 17:07:30 INTERPRETER Run programIndex=8
+Sat 07/Apr/12 17:07:30 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 17:07:30 INTERPRETER 4
+Sat 07/Apr/12 17:07:30 INTERPRETER 0
+Sat 07/Apr/12 17:07:30 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 17:07:30 INTERPRETER Run programIndex=9
+Sat 07/Apr/12 17:07:30 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 17:07:30 INTERPRETER 5
+Sat 07/Apr/12 17:07:30 INTERPRETER 4
+Sat 07/Apr/12 17:07:30 INTERPRETER 0
+Sat 07/Apr/12 17:07:30 INTERPRETER Leave interpret::dumpEvaluationStack
+Sat 07/Apr/12 17:07:30 INTERPRETER Run programIndex=10
+Sat 07/Apr/12 17:07:30 INTERPRETER Enter interpret::dumpEvaluationStack
+Sat 07/Apr/12 17:07:30 INTERPRETER 1
+Sat 07/Apr/12 17:07:30 INTERPRETER 0
+Sat 07/Apr/12 17:07:30 INTERPRETER Leave interpret::dumpEvaluationStack
+Wed 18/Apr/12 21:09:57 INTERPRETER interpret::loadParseTree
+Wed 18/Apr/12 21:09:57 INTERPRETER interpret::loadSymbolTable
+Wed 18/Apr/12 21:09:57 INTERPRETER interpret::dumpProgram
+Wed 18/Apr/12 21:09:57 PARSETREEENTRY nodeVar 3 0
+Wed 18/Apr/12 21:09:57 PARSETREEENTRY nodeVar 3 1
+Wed 18/Apr/12 21:09:57 PARSETREEENTRY nodeOperator 2 268
+Wed 18/Apr/12 21:09:57 PARSETREEENTRY nodeVar 3 2
+Wed 18/Apr/12 21:09:57 PARSETREEENTRY nodeVar 3 3
+Wed 18/Apr/12 21:09:57 PARSETREEENTRY nodeOperator 2 275
+Wed 18/Apr/12 21:09:57 PARSETREEENTRY nodeOperator 1 274
+Wed 18/Apr/12 21:09:57 PARSETREEENTRY nodeVar 2 4
+Wed 18/Apr/12 21:09:57 PARSETREEENTRY nodeVar 2 5
+Wed 18/Apr/12 21:09:57 PARSETREEENTRY nodeOperator 1 272
+Wed 18/Apr/12 21:09:57 PARSETREEENTRY nodeOperator 0 274
+Wed 18/Apr/12 21:09:57 INTERPRETER interpret::dumpSymbolTable
+Wed 18/Apr/12 21:09:57 SYMBOLTABLEENTRY nodeVar  0
+Wed 18/Apr/12 21:09:57 SYMBOLTABLEENTRY nodeConst  4
+Wed 18/Apr/12 21:09:57 SYMBOLTABLEENTRY nodeVar  0
+Wed 18/Apr/12 21:09:57 SYMBOLTABLEENTRY nodeConst  43
+Wed 18/Apr/12 21:09:57 SYMBOLTABLEENTRY nodeVar  0
+Wed 18/Apr/12 21:09:57 SYMBOLTABLEENTRY nodeConst  5
+Wed 18/Apr/12 21:09:57 SYMBOLTABLEENTRY nodeConst  1
+Wed 18/Apr/12 21:13:14 INTERPRETER interpret::loadParseTree
+Wed 18/Apr/12 21:13:14 INTERPRETER interpret::loadSymbolTable
+Wed 18/Apr/12 21:13:14 INTERPRETER interpret::dumpProgram
+Wed 18/Apr/12 21:13:14 PARSETREEENTRY nodeVar 3 0
+Wed 18/Apr/12 21:13:14 PARSETREEENTRY nodeVar 3 1
+Wed 18/Apr/12 21:13:14 PARSETREEENTRY nodeOperator 2 268
+Wed 18/Apr/12 21:13:14 PARSETREEENTRY nodeVar 3 2
+Wed 18/Apr/12 21:13:14 PARSETREEENTRY nodeVar 3 3
+Wed 18/Apr/12 21:13:14 PARSETREEENTRY nodeOperator 2 275
+Wed 18/Apr/12 21:13:14 PARSETREEENTRY nodeOperator 1 274
+Wed 18/Apr/12 21:13:14 PARSETREEENTRY nodeVar 2 4
+Wed 18/Apr/12 21:13:14 PARSETREEENTRY nodeVar 2 5
+Wed 18/Apr/12 21:13:14 PARSETREEENTRY nodeOperator 1 272
+Wed 18/Apr/12 21:13:14 PARSETREEENTRY nodeOperator 0 274
+Wed 18/Apr/12 21:13:14 INTERPRETER interpret::dumpSymbolTable
+Wed 18/Apr/12 21:13:14 SYMBOLTABLEENTRY nodeVar  0
+Wed 18/Apr/12 21:13:14 SYMBOLTABLEENTRY nodeConst  4
+Wed 18/Apr/12 21:13:14 SYMBOLTABLEENTRY nodeVar  0
+Wed 18/Apr/12 21:13:14 SYMBOLTABLEENTRY nodeConst  43
+Wed 18/Apr/12 21:13:14 SYMBOLTABLEENTRY nodeVar  0
+Wed 18/Apr/12 21:13:14 SYMBOLTABLEENTRY nodeConst  5
+Wed 18/Apr/12 21:13:14 SYMBOLTABLEENTRY nodeConst  1
+Wed 18/Apr/12 21:18:00 INTERPRETER interpret::loadParseTree
+Wed 18/Apr/12 21:18:00 INTERPRETER interpret::loadSymbolTable
+Wed 18/Apr/12 21:18:00 INTERPRETER interpret::dumpProgram
+Wed 18/Apr/12 21:18:00 PARSETREEENTRY nodeVar 3 0
+Wed 18/Apr/12 21:18:00 PARSETREEENTRY nodeVar 3 1
+Wed 18/Apr/12 21:18:00 PARSETREEENTRY nodeOperator 2 268
+Wed 18/Apr/12 21:18:00 PARSETREEENTRY nodeVar 3 2
+Wed 18/Apr/12 21:18:00 PARSETREEENTRY nodeVar 3 3
+Wed 18/Apr/12 21:18:00 PARSETREEENTRY nodeOperator 2 275
+Wed 18/Apr/12 21:18:00 PARSETREEENTRY nodeOperator 1 274
+Wed 18/Apr/12 21:18:00 PARSETREEENTRY nodeVar 2 4
+Wed 18/Apr/12 21:18:00 PARSETREEENTRY nodeVar 2 5
+Wed 18/Apr/12 21:18:00 PARSETREEENTRY nodeOperator 1 272
+Wed 18/Apr/12 21:18:00 PARSETREEENTRY nodeOperator 0 274
+Wed 18/Apr/12 21:18:00 INTERPRETER interpret::dumpSymbolTable
+Wed 18/Apr/12 21:18:00 SYMBOLTABLEENTRY nodeVar  0
+Wed 18/Apr/12 21:18:00 SYMBOLTABLEENTRY nodeConst  4
+Wed 18/Apr/12 21:18:00 SYMBOLTABLEENTRY nodeVar  0
+Wed 18/Apr/12 21:18:00 SYMBOLTABLEENTRY nodeConst  43
+Wed 18/Apr/12 21:18:00 SYMBOLTABLEENTRY nodeVar  0
+Wed 18/Apr/12 21:18:00 SYMBOLTABLEENTRY nodeConst  5
+Wed 18/Apr/12 21:18:00 SYMBOLTABLEENTRY nodeConst  1
+Wed 18/Apr/12 21:18:00 INTERPRETER Run programIndex=0
+Wed 18/Apr/12 21:18:00 INTERPRETER Enter interpret::dumpEvaluationStack
+Wed 18/Apr/12 21:18:00 INTERPRETER Leave interpret::dumpEvaluationStack
+Wed 18/Apr/12 21:18:00 INTERPRETER Run programIndex=1
+Wed 18/Apr/12 21:18:00 INTERPRETER Enter interpret::dumpEvaluationStack
+Wed 18/Apr/12 21:18:00 INTERPRETER 0
+Wed 18/Apr/12 21:18:00 INTERPRETER Leave interpret::dumpEvaluationStack
+Wed 18/Apr/12 21:18:00 INTERPRETER Run programIndex=2
+Wed 18/Apr/12 21:18:00 INTERPRETER Enter interpret::dumpEvaluationStack
+Wed 18/Apr/12 21:18:00 INTERPRETER 1
+Wed 18/Apr/12 21:18:00 INTERPRETER 0
+Wed 18/Apr/12 21:18:00 INTERPRETER Leave interpret::dumpEvaluationStack
+Wed 18/Apr/12 21:18:00 INTERPRETER Run programIndex=3
+Wed 18/Apr/12 21:18:00 INTERPRETER Enter interpret::dumpEvaluationStack
+Wed 18/Apr/12 21:18:00 INTERPRETER 0
+Wed 18/Apr/12 21:18:00 INTERPRETER Leave interpret::dumpEvaluationStack
+Wed 18/Apr/12 21:18:00 INTERPRETER Run programIndex=4
+Wed 18/Apr/12 21:18:00 INTERPRETER Enter interpret::dumpEvaluationStack
+Wed 18/Apr/12 21:18:00 INTERPRETER 2
+Wed 18/Apr/12 21:18:00 INTERPRETER 0
+Wed 18/Apr/12 21:18:00 INTERPRETER Leave interpret::dumpEvaluationStack
+Wed 18/Apr/12 21:18:00 INTERPRETER Run programIndex=5
+Wed 18/Apr/12 21:18:00 INTERPRETER Enter interpret::dumpEvaluationStack
+Wed 18/Apr/12 21:18:00 INTERPRETER 3
+Wed 18/Apr/12 21:18:00 INTERPRETER 2
+Wed 18/Apr/12 21:18:00 INTERPRETER 0
+Wed 18/Apr/12 21:18:00 INTERPRETER Leave interpret::dumpEvaluationStack
+Wed 18/Apr/12 21:18:00 INTERPRETER Run programIndex=6
+Wed 18/Apr/12 21:18:00 INTERPRETER Enter interpret::dumpEvaluationStack
+Wed 18/Apr/12 21:18:00 INTERPRETER 0
+Wed 18/Apr/12 21:18:00 INTERPRETER 0
+Wed 18/Apr/12 21:18:00 INTERPRETER Leave interpret::dumpEvaluationStack
+Wed 18/Apr/12 21:18:00 INTERPRETER Run programIndex=7
+Wed 18/Apr/12 21:18:00 INTERPRETER Enter interpret::dumpEvaluationStack
+Wed 18/Apr/12 21:18:00 INTERPRETER 0
+Wed 18/Apr/12 21:18:00 INTERPRETER Leave interpret::dumpEvaluationStack
+Wed 18/Apr/12 21:18:00 INTERPRETER Run programIndex=8
+Wed 18/Apr/12 21:18:00 INTERPRETER Enter interpret::dumpEvaluationStack
+Wed 18/Apr/12 21:18:00 INTERPRETER 4
+Wed 18/Apr/12 21:18:00 INTERPRETER 0
+Wed 18/Apr/12 21:18:00 INTERPRETER Leave interpret::dumpEvaluationStack
+Wed 18/Apr/12 21:18:00 INTERPRETER Run programIndex=9
+Wed 18/Apr/12 21:18:00 INTERPRETER Enter interpret::dumpEvaluationStack
+Wed 18/Apr/12 21:18:00 INTERPRETER 5
+Wed 18/Apr/12 21:18:00 INTERPRETER 4
+Wed 18/Apr/12 21:18:00 INTERPRETER 0
+Wed 18/Apr/12 21:18:00 INTERPRETER Leave interpret::dumpEvaluationStack
+Wed 18/Apr/12 21:18:00 INTERPRETER Run programIndex=10
+Wed 18/Apr/12 21:18:00 INTERPRETER Enter interpret::dumpEvaluationStack
+Wed 18/Apr/12 21:18:00 INTERPRETER 1
+Wed 18/Apr/12 21:18:00 INTERPRETER 0
+Wed 18/Apr/12 21:18:00 INTERPRETER Leave interpret::dumpEvaluationStack
+Wed 18/Apr/12 21:32:09 INTERPRETER interpret::loadParseTree
+Wed 18/Apr/12 21:32:09 INTERPRETER interpret::loadSymbolTable
+Wed 18/Apr/12 21:32:09 INTERPRETER interpret::dumpProgram
+Wed 18/Apr/12 21:32:09 PARSETREEENTRY nodeVar 3 0
+Wed 18/Apr/12 21:32:09 PARSETREEENTRY nodeVar 3 1
+Wed 18/Apr/12 21:32:09 PARSETREEENTRY nodeOperator 2 268
+Wed 18/Apr/12 21:32:09 PARSETREEENTRY nodeVar 3 2
+Wed 18/Apr/12 21:32:09 PARSETREEENTRY nodeVar 3 3
+Wed 18/Apr/12 21:32:09 PARSETREEENTRY nodeOperator 2 275
+Wed 18/Apr/12 21:32:09 PARSETREEENTRY nodeOperator 1 274
+Wed 18/Apr/12 21:32:09 PARSETREEENTRY nodeVar 2 4
+Wed 18/Apr/12 21:32:09 PARSETREEENTRY nodeVar 2 5
+Wed 18/Apr/12 21:32:09 PARSETREEENTRY nodeOperator 1 272
+Wed 18/Apr/12 21:32:09 PARSETREEENTRY nodeOperator 0 274
+Wed 18/Apr/12 21:32:09 INTERPRETER interpret::dumpSymbolTable
+Wed 18/Apr/12 21:32:09 SYMBOLTABLEENTRY nodeVar  0
+Wed 18/Apr/12 21:32:09 SYMBOLTABLEENTRY nodeConst  4
+Wed 18/Apr/12 21:32:09 SYMBOLTABLEENTRY nodeVar  0
+Wed 18/Apr/12 21:32:09 SYMBOLTABLEENTRY nodeConst  43
+Wed 18/Apr/12 21:32:09 SYMBOLTABLEENTRY nodeVar  0
+Wed 18/Apr/12 21:32:09 SYMBOLTABLEENTRY nodeConst  5
+Wed 18/Apr/12 21:32:09 SYMBOLTABLEENTRY nodeConst  1
+Wed 18/Apr/12 21:32:09 INTERPRETER Run programIndex=0
+Wed 18/Apr/12 21:32:09 INTERPRETER Run programIndex=1
+Wed 18/Apr/12 21:32:09 INTERPRETER Run programIndex=2
+Wed 18/Apr/12 21:32:09 INTERPRETER Run programIndex=3
+Wed 18/Apr/12 21:32:09 INTERPRETER Run programIndex=4
+Wed 18/Apr/12 21:32:09 INTERPRETER Run programIndex=5
+Wed 18/Apr/12 21:32:09 INTERPRETER Run programIndex=6
+Wed 18/Apr/12 21:32:09 INTERPRETER Run programIndex=7
+Wed 18/Apr/12 21:32:09 INTERPRETER Run programIndex=8
+Wed 18/Apr/12 21:32:09 INTERPRETER Run programIndex=9
+Wed 18/Apr/12 21:32:09 INTERPRETER Run programIndex=10
+Wed 18/Apr/12 21:32:09 INTERPRETER Enter interpret::dumpEvaluationStack
+Wed 18/Apr/12 21:32:09 INTERPRETER 1
+Wed 18/Apr/12 21:32:09 INTERPRETER Leave interpret::dumpEvaluationStack
+Wed 18/Apr/12 21:32:52 INTERPRETER interpret::loadParseTree
+Wed 18/Apr/12 21:32:52 INTERPRETER interpret::loadSymbolTable
+Wed 18/Apr/12 21:32:52 INTERPRETER interpret::dumpProgram
+Wed 18/Apr/12 21:32:52 PARSETREEENTRY nodeVar 3 0
+Wed 18/Apr/12 21:32:52 PARSETREEENTRY nodeVar 3 1
+Wed 18/Apr/12 21:32:52 PARSETREEENTRY nodeOperator 2 268
+Wed 18/Apr/12 21:32:52 PARSETREEENTRY nodeVar 3 2
+Wed 18/Apr/12 21:32:52 PARSETREEENTRY nodeVar 3 3
+Wed 18/Apr/12 21:32:52 PARSETREEENTRY nodeOperator 2 275
+Wed 18/Apr/12 21:32:52 PARSETREEENTRY nodeOperator 1 274
+Wed 18/Apr/12 21:32:52 PARSETREEENTRY nodeVar 2 4
+Wed 18/Apr/12 21:32:52 PARSETREEENTRY nodeVar 2 5
+Wed 18/Apr/12 21:32:52 PARSETREEENTRY nodeOperator 1 272
+Wed 18/Apr/12 21:32:52 PARSETREEENTRY nodeOperator 0 274
+Wed 18/Apr/12 21:32:52 INTERPRETER interpret::dumpSymbolTable
+Wed 18/Apr/12 21:32:52 SYMBOLTABLEENTRY nodeVar  0
+Wed 18/Apr/12 21:32:52 SYMBOLTABLEENTRY nodeConst  4
+Wed 18/Apr/12 21:32:52 SYMBOLTABLEENTRY nodeVar  0
+Wed 18/Apr/12 21:32:52 SYMBOLTABLEENTRY nodeConst  43
+Wed 18/Apr/12 21:32:52 SYMBOLTABLEENTRY nodeVar  0
+Wed 18/Apr/12 21:32:52 SYMBOLTABLEENTRY nodeConst  5
+Wed 18/Apr/12 21:32:52 SYMBOLTABLEENTRY nodeConst  1
+Wed 18/Apr/12 21:32:52 INTERPRETER Run programIndex=0
+Wed 18/Apr/12 21:32:52 INTERPRETER Enter interpret::dumpEvaluationStack
+Wed 18/Apr/12 21:32:52 INTERPRETER 0
+Wed 18/Apr/12 21:32:52 INTERPRETER Leave interpret::dumpEvaluationStack
+Wed 18/Apr/12 21:32:52 INTERPRETER Run programIndex=1
+Wed 18/Apr/12 21:32:52 INTERPRETER Enter interpret::dumpEvaluationStack
+Wed 18/Apr/12 21:32:52 INTERPRETER 1
+Wed 18/Apr/12 21:32:52 INTERPRETER 0
+Wed 18/Apr/12 21:32:52 INTERPRETER Leave interpret::dumpEvaluationStack
+Wed 18/Apr/12 21:32:52 INTERPRETER Run programIndex=2
+Wed 18/Apr/12 21:32:52 INTERPRETER Enter interpret::dumpEvaluationStack
+Wed 18/Apr/12 21:32:52 INTERPRETER 0
+Wed 18/Apr/12 21:32:52 INTERPRETER Leave interpret::dumpEvaluationStack
+Wed 18/Apr/12 21:32:52 INTERPRETER Run programIndex=3
+Wed 18/Apr/12 21:32:52 INTERPRETER Enter interpret::dumpEvaluationStack
+Wed 18/Apr/12 21:32:52 INTERPRETER 2
+Wed 18/Apr/12 21:32:52 INTERPRETER 0
+Wed 18/Apr/12 21:32:52 INTERPRETER Leave interpret::dumpEvaluationStack
+Wed 18/Apr/12 21:32:52 INTERPRETER Run programIndex=4
+Wed 18/Apr/12 21:32:52 INTERPRETER Enter interpret::dumpEvaluationStack
+Wed 18/Apr/12 21:32:52 INTERPRETER 3
+Wed 18/Apr/12 21:32:52 INTERPRETER 2
+Wed 18/Apr/12 21:32:52 INTERPRETER 0
+Wed 18/Apr/12 21:32:52 INTERPRETER Leave interpret::dumpEvaluationStack
+Wed 18/Apr/12 21:32:52 INTERPRETER Run programIndex=5
+Wed 18/Apr/12 21:32:52 INTERPRETER Enter interpret::dumpEvaluationStack
+Wed 18/Apr/12 21:32:52 INTERPRETER 0
+Wed 18/Apr/12 21:32:52 INTERPRETER 0
+Wed 18/Apr/12 21:32:52 INTERPRETER Leave interpret::dumpEvaluationStack
+Wed 18/Apr/12 21:32:52 INTERPRETER Run programIndex=6
+Wed 18/Apr/12 21:32:52 INTERPRETER Enter interpret::dumpEvaluationStack
+Wed 18/Apr/12 21:32:52 INTERPRETER 0
+Wed 18/Apr/12 21:32:52 INTERPRETER Leave interpret::dumpEvaluationStack
+Wed 18/Apr/12 21:32:52 INTERPRETER Run programIndex=7
+Wed 18/Apr/12 21:32:52 INTERPRETER Enter interpret::dumpEvaluationStack
+Wed 18/Apr/12 21:32:52 INTERPRETER 4
+Wed 18/Apr/12 21:32:52 INTERPRETER 0
+Wed 18/Apr/12 21:32:52 INTERPRETER Leave interpret::dumpEvaluationStack
+Wed 18/Apr/12 21:32:52 INTERPRETER Run programIndex=8
+Wed 18/Apr/12 21:32:52 INTERPRETER Enter interpret::dumpEvaluationStack
+Wed 18/Apr/12 21:32:52 INTERPRETER 5
+Wed 18/Apr/12 21:32:52 INTERPRETER 4
+Wed 18/Apr/12 21:32:52 INTERPRETER 0
+Wed 18/Apr/12 21:32:52 INTERPRETER Leave interpret::dumpEvaluationStack
+Wed 18/Apr/12 21:32:52 INTERPRETER Run programIndex=9
+Wed 18/Apr/12 21:32:52 INTERPRETER Enter interpret::dumpEvaluationStack
+Wed 18/Apr/12 21:32:52 INTERPRETER 1
+Wed 18/Apr/12 21:32:52 INTERPRETER 0
+Wed 18/Apr/12 21:32:52 INTERPRETER Leave interpret::dumpEvaluationStack
+Wed 18/Apr/12 21:32:52 INTERPRETER Run programIndex=10
+Wed 18/Apr/12 21:32:52 INTERPRETER Enter interpret::dumpEvaluationStack
+Wed 18/Apr/12 21:32:52 INTERPRETER 1
+Wed 18/Apr/12 21:32:52 INTERPRETER Leave interpret::dumpEvaluationStack

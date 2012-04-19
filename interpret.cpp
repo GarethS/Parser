@@ -73,9 +73,9 @@ void interpret::_loadParseTree(void) {
         string inputString;
         //ifs.getline(inputString);
         getline(ifs, inputString);
-        cout << "IFS:" << inputString << endl;
+        //cout << "IFS:" << inputString << endl;
         if (inputString == "") {
-            cout << "Got endln" << endl;
+            //cout << "Got endln" << endl;
             break;
         }
         istringstream iss(inputString);
@@ -114,9 +114,9 @@ void interpret::_loadSymbolTable(void) {
         string inputString;
         //ifs.getline(inputString);
         getline(ifs, inputString);
-        cout << "IFS:" << inputString << endl;
+        //cout << "IFS:" << inputString << endl;
         if (inputString == "") {
-            cout << "Got endln" << endl;
+            //cout << "Got endln" << endl;
             break;
         }
         istringstream iss(inputString);
@@ -144,6 +144,14 @@ void interpret::dumpProgram(void) {
     }
 }
 
+void interpret::dumpSymbolTable(void) {
+    oss() << "interpret::dumpSymbolTable";
+    dump();
+    for (int i = 0; _symbolTable[i].type() != nodeInvalid; ++i) {
+        _symbolTable[i].dumpEntry();
+    }
+}
+
 void interpret::dumpEvaluationStack(void) {
     oss() << "Enter interpret::dumpEvaluationStack";
     dump();
@@ -167,7 +175,7 @@ void interpret::run(void) {
 #if CYGWIN
         oss() << "Run programIndex=" << _programIndex;
         dump();
-        dumpEvaluationStack();
+        //dumpEvaluationStack();
 #endif /* CYGWIN */    
         switch (_currentProgramNodeType()) {
         case nodeVar:
@@ -185,6 +193,9 @@ void interpret::run(void) {
             assert(false);
             break;
         }
+#if CYGWIN
+        dumpEvaluationStack();
+#endif /* CYGWIN */    
     }
 }
 
@@ -231,78 +242,91 @@ int interpret::_findParseTreeEntry(nodeType t, nodePosition p, int value, unsign
 
 void interpret::evaluate(unsigned int op) {
     assert(_evaluationStack.size() >= 1);
-    int tmp = _symbolTable[_evalValue()].value(); // this is usually the right-hand side of the parse node, the exception being BANG below
+    int rhs = _symbolTable[_evalValue()].value(); // this is usually the right-hand side of the parse node, the exception being BANG below
+    int lhs;
     switch (op) {
     case BANG:
-        _evaluationStack.push_front(!tmp);
+        _evaluationStack.push_front(!rhs);
         break;
     case PLUS:
         assert(_evaluationStack.size() >= 1);
-        _evaluationStack.push_front(_symbolTable[_evalValue()].value() + tmp);
+        lhs = _symbolTable[_evalValue()].value();
+        _evaluationStack.push_front(lhs + rhs);
         break;
     case MINUS:
         assert(_evaluationStack.size() >= 1);
-        _evaluationStack.push_front(_evalValue() - tmp);
+        lhs = _symbolTable[_evalValue()].value();
+        _evaluationStack.push_front(lhs - rhs);
         break;
     case MULT:
         assert(_evaluationStack.size() >= 1);
-        _evaluationStack.push_front(_evalValue() * tmp);
+        lhs = _symbolTable[_evalValue()].value();
+        _evaluationStack.push_front(lhs * rhs);
         break;
     case DIV:
         assert(_evaluationStack.size() >= 1);
         {
             // tmp = denominator
-            int numerator = _evalValue();
-            if (tmp == 0) {
+            int numerator = _symbolTable[_evalValue()].value();
+            if (rhs == 0) {
                 _evaluationStack.push_front(0);
             } else {
-                _evaluationStack.push_front(numerator / tmp);
+                _evaluationStack.push_front(numerator / rhs);
             }
         }
         break;
     case XOR:
         assert(_evaluationStack.size() >= 1);
-        _evaluationStack.push_front(_evalValue() ^ tmp);
+        lhs = _symbolTable[_evalValue()].value();
+        _evaluationStack.push_front(lhs ^ rhs);
         break;
     case GEQ:
         assert(_evaluationStack.size() >= 1);
-        _evaluationStack.push_front(_evalValue() >= tmp/* ? TRUE : FALSE*/);
+        lhs = _symbolTable[_evalValue()].value();
+        _evaluationStack.push_front(lhs >= rhs/* ? TRUE : FALSE*/);
         break;
     case LEQ:
         assert(_evaluationStack.size() >= 1);
-        _evaluationStack.push_front(_evalValue() <= tmp);
+        lhs = _symbolTable[_evalValue()].value();
+        _evaluationStack.push_front(lhs <= rhs);
         break;
     case NEQ:
         assert(_evaluationStack.size() >= 1);
-        _evaluationStack.push_front(_evalValue() != tmp);
+        lhs = _symbolTable[_evalValue()].value();
+        _evaluationStack.push_front(lhs != rhs);
         break;
     case GTR:
         assert(_evaluationStack.size() >= 1);
-        _evaluationStack.push_front(_evalValue() > tmp);
+        lhs = _symbolTable[_evalValue()].value();
+        _evaluationStack.push_front(lhs > rhs);
         break;
     case LSS:
         assert(_evaluationStack.size() >= 1);
-        _evaluationStack.push_front(_evalValue() < tmp);
+        lhs = _symbolTable[_evalValue()].value();
+        _evaluationStack.push_front(lhs < rhs);
         break;
     case AND:
         assert(_evaluationStack.size() >= 1);
-        _evaluationStack.push_front(_evalValue() && tmp);
+        lhs = _symbolTable[_evalValue()].value();
+        _evaluationStack.push_front(lhs && rhs);
         break;
     case OR:
         assert(_evaluationStack.size() >= 1);
-        _evaluationStack.push_front(_evalValue() || tmp);
+        lhs = _symbolTable[_evalValue()].value();
+        _evaluationStack.push_front(lhs || rhs);
         break;
     case TEST_FOR_EQUAL:
         assert(_evaluationStack.size() >= 1);
-        _evaluationStack.push_front(_evalValue() == tmp);
+        lhs = _symbolTable[_evalValue()].value();
+        _evaluationStack.push_front(lhs == rhs);
         break;
     case EQUAL:
         assert(_evaluationStack.size() >= 1);
         {
             // left-hand side = right-hand side
             int leftHandSymbolTableIndex = _evalValue(); // returns symbol table index
-            // Set symbol table entry = tmp;
-            _symbolTable[leftHandSymbolTableIndex].value(tmp);
+            // Set symbol table entry = rhs;
+            _symbolTable[leftHandSymbolTableIndex].value(rhs);
             //_evaluationStack.push_front(_evalValue() == _evalValue());
         }
         break;
@@ -624,6 +648,7 @@ int main(void) {
     i.load();
 #if CYGWIN
     i.dumpProgram();
+    i.dumpSymbolTable();
 #endif /* CYGWIN */ 
     i.run();
     return 0;

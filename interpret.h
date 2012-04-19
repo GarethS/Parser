@@ -41,6 +41,7 @@ public:
 #if CYGWIN    
     void load(void);
     void dumpProgram(void);
+    void dumpSymbolTable(void);
     void dumpEvaluationStack(void);
 #endif /* CYGWIN */    
     void run(void);
