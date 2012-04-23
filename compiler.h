@@ -88,7 +88,7 @@ void doPatternAction(arithNode* pPattern, arithNode* pAction);
 void printIndent(unsigned int indent);
 void printOperator(int value);
 void walkPatternTree(arithNode* pNode, char* position, int indent);
-void walkActionTree(arithNode* pNode);
+void walkActionTree(actionNode* pNode);
 void dumpSymbolTable(void);
 void dumpSymbol(int i);
 //void freeNode(node* pNode);

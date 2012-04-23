@@ -71,17 +71,15 @@ patternActionList: /* empty */	{}
 					| patternActionList patternAction	
 ;
 
-patternAction: pattern LBRACE action RBRACE	{fp = fopen("parseTree.txt", "wb");
-                                                //fwrite("dog", 1, 3, fp);
-                                                walkPatternTree($1, "ROOT", 0);
-                                                fclose(fp); /*walkActionTree($3);*/}
+patternAction: pattern LBRACE action RBRACE	{fp = fopen("patternTree.txt", "wb"); walkPatternTree($1, "ROOT", 0); fclose(fp);
+                                             printf("\n\n"); fp = fopen("actionTree.txt", "wb"); walkActionTree($3);  fclose(fp);}
 ;
 
 action: /* empty */	{}
 		| action statementAction	{$$ = addNodeOperatorAction($1, $2);}
 ;
 
-statementAction:	var EQUAL arithmeticExpression SEMI	{$$ = addNodeVarOperand($2, $1, $3);}
+statementAction:	var EQUAL arithmeticExpression SEMI	{$$ = addNodeVarOperand(EQUAL, $1, $3);}
 ;			
 
 /* eg: patternCompare && patternCompare */
@@ -499,16 +497,12 @@ void printIndent(unsigned int indent) {
     }
 }
 
-void walkActionTree(arithNode* pArithNode) {
-	if (pArithNode == NULL) {
+void walkActionTree(actionNode* pActionNode) {
+	if (pActionNode == NULL) {
 		return;
 	}
-	walkActionTree(pArithNode->pRight);
-	if (pArithNode->operand == enumAction) {
-			printf("\nsetOutput(\"%s\"); ", pArithNode->idValue);
-	} else {
-		//assert(false);
-	}
+    walkActionTree(pActionNode->pNext);
+	walkPatternTree(pActionNode->pArith, "ROOT", 0);
 }
 
 int infixPatternTraversal(arithNode* pn) {

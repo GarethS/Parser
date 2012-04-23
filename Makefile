@@ -5,7 +5,7 @@
 # 1 = debug build, 0 = release
 myDebug := 1
 
-.PHONY: all clean
+.PHONY: all clean run
 
 ifeq ($(myDebug), 1)
 FLEX_FLAGS = -d
@@ -22,8 +22,7 @@ GPP_FLAGS =
 DEBUG_FLAGS = -D CYGWIN=1
 endif 
 
-
-all: lextest.exe parsetest.exe lex.yy.c valve.tab.c interpret.exe
+all: lextest.exe parsetest.exe lex.yy.c valve.tab.c interpret.exe run
 
 clean:
 	rm lex.yy.c
@@ -45,3 +44,5 @@ valve.tab.c valve.tab.h:	valve.y compiler.h compilerHelper.h
 interpret.exe: interpret.cpp interpret.h ../motor/log.cpp ../motor/log.h compilerHelper.h parseTreeEntry.cpp parseTreeEntry.h symbolTableEntry.cpp symbolTableEntry.h tinyQueue.h
 	g++ $(GPP_FLAGS) $(DEBUG_FLAGS) -I. -I../motor interpret.cpp parseTreeEntry.cpp symbolTableEntry.cpp ../motor/log.cpp -o interpret.exe 
     
+run:
+	./parsetest >parse.txt 2>bison.txt

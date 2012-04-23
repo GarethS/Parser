@@ -12,7 +12,17 @@ Pattern tree:
 **LEFT Var: index,4 name,x
 **RIGHT Var: index,5 name,5
 *RIGHT Operator: < 272
-ROOT Operator: || 274		
+ROOT Operator: || 274
+
+Pattern tree:
+*LEFT Var: index,0 name,counter
+*RIGHT Var: index,5 name,5
+ROOT Operator: = 262Pattern tree:
+*LEFT Var: index,4 name,x
+**LEFT Var: index,4 name,x
+**RIGHT Var: index,6 name,1
+*RIGHT Operator: + 263
+ROOT Operator: = 262		
 
 Symbol table:
 index:0, name:counter, type:0, val:0
