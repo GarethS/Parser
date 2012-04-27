@@ -46,3 +46,7 @@ interpret.exe: interpret.cpp interpret.h ../motor/log.cpp ../motor/log.h compile
     
 run:
 	./parsetest >parse.txt 2>bison.txt
+	#mv log1.txt log2.txt
+	mv log.txt log1.txt
+	#rm log.txt
+	./interpret

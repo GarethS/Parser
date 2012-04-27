@@ -48,7 +48,7 @@ public:
     void evaluate(unsigned int op);
 
 private:
-    void _loadParseTree(void);
+    void _loadTree(const string& s);
     void _loadSymbolTable(void);
     nodeType _currentProgramNodeType(void) const {return _program[_programIndex].type();}
     nodeType _programNodeType(unsigned int i) const {return _program[i].type();}

@@ -1,75 +1,75 @@
-Sat 21/Apr/12 16:22:27 INTERPRETER interpret::loadParseTree
-Sat 21/Apr/12 16:22:27 INTERPRETER interpret::loadSymbolTable
-Sat 21/Apr/12 16:22:27 INTERPRETER interpret::dumpProgram
-Sat 21/Apr/12 16:22:27 PARSETREEENTRY nodeVar 3 0
-Sat 21/Apr/12 16:22:27 PARSETREEENTRY nodeVar 3 1
-Sat 21/Apr/12 16:22:27 PARSETREEENTRY nodeOperator 2 268
-Sat 21/Apr/12 16:22:27 PARSETREEENTRY nodeVar 3 2
-Sat 21/Apr/12 16:22:27 PARSETREEENTRY nodeVar 3 3
-Sat 21/Apr/12 16:22:27 PARSETREEENTRY nodeOperator 2 275
-Sat 21/Apr/12 16:22:27 PARSETREEENTRY nodeOperator 1 274
-Sat 21/Apr/12 16:22:27 PARSETREEENTRY nodeVar 2 4
-Sat 21/Apr/12 16:22:27 PARSETREEENTRY nodeVar 2 5
-Sat 21/Apr/12 16:22:27 PARSETREEENTRY nodeOperator 1 272
-Sat 21/Apr/12 16:22:27 PARSETREEENTRY nodeOperator 0 274
-Sat 21/Apr/12 16:22:27 INTERPRETER interpret::dumpSymbolTable
-Sat 21/Apr/12 16:22:27 SYMBOLTABLEENTRY nodeVar  0
-Sat 21/Apr/12 16:22:27 SYMBOLTABLEENTRY nodeConst  4
-Sat 21/Apr/12 16:22:27 SYMBOLTABLEENTRY nodeVar  0
-Sat 21/Apr/12 16:22:27 SYMBOLTABLEENTRY nodeConst  43
-Sat 21/Apr/12 16:22:27 SYMBOLTABLEENTRY nodeVar  0
-Sat 21/Apr/12 16:22:27 SYMBOLTABLEENTRY nodeConst  5
-Sat 21/Apr/12 16:22:27 SYMBOLTABLEENTRY nodeConst  1
-Sat 21/Apr/12 16:22:27 INTERPRETER Run programIndex=0
-Sat 21/Apr/12 16:22:27 INTERPRETER Enter interpret::dumpEvaluationStack
-Sat 21/Apr/12 16:22:27 INTERPRETER 0
-Sat 21/Apr/12 16:22:27 INTERPRETER Leave interpret::dumpEvaluationStack
-Sat 21/Apr/12 16:22:27 INTERPRETER Run programIndex=1
-Sat 21/Apr/12 16:22:27 INTERPRETER Enter interpret::dumpEvaluationStack
-Sat 21/Apr/12 16:22:27 INTERPRETER 1
-Sat 21/Apr/12 16:22:27 INTERPRETER 0
-Sat 21/Apr/12 16:22:27 INTERPRETER Leave interpret::dumpEvaluationStack
-Sat 21/Apr/12 16:22:27 INTERPRETER Run programIndex=2
-Sat 21/Apr/12 16:22:27 INTERPRETER Enter interpret::dumpEvaluationStack
-Sat 21/Apr/12 16:22:27 INTERPRETER 0
-Sat 21/Apr/12 16:22:27 INTERPRETER Leave interpret::dumpEvaluationStack
-Sat 21/Apr/12 16:22:27 INTERPRETER Run programIndex=3
-Sat 21/Apr/12 16:22:27 INTERPRETER Enter interpret::dumpEvaluationStack
-Sat 21/Apr/12 16:22:27 INTERPRETER 2
-Sat 21/Apr/12 16:22:27 INTERPRETER 0
-Sat 21/Apr/12 16:22:27 INTERPRETER Leave interpret::dumpEvaluationStack
-Sat 21/Apr/12 16:22:27 INTERPRETER Run programIndex=4
-Sat 21/Apr/12 16:22:27 INTERPRETER Enter interpret::dumpEvaluationStack
-Sat 21/Apr/12 16:22:27 INTERPRETER 3
-Sat 21/Apr/12 16:22:27 INTERPRETER 2
-Sat 21/Apr/12 16:22:27 INTERPRETER 0
-Sat 21/Apr/12 16:22:27 INTERPRETER Leave interpret::dumpEvaluationStack
-Sat 21/Apr/12 16:22:27 INTERPRETER Run programIndex=5
-Sat 21/Apr/12 16:22:27 INTERPRETER Enter interpret::dumpEvaluationStack
-Sat 21/Apr/12 16:22:27 INTERPRETER 0
-Sat 21/Apr/12 16:22:27 INTERPRETER 0
-Sat 21/Apr/12 16:22:27 INTERPRETER Leave interpret::dumpEvaluationStack
-Sat 21/Apr/12 16:22:27 INTERPRETER Run programIndex=6
-Sat 21/Apr/12 16:22:27 INTERPRETER Enter interpret::dumpEvaluationStack
-Sat 21/Apr/12 16:22:27 INTERPRETER 0
-Sat 21/Apr/12 16:22:27 INTERPRETER Leave interpret::dumpEvaluationStack
-Sat 21/Apr/12 16:22:27 INTERPRETER Run programIndex=7
-Sat 21/Apr/12 16:22:27 INTERPRETER Enter interpret::dumpEvaluationStack
-Sat 21/Apr/12 16:22:27 INTERPRETER 4
-Sat 21/Apr/12 16:22:27 INTERPRETER 0
-Sat 21/Apr/12 16:22:27 INTERPRETER Leave interpret::dumpEvaluationStack
-Sat 21/Apr/12 16:22:27 INTERPRETER Run programIndex=8
-Sat 21/Apr/12 16:22:27 INTERPRETER Enter interpret::dumpEvaluationStack
-Sat 21/Apr/12 16:22:27 INTERPRETER 5
-Sat 21/Apr/12 16:22:27 INTERPRETER 4
-Sat 21/Apr/12 16:22:27 INTERPRETER 0
-Sat 21/Apr/12 16:22:27 INTERPRETER Leave interpret::dumpEvaluationStack
-Sat 21/Apr/12 16:22:27 INTERPRETER Run programIndex=9
-Sat 21/Apr/12 16:22:27 INTERPRETER Enter interpret::dumpEvaluationStack
-Sat 21/Apr/12 16:22:27 INTERPRETER 1
-Sat 21/Apr/12 16:22:27 INTERPRETER 0
-Sat 21/Apr/12 16:22:27 INTERPRETER Leave interpret::dumpEvaluationStack
-Sat 21/Apr/12 16:22:27 INTERPRETER Run programIndex=10
-Sat 21/Apr/12 16:22:27 INTERPRETER Enter interpret::dumpEvaluationStack
-Sat 21/Apr/12 16:22:27 INTERPRETER 1
-Sat 21/Apr/12 16:22:27 INTERPRETER Leave interpret::dumpEvaluationStack
+INTERPRETER interpret::patternTree.txt
+INTERPRETER interpret::loadSymbolTable
+INTERPRETER interpret::dumpProgram
+PARSETREEENTRY nodeVar 3 0
+PARSETREEENTRY nodeVar 3 1
+PARSETREEENTRY nodeOperator 2 268
+PARSETREEENTRY nodeVar 3 2
+PARSETREEENTRY nodeVar 3 3
+PARSETREEENTRY nodeOperator 2 275
+PARSETREEENTRY nodeOperator 1 274
+PARSETREEENTRY nodeVar 2 4
+PARSETREEENTRY nodeVar 2 5
+PARSETREEENTRY nodeOperator 1 272
+PARSETREEENTRY nodeOperator 0 274
+INTERPRETER interpret::dumpSymbolTable
+SYMBOLTABLEENTRY nodeVar  0
+SYMBOLTABLEENTRY nodeConst  4
+SYMBOLTABLEENTRY nodeVar  0
+SYMBOLTABLEENTRY nodeConst  43
+SYMBOLTABLEENTRY nodeVar  0
+SYMBOLTABLEENTRY nodeConst  5
+SYMBOLTABLEENTRY nodeConst  1
+INTERPRETER Run programIndex=0
+INTERPRETER Enter interpret::dumpEvaluationStack
+INTERPRETER 0
+INTERPRETER Leave interpret::dumpEvaluationStack
+INTERPRETER Run programIndex=1
+INTERPRETER Enter interpret::dumpEvaluationStack
+INTERPRETER 1
+INTERPRETER 0
+INTERPRETER Leave interpret::dumpEvaluationStack
+INTERPRETER Run programIndex=2
+INTERPRETER Enter interpret::dumpEvaluationStack
+INTERPRETER 0
+INTERPRETER Leave interpret::dumpEvaluationStack
+INTERPRETER Run programIndex=3
+INTERPRETER Enter interpret::dumpEvaluationStack
+INTERPRETER 2
+INTERPRETER 0
+INTERPRETER Leave interpret::dumpEvaluationStack
+INTERPRETER Run programIndex=4
+INTERPRETER Enter interpret::dumpEvaluationStack
+INTERPRETER 3
+INTERPRETER 2
+INTERPRETER 0
+INTERPRETER Leave interpret::dumpEvaluationStack
+INTERPRETER Run programIndex=5
+INTERPRETER Enter interpret::dumpEvaluationStack
+INTERPRETER 0
+INTERPRETER 0
+INTERPRETER Leave interpret::dumpEvaluationStack
+INTERPRETER Run programIndex=6
+INTERPRETER Enter interpret::dumpEvaluationStack
+INTERPRETER 0
+INTERPRETER Leave interpret::dumpEvaluationStack
+INTERPRETER Run programIndex=7
+INTERPRETER Enter interpret::dumpEvaluationStack
+INTERPRETER 4
+INTERPRETER 0
+INTERPRETER Leave interpret::dumpEvaluationStack
+INTERPRETER Run programIndex=8
+INTERPRETER Enter interpret::dumpEvaluationStack
+INTERPRETER 5
+INTERPRETER 4
+INTERPRETER 0
+INTERPRETER Leave interpret::dumpEvaluationStack
+INTERPRETER Run programIndex=9
+INTERPRETER Enter interpret::dumpEvaluationStack
+INTERPRETER 1
+INTERPRETER 0
+INTERPRETER Leave interpret::dumpEvaluationStack
+INTERPRETER Run programIndex=10
+INTERPRETER Enter interpret::dumpEvaluationStack
+INTERPRETER 1
+INTERPRETER Leave interpret::dumpEvaluationStack

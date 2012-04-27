@@ -53,16 +53,19 @@ interpret::interpret() :
 
 #if CYGWIN
 void interpret::load(void) {
-    _loadParseTree();
+    _loadTree(string("patternTree.txt"));
+    //_loadTree(string("actionTree.txt"));
     _loadSymbolTable();
 }
 
-void interpret::_loadParseTree(void) {
-    ifstream ifs("parseTree.txt");
+void interpret::_loadTree(const string& s) {
+    ifstream ifs(s.c_str());
     if (!ifs) {
+        oss() << "error opening: " << s;
+        dump();
         return;
     }
-    oss() << "interpret::loadParseTree";
+    oss() << "interpret::" << s;
     dump();
     // Typical line to read: '3 LEFT Variable 0'
     unsigned int level;
@@ -180,12 +183,12 @@ void interpret::run(void) {
         switch (_currentProgramNodeType()) {
         case nodeVar:
         case nodeConst:
-            printf("nodeVar or nodeConst\n");
+            //printf("nodeVar or nodeConst\n");
             _evaluationStack.push_front(_currentProgramNodeValue());
             //_shortCircuitOptimization();
             break;
         case nodeOperator:
-            printf("nodeOperator\n");
+            //printf("nodeOperator\n");
             evaluate(_currentProgramNodeValue());
             //_shortCircuitOptimization();
             break;
