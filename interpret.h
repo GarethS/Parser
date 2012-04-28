@@ -49,7 +49,7 @@ public:
 
 private:
     void _loadTree(const string& s);
-    void _loadSymbolTable(void);
+    void _loadSymbolTable(const string& s);
     nodeType _currentProgramNodeType(void) const {return _program[_programIndex].type();}
     nodeType _programNodeType(unsigned int i) const {return _program[i].type();}
     unsigned int _currentProgramNodeValue(void) const {return _program[_programIndex].value();}

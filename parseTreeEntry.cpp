@@ -66,6 +66,9 @@ void parseTreeEntry::dumpEntry(void) {
     case nodeInvalid:
         oss() << "nodeInvalid";
         break;
+    case nodeStartAction:
+        oss() << "nodeStartAction";
+        break;
     default:
         oss() << "nodeUnknown";
         break;

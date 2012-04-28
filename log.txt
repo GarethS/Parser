@@ -1,5 +1,6 @@
 INTERPRETER interpret::patternTree.txt
-INTERPRETER interpret::loadSymbolTable
+INTERPRETER interpret::actionTree.txt
+INTERPRETER interpret::symbolTable.txt
 INTERPRETER interpret::dumpProgram
 PARSETREEENTRY nodeVar 3 0
 PARSETREEENTRY nodeVar 3 1
@@ -12,6 +13,15 @@ PARSETREEENTRY nodeVar 2 4
 PARSETREEENTRY nodeVar 2 5
 PARSETREEENTRY nodeOperator 1 272
 PARSETREEENTRY nodeOperator 0 274
+PARSETREEENTRY nodeStartAction 0 0
+PARSETREEENTRY nodeVar 1 0
+PARSETREEENTRY nodeVar 1 5
+PARSETREEENTRY nodeOperator 0 262
+PARSETREEENTRY nodeVar 1 4
+PARSETREEENTRY nodeVar 2 4
+PARSETREEENTRY nodeVar 2 6
+PARSETREEENTRY nodeOperator 1 263
+PARSETREEENTRY nodeOperator 0 262
 INTERPRETER interpret::dumpSymbolTable
 SYMBOLTABLEENTRY nodeVar  0
 SYMBOLTABLEENTRY nodeConst  4
@@ -73,3 +83,49 @@ INTERPRETER Run programIndex=10
 INTERPRETER Enter interpret::dumpEvaluationStack
 INTERPRETER 1
 INTERPRETER Leave interpret::dumpEvaluationStack
+INTERPRETER Run programIndex=11
+INTERPRETER Enter interpret::dumpEvaluationStack
+INTERPRETER Leave interpret::dumpEvaluationStack
+INTERPRETER Run programIndex=12
+INTERPRETER Enter interpret::dumpEvaluationStack
+INTERPRETER 0
+INTERPRETER Leave interpret::dumpEvaluationStack
+INTERPRETER Run programIndex=13
+INTERPRETER Enter interpret::dumpEvaluationStack
+INTERPRETER 5
+INTERPRETER 0
+INTERPRETER Leave interpret::dumpEvaluationStack
+INTERPRETER Run programIndex=14
+INTERPRETER Enter interpret::dumpEvaluationStack
+INTERPRETER Leave interpret::dumpEvaluationStack
+INTERPRETER Run programIndex=15
+INTERPRETER Enter interpret::dumpEvaluationStack
+INTERPRETER 4
+INTERPRETER Leave interpret::dumpEvaluationStack
+INTERPRETER Run programIndex=16
+INTERPRETER Enter interpret::dumpEvaluationStack
+INTERPRETER 4
+INTERPRETER 4
+INTERPRETER Leave interpret::dumpEvaluationStack
+INTERPRETER Run programIndex=17
+INTERPRETER Enter interpret::dumpEvaluationStack
+INTERPRETER 6
+INTERPRETER 4
+INTERPRETER 4
+INTERPRETER Leave interpret::dumpEvaluationStack
+INTERPRETER Run programIndex=18
+INTERPRETER Enter interpret::dumpEvaluationStack
+INTERPRETER 1
+INTERPRETER 4
+INTERPRETER Leave interpret::dumpEvaluationStack
+INTERPRETER Run programIndex=19
+INTERPRETER Enter interpret::dumpEvaluationStack
+INTERPRETER Leave interpret::dumpEvaluationStack
+INTERPRETER interpret::dumpSymbolTable
+SYMBOLTABLEENTRY nodeVar  5
+SYMBOLTABLEENTRY nodeConst  4
+SYMBOLTABLEENTRY nodeVar  0
+SYMBOLTABLEENTRY nodeConst  43
+SYMBOLTABLEENTRY nodeVar  4
+SYMBOLTABLEENTRY nodeConst  5
+SYMBOLTABLEENTRY nodeConst  1

@@ -54,8 +54,8 @@ interpret::interpret() :
 #if CYGWIN
 void interpret::load(void) {
     _loadTree(string("patternTree.txt"));
-    //_loadTree(string("actionTree.txt"));
-    _loadSymbolTable();
+    _loadTree(string("actionTree.txt"));
+    _loadSymbolTable("symbolTable.txt");
 }
 
 void interpret::_loadTree(const string& s) {
@@ -90,6 +90,8 @@ void interpret::_loadTree(const string& s) {
             pte.type(nodeVar);
         } else if (variableOperator == "Operator") {
             pte.type(nodeOperator);
+        } else if (variableOperator == "Action") {
+            pte.type(nodeStartAction);
         }
         _program[_programIndex++] = pte;
         if (_programIndex >= MAX_PROGRAM_ENTRY) {
@@ -103,12 +105,14 @@ void interpret::_loadTree(const string& s) {
     ifs.close();
 }
 
-void interpret::_loadSymbolTable(void) {
-    ifstream ifs("symbolTable.txt");
+void interpret::_loadSymbolTable(const string& s) {
+    ifstream ifs(s.c_str());
     if (!ifs) {
+        oss() << "error opening: " << s;
+        dump();
         return;
     }
-    oss() << "interpret::loadSymbolTable";
+    oss() << "interpret::" << s;
     dump();
     // Typical line to read: '1 4', where 1 = nodeType, 4 = value. In this case it's a constant with value = 4.
     unsigned int type;
@@ -191,6 +195,15 @@ void interpret::run(void) {
             //printf("nodeOperator\n");
             evaluate(_currentProgramNodeValue());
             //_shortCircuitOptimization();
+            break;
+        case nodeStartAction:
+            // Look at value on top of stack and see if action should be executed.
+            if (!_evalValue()) {
+                // If value on top of stack == 0 then don't need to perform action statements
+                assert(_evaluationStack.empty());
+                _programIndex = 0;
+                break;
+            }
             break;
         default:
             assert(false);
@@ -654,5 +667,8 @@ int main(void) {
     i.dumpSymbolTable();
 #endif /* CYGWIN */ 
     i.run();
+#if CYGWIN
+    i.dumpSymbolTable();
+#endif /* CYGWIN */ 
     return 0;
 }

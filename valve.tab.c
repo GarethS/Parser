@@ -473,10 +473,10 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    65,    65,    70,    71,    74,    78,    79,    82,    86,
-      87,    88,    91,    92,    95,    96,    97,   100,   101,   104,
-     105,   106,   109,   112,   113,   116,   117,   118,   119,   120,
-     123,   124,   125,   126,   127
+       0,    65,    65,    70,    71,    74,    79,    80,    83,    87,
+      88,    89,    92,    93,    96,    97,    98,   101,   102,   105,
+     106,   107,   110,   113,   114,   117,   118,   119,   120,   121,
+     124,   125,   126,   127,   128
 };
 #endif
 
@@ -1441,216 +1441,217 @@ yyreduce:
 /* Line 1464 of yacc.c  */
 #line 74 "valve.y"
     {fp = fopen("patternTree.txt", "wb"); walkPatternTree((yyvsp[(1) - (4)].pArithNode), "ROOT", 0); fclose(fp);
-                                             printf("\n\n"); fp = fopen("actionTree.txt", "wb"); walkActionTree((yyvsp[(3) - (4)].pActionNode));  fclose(fp);;}
+                                             printf("\n\n"); fp = fopen("actionTree.txt", "wb");
+                                             /* FIXME! */ fwrite("0 0 Action 0\n", 1, 13, fp); walkActionTree((yyvsp[(3) - (4)].pActionNode)); fclose(fp);;}
     break;
 
   case 6:
 
 /* Line 1464 of yacc.c  */
-#line 78 "valve.y"
+#line 79 "valve.y"
     {;}
     break;
 
   case 7:
 
 /* Line 1464 of yacc.c  */
-#line 79 "valve.y"
+#line 80 "valve.y"
     {(yyval.pActionNode) = addNodeOperatorAction((yyvsp[(1) - (2)].pActionNode), (yyvsp[(2) - (2)].pArithNode));;}
     break;
 
   case 8:
 
 /* Line 1464 of yacc.c  */
-#line 82 "valve.y"
+#line 83 "valve.y"
     {(yyval.pArithNode) = addNodeVarOperand(EQUAL, (yyvsp[(1) - (4)].number), (yyvsp[(3) - (4)].pArithNode));;}
     break;
 
   case 9:
 
 /* Line 1464 of yacc.c  */
-#line 86 "valve.y"
+#line 87 "valve.y"
     {(yyval.pArithNode) = (yyvsp[(2) - (3)].pArithNode);;}
     break;
 
   case 10:
 
 /* Line 1464 of yacc.c  */
-#line 87 "valve.y"
+#line 88 "valve.y"
     {(yyval.pArithNode) = addNodeOperator((yyvsp[(2) - (3)].number), (yyvsp[(1) - (3)].pArithNode), (yyvsp[(3) - (3)].pArithNode));;}
     break;
 
   case 11:
 
 /* Line 1464 of yacc.c  */
-#line 88 "valve.y"
+#line 89 "valve.y"
     {(yyval.pArithNode) = (yyvsp[(1) - (1)].pArithNode);;}
     break;
 
   case 12:
 
 /* Line 1464 of yacc.c  */
-#line 91 "valve.y"
+#line 92 "valve.y"
     {(yyval.pArithNode) = addNodeVarOperand((yyvsp[(2) - (3)].number), (yyvsp[(1) - (3)].number), (yyvsp[(3) - (3)].pArithNode));;}
     break;
 
   case 13:
 
 /* Line 1464 of yacc.c  */
-#line 92 "valve.y"
+#line 93 "valve.y"
     {(yyval.pArithNode) = addNodeId((yyvsp[(1) - (1)].number));;}
     break;
 
   case 14:
 
 /* Line 1464 of yacc.c  */
-#line 95 "valve.y"
+#line 96 "valve.y"
     {(yyval.pArithNode) = (yyvsp[(2) - (3)].pArithNode);;}
     break;
 
   case 15:
 
 /* Line 1464 of yacc.c  */
-#line 96 "valve.y"
+#line 97 "valve.y"
     {(yyval.pArithNode) = addNodeOperator((yyvsp[(2) - (3)].number), (yyvsp[(1) - (3)].pArithNode), (yyvsp[(3) - (3)].pArithNode));;}
     break;
 
   case 16:
 
 /* Line 1464 of yacc.c  */
-#line 97 "valve.y"
+#line 98 "valve.y"
     {(yyval.pArithNode) = addNodeId((yyvsp[(1) - (1)].number));;}
     break;
 
   case 17:
 
 /* Line 1464 of yacc.c  */
-#line 100 "valve.y"
+#line 101 "valve.y"
     {(yyval.number) = (yyvsp[(1) - (1)].number);;}
     break;
 
   case 18:
 
 /* Line 1464 of yacc.c  */
-#line 101 "valve.y"
+#line 102 "valve.y"
     {(yyval.number) = addNodeVar((yyvsp[(1) - (1)].string));;}
     break;
 
   case 19:
 
 /* Line 1464 of yacc.c  */
-#line 104 "valve.y"
+#line 105 "valve.y"
     {(yyval.number) = addNodeVar((yyvsp[(1) - (1)].string));;}
     break;
 
   case 20:
 
 /* Line 1464 of yacc.c  */
-#line 105 "valve.y"
+#line 106 "valve.y"
     {(yyval.number) = addNodeVar((yyvsp[(1) - (1)].string));;}
     break;
 
   case 21:
 
 /* Line 1464 of yacc.c  */
-#line 106 "valve.y"
+#line 107 "valve.y"
     {(yyval.number) = (yyvsp[(1) - (1)].number);;}
     break;
 
   case 22:
 
 /* Line 1464 of yacc.c  */
-#line 109 "valve.y"
+#line 110 "valve.y"
     {(yyval.number) = (yyvsp[(2) - (3)].number);;}
     break;
 
   case 23:
 
 /* Line 1464 of yacc.c  */
-#line 112 "valve.y"
+#line 113 "valve.y"
     {(yyval.number) = AND;;}
     break;
 
   case 24:
 
 /* Line 1464 of yacc.c  */
-#line 113 "valve.y"
+#line 114 "valve.y"
     {(yyval.number) = OR;;}
     break;
 
   case 25:
 
 /* Line 1464 of yacc.c  */
-#line 116 "valve.y"
+#line 117 "valve.y"
     {(yyval.number) = TEST_FOR_EQUAL;;}
     break;
 
   case 26:
 
 /* Line 1464 of yacc.c  */
-#line 117 "valve.y"
+#line 118 "valve.y"
     {(yyval.number) = GEQ;;}
     break;
 
   case 27:
 
 /* Line 1464 of yacc.c  */
-#line 118 "valve.y"
+#line 119 "valve.y"
     {(yyval.number) = LEQ;;}
     break;
 
   case 28:
 
 /* Line 1464 of yacc.c  */
-#line 119 "valve.y"
+#line 120 "valve.y"
     {(yyval.number) = GTR;;}
     break;
 
   case 29:
 
 /* Line 1464 of yacc.c  */
-#line 120 "valve.y"
+#line 121 "valve.y"
     {(yyval.number) = LSS;;}
     break;
 
   case 30:
 
 /* Line 1464 of yacc.c  */
-#line 123 "valve.y"
+#line 124 "valve.y"
     {(yyval.number) = PLUS;;}
     break;
 
   case 31:
 
 /* Line 1464 of yacc.c  */
-#line 124 "valve.y"
+#line 125 "valve.y"
     {(yyval.number) = MINUS;;}
     break;
 
   case 32:
 
 /* Line 1464 of yacc.c  */
-#line 125 "valve.y"
+#line 126 "valve.y"
     {(yyval.number) = MULT;;}
     break;
 
   case 33:
 
 /* Line 1464 of yacc.c  */
-#line 126 "valve.y"
+#line 127 "valve.y"
     {(yyval.number) = DIV;;}
     break;
 
   case 34:
 
 /* Line 1464 of yacc.c  */
-#line 127 "valve.y"
+#line 128 "valve.y"
     {(yyval.number) = XOR;;}
     break;
 
 
 
 /* Line 1464 of yacc.c  */
-#line 1654 "valve.tab.c"
+#line 1655 "valve.tab.c"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -1862,7 +1863,7 @@ yyreturn:
 
 
 /* Line 1684 of yacc.c  */
-#line 131 "valve.y"
+#line 132 "valve.y"
  /* Additional C code */
 
 

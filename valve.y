@@ -72,7 +72,8 @@ patternActionList: /* empty */	{}
 ;
 
 patternAction: pattern LBRACE action RBRACE	{fp = fopen("patternTree.txt", "wb"); walkPatternTree($1, "ROOT", 0); fclose(fp);
-                                             printf("\n\n"); fp = fopen("actionTree.txt", "wb"); walkActionTree($3);  fclose(fp);}
+                                             printf("\n\n"); fp = fopen("actionTree.txt", "wb");
+                                             /* FIXME! */ fwrite("0 0 Action 0\n", 1, 13, fp); walkActionTree($3); fclose(fp);}
 ;
 
 action: /* empty */	{}
