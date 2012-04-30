@@ -55,6 +55,9 @@ void symbolTableEntry::dumpEntry(void) {
     case nodeInvalid:
         oss() << "nodeInvalid";
         break;
+    case nodeTemporary:
+        oss() << "nodeTemporary";
+        break;
     default:
         oss() << "nodeUnknown";
         break;

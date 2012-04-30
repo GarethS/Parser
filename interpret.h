@@ -65,7 +65,8 @@ private:
     symbolTableEntry _symbolTable[MAX_SYMBOL_TABLE_ENTRY];
     unsigned int _programIndex;
     unsigned int _symbolTableIndex;
-    tinyQueue<int> _evaluationStack;
+    unsigned int _symbolTableBoundaryIndex; // Boundary between temporary symbols (higher index) and regular symbols (index from 0). Use for optimization later on.
+    tinyQueue<int> _evaluationStack;    // Contains the index of a symbol, not its value.
     //deque<int> _evaluationStack;    // TODO: Initial version only use int. In future, floats or fixed-point arithmetic
     
 #if 0    

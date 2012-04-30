@@ -105,6 +105,10 @@ void interpret::_loadTree(const string& s) {
     ifs.close();
 }
 
+// Temporary symbols (e.g. the evaluation of an expression like 'x < 5' are
+//  stored just above the symbols loaded here. The value of _symbolTableIndex
+//  when this function exits will contain the dividing line between permanent
+//  and temporaries.
 void interpret::_loadSymbolTable(const string& s) {
     ifstream ifs(s.c_str());
     if (!ifs) {
@@ -140,6 +144,7 @@ void interpret::_loadSymbolTable(const string& s) {
         //oss() << level << " " << leftRight << " " << variableOperator << " " << value;
         //dump();
     }
+    _symbolTableBoundaryIndex = _symbolTableIndex - 1;
     ifs.close();
 }
 
@@ -160,18 +165,18 @@ void interpret::dumpSymbolTable(void) {
 }
 
 void interpret::dumpEvaluationStack(void) {
-    oss() << "Enter interpret::dumpEvaluationStack";
+    oss() << "ENTER interpret::dumpEvaluationStack";
     dump();
     // 1. Save current eval stack
     tinyQueue<int> _evaluationCopy;
     _evaluationCopy = _evaluationStack;
     // 2. Dump contents of the copy
     while (!_evaluationCopy.empty()) {
-        oss() << _evaluationCopy.front();
+        oss() << "Symbol index=" << _evaluationCopy.front() << " value=" << _symbolTable[_evaluationCopy.front()].value();
         dump();
         _evaluationCopy.pop_front();
     }
-    oss() << "Leave interpret::dumpEvaluationStack";
+    oss() << "LEAVE interpret::dumpEvaluationStack";
     dump();
 }
 #endif /* CYGWIN */
@@ -180,7 +185,7 @@ void interpret::run(void) {
     assert(_evaluationStack.empty());
     for (_programIndex = 0; _program[_programIndex].type() != nodeInvalid; ++_programIndex) {
 #if CYGWIN
-        oss() << "Run programIndex=" << _programIndex;
+        oss() << endl << "Run programIndex=" << _programIndex;
         dump();
         //dumpEvaluationStack();
 #endif /* CYGWIN */    
@@ -260,24 +265,49 @@ void interpret::evaluate(unsigned int op) {
     assert(_evaluationStack.size() >= 1);
     int rhs = _symbolTable[_evalValue()].value(); // this is usually the right-hand side of the parse node, the exception being BANG below
     int lhs;
+    symbolTableEntry temporarySymbol;   // Just in case we need one later in this function.
+    temporarySymbol.type(nodeTemporary);
     switch (op) {
     case BANG:
-        _evaluationStack.push_front(!rhs);
+#if CYGWIN
+        oss() << "!" << rhs;
+#endif /* CYGWIN */    
+        temporarySymbol.value(!rhs);
+        _symbolTable[_symbolTableIndex] = temporarySymbol;
+        _evaluationStack.push_front(_symbolTableIndex++);
         break;
     case PLUS:
         assert(_evaluationStack.size() >= 1);
         lhs = _symbolTable[_evalValue()].value();
-        _evaluationStack.push_front(lhs + rhs);
+#if CYGWIN
+        oss() << lhs << " + " << rhs;
+#endif /* CYGWIN */    
+        // Aargh! Don't put the evaluation value on the stack, put its index
+        //  in the symbol table. This will be a temporary symbol so create a
+        //  new one and put its value there.
+        temporarySymbol.value(lhs + rhs);
+        _symbolTable[_symbolTableIndex] = temporarySymbol;
+        _evaluationStack.push_front(_symbolTableIndex++);
         break;
     case MINUS:
         assert(_evaluationStack.size() >= 1);
         lhs = _symbolTable[_evalValue()].value();
-        _evaluationStack.push_front(lhs - rhs);
+#if CYGWIN
+        oss() << lhs << " - " << rhs;
+#endif /* CYGWIN */    
+        temporarySymbol.value(lhs - rhs);
+        _symbolTable[_symbolTableIndex] = temporarySymbol;
+        _evaluationStack.push_front(_symbolTableIndex++);
         break;
     case MULT:
         assert(_evaluationStack.size() >= 1);
         lhs = _symbolTable[_evalValue()].value();
-        _evaluationStack.push_front(lhs * rhs);
+#if CYGWIN
+        oss() << lhs << " * " << rhs;
+#endif /* CYGWIN */    
+        temporarySymbol.value(lhs * rhs);
+        _symbolTable[_symbolTableIndex] = temporarySymbol;
+        _evaluationStack.push_front(_symbolTableIndex++);
         break;
     case DIV:
         assert(_evaluationStack.size() >= 1);
@@ -285,62 +315,120 @@ void interpret::evaluate(unsigned int op) {
             // tmp = denominator
             int numerator = _symbolTable[_evalValue()].value();
             if (rhs == 0) {
-                _evaluationStack.push_front(0);
+                // If you attempt divide-by-zero we're going to give you back 0.
+                assert(rhs != 0);
+#if CYGWIN
+                oss() << "ERROR" << numerator << " / 0";
+#endif /* CYGWIN */    
+                temporarySymbol.value(0);
             } else {
-                _evaluationStack.push_front(numerator / rhs);
+#if CYGWIN
+                oss() << numerator << " / " << rhs;
+#endif /* CYGWIN */    
+                temporarySymbol.value(numerator / rhs);
             }
+            _symbolTable[_symbolTableIndex] = temporarySymbol;
+            _evaluationStack.push_front(_symbolTableIndex++);
         }
         break;
     case XOR:
         assert(_evaluationStack.size() >= 1);
         lhs = _symbolTable[_evalValue()].value();
-        _evaluationStack.push_front(lhs ^ rhs);
+#if CYGWIN
+        oss() << lhs << " ^ " << rhs;
+#endif /* CYGWIN */    
+        temporarySymbol.value(lhs ^ rhs);
+        _symbolTable[_symbolTableIndex] = temporarySymbol;
+        _evaluationStack.push_front(_symbolTableIndex++);
         break;
     case GEQ:
         assert(_evaluationStack.size() >= 1);
         lhs = _symbolTable[_evalValue()].value();
-        _evaluationStack.push_front(lhs >= rhs/* ? TRUE : FALSE*/);
+#if CYGWIN
+        oss() << lhs << " >= " << rhs;
+#endif /* CYGWIN */    
+        temporarySymbol.value(lhs >= rhs);
+        _symbolTable[_symbolTableIndex] = temporarySymbol;
+        _evaluationStack.push_front(_symbolTableIndex++);
         break;
     case LEQ:
         assert(_evaluationStack.size() >= 1);
         lhs = _symbolTable[_evalValue()].value();
-        _evaluationStack.push_front(lhs <= rhs);
+#if CYGWIN
+        oss() << lhs << " <= " << rhs;
+#endif /* CYGWIN */    
+        temporarySymbol.value(lhs <= rhs);
+        _symbolTable[_symbolTableIndex] = temporarySymbol;
+        _evaluationStack.push_front(_symbolTableIndex++);
         break;
     case NEQ:
         assert(_evaluationStack.size() >= 1);
         lhs = _symbolTable[_evalValue()].value();
-        _evaluationStack.push_front(lhs != rhs);
+#if CYGWIN
+        oss() << lhs << " != " << rhs;
+#endif /* CYGWIN */    
+        temporarySymbol.value(lhs != rhs);
+        _symbolTable[_symbolTableIndex] = temporarySymbol;
+        _evaluationStack.push_front(_symbolTableIndex++);
         break;
     case GTR:
         assert(_evaluationStack.size() >= 1);
         lhs = _symbolTable[_evalValue()].value();
-        _evaluationStack.push_front(lhs > rhs);
+#if CYGWIN
+        oss() << lhs << " > " << rhs;
+#endif /* CYGWIN */    
+        temporarySymbol.value(lhs > rhs);
+        _symbolTable[_symbolTableIndex] = temporarySymbol;
+        _evaluationStack.push_front(_symbolTableIndex++);
         break;
     case LSS:
         assert(_evaluationStack.size() >= 1);
         lhs = _symbolTable[_evalValue()].value();
-        _evaluationStack.push_front(lhs < rhs);
+#if CYGWIN
+        oss() << lhs << " < " << rhs;
+#endif /* CYGWIN */    
+        temporarySymbol.value(lhs < rhs);
+        _symbolTable[_symbolTableIndex] = temporarySymbol;
+        _evaluationStack.push_front(_symbolTableIndex++);
         break;
     case AND:
         assert(_evaluationStack.size() >= 1);
         lhs = _symbolTable[_evalValue()].value();
-        _evaluationStack.push_front(lhs && rhs);
+#if CYGWIN
+        oss() << lhs << " && " << rhs;
+#endif /* CYGWIN */    
+        temporarySymbol.value(lhs && rhs);
+        _symbolTable[_symbolTableIndex] = temporarySymbol;
+        _evaluationStack.push_front(_symbolTableIndex++);
         break;
     case OR:
         assert(_evaluationStack.size() >= 1);
         lhs = _symbolTable[_evalValue()].value();
-        _evaluationStack.push_front(lhs || rhs);
+#if CYGWIN
+        oss() << lhs << " || " << rhs;
+#endif /* CYGWIN */    
+        temporarySymbol.value(lhs || rhs);
+        _symbolTable[_symbolTableIndex] = temporarySymbol;
+        _evaluationStack.push_front(_symbolTableIndex++);
         break;
     case TEST_FOR_EQUAL:
         assert(_evaluationStack.size() >= 1);
         lhs = _symbolTable[_evalValue()].value();
-        _evaluationStack.push_front(lhs == rhs);
+#if CYGWIN
+        oss() << lhs << " == " << rhs;
+#endif /* CYGWIN */    
+        temporarySymbol.value(lhs == rhs);
+        _symbolTable[_symbolTableIndex] = temporarySymbol;
+        _evaluationStack.push_front(_symbolTableIndex++);
         break;
     case EQUAL:
         assert(_evaluationStack.size() >= 1);
         {
             // left-hand side = right-hand side
-            int leftHandSymbolTableIndex = _evalValue(); // returns symbol table index
+           int leftHandSymbolTableIndex = _evalValue(); // returns symbol table index
+#if CYGWIN
+        oss() << leftHandSymbolTableIndex << "(symbol index) = " << rhs;
+#endif /* CYGWIN */    
             // Set symbol table entry = rhs;
             _symbolTable[leftHandSymbolTableIndex].value(rhs);
             //_evaluationStack.push_front(_evalValue() == _evalValue());
@@ -348,8 +436,14 @@ void interpret::evaluate(unsigned int op) {
         break;
     default:
         assert(false);
+#if CYGWIN
+        oss() << "ERROR interpret::evaluate";
+#endif /* CYGWIN */    
         break;
     }
+#if CYGWIN
+    dump();
+#endif /* CYGWIN */    
 }
 
 #if 0
