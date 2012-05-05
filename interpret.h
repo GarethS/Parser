@@ -27,7 +27,7 @@ using namespace std;
 #endif /* CYGWIN */
 
 #define MAX_PROGRAM_ENTRY   (200)
-#define MAX_SYMBOL_TABLE_ENTRY  (20)
+#define MAX_SYMBOL_TABLE_ENTRY  (40)
 
 class interpret
 #if CYGWIN
@@ -60,12 +60,14 @@ private:
     int _findFirstParseTreeEntry(const parseTreeEntry& p);
     //int _findParseTreeEntry(nodeType t, nodePosition p, int value, unsigned int level);
     void _shortCircuitOptimization(void);
+    void _resetSymbolTableTemporaryBoundary(void) {_symbolTableIndex = _symbolTableTemporaryBoundaryIndex;}
+    void _pushSymbolOnEvaluationStack(unsigned int value);
 
     parseTreeEntry _program[MAX_PROGRAM_ENTRY];
     symbolTableEntry _symbolTable[MAX_SYMBOL_TABLE_ENTRY];
     unsigned int _programIndex;
     unsigned int _symbolTableIndex;
-    unsigned int _symbolTableBoundaryIndex; // Boundary between temporary symbols (higher index) and regular symbols (index from 0). Use for optimization later on.
+    unsigned int _symbolTableTemporaryBoundaryIndex; // Boundary between temporary symbols (higher index) and regular symbols (index from 0). Use for optimization later on.
     tinyQueue<int> _evaluationStack;    // Contains the index of a symbol, not its value.
     //deque<int> _evaluationStack;    // TODO: Initial version only use int. In future, floats or fixed-point arithmetic
     

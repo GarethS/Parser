@@ -50,7 +50,7 @@ FILE* fpSymbol = NULL;  // Symbol table file point
 %left MULT DIV	/* last one gets highest precedence */
 
 /* non-terminals */
-%type <number> identifier operator andOr operandTest var array
+%type <number> identifier operator andOr operandTest var array /*arrayDefinition*/ 
 %type <string> patternAction
 %type <pArithNode>  pattern statementAction arithmeticExpression patternCompare
 %type <pActionNode>  action
@@ -73,7 +73,7 @@ patternActionList: /* empty */	{}
 
 patternAction: pattern LBRACE action RBRACE	{fp = fopen("patternTree.txt", "wb"); walkPatternTree($1, "ROOT", 0); fclose(fp);
                                              printf("\n\n"); fp = fopen("actionTree.txt", "wb");
-                                             /* FIXME! */ fwrite("0 0 Action 0\n", 1, 13, fp); walkActionTree($3); fclose(fp);}
+                                             fwrite("0 0 Action 0\n", 1, 13/* strlen("0 0 Action 0\n") */, fp); walkActionTree($3); fclose(fp);}
 ;
 
 action: /* empty */	{}
@@ -106,6 +106,11 @@ var:		VAR				{$$ = addNodeVar($1);}
 			| VAR_METHOD	{$$ = addNodeVar($1);}
             | array         {$$ = $1;}
 ;			
+
+/*
+arrayDefinition:    VAR LBRACKET CONST RBRACKET SEMI    {}
+;
+*/
 
 array:      LBRACKET identifier RBRACKET    {$$ = $2;}
 ;
@@ -304,7 +309,7 @@ int addNodeVar(char* var) {
 	tmp.val = 0;
 	if (isConstant(&tmp)) {
 		// Assume it's a constant, but can just treat it like a variable, making sure that
-		//  any variable that starts with a numberic (i.e. a constant) is never altered.
+		//  any variable that starts with a number (i.e. a constant) is never altered.
 		tmp.val = atoi(var);
 	}
 	int found = findVariable(&tmp);

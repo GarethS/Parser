@@ -70,7 +70,7 @@ void parseTreeEntry::dumpEntry(void) {
         oss() << "nodeStartAction";
         break;
     default:
-        oss() << "nodeUnknown";
+        oss() << "ERROR nodeUnknown";
         break;
     }
     oss() << " " << level() << " " << value();

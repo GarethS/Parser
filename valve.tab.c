@@ -475,8 +475,8 @@ static const yytype_uint8 yyrline[] =
 {
        0,    65,    65,    70,    71,    74,    79,    80,    83,    87,
       88,    89,    92,    93,    96,    97,    98,   101,   102,   105,
-     106,   107,   110,   113,   114,   117,   118,   119,   120,   121,
-     124,   125,   126,   127,   128
+     106,   107,   115,   118,   119,   122,   123,   124,   125,   126,
+     129,   130,   131,   132,   133
 };
 #endif
 
@@ -1442,7 +1442,7 @@ yyreduce:
 #line 74 "valve.y"
     {fp = fopen("patternTree.txt", "wb"); walkPatternTree((yyvsp[(1) - (4)].pArithNode), "ROOT", 0); fclose(fp);
                                              printf("\n\n"); fp = fopen("actionTree.txt", "wb");
-                                             /* FIXME! */ fwrite("0 0 Action 0\n", 1, 13, fp); walkActionTree((yyvsp[(3) - (4)].pActionNode)); fclose(fp);;}
+                                             fwrite("0 0 Action 0\n", 1, 13/* strlen("0 0 Action 0\n") */, fp); walkActionTree((yyvsp[(3) - (4)].pActionNode)); fclose(fp);;}
     break;
 
   case 6:
@@ -1560,91 +1560,91 @@ yyreduce:
   case 22:
 
 /* Line 1464 of yacc.c  */
-#line 110 "valve.y"
+#line 115 "valve.y"
     {(yyval.number) = (yyvsp[(2) - (3)].number);;}
     break;
 
   case 23:
 
 /* Line 1464 of yacc.c  */
-#line 113 "valve.y"
+#line 118 "valve.y"
     {(yyval.number) = AND;;}
     break;
 
   case 24:
 
 /* Line 1464 of yacc.c  */
-#line 114 "valve.y"
+#line 119 "valve.y"
     {(yyval.number) = OR;;}
     break;
 
   case 25:
 
 /* Line 1464 of yacc.c  */
-#line 117 "valve.y"
+#line 122 "valve.y"
     {(yyval.number) = TEST_FOR_EQUAL;;}
     break;
 
   case 26:
 
 /* Line 1464 of yacc.c  */
-#line 118 "valve.y"
+#line 123 "valve.y"
     {(yyval.number) = GEQ;;}
     break;
 
   case 27:
 
 /* Line 1464 of yacc.c  */
-#line 119 "valve.y"
+#line 124 "valve.y"
     {(yyval.number) = LEQ;;}
     break;
 
   case 28:
 
 /* Line 1464 of yacc.c  */
-#line 120 "valve.y"
+#line 125 "valve.y"
     {(yyval.number) = GTR;;}
     break;
 
   case 29:
 
 /* Line 1464 of yacc.c  */
-#line 121 "valve.y"
+#line 126 "valve.y"
     {(yyval.number) = LSS;;}
     break;
 
   case 30:
 
 /* Line 1464 of yacc.c  */
-#line 124 "valve.y"
+#line 129 "valve.y"
     {(yyval.number) = PLUS;;}
     break;
 
   case 31:
 
 /* Line 1464 of yacc.c  */
-#line 125 "valve.y"
+#line 130 "valve.y"
     {(yyval.number) = MINUS;;}
     break;
 
   case 32:
 
 /* Line 1464 of yacc.c  */
-#line 126 "valve.y"
+#line 131 "valve.y"
     {(yyval.number) = MULT;;}
     break;
 
   case 33:
 
 /* Line 1464 of yacc.c  */
-#line 127 "valve.y"
+#line 132 "valve.y"
     {(yyval.number) = DIV;;}
     break;
 
   case 34:
 
 /* Line 1464 of yacc.c  */
-#line 128 "valve.y"
+#line 133 "valve.y"
     {(yyval.number) = XOR;;}
     break;
 
@@ -1863,7 +1863,7 @@ yyreturn:
 
 
 /* Line 1684 of yacc.c  */
-#line 132 "valve.y"
+#line 137 "valve.y"
  /* Additional C code */
 
 
@@ -2039,7 +2039,7 @@ int addNodeVar(char* var) {
 	tmp.val = 0;
 	if (isConstant(&tmp)) {
 		// Assume it's a constant, but can just treat it like a variable, making sure that
-		//  any variable that starts with a numberic (i.e. a constant) is never altered.
+		//  any variable that starts with a number (i.e. a constant) is never altered.
 		tmp.val = atoi(var);
 	}
 	int found = findVariable(&tmp);

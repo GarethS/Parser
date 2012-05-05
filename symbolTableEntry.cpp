@@ -59,7 +59,7 @@ void symbolTableEntry::dumpEntry(void) {
         oss() << "nodeTemporary";
         break;
     default:
-        oss() << "nodeUnknown";
+        oss() << "ERROR nodeUnknown";
         break;
     }
     oss() << " " << " " << value();
