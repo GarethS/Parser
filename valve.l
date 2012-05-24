@@ -24,8 +24,8 @@ lparen			[(]
 rparen			[)]
 lbrace			[{]
 rbrace			[}]
-rbracket		"]"
-lbracket		"["
+/* lbracket		"|" */
+/* rbracket		"]" */
 comma			[,]
 semi			[;]
 bang			[!]
@@ -52,8 +52,8 @@ outputs		{debugPrintf("OUTPUTS"); return OUTPUTS;}
 inputs	 	{debugPrintf("INPUTS"); return INPUTS;}
 {lbrace}	{debugPrintf("LBRACE"); return LBRACE;}
 {rbrace}	{debugPrintf("RBRACE"); return RBRACE;}
-{rbracket}	{debugPrintf("RBRACKET"); return RBRACKET;}
-{lbracket}	{debugPrintf("LBRACKET"); return LBRACKET;}
+[\[]	{debugPrintf("LBRACKET"); return LBRACKET;}
+"]"	        {debugPrintf("RBRACKET"); return RBRACKET;}
 {lparen}	{debugPrintf("LPAREN"); return LPAREN;}
 {rparen}	{debugPrintf("RPAREN"); return RPAREN;}
 {comma}		{debugPrintf("COMMA"); return COMMA;}
@@ -73,7 +73,7 @@ inputs	 	{debugPrintf("INPUTS"); return INPUTS;}
 {or}		{debugPrintf("OR"); return OR;}
 {and}  		{debugPrintf("AND"); return AND;}
 {testForEqual}	{debugPrintf("TEST_FOR_EQUAL"); return TEST_FOR_EQUAL;}
-{digit}+		{debugPrintf("DIGIT"); yylval.string = strdup(yytext); return CONST;}	/* constant */
+{digit}+		{debugPrintf("CONST"); yylval.string = strdup(yytext); return CONST;}	/* constant */
 {alpha}{alphanum}*	{debugPrintf("VAR"); yylval.string = strdup(yytext); return VAR;}	/* variable */
 {alpha}{alphanum}*{period}{alpha}{alphanum}*	{debugPrintf("VAR_METHOD"); yylval.string = strdup(yytext); return VAR_METHOD;}	/* method */
 
@@ -127,7 +127,7 @@ void debugPrintf(const char* pc) {
 int main(int argc, char* argv[])
 {
 	printf("Start scanner\n"); fflush(stdout);
-    yyin = fopen( "valve2.def", "r" );
+    yyin = fopen( "valve3.def", "r" );
 	int r = yylex();
 	while (r != 0) {
 		ECHO;

@@ -1,5 +1,5 @@
 (counter >= 4 || time == 43) || x < 5 {
-    //a[3];
+    a [3];
     counter = 5;
     x = x + 1;
 }		

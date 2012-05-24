@@ -458,7 +458,7 @@ static yyconst flex_int16_t yy_accept[63] =
     {   0,
         0,    0,   30,   30,    0,    0,   36,   35,   11,   35,
         7,    8,   15,   13,    9,   14,   16,   26,   10,   22,
-       12,   21,   27,    6,    5,   17,   27,   27,    3,   35,
+       12,   21,   27,    5,    6,   17,   27,   27,    3,   35,
         4,   30,   35,   33,   34,   20,   24,   29,   32,   26,
        19,   25,   18,    0,   27,   27,   27,   23,   30,   31,
        28,   27,   27,   28,   27,   27,   27,   27,    2,   27,
@@ -598,9 +598,11 @@ char *yytext;
 void debugPrintf(const char* pc);
 
 YYSTYPE yylval;
+/* lbracket		"|" */
+/* rbracket		"]" */
 
 
-#line 604 "lex.yy.c"
+#line 606 "lex.yy.c"
 
 #define INITIAL 0
 #define comment 1
@@ -846,7 +848,7 @@ YY_DECL
 /* %% [7.0] user's declarations go here */
 #line 50 "valve.l"
 
-#line 850 "lex.yy.c"
+#line 852 "lex.yy.c"
 
 	if ( !(yy_init) )
 		{
@@ -983,12 +985,12 @@ YY_RULE_SETUP
 case 5:
 YY_RULE_SETUP
 #line 55 "valve.l"
-{debugPrintf("RBRACKET"); return RBRACKET;}
+{debugPrintf("LBRACKET"); return LBRACKET;}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
 #line 56 "valve.l"
-{debugPrintf("LBRACKET"); return LBRACKET;}
+{debugPrintf("RBRACKET"); return RBRACKET;}
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
@@ -1088,7 +1090,7 @@ YY_RULE_SETUP
 case 26:
 YY_RULE_SETUP
 #line 76 "valve.l"
-{debugPrintf("DIGIT"); yylval.string = strdup(yytext); return CONST;}	/* constant */
+{debugPrintf("CONST"); yylval.string = strdup(yytext); return CONST;}	/* constant */
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
@@ -1136,7 +1138,7 @@ YY_RULE_SETUP
 #line 93 "valve.l"
 ECHO;
 	YY_BREAK
-#line 1140 "lex.yy.c"
+#line 1142 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 case YY_STATE_EOF(comment):
 case YY_STATE_EOF(commentNew):
@@ -2312,7 +2314,7 @@ void debugPrintf(const char* pc) {
 int main(int argc, char* argv[])
 {
 	printf("Start scanner\n"); fflush(stdout);
-    yyin = fopen( "valve2.def", "r" );
+    yyin = fopen( "valve3.def", "r" );
 	int r = yylex();
 	while (r != 0) {
 		ECHO;

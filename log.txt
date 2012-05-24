@@ -19,7 +19,7 @@ PARSETREEENTRY nodeVar 1 5
 PARSETREEENTRY nodeOperator 0 262
 PARSETREEENTRY nodeVar 1 4
 PARSETREEENTRY nodeVar 2 4
-PARSETREEENTRY nodeVar 2 6
+PARSETREEENTRY nodeVar 2 10
 PARSETREEENTRY nodeOperator 1 263
 PARSETREEENTRY nodeOperator 0 262
 INTERPRETER interpret::dumpSymbolTable
@@ -29,6 +29,10 @@ SYMBOLTABLEENTRY nodeVar  0
 SYMBOLTABLEENTRY nodeConst  43
 SYMBOLTABLEENTRY nodeVar  0
 SYMBOLTABLEENTRY nodeConst  5
+SYMBOLTABLEENTRY nodeVar  3
+SYMBOLTABLEENTRY nodeVar  0
+SYMBOLTABLEENTRY nodeVar  0
+SYMBOLTABLEENTRY nodeVar  0
 SYMBOLTABLEENTRY nodeConst  1
 INTERPRETER 
 Run programIndex=0
@@ -45,59 +49,59 @@ INTERPRETER
 Run programIndex=2
 INTERPRETER 0 >= 4
 INTERPRETER ENTER interpret::dumpEvaluationStack
-INTERPRETER Symbol index=7 value=0
+INTERPRETER Symbol index=11 value=0
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER 
 Run programIndex=3
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=2 value=0
-INTERPRETER Symbol index=7 value=0
+INTERPRETER Symbol index=11 value=0
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER 
 Run programIndex=4
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=3 value=43
 INTERPRETER Symbol index=2 value=0
-INTERPRETER Symbol index=7 value=0
+INTERPRETER Symbol index=11 value=0
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER 
 Run programIndex=5
 INTERPRETER 0 == 43
 INTERPRETER ENTER interpret::dumpEvaluationStack
-INTERPRETER Symbol index=8 value=0
-INTERPRETER Symbol index=7 value=0
+INTERPRETER Symbol index=12 value=0
+INTERPRETER Symbol index=11 value=0
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER 
 Run programIndex=6
 INTERPRETER 0 || 0
 INTERPRETER ENTER interpret::dumpEvaluationStack
-INTERPRETER Symbol index=9 value=0
+INTERPRETER Symbol index=13 value=0
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER 
 Run programIndex=7
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=4 value=0
-INTERPRETER Symbol index=9 value=0
+INTERPRETER Symbol index=13 value=0
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER 
 Run programIndex=8
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=5 value=5
 INTERPRETER Symbol index=4 value=0
-INTERPRETER Symbol index=9 value=0
+INTERPRETER Symbol index=13 value=0
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER 
 Run programIndex=9
 INTERPRETER 0 < 5
 INTERPRETER ENTER interpret::dumpEvaluationStack
-INTERPRETER Symbol index=10 value=1
-INTERPRETER Symbol index=9 value=0
+INTERPRETER Symbol index=14 value=1
+INTERPRETER Symbol index=13 value=0
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER 
 Run programIndex=10
 INTERPRETER 0 || 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
-INTERPRETER Symbol index=11 value=1
+INTERPRETER Symbol index=15 value=1
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER 
 Run programIndex=11
@@ -133,7 +137,7 @@ INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER 
 Run programIndex=17
 INTERPRETER ENTER interpret::dumpEvaluationStack
-INTERPRETER Symbol index=6 value=1
+INTERPRETER Symbol index=10 value=1
 INTERPRETER Symbol index=4 value=0
 INTERPRETER Symbol index=4 value=0
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -141,7 +145,7 @@ INTERPRETER
 Run programIndex=18
 INTERPRETER 0 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
-INTERPRETER Symbol index=12 value=1
+INTERPRETER Symbol index=16 value=1
 INTERPRETER Symbol index=4 value=0
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER 
@@ -156,6 +160,10 @@ SYMBOLTABLEENTRY nodeVar  0
 SYMBOLTABLEENTRY nodeConst  43
 SYMBOLTABLEENTRY nodeVar  1
 SYMBOLTABLEENTRY nodeConst  5
+SYMBOLTABLEENTRY nodeVar  3
+SYMBOLTABLEENTRY nodeVar  0
+SYMBOLTABLEENTRY nodeVar  0
+SYMBOLTABLEENTRY nodeVar  0
 SYMBOLTABLEENTRY nodeConst  1
 SYMBOLTABLEENTRY nodeTemporary  0
 SYMBOLTABLEENTRY nodeTemporary  0

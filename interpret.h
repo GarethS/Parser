@@ -70,6 +70,7 @@ private:
     unsigned int _symbolTableTemporaryBoundaryIndex; // Boundary between temporary symbols (higher index) and regular symbols (index from 0). Use for optimization later on.
     tinyQueue<int> _evaluationStack;    // Contains the index of a symbol, not its value.
     //deque<int> _evaluationStack;    // TODO: Initial version only use int. In future, floats or fixed-point arithmetic
+    bool _evaluatingPattern;
     
 #if 0    
 	accel a;

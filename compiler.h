@@ -17,13 +17,15 @@ typedef enum {OP_PLUS, OP_MINUS, OP_MULT, OP_DIV, OP_XOR, OP_AND, OP_OR, OP_EQUA
 
 
 #define EOS				'\0'	// End of string
-#define VAR_ITEMS		(200)
-#define ARITH_ITEMS		(200)
-#define ACTION_ITEMS	(200)
+#define VAR_ITEMS		(2000)
+#define ARITH_ITEMS		(2000)
+#define ACTION_ITEMS	(2000)
 //#define VAR_MAX_INDEX	(VAR_ITEMS-1)
 #define VAR_NAME_LENGTH	(12)
 #define VAR_NOT_FOUND	(-1)
 #define VAR_TABLE_LIMIT	(-2)	// Ran out of room in table
+
+#define DEFAULT_VAR_VALUE   (0)
 
 typedef struct thisVariableNode {
 	char name[VAR_NAME_LENGTH];
@@ -72,6 +74,8 @@ arithNode* addNodeActionId(char* id);
 // New functions 
 arithNode* getAvailNode(void);
 int addNodeVar(char* var);
+void buildNodeVar(char* name, int value, varNode* varNode);
+int addNodeArray(char* var, const unsigned int maxRange);
 int infixPatternTraversal(arithNode* pn);
 
 void initVarTable(void);

@@ -16,7 +16,7 @@
 #define NOT_FOUND   (-1)
 
 // nodeStartAction is the start of an action sequence in the program
-typedef enum {nodeVar, nodeConst, nodeOperator, nodeInvalid, nodeStartAction, nodeTemporary, nodeFloat, nodeMotorMove, nodeMotorGetPosition} nodeType;
+typedef enum {nodeVar, nodeConst, nodeOperator, nodeArray, nodeInvalid, nodeStartAction, nodeTemporary, nodeFloat, nodeMotorMove, nodeMotorGetPosition} nodeType;
 typedef enum {nodeLeft, nodeRight, nodeRoot} nodePosition;
 
 #endif /* _COMPILERHELPER_H_ */

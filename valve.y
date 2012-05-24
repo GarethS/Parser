@@ -50,9 +50,9 @@ FILE* fpSymbol = NULL;  // Symbol table file point
 %left MULT DIV	/* last one gets highest precedence */
 
 /* non-terminals */
-%type <number> identifier operator andOr operandTest var array /*arrayDefinition*/ 
+%type <number> identifier operator andOr operandTest var arrayDefine 
 %type <string> patternAction
-%type <pArithNode>  pattern statementAction arithmeticExpression patternCompare
+%type <pArithNode>  pattern statementAction arithmeticExpression patternCompare array
 %type <pActionNode>  action
 
 %defines	/* generate valve.tab.h for use with lex.yy.c */
@@ -81,6 +81,7 @@ action: /* empty */	{}
 ;
 
 statementAction:	var EQUAL arithmeticExpression SEMI	{$$ = addNodeVarOperand(EQUAL, $1, $3);}
+                    | arrayDefine {$$ = NULL;}
 ;			
 
 /* eg: patternCompare && patternCompare */
@@ -96,6 +97,7 @@ patternCompare:	var operandTest arithmeticExpression	{$$ = addNodeVarOperand($2,
 arithmeticExpression:	LPAREN arithmeticExpression RPAREN						{$$ = $2;}
 						| arithmeticExpression operator arithmeticExpression	{$$ = addNodeOperator($2, $1, $3);}
 						| identifier											{$$ = addNodeId($1);}
+                        | array                                                 {}
 ;						
 
 identifier:	var		{$$ = $1;}	/* Set top of stack to index of this variable in symbol table. */
@@ -104,15 +106,13 @@ identifier:	var		{$$ = $1;}	/* Set top of stack to index of this variable in sym
 
 var:		VAR				{$$ = addNodeVar($1);}
 			| VAR_METHOD	{$$ = addNodeVar($1);}
-            | array         {$$ = $1;}
 ;			
 
-/*
-arrayDefinition:    VAR LBRACKET CONST RBRACKET SEMI    {}
+arrayDefine:    VAR LBRACKET CONST RBRACKET SEMI    {$$ = addNodeArray($1, atoi($3));}
 ;
-*/
 
-array:      LBRACKET identifier RBRACKET    {$$ = $2;}
+// identifier replaced by arithmeticExpression
+array:      LBRACKET arithmeticExpression RBRACKET    {$$ = $2;}
 ;
 
 andOr:	AND		{$$ = AND;}
@@ -302,16 +302,40 @@ int isConstant(varNode* pVar) {
 	return FALSE;
 }
 
-int addNodeVar(char* var) {
-	varNode tmp;
-	strncpy(tmp.name, var, VAR_NAME_LENGTH-1);
-	tmp.name[VAR_NAME_LENGTH-1] = EOS;
-	tmp.val = 0;
-	if (isConstant(&tmp)) {
+void buildNodeVar(char* name, int value, varNode* varNode) {
+	strncpy(varNode->name, name, VAR_NAME_LENGTH-1);
+	varNode->name[VAR_NAME_LENGTH-1] = EOS;
+	varNode->val = value;
+	if (isConstant(varNode)) {
 		// Assume it's a constant, but can just treat it like a variable, making sure that
 		//  any variable that starts with a number (i.e. a constant) is never altered.
-		tmp.val = atoi(var);
+		varNode->val = atoi(name);
 	}
+}
+
+// The first entry in an array definition contains the max range. The next entry
+//  is the contents of a[0], then a[1] ...
+// N.B. If maxRange is 2, then maxIndex is 1.
+int addNodeArray(char* var, const unsigned int maxRange) {
+    //printf("addNodeArray: %s, %d", var, maxRange);
+    varNode tmp;
+    buildNodeVar(var, maxRange, &tmp);
+    int found = findVariable(&tmp);
+	if (findVariable(&tmp) == VAR_NOT_FOUND) {
+        if (insertVariable(&tmp) == VAR_TABLE_LIMIT) {
+            return VAR_TABLE_LIMIT;
+        }
+        if (varTableFreeIndex + maxRange >= VAR_ITEMS) {
+            varTableFreeIndex--;    // Remove variable just insterted.
+            return VAR_TABLE_LIMIT;
+        }
+        varTableFreeIndex += maxRange;
+    }
+}
+
+int addNodeVar(char* var) {
+	varNode tmp;
+    buildNodeVar(var, DEFAULT_VAR_VALUE, &tmp);
 	int found = findVariable(&tmp);
 	if (found == VAR_NOT_FOUND) {
 		return insertVariable(&tmp);
@@ -323,6 +347,10 @@ int addNodeVar(char* var) {
 // The following 2 functions are only used by 'action' in the 
 //  'pattern {action} part of the grammar.
 actionNode* addNodeOperatorAction(actionNode* pActionNode, arithNode* pArithNode) {
+    if (pArithNode == NULL) {
+        // Special case for array definition
+        return pActionNode;
+    }
 	actionNode* p = getNextActionNode();
 	if (p == NULL) {
 		//assert(p != NULL);
@@ -550,5 +578,7 @@ void dumpSymbol(int i) {
 	printf("\nindex:%d, name:%s, type:%d, val:%d", i, varTable[i].name, symbolType, varTable[i].val);
     char tmp[64];
     sprintf(tmp, "%d %d\n", /*varTable[i].name,*/ symbolType, varTable[i].val);
-    fwrite(tmp, 1, strlen(tmp), fpSymbol);
+    if (fpSymbol != NULL) {
+        fwrite(tmp, 1, strlen(tmp), fpSymbol);
+    }
 }

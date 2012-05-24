@@ -4,6 +4,6 @@
 0 ROOT Operator 262
 1 LEFT Variable 4
 2 LEFT Variable 4
-2 RIGHT Variable 6
+2 RIGHT Variable 10
 1 RIGHT Operator 263
 0 ROOT Operator 262

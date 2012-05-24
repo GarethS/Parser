@@ -40,7 +40,7 @@ interpret::interpret() :
 #if CYGWIN 
 					logc(std::string("INTERPRETER"))
 #endif /* CYGWIN */		
-                    , _programIndex(0), _symbolTableIndex(0) {
+                    , _programIndex(0), _symbolTableIndex(0), _evaluatingPattern(true) {
 #if 0                    
     for (int i = 0; i < MAX_PROGRAM_ENTRY; ++i) {
         //printf("%d %d\n", i, _program[i].type());
@@ -207,6 +207,7 @@ void interpret::run(void) {
                 // If value on top of stack == 0 then don't need to perform action statements
                 assert(_evaluationStack.empty());
                 _programIndex = 0;
+                _evaluatingPattern = false; // Now evaluating action part
                 break;
             }
             break;
@@ -402,6 +403,27 @@ void interpret::evaluate(unsigned int op) {
             //_evaluationStack.push_front(_evalValue() == _evalValue());
         }
         break;
+    case LBRACKET:
+        // Got something like: a[x], push symbol table index onto evaluation stack
+        assert(_evaluationStack.size() >= 1);
+        lhs = _symbolTable[_evalValue()].value();   // Array range. Remember, max index is 1 less.
+        if (rhs > lhs) {
+            // Exceeded array range so cancel pattern or action and print error
+            if (_evaluatingPattern) {
+                // Abandon all evaluation here since it's impossible to tell if the pattern is true or not.
+            } else {
+                // Can just abandon evaluation of this action statment and move on to the next
+            }
+#if CYGWIN
+            oss() << "Array index out-of-bounds: " /*  TODO: Print symbol name. Currently not stored with symbol. */;
+#endif /* CYGWIN */    
+        } else {
+            _evaluationStack.push_front(lhs + rhs); // push symbol table index of a[x]
+#if CYGWIN
+            oss() << lhs << "[" << rhs << "]";
+#endif /* CYGWIN */    
+        }
+        break;
     default:
         assert(false);
 #if CYGWIN
@@ -414,6 +436,7 @@ void interpret::evaluate(unsigned int op) {
 #endif /* CYGWIN */    
 }
 
+// Push temporary symbol
 void interpret::_pushSymbolOnEvaluationStack(unsigned int value) {
     symbolTableEntry temporarySymbol(nodeTemporary, value); 
     _symbolTable[_symbolTableIndex] = temporarySymbol;
