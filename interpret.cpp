@@ -399,6 +399,10 @@ void interpret::evaluate(unsigned int op) {
             oss() << leftHandSymbolTableIndex << "(symbol index) = " << rhs;
 #endif /* CYGWIN */    
             // Set symbol table entry = rhs;
+            //if (_symbolTable[leftHandSymbolTableIndex].type() == nodeConst) {
+            //    // It's a constant so don't modify it's value
+            //    assert(_symbolTable[leftHandSymbolTableIndex].type() != nodeConst);
+            //}
             _symbolTable[leftHandSymbolTableIndex].value(rhs);
             //_evaluationStack.push_front(_evalValue() == _evalValue());
         }
@@ -406,7 +410,7 @@ void interpret::evaluate(unsigned int op) {
     case LBRACKET:
         // Got something like: a[x], push symbol table index onto evaluation stack
         assert(_evaluationStack.size() >= 1);
-        lhs = _symbolTable[_evalValue()].value();   // Array range. Remember, max index is 1 less.
+        lhs = _evalValue();   // Array range. Remember, max index is 1 less.
         if (rhs > lhs) {
             // Exceeded array range so cancel pattern or action and print error
             if (_evaluatingPattern) {

@@ -59,6 +59,7 @@ TODO:
 14. Abandon evaluation on array out of bounds. Print array that overflowed
 14b. Keep variable name in symbol table to print array that overflowed.
 17. Loop over pattern,action and make sure it responds correctly
+18. Never change a constant in interpreter. In particular, max range of array.
 
 TODO optional:
 6. Multiple pattern{action} blocks

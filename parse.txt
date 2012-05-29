@@ -2,6 +2,7 @@
      
       
         
+         
 Pattern tree:
 ***LEFT Var: index,0 name,counter
 ***RIGHT Var: index,1 name,4
@@ -23,6 +24,13 @@ ROOT Operator: = 262Pattern tree:
 **LEFT Var: index,4 name,x
 **RIGHT Var: index,10 name,1
 *RIGHT Operator: + 263
+ROOT Operator: = 262Pattern tree:
+**LEFT Array: index,6 name,a
+***LEFT Var: index,4 name,x
+***RIGHT Var: index,10 name,1
+**RIGHT Operator: + 263
+*LEFT Operator: array 281
+*RIGHT Var: index,11 name,7
 ROOT Operator: = 262		
 
 Symbol table:
@@ -37,3 +45,4 @@ index:7, name:, type:0, val:0
 index:8, name:, type:0, val:0
 index:9, name:, type:0, val:0
 index:10, name:1, type:1, val:1
+index:11, name:7, type:1, val:7

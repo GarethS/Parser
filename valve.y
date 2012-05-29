@@ -50,7 +50,7 @@ FILE* fpSymbol = NULL;  // Symbol table file point
 %left MULT DIV	/* last one gets highest precedence */
 
 /* non-terminals */
-%type <number> identifier operator andOr operandTest var arrayDefine 
+%type <number> identifier operator andOr operandTest var arrayDefine
 %type <string> patternAction
 %type <pArithNode>  pattern statementAction arithmeticExpression patternCompare array
 %type <pActionNode>  action
@@ -82,6 +82,7 @@ action: /* empty */	{}
 
 statementAction:	var EQUAL arithmeticExpression SEMI	{$$ = addNodeVarOperand(EQUAL, $1, $3);}
                     | arrayDefine {$$ = NULL;}
+                    | array EQUAL arithmeticExpression SEMI {$$ = addNodeOperator(EQUAL, $1, $3);}
 ;			
 
 /* eg: patternCompare && patternCompare */
@@ -97,7 +98,7 @@ patternCompare:	var operandTest arithmeticExpression	{$$ = addNodeVarOperand($2,
 arithmeticExpression:	LPAREN arithmeticExpression RPAREN						{$$ = $2;}
 						| arithmeticExpression operator arithmeticExpression	{$$ = addNodeOperator($2, $1, $3);}
 						| identifier											{$$ = addNodeId($1);}
-                        | array                                                 {}
+                        | array                                                 {$$ = $1;}
 ;						
 
 identifier:	var		{$$ = $1;}	/* Set top of stack to index of this variable in symbol table. */
@@ -108,11 +109,11 @@ var:		VAR				{$$ = addNodeVar($1);}
 			| VAR_METHOD	{$$ = addNodeVar($1);}
 ;			
 
-arrayDefine:    VAR LBRACKET CONST RBRACKET SEMI    {$$ = addNodeArray($1, atoi($3));}
+// identifier replaced by arithmeticExpression
+array:      VAR LBRACKET arithmeticExpression RBRACKET    {$$ = addNodeArray($1, $3);}
 ;
 
-// identifier replaced by arithmeticExpression
-array:      LBRACKET arithmeticExpression RBRACKET    {$$ = $2;}
+arrayDefine:    VAR LBRACKET CONST RBRACKET SEMI    {$$ = addArrayToSymbolTable($1, atoi($3));}
 ;
 
 andOr:	AND		{$$ = AND;}
@@ -244,6 +245,22 @@ arithNode* addNodeOperator(int operator, arithNode* pLeft, arithNode* pRight) {
 	return p;	
 }
 
+arithNode* addNodeArray(char* pVarName, arithNode* pRight) {
+    // 1. Make new arithNode to contain index of array (starting point). Actual array
+    //     index can't be determined until run time.
+	arithNode* pArrayVar = getNextArithNode();
+	if (pArrayVar == NULL) {
+		//assert(pArrayVar != NULL);
+		return pArrayVar;
+	}
+	pArrayVar->type = nodeArray;
+    varNode* pArrayNode;
+    buildNodeVar(pVarName, 0, pArrayNode);
+    //assert(findVariable(pArrayNode) != VAR_NOT_FOUND);
+	pArrayVar->value = findVariable(pArrayNode);
+    addNodeOperator(LBRACKET, pArrayVar, pRight);
+}
+
 // e.g. c3 == 4 * c1;
 arithNode* addNodeVarOperand(int operator, int varIndex, arithNode* pRight) {
 	arithNode* p = getNextArithNode();
@@ -316,8 +333,8 @@ void buildNodeVar(char* name, int value, varNode* varNode) {
 // The first entry in an array definition contains the max range. The next entry
 //  is the contents of a[0], then a[1] ...
 // N.B. If maxRange is 2, then maxIndex is 1.
-int addNodeArray(char* var, const unsigned int maxRange) {
-    //printf("addNodeArray: %s, %d", var, maxRange);
+int addArrayToSymbolTable(char* var, const unsigned int maxRange) {
+    //printf("addArrayToSymbolTable: %s, %d", var, maxRange);
     varNode tmp;
     buildNodeVar(var, maxRange, &tmp);
     int found = findVariable(&tmp);
@@ -326,7 +343,7 @@ int addNodeArray(char* var, const unsigned int maxRange) {
             return VAR_TABLE_LIMIT;
         }
         if (varTableFreeIndex + maxRange >= VAR_ITEMS) {
-            varTableFreeIndex--;    // Remove variable just insterted.
+            varTableFreeIndex--;    // Remove variable just insterted with insertVariable().
             return VAR_TABLE_LIMIT;
         }
         varTableFreeIndex += maxRange;
@@ -468,6 +485,9 @@ void printOperator(int value) {
     case TEST_FOR_EQUAL:
         printf("==");
         break;
+    case LBRACKET:
+        printf("array");
+        break;
     default:
         printf("Unknown operator");
         break;
@@ -504,6 +524,12 @@ void walkPatternTree(arithNode* pArithNode, char* position, int indent) {
 
 		printf(" Var: index,%d name,%s", pArithNode->value, varTable[pArithNode->value].name);
 		break;
+    case (nodeArray):
+        sprintf(tmp, "%d %s Variable %d\n", indent, position, pArithNode->value);
+        fwrite(tmp, 1, strlen(tmp), fp);
+
+		printf(" Array: index,%d name,%s", pArithNode->value, varTable[pArithNode->value].name);
+        break;
 	default:
 		printf(" walkPatternTree: Unknown type");
 		break;

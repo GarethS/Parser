@@ -64,6 +64,7 @@ void printBoilerplate(void);
 // The following 2 functions are only used by 'pattern' in the 
 //  'pattern {action} part of the grammar.
 arithNode* addNodeOperator(int operator, arithNode* pLeft, arithNode* pRight);
+arithNode* addNodeArray(char* pVar, arithNode* pRight);
 arithNode* addNodeVarOperand(int operator, int varIndex, arithNode* pRight);
 arithNode* addNodeId(int varIndex);
 
@@ -75,7 +76,7 @@ arithNode* addNodeActionId(char* id);
 arithNode* getAvailNode(void);
 int addNodeVar(char* var);
 void buildNodeVar(char* name, int value, varNode* varNode);
-int addNodeArray(char* var, const unsigned int maxRange);
+int addArrayToSymbolTable(char* varName, const unsigned int maxRange);
 int infixPatternTraversal(arithNode* pn);
 
 void initVarTable(void);
