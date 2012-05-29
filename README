@@ -56,10 +56,10 @@ TODO:
 10a. input, output, time, motor
 11. Make sure symbol table doesn't overflow. Do this in symbol table class.
 12. Symbol class that can hold floats as well as ints
-14. Abandon evaluation on array out of bounds. Print array that overflowed
+*14. Abandon evaluation on array out of bounds. Print array that overflowed
 14b. Keep variable name in symbol table to print array that overflowed.
 17. Loop over pattern,action and make sure it responds correctly
-18. Never change a constant in interpreter. In particular, max range of array.
+*18. Never change a constant in interpreter. In particular, max range of array.
 
 TODO optional:
 6. Multiple pattern{action} blocks

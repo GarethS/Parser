@@ -399,19 +399,25 @@ void interpret::evaluate(unsigned int op) {
             oss() << leftHandSymbolTableIndex << "(symbol index) = " << rhs;
 #endif /* CYGWIN */    
             // Set symbol table entry = rhs;
-            //if (_symbolTable[leftHandSymbolTableIndex].type() == nodeConst) {
-            //    // It's a constant so don't modify it's value
-            //    assert(_symbolTable[leftHandSymbolTableIndex].type() != nodeConst);
-            //}
-            _symbolTable[leftHandSymbolTableIndex].value(rhs);
+            if (_symbolTable[leftHandSymbolTableIndex].type() == nodeConst) {
+                // It's a constant so don't modify it's value
+                assert(_symbolTable[leftHandSymbolTableIndex].type() != nodeConst);
+            } else {
+                _symbolTable[leftHandSymbolTableIndex].value(rhs);
+            }
             //_evaluationStack.push_front(_evalValue() == _evalValue());
         }
         break;
     case LBRACKET:
         // Got something like: a[x], push symbol table index onto evaluation stack
         assert(_evaluationStack.size() >= 1);
-        lhs = _evalValue();   // Array range. Remember, max index is 1 less.
-        if (rhs > lhs) {
+        lhs = _evalValue();   // Array index
+        {
+        int arrayRange = _symbolTable[lhs].value();   // Array range. Remember, max index is 1 less.
+#if CYGWIN
+        //oss() << "Array range: " << arrayRange;
+#endif /* CYGWIN */    
+        if (rhs > arrayRange) {
             // Exceeded array range so cancel pattern or action and print error
             if (_evaluatingPattern) {
                 // Abandon all evaluation here since it's impossible to tell if the pattern is true or not.
@@ -424,8 +430,9 @@ void interpret::evaluate(unsigned int op) {
         } else {
             _evaluationStack.push_front(lhs + rhs); // push symbol table index of a[x]
 #if CYGWIN
-            oss() << lhs << "[" << rhs << "]";
+            oss() << lhs << "[" << rhs << "]" << ", Range=" << arrayRange;
 #endif /* CYGWIN */    
+        }
         }
         break;
     default:

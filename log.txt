@@ -188,7 +188,7 @@ INTERPRETER Symbol index=6 value=3
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER 
 Run programIndex=24
-INTERPRETER 6[2]
+INTERPRETER 6[2], Range=3
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=8 value=0
 INTERPRETER LEAVE interpret::dumpEvaluationStack
