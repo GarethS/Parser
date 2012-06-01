@@ -428,7 +428,8 @@ void interpret::evaluate(unsigned int op) {
             oss() << "Array index out-of-bounds: " /*  TODO: Print symbol name. Currently not stored with symbol. */;
 #endif /* CYGWIN */    
         } else {
-            _evaluationStack.push_front(lhs + rhs); // push symbol table index of a[x]
+            // The + 1 is because the very first index in the array stores the array range, not an array value.
+            _evaluationStack.push_front(lhs + rhs + 1); // push symbol table index of a[x]
 #if CYGWIN
             oss() << lhs << "[" << rhs << "]" << ", Range=" << arrayRange;
 #endif /* CYGWIN */    

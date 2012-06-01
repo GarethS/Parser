@@ -60,6 +60,7 @@ TODO:
 14b. Keep variable name in symbol table to print array that overflowed.
 17. Loop over pattern,action and make sure it responds correctly
 *18. Never change a constant in interpreter. In particular, max range of array.
+19. addNodeId() needs a better name
 
 TODO optional:
 6. Multiple pattern{action} blocks

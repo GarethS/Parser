@@ -64,7 +64,8 @@ void printBoilerplate(void);
 // The following 2 functions are only used by 'pattern' in the 
 //  'pattern {action} part of the grammar.
 arithNode* addNodeOperator(int operator, arithNode* pLeft, arithNode* pRight);
-arithNode* addNodeArray(char* pVar, arithNode* pRight);
+arithNode* addNodeArray(char* pVar, arithNode* pIndex);
+arithNode* addNodeArrayConstIndex(char* pVar, int symbolTableIndex);
 arithNode* addNodeVarOperand(int operator, int varIndex, arithNode* pRight);
 arithNode* addNodeId(int varIndex);
 
@@ -97,5 +98,7 @@ void walkActionTree(actionNode* pNode);
 void dumpSymbolTable(void);
 void dumpSymbol(int i);
 //void freeNode(node* pNode);
+
+#define debugAssert(x)  printf("\n" #x); fflush(stdout);
 
 #endif /* compiler_h */

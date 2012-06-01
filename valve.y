@@ -16,6 +16,7 @@
 #include <stdio.h>
 #include <malloc.h>
 #include <string.h>
+//#include <assert.h>
 #include "compiler.h"
 
 // Variable symbol table (also contains constants).
@@ -111,6 +112,7 @@ var:		VAR				{$$ = addNodeVar($1);}
 
 // identifier replaced by arithmeticExpression
 array:      VAR LBRACKET arithmeticExpression RBRACKET    {$$ = addNodeArray($1, $3);}
+            | VAR LBRACKET CONST RBRACKET    {$$ = addNodeArrayConstIndex($1, addNodeVar($3));}
 ;
 
 arrayDefine:    VAR LBRACKET CONST RBRACKET SEMI    {$$ = addArrayToSymbolTable($1, atoi($3));}
@@ -235,6 +237,7 @@ void pushOutputLine(char* line) {
 arithNode* addNodeOperator(int operator, arithNode* pLeft, arithNode* pRight) {
 	arithNode* p = getNextArithNode();
 	if (p == NULL) {
+        printf("ERROR:addNodeOperator()");
 		//assert(p != NULL);
 		return p;
 	}
@@ -245,20 +248,41 @@ arithNode* addNodeOperator(int operator, arithNode* pLeft, arithNode* pRight) {
 	return p;	
 }
 
-arithNode* addNodeArray(char* pVarName, arithNode* pRight) {
+arithNode* addNodeArrayConstIndex(char* pVarName, int symbolTableIndex) {
+    arithNode* pArrayNode = addNodeArray(pVarName, addNodeId(symbolTableIndex));
+    printf("root=%d, left=%d, right=%d", pArrayNode->value, pArrayNode->pLeft->value, pArrayNode->pRight->value);
+    //walkPatternTree(pArrayNode, "rootXXX", 0);
+    return pArrayNode;
+}
+
+arithNode* addNodeArray(char* pVarName, arithNode* pIndex) {
     // 1. Make new arithNode to contain index of array (starting point). Actual array
     //     index can't be determined until run time.
+    //printf("xxx root=%d, left=%d, right=%d", pIndex->value, pIndex->pLeft->value, pIndex->pRight->value);
+    //printf("xxx root=%d\n", pIndex->value);
 	arithNode* pArrayVar = getNextArithNode();
 	if (pArrayVar == NULL) {
+        debugAssert(ERR:addNodeArray():pArrayVar == NULL);
 		//assert(pArrayVar != NULL);
 		return pArrayVar;
 	}
 	pArrayVar->type = nodeArray;
-    varNode* pArrayNode;
-    buildNodeVar(pVarName, 0, pArrayNode);
-    //assert(findVariable(pArrayNode) != VAR_NOT_FOUND);
-	pArrayVar->value = findVariable(pArrayNode);
-    addNodeOperator(LBRACKET, pArrayVar, pRight);
+    varNode pArrayNode;
+    buildNodeVar(pVarName, 0, &pArrayNode);
+	pArrayVar->value = findVariable(&pArrayNode);
+    if (pArrayVar->value == VAR_NOT_FOUND) {
+        debugAssert(ERR: addNodeArray():VAR_NOT_FOUND);
+    }
+#if 1
+    // This fails
+    return addNodeOperator(LBRACKET, pArrayVar, pIndex);
+#else    
+    // This passes, but looks like it's using the wrong index in the array
+    //return addNodeOperator(LBRACKET, pArrayVar, pIndex);
+    arithNode* pan = addNodeOperator(LBRACKET, pArrayVar, pIndex);
+    //printf("yyyroot=%d, left=%d, right=%d", pan->value, pan->pLeft->value, pan->pRight->value);
+    return pan;
+#endif    
 }
 
 // e.g. c3 == 4 * c1;
@@ -320,6 +344,10 @@ int isConstant(varNode* pVar) {
 }
 
 void buildNodeVar(char* name, int value, varNode* varNode) {
+    if (name == NULL || varNode == NULL) {
+        debugAssert(ERR:buildNodeVar());
+        return;
+    }
 	strncpy(varNode->name, name, VAR_NAME_LENGTH-1);
 	varNode->name[VAR_NAME_LENGTH-1] = EOS;
 	varNode->val = value;
@@ -350,6 +378,7 @@ int addArrayToSymbolTable(char* var, const unsigned int maxRange) {
     }
 }
 
+// Return index in symbol table
 int addNodeVar(char* var) {
 	varNode tmp;
     buildNodeVar(var, DEFAULT_VAR_VALUE, &tmp);

@@ -190,17 +190,17 @@ INTERPRETER
 Run programIndex=24
 INTERPRETER 6[2], Range=3
 INTERPRETER ENTER interpret::dumpEvaluationStack
-INTERPRETER Symbol index=8 value=0
+INTERPRETER Symbol index=9 value=0
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER 
 Run programIndex=25
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=11 value=7
-INTERPRETER Symbol index=8 value=0
+INTERPRETER Symbol index=9 value=0
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER 
 Run programIndex=26
-INTERPRETER 8(symbol index) = 7
+INTERPRETER 9(symbol index) = 7
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER interpret::dumpSymbolTable
@@ -212,8 +212,8 @@ SYMBOLTABLEENTRY nodeVar  1
 SYMBOLTABLEENTRY nodeConst  5
 SYMBOLTABLEENTRY nodeVar  3
 SYMBOLTABLEENTRY nodeVar  0
-SYMBOLTABLEENTRY nodeVar  7
 SYMBOLTABLEENTRY nodeVar  0
+SYMBOLTABLEENTRY nodeVar  7
 SYMBOLTABLEENTRY nodeConst  1
 SYMBOLTABLEENTRY nodeConst  7
 SYMBOLTABLEENTRY nodeTemporary  0
