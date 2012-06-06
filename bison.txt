@@ -224,7 +224,7 @@ Reading a token: --accepting default rule (" ")
 Next token is token LBRACKET ()
 Shifting token LBRACKET ()
 Entering state 47
-Reading a token: --accepting rule at line 76 ("3")
+Reading a token: --accepting rule at line 76 ("7")
 Next token is token CONST ()
 Shifting token CONST ()
 Entering state 54
@@ -452,7 +452,7 @@ Reducing stack by rule 33 (line 132):
 Stack now 0 2 9 16 25 34 47 52
 Entering state 46
 Reading a token: --accepting default rule (" ")
---accepting rule at line 76 ("1")
+--accepting rule at line 76 ("0")
 Next token is token CONST ()
 Shifting token CONST ()
 Entering state 7
@@ -506,7 +506,299 @@ Reducing stack by rule 17 (line 101):
 -> $$ = nterm arithmeticExpression ()
 Stack now 0 2 9 16 25 37 49
 Entering state 56
+Reading a token: --accepting default rule (" ")
+--accepting rule at line 63 ("+")
+Next token is token PLUS ()
+Shifting token PLUS ()
+Entering state 41
+Reducing stack by rule 33 (line 132):
+   $1 = token PLUS ()
+-> $$ = nterm operator ()
+Stack now 0 2 9 16 25 37 49 56
+Entering state 46
+Reading a token: --accepting default rule (" ")
+--accepting rule at line 77 ("x")
+Next token is token VAR ()
+Shifting token VAR ()
+Entering state 28
 Reading a token: --accepting rule at line 60 (";")
+Next token is token SEMI ()
+Reducing stack by rule 21 (line 109):
+   $1 = token VAR ()
+-> $$ = nterm var ()
+Stack now 0 2 9 16 25 37 49 56 46
+Entering state 31
+Reducing stack by rule 19 (line 105):
+   $1 = nterm var ()
+-> $$ = nterm identifier ()
+Stack now 0 2 9 16 25 37 49 56 46
+Entering state 30
+Reducing stack by rule 17 (line 101):
+   $1 = nterm identifier ()
+-> $$ = nterm arithmeticExpression ()
+Stack now 0 2 9 16 25 37 49 56 46
+Entering state 53
+Next token is token SEMI ()
+Reducing stack by rule 16 (line 100):
+   $1 = nterm arithmeticExpression ()
+   $2 = nterm operator ()
+   $3 = nterm arithmeticExpression ()
+-> $$ = nterm arithmeticExpression ()
+Stack now 0 2 9 16 25 37 49
+Entering state 56
+Next token is token SEMI ()
+Shifting token SEMI ()
+Entering state 61
+Reducing stack by rule 9 (line 86):
+   $1 = nterm array ()
+   $2 = token EQUAL ()
+   $3 = nterm arithmeticExpression ()
+   $4 = token SEMI ()
+-> $$ = nterm statementAction ()
+Stack now 0 2 9 16 25
+Entering state 35
+Reducing stack by rule 6 (line 81):
+   $1 = nterm action ()
+   $2 = nterm statementAction ()
+-> $$ = nterm action ()
+Stack now 0 2 9 16
+Entering state 25
+Reading a token: --accepting default rule ("")
+--accepting default rule ("
+")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting rule at line 77 ("x")
+Next token is token VAR ()
+Shifting token VAR ()
+Entering state 34
+Reading a token: --accepting default rule (" ")
+--accepting rule at line 62 ("=")
+Next token is token EQUAL ()
+Reducing stack by rule 21 (line 109):
+   $1 = token VAR ()
+-> $$ = nterm var ()
+Stack now 0 2 9 16 25
+Entering state 36
+Next token is token EQUAL ()
+Shifting token EQUAL ()
+Entering state 48
+Reading a token: --accepting default rule (" ")
+--accepting rule at line 77 ("x")
+Next token is token VAR ()
+Shifting token VAR ()
+Entering state 28
+Reading a token: --accepting default rule (" ")
+--accepting rule at line 63 ("+")
+Next token is token PLUS ()
+Reducing stack by rule 21 (line 109):
+   $1 = token VAR ()
+-> $$ = nterm var ()
+Stack now 0 2 9 16 25 36 48
+Entering state 31
+Reducing stack by rule 19 (line 105):
+   $1 = nterm var ()
+-> $$ = nterm identifier ()
+Stack now 0 2 9 16 25 36 48
+Entering state 30
+Reducing stack by rule 17 (line 101):
+   $1 = nterm identifier ()
+-> $$ = nterm arithmeticExpression ()
+Stack now 0 2 9 16 25 36 48
+Entering state 55
+Next token is token PLUS ()
+Shifting token PLUS ()
+Entering state 41
+Reducing stack by rule 33 (line 132):
+   $1 = token PLUS ()
+-> $$ = nterm operator ()
+Stack now 0 2 9 16 25 36 48 55
+Entering state 46
+Reading a token: --accepting default rule (" ")
+--accepting rule at line 76 ("1")
+Next token is token CONST ()
+Shifting token CONST ()
+Entering state 7
+Reducing stack by rule 20 (line 106):
+   $1 = token CONST ()
+-> $$ = nterm identifier ()
+Stack now 0 2 9 16 25 36 48 55 46
+Entering state 30
+Reducing stack by rule 17 (line 101):
+   $1 = nterm identifier ()
+-> $$ = nterm arithmeticExpression ()
+Stack now 0 2 9 16 25 36 48 55 46
+Entering state 53
+Reading a token: --accepting rule at line 60 (";")
+Next token is token SEMI ()
+Reducing stack by rule 16 (line 100):
+   $1 = nterm arithmeticExpression ()
+   $2 = nterm operator ()
+   $3 = nterm arithmeticExpression ()
+-> $$ = nterm arithmeticExpression ()
+Stack now 0 2 9 16 25 36 48
+Entering state 55
+Next token is token SEMI ()
+Shifting token SEMI ()
+Entering state 60
+Reducing stack by rule 7 (line 84):
+   $1 = nterm var ()
+   $2 = token EQUAL ()
+   $3 = nterm arithmeticExpression ()
+   $4 = token SEMI ()
+-> $$ = nterm statementAction ()
+Stack now 0 2 9 16 25
+Entering state 35
+Reducing stack by rule 6 (line 81):
+   $1 = nterm action ()
+   $2 = nterm statementAction ()
+-> $$ = nterm action ()
+Stack now 0 2 9 16
+Entering state 25
+Reading a token: --accepting default rule ("")
+--accepting default rule ("
+")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting rule at line 77 ("a")
+Next token is token VAR ()
+Shifting token VAR ()
+Entering state 34
+Reading a token: --accepting default rule (" ")
+--accepting rule at line 55 ("[")
+Next token is token LBRACKET ()
+Shifting token LBRACKET ()
+Entering state 47
+Reading a token: --accepting default rule (" ")
+--accepting rule at line 77 ("x")
+Next token is token VAR ()
+Shifting token VAR ()
+Entering state 28
+Reading a token: --accepting default rule (" ")
+--accepting rule at line 63 ("+")
+Next token is token PLUS ()
+Reducing stack by rule 21 (line 109):
+   $1 = token VAR ()
+-> $$ = nterm var ()
+Stack now 0 2 9 16 25 34 47
+Entering state 31
+Reducing stack by rule 19 (line 105):
+   $1 = nterm var ()
+-> $$ = nterm identifier ()
+Stack now 0 2 9 16 25 34 47
+Entering state 30
+Reducing stack by rule 17 (line 101):
+   $1 = nterm identifier ()
+-> $$ = nterm arithmeticExpression ()
+Stack now 0 2 9 16 25 34 47
+Entering state 52
+Next token is token PLUS ()
+Shifting token PLUS ()
+Entering state 41
+Reducing stack by rule 33 (line 132):
+   $1 = token PLUS ()
+-> $$ = nterm operator ()
+Stack now 0 2 9 16 25 34 47 52
+Entering state 46
+Reading a token: --accepting default rule (" ")
+--accepting rule at line 76 ("0")
+Next token is token CONST ()
+Shifting token CONST ()
+Entering state 7
+Reducing stack by rule 20 (line 106):
+   $1 = token CONST ()
+-> $$ = nterm identifier ()
+Stack now 0 2 9 16 25 34 47 52 46
+Entering state 30
+Reducing stack by rule 17 (line 101):
+   $1 = nterm identifier ()
+-> $$ = nterm arithmeticExpression ()
+Stack now 0 2 9 16 25 34 47 52 46
+Entering state 53
+Reading a token: --accepting rule at line 56 ("]")
+Next token is token RBRACKET ()
+Reducing stack by rule 16 (line 100):
+   $1 = nterm arithmeticExpression ()
+   $2 = nterm operator ()
+   $3 = nterm arithmeticExpression ()
+-> $$ = nterm arithmeticExpression ()
+Stack now 0 2 9 16 25 34 47
+Entering state 52
+Next token is token RBRACKET ()
+Shifting token RBRACKET ()
+Entering state 58
+Reducing stack by rule 23 (line 114):
+   $1 = token VAR ()
+   $2 = token LBRACKET ()
+   $3 = nterm arithmeticExpression ()
+   $4 = token RBRACKET ()
+-> $$ = nterm array ()
+Stack now 0 2 9 16 25
+Entering state 37
+Reading a token: --accepting default rule (" ")
+--accepting rule at line 62 ("=")
+Next token is token EQUAL ()
+Shifting token EQUAL ()
+Entering state 49
+Reading a token: --accepting default rule (" ")
+--accepting rule at line 76 ("8")
+Next token is token CONST ()
+Shifting token CONST ()
+Entering state 7
+Reducing stack by rule 20 (line 106):
+   $1 = token CONST ()
+-> $$ = nterm identifier ()
+Stack now 0 2 9 16 25 37 49
+Entering state 30
+Reducing stack by rule 17 (line 101):
+   $1 = nterm identifier ()
+-> $$ = nterm arithmeticExpression ()
+Stack now 0 2 9 16 25 37 49
+Entering state 56
+Reading a token: --accepting default rule (" ")
+--accepting rule at line 63 ("+")
+Next token is token PLUS ()
+Shifting token PLUS ()
+Entering state 41
+Reducing stack by rule 33 (line 132):
+   $1 = token PLUS ()
+-> $$ = nterm operator ()
+Stack now 0 2 9 16 25 37 49 56
+Entering state 46
+Reading a token: --accepting default rule (" ")
+--accepting rule at line 77 ("x")
+Next token is token VAR ()
+Shifting token VAR ()
+Entering state 28
+Reading a token: --accepting rule at line 60 (";")
+Next token is token SEMI ()
+Reducing stack by rule 21 (line 109):
+   $1 = token VAR ()
+-> $$ = nterm var ()
+Stack now 0 2 9 16 25 37 49 56 46
+Entering state 31
+Reducing stack by rule 19 (line 105):
+   $1 = nterm var ()
+-> $$ = nterm identifier ()
+Stack now 0 2 9 16 25 37 49 56 46
+Entering state 30
+Reducing stack by rule 17 (line 101):
+   $1 = nterm identifier ()
+-> $$ = nterm arithmeticExpression ()
+Stack now 0 2 9 16 25 37 49 56 46
+Entering state 53
+Next token is token SEMI ()
+Reducing stack by rule 16 (line 100):
+   $1 = nterm arithmeticExpression ()
+   $2 = nterm operator ()
+   $3 = nterm arithmeticExpression ()
+-> $$ = nterm arithmeticExpression ()
+Stack now 0 2 9 16 25 37 49
+Entering state 56
 Next token is token SEMI ()
 Shifting token SEMI ()
 Entering state 61

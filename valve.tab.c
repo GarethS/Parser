@@ -1916,7 +1916,7 @@ void yyerror (char* s)
 	printf (" %s\n", s);
 }
 
-main ()
+int main ()
 {
 #if 0
 	/* Initialize IO boilerplate code. */
@@ -1940,6 +1940,7 @@ main ()
 	yydebug = 1; 
     yyin = fopen("valve3.def", "r" );
 	yyparse ();
+    return 0;
 }
 
 void initVarTable(void) {
@@ -2145,6 +2146,7 @@ int addArrayToSymbolTable(char* var, const unsigned int maxRange) {
         }
         varTableFreeIndex += maxRange;
     }
+    return found;
 }
 
 // Return index in symbol table

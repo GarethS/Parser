@@ -144,7 +144,7 @@ void interpret::_loadSymbolTable(const string& s) {
         //oss() << level << " " << leftRight << " " << variableOperator << " " << value;
         //dump();
     }
-    _symbolTableTemporaryBoundaryIndex = _symbolTableIndex - 1;
+    _symbolTableTemporaryBoundaryIndex = _symbolTableIndex;
     ifs.close();
 }
 
@@ -160,6 +160,7 @@ void interpret::dumpSymbolTable(void) {
     oss() << "interpret::dumpSymbolTable";
     dump();
     for (int i = 0; _symbolTable[i].type() != nodeInvalid; ++i) {
+        oss() << i << " ";
         _symbolTable[i].dumpEntry();
     }
 }
@@ -421,8 +422,10 @@ void interpret::evaluate(unsigned int op) {
             // Exceeded array range so cancel pattern or action and print error
             if (_evaluatingPattern) {
                 // Abandon all evaluation here since it's impossible to tell if the pattern is true or not.
+                // Move to start of next pattern and start evaluating. Probably need to reset evaluation stack.
             } else {
                 // Can just abandon evaluation of this action statment and move on to the next
+                // Move to start of next action and reset evaluation stack.
             }
 #if CYGWIN
             oss() << "Array index out-of-bounds: " /*  TODO: Print symbol name. Currently not stored with symbol. */;
@@ -768,6 +771,10 @@ int main(void) {
     i.load();
 #if CYGWIN
     i.dumpProgram();
+    i.dumpSymbolTable();
+#endif /* CYGWIN */ 
+    i.run();
+#if CYGWIN
     i.dumpSymbolTable();
 #endif /* CYGWIN */ 
     i.run();

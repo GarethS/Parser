@@ -11,8 +11,8 @@ ifeq ($(myDebug), 1)
 FLEX_FLAGS = -d
 #FLEX_FLAGS =
 BISON_FLAGS = --verbose --debug --report=state
-GCC_FLAGS = -g
-GPP_FLAGS = -Wall
+GCC_FLAGS = -g -Wall
+GPP_FLAGS = -g -Wall
 DEBUG_FLAGS = -D CYGWIN=1 -D DUMP=1 -D REGRESS_1=1
 else    # not Debug
 FLEX_FLAGS =
