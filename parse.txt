@@ -1,10 +1,10 @@
            
-     
+    
       
         
-           
+          
         
-            
+          
 Pattern tree:
 ***LEFT Var: index,0 name,counter
 ***RIGHT Var: index,1 name,4

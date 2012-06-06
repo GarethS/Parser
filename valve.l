@@ -18,14 +18,15 @@ YYSTYPE yylval;
 
 line			[A-Ha-h][0-7]
 digit			[0-9]
-alpha			[A-Za-z]
-alphanum		[A-za-z0-9]
+/* Using [A-Za-z0-9] will cause 'a[x]' to be lexed as an alphanum. Don't want the [ character to be interpreted as a character. */
+alpha			[ABCDEFGHIJKLMNOPQRSTUVWXZabcdefghijklmnopqrstuvwxyz]
+alphanum		[ABCDEFGHIJKLMNOPQRSTUVWXZabcdefghijklmnopqrstuvwxyz0123456789]
 lparen			[(]
 rparen			[)]
 lbrace			[{]
 rbrace			[}]
-/* lbracket		"|" */
-/* rbracket		"]" */
+lbracket		"["
+rbracket		"]"
 comma			[,]
 semi			[;]
 bang			[!]
@@ -52,8 +53,8 @@ outputs		{debugPrintf("OUTPUTS"); return OUTPUTS;}
 inputs	 	{debugPrintf("INPUTS"); return INPUTS;}
 {lbrace}	{debugPrintf("LBRACE"); return LBRACE;}
 {rbrace}	{debugPrintf("RBRACE"); return RBRACE;}
-[\[]	{debugPrintf("LBRACKET"); return LBRACKET;}
-"]"	        {debugPrintf("RBRACKET"); return RBRACKET;}
+{lbracket}  {debugPrintf("LBRACKET"); return LBRACKET;}
+{rbracket}  {debugPrintf("RBRACKET"); return RBRACKET;}
 {lparen}	{debugPrintf("LPAREN"); return LPAREN;}
 {rparen}	{debugPrintf("RPAREN"); return RPAREN;}
 {comma}		{debugPrintf("COMMA"); return COMMA;}
