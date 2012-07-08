@@ -19,8 +19,8 @@ YYSTYPE yylval;
 line			[A-Ha-h][0-7]
 digit			[0-9]
 /* Using [A-Za-z0-9] will cause 'a[x]' to be lexed as an alphanum. Don't want the [ character to be interpreted as a character. */
-alpha			[ABCDEFGHIJKLMNOPQRSTUVWXZabcdefghijklmnopqrstuvwxyz]
-alphanum		[ABCDEFGHIJKLMNOPQRSTUVWXZabcdefghijklmnopqrstuvwxyz0123456789]
+alpha			[A-Za-z]
+alphanum		[A-Za-z0-9]
 lparen			[(]
 rparen			[)]
 lbrace			[{]

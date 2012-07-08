@@ -674,8 +674,7 @@ Reading a token: --accepting rule at line 78 ("x")
 Next token is token VAR ()
 Shifting token VAR ()
 Entering state 28
-Reading a token: --accepting default rule (" ")
---accepting rule at line 64 ("+")
+Reading a token: --accepting rule at line 64 ("+")
 Next token is token PLUS ()
 Reducing stack by rule 21 (line 109):
    $1 = token VAR ()
@@ -700,8 +699,7 @@ Reducing stack by rule 33 (line 132):
 -> $$ = nterm operator ()
 Stack now 0 2 9 16 25 34 47 52
 Entering state 46
-Reading a token: --accepting default rule (" ")
---accepting rule at line 77 ("0")
+Reading a token: --accepting rule at line 77 ("0")
 Next token is token CONST ()
 Shifting token CONST ()
 Entering state 7

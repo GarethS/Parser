@@ -53,7 +53,7 @@ TODO:
 4. Advertising - create ad copy we'd like to see
 *5. Temporary variables working
 10. Add special variables: motor.position, motor.velocity, etc.
-10a. input, output, time, motor
+10a. input, output, time, motor, ADC (for PID controller)
 11. Make sure symbol table doesn't overflow. Do this in symbol table class.
 12. Symbol class that can hold floats as well as ints
 14. Abandon evaluation on array out of bounds. Print array that overflowed
@@ -64,6 +64,7 @@ TODO:
 20. Add 'if' statements. Consider replacing 'pattern' with just an 'if'
 21. Offer optimized interpreter that doesn't check array bounds
 22. Need Abstract Syntax Tree for if-then-else constructs
+23. Are functions needed?
 
 TODO optional:
 6. Multiple pattern{action} blocks
