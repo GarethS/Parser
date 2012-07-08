@@ -135,6 +135,8 @@ INTERPRETER Symbol index=22 value=1
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER 
 Run programIndex=11
+INTERPRETER 
+nodeStartAction _evalValuePeek:22
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER 
@@ -426,6 +428,8 @@ INTERPRETER Symbol index=22 value=1
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER 
 Run programIndex=11
+INTERPRETER 
+nodeStartAction _evalValuePeek:22
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER 

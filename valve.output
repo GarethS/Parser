@@ -7,7 +7,6 @@ Terminals unused in grammar
    NEQ
 
 
-State 26 conflicts: 2 shift/reduce
 State 51 conflicts: 1 shift/reduce
 State 53 conflicts: 5 shift/reduce
 State 54 conflicts: 1 shift/reduce
@@ -32,42 +31,40 @@ Grammar
     9                | array EQUAL arithmeticExpression SEMI
 
    10 pattern: LPAREN pattern RPAREN
-   11        | pattern andOr pattern
-   12        | patternCompare
+   11        | pattern AND pattern
+   12        | pattern OR pattern
+   13        | patternCompare
 
-   13 patternCompare: var operandTest arithmeticExpression
-   14               | identifier
+   14 patternCompare: var operandTest arithmeticExpression
+   15               | identifier
 
-   15 arithmeticExpression: LPAREN arithmeticExpression RPAREN
-   16                     | arithmeticExpression operator arithmeticExpression
-   17                     | identifier
-   18                     | array
+   16 arithmeticExpression: LPAREN arithmeticExpression RPAREN
+   17                     | arithmeticExpression operator arithmeticExpression
+   18                     | identifier
+   19                     | array
 
-   19 identifier: var
-   20           | CONST
+   20 identifier: var
+   21           | CONST
 
-   21 var: VAR
-   22    | VAR_METHOD
+   22 var: VAR
+   23    | VAR_METHOD
 
-   23 array: VAR LBRACKET arithmeticExpression RBRACKET
-   24      | VAR LBRACKET CONST RBRACKET
+   24 array: VAR LBRACKET arithmeticExpression RBRACKET
+   25      | VAR LBRACKET CONST RBRACKET
 
-   25 arrayDefine: VAR LBRACKET CONST RBRACKET SEMI
+   26 arrayDefine: VAR LBRACKET CONST RBRACKET SEMI
 
-   26 andOr: AND
-   27      | OR
+   27 operandTest: TEST_FOR_EQUAL
+   28            | GEQ
+   29            | LEQ
+   30            | GTR
+   31            | LSS
 
-   28 operandTest: TEST_FOR_EQUAL
-   29            | GEQ
-   30            | LEQ
-   31            | GTR
-   32            | LSS
-
-   33 operator: PLUS
-   34         | MINUS
-   35         | MULT
-   36         | DIV
-   37         | XOR
+   32 operator: PLUS
+   33         | MINUS
+   34         | MULT
+   35         | DIV
+   36         | XOR
 
 
 Terminals, with rules where they appear
@@ -79,29 +76,29 @@ OUTPUTS (259)
 COMMA (260)
 BANG (261)
 EQUAL (262) 7 9
-PLUS (263) 33
-MINUS (264) 34
-MULT (265) 35
-DIV (266) 36
-XOR (267) 37
-GEQ (268) 29
-LEQ (269) 30
+PLUS (263) 32
+MINUS (264) 33
+MULT (265) 34
+DIV (266) 35
+XOR (267) 36
+GEQ (268) 28
+LEQ (269) 29
 NEQ (270)
-GTR (271) 31
-LSS (272) 32
-AND (273) 26
-OR (274) 27
-TEST_FOR_EQUAL (275) 28
-SEMI (276) 7 9 25
+GTR (271) 30
+LSS (272) 31
+AND (273) 11
+OR (274) 12
+TEST_FOR_EQUAL (275) 27
+SEMI (276) 7 9 26
 LBRACE (277) 4
 RBRACE (278) 4
-LPAREN (279) 10 15
-RPAREN (280) 10 15
-LBRACKET (281) 23 24 25
-RBRACKET (282) 23 24 25
-VAR (283) 21 23 24 25
-VAR_METHOD (284) 22
-CONST (285) 20 24 25
+LPAREN (279) 10 16
+RPAREN (280) 10 16
+LBRACKET (281) 24 25 26
+RBRACKET (282) 24 25 26
+VAR (283) 22 24 25 26
+VAR_METHOD (284) 23
+CONST (285) 21 25 26
 
 
 Nonterminals, with rules where they appear
@@ -119,25 +116,23 @@ action (35)
 statementAction (36)
     on left: 7 8 9, on right: 6
 pattern (37)
-    on left: 10 11 12, on right: 4 10 11
+    on left: 10 11 12 13, on right: 4 10 11 12
 patternCompare (38)
-    on left: 13 14, on right: 12
+    on left: 14 15, on right: 13
 arithmeticExpression (39)
-    on left: 15 16 17 18, on right: 7 9 13 15 16 23
+    on left: 16 17 18 19, on right: 7 9 14 16 17 24
 identifier (40)
-    on left: 19 20, on right: 14 17
+    on left: 20 21, on right: 15 18
 var (41)
-    on left: 21 22, on right: 7 13 19
+    on left: 22 23, on right: 7 14 20
 array (42)
-    on left: 23 24, on right: 9 18
+    on left: 24 25, on right: 9 19
 arrayDefine (43)
-    on left: 25, on right: 8
-andOr (44)
-    on left: 26 27, on right: 11
-operandTest (45)
-    on left: 28 29 30 31 32, on right: 13
-operator (46)
-    on left: 33 34 35 36 37, on right: 16
+    on left: 26, on right: 8
+operandTest (44)
+    on left: 27 28 29 30 31, on right: 14
+operator (45)
+    on left: 32 33 34 35 36, on right: 17
 
 
 state 0
@@ -200,23 +195,23 @@ state 4
 
 state 5
 
-   21 var: VAR .
-
-    $default  reduce using rule 21 (var)
-
-
-state 6
-
-   22 var: VAR_METHOD .
+   22 var: VAR .
 
     $default  reduce using rule 22 (var)
 
 
+state 6
+
+   23 var: VAR_METHOD .
+
+    $default  reduce using rule 23 (var)
+
+
 state 7
 
-   20 identifier: CONST .
+   21 identifier: CONST .
 
-    $default  reduce using rule 20 (identifier)
+    $default  reduce using rule 21 (identifier)
 
 
 state 8
@@ -229,69 +224,83 @@ state 8
 state 9
 
     4 patternAction: pattern . LBRACE action RBRACE
-   11 pattern: pattern . andOr pattern
+   11 pattern: pattern . AND pattern
+   12        | pattern . OR pattern
 
     AND     shift, and go to state 14
     OR      shift, and go to state 15
     LBRACE  shift, and go to state 16
 
-    andOr  go to state 17
-
 
 state 10
 
-   12 pattern: patternCompare .
+   13 pattern: patternCompare .
 
-    $default  reduce using rule 12 (pattern)
+    $default  reduce using rule 13 (pattern)
 
 
 state 11
 
-   14 patternCompare: identifier .
+   15 patternCompare: identifier .
 
-    $default  reduce using rule 14 (patternCompare)
+    $default  reduce using rule 15 (patternCompare)
 
 
 state 12
 
-   13 patternCompare: var . operandTest arithmeticExpression
-   19 identifier: var .
+   14 patternCompare: var . operandTest arithmeticExpression
+   20 identifier: var .
 
-    GEQ             shift, and go to state 18
-    LEQ             shift, and go to state 19
-    GTR             shift, and go to state 20
-    LSS             shift, and go to state 21
-    TEST_FOR_EQUAL  shift, and go to state 22
+    GEQ             shift, and go to state 17
+    LEQ             shift, and go to state 18
+    GTR             shift, and go to state 19
+    LSS             shift, and go to state 20
+    TEST_FOR_EQUAL  shift, and go to state 21
 
-    $default  reduce using rule 19 (identifier)
+    $default  reduce using rule 20 (identifier)
 
-    operandTest  go to state 23
+    operandTest  go to state 22
 
 
 state 13
 
    10 pattern: LPAREN pattern . RPAREN
-   11        | pattern . andOr pattern
+   11        | pattern . AND pattern
+   12        | pattern . OR pattern
 
     AND     shift, and go to state 14
     OR      shift, and go to state 15
-    RPAREN  shift, and go to state 24
-
-    andOr  go to state 17
+    RPAREN  shift, and go to state 23
 
 
 state 14
 
-   26 andOr: AND .
+   11 pattern: pattern AND . pattern
 
-    $default  reduce using rule 26 (andOr)
+    LPAREN      shift, and go to state 4
+    VAR         shift, and go to state 5
+    VAR_METHOD  shift, and go to state 6
+    CONST       shift, and go to state 7
+
+    pattern         go to state 24
+    patternCompare  go to state 10
+    identifier      go to state 11
+    var             go to state 12
 
 
 state 15
 
-   27 andOr: OR .
+   12 pattern: pattern OR . pattern
 
-    $default  reduce using rule 27 (andOr)
+    LPAREN      shift, and go to state 4
+    VAR         shift, and go to state 5
+    VAR_METHOD  shift, and go to state 6
+    CONST       shift, and go to state 7
+
+    pattern         go to state 25
+    patternCompare  go to state 10
+    identifier      go to state 11
+    var             go to state 12
 
 
 state 16
@@ -300,62 +309,47 @@ state 16
 
     $default  reduce using rule 5 (action)
 
-    action  go to state 25
+    action  go to state 26
 
 
 state 17
 
-   11 pattern: pattern andOr . pattern
+   28 operandTest: GEQ .
 
-    LPAREN      shift, and go to state 4
-    VAR         shift, and go to state 5
-    VAR_METHOD  shift, and go to state 6
-    CONST       shift, and go to state 7
-
-    pattern         go to state 26
-    patternCompare  go to state 10
-    identifier      go to state 11
-    var             go to state 12
+    $default  reduce using rule 28 (operandTest)
 
 
 state 18
 
-   29 operandTest: GEQ .
+   29 operandTest: LEQ .
 
     $default  reduce using rule 29 (operandTest)
 
 
 state 19
 
-   30 operandTest: LEQ .
+   30 operandTest: GTR .
 
     $default  reduce using rule 30 (operandTest)
 
 
 state 20
 
-   31 operandTest: GTR .
+   31 operandTest: LSS .
 
     $default  reduce using rule 31 (operandTest)
 
 
 state 21
 
-   32 operandTest: LSS .
+   27 operandTest: TEST_FOR_EQUAL .
 
-    $default  reduce using rule 32 (operandTest)
+    $default  reduce using rule 27 (operandTest)
 
 
 state 22
 
-   28 operandTest: TEST_FOR_EQUAL .
-
-    $default  reduce using rule 28 (operandTest)
-
-
-state 23
-
-   13 patternCompare: var operandTest . arithmeticExpression
+   14 patternCompare: var operandTest . arithmeticExpression
 
     LPAREN      shift, and go to state 27
     VAR         shift, and go to state 28
@@ -368,14 +362,32 @@ state 23
     array                 go to state 32
 
 
-state 24
+state 23
 
    10 pattern: LPAREN pattern RPAREN .
 
     $default  reduce using rule 10 (pattern)
 
 
+state 24
+
+   11 pattern: pattern . AND pattern
+   11        | pattern AND pattern .
+   12        | pattern . OR pattern
+
+    $default  reduce using rule 11 (pattern)
+
+
 state 25
+
+   11 pattern: pattern . AND pattern
+   12        | pattern . OR pattern
+   12        | pattern OR pattern .
+
+    $default  reduce using rule 12 (pattern)
+
+
+state 26
 
     4 patternAction: pattern LBRACE action . RBRACE
     6 action: action . statementAction
@@ -390,24 +402,9 @@ state 25
     arrayDefine      go to state 38
 
 
-state 26
-
-   11 pattern: pattern . andOr pattern
-   11        | pattern andOr pattern .
-
-    AND  shift, and go to state 14
-    OR   shift, and go to state 15
-
-    AND       [reduce using rule 11 (pattern)]
-    OR        [reduce using rule 11 (pattern)]
-    $default  reduce using rule 11 (pattern)
-
-    andOr  go to state 17
-
-
 state 27
 
-   15 arithmeticExpression: LPAREN . arithmeticExpression RPAREN
+   16 arithmeticExpression: LPAREN . arithmeticExpression RPAREN
 
     LPAREN      shift, and go to state 27
     VAR         shift, and go to state 28
@@ -422,19 +419,19 @@ state 27
 
 state 28
 
-   21 var: VAR .
-   23 array: VAR . LBRACKET arithmeticExpression RBRACKET
-   24      | VAR . LBRACKET CONST RBRACKET
+   22 var: VAR .
+   24 array: VAR . LBRACKET arithmeticExpression RBRACKET
+   25      | VAR . LBRACKET CONST RBRACKET
 
     LBRACKET  shift, and go to state 40
 
-    $default  reduce using rule 21 (var)
+    $default  reduce using rule 22 (var)
 
 
 state 29
 
-   13 patternCompare: var operandTest arithmeticExpression .
-   16 arithmeticExpression: arithmeticExpression . operator arithmeticExpression
+   14 patternCompare: var operandTest arithmeticExpression .
+   17 arithmeticExpression: arithmeticExpression . operator arithmeticExpression
 
     PLUS   shift, and go to state 41
     MINUS  shift, and go to state 42
@@ -442,30 +439,30 @@ state 29
     DIV    shift, and go to state 44
     XOR    shift, and go to state 45
 
-    $default  reduce using rule 13 (patternCompare)
+    $default  reduce using rule 14 (patternCompare)
 
     operator  go to state 46
 
 
 state 30
 
-   17 arithmeticExpression: identifier .
+   18 arithmeticExpression: identifier .
 
-    $default  reduce using rule 17 (arithmeticExpression)
+    $default  reduce using rule 18 (arithmeticExpression)
 
 
 state 31
 
-   19 identifier: var .
+   20 identifier: var .
 
-    $default  reduce using rule 19 (identifier)
+    $default  reduce using rule 20 (identifier)
 
 
 state 32
 
-   18 arithmeticExpression: array .
+   19 arithmeticExpression: array .
 
-    $default  reduce using rule 18 (arithmeticExpression)
+    $default  reduce using rule 19 (arithmeticExpression)
 
 
 state 33
@@ -477,14 +474,14 @@ state 33
 
 state 34
 
-   21 var: VAR .
-   23 array: VAR . LBRACKET arithmeticExpression RBRACKET
-   24      | VAR . LBRACKET CONST RBRACKET
-   25 arrayDefine: VAR . LBRACKET CONST RBRACKET SEMI
+   22 var: VAR .
+   24 array: VAR . LBRACKET arithmeticExpression RBRACKET
+   25      | VAR . LBRACKET CONST RBRACKET
+   26 arrayDefine: VAR . LBRACKET CONST RBRACKET SEMI
 
     LBRACKET  shift, and go to state 47
 
-    $default  reduce using rule 21 (var)
+    $default  reduce using rule 22 (var)
 
 
 state 35
@@ -517,8 +514,8 @@ state 38
 
 state 39
 
-   15 arithmeticExpression: LPAREN arithmeticExpression . RPAREN
-   16                     | arithmeticExpression . operator arithmeticExpression
+   16 arithmeticExpression: LPAREN arithmeticExpression . RPAREN
+   17                     | arithmeticExpression . operator arithmeticExpression
 
     PLUS    shift, and go to state 41
     MINUS   shift, and go to state 42
@@ -532,8 +529,8 @@ state 39
 
 state 40
 
-   23 array: VAR LBRACKET . arithmeticExpression RBRACKET
-   24      | VAR LBRACKET . CONST RBRACKET
+   24 array: VAR LBRACKET . arithmeticExpression RBRACKET
+   25      | VAR LBRACKET . CONST RBRACKET
 
     LPAREN      shift, and go to state 27
     VAR         shift, and go to state 28
@@ -548,42 +545,42 @@ state 40
 
 state 41
 
-   33 operator: PLUS .
+   32 operator: PLUS .
 
-    $default  reduce using rule 33 (operator)
+    $default  reduce using rule 32 (operator)
 
 
 state 42
 
-   34 operator: MINUS .
+   33 operator: MINUS .
 
-    $default  reduce using rule 34 (operator)
+    $default  reduce using rule 33 (operator)
 
 
 state 43
 
-   35 operator: MULT .
+   34 operator: MULT .
 
-    $default  reduce using rule 35 (operator)
+    $default  reduce using rule 34 (operator)
 
 
 state 44
 
-   36 operator: DIV .
+   35 operator: DIV .
 
-    $default  reduce using rule 36 (operator)
+    $default  reduce using rule 35 (operator)
 
 
 state 45
 
-   37 operator: XOR .
+   36 operator: XOR .
 
-    $default  reduce using rule 37 (operator)
+    $default  reduce using rule 36 (operator)
 
 
 state 46
 
-   16 arithmeticExpression: arithmeticExpression operator . arithmeticExpression
+   17 arithmeticExpression: arithmeticExpression operator . arithmeticExpression
 
     LPAREN      shift, and go to state 27
     VAR         shift, and go to state 28
@@ -598,9 +595,9 @@ state 46
 
 state 47
 
-   23 array: VAR LBRACKET . arithmeticExpression RBRACKET
-   24      | VAR LBRACKET . CONST RBRACKET
-   25 arrayDefine: VAR LBRACKET . CONST RBRACKET SEMI
+   24 array: VAR LBRACKET . arithmeticExpression RBRACKET
+   25      | VAR LBRACKET . CONST RBRACKET
+   26 arrayDefine: VAR LBRACKET . CONST RBRACKET SEMI
 
     LPAREN      shift, and go to state 27
     VAR         shift, and go to state 28
@@ -645,26 +642,26 @@ state 49
 
 state 50
 
-   15 arithmeticExpression: LPAREN arithmeticExpression RPAREN .
+   16 arithmeticExpression: LPAREN arithmeticExpression RPAREN .
 
-    $default  reduce using rule 15 (arithmeticExpression)
+    $default  reduce using rule 16 (arithmeticExpression)
 
 
 state 51
 
-   20 identifier: CONST .
-   24 array: VAR LBRACKET CONST . RBRACKET
+   21 identifier: CONST .
+   25 array: VAR LBRACKET CONST . RBRACKET
 
     RBRACKET  shift, and go to state 57
 
-    RBRACKET  [reduce using rule 20 (identifier)]
-    $default  reduce using rule 20 (identifier)
+    RBRACKET  [reduce using rule 21 (identifier)]
+    $default  reduce using rule 21 (identifier)
 
 
 state 52
 
-   16 arithmeticExpression: arithmeticExpression . operator arithmeticExpression
-   23 array: VAR LBRACKET arithmeticExpression . RBRACKET
+   17 arithmeticExpression: arithmeticExpression . operator arithmeticExpression
+   24 array: VAR LBRACKET arithmeticExpression . RBRACKET
 
     PLUS      shift, and go to state 41
     MINUS     shift, and go to state 42
@@ -678,8 +675,8 @@ state 52
 
 state 53
 
-   16 arithmeticExpression: arithmeticExpression . operator arithmeticExpression
-   16                     | arithmeticExpression operator arithmeticExpression .
+   17 arithmeticExpression: arithmeticExpression . operator arithmeticExpression
+   17                     | arithmeticExpression operator arithmeticExpression .
 
     PLUS   shift, and go to state 41
     MINUS  shift, and go to state 42
@@ -687,32 +684,32 @@ state 53
     DIV    shift, and go to state 44
     XOR    shift, and go to state 45
 
-    PLUS      [reduce using rule 16 (arithmeticExpression)]
-    MINUS     [reduce using rule 16 (arithmeticExpression)]
-    MULT      [reduce using rule 16 (arithmeticExpression)]
-    DIV       [reduce using rule 16 (arithmeticExpression)]
-    XOR       [reduce using rule 16 (arithmeticExpression)]
-    $default  reduce using rule 16 (arithmeticExpression)
+    PLUS      [reduce using rule 17 (arithmeticExpression)]
+    MINUS     [reduce using rule 17 (arithmeticExpression)]
+    MULT      [reduce using rule 17 (arithmeticExpression)]
+    DIV       [reduce using rule 17 (arithmeticExpression)]
+    XOR       [reduce using rule 17 (arithmeticExpression)]
+    $default  reduce using rule 17 (arithmeticExpression)
 
     operator  go to state 46
 
 
 state 54
 
-   20 identifier: CONST .
-   24 array: VAR LBRACKET CONST . RBRACKET
-   25 arrayDefine: VAR LBRACKET CONST . RBRACKET SEMI
+   21 identifier: CONST .
+   25 array: VAR LBRACKET CONST . RBRACKET
+   26 arrayDefine: VAR LBRACKET CONST . RBRACKET SEMI
 
     RBRACKET  shift, and go to state 59
 
-    RBRACKET  [reduce using rule 20 (identifier)]
-    $default  reduce using rule 20 (identifier)
+    RBRACKET  [reduce using rule 21 (identifier)]
+    $default  reduce using rule 21 (identifier)
 
 
 state 55
 
     7 statementAction: var EQUAL arithmeticExpression . SEMI
-   16 arithmeticExpression: arithmeticExpression . operator arithmeticExpression
+   17 arithmeticExpression: arithmeticExpression . operator arithmeticExpression
 
     PLUS   shift, and go to state 41
     MINUS  shift, and go to state 42
@@ -727,7 +724,7 @@ state 55
 state 56
 
     9 statementAction: array EQUAL arithmeticExpression . SEMI
-   16 arithmeticExpression: arithmeticExpression . operator arithmeticExpression
+   17 arithmeticExpression: arithmeticExpression . operator arithmeticExpression
 
     PLUS   shift, and go to state 41
     MINUS  shift, and go to state 42
@@ -741,26 +738,26 @@ state 56
 
 state 57
 
-   24 array: VAR LBRACKET CONST RBRACKET .
+   25 array: VAR LBRACKET CONST RBRACKET .
 
-    $default  reduce using rule 24 (array)
+    $default  reduce using rule 25 (array)
 
 
 state 58
 
-   23 array: VAR LBRACKET arithmeticExpression RBRACKET .
+   24 array: VAR LBRACKET arithmeticExpression RBRACKET .
 
-    $default  reduce using rule 23 (array)
+    $default  reduce using rule 24 (array)
 
 
 state 59
 
-   24 array: VAR LBRACKET CONST RBRACKET .
-   25 arrayDefine: VAR LBRACKET CONST RBRACKET . SEMI
+   25 array: VAR LBRACKET CONST RBRACKET .
+   26 arrayDefine: VAR LBRACKET CONST RBRACKET . SEMI
 
     SEMI  shift, and go to state 62
 
-    $default  reduce using rule 24 (array)
+    $default  reduce using rule 25 (array)
 
 
 state 60
@@ -779,6 +776,6 @@ state 61
 
 state 62
 
-   25 arrayDefine: VAR LBRACKET CONST RBRACKET SEMI .
+   26 arrayDefine: VAR LBRACKET CONST RBRACKET SEMI .
 
-    $default  reduce using rule 25 (arrayDefine)
+    $default  reduce using rule 26 (arrayDefine)

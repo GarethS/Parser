@@ -1,5 +1,5 @@
 
-/* Copyright (c) 2011, Gareth Scott */
+/* Copyright (c) 2011, 2012 Gareth Scott */
 
 /*
        Sample of motor control language:
@@ -48,10 +48,11 @@ FILE* fpSymbol = NULL;  // Symbol table file point
 %token <string>	VAR VAR_METHOD CONST
 
 %left PLUS MINUS
+%left AND OR
 %left MULT DIV	/* last one gets highest precedence */
 
 /* non-terminals */
-%type <number> identifier operator andOr operandTest var arrayDefine
+%type <number> identifier operator operandTest var arrayDefine
 %type <string> patternAction
 %type <pArithNode>  pattern statementAction arithmeticExpression patternCompare array
 %type <pActionNode>  action
@@ -88,7 +89,8 @@ statementAction:	var EQUAL arithmeticExpression SEMI	{$$ = addNodeVarOperand(EQU
 
 /* eg: patternCompare && patternCompare */
 pattern: 	LPAREN pattern RPAREN	{$$ = $2;}
-			| pattern andOr pattern	{$$ = addNodeOperator($2, $1, $3);}
+			| pattern AND pattern	{$$ = addNodeOperator(AND, $1, $3);}
+			| pattern OR pattern	{$$ = addNodeOperator(OR, $1, $3);}
 			| patternCompare		{$$ = $1;}
 ;
 
@@ -117,10 +119,6 @@ array:      VAR LBRACKET arithmeticExpression RBRACKET    {$$ = addNodeArray($1,
 
 arrayDefine:    VAR LBRACKET CONST RBRACKET SEMI    {$$ = addArrayToSymbolTable($1, atoi($3));}
 ;
-
-andOr:	AND		{$$ = AND;}
-		| OR	{$$ = OR;}
-;			
 
 operandTest:	TEST_FOR_EQUAL	{$$ = TEST_FOR_EQUAL;}
 				| GEQ			{$$ = GEQ;}

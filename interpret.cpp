@@ -204,12 +204,23 @@ void interpret::run(void) {
             break;
         case nodeStartAction:
             // Look at value on top of stack and see if action should be executed.
-            if (!_evalValue()) {
+#if CYGWIN
+                oss() << endl << "nodeStartAction _evalValuePeek:" << _evalValuePeek();
+                dump();
+#endif /* CYGWIN */                
+            if (!_symbolTable[_evalValue()].value()) {
                 // If value on top of stack == 0 then don't need to perform action statements
                 assert(_evaluationStack.empty());
-                _programIndex = 0;
+                //_programIndex = -1;
+                //_evaluatingPattern = false; // Now evaluating action part
+#if CYGWIN
+                dumpEvaluationStack();
+#endif /* CYGWIN */    
+                _resetSymbolTableTemporaryBoundary();
+                return;
+                //break;
+            } else {
                 _evaluatingPattern = false; // Now evaluating action part
-                break;
             }
             break;
         default:
