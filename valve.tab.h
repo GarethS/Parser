@@ -52,21 +52,22 @@
      LBRACE = 269,
      RBRACE = 270,
      ARRAYDEFINE = 271,
-     VAR = 272,
-     VAR_METHOD = 273,
-     CONST = 274,
-     LPAREN = 275,
-     MINUS = 276,
-     PLUS = 277,
-     XOR = 278,
-     OR = 279,
-     AND = 280,
-     DIV = 281,
-     MULT = 282,
-     LBRACKET = 283,
-     RBRACKET = 284,
-     RPAREN = 285,
-     SEMI = 286
+     IF = 272,
+     VAR = 273,
+     VAR_METHOD = 274,
+     CONST = 275,
+     LPAREN = 276,
+     MINUS = 277,
+     PLUS = 278,
+     XOR = 279,
+     OR = 280,
+     AND = 281,
+     DIV = 282,
+     MULT = 283,
+     LBRACKET = 284,
+     RBRACKET = 285,
+     RPAREN = 286,
+     SEMI = 287
    };
 #endif
 
@@ -87,7 +88,7 @@ typedef union YYSTYPE
 
 
 /* Line 1685 of yacc.c  */
-#line 91 "valve.tab.h"
+#line 92 "valve.tab.h"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */

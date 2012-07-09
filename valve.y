@@ -46,7 +46,7 @@ FILE* fpSymbol = NULL;  // Symbol table file point
 
 /* TERMINALS */
 %token INPUTS OUTPUTS  COMMA BANG
-%token EQUAL GEQ LEQ NEQ GTR LSS TEST_FOR_EQUAL LBRACE RBRACE ARRAYDEFINE
+%token EQUAL GEQ LEQ NEQ GTR LSS TEST_FOR_EQUAL LBRACE RBRACE ARRAYDEFINE IF
 %token <string>	VAR VAR_METHOD CONST
 
 %left LPAREN 
@@ -80,9 +80,9 @@ patternActionList: /* empty */	{}
 ;
 
 
-patternAction:  BANG pattern BANG LBRACE action RBRACE	{fp = fopen("patternTree.txt", "wb"); walkPatternTree($2, "ROOT", 0); fclose(fp);
+patternAction:  IF LPAREN pattern RPAREN LBRACE action RBRACE	{fp = fopen("patternTree.txt", "wb"); walkPatternTree($3, "ROOT", 0); fclose(fp);
                                              printf("\n\n"); fp = fopen("actionTree.txt", "wb");
-                                             fwrite("0 0 Action 0\n", 1, 13/* strlen("0 0 Action 0\n") */, fp); walkActionTree($5); fclose(fp);}
+                                             fwrite("0 0 Action 0\n", 1, 13/* strlen("0 0 Action 0\n") */, fp); walkActionTree($6); fclose(fp);}
 ;
 
 action: /* empty */	{}
