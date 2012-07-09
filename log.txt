@@ -4,7 +4,7 @@ INTERPRETER interpret::symbolTable.txt
 INTERPRETER interpret::dumpProgram
 PARSETREEENTRY nodeVar 1 0
 PARSETREEENTRY nodeVar 1 1
-PARSETREEENTRY nodeOperator 0 269
+PARSETREEENTRY nodeOperator 0 264
 PARSETREEENTRY nodeStartAction 0 0
 PARSETREEENTRY nodeVar 1 0
 PARSETREEENTRY nodeVar 1 2

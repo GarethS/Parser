@@ -33,6 +33,7 @@ lextest.exe: lex.yy.c
 	gcc $(GCC_FLAGS) lex.yy.c -lfl -o lextest.exe
 	
 parsetest.exe: valve.tab.c valve.tab.h lex.yy.c
+	echo "BUILDING PARSER"
 	gcc $(GCC_FLAGS) -D BISON_PHASE valve.tab.c -lfl -o parsetest.exe
 	
 lex.yy.c: valve.l Makefile valve.tab.h
@@ -42,6 +43,7 @@ valve.tab.c valve.tab.h:	valve.y compiler.h compilerHelper.h
 	bison $(BISON_FLAGS) valve.y	# bison version 2.4.2
 
 interpret.exe: interpret.cpp interpret.h ../motor/log.cpp ../motor/log.h compilerHelper.h parseTreeEntry.cpp parseTreeEntry.h symbolTableEntry.cpp symbolTableEntry.h tinyQueue.h valve.tab.h
+	echo "BUILDING INTERPRETER"
 	g++ $(GPP_FLAGS) $(DEBUG_FLAGS) -I. -I../motor interpret.cpp parseTreeEntry.cpp symbolTableEntry.cpp ../motor/log.cpp -o interpret.exe 
     
 run:

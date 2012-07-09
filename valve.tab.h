@@ -43,29 +43,30 @@
      COMMA = 260,
      BANG = 261,
      EQUAL = 262,
-     PLUS = 263,
-     MINUS = 264,
-     MULT = 265,
-     DIV = 266,
-     XOR = 267,
-     GEQ = 268,
-     LEQ = 269,
-     NEQ = 270,
-     GTR = 271,
-     LSS = 272,
-     AND = 273,
-     OR = 274,
-     TEST_FOR_EQUAL = 275,
-     SEMI = 276,
-     LBRACE = 277,
-     RBRACE = 278,
-     LPAREN = 279,
-     RPAREN = 280,
-     LBRACKET = 281,
-     RBRACKET = 282,
-     VAR = 283,
-     VAR_METHOD = 284,
-     CONST = 285
+     GEQ = 263,
+     LEQ = 264,
+     NEQ = 265,
+     GTR = 266,
+     LSS = 267,
+     TEST_FOR_EQUAL = 268,
+     LBRACE = 269,
+     RBRACE = 270,
+     ARRAYDEFINE = 271,
+     VAR = 272,
+     VAR_METHOD = 273,
+     CONST = 274,
+     LPAREN = 275,
+     MINUS = 276,
+     PLUS = 277,
+     XOR = 278,
+     OR = 279,
+     AND = 280,
+     DIV = 281,
+     MULT = 282,
+     LBRACKET = 283,
+     RBRACKET = 284,
+     RPAREN = 285,
+     SEMI = 286
    };
 #endif
 
@@ -76,7 +77,7 @@ typedef union YYSTYPE
 {
 
 /* Line 1685 of yacc.c  */
-#line 38 "valve.y"
+#line 40 "valve.y"
 
 	int number;
 	char* string;
@@ -86,7 +87,7 @@ typedef union YYSTYPE
 
 
 /* Line 1685 of yacc.c  */
-#line 90 "valve.tab.h"
+#line 91 "valve.tab.h"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */

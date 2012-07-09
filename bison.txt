@@ -1,148 +1,138 @@
 Starting parse
 Entering state 0
-Reducing stack by rule 2 (line 72):
+Reducing stack by rule 2 (line 78):
 -> $$ = nterm patternActionList ()
 Stack now 0
 Entering state 2
 Reading a token: --(end of buffer or a NUL)
---accepting rule at line 78 ("counter")
+--accepting rule at line 64 ("!")
+Next token is token BANG ()
+Shifting token BANG ()
+Entering state 4
+Reading a token: --accepting rule at line 81 ("counter")
 Next token is token VAR ()
 Shifting token VAR ()
-Entering state 5
-Reducing stack by rule 22 (line 111):
+Entering state 6
+Reducing stack by rule 26 (line 125):
    $1 = token VAR ()
 -> $$ = nterm var ()
-Stack now 0 2
+Stack now 0 2 4
 Entering state 12
-Reading a token: --accepting default rule (" ")
---accepting rule at line 70 ("<=")
+Reading a token: --accepting rule at line 72 ("<=")
 Next token is token LEQ ()
 Shifting token LEQ ()
 Entering state 18
-Reducing stack by rule 29 (line 125):
+Reducing stack by rule 32 (line 139):
    $1 = token LEQ ()
 -> $$ = nterm operandTest ()
-Stack now 0 2 12
+Stack now 0 2 4 12
 Entering state 22
-Reading a token: --accepting default rule (" ")
---accepting rule at line 77 ("4")
+Reading a token: --accepting rule at line 80 ("4")
 Next token is token CONST ()
 Shifting token CONST ()
-Entering state 7
-Reducing stack by rule 21 (line 108):
+Entering state 28
+Reducing stack by rule 24 (line 116):
    $1 = token CONST ()
--> $$ = nterm identifier ()
-Stack now 0 2 12 22
-Entering state 30
-Reducing stack by rule 18 (line 103):
-   $1 = nterm identifier ()
 -> $$ = nterm arithmeticExpression ()
-Stack now 0 2 12 22
-Entering state 29
-Reading a token: --accepting default rule (" ")
---accepting rule at line 54 ("{")
-Next token is token LBRACE ()
-Reducing stack by rule 14 (line 97):
+Stack now 0 2 4 12 22
+Entering state 30
+Reading a token: --accepting rule at line 64 ("!")
+Next token is token BANG ()
+Reducing stack by rule 14 (line 104):
    $1 = nterm var ()
    $2 = nterm operandTest ()
    $3 = nterm arithmeticExpression ()
 -> $$ = nterm patternCompare ()
-Stack now 0 2
-Entering state 10
-Reducing stack by rule 13 (line 94):
+Stack now 0 2 4
+Entering state 11
+Reducing stack by rule 13 (line 101):
    $1 = nterm patternCompare ()
 -> $$ = nterm pattern ()
-Stack now 0 2
-Entering state 9
+Stack now 0 2 4
+Entering state 10
+Next token is token BANG ()
+Shifting token BANG ()
+Entering state 14
+Reading a token: --accepting rule at line 56 ("{")
 Next token is token LBRACE ()
 Shifting token LBRACE ()
-Entering state 16
-Reducing stack by rule 5 (line 81):
+Entering state 24
+Reducing stack by rule 5 (line 88):
 -> $$ = nterm action ()
-Stack now 0 2 9 16
-Entering state 26
-Reading a token: --accepting default rule ("")
---accepting default rule ("
-")
---accepting default rule (" ")
---accepting default rule (" ")
---accepting default rule (" ")
---accepting default rule (" ")
---accepting rule at line 78 ("counter")
+Stack now 0 2 4 10 14 24
+Entering state 33
+Reading a token: --accepting rule at line 81 ("counter")
 Next token is token VAR ()
 Shifting token VAR ()
-Entering state 34
+Entering state 27
 Reading a token: --accepting default rule (" ")
---accepting rule at line 63 ("=")
+--accepting rule at line 65 ("=")
 Next token is token EQUAL ()
-Reducing stack by rule 22 (line 111):
+Reducing stack by rule 26 (line 125):
    $1 = token VAR ()
 -> $$ = nterm var ()
-Stack now 0 2 9 16 26
-Entering state 36
+Stack now 0 2 4 10 14 24 33
+Entering state 44
 Next token is token EQUAL ()
 Shifting token EQUAL ()
-Entering state 48
+Entering state 55
 Reading a token: --accepting default rule (" ")
---accepting rule at line 77 ("5")
+--accepting rule at line 80 ("5")
 Next token is token CONST ()
 Shifting token CONST ()
-Entering state 7
-Reducing stack by rule 21 (line 108):
+Entering state 28
+Reducing stack by rule 24 (line 116):
    $1 = token CONST ()
--> $$ = nterm identifier ()
-Stack now 0 2 9 16 26 36 48
-Entering state 30
-Reducing stack by rule 18 (line 103):
-   $1 = nterm identifier ()
 -> $$ = nterm arithmeticExpression ()
-Stack now 0 2 9 16 26 36 48
-Entering state 55
-Reading a token: --accepting rule at line 61 (";")
+Stack now 0 2 4 10 14 24 33 44 55
+Entering state 59
+Reading a token: --accepting rule at line 63 (";")
 Next token is token SEMI ()
 Shifting token SEMI ()
-Entering state 60
-Reducing stack by rule 7 (line 85):
+Entering state 62
+Reducing stack by rule 7 (line 92):
    $1 = nterm var ()
    $2 = token EQUAL ()
    $3 = nterm arithmeticExpression ()
    $4 = token SEMI ()
 -> $$ = nterm statementAction ()
-Stack now 0 2 9 16 26
-Entering state 35
-Reducing stack by rule 6 (line 82):
+Stack now 0 2 4 10 14 24 33
+Entering state 43
+Reducing stack by rule 6 (line 89):
    $1 = nterm action ()
    $2 = nterm statementAction ()
 -> $$ = nterm action ()
-Stack now 0 2 9 16
-Entering state 26
-Reading a token: --accepting default rule ("")
---accepting default rule ("
-")
---accepting rule at line 55 ("}")
+Stack now 0 2 4 10 14 24
+Entering state 33
+Reading a token: --accepting rule at line 57 ("}")
 Next token is token RBRACE ()
 Shifting token RBRACE ()
-Entering state 33
-Reducing stack by rule 4 (line 76):
-   $1 = nterm pattern ()
-   $2 = token LBRACE ()
-   $3 = nterm action ()
-   $4 = token RBRACE ()
+Entering state 41
+Reducing stack by rule 4 (line 83):
+   $1 = token BANG ()
+   $2 = nterm pattern ()
+   $3 = token BANG ()
+   $4 = token LBRACE ()
+   $5 = nterm action ()
+   $6 = token RBRACE ()
 -> $$ = nterm patternAction ()
 Stack now 0 2
-Entering state 8
-Reducing stack by rule 3 (line 73):
+Entering state 5
+Reducing stack by rule 3 (line 79):
    $1 = nterm patternActionList ()
    $2 = nterm patternAction ()
 -> $$ = nterm patternActionList ()
 Stack now 0
 Entering state 2
 Reading a token: --accepting default rule ("	")
+--accepting default rule ("")
+--accepting default rule ("
+")
 --accepting default rule ("	")
 --(end of buffer or a NUL)
 --EOF (start condition 0)
 Now at end of input.
-Reducing stack by rule 1 (line 67):
+Reducing stack by rule 1 (line 73):
    $1 = nterm patternActionList ()
 -> $$ = nterm program ()
 Stack now 0

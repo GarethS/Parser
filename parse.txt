@@ -1,14 +1,13 @@
-   
-      
-Pattern tree:
+  Pattern tree:
 *LEFT Var: index,0 name,counter
 *RIGHT Var: index,1 name,4
-ROOT Operator: <= 269
+ROOT Operator: <= 264
 
 Pattern tree:
 *LEFT Var: index,0 name,counter
 *RIGHT Var: index,2 name,5
-ROOT Operator: = 262		
+ROOT Operator: = 262	
+	
 
 Symbol table:
 index:0, name:counter, type:0, val:0

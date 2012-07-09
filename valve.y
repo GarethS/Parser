@@ -14,6 +14,8 @@
 %{
 /* #define YYDEBUG 1 */
 #include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
 #include <malloc.h>
 #include <string.h>
 //#include <assert.h>
@@ -44,15 +46,19 @@ FILE* fpSymbol = NULL;  // Symbol table file point
 
 /* TERMINALS */
 %token INPUTS OUTPUTS  COMMA BANG
-%token <number> 	EQUAL PLUS MINUS MULT DIV XOR GEQ LEQ NEQ GTR LSS AND OR TEST_FOR_EQUAL SEMI LBRACE RBRACE LPAREN RPAREN LBRACKET RBRACKET
+%token EQUAL GEQ LEQ NEQ GTR LSS TEST_FOR_EQUAL LBRACE RBRACE ARRAYDEFINE
 %token <string>	VAR VAR_METHOD CONST
 
+%left LPAREN 
 %left PLUS MINUS
-%left AND OR
+%left AND OR XOR
 %left MULT DIV	/* last one gets highest precedence */
+%left LBRACKET
+%right RPAREN RBRACKET
+%right SEMI
 
 /* non-terminals */
-%type <number> identifier operator operandTest var arrayDefine
+%type <number>  operandTest var arrayDefine
 %type <string> patternAction
 %type <pArithNode>  pattern statementAction arithmeticExpression patternCompare array
 %type <pActionNode>  action
@@ -73,9 +79,10 @@ patternActionList: /* empty */	{}
 					| patternActionList patternAction	
 ;
 
-patternAction: pattern LBRACE action RBRACE	{fp = fopen("patternTree.txt", "wb"); walkPatternTree($1, "ROOT", 0); fclose(fp);
+
+patternAction:  BANG pattern BANG LBRACE action RBRACE	{fp = fopen("patternTree.txt", "wb"); walkPatternTree($2, "ROOT", 0); fclose(fp);
                                              printf("\n\n"); fp = fopen("actionTree.txt", "wb");
-                                             fwrite("0 0 Action 0\n", 1, 13/* strlen("0 0 Action 0\n") */, fp); walkActionTree($3); fclose(fp);}
+                                             fwrite("0 0 Action 0\n", 1, 13/* strlen("0 0 Action 0\n") */, fp); walkActionTree($5); fclose(fp);}
 ;
 
 action: /* empty */	{}
@@ -88,25 +95,32 @@ statementAction:	var EQUAL arithmeticExpression SEMI	{$$ = addNodeVarOperand(EQU
 ;			
 
 /* eg: patternCompare && patternCompare */
-pattern: 	LPAREN pattern RPAREN	{$$ = $2;}
+pattern: 	LPAREN pattern RPAREN	{$$ = $2;} 
 			| pattern AND pattern	{$$ = addNodeOperator(AND, $1, $3);}
 			| pattern OR pattern	{$$ = addNodeOperator(OR, $1, $3);}
 			| patternCompare		{$$ = $1;}
 ;
 
 patternCompare:	var operandTest arithmeticExpression	{$$ = addNodeVarOperand($2, $1, $3);}
-				| identifier 							{$$ = addNodeId($1);}
+				| var 							{$$ = addNodeId($1);}
+				| CONST 							{$$ = addNodeId(addNodeVar($1));}
 ;
 
 arithmeticExpression:	LPAREN arithmeticExpression RPAREN						{$$ = $2;}
-						| arithmeticExpression operator arithmeticExpression	{$$ = addNodeOperator($2, $1, $3);}
-						| identifier											{$$ = addNodeId($1);}
+						| arithmeticExpression PLUS arithmeticExpression	{$$ = addNodeOperator(PLUS, $1, $3);}
+						| arithmeticExpression MINUS arithmeticExpression	{$$ = addNodeOperator(MINUS, $1, $3);}
+						| arithmeticExpression MULT arithmeticExpression	{$$ = addNodeOperator(MULT, $1, $3);}
+						| arithmeticExpression DIV arithmeticExpression	{$$ = addNodeOperator(DIV, $1, $3);}
+						| arithmeticExpression XOR arithmeticExpression	{$$ = addNodeOperator(XOR, $1, $3);}
+						| var											{$$ = addNodeId($1);}
+						| CONST											{$$ = addNodeId(addNodeVar($1));}
                         | array                                                 {$$ = $1;}
 ;						
 
-identifier:	var		{$$ = $1;}	/* Set top of stack to index of this variable in symbol table. */
-			| CONST {$$ = addNodeVar($1);}
-;			
+//identifier:	var		{$$ = $1;}	/* Set top of stack to index of this variable in symbol table. */
+//			| CONST {$$ = addNodeVar($1);}
+//;
+			
 
 var:		VAR				{$$ = addNodeVar($1);}
 			| VAR_METHOD	{$$ = addNodeVar($1);}
@@ -114,10 +128,10 @@ var:		VAR				{$$ = addNodeVar($1);}
 
 // identifier replaced by arithmeticExpression
 array:      VAR LBRACKET arithmeticExpression RBRACKET    {$$ = addNodeArray($1, $3);}
-            | VAR LBRACKET CONST RBRACKET    {$$ = addNodeArrayConstIndex($1, addNodeVar($3));}
+/*             | VAR LBRACKET CONST RBRACKET    {$$ = addNodeArrayConstIndex($1, addNodeVar($3));} */
 ;
 
-arrayDefine:    VAR LBRACKET CONST RBRACKET SEMI    {$$ = addArrayToSymbolTable($1, atoi($3));}
+arrayDefine:    ARRAYDEFINE VAR LBRACKET CONST RBRACKET SEMI    {$$ = addArrayToSymbolTable($2, atoi($4));}
 ;
 
 operandTest:	TEST_FOR_EQUAL	{$$ = TEST_FOR_EQUAL;}
@@ -126,14 +140,6 @@ operandTest:	TEST_FOR_EQUAL	{$$ = TEST_FOR_EQUAL;}
 				| GTR			{$$ = GTR;}
 				| LSS			{$$ = LSS;}
 ;
-
-operator:	PLUS		{$$ = PLUS;}
-			| MINUS		{$$ = MINUS;}
-			| MULT		{$$ = MULT;}
-			| DIV		{$$ = DIV;}
-			| XOR		{$$ = XOR;}
-;			
-
 
 %% /* Additional C code */
 
@@ -173,12 +179,30 @@ int main ()
 }
 
 void initVarTable(void) {
-	int len = VAR_ITEMS - 1;
-	for (; len >= 0; len--) {
+	int len;
+	for (len = VAR_ITEMS - 1; len >= 0; len--) {
 		varTable[len].name[0] = EOS;
-		varTable[len].val = 0;	// Initialize variable to 0;
+		varTable[len].val = DEFAULT_VAR_VALUE;	// Initialize variable to 0
 	}
 }
+
+/*
+void initActionTree(void) {
+	int len;
+	for (len = ACTION_ITEMS - 1; len >= 0; len--) {
+		actionTable[len].pArith = NULL;
+		actionTable[len].pNext = NULL;
+	}
+}
+
+void initArithTable(void) {
+	int len;
+	for (len = ARITH_ITEMS - 1; len >= 0; len--) {
+		arithTable[len].pLeft = NULL;
+		arithTable[len].pRight = NULL;
+	}
+}
+*/
 
 // Return index of variable or constant in symbol table
 int insertVariable(varNode* pVar) {
@@ -329,6 +353,10 @@ arithNode* getNextArithNode(void) {
 
 actionNode* getNextActionNode(void) {
 	if (actionTableFreeIndex < ACTION_ITEMS) {
+#if REGRESS_1    
+        printf("getNextActionNode() %d\n", actionTableFreeIndex);
+        fflush(stdout);
+#endif /* REGRESS_1 */        
 		return actionTable + actionTableFreeIndex++;
 	}
 	return NULL;
@@ -392,7 +420,21 @@ int addNodeVar(char* var) {
 
 // The following 2 functions are only used by 'action' in the 
 //  'pattern {action} part of the grammar.
+// Where does the first pActionNode get set?????
 actionNode* addNodeOperatorAction(actionNode* pActionNode, arithNode* pArithNode) {
+    static int first = TRUE;
+    
+    if (first) {
+        first = FALSE;
+        // This is tricky. The first call into this function doesn't have pActionNode
+        //  set to anything so we null it out here.
+        pActionNode = NULL;
+    }
+#if REGRESS_1    
+    printf("!!addNodeOperatorAction(actionNode* pActionNode=%d, arithNode* pArithNode=%d)\n", pActionNode, pArithNode);
+    //printf("pActionNode->Next=%d\n", pActionNode->pNext);
+    fflush(stdout);
+#endif /* REGRESS_1 */    
     if (pArithNode == NULL) {
         // Special case for array definition
         return pActionNode;
@@ -403,10 +445,11 @@ actionNode* addNodeOperatorAction(actionNode* pActionNode, arithNode* pArithNode
 		return p;
 	}
 	p->pArith = pArithNode;
-	p->pNext = pActionNode;
+    p->pNext = pActionNode;
 	return p;
 }
 
+#if 0
 arithNode* addNodeActionId(char* id) {
 	//assert(id != NULL);
 	arithNode* p = malloc(sizeof(arithNode));
@@ -426,6 +469,7 @@ arithNode* addNodeActionId(char* id) {
 	p->pRight = NULL;
 	return p;	
 }
+#endif
 
 #if 0
 void doPatternAction(arithNode* pPattern, arithNode* pAction)
@@ -587,10 +631,23 @@ void printIndent(unsigned int indent) {
 }
 
 void walkActionTree(actionNode* pActionNode) {
+#if REGRESS_1
+    printf("walkActionTree(actionNode* pActionNode=%d)\n", pActionNode);
+    fflush(stdout);
+#endif /* REGRESS_1 */    
 	if (pActionNode == NULL) {
 		return;
 	}
+#if REGRESS_1    
+    printf("walkActionTree(pActionNode->pNext)=%d\n", pActionNode->pNext);
+    fflush(stdout);
+#endif /* REGRESS_1 */    
     walkActionTree(pActionNode->pNext);
+    
+#if REGRESS_1    
+    printf("walkPatternTree(pActionNode->pArith=%d, ROOT, 0)\n", pActionNode->pArith);
+    fflush(stdout);
+#endif /* REGRESS_1 */    
 	walkPatternTree(pActionNode->pArith, "ROOT", 0);
 }
 

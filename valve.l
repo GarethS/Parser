@@ -18,13 +18,14 @@ YYSTYPE yylval;
 
 line			[A-Ha-h][0-7]
 digit			[0-9]
+float           -?{digit}+\.{digit}+
 /* Using [A-Za-z0-9] will cause 'a[x]' to be lexed as an alphanum. Don't want the [ character to be interpreted as a character. */
 alpha			[A-Za-z]
 alphanum		[A-Za-z0-9]
-lparen			[(]
-rparen			[)]
-lbrace			[{]
-rbrace			[}]
+lparen			"("
+rparen			")"
+lbrace			"{"
+rbrace			"}"
 lbracket		"["
 rbracket		"]"
 comma			[,]
@@ -45,6 +46,7 @@ lss				"<"
 or				"||"
 and				"&&"
 testForEqual	"=="
+arrayDefine     "DEF"
 %x		comment
 %x 		commentNew
 
@@ -74,6 +76,7 @@ inputs	 	{debugPrintf("INPUTS"); return INPUTS;}
 {or}		{debugPrintf("OR"); return OR;}
 {and}  		{debugPrintf("AND"); return AND;}
 {testForEqual}	{debugPrintf("TEST_FOR_EQUAL"); return TEST_FOR_EQUAL;}
+{arrayDefine}	{debugPrintf("ARRAYDEFINE"); return ARRAYDEFINE;}
 {digit}+		{debugPrintf("CONST"); yylval.string = strdup(yytext); return CONST;}	/* constant */
 {alpha}{alphanum}*	{debugPrintf("VAR"); yylval.string = strdup(yytext); return VAR;}	/* variable */
 {alpha}{alphanum}*{period}{alpha}{alphanum}*	{debugPrintf("VAR_METHOD"); yylval.string = strdup(yytext); return VAR_METHOD;}	/* method */
