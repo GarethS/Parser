@@ -46,7 +46,6 @@ lss				"<"
 or				"||"
 and				"&&"
 testForEqual	"=="
-arrayDefine     "DEF"
 %x		comment
 %x 		commentNew
 
@@ -76,7 +75,7 @@ inputs	 	{debugPrintf("INPUTS"); return INPUTS;}
 {or}		{debugPrintf("OR"); return OR;}
 {and}  		{debugPrintf("AND"); return AND;}
 {testForEqual}	{debugPrintf("TEST_FOR_EQUAL"); return TEST_FOR_EQUAL;}
-{arrayDefine}	{debugPrintf("ARRAYDEFINE"); return ARRAYDEFINE;}
+"DEF"   	{debugPrintf("ARRAYDEFINE"); return ARRAYDEFINE;}
 "if"	    {debugPrintf("IF"); return IF;}
 "else"	    {debugPrintf("ELSE"); return ELSE;}
 {digit}+		{debugPrintf("CONST"); yylval.string = strdup(yytext); return CONST;}	/* constant */

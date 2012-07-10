@@ -95,14 +95,14 @@ statementIf:  IF LPAREN expr RPAREN LBRACE statementList RBRACE	{fp = fopen("pat
                                              fwrite("0 0 Action 0\n", 1, 13/* strlen("0 0 Action 0\n") */, fp); walkActionTree($6); fclose(fp); fwrite("0 0 Action 0\n", 1, 13/* strlen("0 0 Action 0\n") */, fp); walkActionTree($10); fclose(fp);}
 ;
 
-statementAssign:    var EQUAL arithmeticExpression SEMI	    {$$ = addNodeVarOperand(EQUAL, $1, $3);}
+statementAssign:    var EQUAL arithmeticExpression SEMI	    {$$ = addNodeVarOperator(EQUAL, $1, $3);}
                     | array EQUAL arithmeticExpression SEMI {$$ = addNodeOperator(EQUAL, $1, $3);}
 ;    
 
 expr: 	    LPAREN expr RPAREN	{$$ = $2;} 
 			| expr AND expr	    {$$ = addNodeOperator(AND, $1, $3);}
 			| expr OR expr	    {$$ = addNodeOperator(OR, $1, $3);}
-            | var operandTest arithmeticExpression	{$$ = addNodeVarOperand($2, $1, $3);}
+            | var operandTest arithmeticExpression	{$$ = addNodeVarOperator($2, $1, $3);}
             | var               {$$ = addNodeId($1);}
             | CONST             {$$ = addNodeId(addNodeVar($1));}
 ;
@@ -235,6 +235,7 @@ void pushOutputLine(char* line) {
 	printf("\nsetLineAsOutput(\"%s\");", line);
 }
 
+// e.g. '4 * c1'
 arithNode* addNodeOperator(int operator, arithNode* pLeft, arithNode* pRight) {
 	arithNode* p = getNextArithNode();
 	if (p == NULL) {
@@ -247,6 +248,40 @@ arithNode* addNodeOperator(int operator, arithNode* pLeft, arithNode* pRight) {
 	p->pLeft = pLeft;
 	p->pRight = pRight;
 	return p;	
+}
+
+// e.g. 'c3 == 4 * c1;'
+arithNode* addNodeVarOperator(int operator, int varIndex, arithNode* pRight) {
+#if 1
+	arithNode* pLeft= getNextArithNode();
+	if (pLeft == NULL) {
+		//assert(pLeft != NULL);
+		return pLeft;
+	}
+	pLeft->type = nodeVar;
+	pLeft->value = varIndex;
+    return addNodeOperator(operator, pLeft, pRight);
+#else
+	arithNode* p = getNextArithNode();
+	if (p == NULL) {
+		//assert(p != NULL);
+		return p;
+	}
+	p->type = nodeOperator;
+	p->value = operator;
+	//printf("** operator=%d", operator);
+
+	p->pLeft = getNextArithNode();
+	if (p->pLeft == NULL) {
+		//assert(p->pLeft != NULL);
+		return p->pLeft;
+	}
+	p->pLeft->type = nodeVar;
+	p->pLeft->value = varIndex;
+
+	p->pRight = pRight;
+	return p;	
+#endif
 }
 
 arithNode* addNodeArrayConstIndex(char* pVarName, int symbolTableIndex) {
@@ -286,29 +321,6 @@ arithNode* addNodeArray(char* pVarName, arithNode* pIndex) {
 #endif    
 }
 
-// e.g. c3 == 4 * c1;
-arithNode* addNodeVarOperand(int operator, int varIndex, arithNode* pRight) {
-	arithNode* p = getNextArithNode();
-	if (p == NULL) {
-		//assert(p != NULL);
-		return p;
-	}
-	p->type = nodeOperator;
-	p->value = operator;
-	//printf("** operator=%d", operator);
-
-	p->pLeft = getNextArithNode();
-	if (p->pLeft == NULL) {
-		//assert(p->pLeft != NULL);
-		return p->pLeft;
-	}
-	p->pLeft->type = nodeVar;
-	p->pLeft->value = varIndex;
-
-	p->pRight = pRight;
-	return p;	
-}
-
 arithNode* addNodeId(int varIndex) {
 	arithNode* p = getNextArithNode();
 	if (p == NULL) {
@@ -317,13 +329,13 @@ arithNode* addNodeId(int varIndex) {
 	}
 	p->type = nodeVar;
 	p->value = varIndex;
-	p->pLeft = NULL;
-	p->pRight = NULL;
 	return p;	
 }
 
 arithNode* getNextArithNode(void) {
 	if (arithTableFreeIndex < ARITH_ITEMS) {
+        arithTable[arithTableFreeIndex].pLeft = NULL;
+        arithTable[arithTableFreeIndex].pRight = NULL;
 		return arithTable + arithTableFreeIndex++;
 	}
 	return NULL;
@@ -334,7 +346,9 @@ actionNode* getNextActionNode(void) {
 #if REGRESS_1    
         printf("getNextActionNode() %d\n", actionTableFreeIndex);
         fflush(stdout);
-#endif /* REGRESS_1 */        
+#endif /* REGRESS_1 */
+        actionTable[actionTableFreeIndex].pArith = NULL;
+        actionTable[actionTableFreeIndex].pNext = NULL;
 		return actionTable + actionTableFreeIndex++;
 	}
 	return NULL;

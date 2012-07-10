@@ -5,16 +5,16 @@ Reducing stack by rule 2 (line 78):
 Stack now 0
 Entering state 2
 Reading a token: --(end of buffer or a NUL)
---accepting rule at line 80 ("if")
+--accepting rule at line 79 ("if")
 Next token is token IF ()
 Shifting token IF ()
 Entering state 4
 Reading a token: --accepting default rule (" ")
---accepting rule at line 60 ("(")
+--accepting rule at line 59 ("(")
 Next token is token LPAREN ()
 Shifting token LPAREN ()
 Entering state 6
-Reading a token: --accepting rule at line 83 ("counter")
+Reading a token: --accepting rule at line 82 ("counter")
 Next token is token VAR ()
 Shifting token VAR ()
 Entering state 7
@@ -23,7 +23,7 @@ Reducing stack by rule 27 (line 121):
 -> $$ = nterm var ()
 Stack now 0 2 4 6
 Entering state 12
-Reading a token: --accepting rule at line 72 ("<=")
+Reading a token: --accepting rule at line 71 ("<=")
 Next token is token LEQ ()
 Shifting token LEQ ()
 Entering state 18
@@ -32,7 +32,7 @@ Reducing stack by rule 33 (line 135):
 -> $$ = nterm operandTest ()
 Stack now 0 2 4 6 12
 Entering state 22
-Reading a token: --accepting rule at line 82 ("4")
+Reading a token: --accepting rule at line 81 ("4")
 Next token is token CONST ()
 Shifting token CONST ()
 Entering state 28
@@ -41,7 +41,7 @@ Reducing stack by rule 25 (line 117):
 -> $$ = nterm arithmeticExpression ()
 Stack now 0 2 4 6 12 22
 Entering state 30
-Reading a token: --accepting rule at line 61 (")")
+Reading a token: --accepting rule at line 60 (")")
 Next token is token RPAREN ()
 Reducing stack by rule 15 (line 105):
    $1 = nterm var ()
@@ -54,7 +54,7 @@ Next token is token RPAREN ()
 Shifting token RPAREN ()
 Entering state 16
 Reading a token: --accepting default rule (" ")
---accepting rule at line 56 ("{")
+--accepting rule at line 55 ("{")
 Next token is token LBRACE ()
 Shifting token LBRACE ()
 Entering state 26
@@ -69,12 +69,12 @@ Reading a token: --accepting default rule ("")
 --accepting default rule (" ")
 --accepting default rule (" ")
 --accepting default rule (" ")
---accepting rule at line 83 ("counter")
+--accepting rule at line 82 ("counter")
 Next token is token VAR ()
 Shifting token VAR ()
 Entering state 27
 Reading a token: --accepting default rule (" ")
---accepting rule at line 65 ("=")
+--accepting rule at line 64 ("=")
 Next token is token EQUAL ()
 Reducing stack by rule 27 (line 121):
    $1 = token VAR ()
@@ -85,7 +85,7 @@ Next token is token EQUAL ()
 Shifting token EQUAL ()
 Entering state 57
 Reading a token: --accepting default rule (" ")
---accepting rule at line 82 ("5")
+--accepting rule at line 81 ("5")
 Next token is token CONST ()
 Shifting token CONST ()
 Entering state 28
@@ -94,7 +94,7 @@ Reducing stack by rule 25 (line 117):
 -> $$ = nterm arithmeticExpression ()
 Stack now 0 2 4 6 11 16 26 33 45 57
 Entering state 62
-Reading a token: --accepting rule at line 63 (";")
+Reading a token: --accepting rule at line 62 (";")
 Next token is token SEMI ()
 Shifting token SEMI ()
 Entering state 66
@@ -120,7 +120,7 @@ Entering state 33
 Reading a token: --accepting default rule ("")
 --accepting default rule ("
 ")
---accepting rule at line 57 ("}")
+--accepting rule at line 56 ("}")
 Next token is token RBRACE ()
 Shifting token RBRACE ()
 Entering state 41

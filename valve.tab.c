@@ -1509,7 +1509,7 @@ yyreduce:
 
 /* Line 1464 of yacc.c  */
 #line 98 "valve.y"
-    {(yyval.pArithNode) = addNodeVarOperand(EQUAL, (yyvsp[(1) - (4)].number), (yyvsp[(3) - (4)].pArithNode));;}
+    {(yyval.pArithNode) = addNodeVarOperator(EQUAL, (yyvsp[(1) - (4)].number), (yyvsp[(3) - (4)].pArithNode));;}
     break;
 
   case 12:
@@ -1544,7 +1544,7 @@ yyreduce:
 
 /* Line 1464 of yacc.c  */
 #line 105 "valve.y"
-    {(yyval.pArithNode) = addNodeVarOperand((yyvsp[(2) - (3)].number), (yyvsp[(1) - (3)].number), (yyvsp[(3) - (3)].pArithNode));;}
+    {(yyval.pArithNode) = addNodeVarOperator((yyvsp[(2) - (3)].number), (yyvsp[(1) - (3)].number), (yyvsp[(3) - (3)].pArithNode));;}
     break;
 
   case 17:
@@ -2001,6 +2001,7 @@ void pushOutputLine(char* line) {
 	printf("\nsetLineAsOutput(\"%s\");", line);
 }
 
+// e.g. '4 * c1'
 arithNode* addNodeOperator(int operator, arithNode* pLeft, arithNode* pRight) {
 	arithNode* p = getNextArithNode();
 	if (p == NULL) {
@@ -2013,6 +2014,40 @@ arithNode* addNodeOperator(int operator, arithNode* pLeft, arithNode* pRight) {
 	p->pLeft = pLeft;
 	p->pRight = pRight;
 	return p;	
+}
+
+// e.g. 'c3 == 4 * c1;'
+arithNode* addNodeVarOperator(int operator, int varIndex, arithNode* pRight) {
+#if 1
+	arithNode* pLeft= getNextArithNode();
+	if (pLeft == NULL) {
+		//assert(pLeft != NULL);
+		return pLeft;
+	}
+	pLeft->type = nodeVar;
+	pLeft->value = varIndex;
+    return addNodeOperator(operator, pLeft, pRight);
+#else
+	arithNode* p = getNextArithNode();
+	if (p == NULL) {
+		//assert(p != NULL);
+		return p;
+	}
+	p->type = nodeOperator;
+	p->value = operator;
+	//printf("** operator=%d", operator);
+
+	p->pLeft = getNextArithNode();
+	if (p->pLeft == NULL) {
+		//assert(p->pLeft != NULL);
+		return p->pLeft;
+	}
+	p->pLeft->type = nodeVar;
+	p->pLeft->value = varIndex;
+
+	p->pRight = pRight;
+	return p;	
+#endif
 }
 
 arithNode* addNodeArrayConstIndex(char* pVarName, int symbolTableIndex) {
@@ -2052,29 +2087,6 @@ arithNode* addNodeArray(char* pVarName, arithNode* pIndex) {
 #endif    
 }
 
-// e.g. c3 == 4 * c1;
-arithNode* addNodeVarOperand(int operator, int varIndex, arithNode* pRight) {
-	arithNode* p = getNextArithNode();
-	if (p == NULL) {
-		//assert(p != NULL);
-		return p;
-	}
-	p->type = nodeOperator;
-	p->value = operator;
-	//printf("** operator=%d", operator);
-
-	p->pLeft = getNextArithNode();
-	if (p->pLeft == NULL) {
-		//assert(p->pLeft != NULL);
-		return p->pLeft;
-	}
-	p->pLeft->type = nodeVar;
-	p->pLeft->value = varIndex;
-
-	p->pRight = pRight;
-	return p;	
-}
-
 arithNode* addNodeId(int varIndex) {
 	arithNode* p = getNextArithNode();
 	if (p == NULL) {
@@ -2083,13 +2095,13 @@ arithNode* addNodeId(int varIndex) {
 	}
 	p->type = nodeVar;
 	p->value = varIndex;
-	p->pLeft = NULL;
-	p->pRight = NULL;
 	return p;	
 }
 
 arithNode* getNextArithNode(void) {
 	if (arithTableFreeIndex < ARITH_ITEMS) {
+        arithTable[arithTableFreeIndex].pLeft = NULL;
+        arithTable[arithTableFreeIndex].pRight = NULL;
 		return arithTable + arithTableFreeIndex++;
 	}
 	return NULL;
@@ -2100,7 +2112,9 @@ actionNode* getNextActionNode(void) {
 #if REGRESS_1    
         printf("getNextActionNode() %d\n", actionTableFreeIndex);
         fflush(stdout);
-#endif /* REGRESS_1 */        
+#endif /* REGRESS_1 */
+        actionTable[actionTableFreeIndex].pArith = NULL;
+        actionTable[actionTableFreeIndex].pNext = NULL;
 		return actionTable + actionTableFreeIndex++;
 	}
 	return NULL;

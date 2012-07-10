@@ -66,7 +66,7 @@ void printBoilerplate(void);
 arithNode* addNodeOperator(int operator, arithNode* pLeft, arithNode* pRight);
 arithNode* addNodeArray(char* pVar, arithNode* pIndex);
 arithNode* addNodeArrayConstIndex(char* pVar, int symbolTableIndex);
-arithNode* addNodeVarOperand(int operator, int varIndex, arithNode* pRight);
+arithNode* addNodeVarOperator(int operator, int varIndex, arithNode* pRight);
 arithNode* addNodeId(int varIndex);
 
 //arithNode* addNodeOperatorAction(arithNode* pNode, char* id);

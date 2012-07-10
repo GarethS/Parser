@@ -579,10 +579,10 @@ int yy_flex_debug = 1;
 
 static yyconst flex_int16_t yy_rule_linenum[38] =
     {   0,
-       54,   55,   56,   57,   58,   59,   60,   61,   62,   63,
-       64,   65,   66,   67,   68,   69,   70,   71,   72,   73,
-       74,   75,   76,   77,   78,   79,   80,   81,   82,   83,
-       84,   86,   88,   90,   92,   94,   96
+       53,   54,   55,   56,   57,   58,   59,   60,   61,   62,
+       63,   64,   65,   66,   67,   68,   69,   70,   71,   72,
+       73,   74,   75,   76,   77,   78,   79,   80,   81,   82,
+       83,   85,   87,   89,   91,   93,   95
     } ;
 
 /* The intent behind this definition is that it'll catch
@@ -853,7 +853,7 @@ YY_DECL
 	register int yy_act;
     
 /* %% [7.0] user's declarations go here */
-#line 53 "valve.l"
+#line 52 "valve.l"
 
 #line 859 "lex.yy.c"
 
@@ -971,193 +971,193 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 54 "valve.l"
+#line 53 "valve.l"
 {debugPrintf("OUTPUTS"); return OUTPUTS;}
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 55 "valve.l"
+#line 54 "valve.l"
 {debugPrintf("INPUTS"); return INPUTS;}
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 56 "valve.l"
+#line 55 "valve.l"
 {debugPrintf("LBRACE"); return LBRACE;}
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 57 "valve.l"
+#line 56 "valve.l"
 {debugPrintf("RBRACE"); return RBRACE;}
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 58 "valve.l"
+#line 57 "valve.l"
 {debugPrintf("LBRACKET"); return LBRACKET;}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 59 "valve.l"
+#line 58 "valve.l"
 {debugPrintf("RBRACKET"); return RBRACKET;}
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 60 "valve.l"
+#line 59 "valve.l"
 {debugPrintf("LPAREN"); return LPAREN;}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 61 "valve.l"
+#line 60 "valve.l"
 {debugPrintf("RPAREN"); return RPAREN;}
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 62 "valve.l"
+#line 61 "valve.l"
 {debugPrintf("COMMA"); return COMMA;}
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 63 "valve.l"
+#line 62 "valve.l"
 {debugPrintf("SEMI"); return SEMI;}
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 64 "valve.l"
+#line 63 "valve.l"
 {debugPrintf("BANG"); yylval.string = strdup(yytext); return BANG;}
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 65 "valve.l"
+#line 64 "valve.l"
 {debugPrintf("EQUAL"); return EQUAL;}
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 66 "valve.l"
+#line 65 "valve.l"
 {debugPrintf("PLUS"); return PLUS;}
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 67 "valve.l"
+#line 66 "valve.l"
 {debugPrintf("MINUS"); return MINUS;}
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 68 "valve.l"
+#line 67 "valve.l"
 {debugPrintf("MULT"); return MULT;}
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 69 "valve.l"
+#line 68 "valve.l"
 {debugPrintf("DIV"); return DIV;}
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 70 "valve.l"
+#line 69 "valve.l"
 {debugPrintf("XOR"); return XOR;}
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 71 "valve.l"
+#line 70 "valve.l"
 {debugPrintf("GEQ"); return GEQ;}
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 72 "valve.l"
+#line 71 "valve.l"
 {debugPrintf("LEQ"); return LEQ;}
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 73 "valve.l"
+#line 72 "valve.l"
 {debugPrintf("NEQ"); return NEQ;}
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 74 "valve.l"
+#line 73 "valve.l"
 {debugPrintf("GTR"); return GTR;}
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 75 "valve.l"
+#line 74 "valve.l"
 {debugPrintf("LSS"); return LSS;}
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 76 "valve.l"
+#line 75 "valve.l"
 {debugPrintf("OR"); return OR;}
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 77 "valve.l"
+#line 76 "valve.l"
 {debugPrintf("AND"); return AND;}
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 78 "valve.l"
+#line 77 "valve.l"
 {debugPrintf("TEST_FOR_EQUAL"); return TEST_FOR_EQUAL;}
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 79 "valve.l"
+#line 78 "valve.l"
 {debugPrintf("ARRAYDEFINE"); return ARRAYDEFINE;}
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 80 "valve.l"
+#line 79 "valve.l"
 {debugPrintf("IF"); return IF;}
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 81 "valve.l"
+#line 80 "valve.l"
 {debugPrintf("ELSE"); return ELSE;}
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 82 "valve.l"
+#line 81 "valve.l"
 {debugPrintf("CONST"); yylval.string = strdup(yytext); return CONST;}	/* constant */
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 83 "valve.l"
+#line 82 "valve.l"
 {debugPrintf("VAR"); yylval.string = strdup(yytext); return VAR;}	/* variable */
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 84 "valve.l"
+#line 83 "valve.l"
 {debugPrintf("VAR_METHOD"); yylval.string = strdup(yytext); return VAR_METHOD;}	/* method */
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 86 "valve.l"
+#line 85 "valve.l"
 BEGIN(comment);
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 88 "valve.l"
+#line 87 "valve.l"
 /* eat anything that's not a '*' */
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 90 "valve.l"
+#line 89 "valve.l"
 BEGIN(INITIAL);
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 92 "valve.l"
+#line 91 "valve.l"
 BEGIN(commentNew);
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 94 "valve.l"
+#line 93 "valve.l"
 /* eat everything until '\n' */
 	YY_BREAK
 case 37:
 /* rule 37 can match eol */
 YY_RULE_SETUP
-#line 96 "valve.l"
+#line 95 "valve.l"
 BEGIN(INITIAL);
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 99 "valve.l"
+#line 98 "valve.l"
 ECHO;
 	YY_BREAK
 #line 1164 "lex.yy.c"
@@ -2297,7 +2297,7 @@ void yyfree (void * ptr )
 
 /* %ok-for-header */
 
-#line 99 "valve.l"
+#line 98 "valve.l"
 
 
 /* Start of user defined code section. */
