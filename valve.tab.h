@@ -43,32 +43,33 @@
      COMMA = 260,
      BANG = 261,
      EQUAL = 262,
-     GEQ = 263,
-     LEQ = 264,
-     NEQ = 265,
-     GTR = 266,
-     LSS = 267,
-     TEST_FOR_EQUAL = 268,
-     LBRACE = 269,
-     RBRACE = 270,
-     ARRAYDEFINE = 271,
-     IF = 272,
-     ELSE = 273,
-     VAR = 274,
-     VAR_METHOD = 275,
-     CONST = 276,
-     LPAREN = 277,
-     MINUS = 278,
-     PLUS = 279,
-     XOR = 280,
-     OR = 281,
-     AND = 282,
-     DIV = 283,
-     MULT = 284,
-     LBRACKET = 285,
-     RBRACKET = 286,
-     RPAREN = 287,
-     SEMI = 288
+     LBRACE = 263,
+     RBRACE = 264,
+     ARRAYDEFINE = 265,
+     IF = 266,
+     ELSE = 267,
+     VAR = 268,
+     VAR_METHOD = 269,
+     CONST = 270,
+     CONST_FLOAT = 271,
+     OR = 272,
+     AND = 273,
+     LSS = 274,
+     GTR = 275,
+     NEQ = 276,
+     LEQ = 277,
+     GEQ = 278,
+     TEST_FOR_EQUAL = 279,
+     LPAREN = 280,
+     MINUS = 281,
+     PLUS = 282,
+     XOR = 283,
+     DIV = 284,
+     MULT = 285,
+     LBRACKET = 286,
+     RBRACKET = 287,
+     RPAREN = 288,
+     SEMI = 289
    };
 #endif
 
@@ -81,7 +82,8 @@ typedef union YYSTYPE
 /* Line 1685 of yacc.c  */
 #line 40 "valve.y"
 
-	int number;
+	int integer;
+    float floatingPoint;
 	char* string;
 	arithNode* pArithNode;
 	actionNode* pActionNode;
@@ -89,7 +91,7 @@ typedef union YYSTYPE
 
 
 /* Line 1685 of yacc.c  */
-#line 93 "valve.tab.h"
+#line 95 "valve.tab.h"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */

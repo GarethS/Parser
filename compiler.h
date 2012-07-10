@@ -30,6 +30,8 @@ typedef enum {OP_PLUS, OP_MINUS, OP_MULT, OP_DIV, OP_XOR, OP_AND, OP_OR, OP_EQUA
 typedef struct thisVariableNode {
 	char name[VAR_NAME_LENGTH];
 	int val;
+    float valFloat;
+    nodeType type;
 } varNode;
 
 // OLD: This node can contain either a line id (e.g. a3) or an operator. Operators
@@ -46,6 +48,7 @@ typedef struct thisArithmeticNode {
 	
 	struct thisArithmeticNode* pLeft;
 	struct thisArithmeticNode* pRight;
+	struct thisArithmeticNode* pCentre;
 } arithNode;
 
 typedef struct thisActionNode {
@@ -75,7 +78,7 @@ arithNode* addNodeActionId(char* id);
 
 // New functions 
 arithNode* getAvailNode(void);
-int addNodeVar(char* var);
+int addVarToSymbolTable(char* var);
 void buildNodeVar(char* name, int value, varNode* varNode);
 int addArrayToSymbolTable(char* varName, const unsigned int maxRange);
 int infixPatternTraversal(arithNode* pn);

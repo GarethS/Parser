@@ -1,5 +1,5 @@
-(counter >= 4 || time == 43) || x < 5 {
-    a[7];
+if ((counter >= 4 || time == 43) || x < 5) {
+    ARRAY a[7];
     counter = 5;
     x = x + 1;
     a[x + 0] = 7 + x;

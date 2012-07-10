@@ -17,6 +17,7 @@
 
 // nodeStartAction is the start of an action sequence in the program
 typedef enum {nodeVar, nodeConst, nodeOperator, nodeArray, nodeInvalid, nodeStartAction, nodeTemporary, nodeFloat, nodeMotorMove, nodeMotorGetPosition} nodeType;
+typedef enum {symbolVar, symbolConst, symbolArray, symbolInvalid, symbolTemporary, symbolFloat} symbolType;
 typedef enum {nodeLeft, nodeRight, nodeRoot} nodePosition;
 
 #endif /* _COMPILERHELPER_H_ */

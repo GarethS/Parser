@@ -22,63 +22,41 @@ float           -?{digit}+\.{digit}+
 /* Using [A-Za-z0-9] will cause 'a[x]' to be lexed as an alphanum. Don't want the [ character to be interpreted as a character. */
 alpha			[A-Za-z]
 alphanum		[A-Za-z0-9]
-lparen			"("
-rparen			")"
-lbrace			"{"
-rbrace			"}"
-lbracket		"["
-rbracket		"]"
-comma			[,]
-semi			[;]
-bang			[!]
 period			[.]
-equal			"="
-plus			[+]
-minus			[-]
-mult			[*]
-div				[/]
-xor				"^"
-geq				">="
-leq				"<="
-neq				"!="
-gtr				[>]
-lss				"<"
-or				"||"
-and				"&&"
-testForEqual	"=="
 %x		comment
 %x 		commentNew
 
 %%
 outputs		{debugPrintf("OUTPUTS"); return OUTPUTS;}
 inputs	 	{debugPrintf("INPUTS"); return INPUTS;}
-{lbrace}	{debugPrintf("LBRACE"); return LBRACE;}
-{rbrace}	{debugPrintf("RBRACE"); return RBRACE;}
-{lbracket}  {debugPrintf("LBRACKET"); return LBRACKET;}
-{rbracket}  {debugPrintf("RBRACKET"); return RBRACKET;}
-{lparen}	{debugPrintf("LPAREN"); return LPAREN;}
-{rparen}	{debugPrintf("RPAREN"); return RPAREN;}
-{comma}		{debugPrintf("COMMA"); return COMMA;}
-{semi}		{debugPrintf("SEMI"); return SEMI;}
-{bang}		{debugPrintf("BANG"); yylval.string = strdup(yytext); return BANG;}
-{equal}		{debugPrintf("EQUAL"); return EQUAL;}
-{plus}		{debugPrintf("PLUS"); return PLUS;}
-{minus}		{debugPrintf("MINUS"); return MINUS;}
-{mult}		{debugPrintf("MULT"); return MULT;}
-{div}		{debugPrintf("DIV"); return DIV;}
-{xor}		{debugPrintf("XOR"); return XOR;}
-{geq}		{debugPrintf("GEQ"); return GEQ;}
-{leq}		{debugPrintf("LEQ"); return LEQ;}
-{neq}		{debugPrintf("NEQ"); return NEQ;}
-{gtr}		{debugPrintf("GTR"); return GTR;}
-{lss}		{debugPrintf("LSS"); return LSS;}
-{or}		{debugPrintf("OR"); return OR;}
-{and}  		{debugPrintf("AND"); return AND;}
-{testForEqual}	{debugPrintf("TEST_FOR_EQUAL"); return TEST_FOR_EQUAL;}
-"DEF"   	{debugPrintf("ARRAYDEFINE"); return ARRAYDEFINE;}
+"{"     	{debugPrintf("LBRACE"); return LBRACE;}
+"}"     	{debugPrintf("RBRACE"); return RBRACE;}
+"["         {debugPrintf("LBRACKET"); return LBRACKET;}
+"]"         {debugPrintf("RBRACKET"); return RBRACKET;}
+"(" 	    {debugPrintf("LPAREN"); return LPAREN;}
+")"     	{debugPrintf("RPAREN"); return RPAREN;}
+"," 		{debugPrintf("COMMA"); return COMMA;}
+";" 		{debugPrintf("SEMI"); return SEMI;}
+"!" 		{debugPrintf("BANG"); yylval.string = strdup(yytext); return BANG;}
+"=" 		{debugPrintf("EQUAL"); return EQUAL;}
+"+" 		{debugPrintf("PLUS"); return PLUS;}
+"-" 		{debugPrintf("MINUS"); return MINUS;}
+"*" 		{debugPrintf("MULT"); return MULT;}
+"/" 		{debugPrintf("DIV"); return DIV;}
+"^" 		{debugPrintf("XOR"); return XOR;}
+">="		{debugPrintf("GEQ"); return GEQ;}
+"<="		{debugPrintf("LEQ"); return LEQ;}
+"!="		{debugPrintf("NEQ"); return NEQ;}
+">" 		{debugPrintf("GTR"); return GTR;}
+"<" 		{debugPrintf("LSS"); return LSS;}
+"||"		{debugPrintf("OR"); return OR;}
+"&&"  		{debugPrintf("AND"); return AND;}
+"=="    	{debugPrintf("TEST_FOR_EQUAL"); return TEST_FOR_EQUAL;}
+"ARRAY"     {debugPrintf("ARRAYDEFINE"); return ARRAYDEFINE;}
 "if"	    {debugPrintf("IF"); return IF;}
 "else"	    {debugPrintf("ELSE"); return ELSE;}
-{digit}+		{debugPrintf("CONST"); yylval.string = strdup(yytext); return CONST;}	/* constant */
+-?{digit}+		{debugPrintf("CONST"); yylval.string = strdup(yytext); return CONST;}	/* constant integer */
+-?{digit}+\.{digit}+		{debugPrintf("CONST_FLOAT"); yylval.floatingPoint = atof(yytext); return CONST_FLOAT;}	/* constant floating-point */
 {alpha}{alphanum}*	{debugPrintf("VAR"); yylval.string = strdup(yytext); return VAR;}	/* variable */
 {alpha}{alphanum}*{period}{alpha}{alphanum}*	{debugPrintf("VAR_METHOD"); yylval.string = strdup(yytext); return VAR_METHOD;}	/* method */
 

@@ -45,6 +45,7 @@ private:
     nodeType _type; // Either a variable or a constant
     //char _name[SYMBOL_TABLE_NAME_LEN];
     int _value;
+    float _valueFloat;
 };    
 
 #endif /* _SYMBOLTABLEENTRY_H_ */

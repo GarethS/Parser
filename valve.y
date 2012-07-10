@@ -38,7 +38,8 @@ FILE* fpSymbol = NULL;  // Symbol table file point
 
 /* See compiler.h for definition */
 %union {
-	int number;
+	int integer;
+    float floatingPoint;
 	char* string;
 	arithNode* pArithNode;
 	actionNode* pActionNode;
@@ -46,21 +47,24 @@ FILE* fpSymbol = NULL;  // Symbol table file point
 
 /* TERMINALS */
 %token INPUTS OUTPUTS  COMMA BANG
-%token EQUAL GEQ LEQ NEQ GTR LSS TEST_FOR_EQUAL LBRACE RBRACE ARRAYDEFINE IF ELSE
-%token <string>	VAR VAR_METHOD CONST
+%token EQUAL LBRACE RBRACE ARRAYDEFINE IF ELSE
+%token <string>	VAR VAR_METHOD CONST CONST_FLOAT
 
+%left AND OR
+%left TEST_FOR_EQUAL GEQ LEQ NEQ GTR LSS
 %left LPAREN 
 %left PLUS MINUS
-%left AND OR XOR
-%left MULT DIV	/* last one gets highest precedence */
+%left XOR
+%left MULT DIV	
 %left LBRACKET
 %right RPAREN RBRACKET
 %right SEMI
+/* last entry gets highest precedence */
 
 /* non-terminals */
-%type <number>  operandTest var arrayDefine
+%type <integer> arrayDefine
 %type <string> statementIf
-%type <pArithNode>  expr statement statementAssign arithmeticExpression array
+%type <pArithNode>  statement statementAssign arithmeticExpression
 %type <pActionNode>  statementList
 
 %defines	/* generate valve.tab.h for use with lex.yy.c */
@@ -84,28 +88,32 @@ statementList: /* empty */	{}
 ;
 
 statement:	        statementAssign	    {$$ = $1;}
+//                    statementIf         {$$ = NULL;}
                     | arrayDefine {$$ = NULL;}
 ;			
 
-statementIf:  IF LPAREN expr RPAREN LBRACE statementList RBRACE	{fp = fopen("patternTree.txt", "wb"); walkPatternTree($3, "ROOT", 0); fclose(fp);
+statementIf:  IF LPAREN arithmeticExpression RPAREN LBRACE statementList RBRACE	{fp = fopen("patternTree.txt", "wb"); walkPatternTree($3, "ROOT", 0); fclose(fp);
                                              printf("\n\n"); fp = fopen("actionTree.txt", "wb");
                                              fwrite("0 0 Action 0\n", 1, 13/* strlen("0 0 Action 0\n") */, fp); walkActionTree($6); fclose(fp);}
-              | IF LPAREN expr RPAREN LBRACE statementList RBRACE ELSE LBRACE statementList RBRACE	{fp = fopen("patternTree.txt", "wb"); walkPatternTree($3, "ROOT", 0); fclose(fp);
+              | IF LPAREN arithmeticExpression RPAREN LBRACE statementList RBRACE ELSE LBRACE statementList RBRACE	{fp = fopen("patternTree.txt", "wb"); walkPatternTree($3, "ROOT", 0); fclose(fp);
                                              printf("\n\n"); fp = fopen("actionTree.txt", "wb");
                                              fwrite("0 0 Action 0\n", 1, 13/* strlen("0 0 Action 0\n") */, fp); walkActionTree($6); fclose(fp); fwrite("0 0 Action 0\n", 1, 13/* strlen("0 0 Action 0\n") */, fp); walkActionTree($10); fclose(fp);}
 ;
 
-statementAssign:    var EQUAL arithmeticExpression SEMI	    {$$ = addNodeVarOperator(EQUAL, $1, $3);}
-                    | array EQUAL arithmeticExpression SEMI {$$ = addNodeOperator(EQUAL, $1, $3);}
+statementAssign:    VAR EQUAL arithmeticExpression SEMI	    {$$ = addNodeVarOperator(EQUAL, addVarToSymbolTable($1), $3);}
+//                    | array EQUAL arithmeticExpression SEMI {$$ = addNodeOperator(EQUAL, $1, $3);}
+                      | VAR LBRACKET arithmeticExpression RBRACKET EQUAL arithmeticExpression SEMI {$$ = addNodeOperator(EQUAL, addNodeArray($1, $3), $6);} // array
 ;    
 
+/*
 expr: 	    LPAREN expr RPAREN	{$$ = $2;} 
 			| expr AND expr	    {$$ = addNodeOperator(AND, $1, $3);}
 			| expr OR expr	    {$$ = addNodeOperator(OR, $1, $3);}
             | var operandTest arithmeticExpression	{$$ = addNodeVarOperator($2, $1, $3);}
-            | var               {$$ = addNodeId($1);}
-            | CONST             {$$ = addNodeId(addNodeVar($1));}
+            | VAR               {$$ = addNodeId(addVarToSymbolTable($1));}
+            | CONST             {$$ = addNodeId(addVarToSymbolTable($1));}
 ;
+*/
 
 arithmeticExpression:	LPAREN arithmeticExpression RPAREN					{$$ = $2;}
 						| arithmeticExpression PLUS  arithmeticExpression	{$$ = addNodeOperator(PLUS, $1, $3);}
@@ -113,28 +121,29 @@ arithmeticExpression:	LPAREN arithmeticExpression RPAREN					{$$ = $2;}
 						| arithmeticExpression MULT  arithmeticExpression	{$$ = addNodeOperator(MULT, $1, $3);}
 						| arithmeticExpression DIV   arithmeticExpression	{$$ = addNodeOperator(DIV, $1, $3);}
 						| arithmeticExpression XOR   arithmeticExpression	{$$ = addNodeOperator(XOR, $1, $3);}
-						| var											    {$$ = addNodeId($1);}
-						| CONST											    {$$ = addNodeId(addNodeVar($1));}
-                        | array                                             {$$ = $1;}
+						| arithmeticExpression AND   arithmeticExpression	{$$ = addNodeOperator(AND, $1, $3);}
+						| arithmeticExpression OR    arithmeticExpression	{$$ = addNodeOperator(OR, $1, $3);}
+						| arithmeticExpression TEST_FOR_EQUAL arithmeticExpression	{$$ = addNodeOperator(TEST_FOR_EQUAL, $1, $3);}
+						| arithmeticExpression NEQ   arithmeticExpression	{$$ = addNodeOperator(NEQ, $1, $3);}
+						| arithmeticExpression GEQ   arithmeticExpression	{$$ = addNodeOperator(GEQ, $1, $3);}
+						| arithmeticExpression LEQ   arithmeticExpression	{$$ = addNodeOperator(LEQ, $1, $3);}
+						| arithmeticExpression GTR   arithmeticExpression	{$$ = addNodeOperator(GTR, $1, $3);}
+						| arithmeticExpression LSS   arithmeticExpression	{$$ = addNodeOperator(LSS, $1, $3);}
+//                        | var operandTest arithmeticExpression	            {$$ = addNodeVarOperator($2, $1, $3);}
+						| VAR											    {$$ = addNodeId(addVarToSymbolTable($1));}
+						| CONST											    {$$ = addNodeId(addVarToSymbolTable($1));}
+//                        | array                                             {$$ = $1;}
+                        | VAR LBRACKET arithmeticExpression RBRACKET        {$$ = addNodeArray($1, $3);}    // array
 ;						
 
-var:		VAR				{$$ = addNodeVar($1);}
-			| VAR_METHOD	{$$ = addNodeVar($1);}
-;			
-
 // identifier replaced by arithmeticExpression
+/*
 array:      VAR LBRACKET arithmeticExpression RBRACKET    {$$ = addNodeArray($1, $3);}
-/*             | VAR LBRACKET CONST RBRACKET    {$$ = addNodeArrayConstIndex($1, addNodeVar($3));} */
+             | VAR LBRACKET CONST RBRACKET    {$$ = addNodeArrayConstIndex($1, addVarToSymbolTable($3));} 
 ;
+*/
 
 arrayDefine:    ARRAYDEFINE VAR LBRACKET CONST RBRACKET SEMI    {$$ = addArrayToSymbolTable($2, atoi($4));}
-;
-
-operandTest:	TEST_FOR_EQUAL	{$$ = TEST_FOR_EQUAL;}
-				| GEQ			{$$ = GEQ;}
-				| LEQ			{$$ = LEQ;}
-				| GTR			{$$ = GTR;}
-				| LSS			{$$ = LSS;}
 ;
 
 %% /* Additional C code */
@@ -169,7 +178,7 @@ int main ()
 	// To turn on debugging, make sure the next line is uncommented and
 	//  turn on the -t (also use -v -l) options in bison.exe.
 	yydebug = 1; 
-    yyin = fopen("valve4.def", "r" );
+    yyin = fopen("valve3.def", "r" );
 	yyparse ();
     return 0;
 }
@@ -336,6 +345,7 @@ arithNode* getNextArithNode(void) {
 	if (arithTableFreeIndex < ARITH_ITEMS) {
         arithTable[arithTableFreeIndex].pLeft = NULL;
         arithTable[arithTableFreeIndex].pRight = NULL;
+        arithTable[arithTableFreeIndex].pCentre = NULL;
 		return arithTable + arithTableFreeIndex++;
 	}
 	return NULL;
@@ -399,7 +409,7 @@ int addArrayToSymbolTable(char* var, const unsigned int maxRange) {
 }
 
 // Return index in symbol table
-int addNodeVar(char* var) {
+int addVarToSymbolTable(char* var) {
 	varNode tmp;
     buildNodeVar(var, DEFAULT_VAR_VALUE, &tmp);
 	int found = findVariable(&tmp);
@@ -566,7 +576,7 @@ void walkPatternTree(arithNode* pArithNode, char* position, int indent) {
 		return;
 	}
     if (indent == 0) {
-        printf("Pattern tree:");
+        printf("\nPattern tree:");
     }
 	//printf("Start pattern walk");
 	walkPatternTree(pArithNode->pLeft, "LEFT", indent + 1);
