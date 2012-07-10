@@ -46,7 +46,7 @@ FILE* fpSymbol = NULL;  // Symbol table file point
 
 /* TERMINALS */
 %token INPUTS OUTPUTS  COMMA BANG
-%token EQUAL GEQ LEQ NEQ GTR LSS TEST_FOR_EQUAL LBRACE RBRACE ARRAYDEFINE IF
+%token EQUAL GEQ LEQ NEQ GTR LSS TEST_FOR_EQUAL LBRACE RBRACE ARRAYDEFINE IF ELSE
 %token <string>	VAR VAR_METHOD CONST
 
 %left LPAREN 
@@ -59,9 +59,9 @@ FILE* fpSymbol = NULL;  // Symbol table file point
 
 /* non-terminals */
 %type <number>  operandTest var arrayDefine
-%type <string> patternAction
-%type <pArithNode>  pattern statementAction arithmeticExpression patternCompare array
-%type <pActionNode>  action
+%type <string> statementIf
+%type <pArithNode>  expr statement statementAssign arithmeticExpression array
+%type <pActionNode>  statementList
 
 %defines	/* generate valve.tab.h for use with lex.yy.c */
 
@@ -76,51 +76,47 @@ program: 	patternActionList	{fpSymbol = fopen("symbolTable.txt", "wb");
 ;
 
 patternActionList: /* empty */	{}
-					| patternActionList patternAction	
+					| patternActionList statementIf	
 ;
 
-
-patternAction:  IF LPAREN pattern RPAREN LBRACE action RBRACE	{fp = fopen("patternTree.txt", "wb"); walkPatternTree($3, "ROOT", 0); fclose(fp);
-                                             printf("\n\n"); fp = fopen("actionTree.txt", "wb");
-                                             fwrite("0 0 Action 0\n", 1, 13/* strlen("0 0 Action 0\n") */, fp); walkActionTree($6); fclose(fp);}
+statementList: /* empty */	{}
+		| statementList statement	{$$ = addNodeOperatorAction($1, $2);}
 ;
 
-action: /* empty */	{}
-		| action statementAction	{$$ = addNodeOperatorAction($1, $2);}
-;
-
-statementAction:	var EQUAL arithmeticExpression SEMI	{$$ = addNodeVarOperand(EQUAL, $1, $3);}
+statement:	        statementAssign	    {$$ = $1;}
                     | arrayDefine {$$ = NULL;}
-                    | array EQUAL arithmeticExpression SEMI {$$ = addNodeOperator(EQUAL, $1, $3);}
 ;			
 
-/* eg: patternCompare && patternCompare */
-pattern: 	LPAREN pattern RPAREN	{$$ = $2;} 
-			| pattern AND pattern	{$$ = addNodeOperator(AND, $1, $3);}
-			| pattern OR pattern	{$$ = addNodeOperator(OR, $1, $3);}
-			| patternCompare		{$$ = $1;}
+statementIf:  IF LPAREN expr RPAREN LBRACE statementList RBRACE	{fp = fopen("patternTree.txt", "wb"); walkPatternTree($3, "ROOT", 0); fclose(fp);
+                                             printf("\n\n"); fp = fopen("actionTree.txt", "wb");
+                                             fwrite("0 0 Action 0\n", 1, 13/* strlen("0 0 Action 0\n") */, fp); walkActionTree($6); fclose(fp);}
+              | IF LPAREN expr RPAREN LBRACE statementList RBRACE ELSE LBRACE statementList RBRACE	{fp = fopen("patternTree.txt", "wb"); walkPatternTree($3, "ROOT", 0); fclose(fp);
+                                             printf("\n\n"); fp = fopen("actionTree.txt", "wb");
+                                             fwrite("0 0 Action 0\n", 1, 13/* strlen("0 0 Action 0\n") */, fp); walkActionTree($6); fclose(fp); fwrite("0 0 Action 0\n", 1, 13/* strlen("0 0 Action 0\n") */, fp); walkActionTree($10); fclose(fp);}
 ;
 
-patternCompare:	var operandTest arithmeticExpression	{$$ = addNodeVarOperand($2, $1, $3);}
-				| var 							{$$ = addNodeId($1);}
-				| CONST 							{$$ = addNodeId(addNodeVar($1));}
+statementAssign:    var EQUAL arithmeticExpression SEMI	    {$$ = addNodeVarOperand(EQUAL, $1, $3);}
+                    | array EQUAL arithmeticExpression SEMI {$$ = addNodeOperator(EQUAL, $1, $3);}
+;    
+
+expr: 	    LPAREN expr RPAREN	{$$ = $2;} 
+			| expr AND expr	    {$$ = addNodeOperator(AND, $1, $3);}
+			| expr OR expr	    {$$ = addNodeOperator(OR, $1, $3);}
+            | var operandTest arithmeticExpression	{$$ = addNodeVarOperand($2, $1, $3);}
+            | var               {$$ = addNodeId($1);}
+            | CONST             {$$ = addNodeId(addNodeVar($1));}
 ;
 
-arithmeticExpression:	LPAREN arithmeticExpression RPAREN						{$$ = $2;}
-						| arithmeticExpression PLUS arithmeticExpression	{$$ = addNodeOperator(PLUS, $1, $3);}
+arithmeticExpression:	LPAREN arithmeticExpression RPAREN					{$$ = $2;}
+						| arithmeticExpression PLUS  arithmeticExpression	{$$ = addNodeOperator(PLUS, $1, $3);}
 						| arithmeticExpression MINUS arithmeticExpression	{$$ = addNodeOperator(MINUS, $1, $3);}
-						| arithmeticExpression MULT arithmeticExpression	{$$ = addNodeOperator(MULT, $1, $3);}
-						| arithmeticExpression DIV arithmeticExpression	{$$ = addNodeOperator(DIV, $1, $3);}
-						| arithmeticExpression XOR arithmeticExpression	{$$ = addNodeOperator(XOR, $1, $3);}
-						| var											{$$ = addNodeId($1);}
-						| CONST											{$$ = addNodeId(addNodeVar($1));}
-                        | array                                                 {$$ = $1;}
+						| arithmeticExpression MULT  arithmeticExpression	{$$ = addNodeOperator(MULT, $1, $3);}
+						| arithmeticExpression DIV   arithmeticExpression	{$$ = addNodeOperator(DIV, $1, $3);}
+						| arithmeticExpression XOR   arithmeticExpression	{$$ = addNodeOperator(XOR, $1, $3);}
+						| var											    {$$ = addNodeId($1);}
+						| CONST											    {$$ = addNodeId(addNodeVar($1));}
+                        | array                                             {$$ = $1;}
 ;						
-
-//identifier:	var		{$$ = $1;}	/* Set top of stack to index of this variable in symbol table. */
-//			| CONST {$$ = addNodeVar($1);}
-//;
-			
 
 var:		VAR				{$$ = addNodeVar($1);}
 			| VAR_METHOD	{$$ = addNodeVar($1);}
@@ -185,24 +181,6 @@ void initVarTable(void) {
 		varTable[len].val = DEFAULT_VAR_VALUE;	// Initialize variable to 0
 	}
 }
-
-/*
-void initActionTree(void) {
-	int len;
-	for (len = ACTION_ITEMS - 1; len >= 0; len--) {
-		actionTable[len].pArith = NULL;
-		actionTable[len].pNext = NULL;
-	}
-}
-
-void initArithTable(void) {
-	int len;
-	for (len = ARITH_ITEMS - 1; len >= 0; len--) {
-		arithTable[len].pLeft = NULL;
-		arithTable[len].pRight = NULL;
-	}
-}
-*/
 
 // Return index of variable or constant in symbol table
 int insertVariable(varNode* pVar) {

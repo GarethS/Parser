@@ -78,6 +78,7 @@ inputs	 	{debugPrintf("INPUTS"); return INPUTS;}
 {testForEqual}	{debugPrintf("TEST_FOR_EQUAL"); return TEST_FOR_EQUAL;}
 {arrayDefine}	{debugPrintf("ARRAYDEFINE"); return ARRAYDEFINE;}
 "if"	    {debugPrintf("IF"); return IF;}
+"else"	    {debugPrintf("ELSE"); return ELSE;}
 {digit}+		{debugPrintf("CONST"); yylval.string = strdup(yytext); return CONST;}	/* constant */
 {alpha}{alphanum}*	{debugPrintf("VAR"); yylval.string = strdup(yytext); return VAR;}	/* variable */
 {alpha}{alphanum}*{period}{alpha}{alphanum}*	{debugPrintf("VAR_METHOD"); yylval.string = strdup(yytext); return VAR_METHOD;}	/* method */
