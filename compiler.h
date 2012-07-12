@@ -66,11 +66,11 @@ void printBoilerplate(void);
 
 // The following 2 functions are only used by 'pattern' in the 
 //  'pattern {action} part of the grammar.
-arithNode* addNodeOperator(int operator, arithNode* pLeft, arithNode* pRight);
-arithNode* addNodeArray(char* pVar, arithNode* pIndex);
-arithNode* addNodeArrayConstIndex(char* pVar, int symbolTableIndex);
-arithNode* addNodeVarOperator(int operator, int varIndex, arithNode* pRight);
-arithNode* addNodeId(int varIndex);
+arithNode* addNodeBinaryOperator(int operator, arithNode* pLeft, arithNode* pRight);
+arithNode* addNodeArray(char* pVar, arithNode* pArrayIndex);
+//arithNode* addNodeArrayConstIndex(char* pVar, int symbolTableIndex);
+arithNode* addNodeVariableOperator(int operator, int varIndex, arithNode* pRight);
+arithNode* addNodeSymbolIndex(int varIndex);
 
 //arithNode* addNodeOperatorAction(arithNode* pNode, char* id);
 actionNode* addNodeOperatorAction(actionNode* pActionNode, arithNode* pArithNode);
@@ -79,7 +79,7 @@ arithNode* addNodeActionId(char* id);
 // New functions 
 arithNode* getAvailNode(void);
 int addVarToSymbolTable(char* var);
-void buildNodeVar(char* name, int value, varNode* varNode);
+void buildVariable(char* name, int value, varNode* varNode);
 int addArrayToSymbolTable(char* varName, const unsigned int maxRange);
 int infixPatternTraversal(arithNode* pn);
 

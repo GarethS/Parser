@@ -64,7 +64,7 @@ FILE* fpSymbol = NULL;  // Symbol table file point
 /* non-terminals */
 %type <integer> arrayDefine
 %type <string> statementIf
-%type <pArithNode>  statement statementAssign arithmeticExpression
+%type <pArithNode>  statement statementAssign expr
 %type <pActionNode>  statementList
 
 %defines	/* generate valve.tab.h for use with lex.yy.c */
@@ -92,56 +92,37 @@ statement:	        statementAssign	    {$$ = $1;}
                     | arrayDefine {$$ = NULL;}
 ;			
 
-statementIf:  IF LPAREN arithmeticExpression RPAREN LBRACE statementList RBRACE	{fp = fopen("patternTree.txt", "wb"); walkPatternTree($3, "ROOT", 0); fclose(fp);
+statementIf:  IF LPAREN expr RPAREN LBRACE statementList RBRACE	{fp = fopen("patternTree.txt", "wb"); walkPatternTree($3, "ROOT", 0); fclose(fp);
                                              printf("\n\n"); fp = fopen("actionTree.txt", "wb");
                                              fwrite("0 0 Action 0\n", 1, 13/* strlen("0 0 Action 0\n") */, fp); walkActionTree($6); fclose(fp);}
-              | IF LPAREN arithmeticExpression RPAREN LBRACE statementList RBRACE ELSE LBRACE statementList RBRACE	{fp = fopen("patternTree.txt", "wb"); walkPatternTree($3, "ROOT", 0); fclose(fp);
+              | IF LPAREN expr RPAREN LBRACE statementList RBRACE ELSE LBRACE statementList RBRACE	{fp = fopen("patternTree.txt", "wb"); walkPatternTree($3, "ROOT", 0); fclose(fp);
                                              printf("\n\n"); fp = fopen("actionTree.txt", "wb");
                                              fwrite("0 0 Action 0\n", 1, 13/* strlen("0 0 Action 0\n") */, fp); walkActionTree($6); fclose(fp); fwrite("0 0 Action 0\n", 1, 13/* strlen("0 0 Action 0\n") */, fp); walkActionTree($10); fclose(fp);}
 ;
 
-statementAssign:    VAR EQUAL arithmeticExpression SEMI	    {$$ = addNodeVarOperator(EQUAL, addVarToSymbolTable($1), $3);}
-//                    | array EQUAL arithmeticExpression SEMI {$$ = addNodeOperator(EQUAL, $1, $3);}
-                      | VAR LBRACKET arithmeticExpression RBRACKET EQUAL arithmeticExpression SEMI {$$ = addNodeOperator(EQUAL, addNodeArray($1, $3), $6);} // array
+statementAssign:    VAR EQUAL expr SEMI	    {$$ = addNodeVariableOperator(EQUAL, addVarToSymbolTable($1), $3);}
+//                    | array EQUAL expr SEMI {$$ = addNodeBinaryOperator(EQUAL, $1, $3);}
+                      | VAR LBRACKET expr RBRACKET EQUAL expr SEMI {$$ = addNodeBinaryOperator(EQUAL, addNodeArray($1, $3), $6);} // array
 ;    
 
-/*
-expr: 	    LPAREN expr RPAREN	{$$ = $2;} 
-			| expr AND expr	    {$$ = addNodeOperator(AND, $1, $3);}
-			| expr OR expr	    {$$ = addNodeOperator(OR, $1, $3);}
-            | var operandTest arithmeticExpression	{$$ = addNodeVarOperator($2, $1, $3);}
-            | VAR               {$$ = addNodeId(addVarToSymbolTable($1));}
-            | CONST             {$$ = addNodeId(addVarToSymbolTable($1));}
-;
-*/
-
-arithmeticExpression:	LPAREN arithmeticExpression RPAREN					{$$ = $2;}
-						| arithmeticExpression PLUS  arithmeticExpression	{$$ = addNodeOperator(PLUS, $1, $3);}
-						| arithmeticExpression MINUS arithmeticExpression	{$$ = addNodeOperator(MINUS, $1, $3);}
-						| arithmeticExpression MULT  arithmeticExpression	{$$ = addNodeOperator(MULT, $1, $3);}
-						| arithmeticExpression DIV   arithmeticExpression	{$$ = addNodeOperator(DIV, $1, $3);}
-						| arithmeticExpression XOR   arithmeticExpression	{$$ = addNodeOperator(XOR, $1, $3);}
-						| arithmeticExpression AND   arithmeticExpression	{$$ = addNodeOperator(AND, $1, $3);}
-						| arithmeticExpression OR    arithmeticExpression	{$$ = addNodeOperator(OR, $1, $3);}
-						| arithmeticExpression TEST_FOR_EQUAL arithmeticExpression	{$$ = addNodeOperator(TEST_FOR_EQUAL, $1, $3);}
-						| arithmeticExpression NEQ   arithmeticExpression	{$$ = addNodeOperator(NEQ, $1, $3);}
-						| arithmeticExpression GEQ   arithmeticExpression	{$$ = addNodeOperator(GEQ, $1, $3);}
-						| arithmeticExpression LEQ   arithmeticExpression	{$$ = addNodeOperator(LEQ, $1, $3);}
-						| arithmeticExpression GTR   arithmeticExpression	{$$ = addNodeOperator(GTR, $1, $3);}
-						| arithmeticExpression LSS   arithmeticExpression	{$$ = addNodeOperator(LSS, $1, $3);}
-//                        | var operandTest arithmeticExpression	            {$$ = addNodeVarOperator($2, $1, $3);}
-						| VAR											    {$$ = addNodeId(addVarToSymbolTable($1));}
-						| CONST											    {$$ = addNodeId(addVarToSymbolTable($1));}
-//                        | array                                             {$$ = $1;}
-                        | VAR LBRACKET arithmeticExpression RBRACKET        {$$ = addNodeArray($1, $3);}    // array
+expr:	LPAREN expr RPAREN					{$$ = $2;}
+		| expr PLUS  expr	{$$ = addNodeBinaryOperator(PLUS, $1, $3);}
+		| expr MINUS expr	{$$ = addNodeBinaryOperator(MINUS, $1, $3);}
+		| expr MULT  expr	{$$ = addNodeBinaryOperator(MULT, $1, $3);}
+		| expr DIV   expr	{$$ = addNodeBinaryOperator(DIV, $1, $3);}
+		| expr XOR   expr	{$$ = addNodeBinaryOperator(XOR, $1, $3);}
+		| expr AND   expr	{$$ = addNodeBinaryOperator(AND, $1, $3);}
+		| expr OR    expr	{$$ = addNodeBinaryOperator(OR, $1, $3);}
+		| expr TEST_FOR_EQUAL expr	{$$ = addNodeBinaryOperator(TEST_FOR_EQUAL, $1, $3);}
+		| expr NEQ   expr	{$$ = addNodeBinaryOperator(NEQ, $1, $3);}
+		| expr GEQ   expr	{$$ = addNodeBinaryOperator(GEQ, $1, $3);}
+		| expr LEQ   expr	{$$ = addNodeBinaryOperator(LEQ, $1, $3);}
+		| expr GTR   expr	{$$ = addNodeBinaryOperator(GTR, $1, $3);}
+		| expr LSS   expr	{$$ = addNodeBinaryOperator(LSS, $1, $3);}
+		| VAR											    {$$ = addNodeSymbolIndex(addVarToSymbolTable($1));}
+		| CONST											    {$$ = addNodeSymbolIndex(addVarToSymbolTable($1));}
+        | VAR LBRACKET expr RBRACKET        {$$ = addNodeArray($1, $3);}    // array
 ;						
-
-// identifier replaced by arithmeticExpression
-/*
-array:      VAR LBRACKET arithmeticExpression RBRACKET    {$$ = addNodeArray($1, $3);}
-             | VAR LBRACKET CONST RBRACKET    {$$ = addNodeArrayConstIndex($1, addVarToSymbolTable($3));} 
-;
-*/
 
 arrayDefine:    ARRAYDEFINE VAR LBRACKET CONST RBRACKET SEMI    {$$ = addArrayToSymbolTable($2, atoi($4));}
 ;
@@ -245,10 +226,10 @@ void pushOutputLine(char* line) {
 }
 
 // e.g. '4 * c1'
-arithNode* addNodeOperator(int operator, arithNode* pLeft, arithNode* pRight) {
+arithNode* addNodeBinaryOperator(int operator, arithNode* pLeft, arithNode* pRight) {
 	arithNode* p = getNextArithNode();
 	if (p == NULL) {
-        printf("ERROR:addNodeOperator()");
+        printf("ERROR:addNodeBinaryOperator()");
 		//assert(p != NULL);
 		return p;
 	}
@@ -259,9 +240,8 @@ arithNode* addNodeOperator(int operator, arithNode* pLeft, arithNode* pRight) {
 	return p;	
 }
 
-// e.g. 'c3 == 4 * c1;'
-arithNode* addNodeVarOperator(int operator, int varIndex, arithNode* pRight) {
-#if 1
+// e.g. 'c3 == 4 * c1;' where 'operator' is '='
+arithNode* addNodeVariableOperator(int operator, int varIndex, arithNode* pRight) {
 	arithNode* pLeft= getNextArithNode();
 	if (pLeft == NULL) {
 		//assert(pLeft != NULL);
@@ -269,42 +249,23 @@ arithNode* addNodeVarOperator(int operator, int varIndex, arithNode* pRight) {
 	}
 	pLeft->type = nodeVar;
 	pLeft->value = varIndex;
-    return addNodeOperator(operator, pLeft, pRight);
-#else
-	arithNode* p = getNextArithNode();
-	if (p == NULL) {
-		//assert(p != NULL);
-		return p;
-	}
-	p->type = nodeOperator;
-	p->value = operator;
-	//printf("** operator=%d", operator);
-
-	p->pLeft = getNextArithNode();
-	if (p->pLeft == NULL) {
-		//assert(p->pLeft != NULL);
-		return p->pLeft;
-	}
-	p->pLeft->type = nodeVar;
-	p->pLeft->value = varIndex;
-
-	p->pRight = pRight;
-	return p;	
-#endif
+    return addNodeBinaryOperator(operator, pLeft, pRight);
 }
 
+/*
 arithNode* addNodeArrayConstIndex(char* pVarName, int symbolTableIndex) {
-    arithNode* pArrayNode = addNodeArray(pVarName, addNodeId(symbolTableIndex));
+    arithNode* pArrayNode = addNodeArray(pVarName, addNodeSymbolIndex(symbolTableIndex));
     printf("root=%d, left=%d, right=%d", pArrayNode->value, pArrayNode->pLeft->value, pArrayNode->pRight->value);
     //walkPatternTree(pArrayNode, "rootXXX", 0);
     return pArrayNode;
 }
+*/
 
-arithNode* addNodeArray(char* pVarName, arithNode* pIndex) {
+arithNode* addNodeArray(char* pVarName, arithNode* pArrayIndex) {
     // 1. Make new arithNode to contain index of array (starting point). Actual array
     //     index can't be determined until run time.
-    //printf("xxx root=%d, left=%d, right=%d", pIndex->value, pIndex->pLeft->value, pIndex->pRight->value);
-    //printf("xxx root=%d\n", pIndex->value);
+    //printf("xxx root=%d, left=%d, right=%d", pArrayIndex->value, pArrayIndex->pLeft->value, pArrayIndex->pRight->value);
+    //printf("xxx root=%d\n", pArrayIndex->value);
 	arithNode* pArrayVar = getNextArithNode();
 	if (pArrayVar == NULL) {
         debugAssert(ERR:addNodeArray():pArrayVar == NULL);
@@ -313,24 +274,24 @@ arithNode* addNodeArray(char* pVarName, arithNode* pIndex) {
 	}
 	pArrayVar->type = nodeArray;
     varNode pArrayNode;
-    buildNodeVar(pVarName, 0, &pArrayNode);
+    buildVariable(pVarName, 0, &pArrayNode);
 	pArrayVar->value = findVariable(&pArrayNode);
     if (pArrayVar->value == VAR_NOT_FOUND) {
         debugAssert(ERR: addNodeArray():VAR_NOT_FOUND);
     }
 #if 1
     // This fails
-    return addNodeOperator(LBRACKET, pArrayVar, pIndex);
+    return addNodeBinaryOperator(LBRACKET, pArrayVar, pArrayIndex);
 #else    
     // This passes, but looks like it's using the wrong index in the array
-    //return addNodeOperator(LBRACKET, pArrayVar, pIndex);
-    arithNode* pan = addNodeOperator(LBRACKET, pArrayVar, pIndex);
+    //return addNodeBinaryOperator(LBRACKET, pArrayVar, pArrayIndex);
+    arithNode* pan = addNodeBinaryOperator(LBRACKET, pArrayVar, pArrayIndex);
     //printf("yyyroot=%d, left=%d, right=%d", pan->value, pan->pLeft->value, pan->pRight->value);
     return pan;
 #endif    
 }
 
-arithNode* addNodeId(int varIndex) {
+arithNode* addNodeSymbolIndex(int varIndex) {
 	arithNode* p = getNextArithNode();
 	if (p == NULL) {
 		//assert(p != NULL);
@@ -366,15 +327,15 @@ actionNode* getNextActionNode(void) {
 
 // A variable may not start with a number. One that does we'll consider a constant.
 int isConstant(varNode* pVar) {
-	if (isdigit(pVar->name[0])) {
+	if (isdigit((int)pVar->name[0])) {
 		return TRUE;
 	}
 	return FALSE;
 }
 
-void buildNodeVar(char* name, int value, varNode* varNode) {
+void buildVariable(char* name, int value, varNode* varNode) {
     if (name == NULL || varNode == NULL) {
-        debugAssert(ERR:buildNodeVar());
+        debugAssert(ERR:buildVariable());
         return;
     }
 	strncpy(varNode->name, name, VAR_NAME_LENGTH-1);
@@ -393,7 +354,7 @@ void buildNodeVar(char* name, int value, varNode* varNode) {
 int addArrayToSymbolTable(char* var, const unsigned int maxRange) {
     //printf("addArrayToSymbolTable: %s, %d", var, maxRange);
     varNode tmp;
-    buildNodeVar(var, maxRange, &tmp);
+    buildVariable(var, maxRange, &tmp);
     int found = findVariable(&tmp);
 	if (findVariable(&tmp) == VAR_NOT_FOUND) {
         if (insertVariable(&tmp) == VAR_TABLE_LIMIT) {
@@ -411,7 +372,7 @@ int addArrayToSymbolTable(char* var, const unsigned int maxRange) {
 // Return index in symbol table
 int addVarToSymbolTable(char* var) {
 	varNode tmp;
-    buildNodeVar(var, DEFAULT_VAR_VALUE, &tmp);
+    buildVariable(var, DEFAULT_VAR_VALUE, &tmp);
 	int found = findVariable(&tmp);
 	if (found == VAR_NOT_FOUND) {
 		return insertVariable(&tmp);

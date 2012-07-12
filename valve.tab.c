@@ -486,9 +486,9 @@ static const yytype_int8 yyrhs[] =
 static const yytype_uint8 yyrline[] =
 {
        0,    77,    77,    82,    83,    86,    87,    90,    92,    95,
-      98,   103,   105,   118,   119,   120,   121,   122,   123,   124,
-     125,   126,   127,   128,   129,   130,   131,   133,   134,   136,
-     146
+      98,   103,   105,   108,   109,   110,   111,   112,   113,   114,
+     115,   116,   117,   118,   119,   120,   121,   122,   123,   124,
+     127
 };
 #endif
 
@@ -503,7 +503,7 @@ static const char *const yytname[] =
   "LEQ", "GEQ", "TEST_FOR_EQUAL", "LPAREN", "MINUS", "PLUS", "XOR", "DIV",
   "MULT", "LBRACKET", "RBRACKET", "RPAREN", "SEMI", "$accept", "program",
   "patternActionList", "statementList", "statement", "statementIf",
-  "statementAssign", "arithmeticExpression", "arrayDefine", 0
+  "statementAssign", "expr", "arrayDefine", 0
 };
 #endif
 
@@ -1518,139 +1518,139 @@ yyreduce:
 
 /* Line 1464 of yacc.c  */
 #line 103 "valve.y"
-    {(yyval.pArithNode) = addNodeVarOperator(EQUAL, addVarToSymbolTable((yyvsp[(1) - (4)].string)), (yyvsp[(3) - (4)].pArithNode));;}
+    {(yyval.pArithNode) = addNodeVariableOperator(EQUAL, addVarToSymbolTable((yyvsp[(1) - (4)].string)), (yyvsp[(3) - (4)].pArithNode));;}
     break;
 
   case 12:
 
 /* Line 1464 of yacc.c  */
 #line 105 "valve.y"
-    {(yyval.pArithNode) = addNodeOperator(EQUAL, addNodeArray((yyvsp[(1) - (7)].string), (yyvsp[(3) - (7)].pArithNode)), (yyvsp[(6) - (7)].pArithNode));;}
+    {(yyval.pArithNode) = addNodeBinaryOperator(EQUAL, addNodeArray((yyvsp[(1) - (7)].string), (yyvsp[(3) - (7)].pArithNode)), (yyvsp[(6) - (7)].pArithNode));;}
     break;
 
   case 13:
 
 /* Line 1464 of yacc.c  */
-#line 118 "valve.y"
+#line 108 "valve.y"
     {(yyval.pArithNode) = (yyvsp[(2) - (3)].pArithNode);;}
     break;
 
   case 14:
 
 /* Line 1464 of yacc.c  */
-#line 119 "valve.y"
-    {(yyval.pArithNode) = addNodeOperator(PLUS, (yyvsp[(1) - (3)].pArithNode), (yyvsp[(3) - (3)].pArithNode));;}
+#line 109 "valve.y"
+    {(yyval.pArithNode) = addNodeBinaryOperator(PLUS, (yyvsp[(1) - (3)].pArithNode), (yyvsp[(3) - (3)].pArithNode));;}
     break;
 
   case 15:
 
 /* Line 1464 of yacc.c  */
-#line 120 "valve.y"
-    {(yyval.pArithNode) = addNodeOperator(MINUS, (yyvsp[(1) - (3)].pArithNode), (yyvsp[(3) - (3)].pArithNode));;}
+#line 110 "valve.y"
+    {(yyval.pArithNode) = addNodeBinaryOperator(MINUS, (yyvsp[(1) - (3)].pArithNode), (yyvsp[(3) - (3)].pArithNode));;}
     break;
 
   case 16:
 
 /* Line 1464 of yacc.c  */
-#line 121 "valve.y"
-    {(yyval.pArithNode) = addNodeOperator(MULT, (yyvsp[(1) - (3)].pArithNode), (yyvsp[(3) - (3)].pArithNode));;}
+#line 111 "valve.y"
+    {(yyval.pArithNode) = addNodeBinaryOperator(MULT, (yyvsp[(1) - (3)].pArithNode), (yyvsp[(3) - (3)].pArithNode));;}
     break;
 
   case 17:
 
 /* Line 1464 of yacc.c  */
-#line 122 "valve.y"
-    {(yyval.pArithNode) = addNodeOperator(DIV, (yyvsp[(1) - (3)].pArithNode), (yyvsp[(3) - (3)].pArithNode));;}
+#line 112 "valve.y"
+    {(yyval.pArithNode) = addNodeBinaryOperator(DIV, (yyvsp[(1) - (3)].pArithNode), (yyvsp[(3) - (3)].pArithNode));;}
     break;
 
   case 18:
 
 /* Line 1464 of yacc.c  */
-#line 123 "valve.y"
-    {(yyval.pArithNode) = addNodeOperator(XOR, (yyvsp[(1) - (3)].pArithNode), (yyvsp[(3) - (3)].pArithNode));;}
+#line 113 "valve.y"
+    {(yyval.pArithNode) = addNodeBinaryOperator(XOR, (yyvsp[(1) - (3)].pArithNode), (yyvsp[(3) - (3)].pArithNode));;}
     break;
 
   case 19:
 
 /* Line 1464 of yacc.c  */
-#line 124 "valve.y"
-    {(yyval.pArithNode) = addNodeOperator(AND, (yyvsp[(1) - (3)].pArithNode), (yyvsp[(3) - (3)].pArithNode));;}
+#line 114 "valve.y"
+    {(yyval.pArithNode) = addNodeBinaryOperator(AND, (yyvsp[(1) - (3)].pArithNode), (yyvsp[(3) - (3)].pArithNode));;}
     break;
 
   case 20:
 
 /* Line 1464 of yacc.c  */
-#line 125 "valve.y"
-    {(yyval.pArithNode) = addNodeOperator(OR, (yyvsp[(1) - (3)].pArithNode), (yyvsp[(3) - (3)].pArithNode));;}
+#line 115 "valve.y"
+    {(yyval.pArithNode) = addNodeBinaryOperator(OR, (yyvsp[(1) - (3)].pArithNode), (yyvsp[(3) - (3)].pArithNode));;}
     break;
 
   case 21:
 
 /* Line 1464 of yacc.c  */
-#line 126 "valve.y"
-    {(yyval.pArithNode) = addNodeOperator(TEST_FOR_EQUAL, (yyvsp[(1) - (3)].pArithNode), (yyvsp[(3) - (3)].pArithNode));;}
+#line 116 "valve.y"
+    {(yyval.pArithNode) = addNodeBinaryOperator(TEST_FOR_EQUAL, (yyvsp[(1) - (3)].pArithNode), (yyvsp[(3) - (3)].pArithNode));;}
     break;
 
   case 22:
 
 /* Line 1464 of yacc.c  */
-#line 127 "valve.y"
-    {(yyval.pArithNode) = addNodeOperator(NEQ, (yyvsp[(1) - (3)].pArithNode), (yyvsp[(3) - (3)].pArithNode));;}
+#line 117 "valve.y"
+    {(yyval.pArithNode) = addNodeBinaryOperator(NEQ, (yyvsp[(1) - (3)].pArithNode), (yyvsp[(3) - (3)].pArithNode));;}
     break;
 
   case 23:
 
 /* Line 1464 of yacc.c  */
-#line 128 "valve.y"
-    {(yyval.pArithNode) = addNodeOperator(GEQ, (yyvsp[(1) - (3)].pArithNode), (yyvsp[(3) - (3)].pArithNode));;}
+#line 118 "valve.y"
+    {(yyval.pArithNode) = addNodeBinaryOperator(GEQ, (yyvsp[(1) - (3)].pArithNode), (yyvsp[(3) - (3)].pArithNode));;}
     break;
 
   case 24:
 
 /* Line 1464 of yacc.c  */
-#line 129 "valve.y"
-    {(yyval.pArithNode) = addNodeOperator(LEQ, (yyvsp[(1) - (3)].pArithNode), (yyvsp[(3) - (3)].pArithNode));;}
+#line 119 "valve.y"
+    {(yyval.pArithNode) = addNodeBinaryOperator(LEQ, (yyvsp[(1) - (3)].pArithNode), (yyvsp[(3) - (3)].pArithNode));;}
     break;
 
   case 25:
 
 /* Line 1464 of yacc.c  */
-#line 130 "valve.y"
-    {(yyval.pArithNode) = addNodeOperator(GTR, (yyvsp[(1) - (3)].pArithNode), (yyvsp[(3) - (3)].pArithNode));;}
+#line 120 "valve.y"
+    {(yyval.pArithNode) = addNodeBinaryOperator(GTR, (yyvsp[(1) - (3)].pArithNode), (yyvsp[(3) - (3)].pArithNode));;}
     break;
 
   case 26:
 
 /* Line 1464 of yacc.c  */
-#line 131 "valve.y"
-    {(yyval.pArithNode) = addNodeOperator(LSS, (yyvsp[(1) - (3)].pArithNode), (yyvsp[(3) - (3)].pArithNode));;}
+#line 121 "valve.y"
+    {(yyval.pArithNode) = addNodeBinaryOperator(LSS, (yyvsp[(1) - (3)].pArithNode), (yyvsp[(3) - (3)].pArithNode));;}
     break;
 
   case 27:
 
 /* Line 1464 of yacc.c  */
-#line 133 "valve.y"
-    {(yyval.pArithNode) = addNodeId(addVarToSymbolTable((yyvsp[(1) - (1)].string)));;}
+#line 122 "valve.y"
+    {(yyval.pArithNode) = addNodeSymbolIndex(addVarToSymbolTable((yyvsp[(1) - (1)].string)));;}
     break;
 
   case 28:
 
 /* Line 1464 of yacc.c  */
-#line 134 "valve.y"
-    {(yyval.pArithNode) = addNodeId(addVarToSymbolTable((yyvsp[(1) - (1)].string)));;}
+#line 123 "valve.y"
+    {(yyval.pArithNode) = addNodeSymbolIndex(addVarToSymbolTable((yyvsp[(1) - (1)].string)));;}
     break;
 
   case 29:
 
 /* Line 1464 of yacc.c  */
-#line 136 "valve.y"
+#line 124 "valve.y"
     {(yyval.pArithNode) = addNodeArray((yyvsp[(1) - (4)].string), (yyvsp[(3) - (4)].pArithNode));;}
     break;
 
   case 30:
 
 /* Line 1464 of yacc.c  */
-#line 146 "valve.y"
+#line 127 "valve.y"
     {(yyval.integer) = addArrayToSymbolTable((yyvsp[(2) - (6)].string), atoi((yyvsp[(4) - (6)].string)));;}
     break;
 
@@ -1869,7 +1869,7 @@ yyreturn:
 
 
 /* Line 1684 of yacc.c  */
-#line 149 "valve.y"
+#line 130 "valve.y"
  /* Additional C code */
 
 
@@ -1969,10 +1969,10 @@ void pushOutputLine(char* line) {
 }
 
 // e.g. '4 * c1'
-arithNode* addNodeOperator(int operator, arithNode* pLeft, arithNode* pRight) {
+arithNode* addNodeBinaryOperator(int operator, arithNode* pLeft, arithNode* pRight) {
 	arithNode* p = getNextArithNode();
 	if (p == NULL) {
-        printf("ERROR:addNodeOperator()");
+        printf("ERROR:addNodeBinaryOperator()");
 		//assert(p != NULL);
 		return p;
 	}
@@ -1983,9 +1983,8 @@ arithNode* addNodeOperator(int operator, arithNode* pLeft, arithNode* pRight) {
 	return p;	
 }
 
-// e.g. 'c3 == 4 * c1;'
-arithNode* addNodeVarOperator(int operator, int varIndex, arithNode* pRight) {
-#if 1
+// e.g. 'c3 == 4 * c1;' where 'operator' is '='
+arithNode* addNodeVariableOperator(int operator, int varIndex, arithNode* pRight) {
 	arithNode* pLeft= getNextArithNode();
 	if (pLeft == NULL) {
 		//assert(pLeft != NULL);
@@ -1993,42 +1992,23 @@ arithNode* addNodeVarOperator(int operator, int varIndex, arithNode* pRight) {
 	}
 	pLeft->type = nodeVar;
 	pLeft->value = varIndex;
-    return addNodeOperator(operator, pLeft, pRight);
-#else
-	arithNode* p = getNextArithNode();
-	if (p == NULL) {
-		//assert(p != NULL);
-		return p;
-	}
-	p->type = nodeOperator;
-	p->value = operator;
-	//printf("** operator=%d", operator);
-
-	p->pLeft = getNextArithNode();
-	if (p->pLeft == NULL) {
-		//assert(p->pLeft != NULL);
-		return p->pLeft;
-	}
-	p->pLeft->type = nodeVar;
-	p->pLeft->value = varIndex;
-
-	p->pRight = pRight;
-	return p;	
-#endif
+    return addNodeBinaryOperator(operator, pLeft, pRight);
 }
 
+/*
 arithNode* addNodeArrayConstIndex(char* pVarName, int symbolTableIndex) {
-    arithNode* pArrayNode = addNodeArray(pVarName, addNodeId(symbolTableIndex));
+    arithNode* pArrayNode = addNodeArray(pVarName, addNodeSymbolIndex(symbolTableIndex));
     printf("root=%d, left=%d, right=%d", pArrayNode->value, pArrayNode->pLeft->value, pArrayNode->pRight->value);
     //walkPatternTree(pArrayNode, "rootXXX", 0);
     return pArrayNode;
 }
+*/
 
-arithNode* addNodeArray(char* pVarName, arithNode* pIndex) {
+arithNode* addNodeArray(char* pVarName, arithNode* pArrayIndex) {
     // 1. Make new arithNode to contain index of array (starting point). Actual array
     //     index can't be determined until run time.
-    //printf("xxx root=%d, left=%d, right=%d", pIndex->value, pIndex->pLeft->value, pIndex->pRight->value);
-    //printf("xxx root=%d\n", pIndex->value);
+    //printf("xxx root=%d, left=%d, right=%d", pArrayIndex->value, pArrayIndex->pLeft->value, pArrayIndex->pRight->value);
+    //printf("xxx root=%d\n", pArrayIndex->value);
 	arithNode* pArrayVar = getNextArithNode();
 	if (pArrayVar == NULL) {
         debugAssert(ERR:addNodeArray():pArrayVar == NULL);
@@ -2037,24 +2017,24 @@ arithNode* addNodeArray(char* pVarName, arithNode* pIndex) {
 	}
 	pArrayVar->type = nodeArray;
     varNode pArrayNode;
-    buildNodeVar(pVarName, 0, &pArrayNode);
+    buildVariable(pVarName, 0, &pArrayNode);
 	pArrayVar->value = findVariable(&pArrayNode);
     if (pArrayVar->value == VAR_NOT_FOUND) {
         debugAssert(ERR: addNodeArray():VAR_NOT_FOUND);
     }
 #if 1
     // This fails
-    return addNodeOperator(LBRACKET, pArrayVar, pIndex);
+    return addNodeBinaryOperator(LBRACKET, pArrayVar, pArrayIndex);
 #else    
     // This passes, but looks like it's using the wrong index in the array
-    //return addNodeOperator(LBRACKET, pArrayVar, pIndex);
-    arithNode* pan = addNodeOperator(LBRACKET, pArrayVar, pIndex);
+    //return addNodeBinaryOperator(LBRACKET, pArrayVar, pArrayIndex);
+    arithNode* pan = addNodeBinaryOperator(LBRACKET, pArrayVar, pArrayIndex);
     //printf("yyyroot=%d, left=%d, right=%d", pan->value, pan->pLeft->value, pan->pRight->value);
     return pan;
 #endif    
 }
 
-arithNode* addNodeId(int varIndex) {
+arithNode* addNodeSymbolIndex(int varIndex) {
 	arithNode* p = getNextArithNode();
 	if (p == NULL) {
 		//assert(p != NULL);
@@ -2090,15 +2070,15 @@ actionNode* getNextActionNode(void) {
 
 // A variable may not start with a number. One that does we'll consider a constant.
 int isConstant(varNode* pVar) {
-	if (isdigit(pVar->name[0])) {
+	if (isdigit((int)pVar->name[0])) {
 		return TRUE;
 	}
 	return FALSE;
 }
 
-void buildNodeVar(char* name, int value, varNode* varNode) {
+void buildVariable(char* name, int value, varNode* varNode) {
     if (name == NULL || varNode == NULL) {
-        debugAssert(ERR:buildNodeVar());
+        debugAssert(ERR:buildVariable());
         return;
     }
 	strncpy(varNode->name, name, VAR_NAME_LENGTH-1);
@@ -2117,7 +2097,7 @@ void buildNodeVar(char* name, int value, varNode* varNode) {
 int addArrayToSymbolTable(char* var, const unsigned int maxRange) {
     //printf("addArrayToSymbolTable: %s, %d", var, maxRange);
     varNode tmp;
-    buildNodeVar(var, maxRange, &tmp);
+    buildVariable(var, maxRange, &tmp);
     int found = findVariable(&tmp);
 	if (findVariable(&tmp) == VAR_NOT_FOUND) {
         if (insertVariable(&tmp) == VAR_TABLE_LIMIT) {
@@ -2135,7 +2115,7 @@ int addArrayToSymbolTable(char* var, const unsigned int maxRange) {
 // Return index in symbol table
 int addVarToSymbolTable(char* var) {
 	varNode tmp;
-    buildNodeVar(var, DEFAULT_VAR_VALUE, &tmp);
+    buildVariable(var, DEFAULT_VAR_VALUE, &tmp);
 	int found = findVariable(&tmp);
 	if (found == VAR_NOT_FOUND) {
 		return insertVariable(&tmp);
