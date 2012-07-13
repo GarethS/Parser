@@ -29,7 +29,7 @@ unsigned int varTableFreeIndex = 0;
 arithNode arithTable[ARITH_ITEMS];
 unsigned int arithTableFreeIndex = 0;
 
-statementNode statementTable[STATEMENT_ITEMS];
+arithNode statementTable[STATEMENT_ITEMS];
 unsigned int statementTableFreeIndex = 0;
 FILE* fp = NULL; // Parse tree file pointer
 FILE* fpSymbol = NULL;  // Symbol table file point
@@ -42,7 +42,6 @@ FILE* fpSymbol = NULL;  // Symbol table file point
     float floatingPoint;
 	char* string;
 	arithNode* pArithNode;
-	statementNode* pStatementNode;
 }
 
 /* TERMINALS */
@@ -63,9 +62,8 @@ FILE* fpSymbol = NULL;  // Symbol table file point
 
 /* non-terminals */
 %type <integer> arrayDefine
-%type <string> statementIf
-%type <pArithNode>  statement statementAssign expr
-%type <pStatementNode>  statementList
+//%type <string>
+%type <pArithNode>  statement statementAssign statementIf expr statementList
 
 %defines	/* generate valve.tab.h for use with lex.yy.c */
 
@@ -74,11 +72,7 @@ FILE* fpSymbol = NULL;  // Symbol table file point
 %start program
 
 %% /* Grammar rules and actions */
-program: 	patternActionList	{fpSymbol = fopen("symbolTable.txt", "wb"); dumpSymbolTable(); fclose(fpSymbol);}
-;
-
-patternActionList: /* empty */	{}
-					| patternActionList statementIf	
+program: 	statementList	{fpSymbol = fopen("symbolTable.txt", "wb"); dumpSymbolTable(); fclose(fpSymbol);}
 ;
 
 statementList: /* empty */	{}
@@ -86,16 +80,14 @@ statementList: /* empty */	{}
 ;
 
 statement:	        statementAssign	    {$$ = $1;}
-//                    statementIf         {$$ = NULL;}
-                    | arrayDefine {$$ = NULL;}
+                    | statementIf       {$$ = $1;}
+                    | arrayDefine       {$$ = NULL;}
 ;			
 
 statementIf:  IF LPAREN expr RPAREN LBRACE statementList RBRACE	{fp = fopen("patternTree.txt", "wb"); walkPatternTree($3, "ROOT", 0); fclose(fp);
                                              printf("\n\n"); fp = fopen("actionTree.txt", "wb");
                                              fwrite("0 0 Action 0\n", 1, 13/* strlen("0 0 Action 0\n") */, fp); walkStatements($6); fclose(fp);}
-              | IF LPAREN expr RPAREN LBRACE statementList RBRACE ELSE LBRACE statementList RBRACE	{fp = fopen("patternTree.txt", "wb"); walkPatternTree($3, "ROOT", 0); fclose(fp);
-                                             printf("\n\n"); fp = fopen("actionTree.txt", "wb");
-                                             fwrite("0 0 Action 0\n", 1, 13/* strlen("0 0 Action 0\n") */, fp); walkStatements($6); fclose(fp); fwrite("0 0 Action 0\n", 1, 13/* strlen("0 0 Action 0\n") */, fp); walkStatements($10); fclose(fp);}
+              | IF LPAREN expr RPAREN LBRACE statementList RBRACE ELSE LBRACE statementList RBRACE	{$$ = addNodeIf($3, $6, $10);}
 ;
 
 statementAssign:    VAR EQUAL expr SEMI	    {$$ = addNodeVariableOperator(EQUAL, addVarToSymbolTable($1), $3);}
@@ -223,12 +215,25 @@ void pushOutputLine(char* line) {
 	printf("\nsetLineAsOutput(\"%s\");", line);
 }
 
+// e.g. if (x==2) {x = 1;} else {x = 4;}
+arithNode* addNodeIf(arithNode* pExpr, arithNode* pIf, arithNode* pElse) {
+	arithNode* p = getNextArithNode();
+	if (p == NULL) {
+        debugAssert(ERR:addNodeIf():p == NULL);
+		return p;
+	}
+    p->type = nodeIf;
+    p->pLeft = pExpr;
+    p->pCentre = pIf;
+    p->pRight = pElse;
+    return p;
+}
+
 // e.g. '4 * c1'
 arithNode* addNodeBinaryOperator(int operator, arithNode* pLeft, arithNode* pRight) {
 	arithNode* p = getNextArithNode();
 	if (p == NULL) {
-        printf("ERROR:addNodeBinaryOperator()");
-		//assert(p != NULL);
+        debugAssert("ERROR:addNodeBinaryOperator():p == NULL");
 		return p;
 	}
 	p->type = nodeOperator;
@@ -242,7 +247,7 @@ arithNode* addNodeBinaryOperator(int operator, arithNode* pLeft, arithNode* pRig
 arithNode* addNodeVariableOperator(int operator, int varIndex, arithNode* pRight) {
 	arithNode* pLeft= getNextArithNode();
 	if (pLeft == NULL) {
-		//assert(pLeft != NULL);
+        debugAssert(ERR:addNodeVariableOperator():pLeft == NULL);
 		return pLeft;
 	}
 	pLeft->type = nodeVar;
@@ -267,7 +272,6 @@ arithNode* addNodeArray(char* pVarName, arithNode* pArrayIndex) {
 	arithNode* pArrayVar = getNextArithNode();
 	if (pArrayVar == NULL) {
         debugAssert(ERR:addNodeArray():pArrayVar == NULL);
-		//assert(pArrayVar != NULL);
 		return pArrayVar;
 	}
 	pArrayVar->type = nodeArray;
@@ -292,7 +296,7 @@ arithNode* addNodeArray(char* pVarName, arithNode* pArrayIndex) {
 arithNode* addNodeSymbolIndex(int varIndex) {
 	arithNode* p = getNextArithNode();
 	if (p == NULL) {
-		//assert(p != NULL);
+		debugAssert("ERR:addNodeSymbolIndex():p == NULL");
 		return p;
 	}
 	p->type = nodeVar;
@@ -300,24 +304,33 @@ arithNode* addNodeSymbolIndex(int varIndex) {
 	return p;	
 }
 
+void initNode(arithNode* pArithNode) {
+    if (pArithNode == NULL) {
+        debugAssert(ERR:initNode());
+        return;
+    }
+    pArithNode->pLeft = NULL;
+    pArithNode->pRight = NULL;
+    pArithNode->pCentre = NULL;
+    pArithNode->pNext = NULL;
+}
+
 arithNode* getNextArithNode(void) {
 	if (arithTableFreeIndex < ARITH_ITEMS) {
-        arithTable[arithTableFreeIndex].pLeft = NULL;
-        arithTable[arithTableFreeIndex].pRight = NULL;
-        arithTable[arithTableFreeIndex].pCentre = NULL;
+        // Initialize all members before making this node available
+        initNode(arithTable + arithTableFreeIndex);
 		return arithTable + arithTableFreeIndex++;
 	}
 	return NULL;
 }
 
-statementNode* getNextStatementNode(void) {
+arithNode* getNextStatementNode(void) {
 	if (statementTableFreeIndex < STATEMENT_ITEMS) {
 #if REGRESS_1    
         printf("getNextStatementNode() %d\n", statementTableFreeIndex);
         fflush(stdout);
 #endif /* REGRESS_1 */
-        statementTable[statementTableFreeIndex].pArith = NULL;
-        statementTable[statementTableFreeIndex].pNext = NULL;
+        initNode(statementTable + statementTableFreeIndex);
 		return statementTable + statementTableFreeIndex++;
 	}
 	return NULL;
@@ -378,11 +391,10 @@ int addVarToSymbolTable(char* var) {
 	return found;
 }
 
-
 // The following 2 functions are only used by 'action' in the 
 //  'pattern {action} part of the grammar.
 // Where does the first pStatementNode get set?????
-statementNode* addStatement(statementNode* pStatementNode, arithNode* pArithNode) {
+arithNode* addStatement(arithNode* pStatementNode, arithNode* pArithNode) {
     static int first = TRUE;
     
     if (first) {
@@ -392,7 +404,7 @@ statementNode* addStatement(statementNode* pStatementNode, arithNode* pArithNode
         pStatementNode = NULL;
     }
 #if REGRESS_1    
-    printf("!!addStatement(statementNode* pStatementNode=%d, arithNode* pArithNode=%d)\n", pStatementNode, pArithNode);
+    printf("!!addStatement(arithNode* pStatementNode=%d, arithNode* pArithNode=%d)\n", pStatementNode, pArithNode);
     //printf("pStatementNode->Next=%d\n", pStatementNode->pNext);
     fflush(stdout);
 #endif /* REGRESS_1 */    
@@ -400,77 +412,15 @@ statementNode* addStatement(statementNode* pStatementNode, arithNode* pArithNode
         // Special case for array definition
         return pStatementNode;
     }
-	statementNode* p = getNextStatementNode();
+	arithNode* p = getNextStatementNode();
 	if (p == NULL) {
 		//assert(p != NULL);
 		return p;
 	}
-	p->pArith = pArithNode;
+	p->pLeft = pArithNode;
     p->pNext = pStatementNode;
 	return p;
 }
-
-#if 0
-arithNode* addNodeActionId(char* id) {
-	//assert(id != NULL);
-	arithNode* p = malloc(sizeof(arithNode));
-	if (p == NULL) {
-		//assert(p != NULL);
-		yyerror("malloc() failed in call to addActionNodeId()");
-	}
-	p->operand = enumAction;
-	// Remember an id can be 'a3' or '!g7'.
-	p->idValue[0] = id[0];
-	p->idValue[1] = id[1];
-	p->idValue[2] = id[2];
-	if (id[0] == '!') {
-		p->idValue[3] = id[3];
-	}
-	p->pLeft = NULL;
-	p->pRight = NULL;
-	return p;	
-}
-#endif
-
-#if 0
-void doPatternAction(arithNode* pPattern, arithNode* pAction)
-{
-	{
-	/* Output statement. */
-	printf("\nif ");
-	// Output Pattern statements.
-	walkPatternTree(pPattern, FALSE);
-	printf("  {");
-
-	// Output Action statements.
-	walkStatements(pAction, FALSE);
-
-	printf("\n/* Latch data into LED(0). */");
-	printf("\nsetOutput(\"!e7\");");
-	printf("\nsetOutput(\"e7\");");
-	printf("\n} /* if */\n");
-	}
-
-	{
-	/* Output complement statement. */
-	printf("\nif ");
-	// Output Pattern statements.
-	walkPatternTree(pPattern, TRUE);
-	printf("  {");
-
-	// Output Action statements.
-	walkStatements(pAction, TRUE);
-
-	printf("\n/* Latch data into LED(0). */");
-	printf("\nsetOutput(\"!e7\");");
-	printf("\nsetOutput(\"e7\");");
-	printf("\n} /* if */\n");
-	}
-
-	//freeNode(pPattern);
-	//freeNode(pAction);
-}
-#endif
 
 void printOperator(int value) {
     switch (value) {
@@ -591,9 +541,9 @@ void printIndent(unsigned int indent) {
     }
 }
 
-void walkStatements(statementNode* pStatementNode) {
+void walkStatements(arithNode* pStatementNode) {
 #if REGRESS_1
-    printf("walkStatements(statementNode* pStatementNode=%d)\n", pStatementNode);
+    printf("walkStatements(arithNode* pStatementNode=%d)\n", pStatementNode);
     fflush(stdout);
 #endif /* REGRESS_1 */    
 	if (pStatementNode == NULL) {
@@ -606,39 +556,11 @@ void walkStatements(statementNode* pStatementNode) {
     walkStatements(pStatementNode->pNext);
     
 #if REGRESS_1    
-    printf("walkPatternTree(pStatementNode->pArith=%d, ROOT, 0)\n", pStatementNode->pArith);
+    printf("walkPatternTree(pStatementNode->pLeft=%d, ROOT, 0)\n", pStatementNode->pLeft);
     fflush(stdout);
 #endif /* REGRESS_1 */    
-	walkPatternTree(pStatementNode->pArith, "ROOT", 0);
+	walkPatternTree(pStatementNode->pLeft, "ROOT", 0);
 }
-
-#if 0
-int infixPatternTraversal(arithNode* pn) {
-	if (pn->type == nodeOperator) {
-		int valueLeft = infixPatternTraversal(pn->pLeft);
-		// Short-circuit evaluation
-		if (pn->value == OP_OR && valueLeft != FALSE) {
-			return valueLeft;
-		}
-		int valueRight = infixPatternTraversal(pn->pRight);
-		switch (pn->value) {
-		case OP_PLUS:
-			return valueLeft + valueRight;
-		case OP_MINUS:
-			return valueLeft - valueRight;
-		case OP_MULT:
-			return valueLeft * valueRight;
-		case OP_DIV:
-			return valueLeft / valueRight;
-		default:
-			// Got unrecognized opcode!
-			break;
-		}
-	}
-	// It's an operand so just return its value.
-	return pn->value;
-}
-#endif
 
 void dumpSymbolTable(void) {
 	int i;

@@ -86,12 +86,11 @@ typedef union YYSTYPE
     float floatingPoint;
 	char* string;
 	arithNode* pArithNode;
-	statementNode* pStatementNode;
 
 
 
 /* Line 1685 of yacc.c  */
-#line 95 "valve.tab.h"
+#line 94 "valve.tab.h"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */

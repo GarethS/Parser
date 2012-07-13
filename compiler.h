@@ -45,18 +45,20 @@ typedef struct thisArithmeticNode {
 #endif
     // new stuff
 	nodeType type;
-	int	value;	// If nodeConst, this is the value. If nodeVar, this is the index into symbol table. If nodeOperator, this is the operator.
+	int	value;	// If nodeConst or nodeVar, this is the index into symbol table. If nodeOperator, this is the operator.
 	
-	struct thisArithmeticNode* pLeft;
+	struct thisArithmeticNode* pLeft;   // Used by statement list to point to tree.
 	struct thisArithmeticNode* pRight;
 	struct thisArithmeticNode* pCentre;
+	struct thisArithmeticNode* pNext;   // Used for walking each statement
 } arithNode;
 
+/*
 typedef struct thisStatmentNode {
 	struct thisArithmeticNode* pArith;
 	struct thisStatmentNode* pNext;
 } statementNode;
-
+*/
 
 // Function prototypes.
 void yyerror (char* s);
@@ -72,16 +74,15 @@ arithNode* addNodeArray(char* pVar, arithNode* pArrayIndex);
 //arithNode* addNodeArrayConstIndex(char* pVar, int symbolTableIndex);
 arithNode* addNodeVariableOperator(int operator, int varIndex, arithNode* pRight);
 arithNode* addNodeSymbolIndex(int varIndex);
+arithNode* addNodeIf(arithNode* pExpr, arithNode* pIf, arithNode* pElse);
 
-statementNode* addStatement(statementNode* pStatementNode, arithNode* pArithNode);
-arithNode* addNodeActionId(char* id);
+arithNode* addStatement(arithNode* pStatementNode, arithNode* pArithNode);
 
 // New functions 
 arithNode* getAvailNode(void);
 int addVarToSymbolTable(char* var);
 void buildVariable(char* name, int value, varNode* varNode);
 int addArrayToSymbolTable(char* varName, const unsigned int maxRange);
-//int infixPatternTraversal(arithNode* pn);
 
 void initVarTable(void);
 int insertVariable(varNode* pVar);
@@ -90,14 +91,14 @@ int insertVariable(varNode* pVar);
 int findVariable(varNode* pVar);
 int isConstant(varNode* pVar);
 
+void initNode(arithNode* pArithNode);
 arithNode* getNextArithNode(void);
-statementNode* getNextStatementNode(void);
+arithNode* getNextStatementNode(void);
 
-void doPatternAction(arithNode* pPattern, arithNode* pAction);
 void printIndent(unsigned int indent);
 void printOperator(int value);
 void walkPatternTree(arithNode* pNode, char* position, int indent);
-void walkStatements(statementNode* pNode);
+void walkStatements(arithNode* pNode);
 void dumpSymbolTable(void);
 void dumpSymbol(int i);
 //void freeNode(node* pNode);
