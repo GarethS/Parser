@@ -86,8 +86,8 @@ unsigned int varTableFreeIndex = 0;
 arithNode arithTable[ARITH_ITEMS];
 unsigned int arithTableFreeIndex = 0;
 
-actionNode actionTable[ACTION_ITEMS];
-unsigned int actionTableFreeIndex = 0;
+statementNode statementTable[STATEMENT_ITEMS];
+unsigned int statementTableFreeIndex = 0;
 FILE* fp = NULL; // Parse tree file pointer
 FILE* fpSymbol = NULL;  // Symbol table file point
 
@@ -169,7 +169,7 @@ typedef union YYSTYPE
     float floatingPoint;
 	char* string;
 	arithNode* pArithNode;
-	actionNode* pActionNode;
+	statementNode* pStatementNode;
 
 
 
@@ -485,10 +485,10 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    77,    77,    82,    83,    86,    87,    90,    92,    95,
-      98,   103,   105,   108,   109,   110,   111,   112,   113,   114,
-     115,   116,   117,   118,   119,   120,   121,   122,   123,   124,
-     127
+       0,    77,    77,    80,    81,    84,    85,    88,    90,    93,
+      96,   101,   103,   106,   107,   108,   109,   110,   111,   112,
+     113,   114,   115,   116,   117,   118,   119,   120,   121,   122,
+     125
 };
 #endif
 
@@ -1456,208 +1456,206 @@ yyreduce:
 
 /* Line 1464 of yacc.c  */
 #line 77 "valve.y"
-    {fpSymbol = fopen("symbolTable.txt", "wb");
-                                    dumpSymbolTable();
-                                    fclose(fpSymbol);;}
+    {fpSymbol = fopen("symbolTable.txt", "wb"); dumpSymbolTable(); fclose(fpSymbol);;}
     break;
 
   case 3:
 
 /* Line 1464 of yacc.c  */
-#line 82 "valve.y"
+#line 80 "valve.y"
     {;}
     break;
 
   case 5:
 
 /* Line 1464 of yacc.c  */
-#line 86 "valve.y"
+#line 84 "valve.y"
     {;}
     break;
 
   case 6:
 
 /* Line 1464 of yacc.c  */
-#line 87 "valve.y"
-    {(yyval.pActionNode) = addNodeOperatorAction((yyvsp[(1) - (2)].pActionNode), (yyvsp[(2) - (2)].pArithNode));;}
+#line 85 "valve.y"
+    {(yyval.pStatementNode) = addStatement((yyvsp[(1) - (2)].pStatementNode), (yyvsp[(2) - (2)].pArithNode));;}
     break;
 
   case 7:
 
 /* Line 1464 of yacc.c  */
-#line 90 "valve.y"
+#line 88 "valve.y"
     {(yyval.pArithNode) = (yyvsp[(1) - (1)].pArithNode);;}
     break;
 
   case 8:
 
 /* Line 1464 of yacc.c  */
-#line 92 "valve.y"
+#line 90 "valve.y"
     {(yyval.pArithNode) = NULL;;}
     break;
 
   case 9:
 
 /* Line 1464 of yacc.c  */
-#line 95 "valve.y"
+#line 93 "valve.y"
     {fp = fopen("patternTree.txt", "wb"); walkPatternTree((yyvsp[(3) - (7)].pArithNode), "ROOT", 0); fclose(fp);
                                              printf("\n\n"); fp = fopen("actionTree.txt", "wb");
-                                             fwrite("0 0 Action 0\n", 1, 13/* strlen("0 0 Action 0\n") */, fp); walkActionTree((yyvsp[(6) - (7)].pActionNode)); fclose(fp);;}
+                                             fwrite("0 0 Action 0\n", 1, 13/* strlen("0 0 Action 0\n") */, fp); walkStatements((yyvsp[(6) - (7)].pStatementNode)); fclose(fp);;}
     break;
 
   case 10:
 
 /* Line 1464 of yacc.c  */
-#line 98 "valve.y"
+#line 96 "valve.y"
     {fp = fopen("patternTree.txt", "wb"); walkPatternTree((yyvsp[(3) - (11)].pArithNode), "ROOT", 0); fclose(fp);
                                              printf("\n\n"); fp = fopen("actionTree.txt", "wb");
-                                             fwrite("0 0 Action 0\n", 1, 13/* strlen("0 0 Action 0\n") */, fp); walkActionTree((yyvsp[(6) - (11)].pActionNode)); fclose(fp); fwrite("0 0 Action 0\n", 1, 13/* strlen("0 0 Action 0\n") */, fp); walkActionTree((yyvsp[(10) - (11)].pActionNode)); fclose(fp);;}
+                                             fwrite("0 0 Action 0\n", 1, 13/* strlen("0 0 Action 0\n") */, fp); walkStatements((yyvsp[(6) - (11)].pStatementNode)); fclose(fp); fwrite("0 0 Action 0\n", 1, 13/* strlen("0 0 Action 0\n") */, fp); walkStatements((yyvsp[(10) - (11)].pStatementNode)); fclose(fp);;}
     break;
 
   case 11:
 
 /* Line 1464 of yacc.c  */
-#line 103 "valve.y"
+#line 101 "valve.y"
     {(yyval.pArithNode) = addNodeVariableOperator(EQUAL, addVarToSymbolTable((yyvsp[(1) - (4)].string)), (yyvsp[(3) - (4)].pArithNode));;}
     break;
 
   case 12:
 
 /* Line 1464 of yacc.c  */
-#line 105 "valve.y"
+#line 103 "valve.y"
     {(yyval.pArithNode) = addNodeBinaryOperator(EQUAL, addNodeArray((yyvsp[(1) - (7)].string), (yyvsp[(3) - (7)].pArithNode)), (yyvsp[(6) - (7)].pArithNode));;}
     break;
 
   case 13:
 
 /* Line 1464 of yacc.c  */
-#line 108 "valve.y"
+#line 106 "valve.y"
     {(yyval.pArithNode) = (yyvsp[(2) - (3)].pArithNode);;}
     break;
 
   case 14:
 
 /* Line 1464 of yacc.c  */
-#line 109 "valve.y"
+#line 107 "valve.y"
     {(yyval.pArithNode) = addNodeBinaryOperator(PLUS, (yyvsp[(1) - (3)].pArithNode), (yyvsp[(3) - (3)].pArithNode));;}
     break;
 
   case 15:
 
 /* Line 1464 of yacc.c  */
-#line 110 "valve.y"
+#line 108 "valve.y"
     {(yyval.pArithNode) = addNodeBinaryOperator(MINUS, (yyvsp[(1) - (3)].pArithNode), (yyvsp[(3) - (3)].pArithNode));;}
     break;
 
   case 16:
 
 /* Line 1464 of yacc.c  */
-#line 111 "valve.y"
+#line 109 "valve.y"
     {(yyval.pArithNode) = addNodeBinaryOperator(MULT, (yyvsp[(1) - (3)].pArithNode), (yyvsp[(3) - (3)].pArithNode));;}
     break;
 
   case 17:
 
 /* Line 1464 of yacc.c  */
-#line 112 "valve.y"
+#line 110 "valve.y"
     {(yyval.pArithNode) = addNodeBinaryOperator(DIV, (yyvsp[(1) - (3)].pArithNode), (yyvsp[(3) - (3)].pArithNode));;}
     break;
 
   case 18:
 
 /* Line 1464 of yacc.c  */
-#line 113 "valve.y"
+#line 111 "valve.y"
     {(yyval.pArithNode) = addNodeBinaryOperator(XOR, (yyvsp[(1) - (3)].pArithNode), (yyvsp[(3) - (3)].pArithNode));;}
     break;
 
   case 19:
 
 /* Line 1464 of yacc.c  */
-#line 114 "valve.y"
+#line 112 "valve.y"
     {(yyval.pArithNode) = addNodeBinaryOperator(AND, (yyvsp[(1) - (3)].pArithNode), (yyvsp[(3) - (3)].pArithNode));;}
     break;
 
   case 20:
 
 /* Line 1464 of yacc.c  */
-#line 115 "valve.y"
+#line 113 "valve.y"
     {(yyval.pArithNode) = addNodeBinaryOperator(OR, (yyvsp[(1) - (3)].pArithNode), (yyvsp[(3) - (3)].pArithNode));;}
     break;
 
   case 21:
 
 /* Line 1464 of yacc.c  */
-#line 116 "valve.y"
+#line 114 "valve.y"
     {(yyval.pArithNode) = addNodeBinaryOperator(TEST_FOR_EQUAL, (yyvsp[(1) - (3)].pArithNode), (yyvsp[(3) - (3)].pArithNode));;}
     break;
 
   case 22:
 
 /* Line 1464 of yacc.c  */
-#line 117 "valve.y"
+#line 115 "valve.y"
     {(yyval.pArithNode) = addNodeBinaryOperator(NEQ, (yyvsp[(1) - (3)].pArithNode), (yyvsp[(3) - (3)].pArithNode));;}
     break;
 
   case 23:
 
 /* Line 1464 of yacc.c  */
-#line 118 "valve.y"
+#line 116 "valve.y"
     {(yyval.pArithNode) = addNodeBinaryOperator(GEQ, (yyvsp[(1) - (3)].pArithNode), (yyvsp[(3) - (3)].pArithNode));;}
     break;
 
   case 24:
 
 /* Line 1464 of yacc.c  */
-#line 119 "valve.y"
+#line 117 "valve.y"
     {(yyval.pArithNode) = addNodeBinaryOperator(LEQ, (yyvsp[(1) - (3)].pArithNode), (yyvsp[(3) - (3)].pArithNode));;}
     break;
 
   case 25:
 
 /* Line 1464 of yacc.c  */
-#line 120 "valve.y"
+#line 118 "valve.y"
     {(yyval.pArithNode) = addNodeBinaryOperator(GTR, (yyvsp[(1) - (3)].pArithNode), (yyvsp[(3) - (3)].pArithNode));;}
     break;
 
   case 26:
 
 /* Line 1464 of yacc.c  */
-#line 121 "valve.y"
+#line 119 "valve.y"
     {(yyval.pArithNode) = addNodeBinaryOperator(LSS, (yyvsp[(1) - (3)].pArithNode), (yyvsp[(3) - (3)].pArithNode));;}
     break;
 
   case 27:
 
 /* Line 1464 of yacc.c  */
-#line 122 "valve.y"
+#line 120 "valve.y"
     {(yyval.pArithNode) = addNodeSymbolIndex(addVarToSymbolTable((yyvsp[(1) - (1)].string)));;}
     break;
 
   case 28:
 
 /* Line 1464 of yacc.c  */
-#line 123 "valve.y"
+#line 121 "valve.y"
     {(yyval.pArithNode) = addNodeSymbolIndex(addVarToSymbolTable((yyvsp[(1) - (1)].string)));;}
     break;
 
   case 29:
 
 /* Line 1464 of yacc.c  */
-#line 124 "valve.y"
+#line 122 "valve.y"
     {(yyval.pArithNode) = addNodeArray((yyvsp[(1) - (4)].string), (yyvsp[(3) - (4)].pArithNode));;}
     break;
 
   case 30:
 
 /* Line 1464 of yacc.c  */
-#line 127 "valve.y"
+#line 125 "valve.y"
     {(yyval.integer) = addArrayToSymbolTable((yyvsp[(2) - (6)].string), atoi((yyvsp[(4) - (6)].string)));;}
     break;
 
 
 
 /* Line 1464 of yacc.c  */
-#line 1661 "valve.tab.c"
+#line 1659 "valve.tab.c"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -1869,7 +1867,7 @@ yyreturn:
 
 
 /* Line 1684 of yacc.c  */
-#line 130 "valve.y"
+#line 128 "valve.y"
  /* Additional C code */
 
 
@@ -2055,15 +2053,15 @@ arithNode* getNextArithNode(void) {
 	return NULL;
 }
 
-actionNode* getNextActionNode(void) {
-	if (actionTableFreeIndex < ACTION_ITEMS) {
+statementNode* getNextStatementNode(void) {
+	if (statementTableFreeIndex < STATEMENT_ITEMS) {
 #if REGRESS_1    
-        printf("getNextActionNode() %d\n", actionTableFreeIndex);
+        printf("getNextStatementNode() %d\n", statementTableFreeIndex);
         fflush(stdout);
 #endif /* REGRESS_1 */
-        actionTable[actionTableFreeIndex].pArith = NULL;
-        actionTable[actionTableFreeIndex].pNext = NULL;
-		return actionTable + actionTableFreeIndex++;
+        statementTable[statementTableFreeIndex].pArith = NULL;
+        statementTable[statementTableFreeIndex].pNext = NULL;
+		return statementTable + statementTableFreeIndex++;
 	}
 	return NULL;
 }
@@ -2126,32 +2124,32 @@ int addVarToSymbolTable(char* var) {
 
 // The following 2 functions are only used by 'action' in the 
 //  'pattern {action} part of the grammar.
-// Where does the first pActionNode get set?????
-actionNode* addNodeOperatorAction(actionNode* pActionNode, arithNode* pArithNode) {
+// Where does the first pStatementNode get set?????
+statementNode* addStatement(statementNode* pStatementNode, arithNode* pArithNode) {
     static int first = TRUE;
     
     if (first) {
         first = FALSE;
-        // This is tricky. The first call into this function doesn't have pActionNode
+        // This is tricky. The first call into this function doesn't have pStatementNode
         //  set to anything so we null it out here.
-        pActionNode = NULL;
+        pStatementNode = NULL;
     }
 #if REGRESS_1    
-    printf("!!addNodeOperatorAction(actionNode* pActionNode=%d, arithNode* pArithNode=%d)\n", pActionNode, pArithNode);
-    //printf("pActionNode->Next=%d\n", pActionNode->pNext);
+    printf("!!addStatement(statementNode* pStatementNode=%d, arithNode* pArithNode=%d)\n", pStatementNode, pArithNode);
+    //printf("pStatementNode->Next=%d\n", pStatementNode->pNext);
     fflush(stdout);
 #endif /* REGRESS_1 */    
     if (pArithNode == NULL) {
         // Special case for array definition
-        return pActionNode;
+        return pStatementNode;
     }
-	actionNode* p = getNextActionNode();
+	statementNode* p = getNextStatementNode();
 	if (p == NULL) {
 		//assert(p != NULL);
 		return p;
 	}
 	p->pArith = pArithNode;
-    p->pNext = pActionNode;
+    p->pNext = pStatementNode;
 	return p;
 }
 
@@ -2188,7 +2186,7 @@ void doPatternAction(arithNode* pPattern, arithNode* pAction)
 	printf("  {");
 
 	// Output Action statements.
-	walkActionTree(pAction, FALSE);
+	walkStatements(pAction, FALSE);
 
 	printf("\n/* Latch data into LED(0). */");
 	printf("\nsetOutput(\"!e7\");");
@@ -2204,7 +2202,7 @@ void doPatternAction(arithNode* pPattern, arithNode* pAction)
 	printf("  {");
 
 	// Output Action statements.
-	walkActionTree(pAction, TRUE);
+	walkStatements(pAction, TRUE);
 
 	printf("\n/* Latch data into LED(0). */");
 	printf("\nsetOutput(\"!e7\");");
@@ -2336,27 +2334,28 @@ void printIndent(unsigned int indent) {
     }
 }
 
-void walkActionTree(actionNode* pActionNode) {
+void walkStatements(statementNode* pStatementNode) {
 #if REGRESS_1
-    printf("walkActionTree(actionNode* pActionNode=%d)\n", pActionNode);
+    printf("walkStatements(statementNode* pStatementNode=%d)\n", pStatementNode);
     fflush(stdout);
 #endif /* REGRESS_1 */    
-	if (pActionNode == NULL) {
+	if (pStatementNode == NULL) {
 		return;
 	}
 #if REGRESS_1    
-    printf("walkActionTree(pActionNode->pNext)=%d\n", pActionNode->pNext);
+    printf("walkStatements(pStatementNode->pNext)=%d\n", pStatementNode->pNext);
     fflush(stdout);
 #endif /* REGRESS_1 */    
-    walkActionTree(pActionNode->pNext);
+    walkStatements(pStatementNode->pNext);
     
 #if REGRESS_1    
-    printf("walkPatternTree(pActionNode->pArith=%d, ROOT, 0)\n", pActionNode->pArith);
+    printf("walkPatternTree(pStatementNode->pArith=%d, ROOT, 0)\n", pStatementNode->pArith);
     fflush(stdout);
 #endif /* REGRESS_1 */    
-	walkPatternTree(pActionNode->pArith, "ROOT", 0);
+	walkPatternTree(pStatementNode->pArith, "ROOT", 0);
 }
 
+#if 0
 int infixPatternTraversal(arithNode* pn) {
 	if (pn->type == nodeOperator) {
 		int valueLeft = infixPatternTraversal(pn->pLeft);
@@ -2382,6 +2381,7 @@ int infixPatternTraversal(arithNode* pn) {
 	// It's an operand so just return its value.
 	return pn->value;
 }
+#endif
 
 void dumpSymbolTable(void) {
 	int i;

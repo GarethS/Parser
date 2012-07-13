@@ -86,7 +86,7 @@ typedef union YYSTYPE
     float floatingPoint;
 	char* string;
 	arithNode* pArithNode;
-	actionNode* pActionNode;
+	statementNode* pStatementNode;
 
 
 

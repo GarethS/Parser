@@ -19,7 +19,7 @@ typedef enum {OP_PLUS, OP_MINUS, OP_MULT, OP_DIV, OP_XOR, OP_AND, OP_OR, OP_EQUA
 #define EOS				'\0'	// End of string
 #define VAR_ITEMS		(2000)
 #define ARITH_ITEMS		(2000)
-#define ACTION_ITEMS	(2000)
+#define STATEMENT_ITEMS	(2000)
 //#define VAR_MAX_INDEX	(VAR_ITEMS-1)
 #define VAR_NAME_LENGTH	(12)
 #define VAR_NOT_FOUND	(-1)
@@ -38,10 +38,11 @@ typedef struct thisVariableNode {
 //  will always have 2 operand nodes.
 // Generic node structure that the syntax tree is made of.
 typedef struct thisArithmeticNode {
+#if 0
 	// old stuff - meaning left over from first compiler done for Circuit Cellar
 	operandType operand;	// &&, ||
 	char   idValue[4];		// Only used when operand = enumId
-
+#endif
     // new stuff
 	nodeType type;
 	int	value;	// If nodeConst, this is the value. If nodeVar, this is the index into symbol table. If nodeOperator, this is the operator.
@@ -51,10 +52,10 @@ typedef struct thisArithmeticNode {
 	struct thisArithmeticNode* pCentre;
 } arithNode;
 
-typedef struct thisActionNode {
+typedef struct thisStatmentNode {
 	struct thisArithmeticNode* pArith;
-	struct thisActionNode* pNext;
-} actionNode;
+	struct thisStatmentNode* pNext;
+} statementNode;
 
 
 // Function prototypes.
@@ -72,8 +73,7 @@ arithNode* addNodeArray(char* pVar, arithNode* pArrayIndex);
 arithNode* addNodeVariableOperator(int operator, int varIndex, arithNode* pRight);
 arithNode* addNodeSymbolIndex(int varIndex);
 
-//arithNode* addNodeOperatorAction(arithNode* pNode, char* id);
-actionNode* addNodeOperatorAction(actionNode* pActionNode, arithNode* pArithNode);
+statementNode* addStatement(statementNode* pStatementNode, arithNode* pArithNode);
 arithNode* addNodeActionId(char* id);
 
 // New functions 
@@ -81,7 +81,7 @@ arithNode* getAvailNode(void);
 int addVarToSymbolTable(char* var);
 void buildVariable(char* name, int value, varNode* varNode);
 int addArrayToSymbolTable(char* varName, const unsigned int maxRange);
-int infixPatternTraversal(arithNode* pn);
+//int infixPatternTraversal(arithNode* pn);
 
 void initVarTable(void);
 int insertVariable(varNode* pVar);
@@ -91,13 +91,13 @@ int findVariable(varNode* pVar);
 int isConstant(varNode* pVar);
 
 arithNode* getNextArithNode(void);
-actionNode* getNextActionNode(void);
+statementNode* getNextStatementNode(void);
 
 void doPatternAction(arithNode* pPattern, arithNode* pAction);
 void printIndent(unsigned int indent);
 void printOperator(int value);
 void walkPatternTree(arithNode* pNode, char* position, int indent);
-void walkActionTree(actionNode* pNode);
+void walkStatements(statementNode* pNode);
 void dumpSymbolTable(void);
 void dumpSymbol(int i);
 //void freeNode(node* pNode);

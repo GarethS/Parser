@@ -29,8 +29,8 @@ unsigned int varTableFreeIndex = 0;
 arithNode arithTable[ARITH_ITEMS];
 unsigned int arithTableFreeIndex = 0;
 
-actionNode actionTable[ACTION_ITEMS];
-unsigned int actionTableFreeIndex = 0;
+statementNode statementTable[STATEMENT_ITEMS];
+unsigned int statementTableFreeIndex = 0;
 FILE* fp = NULL; // Parse tree file pointer
 FILE* fpSymbol = NULL;  // Symbol table file point
 
@@ -42,7 +42,7 @@ FILE* fpSymbol = NULL;  // Symbol table file point
     float floatingPoint;
 	char* string;
 	arithNode* pArithNode;
-	actionNode* pActionNode;
+	statementNode* pStatementNode;
 }
 
 /* TERMINALS */
@@ -65,7 +65,7 @@ FILE* fpSymbol = NULL;  // Symbol table file point
 %type <integer> arrayDefine
 %type <string> statementIf
 %type <pArithNode>  statement statementAssign expr
-%type <pActionNode>  statementList
+%type <pStatementNode>  statementList
 
 %defines	/* generate valve.tab.h for use with lex.yy.c */
 
@@ -74,9 +74,7 @@ FILE* fpSymbol = NULL;  // Symbol table file point
 %start program
 
 %% /* Grammar rules and actions */
-program: 	patternActionList	{fpSymbol = fopen("symbolTable.txt", "wb");
-                                    dumpSymbolTable();
-                                    fclose(fpSymbol);}
+program: 	patternActionList	{fpSymbol = fopen("symbolTable.txt", "wb"); dumpSymbolTable(); fclose(fpSymbol);}
 ;
 
 patternActionList: /* empty */	{}
@@ -84,7 +82,7 @@ patternActionList: /* empty */	{}
 ;
 
 statementList: /* empty */	{}
-		| statementList statement	{$$ = addNodeOperatorAction($1, $2);}
+		| statementList statement	{$$ = addStatement($1, $2);}
 ;
 
 statement:	        statementAssign	    {$$ = $1;}
@@ -94,10 +92,10 @@ statement:	        statementAssign	    {$$ = $1;}
 
 statementIf:  IF LPAREN expr RPAREN LBRACE statementList RBRACE	{fp = fopen("patternTree.txt", "wb"); walkPatternTree($3, "ROOT", 0); fclose(fp);
                                              printf("\n\n"); fp = fopen("actionTree.txt", "wb");
-                                             fwrite("0 0 Action 0\n", 1, 13/* strlen("0 0 Action 0\n") */, fp); walkActionTree($6); fclose(fp);}
+                                             fwrite("0 0 Action 0\n", 1, 13/* strlen("0 0 Action 0\n") */, fp); walkStatements($6); fclose(fp);}
               | IF LPAREN expr RPAREN LBRACE statementList RBRACE ELSE LBRACE statementList RBRACE	{fp = fopen("patternTree.txt", "wb"); walkPatternTree($3, "ROOT", 0); fclose(fp);
                                              printf("\n\n"); fp = fopen("actionTree.txt", "wb");
-                                             fwrite("0 0 Action 0\n", 1, 13/* strlen("0 0 Action 0\n") */, fp); walkActionTree($6); fclose(fp); fwrite("0 0 Action 0\n", 1, 13/* strlen("0 0 Action 0\n") */, fp); walkActionTree($10); fclose(fp);}
+                                             fwrite("0 0 Action 0\n", 1, 13/* strlen("0 0 Action 0\n") */, fp); walkStatements($6); fclose(fp); fwrite("0 0 Action 0\n", 1, 13/* strlen("0 0 Action 0\n") */, fp); walkStatements($10); fclose(fp);}
 ;
 
 statementAssign:    VAR EQUAL expr SEMI	    {$$ = addNodeVariableOperator(EQUAL, addVarToSymbolTable($1), $3);}
@@ -105,7 +103,7 @@ statementAssign:    VAR EQUAL expr SEMI	    {$$ = addNodeVariableOperator(EQUAL,
                       | VAR LBRACKET expr RBRACKET EQUAL expr SEMI {$$ = addNodeBinaryOperator(EQUAL, addNodeArray($1, $3), $6);} // array
 ;    
 
-expr:	LPAREN expr RPAREN					{$$ = $2;}
+expr:	LPAREN expr RPAREN	{$$ = $2;}
 		| expr PLUS  expr	{$$ = addNodeBinaryOperator(PLUS, $1, $3);}
 		| expr MINUS expr	{$$ = addNodeBinaryOperator(MINUS, $1, $3);}
 		| expr MULT  expr	{$$ = addNodeBinaryOperator(MULT, $1, $3);}
@@ -119,8 +117,8 @@ expr:	LPAREN expr RPAREN					{$$ = $2;}
 		| expr LEQ   expr	{$$ = addNodeBinaryOperator(LEQ, $1, $3);}
 		| expr GTR   expr	{$$ = addNodeBinaryOperator(GTR, $1, $3);}
 		| expr LSS   expr	{$$ = addNodeBinaryOperator(LSS, $1, $3);}
-		| VAR											    {$$ = addNodeSymbolIndex(addVarToSymbolTable($1));}
-		| CONST											    {$$ = addNodeSymbolIndex(addVarToSymbolTable($1));}
+		| VAR				{$$ = addNodeSymbolIndex(addVarToSymbolTable($1));}
+		| CONST				{$$ = addNodeSymbolIndex(addVarToSymbolTable($1));}
         | VAR LBRACKET expr RBRACKET        {$$ = addNodeArray($1, $3);}    // array
 ;						
 
@@ -312,15 +310,15 @@ arithNode* getNextArithNode(void) {
 	return NULL;
 }
 
-actionNode* getNextActionNode(void) {
-	if (actionTableFreeIndex < ACTION_ITEMS) {
+statementNode* getNextStatementNode(void) {
+	if (statementTableFreeIndex < STATEMENT_ITEMS) {
 #if REGRESS_1    
-        printf("getNextActionNode() %d\n", actionTableFreeIndex);
+        printf("getNextStatementNode() %d\n", statementTableFreeIndex);
         fflush(stdout);
 #endif /* REGRESS_1 */
-        actionTable[actionTableFreeIndex].pArith = NULL;
-        actionTable[actionTableFreeIndex].pNext = NULL;
-		return actionTable + actionTableFreeIndex++;
+        statementTable[statementTableFreeIndex].pArith = NULL;
+        statementTable[statementTableFreeIndex].pNext = NULL;
+		return statementTable + statementTableFreeIndex++;
 	}
 	return NULL;
 }
@@ -383,32 +381,32 @@ int addVarToSymbolTable(char* var) {
 
 // The following 2 functions are only used by 'action' in the 
 //  'pattern {action} part of the grammar.
-// Where does the first pActionNode get set?????
-actionNode* addNodeOperatorAction(actionNode* pActionNode, arithNode* pArithNode) {
+// Where does the first pStatementNode get set?????
+statementNode* addStatement(statementNode* pStatementNode, arithNode* pArithNode) {
     static int first = TRUE;
     
     if (first) {
         first = FALSE;
-        // This is tricky. The first call into this function doesn't have pActionNode
+        // This is tricky. The first call into this function doesn't have pStatementNode
         //  set to anything so we null it out here.
-        pActionNode = NULL;
+        pStatementNode = NULL;
     }
 #if REGRESS_1    
-    printf("!!addNodeOperatorAction(actionNode* pActionNode=%d, arithNode* pArithNode=%d)\n", pActionNode, pArithNode);
-    //printf("pActionNode->Next=%d\n", pActionNode->pNext);
+    printf("!!addStatement(statementNode* pStatementNode=%d, arithNode* pArithNode=%d)\n", pStatementNode, pArithNode);
+    //printf("pStatementNode->Next=%d\n", pStatementNode->pNext);
     fflush(stdout);
 #endif /* REGRESS_1 */    
     if (pArithNode == NULL) {
         // Special case for array definition
-        return pActionNode;
+        return pStatementNode;
     }
-	actionNode* p = getNextActionNode();
+	statementNode* p = getNextStatementNode();
 	if (p == NULL) {
 		//assert(p != NULL);
 		return p;
 	}
 	p->pArith = pArithNode;
-    p->pNext = pActionNode;
+    p->pNext = pStatementNode;
 	return p;
 }
 
@@ -445,7 +443,7 @@ void doPatternAction(arithNode* pPattern, arithNode* pAction)
 	printf("  {");
 
 	// Output Action statements.
-	walkActionTree(pAction, FALSE);
+	walkStatements(pAction, FALSE);
 
 	printf("\n/* Latch data into LED(0). */");
 	printf("\nsetOutput(\"!e7\");");
@@ -461,7 +459,7 @@ void doPatternAction(arithNode* pPattern, arithNode* pAction)
 	printf("  {");
 
 	// Output Action statements.
-	walkActionTree(pAction, TRUE);
+	walkStatements(pAction, TRUE);
 
 	printf("\n/* Latch data into LED(0). */");
 	printf("\nsetOutput(\"!e7\");");
@@ -593,27 +591,28 @@ void printIndent(unsigned int indent) {
     }
 }
 
-void walkActionTree(actionNode* pActionNode) {
+void walkStatements(statementNode* pStatementNode) {
 #if REGRESS_1
-    printf("walkActionTree(actionNode* pActionNode=%d)\n", pActionNode);
+    printf("walkStatements(statementNode* pStatementNode=%d)\n", pStatementNode);
     fflush(stdout);
 #endif /* REGRESS_1 */    
-	if (pActionNode == NULL) {
+	if (pStatementNode == NULL) {
 		return;
 	}
 #if REGRESS_1    
-    printf("walkActionTree(pActionNode->pNext)=%d\n", pActionNode->pNext);
+    printf("walkStatements(pStatementNode->pNext)=%d\n", pStatementNode->pNext);
     fflush(stdout);
 #endif /* REGRESS_1 */    
-    walkActionTree(pActionNode->pNext);
+    walkStatements(pStatementNode->pNext);
     
 #if REGRESS_1    
-    printf("walkPatternTree(pActionNode->pArith=%d, ROOT, 0)\n", pActionNode->pArith);
+    printf("walkPatternTree(pStatementNode->pArith=%d, ROOT, 0)\n", pStatementNode->pArith);
     fflush(stdout);
 #endif /* REGRESS_1 */    
-	walkPatternTree(pActionNode->pArith, "ROOT", 0);
+	walkPatternTree(pStatementNode->pArith, "ROOT", 0);
 }
 
+#if 0
 int infixPatternTraversal(arithNode* pn) {
 	if (pn->type == nodeOperator) {
 		int valueLeft = infixPatternTraversal(pn->pLeft);
@@ -639,6 +638,7 @@ int infixPatternTraversal(arithNode* pn) {
 	// It's an operand so just return its value.
 	return pn->value;
 }
+#endif
 
 void dumpSymbolTable(void) {
 	int i;
