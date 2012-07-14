@@ -63,7 +63,7 @@ FILE* fpSymbol = NULL;  // Symbol table file point
 /* non-terminals */
 %type <integer> arrayDefine
 //%type <string>
-%type <pArithNode>  statement statementAssign statementIf expr statementList
+%type <pArithNode>  statement statementAssign statementIf statementWhile expr statementList
 
 %defines	/* generate valve.tab.h for use with lex.yy.c */
 
@@ -84,8 +84,11 @@ statementList: /* empty */	{$$ = NULL;}    // Make sure 'statementList' starts o
 
 statement:	        statementAssign	    {/*printf("\nstatementAssign:%d", (int)$1); walkSyntaxTree($1, "start", 0);*/ $$ = $1;}
                     | statementIf       {/*printf("\nstatementIf:%d", (int)$1);*/ $$ = $1;}
+                    | statementWhile    {$$ = $1;}
                     | arrayDefine       {$$ = NULL;}
 ;			
+
+statementWhile: WHILE LPAREN expr RPAREN LBRACE statementList RBRACE {}
 
 statementIf:  IF LPAREN expr RPAREN LBRACE statementList RBRACE	{/*printf("statementIf:statementList:%d", (int)$6);*/ $$ = addNodeIf($3, $6, NULL);}
 //statementIf:  IF LPAREN expr RPAREN LBRACE statementList RBRACE	{fp = fopen("patternTree.txt", "wb"); walkSyntaxTree($3, "ROOT", 0); fclose(fp);
