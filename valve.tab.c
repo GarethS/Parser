@@ -482,9 +482,9 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    75,    75,    78,    79,    82,    83,    84,    87,    90,
-      93,    95,    98,    99,   100,   101,   102,   103,   104,   105,
-     106,   107,   108,   109,   110,   111,   112,   113,   114,   117
+       0,    75,    75,    81,    82,    85,    86,    87,    90,    94,
+      97,    99,   102,   103,   104,   105,   106,   107,   108,   109,
+     110,   111,   112,   113,   114,   115,   116,   117,   118,   121
 };
 #endif
 
@@ -1450,204 +1450,205 @@ yyreduce:
 
 /* Line 1464 of yacc.c  */
 #line 75 "valve.y"
-    {fpSymbol = fopen("symbolTable.txt", "wb"); dumpSymbolTable(); fclose(fpSymbol);;}
+    {fpSymbol = fopen("symbolTable.txt", "wb"); dumpSymbolTable(); fclose(fpSymbol);
+//                            fp = fopen("tree.txt", "wb"); fwrite("0 0 Start 0\n", 1, 12, fp); printf("\nstatementTableFreeIndex=%d", statementTableFreeIndex); walkStatements(statementTable+5); fclose(fp);}
+//                            fp = fopen("tree.txt", "wb"); fwrite("0 0 Start 0\n", 1, 12, fp); printf("\nstatementTableFreeIndex=%d", statementTableFreeIndex); walkStatements(statementTable+statementTableFreeIndex-1); fclose(fp);}
+                            fp = fopen("tree.txt", "wb"); fwrite("0 0 Start 0\n", 1, 12, fp); /*printf("\nstatementList=%d", (int)$1);*/ walkStatements((yyvsp[(1) - (1)].pArithNode)); fclose(fp);;}
     break;
 
   case 3:
 
 /* Line 1464 of yacc.c  */
-#line 78 "valve.y"
-    {;}
+#line 81 "valve.y"
+    {(yyval.pArithNode) = NULL;;}
     break;
 
   case 4:
 
 /* Line 1464 of yacc.c  */
-#line 79 "valve.y"
-    {(yyval.pArithNode) = addStatement((yyvsp[(1) - (2)].pArithNode), (yyvsp[(2) - (2)].pArithNode));;}
+#line 82 "valve.y"
+    {/*printf("\nstatementList:%d, statement:%d", (int)$1, (int)$2);*/ /*walkPatternTree($2, "start", 0);*/ (yyval.pArithNode) = addStatement((yyvsp[(1) - (2)].pArithNode), (yyvsp[(2) - (2)].pArithNode)); /*printf(" newStatementList:%d", (int)$$);*/;}
     break;
 
   case 5:
 
 /* Line 1464 of yacc.c  */
-#line 82 "valve.y"
-    {(yyval.pArithNode) = (yyvsp[(1) - (1)].pArithNode);;}
+#line 85 "valve.y"
+    {/*printf("\nstatementAssign:%d", (int)$1); walkPatternTree($1, "start", 0);*/ (yyval.pArithNode) = (yyvsp[(1) - (1)].pArithNode);;}
     break;
 
   case 6:
 
 /* Line 1464 of yacc.c  */
-#line 83 "valve.y"
-    {(yyval.pArithNode) = (yyvsp[(1) - (1)].pArithNode);;}
+#line 86 "valve.y"
+    {/*printf("\nstatementIf:%d", (int)$1);*/ (yyval.pArithNode) = (yyvsp[(1) - (1)].pArithNode);;}
     break;
 
   case 7:
 
 /* Line 1464 of yacc.c  */
-#line 84 "valve.y"
+#line 87 "valve.y"
     {(yyval.pArithNode) = NULL;;}
     break;
 
   case 8:
 
 /* Line 1464 of yacc.c  */
-#line 87 "valve.y"
-    {fp = fopen("patternTree.txt", "wb"); walkPatternTree((yyvsp[(3) - (7)].pArithNode), "ROOT", 0); fclose(fp);
-                                             printf("\n\n"); fp = fopen("actionTree.txt", "wb");
-                                             fwrite("0 0 Action 0\n", 1, 13/* strlen("0 0 Action 0\n") */, fp); walkStatements((yyvsp[(6) - (7)].pArithNode)); fclose(fp);;}
+#line 90 "valve.y"
+    {/*printf("statementIf:statementList:%d", (int)$6);*/ (yyval.pArithNode) = addNodeIf((yyvsp[(3) - (7)].pArithNode), (yyvsp[(6) - (7)].pArithNode), NULL);;}
     break;
 
   case 9:
 
 /* Line 1464 of yacc.c  */
-#line 90 "valve.y"
-    {(yyval.pArithNode) = addNodeIf((yyvsp[(3) - (11)].pArithNode), (yyvsp[(6) - (11)].pArithNode), (yyvsp[(10) - (11)].pArithNode));;}
+#line 94 "valve.y"
+    {/*printf("statementIf:statementList:%d", (int)$6);*/ (yyval.pArithNode) = addNodeIf((yyvsp[(3) - (11)].pArithNode), (yyvsp[(6) - (11)].pArithNode), (yyvsp[(10) - (11)].pArithNode));;}
     break;
 
   case 10:
 
 /* Line 1464 of yacc.c  */
-#line 93 "valve.y"
+#line 97 "valve.y"
     {(yyval.pArithNode) = addNodeVariableOperator(EQUAL, addVarToSymbolTable((yyvsp[(1) - (4)].string)), (yyvsp[(3) - (4)].pArithNode));;}
     break;
 
   case 11:
 
 /* Line 1464 of yacc.c  */
-#line 95 "valve.y"
+#line 99 "valve.y"
     {(yyval.pArithNode) = addNodeBinaryOperator(EQUAL, addNodeArray((yyvsp[(1) - (7)].string), (yyvsp[(3) - (7)].pArithNode)), (yyvsp[(6) - (7)].pArithNode));;}
     break;
 
   case 12:
 
 /* Line 1464 of yacc.c  */
-#line 98 "valve.y"
+#line 102 "valve.y"
     {(yyval.pArithNode) = (yyvsp[(2) - (3)].pArithNode);;}
     break;
 
   case 13:
 
 /* Line 1464 of yacc.c  */
-#line 99 "valve.y"
+#line 103 "valve.y"
     {(yyval.pArithNode) = addNodeBinaryOperator(PLUS, (yyvsp[(1) - (3)].pArithNode), (yyvsp[(3) - (3)].pArithNode));;}
     break;
 
   case 14:
 
 /* Line 1464 of yacc.c  */
-#line 100 "valve.y"
+#line 104 "valve.y"
     {(yyval.pArithNode) = addNodeBinaryOperator(MINUS, (yyvsp[(1) - (3)].pArithNode), (yyvsp[(3) - (3)].pArithNode));;}
     break;
 
   case 15:
 
 /* Line 1464 of yacc.c  */
-#line 101 "valve.y"
+#line 105 "valve.y"
     {(yyval.pArithNode) = addNodeBinaryOperator(MULT, (yyvsp[(1) - (3)].pArithNode), (yyvsp[(3) - (3)].pArithNode));;}
     break;
 
   case 16:
 
 /* Line 1464 of yacc.c  */
-#line 102 "valve.y"
+#line 106 "valve.y"
     {(yyval.pArithNode) = addNodeBinaryOperator(DIV, (yyvsp[(1) - (3)].pArithNode), (yyvsp[(3) - (3)].pArithNode));;}
     break;
 
   case 17:
 
 /* Line 1464 of yacc.c  */
-#line 103 "valve.y"
+#line 107 "valve.y"
     {(yyval.pArithNode) = addNodeBinaryOperator(XOR, (yyvsp[(1) - (3)].pArithNode), (yyvsp[(3) - (3)].pArithNode));;}
     break;
 
   case 18:
 
 /* Line 1464 of yacc.c  */
-#line 104 "valve.y"
+#line 108 "valve.y"
     {(yyval.pArithNode) = addNodeBinaryOperator(AND, (yyvsp[(1) - (3)].pArithNode), (yyvsp[(3) - (3)].pArithNode));;}
     break;
 
   case 19:
 
 /* Line 1464 of yacc.c  */
-#line 105 "valve.y"
+#line 109 "valve.y"
     {(yyval.pArithNode) = addNodeBinaryOperator(OR, (yyvsp[(1) - (3)].pArithNode), (yyvsp[(3) - (3)].pArithNode));;}
     break;
 
   case 20:
 
 /* Line 1464 of yacc.c  */
-#line 106 "valve.y"
+#line 110 "valve.y"
     {(yyval.pArithNode) = addNodeBinaryOperator(TEST_FOR_EQUAL, (yyvsp[(1) - (3)].pArithNode), (yyvsp[(3) - (3)].pArithNode));;}
     break;
 
   case 21:
 
 /* Line 1464 of yacc.c  */
-#line 107 "valve.y"
+#line 111 "valve.y"
     {(yyval.pArithNode) = addNodeBinaryOperator(NEQ, (yyvsp[(1) - (3)].pArithNode), (yyvsp[(3) - (3)].pArithNode));;}
     break;
 
   case 22:
 
 /* Line 1464 of yacc.c  */
-#line 108 "valve.y"
+#line 112 "valve.y"
     {(yyval.pArithNode) = addNodeBinaryOperator(GEQ, (yyvsp[(1) - (3)].pArithNode), (yyvsp[(3) - (3)].pArithNode));;}
     break;
 
   case 23:
 
 /* Line 1464 of yacc.c  */
-#line 109 "valve.y"
+#line 113 "valve.y"
     {(yyval.pArithNode) = addNodeBinaryOperator(LEQ, (yyvsp[(1) - (3)].pArithNode), (yyvsp[(3) - (3)].pArithNode));;}
     break;
 
   case 24:
 
 /* Line 1464 of yacc.c  */
-#line 110 "valve.y"
+#line 114 "valve.y"
     {(yyval.pArithNode) = addNodeBinaryOperator(GTR, (yyvsp[(1) - (3)].pArithNode), (yyvsp[(3) - (3)].pArithNode));;}
     break;
 
   case 25:
 
 /* Line 1464 of yacc.c  */
-#line 111 "valve.y"
+#line 115 "valve.y"
     {(yyval.pArithNode) = addNodeBinaryOperator(LSS, (yyvsp[(1) - (3)].pArithNode), (yyvsp[(3) - (3)].pArithNode));;}
     break;
 
   case 26:
 
 /* Line 1464 of yacc.c  */
-#line 112 "valve.y"
+#line 116 "valve.y"
     {(yyval.pArithNode) = addNodeSymbolIndex(addVarToSymbolTable((yyvsp[(1) - (1)].string)));;}
     break;
 
   case 27:
 
 /* Line 1464 of yacc.c  */
-#line 113 "valve.y"
+#line 117 "valve.y"
     {(yyval.pArithNode) = addNodeSymbolIndex(addVarToSymbolTable((yyvsp[(1) - (1)].string)));;}
     break;
 
   case 28:
 
 /* Line 1464 of yacc.c  */
-#line 114 "valve.y"
+#line 118 "valve.y"
     {(yyval.pArithNode) = addNodeArray((yyvsp[(1) - (4)].string), (yyvsp[(3) - (4)].pArithNode));;}
     break;
 
   case 29:
 
 /* Line 1464 of yacc.c  */
-#line 117 "valve.y"
+#line 121 "valve.y"
     {(yyval.integer) = addArrayToSymbolTable((yyvsp[(2) - (6)].string), atoi((yyvsp[(4) - (6)].string)));;}
     break;
 
 
 
 /* Line 1464 of yacc.c  */
-#line 1651 "valve.tab.c"
+#line 1652 "valve.tab.c"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -1859,7 +1860,7 @@ yyreturn:
 
 
 /* Line 1684 of yacc.c  */
-#line 120 "valve.y"
+#line 124 "valve.y"
  /* Additional C code */
 
 
@@ -1892,7 +1893,7 @@ int main ()
 	// To turn on debugging, make sure the next line is uncommented and
 	//  turn on the -t (also use -v -l) options in bison.exe.
 	yydebug = 1; 
-    yyin = fopen("valve3.def", "r" );
+    yyin = fopen("valve4.def", "r" );
 	yyparse ();
     return 0;
 }
@@ -1959,7 +1960,7 @@ void pushOutputLine(char* line) {
 }
 
 // e.g. if (x==2) {x = 1;} else {x = 4;}
-arithNode* addNodeIf(arithNode* pExpr, arithNode* pIf, arithNode* pElse) {
+arithNode* addNodeIf(arithNode* pExpr, arithNode* pIfStatementList, arithNode* pElseStatementList) {
 	arithNode* p = getNextArithNode();
 	if (p == NULL) {
         debugAssert(ERR:addNodeIf():p == NULL);
@@ -1967,8 +1968,8 @@ arithNode* addNodeIf(arithNode* pExpr, arithNode* pIf, arithNode* pElse) {
 	}
     p->type = nodeIf;
     p->pLeft = pExpr;
-    p->pCentre = pIf;
-    p->pRight = pElse;
+    p->pCentre = pIfStatementList;
+    p->pRight = pElseStatementList;
     return p;
 }
 
@@ -2134,35 +2135,166 @@ int addVarToSymbolTable(char* var) {
 	return found;
 }
 
-// The following 2 functions are only used by 'action' in the 
-//  'pattern {action} part of the grammar.
-// Where does the first pStatementNode get set?????
-arithNode* addStatement(arithNode* pStatementNode, arithNode* pArithNode) {
+arithNode* addStatement(arithNode* pStatementListNode, arithNode* pStatementNode) {
+#if 0
     static int first = TRUE;
     
     if (first) {
         first = FALSE;
-        // This is tricky. The first call into this function doesn't have pStatementNode
+        // This is tricky. The first call into this function doesn't have pStatementListNode
         //  set to anything so we null it out here.
-        pStatementNode = NULL;
+        pStatementListNode = NULL;
     }
+#endif    
 #if REGRESS_1    
-    printf("!!addStatement(arithNode* pStatementNode=%d, arithNode* pArithNode=%d)\n", pStatementNode, pArithNode);
-    //printf("pStatementNode->Next=%d\n", pStatementNode->pNext);
+    printf("!!addStatement(arithNode* pStatementListNode=%d, arithNode* pStatementNode=%d)\n", pStatementListNode, pStatementNode);
+    printf("pStatementListNode->Next=%d\n", pStatementListNode->pNext);
     fflush(stdout);
 #endif /* REGRESS_1 */    
-    if (pArithNode == NULL) {
+    if (pStatementNode == NULL) {
         // Special case for array definition
-        return pStatementNode;
+        return pStatementListNode;
     }
 	arithNode* p = getNextStatementNode();
 	if (p == NULL) {
 		//assert(p != NULL);
 		return p;
 	}
-	p->pLeft = pArithNode;
-    p->pNext = pStatementNode;
+    p->type = nodeStatement;
+	p->pLeft = pStatementNode;
+    p->pNext = pStatementListNode;
 	return p;
+}
+
+// Walk tree in infix mode; left, right, root.
+void walkPatternTree(arithNode* pArithNode, char* position, int indent) {
+	if (pArithNode == NULL) {
+		return;
+	}
+    if (indent == 0) {
+        printf("\nStatement:");
+    }
+	//printf("Start pattern walk");
+    if (pArithNode->type != nodeIf) {
+        walkPatternTree(pArithNode->pLeft, "LEFT", indent + 1);
+        walkPatternTree(pArithNode->pCentre, "CENTRE", indent + 1);
+        walkPatternTree(pArithNode->pRight, "RIGHT", indent + 1);
+    }
+    printIndent(indent);
+    printf("%s", position);
+    char tmp[64];
+	switch (pArithNode->type) {
+	case (nodeOperator):
+        if (fp != NULL) {
+            sprintf(tmp, "%d %s Operator %d\n", indent, position, pArithNode->value);
+            fwrite(tmp, 1, strlen(tmp), fp);
+        }
+
+		printf(" Operator: ");
+        printOperator(pArithNode->value);
+		break;
+	case (nodeVar):
+        if (fp != NULL) {
+            sprintf(tmp, "%d %s Variable %d\n", indent, position, pArithNode->value);
+            fwrite(tmp, 1, strlen(tmp), fp);
+        }
+
+		printf(" Var: index,%d name,%s", pArithNode->value, varTable[pArithNode->value].name);
+		break;
+    case (nodeArray):
+        if (fp != NULL) {
+            sprintf(tmp, "%d %s Variable %d\n", indent, position, pArithNode->value);
+            fwrite(tmp, 1, strlen(tmp), fp);
+        }
+
+		printf(" Array: index,%d name,%s", pArithNode->value, varTable[pArithNode->value].name);
+        break;
+    case (nodeIf):
+        if (fp != NULL) {
+            sprintf(tmp, "%d %s If %d\n", indent, position, pArithNode->value);
+            fwrite(tmp, 1, strlen(tmp), fp);
+        }
+
+        //printf("\n");
+        printIndent(indent);
+		printf("IF");
+        walkPatternTree(pArithNode->pLeft, "LEFT", indent + 1);
+        
+        //printf("\n");
+        printIndent(indent);
+		printf("THEN");
+        walkStatements(pArithNode->pCentre);
+        //walkPatternTree(pArithNode->pCentre, "CENTRE", indent + 1);
+        
+        //printf("\n");
+        printIndent(indent);
+		printf("ELSE");
+        walkStatements(pArithNode->pRight);
+        //walkPatternTree(pArithNode->pRight, "RIGHT", indent + 1);
+        printf("\nENDIF");
+        
+        break;
+    case (nodeStatement):
+        if (fp != NULL) {
+            sprintf(tmp, "%d %s Statement %d\n", indent, position, pArithNode->value);
+            fwrite(tmp, 1, strlen(tmp), fp);
+        }
+
+		//printf(" Statement: index,%d", pArithNode->value);
+        break;
+	default:
+		printf(" walkPatternTree: Unknown type:%d", pArithNode->type);
+		break;
+	}
+	//walkPatternTree(pArithNode->pRight, "RIGHT", indent + 1);
+	//printf("End pattern walk");
+}
+
+void walkStatements(arithNode* pStatementListNode) {
+#if REGRESS_1
+    printf("\nwalkStatements(arithNode* pStatementListNode=%d)\n", (int)pStatementListNode);
+    fflush(stdout);
+#endif /* REGRESS_1 */    
+	if (pStatementListNode == NULL) {
+		return;
+	}
+#if REGRESS_1    
+    printf("\nwalkStatements(pStatementListNode->pNext)=%d\n", (int)pStatementListNode->pNext);
+    fflush(stdout);
+#endif /* REGRESS_1 */    
+    walkStatements(pStatementListNode->pNext);
+    
+#if REGRESS_1    
+    printf("walkPatternTree(pStatementListNode->pLeft=%d, ROOT, 0)\n", (int)pStatementListNode->pLeft);
+    fflush(stdout);
+#endif /* REGRESS_1 */    
+	walkPatternTree(pStatementListNode->pLeft, "ROOT", 0);
+}
+
+void printIndent(unsigned int indent) {
+    int i;
+    printf("\n");
+    for (i = indent; i > 0; --i) {
+        printf("*");
+    }
+}
+
+void dumpSymbolTable(void) {
+	int i;
+    printf("\n\nSymbol table:");
+	for (i = 0; i < varTableFreeIndex; ++i) {
+		dumpSymbol(i);
+	}
+}
+
+void dumpSymbol(int i) {
+    nodeType symbolType = isConstant(&varTable[i]) ? nodeConst : nodeVar;
+	printf("\nindex:%d, name:%s, type:%d, val:%d", i, varTable[i].name, symbolType, varTable[i].val);
+    char tmp[64];
+    sprintf(tmp, "%d %d\n", /*varTable[i].name,*/ symbolType, varTable[i].val);
+    if (fpSymbol != NULL) {
+        fwrite(tmp, 1, strlen(tmp), fpSymbol);
+    }
 }
 
 void printOperator(int value) {
@@ -2222,103 +2354,3 @@ void printOperator(int value) {
     printf(" %d", value);
 }
 
-// Walk tree in infix mode; left, right, root.
-void walkPatternTree(arithNode* pArithNode, char* position, int indent) {
-	if (pArithNode == NULL) {
-		return;
-	}
-    if (indent == 0) {
-        printf("\nPattern tree:");
-    }
-	//printf("Start pattern walk");
-	walkPatternTree(pArithNode->pLeft, "LEFT", indent + 1);
-	walkPatternTree(pArithNode->pRight, "RIGHT", indent + 1);
-#if 1
-    printIndent(indent);
-    printf("%s", position);
-    char tmp[64];
-	switch (pArithNode->type) {
-	case (nodeOperator):
-        sprintf(tmp, "%d %s Operator %d\n", indent, position, pArithNode->value);
-        fwrite(tmp, 1, strlen(tmp), fp);
-
-		printf(" Operator: ");
-        printOperator(pArithNode->value);
-		break;
-	case (nodeVar):
-        sprintf(tmp, "%d %s Variable %d\n", indent, position, pArithNode->value);
-        fwrite(tmp, 1, strlen(tmp), fp);
-
-		printf(" Var: index,%d name,%s", pArithNode->value, varTable[pArithNode->value].name);
-		break;
-    case (nodeArray):
-        sprintf(tmp, "%d %s Variable %d\n", indent, position, pArithNode->value);
-        fwrite(tmp, 1, strlen(tmp), fp);
-
-		printf(" Array: index,%d name,%s", pArithNode->value, varTable[pArithNode->value].name);
-        break;
-	default:
-		printf(" walkPatternTree: Unknown type");
-		break;
-	}
-#else	
-	if (pArithNode->operand == enumId) {
-			printf(" getInput(\"%s\") ", pArithNode->idValue);
-	} else if (pArithNode->operand == enumAnd) {
-			printf(" && ");
-	} else if (pArithNode->operand == enumOr) {
-			printf(" || ");
-	} else {
-		//assert(false);
-	}
-#endif
-	//walkPatternTree(pArithNode->pRight, "RIGHT", indent + 1);
-	//printf("End pattern walk");
-}
-
-void printIndent(unsigned int indent) {
-    int i;
-    printf("\n");
-    for (i = indent; i > 0; --i) {
-        printf("*");
-    }
-}
-
-void walkStatements(arithNode* pStatementNode) {
-#if REGRESS_1
-    printf("walkStatements(arithNode* pStatementNode=%d)\n", pStatementNode);
-    fflush(stdout);
-#endif /* REGRESS_1 */    
-	if (pStatementNode == NULL) {
-		return;
-	}
-#if REGRESS_1    
-    printf("walkStatements(pStatementNode->pNext)=%d\n", pStatementNode->pNext);
-    fflush(stdout);
-#endif /* REGRESS_1 */    
-    walkStatements(pStatementNode->pNext);
-    
-#if REGRESS_1    
-    printf("walkPatternTree(pStatementNode->pLeft=%d, ROOT, 0)\n", pStatementNode->pLeft);
-    fflush(stdout);
-#endif /* REGRESS_1 */    
-	walkPatternTree(pStatementNode->pLeft, "ROOT", 0);
-}
-
-void dumpSymbolTable(void) {
-	int i;
-    printf("\n\nSymbol table:");
-	for (i = 0; i < varTableFreeIndex; ++i) {
-		dumpSymbol(i);
-	}
-}
-
-void dumpSymbol(int i) {
-    nodeType symbolType = isConstant(&varTable[i]) ? nodeConst : nodeVar;
-	printf("\nindex:%d, name:%s, type:%d, val:%d", i, varTable[i].name, symbolType, varTable[i].val);
-    char tmp[64];
-    sprintf(tmp, "%d %d\n", /*varTable[i].name,*/ symbolType, varTable[i].val);
-    if (fpSymbol != NULL) {
-        fwrite(tmp, 1, strlen(tmp), fpSymbol);
-    }
-}

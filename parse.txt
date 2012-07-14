@@ -1,78 +1,63 @@
-            
-     
+        
+      
       
         
           
-        
-        
-		
-Pattern tree:
-***LEFT Var: index,0 name,counter
-***RIGHT Var: index,1 name,4
-**LEFT Operator: >= 278
-***LEFT Var: index,2 name,time
-***RIGHT Var: index,3 name,43
-**RIGHT Operator: == 279
-*LEFT Operator: || 272
-**LEFT Var: index,4 name,x
-**RIGHT Var: index,5 name,5
-*RIGHT Operator: < 274
-ROOT Operator: || 272
+    
+  
+      
+      
 
-
-Pattern tree:
-*LEFT Var: index,0 name,counter
-*RIGHT Var: index,5 name,5
-ROOT Operator: = 262
-Pattern tree:
-*LEFT Var: index,4 name,x
-**LEFT Var: index,4 name,x
-**RIGHT Var: index,14 name,1
-*RIGHT Operator: + 282
-ROOT Operator: = 262
-Pattern tree:
-**LEFT Array: index,6 name,a
-***LEFT Var: index,4 name,x
-***RIGHT Var: index,15 name,0
-**RIGHT Operator: + 282
-*LEFT Operator: array 286
-**LEFT Var: index,16 name,7
-**RIGHT Var: index,4 name,x
-*RIGHT Operator: + 282
-ROOT Operator: = 262
-Pattern tree:
-*LEFT Var: index,4 name,x
-**LEFT Var: index,4 name,x
-**RIGHT Var: index,14 name,1
-*RIGHT Operator: + 282
-ROOT Operator: = 262
-Pattern tree:
-**LEFT Array: index,6 name,a
-***LEFT Var: index,4 name,x
-***RIGHT Var: index,15 name,0
-**RIGHT Operator: + 282
-*LEFT Operator: array 286
-**LEFT Var: index,17 name,8
-**RIGHT Var: index,4 name,x
-*RIGHT Operator: + 282
-ROOT Operator: = 262
+	
 
 Symbol table:
 index:0, name:counter, type:0, val:0
 index:1, name:4, type:1, val:4
-index:2, name:time, type:0, val:0
-index:3, name:43, type:1, val:43
-index:4, name:x, type:0, val:0
-index:5, name:5, type:1, val:5
-index:6, name:a, type:0, val:7
-index:7, name:, type:0, val:0
-index:8, name:, type:0, val:0
-index:9, name:, type:0, val:0
-index:10, name:, type:0, val:0
-index:11, name:, type:0, val:0
-index:12, name:, type:0, val:0
-index:13, name:, type:0, val:0
-index:14, name:1, type:1, val:1
-index:15, name:0, type:1, val:0
-index:16, name:7, type:1, val:7
-index:17, name:8, type:1, val:8
+index:2, name:x, type:0, val:0
+index:3, name:1, type:1, val:1
+index:4, name:5, type:1, val:5
+index:5, name:6, type:1, val:6
+index:6, name:2, type:1, val:2
+index:7, name:7, type:1, val:7
+Statement:
+ROOT
+IF
+***LEFT Var: index,0 name,counter
+***RIGHT Var: index,1 name,4
+**LEFT Operator: <= 277
+***LEFT Var: index,2 name,x
+***RIGHT Var: index,3 name,1
+**RIGHT Operator: > 275
+*LEFT Operator: || 272
+THEN
+Statement:
+*LEFT Var: index,0 name,counter
+*RIGHT Var: index,4 name,5
+ROOT Operator: = 262
+Statement:
+*LEFT Var: index,0 name,counter
+*RIGHT Var: index,5 name,6
+ROOT Operator: = 262
+Statement:
+ROOT
+IF
+**LEFT Var: index,2 name,x
+**RIGHT Var: index,6 name,2
+*LEFT Operator: == 279
+THEN
+Statement:
+*LEFT Var: index,0 name,counter
+*RIGHT Var: index,1 name,4
+ROOT Operator: = 262
+ELSE
+ENDIF
+ELSE
+Statement:
+*LEFT Var: index,0 name,counter
+*RIGHT Var: index,7 name,7
+ROOT Operator: = 262
+Statement:
+*LEFT Var: index,2 name,x
+*RIGHT Var: index,7 name,7
+ROOT Operator: = 262
+ENDIF

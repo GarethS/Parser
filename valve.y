@@ -72,22 +72,26 @@ FILE* fpSymbol = NULL;  // Symbol table file point
 %start program
 
 %% /* Grammar rules and actions */
-program: 	statementList	{fpSymbol = fopen("symbolTable.txt", "wb"); dumpSymbolTable(); fclose(fpSymbol);}
+program: 	statementList	{fpSymbol = fopen("symbolTable.txt", "wb"); dumpSymbolTable(); fclose(fpSymbol);
+//                            fp = fopen("tree.txt", "wb"); fwrite("0 0 Start 0\n", 1, 12, fp); printf("\nstatementTableFreeIndex=%d", statementTableFreeIndex); walkStatements(statementTable+5); fclose(fp);}
+//                            fp = fopen("tree.txt", "wb"); fwrite("0 0 Start 0\n", 1, 12, fp); printf("\nstatementTableFreeIndex=%d", statementTableFreeIndex); walkStatements(statementTable+statementTableFreeIndex-1); fclose(fp);}
+                            fp = fopen("tree.txt", "wb"); fwrite("0 0 Start 0\n", 1, 12, fp); /*printf("\nstatementList=%d", (int)$1);*/ walkStatements($1); fclose(fp);}
 ;
 
-statementList: /* empty */	{}
-		| statementList statement	{$$ = addStatement($1, $2);}
+statementList: /* empty */	{$$ = NULL;}    // Make sure 'statementList' starts out as NULL for each new 'statementList'
+		| statementList statement	{/*printf("\nstatementList:%d, statement:%d", (int)$1, (int)$2);*/ /*walkPatternTree($2, "start", 0);*/ $$ = addStatement($1, $2); /*printf(" newStatementList:%d", (int)$$);*/}
 ;
 
-statement:	        statementAssign	    {$$ = $1;}
-                    | statementIf       {$$ = $1;}
+statement:	        statementAssign	    {/*printf("\nstatementAssign:%d", (int)$1); walkPatternTree($1, "start", 0);*/ $$ = $1;}
+                    | statementIf       {/*printf("\nstatementIf:%d", (int)$1);*/ $$ = $1;}
                     | arrayDefine       {$$ = NULL;}
 ;			
 
-statementIf:  IF LPAREN expr RPAREN LBRACE statementList RBRACE	{fp = fopen("patternTree.txt", "wb"); walkPatternTree($3, "ROOT", 0); fclose(fp);
-                                             printf("\n\n"); fp = fopen("actionTree.txt", "wb");
-                                             fwrite("0 0 Action 0\n", 1, 13/* strlen("0 0 Action 0\n") */, fp); walkStatements($6); fclose(fp);}
-              | IF LPAREN expr RPAREN LBRACE statementList RBRACE ELSE LBRACE statementList RBRACE	{$$ = addNodeIf($3, $6, $10);}
+statementIf:  IF LPAREN expr RPAREN LBRACE statementList RBRACE	{/*printf("statementIf:statementList:%d", (int)$6);*/ $$ = addNodeIf($3, $6, NULL);}
+//statementIf:  IF LPAREN expr RPAREN LBRACE statementList RBRACE	{fp = fopen("patternTree.txt", "wb"); walkPatternTree($3, "ROOT", 0); fclose(fp);
+//                                             printf("\n\n"); fp = fopen("actionTree.txt", "wb");
+//                                             fwrite("0 0 Action 0\n", 1, 13/* strlen("0 0 Action 0\n") */, fp); walkStatements($6); fclose(fp);}
+              | IF LPAREN expr RPAREN LBRACE statementList RBRACE ELSE LBRACE statementList RBRACE	{/*printf("statementIf:statementList:%d", (int)$6);*/ $$ = addNodeIf($3, $6, $10);}
 ;
 
 statementAssign:    VAR EQUAL expr SEMI	    {$$ = addNodeVariableOperator(EQUAL, addVarToSymbolTable($1), $3);}
@@ -149,7 +153,7 @@ int main ()
 	// To turn on debugging, make sure the next line is uncommented and
 	//  turn on the -t (also use -v -l) options in bison.exe.
 	yydebug = 1; 
-    yyin = fopen("valve3.def", "r" );
+    yyin = fopen("valve4.def", "r" );
 	yyparse ();
     return 0;
 }
@@ -216,7 +220,7 @@ void pushOutputLine(char* line) {
 }
 
 // e.g. if (x==2) {x = 1;} else {x = 4;}
-arithNode* addNodeIf(arithNode* pExpr, arithNode* pIf, arithNode* pElse) {
+arithNode* addNodeIf(arithNode* pExpr, arithNode* pIfStatementList, arithNode* pElseStatementList) {
 	arithNode* p = getNextArithNode();
 	if (p == NULL) {
         debugAssert(ERR:addNodeIf():p == NULL);
@@ -224,8 +228,8 @@ arithNode* addNodeIf(arithNode* pExpr, arithNode* pIf, arithNode* pElse) {
 	}
     p->type = nodeIf;
     p->pLeft = pExpr;
-    p->pCentre = pIf;
-    p->pRight = pElse;
+    p->pCentre = pIfStatementList;
+    p->pRight = pElseStatementList;
     return p;
 }
 
@@ -391,35 +395,166 @@ int addVarToSymbolTable(char* var) {
 	return found;
 }
 
-// The following 2 functions are only used by 'action' in the 
-//  'pattern {action} part of the grammar.
-// Where does the first pStatementNode get set?????
-arithNode* addStatement(arithNode* pStatementNode, arithNode* pArithNode) {
+arithNode* addStatement(arithNode* pStatementListNode, arithNode* pStatementNode) {
+#if 0
     static int first = TRUE;
     
     if (first) {
         first = FALSE;
-        // This is tricky. The first call into this function doesn't have pStatementNode
+        // This is tricky. The first call into this function doesn't have pStatementListNode
         //  set to anything so we null it out here.
-        pStatementNode = NULL;
+        pStatementListNode = NULL;
     }
+#endif    
 #if REGRESS_1    
-    printf("!!addStatement(arithNode* pStatementNode=%d, arithNode* pArithNode=%d)\n", pStatementNode, pArithNode);
-    //printf("pStatementNode->Next=%d\n", pStatementNode->pNext);
+    printf("!!addStatement(arithNode* pStatementListNode=%d, arithNode* pStatementNode=%d)\n", pStatementListNode, pStatementNode);
+    printf("pStatementListNode->Next=%d\n", pStatementListNode->pNext);
     fflush(stdout);
 #endif /* REGRESS_1 */    
-    if (pArithNode == NULL) {
+    if (pStatementNode == NULL) {
         // Special case for array definition
-        return pStatementNode;
+        return pStatementListNode;
     }
 	arithNode* p = getNextStatementNode();
 	if (p == NULL) {
 		//assert(p != NULL);
 		return p;
 	}
-	p->pLeft = pArithNode;
-    p->pNext = pStatementNode;
+    p->type = nodeStatement;
+	p->pLeft = pStatementNode;
+    p->pNext = pStatementListNode;
 	return p;
+}
+
+// Walk tree in infix mode; left, right, root.
+void walkPatternTree(arithNode* pArithNode, char* position, int indent) {
+	if (pArithNode == NULL) {
+		return;
+	}
+    if (indent == 0) {
+        printf("\nStatement:");
+    }
+	//printf("Start pattern walk");
+    if (pArithNode->type != nodeIf) {
+        walkPatternTree(pArithNode->pLeft, "LEFT", indent + 1);
+        walkPatternTree(pArithNode->pCentre, "CENTRE", indent + 1);
+        walkPatternTree(pArithNode->pRight, "RIGHT", indent + 1);
+    }
+    printIndent(indent);
+    printf("%s", position);
+    char tmp[64];
+	switch (pArithNode->type) {
+	case (nodeOperator):
+        if (fp != NULL) {
+            sprintf(tmp, "%d %s Operator %d\n", indent, position, pArithNode->value);
+            fwrite(tmp, 1, strlen(tmp), fp);
+        }
+
+		printf(" Operator: ");
+        printOperator(pArithNode->value);
+		break;
+	case (nodeVar):
+        if (fp != NULL) {
+            sprintf(tmp, "%d %s Variable %d\n", indent, position, pArithNode->value);
+            fwrite(tmp, 1, strlen(tmp), fp);
+        }
+
+		printf(" Var: index,%d name,%s", pArithNode->value, varTable[pArithNode->value].name);
+		break;
+    case (nodeArray):
+        if (fp != NULL) {
+            sprintf(tmp, "%d %s Variable %d\n", indent, position, pArithNode->value);
+            fwrite(tmp, 1, strlen(tmp), fp);
+        }
+
+		printf(" Array: index,%d name,%s", pArithNode->value, varTable[pArithNode->value].name);
+        break;
+    case (nodeIf):
+        if (fp != NULL) {
+            sprintf(tmp, "%d %s If %d\n", indent, position, pArithNode->value);
+            fwrite(tmp, 1, strlen(tmp), fp);
+        }
+
+        //printf("\n");
+        printIndent(indent);
+		printf("IF");
+        walkPatternTree(pArithNode->pLeft, "LEFT", indent + 1);
+        
+        //printf("\n");
+        printIndent(indent);
+		printf("THEN");
+        walkStatements(pArithNode->pCentre);
+        //walkPatternTree(pArithNode->pCentre, "CENTRE", indent + 1);
+        
+        //printf("\n");
+        printIndent(indent);
+		printf("ELSE");
+        walkStatements(pArithNode->pRight);
+        //walkPatternTree(pArithNode->pRight, "RIGHT", indent + 1);
+        printf("\nENDIF");
+        
+        break;
+    case (nodeStatement):
+        if (fp != NULL) {
+            sprintf(tmp, "%d %s Statement %d\n", indent, position, pArithNode->value);
+            fwrite(tmp, 1, strlen(tmp), fp);
+        }
+
+		//printf(" Statement: index,%d", pArithNode->value);
+        break;
+	default:
+		printf(" walkPatternTree: Unknown type:%d", pArithNode->type);
+		break;
+	}
+	//walkPatternTree(pArithNode->pRight, "RIGHT", indent + 1);
+	//printf("End pattern walk");
+}
+
+void walkStatements(arithNode* pStatementListNode) {
+#if REGRESS_1
+    printf("\nwalkStatements(arithNode* pStatementListNode=%d)\n", (int)pStatementListNode);
+    fflush(stdout);
+#endif /* REGRESS_1 */    
+	if (pStatementListNode == NULL) {
+		return;
+	}
+#if REGRESS_1    
+    printf("\nwalkStatements(pStatementListNode->pNext)=%d\n", (int)pStatementListNode->pNext);
+    fflush(stdout);
+#endif /* REGRESS_1 */    
+    walkStatements(pStatementListNode->pNext);
+    
+#if REGRESS_1    
+    printf("walkPatternTree(pStatementListNode->pLeft=%d, ROOT, 0)\n", (int)pStatementListNode->pLeft);
+    fflush(stdout);
+#endif /* REGRESS_1 */    
+	walkPatternTree(pStatementListNode->pLeft, "ROOT", 0);
+}
+
+void printIndent(unsigned int indent) {
+    int i;
+    printf("\n");
+    for (i = indent; i > 0; --i) {
+        printf("*");
+    }
+}
+
+void dumpSymbolTable(void) {
+	int i;
+    printf("\n\nSymbol table:");
+	for (i = 0; i < varTableFreeIndex; ++i) {
+		dumpSymbol(i);
+	}
+}
+
+void dumpSymbol(int i) {
+    nodeType symbolType = isConstant(&varTable[i]) ? nodeConst : nodeVar;
+	printf("\nindex:%d, name:%s, type:%d, val:%d", i, varTable[i].name, symbolType, varTable[i].val);
+    char tmp[64];
+    sprintf(tmp, "%d %d\n", /*varTable[i].name,*/ symbolType, varTable[i].val);
+    if (fpSymbol != NULL) {
+        fwrite(tmp, 1, strlen(tmp), fpSymbol);
+    }
 }
 
 void printOperator(int value) {
@@ -477,105 +612,4 @@ void printOperator(int value) {
         break;
     }
     printf(" %d", value);
-}
-
-// Walk tree in infix mode; left, right, root.
-void walkPatternTree(arithNode* pArithNode, char* position, int indent) {
-	if (pArithNode == NULL) {
-		return;
-	}
-    if (indent == 0) {
-        printf("\nPattern tree:");
-    }
-	//printf("Start pattern walk");
-	walkPatternTree(pArithNode->pLeft, "LEFT", indent + 1);
-	walkPatternTree(pArithNode->pRight, "RIGHT", indent + 1);
-#if 1
-    printIndent(indent);
-    printf("%s", position);
-    char tmp[64];
-	switch (pArithNode->type) {
-	case (nodeOperator):
-        sprintf(tmp, "%d %s Operator %d\n", indent, position, pArithNode->value);
-        fwrite(tmp, 1, strlen(tmp), fp);
-
-		printf(" Operator: ");
-        printOperator(pArithNode->value);
-		break;
-	case (nodeVar):
-        sprintf(tmp, "%d %s Variable %d\n", indent, position, pArithNode->value);
-        fwrite(tmp, 1, strlen(tmp), fp);
-
-		printf(" Var: index,%d name,%s", pArithNode->value, varTable[pArithNode->value].name);
-		break;
-    case (nodeArray):
-        sprintf(tmp, "%d %s Variable %d\n", indent, position, pArithNode->value);
-        fwrite(tmp, 1, strlen(tmp), fp);
-
-		printf(" Array: index,%d name,%s", pArithNode->value, varTable[pArithNode->value].name);
-        break;
-	default:
-		printf(" walkPatternTree: Unknown type");
-		break;
-	}
-#else	
-	if (pArithNode->operand == enumId) {
-			printf(" getInput(\"%s\") ", pArithNode->idValue);
-	} else if (pArithNode->operand == enumAnd) {
-			printf(" && ");
-	} else if (pArithNode->operand == enumOr) {
-			printf(" || ");
-	} else {
-		//assert(false);
-	}
-#endif
-	//walkPatternTree(pArithNode->pRight, "RIGHT", indent + 1);
-	//printf("End pattern walk");
-}
-
-void printIndent(unsigned int indent) {
-    int i;
-    printf("\n");
-    for (i = indent; i > 0; --i) {
-        printf("*");
-    }
-}
-
-void walkStatements(arithNode* pStatementNode) {
-#if REGRESS_1
-    printf("walkStatements(arithNode* pStatementNode=%d)\n", pStatementNode);
-    fflush(stdout);
-#endif /* REGRESS_1 */    
-	if (pStatementNode == NULL) {
-		return;
-	}
-#if REGRESS_1    
-    printf("walkStatements(pStatementNode->pNext)=%d\n", pStatementNode->pNext);
-    fflush(stdout);
-#endif /* REGRESS_1 */    
-    walkStatements(pStatementNode->pNext);
-    
-#if REGRESS_1    
-    printf("walkPatternTree(pStatementNode->pLeft=%d, ROOT, 0)\n", pStatementNode->pLeft);
-    fflush(stdout);
-#endif /* REGRESS_1 */    
-	walkPatternTree(pStatementNode->pLeft, "ROOT", 0);
-}
-
-void dumpSymbolTable(void) {
-	int i;
-    printf("\n\nSymbol table:");
-	for (i = 0; i < varTableFreeIndex; ++i) {
-		dumpSymbol(i);
-	}
-}
-
-void dumpSymbol(int i) {
-    nodeType symbolType = isConstant(&varTable[i]) ? nodeConst : nodeVar;
-	printf("\nindex:%d, name:%s, type:%d, val:%d", i, varTable[i].name, symbolType, varTable[i].val);
-    char tmp[64];
-    sprintf(tmp, "%d %d\n", /*varTable[i].name,*/ symbolType, varTable[i].val);
-    if (fpSymbol != NULL) {
-        fwrite(tmp, 1, strlen(tmp), fpSymbol);
-    }
 }

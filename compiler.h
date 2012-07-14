@@ -47,7 +47,7 @@ typedef struct thisArithmeticNode {
 	nodeType type;
 	int	value;	// If nodeConst or nodeVar, this is the index into symbol table. If nodeOperator, this is the operator.
 	
-	struct thisArithmeticNode* pLeft;   // Used by statement list to point to tree.
+	struct thisArithmeticNode* pLeft;   // Overloaded by statement list to point to tree.
 	struct thisArithmeticNode* pRight;
 	struct thisArithmeticNode* pCentre;
 	struct thisArithmeticNode* pNext;   // Used for walking each statement
@@ -74,7 +74,7 @@ arithNode* addNodeArray(char* pVar, arithNode* pArrayIndex);
 //arithNode* addNodeArrayConstIndex(char* pVar, int symbolTableIndex);
 arithNode* addNodeVariableOperator(int operator, int varIndex, arithNode* pRight);
 arithNode* addNodeSymbolIndex(int varIndex);
-arithNode* addNodeIf(arithNode* pExpr, arithNode* pIf, arithNode* pElse);
+arithNode* addNodeIf(arithNode* pExpr, arithNode* pIfStatementList, arithNode* pElseStatementList);
 
 arithNode* addStatement(arithNode* pStatementNode, arithNode* pArithNode);
 
@@ -97,8 +97,8 @@ arithNode* getNextStatementNode(void);
 
 void printIndent(unsigned int indent);
 void printOperator(int value);
-void walkPatternTree(arithNode* pNode, char* position, int indent);
-void walkStatements(arithNode* pNode);
+void walkPatternTree(arithNode* pArithNode, char* position, int indent);
+void walkStatements(arithNode* pStatementListNode);
 void dumpSymbolTable(void);
 void dumpSymbol(int i);
 //void freeNode(node* pNode);

@@ -1,4 +1,11 @@
 if (counter <= 4 || x > 1) {
     counter = 5;
-}	
+    counter = 6;
+    if (x == 2) {
+        counter = 4;
+    }
+} else {
+    counter = 7;
+    x = 7;
+}
 	
