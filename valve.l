@@ -55,6 +55,7 @@ inputs	 	{debugPrintf("INPUTS"); return INPUTS;}
 "ARRAY"     {debugPrintf("ARRAYDEFINE"); return ARRAYDEFINE;}
 "if"	    {debugPrintf("IF"); return IF;}
 "else"	    {debugPrintf("ELSE"); return ELSE;}
+"while"	    {debugPrintf("WHILE"); return WHILE;}
 -?{digit}+		{debugPrintf("CONST"); yylval.string = strdup(yytext); return CONST;}	/* constant integer */
 -?{digit}+\.{digit}+		{debugPrintf("CONST_FLOAT"); yylval.floatingPoint = atof(yytext); return CONST_FLOAT;}	/* constant floating-point */
 {alpha}{alphanum}*	{debugPrintf("VAR"); yylval.string = strdup(yytext); return VAR;}	/* variable */

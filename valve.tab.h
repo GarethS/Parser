@@ -48,28 +48,29 @@
      ARRAYDEFINE = 265,
      IF = 266,
      ELSE = 267,
-     VAR = 268,
-     VAR_METHOD = 269,
-     CONST = 270,
-     CONST_FLOAT = 271,
-     OR = 272,
-     AND = 273,
-     LSS = 274,
-     GTR = 275,
-     NEQ = 276,
-     LEQ = 277,
-     GEQ = 278,
-     TEST_FOR_EQUAL = 279,
-     LPAREN = 280,
-     MINUS = 281,
-     PLUS = 282,
-     XOR = 283,
-     DIV = 284,
-     MULT = 285,
-     LBRACKET = 286,
-     RBRACKET = 287,
-     RPAREN = 288,
-     SEMI = 289
+     WHILE = 268,
+     VAR = 269,
+     VAR_METHOD = 270,
+     CONST = 271,
+     CONST_FLOAT = 272,
+     OR = 273,
+     AND = 274,
+     LSS = 275,
+     GTR = 276,
+     NEQ = 277,
+     LEQ = 278,
+     GEQ = 279,
+     TEST_FOR_EQUAL = 280,
+     LPAREN = 281,
+     MINUS = 282,
+     PLUS = 283,
+     XOR = 284,
+     DIV = 285,
+     MULT = 286,
+     LBRACKET = 287,
+     RBRACKET = 288,
+     RPAREN = 289,
+     SEMI = 290
    };
 #endif
 
@@ -85,12 +86,12 @@ typedef union YYSTYPE
 	int integer;
     float floatingPoint;
 	char* string;
-	arithNode* pArithNode;
+	syntaxNode* pArithNode;
 
 
 
 /* Line 1685 of yacc.c  */
-#line 94 "valve.tab.h"
+#line 95 "valve.tab.h"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */

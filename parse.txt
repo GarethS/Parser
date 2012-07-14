@@ -24,11 +24,11 @@ ROOT
 IF
 ***LEFT Var: index,0 name,counter
 ***RIGHT Var: index,1 name,4
-**LEFT Operator: <= 277
+**LEFT Operator: <= 278
 ***LEFT Var: index,2 name,x
 ***RIGHT Var: index,3 name,1
-**RIGHT Operator: > 275
-*LEFT Operator: || 272
+**RIGHT Operator: > 276
+*LEFT Operator: || 273
 THEN
 Statement:
 *LEFT Var: index,0 name,counter
@@ -43,7 +43,7 @@ ROOT
 IF
 **LEFT Var: index,2 name,x
 **RIGHT Var: index,6 name,2
-*LEFT Operator: == 279
+*LEFT Operator: == 280
 THEN
 Statement:
 *LEFT Var: index,0 name,counter

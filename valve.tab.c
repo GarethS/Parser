@@ -82,11 +82,11 @@
 varNode varTable[VAR_ITEMS];
 unsigned int varTableFreeIndex = 0;
 
-// Arithmetic parse table
-arithNode arithTable[ARITH_ITEMS];
-unsigned int arithTableFreeIndex = 0;
+// Abstract syntax tree table
+syntaxNode syntaxTable[SYNTAX_ITEMS];
+unsigned int syntaxTableFreeIndex = 0;
 
-arithNode statementTable[STATEMENT_ITEMS];
+syntaxNode statementTable[STATEMENT_ITEMS];
 unsigned int statementTableFreeIndex = 0;
 FILE* fp = NULL; // Parse tree file pointer
 FILE* fpSymbol = NULL;  // Symbol table file point
@@ -131,28 +131,29 @@ FILE* fpSymbol = NULL;  // Symbol table file point
      ARRAYDEFINE = 265,
      IF = 266,
      ELSE = 267,
-     VAR = 268,
-     VAR_METHOD = 269,
-     CONST = 270,
-     CONST_FLOAT = 271,
-     OR = 272,
-     AND = 273,
-     LSS = 274,
-     GTR = 275,
-     NEQ = 276,
-     LEQ = 277,
-     GEQ = 278,
-     TEST_FOR_EQUAL = 279,
-     LPAREN = 280,
-     MINUS = 281,
-     PLUS = 282,
-     XOR = 283,
-     DIV = 284,
-     MULT = 285,
-     LBRACKET = 286,
-     RBRACKET = 287,
-     RPAREN = 288,
-     SEMI = 289
+     WHILE = 268,
+     VAR = 269,
+     VAR_METHOD = 270,
+     CONST = 271,
+     CONST_FLOAT = 272,
+     OR = 273,
+     AND = 274,
+     LSS = 275,
+     GTR = 276,
+     NEQ = 277,
+     LEQ = 278,
+     GEQ = 279,
+     TEST_FOR_EQUAL = 280,
+     LPAREN = 281,
+     MINUS = 282,
+     PLUS = 283,
+     XOR = 284,
+     DIV = 285,
+     MULT = 286,
+     LBRACKET = 287,
+     RBRACKET = 288,
+     RPAREN = 289,
+     SEMI = 290
    };
 #endif
 
@@ -168,12 +169,12 @@ typedef union YYSTYPE
 	int integer;
     float floatingPoint;
 	char* string;
-	arithNode* pArithNode;
+	syntaxNode* pArithNode;
 
 
 
 /* Line 214 of yacc.c  */
-#line 177 "valve.tab.c"
+#line 178 "valve.tab.c"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
@@ -185,7 +186,7 @@ typedef union YYSTYPE
 
 
 /* Line 264 of yacc.c  */
-#line 189 "valve.tab.c"
+#line 190 "valve.tab.c"
 
 #ifdef short
 # undef short
@@ -400,10 +401,10 @@ union yyalloc
 /* YYFINAL -- State number of the termination state.  */
 #define YYFINAL  3
 /* YYLAST -- Last index in YYTABLE.  */
-#define YYLAST   157
+#define YYLAST   158
 
 /* YYNTOKENS -- Number of terminals.  */
-#define YYNTOKENS  35
+#define YYNTOKENS  36
 /* YYNNTS -- Number of nonterminals.  */
 #define YYNNTS  8
 /* YYNRULES -- Number of rules.  */
@@ -413,7 +414,7 @@ union yyalloc
 
 /* YYTRANSLATE(YYLEX) -- Bison symbol number corresponding to YYLEX.  */
 #define YYUNDEFTOK  2
-#define YYMAXUTOK   289
+#define YYMAXUTOK   290
 
 #define YYTRANSLATE(YYX)						\
   ((unsigned int) (YYX) <= YYMAXUTOK ? yytranslate[YYX] : YYUNDEFTOK)
@@ -449,7 +450,8 @@ static const yytype_uint8 yytranslate[] =
        2,     2,     2,     2,     2,     2,     1,     2,     3,     4,
        5,     6,     7,     8,     9,    10,    11,    12,    13,    14,
       15,    16,    17,    18,    19,    20,    21,    22,    23,    24,
-      25,    26,    27,    28,    29,    30,    31,    32,    33,    34
+      25,    26,    27,    28,    29,    30,    31,    32,    33,    34,
+      35
 };
 
 #if YYDEBUG
@@ -465,18 +467,18 @@ static const yytype_uint8 yyprhs[] =
 /* YYRHS -- A `-1'-separated list of the rules' RHS.  */
 static const yytype_int8 yyrhs[] =
 {
-      36,     0,    -1,    37,    -1,    -1,    37,    38,    -1,    40,
-      -1,    39,    -1,    42,    -1,    11,    25,    41,    33,     8,
-      37,     9,    -1,    11,    25,    41,    33,     8,    37,     9,
-      12,     8,    37,     9,    -1,    13,     7,    41,    34,    -1,
-      13,    31,    41,    32,     7,    41,    34,    -1,    25,    41,
-      33,    -1,    41,    27,    41,    -1,    41,    26,    41,    -1,
-      41,    30,    41,    -1,    41,    29,    41,    -1,    41,    28,
-      41,    -1,    41,    18,    41,    -1,    41,    17,    41,    -1,
-      41,    24,    41,    -1,    41,    21,    41,    -1,    41,    23,
-      41,    -1,    41,    22,    41,    -1,    41,    20,    41,    -1,
-      41,    19,    41,    -1,    13,    -1,    15,    -1,    13,    31,
-      41,    32,    -1,    10,    13,    31,    15,    32,    34,    -1
+      37,     0,    -1,    38,    -1,    -1,    38,    39,    -1,    41,
+      -1,    40,    -1,    43,    -1,    11,    26,    42,    34,     8,
+      38,     9,    -1,    11,    26,    42,    34,     8,    38,     9,
+      12,     8,    38,     9,    -1,    14,     7,    42,    35,    -1,
+      14,    32,    42,    33,     7,    42,    35,    -1,    26,    42,
+      34,    -1,    42,    28,    42,    -1,    42,    27,    42,    -1,
+      42,    31,    42,    -1,    42,    30,    42,    -1,    42,    29,
+      42,    -1,    42,    19,    42,    -1,    42,    18,    42,    -1,
+      42,    25,    42,    -1,    42,    22,    42,    -1,    42,    24,
+      42,    -1,    42,    23,    42,    -1,    42,    21,    42,    -1,
+      42,    20,    42,    -1,    14,    -1,    16,    -1,    14,    32,
+      42,    33,    -1,    10,    14,    32,    16,    33,    35,    -1
 };
 
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
@@ -494,7 +496,7 @@ static const yytype_uint8 yyrline[] =
 static const char *const yytname[] =
 {
   "$end", "error", "$undefined", "INPUTS", "OUTPUTS", "COMMA", "BANG",
-  "EQUAL", "LBRACE", "RBRACE", "ARRAYDEFINE", "IF", "ELSE", "VAR",
+  "EQUAL", "LBRACE", "RBRACE", "ARRAYDEFINE", "IF", "ELSE", "WHILE", "VAR",
   "VAR_METHOD", "CONST", "CONST_FLOAT", "OR", "AND", "LSS", "GTR", "NEQ",
   "LEQ", "GEQ", "TEST_FOR_EQUAL", "LPAREN", "MINUS", "PLUS", "XOR", "DIV",
   "MULT", "LBRACKET", "RBRACKET", "RPAREN", "SEMI", "$accept", "program",
@@ -511,16 +513,16 @@ static const yytype_uint16 yytoknum[] =
        0,   256,   257,   258,   259,   260,   261,   262,   263,   264,
      265,   266,   267,   268,   269,   270,   271,   272,   273,   274,
      275,   276,   277,   278,   279,   280,   281,   282,   283,   284,
-     285,   286,   287,   288,   289
+     285,   286,   287,   288,   289,   290
 };
 # endif
 
 /* YYR1[YYN] -- Symbol number of symbol that rule YYN derives.  */
 static const yytype_uint8 yyr1[] =
 {
-       0,    35,    36,    37,    37,    38,    38,    38,    39,    39,
-      40,    40,    41,    41,    41,    41,    41,    41,    41,    41,
-      41,    41,    41,    41,    41,    41,    41,    41,    41,    42
+       0,    36,    37,    38,    38,    39,    39,    39,    40,    40,
+      41,    41,    42,    42,    42,    42,    42,    42,    42,    42,
+      42,    42,    42,    42,    42,    42,    42,    42,    42,    43
 };
 
 /* YYR2[YYN] -- Number of symbols composing right hand side of rule YYN.  */
@@ -553,22 +555,22 @@ static const yytype_int8 yydefgoto[] =
 
 /* YYPACT[STATE-NUM] -- Index in YYTABLE of the portion describing
    STATE-NUM.  */
-#define YYPACT_NINF -14
-static const yytype_int16 yypact[] =
+#define YYPACT_NINF -30
+static const yytype_int8 yypact[] =
 {
-     -14,    25,    -7,   -14,    22,    37,    -5,   -14,   -14,   -14,
-     -14,    23,   115,   115,   115,    57,    48,   -14,   115,    47,
-      10,    81,    46,   115,    64,   115,   115,   115,   115,   115,
-     115,   115,   115,   115,   115,   115,   115,   115,    87,   -14,
-      82,    62,    97,   -14,   122,   122,   106,   106,   106,   106,
-     106,   106,    13,    13,    31,   -14,   -14,   -14,   115,   -14,
-     -14,    -2,    29,    94,   -14,   104,   -14,   144,   -14
+     -30,     9,   125,   -30,    12,    -1,    -5,   -30,   -30,   -30,
+     -30,    23,   115,   115,   115,    27,    41,   -30,   115,    47,
+      11,    81,    46,   115,    64,   115,   115,   115,   115,   115,
+     115,   115,   115,   115,   115,   115,   115,   115,    36,   -30,
+      73,    55,    97,   -30,   122,   122,   127,   127,   127,   127,
+     127,   127,    32,    32,   -27,   -30,   -30,   -30,   115,   -30,
+     -30,    -3,    29,    84,   -30,    89,   -30,   123,   -30
 };
 
 /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int8 yypgoto[] =
 {
-     -14,   -14,    65,   -14,   -14,   -14,   -13,   -14
+     -30,   -30,   -29,   -30,   -30,   -30,   -13,   -30
 };
 
 /* YYTABLE[YYPACT[STATE-NUM]].  What to do in state STATE-NUM.  If
@@ -578,55 +580,55 @@ static const yytype_int8 yypgoto[] =
 #define YYTABLE_NINF -1
 static const yytype_uint8 yytable[] =
 {
-      20,    21,    13,     4,     5,    24,     6,    63,     4,     5,
+      20,    21,    13,    36,    37,    24,    63,     4,     5,     3,
       42,     6,    44,    45,    46,    47,    48,    49,    50,    51,
-      52,    53,    54,    55,    56,     3,    14,    25,    26,    27,
-      28,    29,    30,    31,    32,    11,    33,    34,    35,    36,
-      37,    35,    36,    37,    39,    62,    25,    26,    27,    28,
-      29,    30,    31,    32,    15,    33,    34,    35,    36,    37,
-      36,    37,    12,    64,    25,    26,    27,    28,    29,    30,
-      31,    32,    22,    33,    34,    35,    36,    37,    41,    23,
-      38,    25,    26,    27,    28,    29,    30,    31,    32,    58,
-      33,    34,    35,    36,    37,    57,    59,    43,    25,    26,
-      27,    28,    29,    30,    31,    32,    65,    33,    34,    35,
-      36,    37,    66,    40,    25,    26,    27,    28,    29,    30,
-      31,    32,    61,    33,    34,    35,    36,    37,    16,    60,
-      17,    67,    33,    34,    35,    36,    37,     0,     0,     0,
-      18,    27,    28,    29,    30,    31,    32,     0,    33,    34,
-      35,    36,    37,    68,     4,     5,     0,     6
+      52,    53,    54,    55,    56,    12,    11,    14,    61,    25,
+      26,    27,    28,    29,    30,    31,    32,    67,    33,    34,
+      35,    36,    37,    22,    57,    62,    39,    25,    26,    27,
+      28,    29,    30,    31,    32,    15,    33,    34,    35,    36,
+      37,    35,    36,    37,    64,    25,    26,    27,    28,    29,
+      30,    31,    32,    23,    33,    34,    35,    36,    37,    41,
+      58,    38,    25,    26,    27,    28,    29,    30,    31,    32,
+      59,    33,    34,    35,    36,    37,    65,    66,    43,    25,
+      26,    27,    28,    29,    30,    31,    32,     0,    33,    34,
+      35,    36,    37,     0,    40,    25,    26,    27,    28,    29,
+      30,    31,    32,     0,    33,    34,    35,    36,    37,    16,
+      60,    17,    68,     4,     5,     4,     5,     6,     0,     6,
+       0,    18,    27,    28,    29,    30,    31,    32,     0,    33,
+      34,    35,    36,    37,    33,    34,    35,    36,    37
 };
 
 static const yytype_int8 yycheck[] =
 {
-      13,    14,     7,    10,    11,    18,    13,     9,    10,    11,
-      23,    13,    25,    26,    27,    28,    29,    30,    31,    32,
-      33,    34,    35,    36,    37,     0,    31,    17,    18,    19,
-      20,    21,    22,    23,    24,    13,    26,    27,    28,    29,
-      30,    28,    29,    30,    34,    58,    17,    18,    19,    20,
-      21,    22,    23,    24,    31,    26,    27,    28,    29,    30,
-      29,    30,    25,    34,    17,    18,    19,    20,    21,    22,
-      23,    24,    15,    26,    27,    28,    29,    30,    32,    31,
-      33,    17,    18,    19,    20,    21,    22,    23,    24,     7,
-      26,    27,    28,    29,    30,     8,    34,    33,    17,    18,
-      19,    20,    21,    22,    23,    24,    12,    26,    27,    28,
-      29,    30,     8,    32,    17,    18,    19,    20,    21,    22,
-      23,    24,    57,    26,    27,    28,    29,    30,    13,    32,
-      15,    66,    26,    27,    28,    29,    30,    -1,    -1,    -1,
-      25,    19,    20,    21,    22,    23,    24,    -1,    26,    27,
-      28,    29,    30,     9,    10,    11,    -1,    13
+      13,    14,     7,    30,    31,    18,     9,    10,    11,     0,
+      23,    14,    25,    26,    27,    28,    29,    30,    31,    32,
+      33,    34,    35,    36,    37,    26,    14,    32,    57,    18,
+      19,    20,    21,    22,    23,    24,    25,    66,    27,    28,
+      29,    30,    31,    16,     8,    58,    35,    18,    19,    20,
+      21,    22,    23,    24,    25,    32,    27,    28,    29,    30,
+      31,    29,    30,    31,    35,    18,    19,    20,    21,    22,
+      23,    24,    25,    32,    27,    28,    29,    30,    31,    33,
+       7,    34,    18,    19,    20,    21,    22,    23,    24,    25,
+      35,    27,    28,    29,    30,    31,    12,     8,    34,    18,
+      19,    20,    21,    22,    23,    24,    25,    -1,    27,    28,
+      29,    30,    31,    -1,    33,    18,    19,    20,    21,    22,
+      23,    24,    25,    -1,    27,    28,    29,    30,    31,    14,
+      33,    16,     9,    10,    11,    10,    11,    14,    -1,    14,
+      -1,    26,    20,    21,    22,    23,    24,    25,    -1,    27,
+      28,    29,    30,    31,    27,    28,    29,    30,    31
 };
 
 /* YYSTOS[STATE-NUM] -- The (internal number of the) accessing
    symbol of state STATE-NUM.  */
 static const yytype_uint8 yystos[] =
 {
-       0,    36,    37,     0,    10,    11,    13,    38,    39,    40,
-      42,    13,    25,     7,    31,    31,    13,    15,    25,    41,
-      41,    41,    15,    31,    41,    17,    18,    19,    20,    21,
-      22,    23,    24,    26,    27,    28,    29,    30,    33,    34,
-      32,    32,    41,    33,    41,    41,    41,    41,    41,    41,
-      41,    41,    41,    41,    41,    41,    41,     8,     7,    34,
-      32,    37,    41,     9,    34,    12,     8,    37,     9
+       0,    37,    38,     0,    10,    11,    14,    39,    40,    41,
+      43,    14,    26,     7,    32,    32,    14,    16,    26,    42,
+      42,    42,    16,    32,    42,    18,    19,    20,    21,    22,
+      23,    24,    25,    27,    28,    29,    30,    31,    34,    35,
+      33,    33,    42,    34,    42,    42,    42,    42,    42,    42,
+      42,    42,    42,    42,    42,    42,    42,     8,     7,    35,
+      33,    38,    42,     9,    35,    12,     8,    38,     9
 };
 
 #define yyerrok		(yyerrstatus = 0)
@@ -1451,9 +1453,9 @@ yyreduce:
 /* Line 1464 of yacc.c  */
 #line 75 "valve.y"
     {fpSymbol = fopen("symbolTable.txt", "wb"); dumpSymbolTable(); fclose(fpSymbol);
-//                            fp = fopen("tree.txt", "wb"); fwrite("0 0 Start 0\n", 1, 12, fp); printf("\nstatementTableFreeIndex=%d", statementTableFreeIndex); walkStatements(statementTable+5); fclose(fp);}
-//                            fp = fopen("tree.txt", "wb"); fwrite("0 0 Start 0\n", 1, 12, fp); printf("\nstatementTableFreeIndex=%d", statementTableFreeIndex); walkStatements(statementTable+statementTableFreeIndex-1); fclose(fp);}
-                            fp = fopen("tree.txt", "wb"); fwrite("0 0 Start 0\n", 1, 12, fp); /*printf("\nstatementList=%d", (int)$1);*/ walkStatements((yyvsp[(1) - (1)].pArithNode)); fclose(fp);;}
+//                            fp = fopen("tree.txt", "wb"); fwrite("0 0 Start 0\n", 1, 12, fp); printf("\nstatementTableFreeIndex=%d", statementTableFreeIndex); walkStatementList(statementTable+5); fclose(fp);}
+//                            fp = fopen("tree.txt", "wb"); fwrite("0 0 Start 0\n", 1, 12, fp); printf("\nstatementTableFreeIndex=%d", statementTableFreeIndex); walkStatementList(statementTable+statementTableFreeIndex-1); fclose(fp);}
+                            fp = fopen("tree.txt", "wb"); fwrite("0 0 Start 0\n", 1, 12, fp); /*printf("\nstatementList=%d", (int)$1);*/ walkStatementList((yyvsp[(1) - (1)].pArithNode)); fclose(fp);;}
     break;
 
   case 3:
@@ -1467,14 +1469,14 @@ yyreduce:
 
 /* Line 1464 of yacc.c  */
 #line 82 "valve.y"
-    {/*printf("\nstatementList:%d, statement:%d", (int)$1, (int)$2);*/ /*walkPatternTree($2, "start", 0);*/ (yyval.pArithNode) = addStatement((yyvsp[(1) - (2)].pArithNode), (yyvsp[(2) - (2)].pArithNode)); /*printf(" newStatementList:%d", (int)$$);*/;}
+    {/*printf("\nstatementList:%d, statement:%d", (int)$1, (int)$2);*/ /*walkSyntaxTree($2, "start", 0);*/ (yyval.pArithNode) = addStatement((yyvsp[(1) - (2)].pArithNode), (yyvsp[(2) - (2)].pArithNode)); /*printf(" newStatementList:%d", (int)$$);*/;}
     break;
 
   case 5:
 
 /* Line 1464 of yacc.c  */
 #line 85 "valve.y"
-    {/*printf("\nstatementAssign:%d", (int)$1); walkPatternTree($1, "start", 0);*/ (yyval.pArithNode) = (yyvsp[(1) - (1)].pArithNode);;}
+    {/*printf("\nstatementAssign:%d", (int)$1); walkSyntaxTree($1, "start", 0);*/ (yyval.pArithNode) = (yyvsp[(1) - (1)].pArithNode);;}
     break;
 
   case 6:
@@ -1648,7 +1650,7 @@ yyreduce:
 
 
 /* Line 1464 of yacc.c  */
-#line 1652 "valve.tab.c"
+#line 1654 "valve.tab.c"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -1951,17 +1953,9 @@ int findVariable(varNode* pVar) {
 	return VAR_NOT_FOUND;
 }
 
-void pushInputLine(char* line) {
-	printf("\nsetLineAsInput(\"%s\");", line);
-}
-
-void pushOutputLine(char* line) {
-	printf("\nsetLineAsOutput(\"%s\");", line);
-}
-
 // e.g. if (x==2) {x = 1;} else {x = 4;}
-arithNode* addNodeIf(arithNode* pExpr, arithNode* pIfStatementList, arithNode* pElseStatementList) {
-	arithNode* p = getNextArithNode();
+syntaxNode* addNodeIf(syntaxNode* pExpr, syntaxNode* pIfStatementList, syntaxNode* pElseStatementList) {
+	syntaxNode* p = getNextArithNode();
 	if (p == NULL) {
         debugAssert(ERR:addNodeIf():p == NULL);
 		return p;
@@ -1974,8 +1968,8 @@ arithNode* addNodeIf(arithNode* pExpr, arithNode* pIfStatementList, arithNode* p
 }
 
 // e.g. '4 * c1'
-arithNode* addNodeBinaryOperator(int operator, arithNode* pLeft, arithNode* pRight) {
-	arithNode* p = getNextArithNode();
+syntaxNode* addNodeBinaryOperator(int operator, syntaxNode* pLeft, syntaxNode* pRight) {
+	syntaxNode* p = getNextArithNode();
 	if (p == NULL) {
         debugAssert("ERROR:addNodeBinaryOperator():p == NULL");
 		return p;
@@ -1988,8 +1982,8 @@ arithNode* addNodeBinaryOperator(int operator, arithNode* pLeft, arithNode* pRig
 }
 
 // e.g. 'c3 == 4 * c1;' where 'operator' is '='
-arithNode* addNodeVariableOperator(int operator, int varIndex, arithNode* pRight) {
-	arithNode* pLeft= getNextArithNode();
+syntaxNode* addNodeVariableOperator(int operator, int varIndex, syntaxNode* pRight) {
+	syntaxNode* pLeft= getNextArithNode();
 	if (pLeft == NULL) {
         debugAssert(ERR:addNodeVariableOperator():pLeft == NULL);
 		return pLeft;
@@ -2000,20 +1994,20 @@ arithNode* addNodeVariableOperator(int operator, int varIndex, arithNode* pRight
 }
 
 /*
-arithNode* addNodeArrayConstIndex(char* pVarName, int symbolTableIndex) {
-    arithNode* pArrayNode = addNodeArray(pVarName, addNodeSymbolIndex(symbolTableIndex));
+syntaxNode* addNodeArrayConstIndex(char* pVarName, int symbolTableIndex) {
+    syntaxNode* pArrayNode = addNodeArray(pVarName, addNodeSymbolIndex(symbolTableIndex));
     printf("root=%d, left=%d, right=%d", pArrayNode->value, pArrayNode->pLeft->value, pArrayNode->pRight->value);
-    //walkPatternTree(pArrayNode, "rootXXX", 0);
+    //walkSyntaxTree(pArrayNode, "rootXXX", 0);
     return pArrayNode;
 }
 */
 
-arithNode* addNodeArray(char* pVarName, arithNode* pArrayIndex) {
-    // 1. Make new arithNode to contain index of array (starting point). Actual array
+syntaxNode* addNodeArray(char* pVarName, syntaxNode* pArrayIndex) {
+    // 1. Make new syntaxNode to contain index of array (starting point). Actual array
     //     index can't be determined until run time.
     //printf("xxx root=%d, left=%d, right=%d", pArrayIndex->value, pArrayIndex->pLeft->value, pArrayIndex->pRight->value);
     //printf("xxx root=%d\n", pArrayIndex->value);
-	arithNode* pArrayVar = getNextArithNode();
+	syntaxNode* pArrayVar = getNextArithNode();
 	if (pArrayVar == NULL) {
         debugAssert(ERR:addNodeArray():pArrayVar == NULL);
 		return pArrayVar;
@@ -2031,14 +2025,14 @@ arithNode* addNodeArray(char* pVarName, arithNode* pArrayIndex) {
 #else    
     // This passes, but looks like it's using the wrong index in the array
     //return addNodeBinaryOperator(LBRACKET, pArrayVar, pArrayIndex);
-    arithNode* pan = addNodeBinaryOperator(LBRACKET, pArrayVar, pArrayIndex);
+    syntaxNode* pan = addNodeBinaryOperator(LBRACKET, pArrayVar, pArrayIndex);
     //printf("yyyroot=%d, left=%d, right=%d", pan->value, pan->pLeft->value, pan->pRight->value);
     return pan;
 #endif    
 }
 
-arithNode* addNodeSymbolIndex(int varIndex) {
-	arithNode* p = getNextArithNode();
+syntaxNode* addNodeSymbolIndex(int varIndex) {
+	syntaxNode* p = getNextArithNode();
 	if (p == NULL) {
 		debugAssert("ERR:addNodeSymbolIndex():p == NULL");
 		return p;
@@ -2048,7 +2042,7 @@ arithNode* addNodeSymbolIndex(int varIndex) {
 	return p;	
 }
 
-void initNode(arithNode* pArithNode) {
+void initNode(syntaxNode* pArithNode) {
     if (pArithNode == NULL) {
         debugAssert(ERR:initNode());
         return;
@@ -2059,16 +2053,16 @@ void initNode(arithNode* pArithNode) {
     pArithNode->pNext = NULL;
 }
 
-arithNode* getNextArithNode(void) {
-	if (arithTableFreeIndex < ARITH_ITEMS) {
+syntaxNode* getNextArithNode(void) {
+	if (syntaxTableFreeIndex < SYNTAX_ITEMS) {
         // Initialize all members before making this node available
-        initNode(arithTable + arithTableFreeIndex);
-		return arithTable + arithTableFreeIndex++;
+        initNode(syntaxTable + syntaxTableFreeIndex);
+		return syntaxTable + syntaxTableFreeIndex++;
 	}
 	return NULL;
 }
 
-arithNode* getNextStatementNode(void) {
+syntaxNode* getNextStatementNode(void) {
 	if (statementTableFreeIndex < STATEMENT_ITEMS) {
 #if REGRESS_1    
         printf("getNextStatementNode() %d\n", statementTableFreeIndex);
@@ -2135,19 +2129,9 @@ int addVarToSymbolTable(char* var) {
 	return found;
 }
 
-arithNode* addStatement(arithNode* pStatementListNode, arithNode* pStatementNode) {
-#if 0
-    static int first = TRUE;
-    
-    if (first) {
-        first = FALSE;
-        // This is tricky. The first call into this function doesn't have pStatementListNode
-        //  set to anything so we null it out here.
-        pStatementListNode = NULL;
-    }
-#endif    
+syntaxNode* addStatement(syntaxNode* pStatementListNode, syntaxNode* pStatementNode) {
 #if REGRESS_1    
-    printf("!!addStatement(arithNode* pStatementListNode=%d, arithNode* pStatementNode=%d)\n", pStatementListNode, pStatementNode);
+    printf("!!addStatement(syntaxNode* pStatementListNode=%d, syntaxNode* pStatementNode=%d)\n", pStatementListNode, pStatementNode);
     printf("pStatementListNode->Next=%d\n", pStatementListNode->pNext);
     fflush(stdout);
 #endif /* REGRESS_1 */    
@@ -2155,7 +2139,7 @@ arithNode* addStatement(arithNode* pStatementListNode, arithNode* pStatementNode
         // Special case for array definition
         return pStatementListNode;
     }
-	arithNode* p = getNextStatementNode();
+	syntaxNode* p = getNextStatementNode();
 	if (p == NULL) {
 		//assert(p != NULL);
 		return p;
@@ -2167,7 +2151,7 @@ arithNode* addStatement(arithNode* pStatementListNode, arithNode* pStatementNode
 }
 
 // Walk tree in infix mode; left, right, root.
-void walkPatternTree(arithNode* pArithNode, char* position, int indent) {
+void walkSyntaxTree(syntaxNode* pArithNode, char* position, int indent) {
 	if (pArithNode == NULL) {
 		return;
 	}
@@ -2176,9 +2160,9 @@ void walkPatternTree(arithNode* pArithNode, char* position, int indent) {
     }
 	//printf("Start pattern walk");
     if (pArithNode->type != nodeIf) {
-        walkPatternTree(pArithNode->pLeft, "LEFT", indent + 1);
-        walkPatternTree(pArithNode->pCentre, "CENTRE", indent + 1);
-        walkPatternTree(pArithNode->pRight, "RIGHT", indent + 1);
+        walkSyntaxTree(pArithNode->pLeft, "LEFT", indent + 1);
+        walkSyntaxTree(pArithNode->pCentre, "CENTRE", indent + 1);  // TODO: Only used by if-then-else. Not necessary
+        walkSyntaxTree(pArithNode->pRight, "RIGHT", indent + 1);
     }
     printIndent(indent);
     printf("%s", position);
@@ -2218,19 +2202,17 @@ void walkPatternTree(arithNode* pArithNode, char* position, int indent) {
         //printf("\n");
         printIndent(indent);
 		printf("IF");
-        walkPatternTree(pArithNode->pLeft, "LEFT", indent + 1);
+        walkSyntaxTree(pArithNode->pLeft, "LEFT", indent + 1);
         
         //printf("\n");
         printIndent(indent);
 		printf("THEN");
-        walkStatements(pArithNode->pCentre);
-        //walkPatternTree(pArithNode->pCentre, "CENTRE", indent + 1);
+        walkStatementList(pArithNode->pCentre);
         
         //printf("\n");
         printIndent(indent);
 		printf("ELSE");
-        walkStatements(pArithNode->pRight);
-        //walkPatternTree(pArithNode->pRight, "RIGHT", indent + 1);
+        walkStatementList(pArithNode->pRight);
         printf("\nENDIF");
         
         break;
@@ -2243,32 +2225,32 @@ void walkPatternTree(arithNode* pArithNode, char* position, int indent) {
 		//printf(" Statement: index,%d", pArithNode->value);
         break;
 	default:
-		printf(" walkPatternTree: Unknown type:%d", pArithNode->type);
+		printf(" walkSyntaxTree: Unknown type:%d", pArithNode->type);
 		break;
 	}
-	//walkPatternTree(pArithNode->pRight, "RIGHT", indent + 1);
+	//walkSyntaxTree(pArithNode->pRight, "RIGHT", indent + 1);
 	//printf("End pattern walk");
 }
 
-void walkStatements(arithNode* pStatementListNode) {
+void walkStatementList(syntaxNode* pStatementListNode) {
 #if REGRESS_1
-    printf("\nwalkStatements(arithNode* pStatementListNode=%d)\n", (int)pStatementListNode);
+    printf("\nwalkStatementList(syntaxNode* pStatementListNode=%d)\n", (int)pStatementListNode);
     fflush(stdout);
 #endif /* REGRESS_1 */    
 	if (pStatementListNode == NULL) {
 		return;
 	}
 #if REGRESS_1    
-    printf("\nwalkStatements(pStatementListNode->pNext)=%d\n", (int)pStatementListNode->pNext);
+    printf("\nwalkStatementList(pStatementListNode->pNext)=%d\n", (int)pStatementListNode->pNext);
     fflush(stdout);
 #endif /* REGRESS_1 */    
-    walkStatements(pStatementListNode->pNext);
+    walkStatementList(pStatementListNode->pNext);
     
 #if REGRESS_1    
-    printf("walkPatternTree(pStatementListNode->pLeft=%d, ROOT, 0)\n", (int)pStatementListNode->pLeft);
+    printf("walkSyntaxTree(pStatementListNode->pLeft=%d, ROOT, 0)\n", (int)pStatementListNode->pLeft);
     fflush(stdout);
 #endif /* REGRESS_1 */    
-	walkPatternTree(pStatementListNode->pLeft, "ROOT", 0);
+	walkSyntaxTree(pStatementListNode->pLeft, "ROOT", 0);
 }
 
 void printIndent(unsigned int indent) {

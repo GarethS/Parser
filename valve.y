@@ -25,11 +25,11 @@
 varNode varTable[VAR_ITEMS];
 unsigned int varTableFreeIndex = 0;
 
-// Arithmetic parse table
-arithNode arithTable[ARITH_ITEMS];
-unsigned int arithTableFreeIndex = 0;
+// Abstract syntax tree table
+syntaxNode syntaxTable[SYNTAX_ITEMS];
+unsigned int syntaxTableFreeIndex = 0;
 
-arithNode statementTable[STATEMENT_ITEMS];
+syntaxNode statementTable[STATEMENT_ITEMS];
 unsigned int statementTableFreeIndex = 0;
 FILE* fp = NULL; // Parse tree file pointer
 FILE* fpSymbol = NULL;  // Symbol table file point
@@ -41,12 +41,12 @@ FILE* fpSymbol = NULL;  // Symbol table file point
 	int integer;
     float floatingPoint;
 	char* string;
-	arithNode* pArithNode;
+	syntaxNode* pArithNode;
 }
 
 /* TERMINALS */
 %token INPUTS OUTPUTS  COMMA BANG
-%token EQUAL LBRACE RBRACE ARRAYDEFINE IF ELSE
+%token EQUAL LBRACE RBRACE ARRAYDEFINE IF ELSE WHILE
 %token <string>	VAR VAR_METHOD CONST CONST_FLOAT
 
 %left AND OR
@@ -73,24 +73,24 @@ FILE* fpSymbol = NULL;  // Symbol table file point
 
 %% /* Grammar rules and actions */
 program: 	statementList	{fpSymbol = fopen("symbolTable.txt", "wb"); dumpSymbolTable(); fclose(fpSymbol);
-//                            fp = fopen("tree.txt", "wb"); fwrite("0 0 Start 0\n", 1, 12, fp); printf("\nstatementTableFreeIndex=%d", statementTableFreeIndex); walkStatements(statementTable+5); fclose(fp);}
-//                            fp = fopen("tree.txt", "wb"); fwrite("0 0 Start 0\n", 1, 12, fp); printf("\nstatementTableFreeIndex=%d", statementTableFreeIndex); walkStatements(statementTable+statementTableFreeIndex-1); fclose(fp);}
-                            fp = fopen("tree.txt", "wb"); fwrite("0 0 Start 0\n", 1, 12, fp); /*printf("\nstatementList=%d", (int)$1);*/ walkStatements($1); fclose(fp);}
+//                            fp = fopen("tree.txt", "wb"); fwrite("0 0 Start 0\n", 1, 12, fp); printf("\nstatementTableFreeIndex=%d", statementTableFreeIndex); walkStatementList(statementTable+5); fclose(fp);}
+//                            fp = fopen("tree.txt", "wb"); fwrite("0 0 Start 0\n", 1, 12, fp); printf("\nstatementTableFreeIndex=%d", statementTableFreeIndex); walkStatementList(statementTable+statementTableFreeIndex-1); fclose(fp);}
+                            fp = fopen("tree.txt", "wb"); fwrite("0 0 Start 0\n", 1, 12, fp); /*printf("\nstatementList=%d", (int)$1);*/ walkStatementList($1); fclose(fp);}
 ;
 
 statementList: /* empty */	{$$ = NULL;}    // Make sure 'statementList' starts out as NULL for each new 'statementList'
-		| statementList statement	{/*printf("\nstatementList:%d, statement:%d", (int)$1, (int)$2);*/ /*walkPatternTree($2, "start", 0);*/ $$ = addStatement($1, $2); /*printf(" newStatementList:%d", (int)$$);*/}
+		| statementList statement	{/*printf("\nstatementList:%d, statement:%d", (int)$1, (int)$2);*/ /*walkSyntaxTree($2, "start", 0);*/ $$ = addStatement($1, $2); /*printf(" newStatementList:%d", (int)$$);*/}
 ;
 
-statement:	        statementAssign	    {/*printf("\nstatementAssign:%d", (int)$1); walkPatternTree($1, "start", 0);*/ $$ = $1;}
+statement:	        statementAssign	    {/*printf("\nstatementAssign:%d", (int)$1); walkSyntaxTree($1, "start", 0);*/ $$ = $1;}
                     | statementIf       {/*printf("\nstatementIf:%d", (int)$1);*/ $$ = $1;}
                     | arrayDefine       {$$ = NULL;}
 ;			
 
 statementIf:  IF LPAREN expr RPAREN LBRACE statementList RBRACE	{/*printf("statementIf:statementList:%d", (int)$6);*/ $$ = addNodeIf($3, $6, NULL);}
-//statementIf:  IF LPAREN expr RPAREN LBRACE statementList RBRACE	{fp = fopen("patternTree.txt", "wb"); walkPatternTree($3, "ROOT", 0); fclose(fp);
+//statementIf:  IF LPAREN expr RPAREN LBRACE statementList RBRACE	{fp = fopen("patternTree.txt", "wb"); walkSyntaxTree($3, "ROOT", 0); fclose(fp);
 //                                             printf("\n\n"); fp = fopen("actionTree.txt", "wb");
-//                                             fwrite("0 0 Action 0\n", 1, 13/* strlen("0 0 Action 0\n") */, fp); walkStatements($6); fclose(fp);}
+//                                             fwrite("0 0 Action 0\n", 1, 13/* strlen("0 0 Action 0\n") */, fp); walkStatementList($6); fclose(fp);}
               | IF LPAREN expr RPAREN LBRACE statementList RBRACE ELSE LBRACE statementList RBRACE	{/*printf("statementIf:statementList:%d", (int)$6);*/ $$ = addNodeIf($3, $6, $10);}
 ;
 
@@ -211,17 +211,9 @@ int findVariable(varNode* pVar) {
 	return VAR_NOT_FOUND;
 }
 
-void pushInputLine(char* line) {
-	printf("\nsetLineAsInput(\"%s\");", line);
-}
-
-void pushOutputLine(char* line) {
-	printf("\nsetLineAsOutput(\"%s\");", line);
-}
-
 // e.g. if (x==2) {x = 1;} else {x = 4;}
-arithNode* addNodeIf(arithNode* pExpr, arithNode* pIfStatementList, arithNode* pElseStatementList) {
-	arithNode* p = getNextArithNode();
+syntaxNode* addNodeIf(syntaxNode* pExpr, syntaxNode* pIfStatementList, syntaxNode* pElseStatementList) {
+	syntaxNode* p = getNextArithNode();
 	if (p == NULL) {
         debugAssert(ERR:addNodeIf():p == NULL);
 		return p;
@@ -234,8 +226,8 @@ arithNode* addNodeIf(arithNode* pExpr, arithNode* pIfStatementList, arithNode* p
 }
 
 // e.g. '4 * c1'
-arithNode* addNodeBinaryOperator(int operator, arithNode* pLeft, arithNode* pRight) {
-	arithNode* p = getNextArithNode();
+syntaxNode* addNodeBinaryOperator(int operator, syntaxNode* pLeft, syntaxNode* pRight) {
+	syntaxNode* p = getNextArithNode();
 	if (p == NULL) {
         debugAssert("ERROR:addNodeBinaryOperator():p == NULL");
 		return p;
@@ -248,8 +240,8 @@ arithNode* addNodeBinaryOperator(int operator, arithNode* pLeft, arithNode* pRig
 }
 
 // e.g. 'c3 == 4 * c1;' where 'operator' is '='
-arithNode* addNodeVariableOperator(int operator, int varIndex, arithNode* pRight) {
-	arithNode* pLeft= getNextArithNode();
+syntaxNode* addNodeVariableOperator(int operator, int varIndex, syntaxNode* pRight) {
+	syntaxNode* pLeft= getNextArithNode();
 	if (pLeft == NULL) {
         debugAssert(ERR:addNodeVariableOperator():pLeft == NULL);
 		return pLeft;
@@ -260,20 +252,20 @@ arithNode* addNodeVariableOperator(int operator, int varIndex, arithNode* pRight
 }
 
 /*
-arithNode* addNodeArrayConstIndex(char* pVarName, int symbolTableIndex) {
-    arithNode* pArrayNode = addNodeArray(pVarName, addNodeSymbolIndex(symbolTableIndex));
+syntaxNode* addNodeArrayConstIndex(char* pVarName, int symbolTableIndex) {
+    syntaxNode* pArrayNode = addNodeArray(pVarName, addNodeSymbolIndex(symbolTableIndex));
     printf("root=%d, left=%d, right=%d", pArrayNode->value, pArrayNode->pLeft->value, pArrayNode->pRight->value);
-    //walkPatternTree(pArrayNode, "rootXXX", 0);
+    //walkSyntaxTree(pArrayNode, "rootXXX", 0);
     return pArrayNode;
 }
 */
 
-arithNode* addNodeArray(char* pVarName, arithNode* pArrayIndex) {
-    // 1. Make new arithNode to contain index of array (starting point). Actual array
+syntaxNode* addNodeArray(char* pVarName, syntaxNode* pArrayIndex) {
+    // 1. Make new syntaxNode to contain index of array (starting point). Actual array
     //     index can't be determined until run time.
     //printf("xxx root=%d, left=%d, right=%d", pArrayIndex->value, pArrayIndex->pLeft->value, pArrayIndex->pRight->value);
     //printf("xxx root=%d\n", pArrayIndex->value);
-	arithNode* pArrayVar = getNextArithNode();
+	syntaxNode* pArrayVar = getNextArithNode();
 	if (pArrayVar == NULL) {
         debugAssert(ERR:addNodeArray():pArrayVar == NULL);
 		return pArrayVar;
@@ -291,14 +283,14 @@ arithNode* addNodeArray(char* pVarName, arithNode* pArrayIndex) {
 #else    
     // This passes, but looks like it's using the wrong index in the array
     //return addNodeBinaryOperator(LBRACKET, pArrayVar, pArrayIndex);
-    arithNode* pan = addNodeBinaryOperator(LBRACKET, pArrayVar, pArrayIndex);
+    syntaxNode* pan = addNodeBinaryOperator(LBRACKET, pArrayVar, pArrayIndex);
     //printf("yyyroot=%d, left=%d, right=%d", pan->value, pan->pLeft->value, pan->pRight->value);
     return pan;
 #endif    
 }
 
-arithNode* addNodeSymbolIndex(int varIndex) {
-	arithNode* p = getNextArithNode();
+syntaxNode* addNodeSymbolIndex(int varIndex) {
+	syntaxNode* p = getNextArithNode();
 	if (p == NULL) {
 		debugAssert("ERR:addNodeSymbolIndex():p == NULL");
 		return p;
@@ -308,7 +300,7 @@ arithNode* addNodeSymbolIndex(int varIndex) {
 	return p;	
 }
 
-void initNode(arithNode* pArithNode) {
+void initNode(syntaxNode* pArithNode) {
     if (pArithNode == NULL) {
         debugAssert(ERR:initNode());
         return;
@@ -319,16 +311,16 @@ void initNode(arithNode* pArithNode) {
     pArithNode->pNext = NULL;
 }
 
-arithNode* getNextArithNode(void) {
-	if (arithTableFreeIndex < ARITH_ITEMS) {
+syntaxNode* getNextArithNode(void) {
+	if (syntaxTableFreeIndex < SYNTAX_ITEMS) {
         // Initialize all members before making this node available
-        initNode(arithTable + arithTableFreeIndex);
-		return arithTable + arithTableFreeIndex++;
+        initNode(syntaxTable + syntaxTableFreeIndex);
+		return syntaxTable + syntaxTableFreeIndex++;
 	}
 	return NULL;
 }
 
-arithNode* getNextStatementNode(void) {
+syntaxNode* getNextStatementNode(void) {
 	if (statementTableFreeIndex < STATEMENT_ITEMS) {
 #if REGRESS_1    
         printf("getNextStatementNode() %d\n", statementTableFreeIndex);
@@ -395,19 +387,9 @@ int addVarToSymbolTable(char* var) {
 	return found;
 }
 
-arithNode* addStatement(arithNode* pStatementListNode, arithNode* pStatementNode) {
-#if 0
-    static int first = TRUE;
-    
-    if (first) {
-        first = FALSE;
-        // This is tricky. The first call into this function doesn't have pStatementListNode
-        //  set to anything so we null it out here.
-        pStatementListNode = NULL;
-    }
-#endif    
+syntaxNode* addStatement(syntaxNode* pStatementListNode, syntaxNode* pStatementNode) {
 #if REGRESS_1    
-    printf("!!addStatement(arithNode* pStatementListNode=%d, arithNode* pStatementNode=%d)\n", pStatementListNode, pStatementNode);
+    printf("!!addStatement(syntaxNode* pStatementListNode=%d, syntaxNode* pStatementNode=%d)\n", pStatementListNode, pStatementNode);
     printf("pStatementListNode->Next=%d\n", pStatementListNode->pNext);
     fflush(stdout);
 #endif /* REGRESS_1 */    
@@ -415,7 +397,7 @@ arithNode* addStatement(arithNode* pStatementListNode, arithNode* pStatementNode
         // Special case for array definition
         return pStatementListNode;
     }
-	arithNode* p = getNextStatementNode();
+	syntaxNode* p = getNextStatementNode();
 	if (p == NULL) {
 		//assert(p != NULL);
 		return p;
@@ -427,7 +409,7 @@ arithNode* addStatement(arithNode* pStatementListNode, arithNode* pStatementNode
 }
 
 // Walk tree in infix mode; left, right, root.
-void walkPatternTree(arithNode* pArithNode, char* position, int indent) {
+void walkSyntaxTree(syntaxNode* pArithNode, char* position, int indent) {
 	if (pArithNode == NULL) {
 		return;
 	}
@@ -436,9 +418,9 @@ void walkPatternTree(arithNode* pArithNode, char* position, int indent) {
     }
 	//printf("Start pattern walk");
     if (pArithNode->type != nodeIf) {
-        walkPatternTree(pArithNode->pLeft, "LEFT", indent + 1);
-        walkPatternTree(pArithNode->pCentre, "CENTRE", indent + 1);
-        walkPatternTree(pArithNode->pRight, "RIGHT", indent + 1);
+        walkSyntaxTree(pArithNode->pLeft, "LEFT", indent + 1);
+        walkSyntaxTree(pArithNode->pCentre, "CENTRE", indent + 1);  // TODO: Only used by if-then-else. Not necessary
+        walkSyntaxTree(pArithNode->pRight, "RIGHT", indent + 1);
     }
     printIndent(indent);
     printf("%s", position);
@@ -478,19 +460,17 @@ void walkPatternTree(arithNode* pArithNode, char* position, int indent) {
         //printf("\n");
         printIndent(indent);
 		printf("IF");
-        walkPatternTree(pArithNode->pLeft, "LEFT", indent + 1);
+        walkSyntaxTree(pArithNode->pLeft, "LEFT", indent + 1);
         
         //printf("\n");
         printIndent(indent);
 		printf("THEN");
-        walkStatements(pArithNode->pCentre);
-        //walkPatternTree(pArithNode->pCentre, "CENTRE", indent + 1);
+        walkStatementList(pArithNode->pCentre);
         
         //printf("\n");
         printIndent(indent);
 		printf("ELSE");
-        walkStatements(pArithNode->pRight);
-        //walkPatternTree(pArithNode->pRight, "RIGHT", indent + 1);
+        walkStatementList(pArithNode->pRight);
         printf("\nENDIF");
         
         break;
@@ -503,32 +483,32 @@ void walkPatternTree(arithNode* pArithNode, char* position, int indent) {
 		//printf(" Statement: index,%d", pArithNode->value);
         break;
 	default:
-		printf(" walkPatternTree: Unknown type:%d", pArithNode->type);
+		printf(" walkSyntaxTree: Unknown type:%d", pArithNode->type);
 		break;
 	}
-	//walkPatternTree(pArithNode->pRight, "RIGHT", indent + 1);
+	//walkSyntaxTree(pArithNode->pRight, "RIGHT", indent + 1);
 	//printf("End pattern walk");
 }
 
-void walkStatements(arithNode* pStatementListNode) {
+void walkStatementList(syntaxNode* pStatementListNode) {
 #if REGRESS_1
-    printf("\nwalkStatements(arithNode* pStatementListNode=%d)\n", (int)pStatementListNode);
+    printf("\nwalkStatementList(syntaxNode* pStatementListNode=%d)\n", (int)pStatementListNode);
     fflush(stdout);
 #endif /* REGRESS_1 */    
 	if (pStatementListNode == NULL) {
 		return;
 	}
 #if REGRESS_1    
-    printf("\nwalkStatements(pStatementListNode->pNext)=%d\n", (int)pStatementListNode->pNext);
+    printf("\nwalkStatementList(pStatementListNode->pNext)=%d\n", (int)pStatementListNode->pNext);
     fflush(stdout);
 #endif /* REGRESS_1 */    
-    walkStatements(pStatementListNode->pNext);
+    walkStatementList(pStatementListNode->pNext);
     
 #if REGRESS_1    
-    printf("walkPatternTree(pStatementListNode->pLeft=%d, ROOT, 0)\n", (int)pStatementListNode->pLeft);
+    printf("walkSyntaxTree(pStatementListNode->pLeft=%d, ROOT, 0)\n", (int)pStatementListNode->pLeft);
     fflush(stdout);
 #endif /* REGRESS_1 */    
-	walkPatternTree(pStatementListNode->pLeft, "ROOT", 0);
+	walkSyntaxTree(pStatementListNode->pLeft, "ROOT", 0);
 }
 
 void printIndent(unsigned int indent) {
