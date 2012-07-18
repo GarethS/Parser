@@ -1,63 +1,1 @@
-        
-      
-      
-        
-          
-    
-  
-      
-      
-
-	
-
-Symbol table:
-index:0, name:counter, type:0, val:0
-index:1, name:4, type:1, val:4
-index:2, name:x, type:0, val:0
-index:3, name:1, type:1, val:1
-index:4, name:5, type:1, val:5
-index:5, name:6, type:1, val:6
-index:6, name:2, type:1, val:2
-index:7, name:7, type:1, val:7
-Statement:
-ROOT
-IF
-***LEFT Var: index,0 name,counter
-***RIGHT Var: index,1 name,4
-**LEFT Operator: <= 278
-***LEFT Var: index,2 name,x
-***RIGHT Var: index,3 name,1
-**RIGHT Operator: > 276
-*LEFT Operator: || 273
-THEN
-Statement:
-*LEFT Var: index,0 name,counter
-*RIGHT Var: index,4 name,5
-ROOT Operator: = 262
-Statement:
-*LEFT Var: index,0 name,counter
-*RIGHT Var: index,5 name,6
-ROOT Operator: = 262
-Statement:
-ROOT
-IF
-**LEFT Var: index,2 name,x
-**RIGHT Var: index,6 name,2
-*LEFT Operator: == 280
-THEN
-Statement:
-*LEFT Var: index,0 name,counter
-*RIGHT Var: index,1 name,4
-ROOT Operator: = 262
-ELSE
-ENDIF
-ELSE
-Statement:
-*LEFT Var: index,0 name,counter
-*RIGHT Var: index,7 name,7
-ROOT Operator: = 262
-Statement:
-*LEFT Var: index,2 name,x
-*RIGHT Var: index,7 name,7
-ROOT Operator: = 262
-ENDIF
+                                                        Line: 7: syntax error near '}'

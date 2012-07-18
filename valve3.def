@@ -5,4 +5,7 @@ if ((counter >= 4 || time == 43) || x < 5) {
     a[x + 0] = 7 + x;
     x = x + 1;
     a[x+0] = 8 + x;
+} else {
+    // test comment
+    x = a[4];
 }		

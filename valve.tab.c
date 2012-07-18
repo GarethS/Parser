@@ -1898,7 +1898,7 @@ yyreturn:
 
 void yyerror (char* s)
 {
-	printf (" %s\n", s);
+	printf ("Line: %d: %s near '%s'\n", --yylineno, s, yytext);
 }
 
 int main ()

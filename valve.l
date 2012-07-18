@@ -1,7 +1,8 @@
 
-/* Copyright (c) 2011, Gareth Scott */
+/* Copyright (c) 2011, 2012 Gareth Scott */
 
 %option noyywrap
+%option yylineno 
 
 %{
 #include <stdio.h>
@@ -23,6 +24,7 @@ float           -?{digit}+\.{digit}+
 alpha			[A-Za-z]
 alphanum		[A-Za-z0-9]
 period			[.]
+eol             [\n]
 %x		comment
 %x 		commentNew
 
@@ -60,6 +62,7 @@ inputs	 	{debugPrintf("INPUTS"); return INPUTS;}
 -?{digit}+\.{digit}+		{debugPrintf("CONST_FLOAT"); yylval.floatingPoint = atof(yytext); return CONST_FLOAT;}	/* constant floating-point */
 {alpha}{alphanum}*	{debugPrintf("VAR"); yylval.string = strdup(yytext); return VAR;}	/* variable */
 {alpha}{alphanum}*{period}{alpha}{alphanum}*	{debugPrintf("VAR_METHOD"); yylval.string = strdup(yytext); return VAR_METHOD;}	/* method */
+{eol}       {/*++yylineno;*/}
 
 "/*"				BEGIN(comment);
 
