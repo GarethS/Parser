@@ -1175,7 +1175,7 @@ case 34:
 /* rule 34 can match eol */
 YY_RULE_SETUP
 #line 65 "valve.l"
-{/*++yylineno;*/}
+{}  /* Need this to get yylineno incrementing. */
 	YY_BREAK
 case 35:
 YY_RULE_SETUP

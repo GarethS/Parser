@@ -62,7 +62,7 @@ inputs	 	{debugPrintf("INPUTS"); return INPUTS;}
 -?{digit}+\.{digit}+		{debugPrintf("CONST_FLOAT"); yylval.floatingPoint = atof(yytext); return CONST_FLOAT;}	/* constant floating-point */
 {alpha}{alphanum}*	{debugPrintf("VAR"); yylval.string = strdup(yytext); return VAR;}	/* variable */
 {alpha}{alphanum}*{period}{alpha}{alphanum}*	{debugPrintf("VAR_METHOD"); yylval.string = strdup(yytext); return VAR_METHOD;}	/* method */
-{eol}       {/*++yylineno;*/}
+{eol}       {}  /* Need this to get yylineno incrementing. */
 
 "/*"				BEGIN(comment);
 
