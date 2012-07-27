@@ -45,7 +45,8 @@ typedef struct thisSyntaxNode {
 #endif
     // new stuff
 	nodeType type;
-	int	value;	// If nodeConst or nodeVar, this is the index into symbol table. If nodeOperator, this is the operator.
+    // If nodeConst or nodeVar, this is the index into symbol table. If nodeOperator, this is the operator. If nodeIf, the unique IF-THEN-ELSE id.
+	int	value;	
 	
 	struct thisSyntaxNode* pLeft;   // Overloaded by statement list to point to tree.
 	struct thisSyntaxNode* pRight;
@@ -88,13 +89,13 @@ int insertVariable(varNode* pVar);
 int findVariable(varNode* pVar);
 int isConstant(varNode* pVar);
 
-void initNode(syntaxNode* pArithNode);
+void initNode(syntaxNode* pSyntaxNode);
 syntaxNode* getNextArithNode(void);
 syntaxNode* getNextStatementNode(void);
 
 void printIndent(unsigned int indent);
 void printOperator(int value);
-void walkSyntaxTree(syntaxNode* pArithNode, char* position, int indent);
+void walkSyntaxTree(syntaxNode* pSyntaxNode, char* position, int indent);
 void walkStatementList(syntaxNode* pStatementListNode);
 void dumpSymbolTable(void);
 void dumpSymbol(int i);

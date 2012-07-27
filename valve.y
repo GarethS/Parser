@@ -41,7 +41,7 @@ FILE* fpSymbol = NULL;  // Symbol table file point
 	int integer;
     float floatingPoint;
 	char* string;
-	syntaxNode* pArithNode;
+	syntaxNode* pSyntaxNode;
 }
 
 /* TERMINALS */
@@ -63,7 +63,7 @@ FILE* fpSymbol = NULL;  // Symbol table file point
 /* non-terminals */
 %type <integer> arrayDefine
 //%type <string>
-%type <pArithNode>  statement statementAssign statementIf statementWhile expr statementList
+%type <pSyntaxNode>  statement statementAssign statementIf statementWhile expr statementList
 
 %defines	/* generate valve.tab.h for use with lex.yy.c */
 
@@ -215,16 +215,24 @@ int findVariable(varNode* pVar) {
 }
 
 // e.g. if (x==2) {x = 1;} else {x = 4;}
+// Note that both pIfStatementList and pElseStatementList can both be NULL. This can happen if they have empty statement lists.
 syntaxNode* addNodeIf(syntaxNode* pExpr, syntaxNode* pIfStatementList, syntaxNode* pElseStatementList) {
+    static int id = 0;
+
 	syntaxNode* p = getNextArithNode();
 	if (p == NULL) {
         debugAssert(ERR:addNodeIf():p == NULL);
 		return p;
 	}
+    if (pExpr == NULL) {
+        debugAssert(ERR:addNodeIf():pExpr == NULL);
+		return p;
+    }
     p->type = nodeIf;
-    p->pLeft = pExpr;
+    p->value = id++;
+    p->pLeft   = pExpr;
     p->pCentre = pIfStatementList;
-    p->pRight = pElseStatementList;
+    p->pRight  = pElseStatementList;
     return p;
 }
 
@@ -303,15 +311,17 @@ syntaxNode* addNodeSymbolIndex(int varIndex) {
 	return p;	
 }
 
-void initNode(syntaxNode* pArithNode) {
-    if (pArithNode == NULL) {
+void initNode(syntaxNode* pSyntaxNode) {
+    if (pSyntaxNode == NULL) {
         debugAssert(ERR:initNode());
         return;
     }
-    pArithNode->pLeft = NULL;
-    pArithNode->pRight = NULL;
-    pArithNode->pCentre = NULL;
-    pArithNode->pNext = NULL;
+    pSyntaxNode->type = nodeInvalid;
+    pSyntaxNode->value = -1;
+    pSyntaxNode->pLeft = NULL;
+    pSyntaxNode->pRight = NULL;
+    pSyntaxNode->pCentre = NULL;
+    pSyntaxNode->pNext = NULL;
 }
 
 syntaxNode* getNextArithNode(void) {
@@ -412,84 +422,84 @@ syntaxNode* addStatement(syntaxNode* pStatementListNode, syntaxNode* pStatementN
 }
 
 // Walk tree in infix mode; left, right, root.
-void walkSyntaxTree(syntaxNode* pArithNode, char* position, int indent) {
-	if (pArithNode == NULL) {
+void walkSyntaxTree(syntaxNode* pSyntaxNode, char* position, int indent) {
+	if (pSyntaxNode == NULL) {
 		return;
 	}
     if (indent == 0) {
         printf("\nStatement:");
     }
 	//printf("Start pattern walk");
-    if (pArithNode->type != nodeIf) {
-        walkSyntaxTree(pArithNode->pLeft, "LEFT", indent + 1);
-        walkSyntaxTree(pArithNode->pCentre, "CENTRE", indent + 1);  // TODO: Only used by if-then-else. Not necessary
-        walkSyntaxTree(pArithNode->pRight, "RIGHT", indent + 1);
+    if (pSyntaxNode->type != nodeIf) {
+        walkSyntaxTree(pSyntaxNode->pLeft, "LEFT", indent + 1);
+        walkSyntaxTree(pSyntaxNode->pCentre, "CENTRE", indent + 1);  // TODO: Only used by if-then-else. Not necessary
+        walkSyntaxTree(pSyntaxNode->pRight, "RIGHT", indent + 1);
     }
     printIndent(indent);
     printf("%s", position);
     char tmp[64];
-	switch (pArithNode->type) {
+	switch (pSyntaxNode->type) {
 	case (nodeOperator):
         if (fp != NULL) {
-            sprintf(tmp, "%d %s Operator %d\n", indent, position, pArithNode->value);
+            sprintf(tmp, "%d %s Operator %d\n", indent, position, pSyntaxNode->value);
             fwrite(tmp, 1, strlen(tmp), fp);
         }
 
 		printf(" Operator: ");
-        printOperator(pArithNode->value);
+        printOperator(pSyntaxNode->value);
 		break;
 	case (nodeVar):
         if (fp != NULL) {
-            sprintf(tmp, "%d %s Variable %d\n", indent, position, pArithNode->value);
+            sprintf(tmp, "%d %s Variable %d\n", indent, position, pSyntaxNode->value);
             fwrite(tmp, 1, strlen(tmp), fp);
         }
 
-		printf(" Var: index,%d name,%s", pArithNode->value, varTable[pArithNode->value].name);
+		printf(" Var: index,%d name,%s", pSyntaxNode->value, varTable[pSyntaxNode->value].name);
 		break;
     case (nodeArray):
         if (fp != NULL) {
-            sprintf(tmp, "%d %s Variable %d\n", indent, position, pArithNode->value);
+            sprintf(tmp, "%d %s Variable %d\n", indent, position, pSyntaxNode->value);
             fwrite(tmp, 1, strlen(tmp), fp);
         }
 
-		printf(" Array: index,%d name,%s", pArithNode->value, varTable[pArithNode->value].name);
+		printf(" Array: index,%d name,%s", pSyntaxNode->value, varTable[pSyntaxNode->value].name);
         break;
     case (nodeIf):
         if (fp != NULL) {
-            sprintf(tmp, "%d %s If %d\n", indent, position, pArithNode->value);
+            sprintf(tmp, "%d %s If %d\n", indent, position, pSyntaxNode->value);
             fwrite(tmp, 1, strlen(tmp), fp);
         }
 
         //printf("\n");
         printIndent(indent);
-		printf("IF");
-        walkSyntaxTree(pArithNode->pLeft, "LEFT", indent + 1);
+		printf("IF %d", pSyntaxNode->value);
+        walkSyntaxTree(pSyntaxNode->pLeft, "LEFT", indent + 1);
         
         //printf("\n");
         printIndent(indent);
-		printf("THEN");
-        walkStatementList(pArithNode->pCentre);
+		printf("THEN %d", pSyntaxNode->value);
+        walkStatementList(pSyntaxNode->pCentre);
         
         //printf("\n");
         printIndent(indent);
-		printf("ELSE");
-        walkStatementList(pArithNode->pRight);
-        printf("\nENDIF");
+		printf("ELSE %d", pSyntaxNode->value);
+        walkStatementList(pSyntaxNode->pRight);
+        printf("\nENDIF %d", pSyntaxNode->value);
         
         break;
     case (nodeStatement):
         if (fp != NULL) {
-            sprintf(tmp, "%d %s Statement %d\n", indent, position, pArithNode->value);
+            sprintf(tmp, "%d %s Statement %d\n", indent, position, pSyntaxNode->value);
             fwrite(tmp, 1, strlen(tmp), fp);
         }
 
-		//printf(" Statement: index,%d", pArithNode->value);
+		//printf(" Statement: index,%d", pSyntaxNode->value);
         break;
 	default:
-		printf(" walkSyntaxTree: Unknown type:%d", pArithNode->type);
+		printf(" walkSyntaxTree: Unknown type:%d", pSyntaxNode->type);
 		break;
 	}
-	//walkSyntaxTree(pArithNode->pRight, "RIGHT", indent + 1);
+	//walkSyntaxTree(pSyntaxNode->pRight, "RIGHT", indent + 1);
 	//printf("End pattern walk");
 }
 
@@ -524,10 +534,11 @@ void printIndent(unsigned int indent) {
 
 void dumpSymbolTable(void) {
 	int i;
-    printf("\n\nSymbol table:");
+    printf("\n\nSymbol table start:");
 	for (i = 0; i < varTableFreeIndex; ++i) {
 		dumpSymbol(i);
 	}
+    printf("\nSymbol table end:\n");
 }
 
 void dumpSymbol(int i) {

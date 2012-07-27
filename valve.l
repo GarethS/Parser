@@ -2,7 +2,11 @@
 /* Copyright (c) 2011, 2012 Gareth Scott */
 
 %option noyywrap
-%option yylineno 
+%option yylineno
+/* Remove warning, yyunput defined but not used */
+%option nounput
+/* Remove warning, input defined but not used */
+%option noinput 
 
 %{
 #include <stdio.h>
