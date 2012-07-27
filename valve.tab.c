@@ -2241,13 +2241,29 @@ void walkSyntaxTree(syntaxNode* pSyntaxNode, char* position, int indent) {
 		printf("IF %d", pSyntaxNode->value);
         walkSyntaxTree(pSyntaxNode->pLeft, "LEFT", indent + 1);
         
+        if (fp != NULL) {
+            sprintf(tmp, "%d %s Then %d\n", indent, position, pSyntaxNode->value);
+            fwrite(tmp, 1, strlen(tmp), fp);
+        }
+
         printIndent(indent);
 		printf("THEN %d", pSyntaxNode->value);
         walkStatementList(pSyntaxNode->pCentre);
         
+        if (fp != NULL) {
+            sprintf(tmp, "%d %s Else %d\n", indent, position, pSyntaxNode->value);
+            fwrite(tmp, 1, strlen(tmp), fp);
+        }
+
         printIndent(indent);
 		printf("ELSE %d", pSyntaxNode->value);
         walkStatementList(pSyntaxNode->pRight);
+        
+        if (fp != NULL) {
+            sprintf(tmp, "%d %s EndIf %d\n", indent, position, pSyntaxNode->value);
+            fwrite(tmp, 1, strlen(tmp), fp);
+        }
+
         printf("\nEND IF %d", pSyntaxNode->value);
         
         break;
@@ -2261,16 +2277,20 @@ void walkSyntaxTree(syntaxNode* pSyntaxNode, char* position, int indent) {
 		printf("WHILE %d", pSyntaxNode->value);
         walkSyntaxTree(pSyntaxNode->pLeft, "LEFT", indent + 1);
         
+        if (fp != NULL) {
+            sprintf(tmp, "%d %s Do %d\n", indent, position, pSyntaxNode->value);
+            fwrite(tmp, 1, strlen(tmp), fp);
+        }
+
         printIndent(indent);
 		printf("DO %d", pSyntaxNode->value);
         walkStatementList(pSyntaxNode->pCentre);
         
-#if 0        
-        //printf("\n");
-        printIndent(indent);
-		printf("ELSE %d", pSyntaxNode->value);
-        walkStatementList(pSyntaxNode->pRight);
-#endif        
+        if (fp != NULL) {
+            sprintf(tmp, "%d %s EndWhile %d\n", indent, position, pSyntaxNode->value);
+            fwrite(tmp, 1, strlen(tmp), fp);
+        }
+
         printf("\nEND WHILE %d", pSyntaxNode->value);
         
         break;
