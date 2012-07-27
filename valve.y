@@ -21,7 +21,7 @@
 //#include <assert.h>
 #include "compiler.h"
 
-// Variable symbol table (also contains constants).
+// Variable and constants symbol table
 varNode varTable[VAR_ITEMS];
 unsigned int varTableFreeIndex = 0;
 
@@ -66,6 +66,7 @@ FILE* fpSymbol = NULL;  // Symbol table file point
 %type <pSyntaxNode>  statement statementAssign statementIf statementWhile expr statementList
 
 %defines	/* generate valve.tab.h for use with lex.yy.c */
+%require "2.4.2"
 
 /* %left pattern */
 
@@ -88,13 +89,13 @@ statement:	        statementAssign	    {/*printf("\nstatementAssign:%d", (int)$1
                     | arrayDefine       {$$ = NULL;}
 ;			
 
-statementWhile: WHILE LPAREN expr RPAREN LBRACE statementList RBRACE {}
+statementWhile: WHILE LPAREN expr RPAREN LBRACE statementList RBRACE {$$ = addNodeIfOrWhile($3, $6, NULL, nodeWhile);}
 
-statementIf:  IF LPAREN expr RPAREN LBRACE statementList RBRACE	{/*printf("statementIf:statementList:%d", (int)$6);*/ $$ = addNodeIf($3, $6, NULL);}
+statementIf:  IF LPAREN expr RPAREN LBRACE statementList RBRACE	{/*printf("statementIf:statementList:%d", (int)$6);*/ $$ = addNodeIfOrWhile($3, $6, NULL, nodeIf);}
 //statementIf:  IF LPAREN expr RPAREN LBRACE statementList RBRACE	{fp = fopen("patternTree.txt", "wb"); walkSyntaxTree($3, "ROOT", 0); fclose(fp);
 //                                             printf("\n\n"); fp = fopen("actionTree.txt", "wb");
 //                                             fwrite("0 0 Action 0\n", 1, 13/* strlen("0 0 Action 0\n") */, fp); walkStatementList($6); fclose(fp);}
-              | IF LPAREN expr RPAREN LBRACE statementList RBRACE ELSE LBRACE statementList RBRACE	{/*printf("statementIf:statementList:%d", (int)$6);*/ $$ = addNodeIf($3, $6, $10);}
+              | IF LPAREN expr RPAREN LBRACE statementList RBRACE ELSE LBRACE statementList RBRACE	{/*printf("statementIf:statementList:%d", (int)$6);*/ $$ = addNodeIfOrWhile($3, $6, $10, nodeIf);}
 ;
 
 statementAssign:    VAR EQUAL expr SEMI	    {$$ = addNodeVariableOperator(EQUAL, addVarToSymbolTable($1), $3);}
@@ -216,22 +217,22 @@ int findVariable(varNode* pVar) {
 
 // e.g. if (x==2) {x = 1;} else {x = 4;}
 // Note that both pIfStatementList and pElseStatementList can both be NULL. This can happen if they have empty statement lists.
-syntaxNode* addNodeIf(syntaxNode* pExpr, syntaxNode* pIfStatementList, syntaxNode* pElseStatementList) {
+syntaxNode* addNodeIfOrWhile(syntaxNode* pExpr, syntaxNode* pIfOrWhileStatementList, syntaxNode* pElseStatementList, nodeType type) {
     static int id = 0;
 
 	syntaxNode* p = getNextArithNode();
 	if (p == NULL) {
-        debugAssert(ERR:addNodeIf():p == NULL);
+        debugAssert(ERR:addNodeIfOrWhile():p == NULL);
 		return p;
 	}
     if (pExpr == NULL) {
-        debugAssert(ERR:addNodeIf():pExpr == NULL);
+        debugAssert(ERR:addNodeIfOrWhile():pExpr == NULL);
 		return p;
     }
-    p->type = nodeIf;
+    p->type = type;
     p->value = id++;
     p->pLeft   = pExpr;
-    p->pCentre = pIfStatementList;
+    p->pCentre = pIfOrWhileStatementList;
     p->pRight  = pElseStatementList;
     return p;
 }
@@ -430,9 +431,9 @@ void walkSyntaxTree(syntaxNode* pSyntaxNode, char* position, int indent) {
         printf("\nStatement:");
     }
 	//printf("Start pattern walk");
-    if (pSyntaxNode->type != nodeIf) {
+    if (pSyntaxNode->type != nodeIf && pSyntaxNode->type != nodeWhile) {
         walkSyntaxTree(pSyntaxNode->pLeft, "LEFT", indent + 1);
-        walkSyntaxTree(pSyntaxNode->pCentre, "CENTRE", indent + 1);  // TODO: Only used by if-then-else. Not necessary
+        walkSyntaxTree(pSyntaxNode->pCentre, "CENTRE", indent + 1);  // TODO: Only used by if-then-else and while. Not necessary
         walkSyntaxTree(pSyntaxNode->pRight, "RIGHT", indent + 1);
     }
     printIndent(indent);
@@ -470,21 +471,41 @@ void walkSyntaxTree(syntaxNode* pSyntaxNode, char* position, int indent) {
             fwrite(tmp, 1, strlen(tmp), fp);
         }
 
-        //printf("\n");
         printIndent(indent);
 		printf("IF %d", pSyntaxNode->value);
         walkSyntaxTree(pSyntaxNode->pLeft, "LEFT", indent + 1);
         
-        //printf("\n");
         printIndent(indent);
 		printf("THEN %d", pSyntaxNode->value);
         walkStatementList(pSyntaxNode->pCentre);
         
+        printIndent(indent);
+		printf("ELSE %d", pSyntaxNode->value);
+        walkStatementList(pSyntaxNode->pRight);
+        printf("\nEND IF %d", pSyntaxNode->value);
+        
+        break;
+    case (nodeWhile):
+        if (fp != NULL) {
+            sprintf(tmp, "%d %s While %d\n", indent, position, pSyntaxNode->value);
+            fwrite(tmp, 1, strlen(tmp), fp);
+        }
+
+        printIndent(indent);
+		printf("WHILE %d", pSyntaxNode->value);
+        walkSyntaxTree(pSyntaxNode->pLeft, "LEFT", indent + 1);
+        
+        printIndent(indent);
+		printf("DO %d", pSyntaxNode->value);
+        walkStatementList(pSyntaxNode->pCentre);
+        
+#if 0        
         //printf("\n");
         printIndent(indent);
 		printf("ELSE %d", pSyntaxNode->value);
         walkStatementList(pSyntaxNode->pRight);
-        printf("\nENDIF %d", pSyntaxNode->value);
+#endif        
+        printf("\nEND WHILE %d", pSyntaxNode->value);
         
         break;
     case (nodeStatement):

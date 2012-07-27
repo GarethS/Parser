@@ -73,7 +73,7 @@ syntaxNode* addNodeArray(char* pVar, syntaxNode* pArrayIndex);
 //syntaxNode* addNodeArrayConstIndex(char* pVar, int symbolTableIndex);
 syntaxNode* addNodeVariableOperator(int operator, int varIndex, syntaxNode* pRight);
 syntaxNode* addNodeSymbolIndex(int varIndex);
-syntaxNode* addNodeIf(syntaxNode* pExpr, syntaxNode* pIfStatementList, syntaxNode* pElseStatementList);
+syntaxNode* addNodeIfOrWhile(syntaxNode* pExpr, syntaxNode* pIfOrWhileStatementList, syntaxNode* pElseStatementList, nodeType type);
 
 syntaxNode* addStatement(syntaxNode* pStatementListNode, syntaxNode* pStatementNode);
 

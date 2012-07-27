@@ -1,4 +1,4 @@
-                                                                             	
+                                                                                                       	
 
 Symbol table start:
 index:0, name:counter, type:0, val:0
@@ -8,12 +8,14 @@ index:3, name:1, type:1, val:1
 index:4, name:5, type:1, val:5
 index:5, name:6, type:1, val:6
 index:6, name:2, type:1, val:2
-index:7, name:7, type:1, val:7
+index:7, name:d, type:0, val:0
+index:8, name:3, type:1, val:3
+index:9, name:7, type:1, val:7
 Symbol table end:
 
 Statement:
 ROOT
-IF 1
+IF 2
 ***LEFT Var: index,0 name,counter
 ***RIGHT Var: index,1 name,4
 **LEFT Operator: <= 278
@@ -21,7 +23,7 @@ IF 1
 ***RIGHT Var: index,3 name,1
 **RIGHT Operator: > 276
 *LEFT Operator: || 273
-THEN 1
+THEN 2
 Statement:
 *LEFT Var: index,0 name,counter
 *RIGHT Var: index,4 name,5
@@ -46,14 +48,30 @@ Statement:
 *RIGHT Var: index,1 name,4
 ROOT Operator: = 262
 ELSE 0
-ENDIF 0
-ELSE 1
+END IF 0
+Statement:
+ROOT
+WHILE 1
+**LEFT Var: index,7 name,d
+**RIGHT Var: index,8 name,3
+*LEFT Operator: == 280
+DO 1
+Statement:
+*LEFT Var: index,7 name,d
+***LEFT Var: index,7 name,d
+***RIGHT Var: index,3 name,1
+**LEFT Operator: + 283
+**RIGHT Var: index,7 name,d
+*RIGHT Operator: + 283
+ROOT Operator: = 262
+END WHILE 1
+ELSE 2
 Statement:
 *LEFT Var: index,0 name,counter
-*RIGHT Var: index,7 name,7
+*RIGHT Var: index,9 name,7
 ROOT Operator: = 262
 Statement:
 *LEFT Var: index,2 name,x
-*RIGHT Var: index,7 name,7
+*RIGHT Var: index,9 name,7
 ROOT Operator: = 262
-ENDIF 1
+END IF 2
