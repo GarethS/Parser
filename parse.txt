@@ -15,7 +15,7 @@ Symbol table end:
 
 Statement:
 ROOT
-IF 2
+If 2
 ***LEFT Var: index,0 name,counter
 ***RIGHT Var: index,1 name,4
 **LEFT Operator: <= 278
@@ -23,7 +23,7 @@ IF 2
 ***RIGHT Var: index,3 name,1
 **RIGHT Operator: > 276
 *LEFT Operator: || 273
-THEN 2
+If EVAL == 0 JMP Else 2
 Statement:
 *LEFT Var: index,0 name,counter
 *RIGHT Var: index,4 name,5
@@ -38,24 +38,25 @@ Statement:
 ROOT Operator: = 262
 Statement:
 ROOT
-IF 0
+If 0
 **LEFT Var: index,2 name,x
 **RIGHT Var: index,6 name,2
 *LEFT Operator: == 280
-THEN 0
+If EVAL == 0 JMP Else 0
 Statement:
 *LEFT Var: index,0 name,counter
 *RIGHT Var: index,1 name,4
 ROOT Operator: = 262
-ELSE 0
-END IF 0
+JMP EndIf 0
+Else 0
+EndIf 0
 Statement:
 ROOT
-WHILE 1
+While 1
 **LEFT Var: index,7 name,d
 **RIGHT Var: index,8 name,3
 *LEFT Operator: == 280
-DO 1
+If EVAL == 0 JMP EndWhile 1
 Statement:
 *LEFT Var: index,7 name,d
 ***LEFT Var: index,7 name,d
@@ -64,8 +65,9 @@ Statement:
 **RIGHT Var: index,7 name,d
 *RIGHT Operator: + 283
 ROOT Operator: = 262
-END WHILE 1
-ELSE 2
+EndWhile 1
+JMP EndIf 2
+Else 2
 Statement:
 *LEFT Var: index,0 name,counter
 *RIGHT Var: index,9 name,7
@@ -74,4 +76,4 @@ Statement:
 *LEFT Var: index,2 name,x
 *RIGHT Var: index,9 name,7
 ROOT Operator: = 262
-END IF 2
+EndIf 2

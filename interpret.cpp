@@ -92,6 +92,8 @@ void interpret::_loadTree(const string& s) {
             pte.type(nodeOperator);
         } else if (variableOperator == "Action") {
             pte.type(nodeStartAction);
+        } else if (variableOperator == "If") {
+            pte.type(nodeIf);
         }
         _program[_programIndex++] = pte;
         if (_programIndex >= MAX_PROGRAM_ENTRY) {

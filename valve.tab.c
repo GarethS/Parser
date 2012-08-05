@@ -2236,35 +2236,36 @@ void walkSyntaxTree(syntaxNode* pSyntaxNode, char* position, int indent) {
             sprintf(tmp, "%d %s If %d\n", indent, position, pSyntaxNode->value);
             fwrite(tmp, 1, strlen(tmp), fp);
         }
-
         printIndent(indent);
-		printf("IF %d", pSyntaxNode->value);
+		printf("If %d", pSyntaxNode->value);
         walkSyntaxTree(pSyntaxNode->pLeft, "LEFT", indent + 1);
         
         if (fp != NULL) {
-            sprintf(tmp, "%d %s Then %d\n", indent, position, pSyntaxNode->value);
+            sprintf(tmp, "%d %s EVAL0 %d\n", indent, position, pSyntaxNode->value);
+            //sprintf(tmp, "%d %s Then %d\n", indent, position, pSyntaxNode->value);
             fwrite(tmp, 1, strlen(tmp), fp);
         }
-
         printIndent(indent);
-		printf("THEN %d", pSyntaxNode->value);
+		printf("If EVAL == 0 JMP Else %d", pSyntaxNode->value);
+		//printf("THEN %d", pSyntaxNode->value);
         walkStatementList(pSyntaxNode->pCentre);
         
         if (fp != NULL) {
+            sprintf(tmp, "%d %s JmpEndIf %d\n", indent, position, pSyntaxNode->value);
+            fwrite(tmp, 1, strlen(tmp), fp);
             sprintf(tmp, "%d %s Else %d\n", indent, position, pSyntaxNode->value);
             fwrite(tmp, 1, strlen(tmp), fp);
         }
-
         printIndent(indent);
-		printf("ELSE %d", pSyntaxNode->value);
+		printf("JMP EndIf %d", pSyntaxNode->value);
+		printf("\nElse %d", pSyntaxNode->value);
         walkStatementList(pSyntaxNode->pRight);
         
         if (fp != NULL) {
             sprintf(tmp, "%d %s EndIf %d\n", indent, position, pSyntaxNode->value);
             fwrite(tmp, 1, strlen(tmp), fp);
         }
-
-        printf("\nEND IF %d", pSyntaxNode->value);
+        printf("\nEndIf %d", pSyntaxNode->value);
         
         break;
     case (nodeWhile):
@@ -2272,26 +2273,24 @@ void walkSyntaxTree(syntaxNode* pSyntaxNode, char* position, int indent) {
             sprintf(tmp, "%d %s While %d\n", indent, position, pSyntaxNode->value);
             fwrite(tmp, 1, strlen(tmp), fp);
         }
-
         printIndent(indent);
-		printf("WHILE %d", pSyntaxNode->value);
+		printf("While %d", pSyntaxNode->value);
         walkSyntaxTree(pSyntaxNode->pLeft, "LEFT", indent + 1);
         
         if (fp != NULL) {
             sprintf(tmp, "%d %s Do %d\n", indent, position, pSyntaxNode->value);
             fwrite(tmp, 1, strlen(tmp), fp);
         }
-
         printIndent(indent);
-		printf("DO %d", pSyntaxNode->value);
+		printf("If EVAL == 0 JMP EndWhile %d", pSyntaxNode->value);
+		//printf("Do %d", pSyntaxNode->value);
         walkStatementList(pSyntaxNode->pCentre);
         
         if (fp != NULL) {
             sprintf(tmp, "%d %s EndWhile %d\n", indent, position, pSyntaxNode->value);
             fwrite(tmp, 1, strlen(tmp), fp);
         }
-
-        printf("\nEND WHILE %d", pSyntaxNode->value);
+        printf("\nEndWhile %d", pSyntaxNode->value);
         
         break;
     case (nodeStatement):
