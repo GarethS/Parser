@@ -1,17 +1,18 @@
-if (counter <= 4 || x > 1) {
-    counter = 5;
-    counter = 6;
-    counter = 6;
-    if (x == 2) {
-        counter = 4;
-        /* don't do this line */
-      // d
-    } 
-    while (d == 3) {
-        d = d + 1 + d;
+main () {
+    if (counter <= 4 || x > 1) {
+        counter = 5;
+        counter = 6;
+        counter = 6;
+        if (x == 2) {
+            counter = 4;
+            /* don't do this line */
+          // d
+        } 
+        while (d == 3) {
+            d = d + 1 + d;
+        }
+    } else {
+        counter = 7;
+        x = 7;
     }
-} else {
-    counter = 7;
-    x = 7;
-}
-	
+}	
