@@ -76,4 +76,8 @@ Statement:
 *LEFT Var: index,2 name,x
 *RIGHT Var: index,9 name,7
 ROOT Operator: = 262
-EndIf 2	
+EndIf 2	       
+Statement:
+*LEFT Var: index,10 name,n
+*RIGHT Var: index,8 name,3
+ROOT Operator: = 262
