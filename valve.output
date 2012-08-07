@@ -2,7 +2,6 @@ Terminals unused in grammar
 
    INPUTS
    OUTPUTS
-   COMMA
    BANG
    VAR_METHOD
    CONST_FLOAT
@@ -17,45 +16,51 @@ Grammar
     2 functionList: /* empty */
     3             | functionList function
 
-    4 functionMain: MAIN LPAREN RPAREN LBRACE statementList RBRACE
+    4 functionMain: MAIN LPAREN argList RPAREN LBRACE statementList RBRACE
 
-    5 function: VAR LPAREN RPAREN LBRACE statementList RBRACE
+    5 function: VAR LPAREN argList RPAREN LBRACE statementList RBRACE
 
-    6 statementList: /* empty */
-    7              | statementList statement
+    6 argList: /* empty */
+    7        | expr commaArgList
 
-    8 statement: statementAssign
-    9          | statementIf
-   10          | statementWhile
-   11          | arrayDefine
+    8 commaArgList: /* empty */
+    9             | commaArgList COMMA expr
 
-   12 statementWhile: WHILE LPAREN expr RPAREN LBRACE statementList RBRACE
+   10 statementList: /* empty */
+   11              | statementList statement
 
-   13 statementIf: IF LPAREN expr RPAREN LBRACE statementList RBRACE
-   14            | IF LPAREN expr RPAREN LBRACE statementList RBRACE ELSE LBRACE statementList RBRACE
+   12 statement: statementAssign
+   13          | statementIf
+   14          | statementWhile
+   15          | arrayDefine
 
-   15 statementAssign: VAR EQUAL expr SEMI
-   16                | VAR LBRACKET expr RBRACKET EQUAL expr SEMI
+   16 statementWhile: WHILE LPAREN expr RPAREN LBRACE statementList RBRACE
 
-   17 expr: LPAREN expr RPAREN
-   18     | expr PLUS expr
-   19     | expr MINUS expr
-   20     | expr MULT expr
-   21     | expr DIV expr
-   22     | expr XOR expr
-   23     | expr AND expr
-   24     | expr OR expr
-   25     | expr TEST_FOR_EQUAL expr
-   26     | expr NEQ expr
-   27     | expr GEQ expr
-   28     | expr LEQ expr
-   29     | expr GTR expr
-   30     | expr LSS expr
-   31     | VAR
-   32     | CONST
-   33     | VAR LBRACKET expr RBRACKET
+   17 statementIf: IF LPAREN expr RPAREN LBRACE statementList RBRACE
+   18            | IF LPAREN expr RPAREN LBRACE statementList RBRACE ELSE LBRACE statementList RBRACE
 
-   34 arrayDefine: ARRAYDEFINE VAR LBRACKET CONST RBRACKET SEMI
+   19 statementAssign: VAR EQUAL expr SEMI
+   20                | VAR LBRACKET expr RBRACKET EQUAL expr SEMI
+
+   21 expr: LPAREN expr RPAREN
+   22     | expr PLUS expr
+   23     | expr MINUS expr
+   24     | expr MULT expr
+   25     | expr DIV expr
+   26     | expr XOR expr
+   27     | expr AND expr
+   28     | expr OR expr
+   29     | expr TEST_FOR_EQUAL expr
+   30     | expr NEQ expr
+   31     | expr GEQ expr
+   32     | expr LEQ expr
+   33     | expr GTR expr
+   34     | expr LSS expr
+   35     | VAR
+   36     | CONST
+   37     | VAR LBRACKET expr RBRACKET
+
+   38 arrayDefine: ARRAYDEFINE VAR LBRACKET CONST RBRACKET SEMI
 
 
 Terminals, with rules where they appear
@@ -64,38 +69,38 @@ $end (0) 0
 error (256)
 INPUTS (258)
 OUTPUTS (259)
-COMMA (260)
+COMMA (260) 9
 BANG (261)
-EQUAL (262) 15 16
-LBRACE (263) 4 5 12 13 14
-RBRACE (264) 4 5 12 13 14
-ARRAYDEFINE (265) 34
-IF (266) 13 14
-ELSE (267) 14
-WHILE (268) 12
+EQUAL (262) 19 20
+LBRACE (263) 4 5 16 17 18
+RBRACE (264) 4 5 16 17 18
+ARRAYDEFINE (265) 38
+IF (266) 17 18
+ELSE (267) 18
+WHILE (268) 16
 MAIN (269) 4
-VAR (270) 5 15 16 31 33 34
+VAR (270) 5 19 20 35 37 38
 VAR_METHOD (271)
-CONST (272) 32 34
+CONST (272) 36 38
 CONST_FLOAT (273)
-OR (274) 24
-AND (275) 23
-LSS (276) 30
-GTR (277) 29
-NEQ (278) 26
-LEQ (279) 28
-GEQ (280) 27
-TEST_FOR_EQUAL (281) 25
-LPAREN (282) 4 5 12 13 14 17
-MINUS (283) 19
-PLUS (284) 18
-XOR (285) 22
-DIV (286) 21
-MULT (287) 20
-LBRACKET (288) 16 33 34
-RBRACKET (289) 16 33 34
-RPAREN (290) 4 5 12 13 14 17
-SEMI (291) 15 16 34
+OR (274) 28
+AND (275) 27
+LSS (276) 34
+GTR (277) 33
+NEQ (278) 30
+LEQ (279) 32
+GEQ (280) 31
+TEST_FOR_EQUAL (281) 29
+LPAREN (282) 4 5 16 17 18 21
+MINUS (283) 23
+PLUS (284) 22
+XOR (285) 26
+DIV (286) 25
+MULT (287) 24
+LBRACKET (288) 20 37 38
+RBRACKET (289) 20 37 38
+RPAREN (290) 4 5 16 17 18 21
+SEMI (291) 19 20 38
 
 
 Nonterminals, with rules where they appear
@@ -110,21 +115,25 @@ functionMain (40)
     on left: 4, on right: 1
 function (41)
     on left: 5, on right: 3
-statementList (42)
-    on left: 6 7, on right: 4 5 7 12 13 14
-statement (43)
-    on left: 8 9 10 11, on right: 7
-statementWhile (44)
-    on left: 12, on right: 10
-statementIf (45)
-    on left: 13 14, on right: 9
-statementAssign (46)
-    on left: 15 16, on right: 8
-expr (47)
-    on left: 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33, on right:
-    12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 33
-arrayDefine (48)
-    on left: 34, on right: 11
+argList (42)
+    on left: 6 7, on right: 4 5
+commaArgList (43)
+    on left: 8 9, on right: 7 9
+statementList (44)
+    on left: 10 11, on right: 4 5 11 16 17 18
+statement (45)
+    on left: 12 13 14 15, on right: 11
+statementWhile (46)
+    on left: 16, on right: 14
+statementIf (47)
+    on left: 17 18, on right: 13
+statementAssign (48)
+    on left: 19 20, on right: 12
+expr (49)
+    on left: 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37, on right:
+    7 9 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 37
+arrayDefine (50)
+    on left: 38, on right: 15
 
 
 state 0
@@ -139,7 +148,7 @@ state 0
 
 state 1
 
-    4 functionMain: MAIN . LPAREN RPAREN LBRACE statementList RBRACE
+    4 functionMain: MAIN . LPAREN argList RPAREN LBRACE statementList RBRACE
 
     LPAREN  shift, and go to state 4
 
@@ -162,9 +171,16 @@ state 3
 
 state 4
 
-    4 functionMain: MAIN LPAREN . RPAREN LBRACE statementList RBRACE
+    4 functionMain: MAIN LPAREN . argList RPAREN LBRACE statementList RBRACE
 
-    RPAREN  shift, and go to state 7
+    VAR     shift, and go to state 7
+    CONST   shift, and go to state 8
+    LPAREN  shift, and go to state 9
+
+    $default  reduce using rule 6 (argList)
+
+    argList  go to state 10
+    expr     go to state 11
 
 
 state 5
@@ -179,1177 +195,1289 @@ state 6
     1 program: functionMain functionList .
     3 functionList: functionList . function
 
-    VAR  shift, and go to state 8
+    VAR  shift, and go to state 12
 
     $default  reduce using rule 1 (program)
 
-    function  go to state 9
+    function  go to state 13
 
 
 state 7
 
-    4 functionMain: MAIN LPAREN RPAREN . LBRACE statementList RBRACE
+   35 expr: VAR .
+   37     | VAR . LBRACKET expr RBRACKET
 
-    LBRACE  shift, and go to state 10
+    LBRACKET  shift, and go to state 14
+
+    $default  reduce using rule 35 (expr)
 
 
 state 8
 
-    5 function: VAR . LPAREN RPAREN LBRACE statementList RBRACE
+   36 expr: CONST .
 
-    LPAREN  shift, and go to state 11
+    $default  reduce using rule 36 (expr)
 
 
 state 9
+
+   21 expr: LPAREN . expr RPAREN
+
+    VAR     shift, and go to state 7
+    CONST   shift, and go to state 8
+    LPAREN  shift, and go to state 9
+
+    expr  go to state 15
+
+
+state 10
+
+    4 functionMain: MAIN LPAREN argList . RPAREN LBRACE statementList RBRACE
+
+    RPAREN  shift, and go to state 16
+
+
+state 11
+
+    7 argList: expr . commaArgList
+   22 expr: expr . PLUS expr
+   23     | expr . MINUS expr
+   24     | expr . MULT expr
+   25     | expr . DIV expr
+   26     | expr . XOR expr
+   27     | expr . AND expr
+   28     | expr . OR expr
+   29     | expr . TEST_FOR_EQUAL expr
+   30     | expr . NEQ expr
+   31     | expr . GEQ expr
+   32     | expr . LEQ expr
+   33     | expr . GTR expr
+   34     | expr . LSS expr
+
+    OR              shift, and go to state 17
+    AND             shift, and go to state 18
+    LSS             shift, and go to state 19
+    GTR             shift, and go to state 20
+    NEQ             shift, and go to state 21
+    LEQ             shift, and go to state 22
+    GEQ             shift, and go to state 23
+    TEST_FOR_EQUAL  shift, and go to state 24
+    MINUS           shift, and go to state 25
+    PLUS            shift, and go to state 26
+    XOR             shift, and go to state 27
+    DIV             shift, and go to state 28
+    MULT            shift, and go to state 29
+
+    $default  reduce using rule 8 (commaArgList)
+
+    commaArgList  go to state 30
+
+
+state 12
+
+    5 function: VAR . LPAREN argList RPAREN LBRACE statementList RBRACE
+
+    LPAREN  shift, and go to state 31
+
+
+state 13
 
     3 functionList: functionList function .
 
     $default  reduce using rule 3 (functionList)
 
 
-state 10
-
-    4 functionMain: MAIN LPAREN RPAREN LBRACE . statementList RBRACE
-
-    $default  reduce using rule 6 (statementList)
-
-    statementList  go to state 12
-
-
-state 11
-
-    5 function: VAR LPAREN . RPAREN LBRACE statementList RBRACE
-
-    RPAREN  shift, and go to state 13
-
-
-state 12
-
-    4 functionMain: MAIN LPAREN RPAREN LBRACE statementList . RBRACE
-    7 statementList: statementList . statement
-
-    RBRACE       shift, and go to state 14
-    ARRAYDEFINE  shift, and go to state 15
-    IF           shift, and go to state 16
-    WHILE        shift, and go to state 17
-    VAR          shift, and go to state 18
-
-    statement        go to state 19
-    statementWhile   go to state 20
-    statementIf      go to state 21
-    statementAssign  go to state 22
-    arrayDefine      go to state 23
-
-
-state 13
-
-    5 function: VAR LPAREN RPAREN . LBRACE statementList RBRACE
-
-    LBRACE  shift, and go to state 24
-
-
 state 14
 
-    4 functionMain: MAIN LPAREN RPAREN LBRACE statementList RBRACE .
+   37 expr: VAR LBRACKET . expr RBRACKET
 
-    $default  reduce using rule 4 (functionMain)
+    VAR     shift, and go to state 7
+    CONST   shift, and go to state 8
+    LPAREN  shift, and go to state 9
+
+    expr  go to state 32
 
 
 state 15
 
-   34 arrayDefine: ARRAYDEFINE . VAR LBRACKET CONST RBRACKET SEMI
+   21 expr: LPAREN expr . RPAREN
+   22     | expr . PLUS expr
+   23     | expr . MINUS expr
+   24     | expr . MULT expr
+   25     | expr . DIV expr
+   26     | expr . XOR expr
+   27     | expr . AND expr
+   28     | expr . OR expr
+   29     | expr . TEST_FOR_EQUAL expr
+   30     | expr . NEQ expr
+   31     | expr . GEQ expr
+   32     | expr . LEQ expr
+   33     | expr . GTR expr
+   34     | expr . LSS expr
 
-    VAR  shift, and go to state 25
+    OR              shift, and go to state 17
+    AND             shift, and go to state 18
+    LSS             shift, and go to state 19
+    GTR             shift, and go to state 20
+    NEQ             shift, and go to state 21
+    LEQ             shift, and go to state 22
+    GEQ             shift, and go to state 23
+    TEST_FOR_EQUAL  shift, and go to state 24
+    MINUS           shift, and go to state 25
+    PLUS            shift, and go to state 26
+    XOR             shift, and go to state 27
+    DIV             shift, and go to state 28
+    MULT            shift, and go to state 29
+    RPAREN          shift, and go to state 33
 
 
 state 16
 
-   13 statementIf: IF . LPAREN expr RPAREN LBRACE statementList RBRACE
-   14            | IF . LPAREN expr RPAREN LBRACE statementList RBRACE ELSE LBRACE statementList RBRACE
+    4 functionMain: MAIN LPAREN argList RPAREN . LBRACE statementList RBRACE
 
-    LPAREN  shift, and go to state 26
+    LBRACE  shift, and go to state 34
 
 
 state 17
 
-   12 statementWhile: WHILE . LPAREN expr RPAREN LBRACE statementList RBRACE
+   28 expr: expr OR . expr
 
-    LPAREN  shift, and go to state 27
-
-
-state 18
-
-   15 statementAssign: VAR . EQUAL expr SEMI
-   16                | VAR . LBRACKET expr RBRACKET EQUAL expr SEMI
-
-    EQUAL     shift, and go to state 28
-    LBRACKET  shift, and go to state 29
-
-
-state 19
-
-    7 statementList: statementList statement .
-
-    $default  reduce using rule 7 (statementList)
-
-
-state 20
-
-   10 statement: statementWhile .
-
-    $default  reduce using rule 10 (statement)
-
-
-state 21
-
-    9 statement: statementIf .
-
-    $default  reduce using rule 9 (statement)
-
-
-state 22
-
-    8 statement: statementAssign .
-
-    $default  reduce using rule 8 (statement)
-
-
-state 23
-
-   11 statement: arrayDefine .
-
-    $default  reduce using rule 11 (statement)
-
-
-state 24
-
-    5 function: VAR LPAREN RPAREN LBRACE . statementList RBRACE
-
-    $default  reduce using rule 6 (statementList)
-
-    statementList  go to state 30
-
-
-state 25
-
-   34 arrayDefine: ARRAYDEFINE VAR . LBRACKET CONST RBRACKET SEMI
-
-    LBRACKET  shift, and go to state 31
-
-
-state 26
-
-   13 statementIf: IF LPAREN . expr RPAREN LBRACE statementList RBRACE
-   14            | IF LPAREN . expr RPAREN LBRACE statementList RBRACE ELSE LBRACE statementList RBRACE
-
-    VAR     shift, and go to state 32
-    CONST   shift, and go to state 33
-    LPAREN  shift, and go to state 34
+    VAR     shift, and go to state 7
+    CONST   shift, and go to state 8
+    LPAREN  shift, and go to state 9
 
     expr  go to state 35
 
 
-state 27
+state 18
 
-   12 statementWhile: WHILE LPAREN . expr RPAREN LBRACE statementList RBRACE
+   27 expr: expr AND . expr
 
-    VAR     shift, and go to state 32
-    CONST   shift, and go to state 33
-    LPAREN  shift, and go to state 34
+    VAR     shift, and go to state 7
+    CONST   shift, and go to state 8
+    LPAREN  shift, and go to state 9
 
     expr  go to state 36
 
 
-state 28
+state 19
 
-   15 statementAssign: VAR EQUAL . expr SEMI
+   34 expr: expr LSS . expr
 
-    VAR     shift, and go to state 32
-    CONST   shift, and go to state 33
-    LPAREN  shift, and go to state 34
+    VAR     shift, and go to state 7
+    CONST   shift, and go to state 8
+    LPAREN  shift, and go to state 9
 
     expr  go to state 37
 
 
-state 29
+state 20
 
-   16 statementAssign: VAR LBRACKET . expr RBRACKET EQUAL expr SEMI
+   33 expr: expr GTR . expr
 
-    VAR     shift, and go to state 32
-    CONST   shift, and go to state 33
-    LPAREN  shift, and go to state 34
+    VAR     shift, and go to state 7
+    CONST   shift, and go to state 8
+    LPAREN  shift, and go to state 9
 
     expr  go to state 38
 
 
-state 30
+state 21
 
-    5 function: VAR LPAREN RPAREN LBRACE statementList . RBRACE
-    7 statementList: statementList . statement
+   30 expr: expr NEQ . expr
 
-    RBRACE       shift, and go to state 39
-    ARRAYDEFINE  shift, and go to state 15
-    IF           shift, and go to state 16
-    WHILE        shift, and go to state 17
-    VAR          shift, and go to state 18
+    VAR     shift, and go to state 7
+    CONST   shift, and go to state 8
+    LPAREN  shift, and go to state 9
 
-    statement        go to state 19
-    statementWhile   go to state 20
-    statementIf      go to state 21
-    statementAssign  go to state 22
-    arrayDefine      go to state 23
+    expr  go to state 39
 
 
-state 31
+state 22
 
-   34 arrayDefine: ARRAYDEFINE VAR LBRACKET . CONST RBRACKET SEMI
+   32 expr: expr LEQ . expr
 
-    CONST  shift, and go to state 40
+    VAR     shift, and go to state 7
+    CONST   shift, and go to state 8
+    LPAREN  shift, and go to state 9
 
-
-state 32
-
-   31 expr: VAR .
-   33     | VAR . LBRACKET expr RBRACKET
-
-    LBRACKET  shift, and go to state 41
-
-    $default  reduce using rule 31 (expr)
+    expr  go to state 40
 
 
-state 33
+state 23
 
-   32 expr: CONST .
+   31 expr: expr GEQ . expr
 
-    $default  reduce using rule 32 (expr)
+    VAR     shift, and go to state 7
+    CONST   shift, and go to state 8
+    LPAREN  shift, and go to state 9
+
+    expr  go to state 41
 
 
-state 34
+state 24
 
-   17 expr: LPAREN . expr RPAREN
+   29 expr: expr TEST_FOR_EQUAL . expr
 
-    VAR     shift, and go to state 32
-    CONST   shift, and go to state 33
-    LPAREN  shift, and go to state 34
+    VAR     shift, and go to state 7
+    CONST   shift, and go to state 8
+    LPAREN  shift, and go to state 9
 
     expr  go to state 42
 
 
-state 35
-
-   13 statementIf: IF LPAREN expr . RPAREN LBRACE statementList RBRACE
-   14            | IF LPAREN expr . RPAREN LBRACE statementList RBRACE ELSE LBRACE statementList RBRACE
-   18 expr: expr . PLUS expr
-   19     | expr . MINUS expr
-   20     | expr . MULT expr
-   21     | expr . DIV expr
-   22     | expr . XOR expr
-   23     | expr . AND expr
-   24     | expr . OR expr
-   25     | expr . TEST_FOR_EQUAL expr
-   26     | expr . NEQ expr
-   27     | expr . GEQ expr
-   28     | expr . LEQ expr
-   29     | expr . GTR expr
-   30     | expr . LSS expr
-
-    OR              shift, and go to state 43
-    AND             shift, and go to state 44
-    LSS             shift, and go to state 45
-    GTR             shift, and go to state 46
-    NEQ             shift, and go to state 47
-    LEQ             shift, and go to state 48
-    GEQ             shift, and go to state 49
-    TEST_FOR_EQUAL  shift, and go to state 50
-    MINUS           shift, and go to state 51
-    PLUS            shift, and go to state 52
-    XOR             shift, and go to state 53
-    DIV             shift, and go to state 54
-    MULT            shift, and go to state 55
-    RPAREN          shift, and go to state 56
-
-
-state 36
-
-   12 statementWhile: WHILE LPAREN expr . RPAREN LBRACE statementList RBRACE
-   18 expr: expr . PLUS expr
-   19     | expr . MINUS expr
-   20     | expr . MULT expr
-   21     | expr . DIV expr
-   22     | expr . XOR expr
-   23     | expr . AND expr
-   24     | expr . OR expr
-   25     | expr . TEST_FOR_EQUAL expr
-   26     | expr . NEQ expr
-   27     | expr . GEQ expr
-   28     | expr . LEQ expr
-   29     | expr . GTR expr
-   30     | expr . LSS expr
-
-    OR              shift, and go to state 43
-    AND             shift, and go to state 44
-    LSS             shift, and go to state 45
-    GTR             shift, and go to state 46
-    NEQ             shift, and go to state 47
-    LEQ             shift, and go to state 48
-    GEQ             shift, and go to state 49
-    TEST_FOR_EQUAL  shift, and go to state 50
-    MINUS           shift, and go to state 51
-    PLUS            shift, and go to state 52
-    XOR             shift, and go to state 53
-    DIV             shift, and go to state 54
-    MULT            shift, and go to state 55
-    RPAREN          shift, and go to state 57
-
-
-state 37
-
-   15 statementAssign: VAR EQUAL expr . SEMI
-   18 expr: expr . PLUS expr
-   19     | expr . MINUS expr
-   20     | expr . MULT expr
-   21     | expr . DIV expr
-   22     | expr . XOR expr
-   23     | expr . AND expr
-   24     | expr . OR expr
-   25     | expr . TEST_FOR_EQUAL expr
-   26     | expr . NEQ expr
-   27     | expr . GEQ expr
-   28     | expr . LEQ expr
-   29     | expr . GTR expr
-   30     | expr . LSS expr
-
-    OR              shift, and go to state 43
-    AND             shift, and go to state 44
-    LSS             shift, and go to state 45
-    GTR             shift, and go to state 46
-    NEQ             shift, and go to state 47
-    LEQ             shift, and go to state 48
-    GEQ             shift, and go to state 49
-    TEST_FOR_EQUAL  shift, and go to state 50
-    MINUS           shift, and go to state 51
-    PLUS            shift, and go to state 52
-    XOR             shift, and go to state 53
-    DIV             shift, and go to state 54
-    MULT            shift, and go to state 55
-    SEMI            shift, and go to state 58
-
-
-state 38
-
-   16 statementAssign: VAR LBRACKET expr . RBRACKET EQUAL expr SEMI
-   18 expr: expr . PLUS expr
-   19     | expr . MINUS expr
-   20     | expr . MULT expr
-   21     | expr . DIV expr
-   22     | expr . XOR expr
-   23     | expr . AND expr
-   24     | expr . OR expr
-   25     | expr . TEST_FOR_EQUAL expr
-   26     | expr . NEQ expr
-   27     | expr . GEQ expr
-   28     | expr . LEQ expr
-   29     | expr . GTR expr
-   30     | expr . LSS expr
+state 25
 
-    OR              shift, and go to state 43
-    AND             shift, and go to state 44
-    LSS             shift, and go to state 45
-    GTR             shift, and go to state 46
-    NEQ             shift, and go to state 47
-    LEQ             shift, and go to state 48
-    GEQ             shift, and go to state 49
-    TEST_FOR_EQUAL  shift, and go to state 50
-    MINUS           shift, and go to state 51
-    PLUS            shift, and go to state 52
-    XOR             shift, and go to state 53
-    DIV             shift, and go to state 54
-    MULT            shift, and go to state 55
-    RBRACKET        shift, and go to state 59
+   23 expr: expr MINUS . expr
 
+    VAR     shift, and go to state 7
+    CONST   shift, and go to state 8
+    LPAREN  shift, and go to state 9
 
-state 39
+    expr  go to state 43
 
-    5 function: VAR LPAREN RPAREN LBRACE statementList RBRACE .
 
-    $default  reduce using rule 5 (function)
+state 26
 
+   22 expr: expr PLUS . expr
 
-state 40
+    VAR     shift, and go to state 7
+    CONST   shift, and go to state 8
+    LPAREN  shift, and go to state 9
 
-   34 arrayDefine: ARRAYDEFINE VAR LBRACKET CONST . RBRACKET SEMI
+    expr  go to state 44
 
-    RBRACKET  shift, and go to state 60
 
+state 27
 
-state 41
+   26 expr: expr XOR . expr
 
-   33 expr: VAR LBRACKET . expr RBRACKET
+    VAR     shift, and go to state 7
+    CONST   shift, and go to state 8
+    LPAREN  shift, and go to state 9
 
-    VAR     shift, and go to state 32
-    CONST   shift, and go to state 33
-    LPAREN  shift, and go to state 34
+    expr  go to state 45
 
-    expr  go to state 61
 
+state 28
 
-state 42
+   25 expr: expr DIV . expr
 
-   17 expr: LPAREN expr . RPAREN
-   18     | expr . PLUS expr
-   19     | expr . MINUS expr
-   20     | expr . MULT expr
-   21     | expr . DIV expr
-   22     | expr . XOR expr
-   23     | expr . AND expr
-   24     | expr . OR expr
-   25     | expr . TEST_FOR_EQUAL expr
-   26     | expr . NEQ expr
-   27     | expr . GEQ expr
-   28     | expr . LEQ expr
-   29     | expr . GTR expr
-   30     | expr . LSS expr
+    VAR     shift, and go to state 7
+    CONST   shift, and go to state 8
+    LPAREN  shift, and go to state 9
 
-    OR              shift, and go to state 43
-    AND             shift, and go to state 44
-    LSS             shift, and go to state 45
-    GTR             shift, and go to state 46
-    NEQ             shift, and go to state 47
-    LEQ             shift, and go to state 48
-    GEQ             shift, and go to state 49
-    TEST_FOR_EQUAL  shift, and go to state 50
-    MINUS           shift, and go to state 51
-    PLUS            shift, and go to state 52
-    XOR             shift, and go to state 53
-    DIV             shift, and go to state 54
-    MULT            shift, and go to state 55
-    RPAREN          shift, and go to state 62
+    expr  go to state 46
 
 
-state 43
+state 29
 
-   24 expr: expr OR . expr
+   24 expr: expr MULT . expr
 
-    VAR     shift, and go to state 32
-    CONST   shift, and go to state 33
-    LPAREN  shift, and go to state 34
+    VAR     shift, and go to state 7
+    CONST   shift, and go to state 8
+    LPAREN  shift, and go to state 9
 
-    expr  go to state 63
+    expr  go to state 47
 
 
-state 44
+state 30
 
-   23 expr: expr AND . expr
+    7 argList: expr commaArgList .
+    9 commaArgList: commaArgList . COMMA expr
 
-    VAR     shift, and go to state 32
-    CONST   shift, and go to state 33
-    LPAREN  shift, and go to state 34
+    COMMA  shift, and go to state 48
 
-    expr  go to state 64
+    $default  reduce using rule 7 (argList)
 
 
-state 45
+state 31
 
-   30 expr: expr LSS . expr
+    5 function: VAR LPAREN . argList RPAREN LBRACE statementList RBRACE
 
-    VAR     shift, and go to state 32
-    CONST   shift, and go to state 33
-    LPAREN  shift, and go to state 34
+    VAR     shift, and go to state 7
+    CONST   shift, and go to state 8
+    LPAREN  shift, and go to state 9
 
-    expr  go to state 65
+    $default  reduce using rule 6 (argList)
 
+    argList  go to state 49
+    expr     go to state 11
 
-state 46
 
-   29 expr: expr GTR . expr
+state 32
 
-    VAR     shift, and go to state 32
-    CONST   shift, and go to state 33
-    LPAREN  shift, and go to state 34
+   22 expr: expr . PLUS expr
+   23     | expr . MINUS expr
+   24     | expr . MULT expr
+   25     | expr . DIV expr
+   26     | expr . XOR expr
+   27     | expr . AND expr
+   28     | expr . OR expr
+   29     | expr . TEST_FOR_EQUAL expr
+   30     | expr . NEQ expr
+   31     | expr . GEQ expr
+   32     | expr . LEQ expr
+   33     | expr . GTR expr
+   34     | expr . LSS expr
+   37     | VAR LBRACKET expr . RBRACKET
 
-    expr  go to state 66
-
-
-state 47
-
-   26 expr: expr NEQ . expr
-
-    VAR     shift, and go to state 32
-    CONST   shift, and go to state 33
-    LPAREN  shift, and go to state 34
-
-    expr  go to state 67
-
-
-state 48
-
-   28 expr: expr LEQ . expr
-
-    VAR     shift, and go to state 32
-    CONST   shift, and go to state 33
-    LPAREN  shift, and go to state 34
-
-    expr  go to state 68
-
-
-state 49
-
-   27 expr: expr GEQ . expr
-
-    VAR     shift, and go to state 32
-    CONST   shift, and go to state 33
-    LPAREN  shift, and go to state 34
-
-    expr  go to state 69
-
-
-state 50
-
-   25 expr: expr TEST_FOR_EQUAL . expr
-
-    VAR     shift, and go to state 32
-    CONST   shift, and go to state 33
-    LPAREN  shift, and go to state 34
-
-    expr  go to state 70
-
-
-state 51
-
-   19 expr: expr MINUS . expr
-
-    VAR     shift, and go to state 32
-    CONST   shift, and go to state 33
-    LPAREN  shift, and go to state 34
-
-    expr  go to state 71
-
-
-state 52
-
-   18 expr: expr PLUS . expr
-
-    VAR     shift, and go to state 32
-    CONST   shift, and go to state 33
-    LPAREN  shift, and go to state 34
-
-    expr  go to state 72
-
-
-state 53
-
-   22 expr: expr XOR . expr
-
-    VAR     shift, and go to state 32
-    CONST   shift, and go to state 33
-    LPAREN  shift, and go to state 34
-
-    expr  go to state 73
-
-
-state 54
-
-   21 expr: expr DIV . expr
-
-    VAR     shift, and go to state 32
-    CONST   shift, and go to state 33
-    LPAREN  shift, and go to state 34
-
-    expr  go to state 74
-
-
-state 55
-
-   20 expr: expr MULT . expr
-
-    VAR     shift, and go to state 32
-    CONST   shift, and go to state 33
-    LPAREN  shift, and go to state 34
-
-    expr  go to state 75
-
-
-state 56
-
-   13 statementIf: IF LPAREN expr RPAREN . LBRACE statementList RBRACE
-   14            | IF LPAREN expr RPAREN . LBRACE statementList RBRACE ELSE LBRACE statementList RBRACE
-
-    LBRACE  shift, and go to state 76
-
-
-state 57
-
-   12 statementWhile: WHILE LPAREN expr RPAREN . LBRACE statementList RBRACE
-
-    LBRACE  shift, and go to state 77
-
-
-state 58
-
-   15 statementAssign: VAR EQUAL expr SEMI .
-
-    $default  reduce using rule 15 (statementAssign)
-
-
-state 59
-
-   16 statementAssign: VAR LBRACKET expr RBRACKET . EQUAL expr SEMI
-
-    EQUAL  shift, and go to state 78
-
-
-state 60
-
-   34 arrayDefine: ARRAYDEFINE VAR LBRACKET CONST RBRACKET . SEMI
-
-    SEMI  shift, and go to state 79
-
-
-state 61
-
-   18 expr: expr . PLUS expr
-   19     | expr . MINUS expr
-   20     | expr . MULT expr
-   21     | expr . DIV expr
-   22     | expr . XOR expr
-   23     | expr . AND expr
-   24     | expr . OR expr
-   25     | expr . TEST_FOR_EQUAL expr
-   26     | expr . NEQ expr
-   27     | expr . GEQ expr
-   28     | expr . LEQ expr
-   29     | expr . GTR expr
-   30     | expr . LSS expr
-   33     | VAR LBRACKET expr . RBRACKET
-
-    OR              shift, and go to state 43
-    AND             shift, and go to state 44
-    LSS             shift, and go to state 45
-    GTR             shift, and go to state 46
-    NEQ             shift, and go to state 47
-    LEQ             shift, and go to state 48
-    GEQ             shift, and go to state 49
-    TEST_FOR_EQUAL  shift, and go to state 50
-    MINUS           shift, and go to state 51
-    PLUS            shift, and go to state 52
-    XOR             shift, and go to state 53
-    DIV             shift, and go to state 54
-    MULT            shift, and go to state 55
-    RBRACKET        shift, and go to state 80
-
-
-state 62
-
-   17 expr: LPAREN expr RPAREN .
-
-    $default  reduce using rule 17 (expr)
-
-
-state 63
-
-   18 expr: expr . PLUS expr
-   19     | expr . MINUS expr
-   20     | expr . MULT expr
-   21     | expr . DIV expr
-   22     | expr . XOR expr
-   23     | expr . AND expr
-   24     | expr . OR expr
-   24     | expr OR expr .
-   25     | expr . TEST_FOR_EQUAL expr
-   26     | expr . NEQ expr
-   27     | expr . GEQ expr
-   28     | expr . LEQ expr
-   29     | expr . GTR expr
-   30     | expr . LSS expr
-
-    LSS             shift, and go to state 45
-    GTR             shift, and go to state 46
-    NEQ             shift, and go to state 47
-    LEQ             shift, and go to state 48
-    GEQ             shift, and go to state 49
-    TEST_FOR_EQUAL  shift, and go to state 50
-    MINUS           shift, and go to state 51
-    PLUS            shift, and go to state 52
-    XOR             shift, and go to state 53
-    DIV             shift, and go to state 54
-    MULT            shift, and go to state 55
-
-    $default  reduce using rule 24 (expr)
-
-
-state 64
-
-   18 expr: expr . PLUS expr
-   19     | expr . MINUS expr
-   20     | expr . MULT expr
-   21     | expr . DIV expr
-   22     | expr . XOR expr
-   23     | expr . AND expr
-   23     | expr AND expr .
-   24     | expr . OR expr
-   25     | expr . TEST_FOR_EQUAL expr
-   26     | expr . NEQ expr
-   27     | expr . GEQ expr
-   28     | expr . LEQ expr
-   29     | expr . GTR expr
-   30     | expr . LSS expr
-
-    LSS             shift, and go to state 45
-    GTR             shift, and go to state 46
-    NEQ             shift, and go to state 47
-    LEQ             shift, and go to state 48
-    GEQ             shift, and go to state 49
-    TEST_FOR_EQUAL  shift, and go to state 50
-    MINUS           shift, and go to state 51
-    PLUS            shift, and go to state 52
-    XOR             shift, and go to state 53
-    DIV             shift, and go to state 54
-    MULT            shift, and go to state 55
-
-    $default  reduce using rule 23 (expr)
-
-
-state 65
-
-   18 expr: expr . PLUS expr
-   19     | expr . MINUS expr
-   20     | expr . MULT expr
-   21     | expr . DIV expr
-   22     | expr . XOR expr
-   23     | expr . AND expr
-   24     | expr . OR expr
-   25     | expr . TEST_FOR_EQUAL expr
-   26     | expr . NEQ expr
-   27     | expr . GEQ expr
-   28     | expr . LEQ expr
-   29     | expr . GTR expr
-   30     | expr . LSS expr
-   30     | expr LSS expr .
-
-    MINUS  shift, and go to state 51
-    PLUS   shift, and go to state 52
-    XOR    shift, and go to state 53
-    DIV    shift, and go to state 54
-    MULT   shift, and go to state 55
-
-    $default  reduce using rule 30 (expr)
-
-
-state 66
-
-   18 expr: expr . PLUS expr
-   19     | expr . MINUS expr
-   20     | expr . MULT expr
-   21     | expr . DIV expr
-   22     | expr . XOR expr
-   23     | expr . AND expr
-   24     | expr . OR expr
-   25     | expr . TEST_FOR_EQUAL expr
-   26     | expr . NEQ expr
-   27     | expr . GEQ expr
-   28     | expr . LEQ expr
-   29     | expr . GTR expr
-   29     | expr GTR expr .
-   30     | expr . LSS expr
-
-    MINUS  shift, and go to state 51
-    PLUS   shift, and go to state 52
-    XOR    shift, and go to state 53
-    DIV    shift, and go to state 54
-    MULT   shift, and go to state 55
-
-    $default  reduce using rule 29 (expr)
-
-
-state 67
-
-   18 expr: expr . PLUS expr
-   19     | expr . MINUS expr
-   20     | expr . MULT expr
-   21     | expr . DIV expr
-   22     | expr . XOR expr
-   23     | expr . AND expr
-   24     | expr . OR expr
-   25     | expr . TEST_FOR_EQUAL expr
-   26     | expr . NEQ expr
-   26     | expr NEQ expr .
-   27     | expr . GEQ expr
-   28     | expr . LEQ expr
-   29     | expr . GTR expr
-   30     | expr . LSS expr
-
-    MINUS  shift, and go to state 51
-    PLUS   shift, and go to state 52
-    XOR    shift, and go to state 53
-    DIV    shift, and go to state 54
-    MULT   shift, and go to state 55
-
-    $default  reduce using rule 26 (expr)
-
-
-state 68
-
-   18 expr: expr . PLUS expr
-   19     | expr . MINUS expr
-   20     | expr . MULT expr
-   21     | expr . DIV expr
-   22     | expr . XOR expr
-   23     | expr . AND expr
-   24     | expr . OR expr
-   25     | expr . TEST_FOR_EQUAL expr
-   26     | expr . NEQ expr
-   27     | expr . GEQ expr
-   28     | expr . LEQ expr
-   28     | expr LEQ expr .
-   29     | expr . GTR expr
-   30     | expr . LSS expr
-
-    MINUS  shift, and go to state 51
-    PLUS   shift, and go to state 52
-    XOR    shift, and go to state 53
-    DIV    shift, and go to state 54
-    MULT   shift, and go to state 55
-
-    $default  reduce using rule 28 (expr)
-
-
-state 69
-
-   18 expr: expr . PLUS expr
-   19     | expr . MINUS expr
-   20     | expr . MULT expr
-   21     | expr . DIV expr
-   22     | expr . XOR expr
-   23     | expr . AND expr
-   24     | expr . OR expr
-   25     | expr . TEST_FOR_EQUAL expr
-   26     | expr . NEQ expr
-   27     | expr . GEQ expr
-   27     | expr GEQ expr .
-   28     | expr . LEQ expr
-   29     | expr . GTR expr
-   30     | expr . LSS expr
-
-    MINUS  shift, and go to state 51
-    PLUS   shift, and go to state 52
-    XOR    shift, and go to state 53
-    DIV    shift, and go to state 54
-    MULT   shift, and go to state 55
-
-    $default  reduce using rule 27 (expr)
-
-
-state 70
-
-   18 expr: expr . PLUS expr
-   19     | expr . MINUS expr
-   20     | expr . MULT expr
-   21     | expr . DIV expr
-   22     | expr . XOR expr
-   23     | expr . AND expr
-   24     | expr . OR expr
-   25     | expr . TEST_FOR_EQUAL expr
-   25     | expr TEST_FOR_EQUAL expr .
-   26     | expr . NEQ expr
-   27     | expr . GEQ expr
-   28     | expr . LEQ expr
-   29     | expr . GTR expr
-   30     | expr . LSS expr
-
-    MINUS  shift, and go to state 51
-    PLUS   shift, and go to state 52
-    XOR    shift, and go to state 53
-    DIV    shift, and go to state 54
-    MULT   shift, and go to state 55
-
-    $default  reduce using rule 25 (expr)
-
-
-state 71
-
-   18 expr: expr . PLUS expr
-   19     | expr . MINUS expr
-   19     | expr MINUS expr .
-   20     | expr . MULT expr
-   21     | expr . DIV expr
-   22     | expr . XOR expr
-   23     | expr . AND expr
-   24     | expr . OR expr
-   25     | expr . TEST_FOR_EQUAL expr
-   26     | expr . NEQ expr
-   27     | expr . GEQ expr
-   28     | expr . LEQ expr
-   29     | expr . GTR expr
-   30     | expr . LSS expr
-
-    XOR   shift, and go to state 53
-    DIV   shift, and go to state 54
-    MULT  shift, and go to state 55
-
-    $default  reduce using rule 19 (expr)
-
-
-state 72
-
-   18 expr: expr . PLUS expr
-   18     | expr PLUS expr .
-   19     | expr . MINUS expr
-   20     | expr . MULT expr
-   21     | expr . DIV expr
-   22     | expr . XOR expr
-   23     | expr . AND expr
-   24     | expr . OR expr
-   25     | expr . TEST_FOR_EQUAL expr
-   26     | expr . NEQ expr
-   27     | expr . GEQ expr
-   28     | expr . LEQ expr
-   29     | expr . GTR expr
-   30     | expr . LSS expr
-
-    XOR   shift, and go to state 53
-    DIV   shift, and go to state 54
-    MULT  shift, and go to state 55
-
-    $default  reduce using rule 18 (expr)
-
-
-state 73
-
-   18 expr: expr . PLUS expr
-   19     | expr . MINUS expr
-   20     | expr . MULT expr
-   21     | expr . DIV expr
-   22     | expr . XOR expr
-   22     | expr XOR expr .
-   23     | expr . AND expr
-   24     | expr . OR expr
-   25     | expr . TEST_FOR_EQUAL expr
-   26     | expr . NEQ expr
-   27     | expr . GEQ expr
-   28     | expr . LEQ expr
-   29     | expr . GTR expr
-   30     | expr . LSS expr
-
-    DIV   shift, and go to state 54
-    MULT  shift, and go to state 55
-
-    $default  reduce using rule 22 (expr)
-
-
-state 74
-
-   18 expr: expr . PLUS expr
-   19     | expr . MINUS expr
-   20     | expr . MULT expr
-   21     | expr . DIV expr
-   21     | expr DIV expr .
-   22     | expr . XOR expr
-   23     | expr . AND expr
-   24     | expr . OR expr
-   25     | expr . TEST_FOR_EQUAL expr
-   26     | expr . NEQ expr
-   27     | expr . GEQ expr
-   28     | expr . LEQ expr
-   29     | expr . GTR expr
-   30     | expr . LSS expr
+    OR              shift, and go to state 17
+    AND             shift, and go to state 18
+    LSS             shift, and go to state 19
+    GTR             shift, and go to state 20
+    NEQ             shift, and go to state 21
+    LEQ             shift, and go to state 22
+    GEQ             shift, and go to state 23
+    TEST_FOR_EQUAL  shift, and go to state 24
+    MINUS           shift, and go to state 25
+    PLUS            shift, and go to state 26
+    XOR             shift, and go to state 27
+    DIV             shift, and go to state 28
+    MULT            shift, and go to state 29
+    RBRACKET        shift, and go to state 50
+
+
+state 33
+
+   21 expr: LPAREN expr RPAREN .
 
     $default  reduce using rule 21 (expr)
 
 
-state 75
+state 34
 
-   18 expr: expr . PLUS expr
-   19     | expr . MINUS expr
-   20     | expr . MULT expr
-   20     | expr MULT expr .
-   21     | expr . DIV expr
-   22     | expr . XOR expr
-   23     | expr . AND expr
-   24     | expr . OR expr
-   25     | expr . TEST_FOR_EQUAL expr
-   26     | expr . NEQ expr
-   27     | expr . GEQ expr
-   28     | expr . LEQ expr
-   29     | expr . GTR expr
-   30     | expr . LSS expr
+    4 functionMain: MAIN LPAREN argList RPAREN LBRACE . statementList RBRACE
 
-    $default  reduce using rule 20 (expr)
+    $default  reduce using rule 10 (statementList)
+
+    statementList  go to state 51
 
 
-state 76
+state 35
 
-   13 statementIf: IF LPAREN expr RPAREN LBRACE . statementList RBRACE
-   14            | IF LPAREN expr RPAREN LBRACE . statementList RBRACE ELSE LBRACE statementList RBRACE
+   22 expr: expr . PLUS expr
+   23     | expr . MINUS expr
+   24     | expr . MULT expr
+   25     | expr . DIV expr
+   26     | expr . XOR expr
+   27     | expr . AND expr
+   28     | expr . OR expr
+   28     | expr OR expr .
+   29     | expr . TEST_FOR_EQUAL expr
+   30     | expr . NEQ expr
+   31     | expr . GEQ expr
+   32     | expr . LEQ expr
+   33     | expr . GTR expr
+   34     | expr . LSS expr
 
-    $default  reduce using rule 6 (statementList)
+    LSS             shift, and go to state 19
+    GTR             shift, and go to state 20
+    NEQ             shift, and go to state 21
+    LEQ             shift, and go to state 22
+    GEQ             shift, and go to state 23
+    TEST_FOR_EQUAL  shift, and go to state 24
+    MINUS           shift, and go to state 25
+    PLUS            shift, and go to state 26
+    XOR             shift, and go to state 27
+    DIV             shift, and go to state 28
+    MULT            shift, and go to state 29
 
-    statementList  go to state 81
-
-
-state 77
-
-   12 statementWhile: WHILE LPAREN expr RPAREN LBRACE . statementList RBRACE
-
-    $default  reduce using rule 6 (statementList)
-
-    statementList  go to state 82
-
-
-state 78
-
-   16 statementAssign: VAR LBRACKET expr RBRACKET EQUAL . expr SEMI
-
-    VAR     shift, and go to state 32
-    CONST   shift, and go to state 33
-    LPAREN  shift, and go to state 34
-
-    expr  go to state 83
-
-
-state 79
-
-   34 arrayDefine: ARRAYDEFINE VAR LBRACKET CONST RBRACKET SEMI .
-
-    $default  reduce using rule 34 (arrayDefine)
+    $default  reduce using rule 28 (expr)
 
 
-state 80
+state 36
 
-   33 expr: VAR LBRACKET expr RBRACKET .
+   22 expr: expr . PLUS expr
+   23     | expr . MINUS expr
+   24     | expr . MULT expr
+   25     | expr . DIV expr
+   26     | expr . XOR expr
+   27     | expr . AND expr
+   27     | expr AND expr .
+   28     | expr . OR expr
+   29     | expr . TEST_FOR_EQUAL expr
+   30     | expr . NEQ expr
+   31     | expr . GEQ expr
+   32     | expr . LEQ expr
+   33     | expr . GTR expr
+   34     | expr . LSS expr
+
+    LSS             shift, and go to state 19
+    GTR             shift, and go to state 20
+    NEQ             shift, and go to state 21
+    LEQ             shift, and go to state 22
+    GEQ             shift, and go to state 23
+    TEST_FOR_EQUAL  shift, and go to state 24
+    MINUS           shift, and go to state 25
+    PLUS            shift, and go to state 26
+    XOR             shift, and go to state 27
+    DIV             shift, and go to state 28
+    MULT            shift, and go to state 29
+
+    $default  reduce using rule 27 (expr)
+
+
+state 37
+
+   22 expr: expr . PLUS expr
+   23     | expr . MINUS expr
+   24     | expr . MULT expr
+   25     | expr . DIV expr
+   26     | expr . XOR expr
+   27     | expr . AND expr
+   28     | expr . OR expr
+   29     | expr . TEST_FOR_EQUAL expr
+   30     | expr . NEQ expr
+   31     | expr . GEQ expr
+   32     | expr . LEQ expr
+   33     | expr . GTR expr
+   34     | expr . LSS expr
+   34     | expr LSS expr .
+
+    MINUS  shift, and go to state 25
+    PLUS   shift, and go to state 26
+    XOR    shift, and go to state 27
+    DIV    shift, and go to state 28
+    MULT   shift, and go to state 29
+
+    $default  reduce using rule 34 (expr)
+
+
+state 38
+
+   22 expr: expr . PLUS expr
+   23     | expr . MINUS expr
+   24     | expr . MULT expr
+   25     | expr . DIV expr
+   26     | expr . XOR expr
+   27     | expr . AND expr
+   28     | expr . OR expr
+   29     | expr . TEST_FOR_EQUAL expr
+   30     | expr . NEQ expr
+   31     | expr . GEQ expr
+   32     | expr . LEQ expr
+   33     | expr . GTR expr
+   33     | expr GTR expr .
+   34     | expr . LSS expr
+
+    MINUS  shift, and go to state 25
+    PLUS   shift, and go to state 26
+    XOR    shift, and go to state 27
+    DIV    shift, and go to state 28
+    MULT   shift, and go to state 29
 
     $default  reduce using rule 33 (expr)
 
 
+state 39
+
+   22 expr: expr . PLUS expr
+   23     | expr . MINUS expr
+   24     | expr . MULT expr
+   25     | expr . DIV expr
+   26     | expr . XOR expr
+   27     | expr . AND expr
+   28     | expr . OR expr
+   29     | expr . TEST_FOR_EQUAL expr
+   30     | expr . NEQ expr
+   30     | expr NEQ expr .
+   31     | expr . GEQ expr
+   32     | expr . LEQ expr
+   33     | expr . GTR expr
+   34     | expr . LSS expr
+
+    MINUS  shift, and go to state 25
+    PLUS   shift, and go to state 26
+    XOR    shift, and go to state 27
+    DIV    shift, and go to state 28
+    MULT   shift, and go to state 29
+
+    $default  reduce using rule 30 (expr)
+
+
+state 40
+
+   22 expr: expr . PLUS expr
+   23     | expr . MINUS expr
+   24     | expr . MULT expr
+   25     | expr . DIV expr
+   26     | expr . XOR expr
+   27     | expr . AND expr
+   28     | expr . OR expr
+   29     | expr . TEST_FOR_EQUAL expr
+   30     | expr . NEQ expr
+   31     | expr . GEQ expr
+   32     | expr . LEQ expr
+   32     | expr LEQ expr .
+   33     | expr . GTR expr
+   34     | expr . LSS expr
+
+    MINUS  shift, and go to state 25
+    PLUS   shift, and go to state 26
+    XOR    shift, and go to state 27
+    DIV    shift, and go to state 28
+    MULT   shift, and go to state 29
+
+    $default  reduce using rule 32 (expr)
+
+
+state 41
+
+   22 expr: expr . PLUS expr
+   23     | expr . MINUS expr
+   24     | expr . MULT expr
+   25     | expr . DIV expr
+   26     | expr . XOR expr
+   27     | expr . AND expr
+   28     | expr . OR expr
+   29     | expr . TEST_FOR_EQUAL expr
+   30     | expr . NEQ expr
+   31     | expr . GEQ expr
+   31     | expr GEQ expr .
+   32     | expr . LEQ expr
+   33     | expr . GTR expr
+   34     | expr . LSS expr
+
+    MINUS  shift, and go to state 25
+    PLUS   shift, and go to state 26
+    XOR    shift, and go to state 27
+    DIV    shift, and go to state 28
+    MULT   shift, and go to state 29
+
+    $default  reduce using rule 31 (expr)
+
+
+state 42
+
+   22 expr: expr . PLUS expr
+   23     | expr . MINUS expr
+   24     | expr . MULT expr
+   25     | expr . DIV expr
+   26     | expr . XOR expr
+   27     | expr . AND expr
+   28     | expr . OR expr
+   29     | expr . TEST_FOR_EQUAL expr
+   29     | expr TEST_FOR_EQUAL expr .
+   30     | expr . NEQ expr
+   31     | expr . GEQ expr
+   32     | expr . LEQ expr
+   33     | expr . GTR expr
+   34     | expr . LSS expr
+
+    MINUS  shift, and go to state 25
+    PLUS   shift, and go to state 26
+    XOR    shift, and go to state 27
+    DIV    shift, and go to state 28
+    MULT   shift, and go to state 29
+
+    $default  reduce using rule 29 (expr)
+
+
+state 43
+
+   22 expr: expr . PLUS expr
+   23     | expr . MINUS expr
+   23     | expr MINUS expr .
+   24     | expr . MULT expr
+   25     | expr . DIV expr
+   26     | expr . XOR expr
+   27     | expr . AND expr
+   28     | expr . OR expr
+   29     | expr . TEST_FOR_EQUAL expr
+   30     | expr . NEQ expr
+   31     | expr . GEQ expr
+   32     | expr . LEQ expr
+   33     | expr . GTR expr
+   34     | expr . LSS expr
+
+    XOR   shift, and go to state 27
+    DIV   shift, and go to state 28
+    MULT  shift, and go to state 29
+
+    $default  reduce using rule 23 (expr)
+
+
+state 44
+
+   22 expr: expr . PLUS expr
+   22     | expr PLUS expr .
+   23     | expr . MINUS expr
+   24     | expr . MULT expr
+   25     | expr . DIV expr
+   26     | expr . XOR expr
+   27     | expr . AND expr
+   28     | expr . OR expr
+   29     | expr . TEST_FOR_EQUAL expr
+   30     | expr . NEQ expr
+   31     | expr . GEQ expr
+   32     | expr . LEQ expr
+   33     | expr . GTR expr
+   34     | expr . LSS expr
+
+    XOR   shift, and go to state 27
+    DIV   shift, and go to state 28
+    MULT  shift, and go to state 29
+
+    $default  reduce using rule 22 (expr)
+
+
+state 45
+
+   22 expr: expr . PLUS expr
+   23     | expr . MINUS expr
+   24     | expr . MULT expr
+   25     | expr . DIV expr
+   26     | expr . XOR expr
+   26     | expr XOR expr .
+   27     | expr . AND expr
+   28     | expr . OR expr
+   29     | expr . TEST_FOR_EQUAL expr
+   30     | expr . NEQ expr
+   31     | expr . GEQ expr
+   32     | expr . LEQ expr
+   33     | expr . GTR expr
+   34     | expr . LSS expr
+
+    DIV   shift, and go to state 28
+    MULT  shift, and go to state 29
+
+    $default  reduce using rule 26 (expr)
+
+
+state 46
+
+   22 expr: expr . PLUS expr
+   23     | expr . MINUS expr
+   24     | expr . MULT expr
+   25     | expr . DIV expr
+   25     | expr DIV expr .
+   26     | expr . XOR expr
+   27     | expr . AND expr
+   28     | expr . OR expr
+   29     | expr . TEST_FOR_EQUAL expr
+   30     | expr . NEQ expr
+   31     | expr . GEQ expr
+   32     | expr . LEQ expr
+   33     | expr . GTR expr
+   34     | expr . LSS expr
+
+    $default  reduce using rule 25 (expr)
+
+
+state 47
+
+   22 expr: expr . PLUS expr
+   23     | expr . MINUS expr
+   24     | expr . MULT expr
+   24     | expr MULT expr .
+   25     | expr . DIV expr
+   26     | expr . XOR expr
+   27     | expr . AND expr
+   28     | expr . OR expr
+   29     | expr . TEST_FOR_EQUAL expr
+   30     | expr . NEQ expr
+   31     | expr . GEQ expr
+   32     | expr . LEQ expr
+   33     | expr . GTR expr
+   34     | expr . LSS expr
+
+    $default  reduce using rule 24 (expr)
+
+
+state 48
+
+    9 commaArgList: commaArgList COMMA . expr
+
+    VAR     shift, and go to state 7
+    CONST   shift, and go to state 8
+    LPAREN  shift, and go to state 9
+
+    expr  go to state 52
+
+
+state 49
+
+    5 function: VAR LPAREN argList . RPAREN LBRACE statementList RBRACE
+
+    RPAREN  shift, and go to state 53
+
+
+state 50
+
+   37 expr: VAR LBRACKET expr RBRACKET .
+
+    $default  reduce using rule 37 (expr)
+
+
+state 51
+
+    4 functionMain: MAIN LPAREN argList RPAREN LBRACE statementList . RBRACE
+   11 statementList: statementList . statement
+
+    RBRACE       shift, and go to state 54
+    ARRAYDEFINE  shift, and go to state 55
+    IF           shift, and go to state 56
+    WHILE        shift, and go to state 57
+    VAR          shift, and go to state 58
+
+    statement        go to state 59
+    statementWhile   go to state 60
+    statementIf      go to state 61
+    statementAssign  go to state 62
+    arrayDefine      go to state 63
+
+
+state 52
+
+    9 commaArgList: commaArgList COMMA expr .
+   22 expr: expr . PLUS expr
+   23     | expr . MINUS expr
+   24     | expr . MULT expr
+   25     | expr . DIV expr
+   26     | expr . XOR expr
+   27     | expr . AND expr
+   28     | expr . OR expr
+   29     | expr . TEST_FOR_EQUAL expr
+   30     | expr . NEQ expr
+   31     | expr . GEQ expr
+   32     | expr . LEQ expr
+   33     | expr . GTR expr
+   34     | expr . LSS expr
+
+    OR              shift, and go to state 17
+    AND             shift, and go to state 18
+    LSS             shift, and go to state 19
+    GTR             shift, and go to state 20
+    NEQ             shift, and go to state 21
+    LEQ             shift, and go to state 22
+    GEQ             shift, and go to state 23
+    TEST_FOR_EQUAL  shift, and go to state 24
+    MINUS           shift, and go to state 25
+    PLUS            shift, and go to state 26
+    XOR             shift, and go to state 27
+    DIV             shift, and go to state 28
+    MULT            shift, and go to state 29
+
+    $default  reduce using rule 9 (commaArgList)
+
+
+state 53
+
+    5 function: VAR LPAREN argList RPAREN . LBRACE statementList RBRACE
+
+    LBRACE  shift, and go to state 64
+
+
+state 54
+
+    4 functionMain: MAIN LPAREN argList RPAREN LBRACE statementList RBRACE .
+
+    $default  reduce using rule 4 (functionMain)
+
+
+state 55
+
+   38 arrayDefine: ARRAYDEFINE . VAR LBRACKET CONST RBRACKET SEMI
+
+    VAR  shift, and go to state 65
+
+
+state 56
+
+   17 statementIf: IF . LPAREN expr RPAREN LBRACE statementList RBRACE
+   18            | IF . LPAREN expr RPAREN LBRACE statementList RBRACE ELSE LBRACE statementList RBRACE
+
+    LPAREN  shift, and go to state 66
+
+
+state 57
+
+   16 statementWhile: WHILE . LPAREN expr RPAREN LBRACE statementList RBRACE
+
+    LPAREN  shift, and go to state 67
+
+
+state 58
+
+   19 statementAssign: VAR . EQUAL expr SEMI
+   20                | VAR . LBRACKET expr RBRACKET EQUAL expr SEMI
+
+    EQUAL     shift, and go to state 68
+    LBRACKET  shift, and go to state 69
+
+
+state 59
+
+   11 statementList: statementList statement .
+
+    $default  reduce using rule 11 (statementList)
+
+
+state 60
+
+   14 statement: statementWhile .
+
+    $default  reduce using rule 14 (statement)
+
+
+state 61
+
+   13 statement: statementIf .
+
+    $default  reduce using rule 13 (statement)
+
+
+state 62
+
+   12 statement: statementAssign .
+
+    $default  reduce using rule 12 (statement)
+
+
+state 63
+
+   15 statement: arrayDefine .
+
+    $default  reduce using rule 15 (statement)
+
+
+state 64
+
+    5 function: VAR LPAREN argList RPAREN LBRACE . statementList RBRACE
+
+    $default  reduce using rule 10 (statementList)
+
+    statementList  go to state 70
+
+
+state 65
+
+   38 arrayDefine: ARRAYDEFINE VAR . LBRACKET CONST RBRACKET SEMI
+
+    LBRACKET  shift, and go to state 71
+
+
+state 66
+
+   17 statementIf: IF LPAREN . expr RPAREN LBRACE statementList RBRACE
+   18            | IF LPAREN . expr RPAREN LBRACE statementList RBRACE ELSE LBRACE statementList RBRACE
+
+    VAR     shift, and go to state 7
+    CONST   shift, and go to state 8
+    LPAREN  shift, and go to state 9
+
+    expr  go to state 72
+
+
+state 67
+
+   16 statementWhile: WHILE LPAREN . expr RPAREN LBRACE statementList RBRACE
+
+    VAR     shift, and go to state 7
+    CONST   shift, and go to state 8
+    LPAREN  shift, and go to state 9
+
+    expr  go to state 73
+
+
+state 68
+
+   19 statementAssign: VAR EQUAL . expr SEMI
+
+    VAR     shift, and go to state 7
+    CONST   shift, and go to state 8
+    LPAREN  shift, and go to state 9
+
+    expr  go to state 74
+
+
+state 69
+
+   20 statementAssign: VAR LBRACKET . expr RBRACKET EQUAL expr SEMI
+
+    VAR     shift, and go to state 7
+    CONST   shift, and go to state 8
+    LPAREN  shift, and go to state 9
+
+    expr  go to state 75
+
+
+state 70
+
+    5 function: VAR LPAREN argList RPAREN LBRACE statementList . RBRACE
+   11 statementList: statementList . statement
+
+    RBRACE       shift, and go to state 76
+    ARRAYDEFINE  shift, and go to state 55
+    IF           shift, and go to state 56
+    WHILE        shift, and go to state 57
+    VAR          shift, and go to state 58
+
+    statement        go to state 59
+    statementWhile   go to state 60
+    statementIf      go to state 61
+    statementAssign  go to state 62
+    arrayDefine      go to state 63
+
+
+state 71
+
+   38 arrayDefine: ARRAYDEFINE VAR LBRACKET . CONST RBRACKET SEMI
+
+    CONST  shift, and go to state 77
+
+
+state 72
+
+   17 statementIf: IF LPAREN expr . RPAREN LBRACE statementList RBRACE
+   18            | IF LPAREN expr . RPAREN LBRACE statementList RBRACE ELSE LBRACE statementList RBRACE
+   22 expr: expr . PLUS expr
+   23     | expr . MINUS expr
+   24     | expr . MULT expr
+   25     | expr . DIV expr
+   26     | expr . XOR expr
+   27     | expr . AND expr
+   28     | expr . OR expr
+   29     | expr . TEST_FOR_EQUAL expr
+   30     | expr . NEQ expr
+   31     | expr . GEQ expr
+   32     | expr . LEQ expr
+   33     | expr . GTR expr
+   34     | expr . LSS expr
+
+    OR              shift, and go to state 17
+    AND             shift, and go to state 18
+    LSS             shift, and go to state 19
+    GTR             shift, and go to state 20
+    NEQ             shift, and go to state 21
+    LEQ             shift, and go to state 22
+    GEQ             shift, and go to state 23
+    TEST_FOR_EQUAL  shift, and go to state 24
+    MINUS           shift, and go to state 25
+    PLUS            shift, and go to state 26
+    XOR             shift, and go to state 27
+    DIV             shift, and go to state 28
+    MULT            shift, and go to state 29
+    RPAREN          shift, and go to state 78
+
+
+state 73
+
+   16 statementWhile: WHILE LPAREN expr . RPAREN LBRACE statementList RBRACE
+   22 expr: expr . PLUS expr
+   23     | expr . MINUS expr
+   24     | expr . MULT expr
+   25     | expr . DIV expr
+   26     | expr . XOR expr
+   27     | expr . AND expr
+   28     | expr . OR expr
+   29     | expr . TEST_FOR_EQUAL expr
+   30     | expr . NEQ expr
+   31     | expr . GEQ expr
+   32     | expr . LEQ expr
+   33     | expr . GTR expr
+   34     | expr . LSS expr
+
+    OR              shift, and go to state 17
+    AND             shift, and go to state 18
+    LSS             shift, and go to state 19
+    GTR             shift, and go to state 20
+    NEQ             shift, and go to state 21
+    LEQ             shift, and go to state 22
+    GEQ             shift, and go to state 23
+    TEST_FOR_EQUAL  shift, and go to state 24
+    MINUS           shift, and go to state 25
+    PLUS            shift, and go to state 26
+    XOR             shift, and go to state 27
+    DIV             shift, and go to state 28
+    MULT            shift, and go to state 29
+    RPAREN          shift, and go to state 79
+
+
+state 74
+
+   19 statementAssign: VAR EQUAL expr . SEMI
+   22 expr: expr . PLUS expr
+   23     | expr . MINUS expr
+   24     | expr . MULT expr
+   25     | expr . DIV expr
+   26     | expr . XOR expr
+   27     | expr . AND expr
+   28     | expr . OR expr
+   29     | expr . TEST_FOR_EQUAL expr
+   30     | expr . NEQ expr
+   31     | expr . GEQ expr
+   32     | expr . LEQ expr
+   33     | expr . GTR expr
+   34     | expr . LSS expr
+
+    OR              shift, and go to state 17
+    AND             shift, and go to state 18
+    LSS             shift, and go to state 19
+    GTR             shift, and go to state 20
+    NEQ             shift, and go to state 21
+    LEQ             shift, and go to state 22
+    GEQ             shift, and go to state 23
+    TEST_FOR_EQUAL  shift, and go to state 24
+    MINUS           shift, and go to state 25
+    PLUS            shift, and go to state 26
+    XOR             shift, and go to state 27
+    DIV             shift, and go to state 28
+    MULT            shift, and go to state 29
+    SEMI            shift, and go to state 80
+
+
+state 75
+
+   20 statementAssign: VAR LBRACKET expr . RBRACKET EQUAL expr SEMI
+   22 expr: expr . PLUS expr
+   23     | expr . MINUS expr
+   24     | expr . MULT expr
+   25     | expr . DIV expr
+   26     | expr . XOR expr
+   27     | expr . AND expr
+   28     | expr . OR expr
+   29     | expr . TEST_FOR_EQUAL expr
+   30     | expr . NEQ expr
+   31     | expr . GEQ expr
+   32     | expr . LEQ expr
+   33     | expr . GTR expr
+   34     | expr . LSS expr
+
+    OR              shift, and go to state 17
+    AND             shift, and go to state 18
+    LSS             shift, and go to state 19
+    GTR             shift, and go to state 20
+    NEQ             shift, and go to state 21
+    LEQ             shift, and go to state 22
+    GEQ             shift, and go to state 23
+    TEST_FOR_EQUAL  shift, and go to state 24
+    MINUS           shift, and go to state 25
+    PLUS            shift, and go to state 26
+    XOR             shift, and go to state 27
+    DIV             shift, and go to state 28
+    MULT            shift, and go to state 29
+    RBRACKET        shift, and go to state 81
+
+
+state 76
+
+    5 function: VAR LPAREN argList RPAREN LBRACE statementList RBRACE .
+
+    $default  reduce using rule 5 (function)
+
+
+state 77
+
+   38 arrayDefine: ARRAYDEFINE VAR LBRACKET CONST . RBRACKET SEMI
+
+    RBRACKET  shift, and go to state 82
+
+
+state 78
+
+   17 statementIf: IF LPAREN expr RPAREN . LBRACE statementList RBRACE
+   18            | IF LPAREN expr RPAREN . LBRACE statementList RBRACE ELSE LBRACE statementList RBRACE
+
+    LBRACE  shift, and go to state 83
+
+
+state 79
+
+   16 statementWhile: WHILE LPAREN expr RPAREN . LBRACE statementList RBRACE
+
+    LBRACE  shift, and go to state 84
+
+
+state 80
+
+   19 statementAssign: VAR EQUAL expr SEMI .
+
+    $default  reduce using rule 19 (statementAssign)
+
+
 state 81
 
-    7 statementList: statementList . statement
-   13 statementIf: IF LPAREN expr RPAREN LBRACE statementList . RBRACE
-   14            | IF LPAREN expr RPAREN LBRACE statementList . RBRACE ELSE LBRACE statementList RBRACE
+   20 statementAssign: VAR LBRACKET expr RBRACKET . EQUAL expr SEMI
 
-    RBRACE       shift, and go to state 84
-    ARRAYDEFINE  shift, and go to state 15
-    IF           shift, and go to state 16
-    WHILE        shift, and go to state 17
-    VAR          shift, and go to state 18
-
-    statement        go to state 19
-    statementWhile   go to state 20
-    statementIf      go to state 21
-    statementAssign  go to state 22
-    arrayDefine      go to state 23
+    EQUAL  shift, and go to state 85
 
 
 state 82
 
-    7 statementList: statementList . statement
-   12 statementWhile: WHILE LPAREN expr RPAREN LBRACE statementList . RBRACE
+   38 arrayDefine: ARRAYDEFINE VAR LBRACKET CONST RBRACKET . SEMI
 
-    RBRACE       shift, and go to state 85
-    ARRAYDEFINE  shift, and go to state 15
-    IF           shift, and go to state 16
-    WHILE        shift, and go to state 17
-    VAR          shift, and go to state 18
-
-    statement        go to state 19
-    statementWhile   go to state 20
-    statementIf      go to state 21
-    statementAssign  go to state 22
-    arrayDefine      go to state 23
+    SEMI  shift, and go to state 86
 
 
 state 83
 
-   16 statementAssign: VAR LBRACKET expr RBRACKET EQUAL expr . SEMI
-   18 expr: expr . PLUS expr
-   19     | expr . MINUS expr
-   20     | expr . MULT expr
-   21     | expr . DIV expr
-   22     | expr . XOR expr
-   23     | expr . AND expr
-   24     | expr . OR expr
-   25     | expr . TEST_FOR_EQUAL expr
-   26     | expr . NEQ expr
-   27     | expr . GEQ expr
-   28     | expr . LEQ expr
-   29     | expr . GTR expr
-   30     | expr . LSS expr
+   17 statementIf: IF LPAREN expr RPAREN LBRACE . statementList RBRACE
+   18            | IF LPAREN expr RPAREN LBRACE . statementList RBRACE ELSE LBRACE statementList RBRACE
 
-    OR              shift, and go to state 43
-    AND             shift, and go to state 44
-    LSS             shift, and go to state 45
-    GTR             shift, and go to state 46
-    NEQ             shift, and go to state 47
-    LEQ             shift, and go to state 48
-    GEQ             shift, and go to state 49
-    TEST_FOR_EQUAL  shift, and go to state 50
-    MINUS           shift, and go to state 51
-    PLUS            shift, and go to state 52
-    XOR             shift, and go to state 53
-    DIV             shift, and go to state 54
-    MULT            shift, and go to state 55
-    SEMI            shift, and go to state 86
+    $default  reduce using rule 10 (statementList)
+
+    statementList  go to state 87
 
 
 state 84
 
-   13 statementIf: IF LPAREN expr RPAREN LBRACE statementList RBRACE .
-   14            | IF LPAREN expr RPAREN LBRACE statementList RBRACE . ELSE LBRACE statementList RBRACE
+   16 statementWhile: WHILE LPAREN expr RPAREN LBRACE . statementList RBRACE
 
-    ELSE  shift, and go to state 87
+    $default  reduce using rule 10 (statementList)
 
-    $default  reduce using rule 13 (statementIf)
+    statementList  go to state 88
 
 
 state 85
 
-   12 statementWhile: WHILE LPAREN expr RPAREN LBRACE statementList RBRACE .
+   20 statementAssign: VAR LBRACKET expr RBRACKET EQUAL . expr SEMI
 
-    $default  reduce using rule 12 (statementWhile)
+    VAR     shift, and go to state 7
+    CONST   shift, and go to state 8
+    LPAREN  shift, and go to state 9
+
+    expr  go to state 89
 
 
 state 86
 
-   16 statementAssign: VAR LBRACKET expr RBRACKET EQUAL expr SEMI .
+   38 arrayDefine: ARRAYDEFINE VAR LBRACKET CONST RBRACKET SEMI .
 
-    $default  reduce using rule 16 (statementAssign)
+    $default  reduce using rule 38 (arrayDefine)
 
 
 state 87
 
-   14 statementIf: IF LPAREN expr RPAREN LBRACE statementList RBRACE ELSE . LBRACE statementList RBRACE
+   11 statementList: statementList . statement
+   17 statementIf: IF LPAREN expr RPAREN LBRACE statementList . RBRACE
+   18            | IF LPAREN expr RPAREN LBRACE statementList . RBRACE ELSE LBRACE statementList RBRACE
 
-    LBRACE  shift, and go to state 88
+    RBRACE       shift, and go to state 90
+    ARRAYDEFINE  shift, and go to state 55
+    IF           shift, and go to state 56
+    WHILE        shift, and go to state 57
+    VAR          shift, and go to state 58
+
+    statement        go to state 59
+    statementWhile   go to state 60
+    statementIf      go to state 61
+    statementAssign  go to state 62
+    arrayDefine      go to state 63
 
 
 state 88
 
-   14 statementIf: IF LPAREN expr RPAREN LBRACE statementList RBRACE ELSE LBRACE . statementList RBRACE
+   11 statementList: statementList . statement
+   16 statementWhile: WHILE LPAREN expr RPAREN LBRACE statementList . RBRACE
 
-    $default  reduce using rule 6 (statementList)
+    RBRACE       shift, and go to state 91
+    ARRAYDEFINE  shift, and go to state 55
+    IF           shift, and go to state 56
+    WHILE        shift, and go to state 57
+    VAR          shift, and go to state 58
 
-    statementList  go to state 89
+    statement        go to state 59
+    statementWhile   go to state 60
+    statementIf      go to state 61
+    statementAssign  go to state 62
+    arrayDefine      go to state 63
 
 
 state 89
 
-    7 statementList: statementList . statement
-   14 statementIf: IF LPAREN expr RPAREN LBRACE statementList RBRACE ELSE LBRACE statementList . RBRACE
+   20 statementAssign: VAR LBRACKET expr RBRACKET EQUAL expr . SEMI
+   22 expr: expr . PLUS expr
+   23     | expr . MINUS expr
+   24     | expr . MULT expr
+   25     | expr . DIV expr
+   26     | expr . XOR expr
+   27     | expr . AND expr
+   28     | expr . OR expr
+   29     | expr . TEST_FOR_EQUAL expr
+   30     | expr . NEQ expr
+   31     | expr . GEQ expr
+   32     | expr . LEQ expr
+   33     | expr . GTR expr
+   34     | expr . LSS expr
 
-    RBRACE       shift, and go to state 90
-    ARRAYDEFINE  shift, and go to state 15
-    IF           shift, and go to state 16
-    WHILE        shift, and go to state 17
-    VAR          shift, and go to state 18
-
-    statement        go to state 19
-    statementWhile   go to state 20
-    statementIf      go to state 21
-    statementAssign  go to state 22
-    arrayDefine      go to state 23
+    OR              shift, and go to state 17
+    AND             shift, and go to state 18
+    LSS             shift, and go to state 19
+    GTR             shift, and go to state 20
+    NEQ             shift, and go to state 21
+    LEQ             shift, and go to state 22
+    GEQ             shift, and go to state 23
+    TEST_FOR_EQUAL  shift, and go to state 24
+    MINUS           shift, and go to state 25
+    PLUS            shift, and go to state 26
+    XOR             shift, and go to state 27
+    DIV             shift, and go to state 28
+    MULT            shift, and go to state 29
+    SEMI            shift, and go to state 92
 
 
 state 90
 
-   14 statementIf: IF LPAREN expr RPAREN LBRACE statementList RBRACE ELSE LBRACE statementList RBRACE .
+   17 statementIf: IF LPAREN expr RPAREN LBRACE statementList RBRACE .
+   18            | IF LPAREN expr RPAREN LBRACE statementList RBRACE . ELSE LBRACE statementList RBRACE
 
-    $default  reduce using rule 14 (statementIf)
+    ELSE  shift, and go to state 93
+
+    $default  reduce using rule 17 (statementIf)
+
+
+state 91
+
+   16 statementWhile: WHILE LPAREN expr RPAREN LBRACE statementList RBRACE .
+
+    $default  reduce using rule 16 (statementWhile)
+
+
+state 92
+
+   20 statementAssign: VAR LBRACKET expr RBRACKET EQUAL expr SEMI .
+
+    $default  reduce using rule 20 (statementAssign)
+
+
+state 93
+
+   18 statementIf: IF LPAREN expr RPAREN LBRACE statementList RBRACE ELSE . LBRACE statementList RBRACE
+
+    LBRACE  shift, and go to state 94
+
+
+state 94
+
+   18 statementIf: IF LPAREN expr RPAREN LBRACE statementList RBRACE ELSE LBRACE . statementList RBRACE
+
+    $default  reduce using rule 10 (statementList)
+
+    statementList  go to state 95
+
+
+state 95
+
+   11 statementList: statementList . statement
+   18 statementIf: IF LPAREN expr RPAREN LBRACE statementList RBRACE ELSE LBRACE statementList . RBRACE
+
+    RBRACE       shift, and go to state 96
+    ARRAYDEFINE  shift, and go to state 55
+    IF           shift, and go to state 56
+    WHILE        shift, and go to state 57
+    VAR          shift, and go to state 58
+
+    statement        go to state 59
+    statementWhile   go to state 60
+    statementIf      go to state 61
+    statementAssign  go to state 62
+    arrayDefine      go to state 63
+
+
+state 96
+
+   18 statementIf: IF LPAREN expr RPAREN LBRACE statementList RBRACE ELSE LBRACE statementList RBRACE .
+
+    $default  reduce using rule 18 (statementIf)
