@@ -27,9 +27,11 @@ typedef enum {nodeVar,
                 nodeIf,
                 nodeWhile,
                 nodeStatement,
+                nodeArgument,   // i.e. function arguments
                 nodeFloat,
                 nodeMotorMove,
-                nodeMotorGetPosition} nodeType;
+                nodeMotorGetPosition,
+                } nodeType;
 typedef enum {symbolVar, symbolConst, symbolArray, symbolInvalid, symbolTemporary, symbolFloat} symbolType;
 typedef enum {nodeLeft, nodeRight, nodeRoot} nodePosition;
 

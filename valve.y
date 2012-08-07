@@ -31,6 +31,10 @@ unsigned int syntaxTableFreeIndex = 0;
 
 syntaxNode statementTable[STATEMENT_ITEMS];
 unsigned int statementTableFreeIndex = 0;
+
+syntaxNode argumentTable[ARGUMENT_ITEMS];
+unsigned int argumentTableFreeIndex = 0;
+
 FILE* fp = NULL; // Parse tree file pointer
 FILE* fpSymbol = NULL;  // Symbol table file point
 
@@ -46,8 +50,8 @@ FILE* fpSymbol = NULL;  // Symbol table file point
 
 /* TERMINALS */
 %token INPUTS OUTPUTS  COMMA BANG
-%token EQUAL LBRACE RBRACE ARRAYDEFINE IF ELSE WHILE MAIN
-%token <string>	VAR VAR_METHOD CONST CONST_FLOAT
+%token EQUAL LBRACE RBRACE ARRAYDEFINE IF ELSE WHILE
+%token <string>	VAR VAR_METHOD CONST CONST_FLOAT MAIN
 
 %left AND OR
 %left TEST_FOR_EQUAL GEQ LEQ NEQ GTR LSS
@@ -79,20 +83,21 @@ functionList:   /* empty */     {}
         | functionList function {}
 
 functionMain: 	MAIN LPAREN argList RPAREN LBRACE statementList RBRACE	{fpSymbol = fopen("symbolTable.txt", "wb"); dumpSymbolTable(); fclose(fpSymbol);
-                            fp = fopen("tree.txt", "wb"); fwrite("0 0 Start 0\n", 1, 12, fp); /*printf("\nstatementList=%d", (int)$1);*/ walkStatementList($6); fclose(fp);}
+                            printf("\nFunction: main"); 
+                            fp = fopen("tree.txt", "wb"); fwrite("0 0 Start 0\n", 1, 12, fp); /*printf("\nstatementList=%d", (int)$1);*/ /* args */ walkList($3); /* statements */ walkList($6); fclose(fp);}
 ;
 
-function: 	VAR LPAREN argList RPAREN LBRACE statementList RBRACE	{//fpSymbol = fopen("symbolTable.txt", "wb"); dumpSymbolTable(); fclose(fpSymbol);
-//                            fp = fopen("tree.txt", "wb"); fwrite("0 0 Start 0\n", 1, 12, fp); printf("\nstatementTableFreeIndex=%d", statementTableFreeIndex); walkStatementList(statementTable+5); fclose(fp);}
-//                            fp = fopen("tree.txt", "wb"); fwrite("0 0 Start 0\n", 1, 12, fp); printf("\nstatementTableFreeIndex=%d", statementTableFreeIndex); walkStatementList(statementTable+statementTableFreeIndex-1); fclose(fp);}
-                            fp = fopen("tree.txt", "wb"); fwrite("0 0 Start 0\n", 1, 12, fp); /*printf("\nstatementList=%d", (int)$1);*/ walkStatementList($6); fclose(fp);}
+function: 	VAR LPAREN argList RPAREN LBRACE statementList RBRACE	{printf("Function: %s", $1); //fpSymbol = fopen("symbolTable.txt", "wb"); dumpSymbolTable(); fclose(fpSymbol);
+//                            fp = fopen("tree.txt", "wb"); fwrite("0 0 Start 0\n", 1, 12, fp); printf("\nstatementTableFreeIndex=%d", statementTableFreeIndex); walkList(statementTable+5); fclose(fp);}
+//                            fp = fopen("tree.txt", "wb"); fwrite("0 0 Start 0\n", 1, 12, fp); printf("\nstatementTableFreeIndex=%d", statementTableFreeIndex); walkList(statementTable+statementTableFreeIndex-1); fclose(fp);}
+                            fp = fopen("tree.txt", "ab"); fwrite("0 0 Start 0\n", 1, 12, fp); /*printf("\nstatementList=%d", (int)$1);*/ walkList($6); fclose(fp);}
 ;
 
-argList: /* empty */            {}
-        | expr commaArgList     {}
+argList: /* empty */            {$$ = NULL;}
+        | expr commaArgList     {$$ = addArgument($2, $1);}
 
-commaArgList:   /* empty */           {}
-            | commaArgList COMMA expr {}
+commaArgList:   /* empty */           {$$ = NULL;}
+            | commaArgList COMMA expr {$$ = addArgument($1, $3);}
             
 statementList: /* empty */	{$$ = NULL;}    // Make sure 'statementList' starts out as NULL for each new 'statementList'
 		| statementList statement	{/*printf("\nstatementList:%d, statement:%d", (int)$1, (int)$2);*/ /*walkSyntaxTree($2, "start", 0);*/ $$ = addStatement($1, $2); /*printf(" newStatementList:%d", (int)$$);*/}
@@ -109,7 +114,7 @@ statementWhile: WHILE LPAREN expr RPAREN LBRACE statementList RBRACE {$$ = addNo
 statementIf:  IF LPAREN expr RPAREN LBRACE statementList RBRACE	{/*printf("statementIf:statementList:%d", (int)$6);*/ $$ = addNodeIfOrWhile($3, $6, NULL, nodeIf);}
 //statementIf:  IF LPAREN expr RPAREN LBRACE statementList RBRACE	{fp = fopen("patternTree.txt", "wb"); walkSyntaxTree($3, "ROOT", 0); fclose(fp);
 //                                             printf("\n\n"); fp = fopen("actionTree.txt", "wb");
-//                                             fwrite("0 0 Action 0\n", 1, 13/* strlen("0 0 Action 0\n") */, fp); walkStatementList($6); fclose(fp);}
+//                                             fwrite("0 0 Action 0\n", 1, 13/* strlen("0 0 Action 0\n") */, fp); walkList($6); fclose(fp);}
               | IF LPAREN expr RPAREN LBRACE statementList RBRACE ELSE LBRACE statementList RBRACE	{/*printf("statementIf:statementList:%d", (int)$6);*/ $$ = addNodeIfOrWhile($3, $6, $10, nodeIf);}
 ;
 
@@ -361,6 +366,18 @@ syntaxNode* getNextStatementNode(void) {
 	return NULL;
 }
 
+syntaxNode* getNextArgumentNode(void) {
+	if (argumentTableFreeIndex < ARGUMENT_ITEMS) {
+#if REGRESS_1    
+        printf("getNextArgumentNode() %d\n", argumentTableFreeIndex);
+        fflush(stdout);
+#endif /* REGRESS_1 */
+        initNode(argumentTable + argumentTableFreeIndex);
+		return argumentTable + argumentTableFreeIndex++;
+	}
+	return NULL;
+}
+
 // A variable may not start with a number. One that does we'll consider a constant.
 int isConstant(varNode* pVar) {
 	if (isdigit((int)pVar->name[0])) {
@@ -414,6 +431,22 @@ int addVarToSymbolTable(char* var) {
 		return insertVariable(&tmp);
 	}
 	return found;
+}
+
+syntaxNode* addArgument(syntaxNode* pArgumentListNode, syntaxNode* pArgumentNode) {
+    if (pArgumentNode == NULL) {
+        // assert(pArgumentNode != NULL);
+        return pArgumentNode;
+    }
+	syntaxNode* p = getNextArgumentNode();
+	if (p == NULL) {
+		//assert(p != NULL);
+		return p;
+	}
+    p->type = nodeArgument;
+	p->pLeft = pArgumentNode;
+    p->pNext = pArgumentListNode;
+	return p;
 }
 
 syntaxNode* addStatement(syntaxNode* pStatementListNode, syntaxNode* pStatementNode) {
@@ -497,7 +530,7 @@ void walkSyntaxTree(syntaxNode* pSyntaxNode, char* position, int indent) {
         printIndent(indent);
 		printf("If EVAL == 0 JMP Else %d", pSyntaxNode->value);
 		//printf("THEN %d", pSyntaxNode->value);
-        walkStatementList(pSyntaxNode->pCentre);
+        walkList(pSyntaxNode->pCentre);
         
         if (fp != NULL) {
             sprintf(tmp, "%d %s JmpEndIf %d\n", indent, position, pSyntaxNode->value);
@@ -508,7 +541,7 @@ void walkSyntaxTree(syntaxNode* pSyntaxNode, char* position, int indent) {
         printIndent(indent);
 		printf("JMP EndIf %d", pSyntaxNode->value);
 		printf("\nElse %d", pSyntaxNode->value);
-        walkStatementList(pSyntaxNode->pRight);
+        walkList(pSyntaxNode->pRight);
         
         if (fp != NULL) {
             sprintf(tmp, "%d %s EndIf %d\n", indent, position, pSyntaxNode->value);
@@ -533,7 +566,7 @@ void walkSyntaxTree(syntaxNode* pSyntaxNode, char* position, int indent) {
         printIndent(indent);
 		printf("If EVAL == 0 JMP EndWhile %d", pSyntaxNode->value);
 		//printf("Do %d", pSyntaxNode->value);
-        walkStatementList(pSyntaxNode->pCentre);
+        walkList(pSyntaxNode->pCentre);
         
         if (fp != NULL) {
             sprintf(tmp, "%d %s EndWhile %d\n", indent, position, pSyntaxNode->value);
@@ -550,6 +583,12 @@ void walkSyntaxTree(syntaxNode* pSyntaxNode, char* position, int indent) {
 
 		//printf(" Statement: index,%d", pSyntaxNode->value);
         break;
+    case (nodeArgument):
+        if (fp != NULL) {
+            sprintf(tmp, "%d %s Argument %d\n", indent, position, pSyntaxNode->value);
+            fwrite(tmp, 1, strlen(tmp), fp);
+        }
+        break;
 	default:
 		printf(" walkSyntaxTree: Unknown type:%d", pSyntaxNode->type);
 		break;
@@ -558,25 +597,25 @@ void walkSyntaxTree(syntaxNode* pSyntaxNode, char* position, int indent) {
 	//printf("End pattern walk");
 }
 
-void walkStatementList(syntaxNode* pStatementListNode) {
+void walkList(syntaxNode* pListNode) {
 #if REGRESS_1
-    printf("\nwalkStatementList(syntaxNode* pStatementListNode=%d)\n", (int)pStatementListNode);
+    printf("\nwalkList(syntaxNode* pListNode=%d)\n", (int)pListNode);
     fflush(stdout);
 #endif /* REGRESS_1 */    
-	if (pStatementListNode == NULL) {
+	if (pListNode == NULL) {
 		return;
 	}
 #if REGRESS_1    
-    printf("\nwalkStatementList(pStatementListNode->pNext)=%d\n", (int)pStatementListNode->pNext);
+    printf("\nwalkList(pListNode->pNext)=%d\n", (int)pListNode->pNext);
     fflush(stdout);
 #endif /* REGRESS_1 */    
-    walkStatementList(pStatementListNode->pNext);
+    walkList(pListNode->pNext);
     
 #if REGRESS_1    
-    printf("walkSyntaxTree(pStatementListNode->pLeft=%d, ROOT, 0)\n", (int)pStatementListNode->pLeft);
+    printf("walkSyntaxTree(pListNode->pLeft=%d, ROOT, 0)\n", (int)pListNode->pLeft);
     fflush(stdout);
 #endif /* REGRESS_1 */    
-	walkSyntaxTree(pStatementListNode->pLeft, "ROOT", 0);
+	walkSyntaxTree(pListNode->pLeft, "ROOT", 0);
 }
 
 void printIndent(unsigned int indent) {

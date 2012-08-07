@@ -49,11 +49,11 @@
      IF = 266,
      ELSE = 267,
      WHILE = 268,
-     MAIN = 269,
-     VAR = 270,
-     VAR_METHOD = 271,
-     CONST = 272,
-     CONST_FLOAT = 273,
+     VAR = 269,
+     VAR_METHOD = 270,
+     CONST = 271,
+     CONST_FLOAT = 272,
+     MAIN = 273,
      OR = 274,
      AND = 275,
      LSS = 276,
@@ -82,7 +82,7 @@ typedef union YYSTYPE
 {
 
 /* Line 1685 of yacc.c  */
-#line 40 "valve.y"
+#line 44 "valve.y"
 
 	int integer;
     float floatingPoint;

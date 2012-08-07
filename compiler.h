@@ -20,6 +20,7 @@ typedef enum {OP_PLUS, OP_MINUS, OP_MULT, OP_DIV, OP_XOR, OP_AND, OP_OR, OP_EQUA
 #define VAR_ITEMS		(2000)
 #define SYNTAX_ITEMS	(2000)
 #define STATEMENT_ITEMS	(2000)
+#define ARGUMENT_ITEMS	(20)
 //#define VAR_MAX_INDEX	(VAR_ITEMS-1)
 #define VAR_NAME_LENGTH	(12)
 #define VAR_NOT_FOUND	(-1)
@@ -76,6 +77,7 @@ syntaxNode* addNodeSymbolIndex(int varIndex);
 syntaxNode* addNodeIfOrWhile(syntaxNode* pExpr, syntaxNode* pIfOrWhileStatementList, syntaxNode* pElseStatementList, nodeType type);
 
 syntaxNode* addStatement(syntaxNode* pStatementListNode, syntaxNode* pStatementNode);
+syntaxNode* addArgument(syntaxNode* pArgumentListNode, syntaxNode* pArgumentNode);
 
 // New functions 
 int addVarToSymbolTable(char* var);
@@ -92,11 +94,12 @@ int isConstant(varNode* pVar);
 void initNode(syntaxNode* pSyntaxNode);
 syntaxNode* getNextArithNode(void);
 syntaxNode* getNextStatementNode(void);
+syntaxNode* getNextArgumentNode(void);
 
 void printIndent(unsigned int indent);
 void printOperator(int value);
 void walkSyntaxTree(syntaxNode* pSyntaxNode, char* position, int indent);
-void walkStatementList(syntaxNode* pStatementListNode);
+void walkList(syntaxNode* pListNode);   // Walk statements or argument lists
 void dumpSymbolTable(void);
 void dumpSymbol(int i);
 //void freeNode(node* pNode);
