@@ -883,11 +883,11 @@ Reducing stack by rule 4 (line 85):
    $5 = token LBRACE ()
    $6 = nterm statementList ()
    $7 = token RBRACE ()
--> $$ = nterm functionMain ()
+-> $$ = nterm functionDefnMain ()
 Stack now 0
 Entering state 3
 Reducing stack by rule 2 (line 82):
--> $$ = nterm functionList ()
+-> $$ = nterm functionDefnList ()
 Stack now 0 3
 Entering state 6
 Reading a token: --accepting default rule ("	")
@@ -905,9 +905,49 @@ Reading a token: --accepting rule at line 42 ("(")
 Next token is token LPAREN ()
 Shifting token LPAREN ()
 Entering state 31
+Reading a token: --accepting rule at line 68 ("x")
+Next token is token VAR ()
+Shifting token VAR ()
+Entering state 7
+Reading a token: --accepting rule at line 44 (",")
+Next token is token COMMA ()
+Reducing stack by rule 35 (line 140):
+   $1 = token VAR ()
+-> $$ = nterm expr ()
+Stack now 0 3 6 12 31
+Entering state 11
+Next token is token COMMA ()
+Reducing stack by rule 8 (line 99):
+-> $$ = nterm commaArgList ()
+Stack now 0 3 6 12 31 11
+Entering state 30
+Next token is token COMMA ()
+Shifting token COMMA ()
+Entering state 48
+Reading a token: --accepting default rule (" ")
+--accepting rule at line 68 ("y")
+Next token is token VAR ()
+Shifting token VAR ()
+Entering state 7
 Reading a token: --accepting rule at line 43 (")")
 Next token is token RPAREN ()
-Reducing stack by rule 6 (line 96):
+Reducing stack by rule 35 (line 140):
+   $1 = token VAR ()
+-> $$ = nterm expr ()
+Stack now 0 3 6 12 31 11 30 48
+Entering state 52
+Next token is token RPAREN ()
+Reducing stack by rule 9 (line 100):
+   $1 = nterm commaArgList ()
+   $2 = token COMMA ()
+   $3 = nterm expr ()
+-> $$ = nterm commaArgList ()
+Stack now 0 3 6 12 31 11
+Entering state 30
+Next token is token RPAREN ()
+Reducing stack by rule 7 (line 97):
+   $1 = nterm expr ()
+   $2 = nterm commaArgList ()
 -> $$ = nterm argList ()
 Stack now 0 3 6 12 31
 Entering state 49
@@ -987,21 +1027,21 @@ Reducing stack by rule 5 (line 90):
    $5 = token LBRACE ()
    $6 = nterm statementList ()
    $7 = token RBRACE ()
--> $$ = nterm function ()
+-> $$ = nterm functionDefn ()
 Stack now 0 3 6
 Entering state 13
 Reducing stack by rule 3 (line 83):
-   $1 = nterm functionList ()
-   $2 = nterm function ()
--> $$ = nterm functionList ()
+   $1 = nterm functionDefnList ()
+   $2 = nterm functionDefn ()
+-> $$ = nterm functionDefnList ()
 Stack now 0 3
 Entering state 6
 Reading a token: --(end of buffer or a NUL)
 --EOF (start condition 0)
 Now at end of input.
 Reducing stack by rule 1 (line 80):
-   $1 = nterm functionMain ()
-   $2 = nterm functionList ()
+   $1 = nterm functionDefnMain ()
+   $2 = nterm functionDefnList ()
 -> $$ = nterm program ()
 Stack now 0
 Entering state 2

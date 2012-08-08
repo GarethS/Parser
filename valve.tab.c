@@ -511,9 +511,10 @@ static const char *const yytname[] =
   "VAR_METHOD", "CONST", "CONST_FLOAT", "MAIN", "OR", "AND", "LSS", "GTR",
   "NEQ", "LEQ", "GEQ", "TEST_FOR_EQUAL", "LPAREN", "MINUS", "PLUS", "XOR",
   "DIV", "MULT", "LBRACKET", "RBRACKET", "RPAREN", "SEMI", "$accept",
-  "program", "functionList", "functionMain", "function", "argList",
-  "commaArgList", "statementList", "statement", "statementWhile",
-  "statementIf", "statementAssign", "expr", "arrayDefine", 0
+  "program", "functionDefnList", "functionDefnMain", "functionDefn",
+  "argList", "commaArgList", "statementList", "statement",
+  "statementWhile", "statementIf", "statementAssign", "expr",
+  "arrayDefine", 0
 };
 #endif
 
@@ -1512,7 +1513,7 @@ yyreduce:
 #line 85 "valve.y"
     {fpSymbol = fopen("symbolTable.txt", "wb"); dumpSymbolTable(); fclose(fpSymbol);
                             printf("\nFunction: main"); 
-                            fp = fopen("tree.txt", "wb"); fwrite("0 0 Start 0\n", 1, 12, fp); /*printf("\nstatementList=%d", (int)$1);*/ /* args */ walkList((yyvsp[(3) - (7)].pSyntaxNode)); /* statements */ walkList((yyvsp[(6) - (7)].pSyntaxNode)); fclose(fp);;}
+                            fp = fopen("tree.txt", "wb"); fwrite("0 0 Start 0\n", 1, 12, fp); /*printf("\nstatementList=%d", (int)$1);*/ /* args */walkList((yyvsp[(3) - (7)].pSyntaxNode)); /* statements */walkList((yyvsp[(6) - (7)].pSyntaxNode)); fclose(fp);;}
     break;
 
   case 6:
@@ -1522,7 +1523,7 @@ yyreduce:
     {printf("Function: %s", (yyvsp[(1) - (7)].string)); //fpSymbol = fopen("symbolTable.txt", "wb"); dumpSymbolTable(); fclose(fpSymbol);
 //                            fp = fopen("tree.txt", "wb"); fwrite("0 0 Start 0\n", 1, 12, fp); printf("\nstatementTableFreeIndex=%d", statementTableFreeIndex); walkList(statementTable+5); fclose(fp);}
 //                            fp = fopen("tree.txt", "wb"); fwrite("0 0 Start 0\n", 1, 12, fp); printf("\nstatementTableFreeIndex=%d", statementTableFreeIndex); walkList(statementTable+statementTableFreeIndex-1); fclose(fp);}
-                            fp = fopen("tree.txt", "ab"); fwrite("0 0 Start 0\n", 1, 12, fp); /*printf("\nstatementList=%d", (int)$1);*/ walkList((yyvsp[(6) - (7)].pSyntaxNode)); fclose(fp);;}
+                            fp = fopen("tree.txt", "ab"); fwrite("0 0 Start 0\n", 1, 12, fp); /*printf("\nstatementList=%d", (int)$1);*/ /* args */walkList((yyvsp[(3) - (7)].pSyntaxNode)); /* statements */walkList((yyvsp[(6) - (7)].pSyntaxNode)); fclose(fp);;}
     break;
 
   case 7:
@@ -1759,7 +1760,7 @@ yyreduce:
 
 
 /* Line 1464 of yacc.c  */
-#line 1763 "valve.tab.c"
+#line 1764 "valve.tab.c"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);

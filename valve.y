@@ -67,7 +67,7 @@ FILE* fpSymbol = NULL;  // Symbol table file point
 /* non-terminals */
 %type <integer> arrayDefine
 //%type <string>
-%type <pSyntaxNode>  statement statementAssign statementIf statementWhile expr statementList functionList argList commaArgList
+%type <pSyntaxNode>  statement statementAssign statementIf statementWhile expr statementList functionDefnList argList commaArgList
 
 %defines	/* generate valve.tab.h for use with lex.yy.c */
 %require "2.4.2"
@@ -77,20 +77,20 @@ FILE* fpSymbol = NULL;  // Symbol table file point
 %start program
 
 %% /* Grammar rules and actions */
-program:    functionMain functionList   {}
+program:    functionDefnMain functionDefnList   {}
 
-functionList:   /* empty */     {}
-        | functionList function {}
+functionDefnList:   /* empty */     {}
+        | functionDefnList functionDefn {}
 
-functionMain: 	MAIN LPAREN argList RPAREN LBRACE statementList RBRACE	{fpSymbol = fopen("symbolTable.txt", "wb"); dumpSymbolTable(); fclose(fpSymbol);
+functionDefnMain: 	MAIN LPAREN argList RPAREN LBRACE statementList RBRACE	{fpSymbol = fopen("symbolTable.txt", "wb"); dumpSymbolTable(); fclose(fpSymbol);
                             printf("\nFunction: main"); 
-                            fp = fopen("tree.txt", "wb"); fwrite("0 0 Start 0\n", 1, 12, fp); /*printf("\nstatementList=%d", (int)$1);*/ /* args */ walkList($3); /* statements */ walkList($6); fclose(fp);}
+                            fp = fopen("tree.txt", "wb"); fwrite("0 0 Start 0\n", 1, 12, fp); /*printf("\nstatementList=%d", (int)$1);*/ /* args */walkList($3); /* statements */walkList($6); fclose(fp);}
 ;
 
-function: 	VAR LPAREN argList RPAREN LBRACE statementList RBRACE	{printf("Function: %s", $1); //fpSymbol = fopen("symbolTable.txt", "wb"); dumpSymbolTable(); fclose(fpSymbol);
+functionDefn: 	VAR LPAREN argList RPAREN LBRACE statementList RBRACE	{printf("Function: %s", $1); //fpSymbol = fopen("symbolTable.txt", "wb"); dumpSymbolTable(); fclose(fpSymbol);
 //                            fp = fopen("tree.txt", "wb"); fwrite("0 0 Start 0\n", 1, 12, fp); printf("\nstatementTableFreeIndex=%d", statementTableFreeIndex); walkList(statementTable+5); fclose(fp);}
 //                            fp = fopen("tree.txt", "wb"); fwrite("0 0 Start 0\n", 1, 12, fp); printf("\nstatementTableFreeIndex=%d", statementTableFreeIndex); walkList(statementTable+statementTableFreeIndex-1); fclose(fp);}
-                            fp = fopen("tree.txt", "ab"); fwrite("0 0 Start 0\n", 1, 12, fp); /*printf("\nstatementList=%d", (int)$1);*/ walkList($6); fclose(fp);}
+                            fp = fopen("tree.txt", "ab"); fwrite("0 0 Start 0\n", 1, 12, fp); /*printf("\nstatementList=%d", (int)$1);*/ /* args */walkList($3); /* statements */walkList($6); fclose(fp);}
 ;
 
 argList: /* empty */            {$$ = NULL;}

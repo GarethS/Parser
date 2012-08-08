@@ -11,14 +11,14 @@ Grammar
 
     0 $accept: program $end
 
-    1 program: functionMain functionList
+    1 program: functionDefnMain functionDefnList
 
-    2 functionList: /* empty */
-    3             | functionList function
+    2 functionDefnList: /* empty */
+    3                 | functionDefnList functionDefn
 
-    4 functionMain: MAIN LPAREN argList RPAREN LBRACE statementList RBRACE
+    4 functionDefnMain: MAIN LPAREN argList RPAREN LBRACE statementList RBRACE
 
-    5 function: VAR LPAREN argList RPAREN LBRACE statementList RBRACE
+    5 functionDefn: VAR LPAREN argList RPAREN LBRACE statementList RBRACE
 
     6 argList: /* empty */
     7        | expr commaArgList
@@ -109,11 +109,11 @@ $accept (37)
     on left: 0
 program (38)
     on left: 1, on right: 0
-functionList (39)
+functionDefnList (39)
     on left: 2 3, on right: 1 3
-functionMain (40)
+functionDefnMain (40)
     on left: 4, on right: 1
-function (41)
+functionDefn (41)
     on left: 5, on right: 3
 argList (42)
     on left: 6 7, on right: 4 5
@@ -142,13 +142,13 @@ state 0
 
     MAIN  shift, and go to state 1
 
-    program       go to state 2
-    functionMain  go to state 3
+    program           go to state 2
+    functionDefnMain  go to state 3
 
 
 state 1
 
-    4 functionMain: MAIN . LPAREN argList RPAREN LBRACE statementList RBRACE
+    4 functionDefnMain: MAIN . LPAREN argList RPAREN LBRACE statementList RBRACE
 
     LPAREN  shift, and go to state 4
 
@@ -162,16 +162,16 @@ state 2
 
 state 3
 
-    1 program: functionMain . functionList
+    1 program: functionDefnMain . functionDefnList
 
-    $default  reduce using rule 2 (functionList)
+    $default  reduce using rule 2 (functionDefnList)
 
-    functionList  go to state 6
+    functionDefnList  go to state 6
 
 
 state 4
 
-    4 functionMain: MAIN LPAREN . argList RPAREN LBRACE statementList RBRACE
+    4 functionDefnMain: MAIN LPAREN . argList RPAREN LBRACE statementList RBRACE
 
     VAR     shift, and go to state 7
     CONST   shift, and go to state 8
@@ -192,14 +192,14 @@ state 5
 
 state 6
 
-    1 program: functionMain functionList .
-    3 functionList: functionList . function
+    1 program: functionDefnMain functionDefnList .
+    3 functionDefnList: functionDefnList . functionDefn
 
     VAR  shift, and go to state 12
 
     $default  reduce using rule 1 (program)
 
-    function  go to state 13
+    functionDefn  go to state 13
 
 
 state 7
@@ -232,7 +232,7 @@ state 9
 
 state 10
 
-    4 functionMain: MAIN LPAREN argList . RPAREN LBRACE statementList RBRACE
+    4 functionDefnMain: MAIN LPAREN argList . RPAREN LBRACE statementList RBRACE
 
     RPAREN  shift, and go to state 16
 
@@ -275,16 +275,16 @@ state 11
 
 state 12
 
-    5 function: VAR . LPAREN argList RPAREN LBRACE statementList RBRACE
+    5 functionDefn: VAR . LPAREN argList RPAREN LBRACE statementList RBRACE
 
     LPAREN  shift, and go to state 31
 
 
 state 13
 
-    3 functionList: functionList function .
+    3 functionDefnList: functionDefnList functionDefn .
 
-    $default  reduce using rule 3 (functionList)
+    $default  reduce using rule 3 (functionDefnList)
 
 
 state 14
@@ -333,7 +333,7 @@ state 15
 
 state 16
 
-    4 functionMain: MAIN LPAREN argList RPAREN . LBRACE statementList RBRACE
+    4 functionDefnMain: MAIN LPAREN argList RPAREN . LBRACE statementList RBRACE
 
     LBRACE  shift, and go to state 34
 
@@ -493,7 +493,7 @@ state 30
 
 state 31
 
-    5 function: VAR LPAREN . argList RPAREN LBRACE statementList RBRACE
+    5 functionDefn: VAR LPAREN . argList RPAREN LBRACE statementList RBRACE
 
     VAR     shift, and go to state 7
     CONST   shift, and go to state 8
@@ -547,7 +547,7 @@ state 33
 
 state 34
 
-    4 functionMain: MAIN LPAREN argList RPAREN LBRACE . statementList RBRACE
+    4 functionDefnMain: MAIN LPAREN argList RPAREN LBRACE . statementList RBRACE
 
     $default  reduce using rule 10 (statementList)
 
@@ -898,7 +898,7 @@ state 48
 
 state 49
 
-    5 function: VAR LPAREN argList . RPAREN LBRACE statementList RBRACE
+    5 functionDefn: VAR LPAREN argList . RPAREN LBRACE statementList RBRACE
 
     RPAREN  shift, and go to state 53
 
@@ -912,7 +912,7 @@ state 50
 
 state 51
 
-    4 functionMain: MAIN LPAREN argList RPAREN LBRACE statementList . RBRACE
+    4 functionDefnMain: MAIN LPAREN argList RPAREN LBRACE statementList . RBRACE
    11 statementList: statementList . statement
 
     RBRACE       shift, and go to state 54
@@ -964,16 +964,16 @@ state 52
 
 state 53
 
-    5 function: VAR LPAREN argList RPAREN . LBRACE statementList RBRACE
+    5 functionDefn: VAR LPAREN argList RPAREN . LBRACE statementList RBRACE
 
     LBRACE  shift, and go to state 64
 
 
 state 54
 
-    4 functionMain: MAIN LPAREN argList RPAREN LBRACE statementList RBRACE .
+    4 functionDefnMain: MAIN LPAREN argList RPAREN LBRACE statementList RBRACE .
 
-    $default  reduce using rule 4 (functionMain)
+    $default  reduce using rule 4 (functionDefnMain)
 
 
 state 55
@@ -1044,7 +1044,7 @@ state 63
 
 state 64
 
-    5 function: VAR LPAREN argList RPAREN LBRACE . statementList RBRACE
+    5 functionDefn: VAR LPAREN argList RPAREN LBRACE . statementList RBRACE
 
     $default  reduce using rule 10 (statementList)
 
@@ -1105,7 +1105,7 @@ state 69
 
 state 70
 
-    5 function: VAR LPAREN argList RPAREN LBRACE statementList . RBRACE
+    5 functionDefn: VAR LPAREN argList RPAREN LBRACE statementList . RBRACE
    11 statementList: statementList . statement
 
     RBRACE       shift, and go to state 76
@@ -1263,9 +1263,9 @@ state 75
 
 state 76
 
-    5 function: VAR LPAREN argList RPAREN LBRACE statementList RBRACE .
+    5 functionDefn: VAR LPAREN argList RPAREN LBRACE statementList RBRACE .
 
-    $default  reduce using rule 5 (function)
+    $default  reduce using rule 5 (functionDefn)
 
 
 state 77
