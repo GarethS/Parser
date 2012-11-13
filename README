@@ -64,7 +64,8 @@ TODO:
 20. Add 'if' statements. Consider replacing 'pattern' with just an 'if'
 21. Offer optimized interpreter that doesn't check array bounds
 22. Need Abstract Syntax Tree for if-then-else constructs
-23. Are functions needed? YES!
+23. Are functions needed? YES! And need to pass parameters to these function.
+     Do we need local variables?
 
 TODO optional:
 6. Multiple pattern{action} blocks

@@ -458,8 +458,8 @@ static void yy_fatal_error (yyconst char msg[]  );
 	(yy_c_buf_p) = yy_cp;
 
 /* %% [4.0] data tables for the DFA and the user's section 1 definitions go here */
-#define YY_NUM_RULES 42
-#define YY_END_OF_BUFFER 43
+#define YY_NUM_RULES 44
+#define YY_END_OF_BUFFER 45
 /* This struct is not used in this scanner,
    but its presence is necessary. */
 struct yy_trans_info
@@ -469,15 +469,15 @@ struct yy_trans_info
 	};
 static yyconst flex_int16_t yy_accept[85] =
     {   0,
-        0,    0,   37,   37,    0,    0,   43,   42,   35,   11,
-       42,    7,    8,   15,   13,    9,   14,   16,   31,   10,
-       22,   12,   21,   33,   33,    5,    6,   17,   33,   33,
-       33,   33,   33,    3,   42,    4,   37,   42,   40,   41,
-       20,   24,   31,   36,   39,    0,   19,   25,   18,    0,
-       33,   33,   33,   27,   33,   33,   33,   33,   23,   37,
-       38,   32,   34,   33,   33,   33,   33,   33,   33,   34,
-       33,   28,   33,   30,   33,   33,   26,   33,   33,   29,
-        2,   33,    1,    0
+        0,    0,   39,   39,    0,    0,   45,   44,   37,   11,
+       26,    7,    8,   15,   13,    9,   14,   16,   33,   10,
+       22,   12,   21,   35,   35,    5,    6,   17,   35,   35,
+       35,   35,   35,    3,   25,    4,   39,   44,   42,   43,
+       20,   24,   33,   38,   41,    0,   19,   27,   18,    0,
+       35,   35,   35,   29,   35,   35,   35,   35,   23,   39,
+       40,   34,   36,   35,   35,   35,   35,   35,   35,   36,
+       35,   30,   35,   32,   35,   35,   28,   35,   35,   31,
+        2,   35,    1,    0
     } ;
 
 static yyconst flex_int32_t yy_ec[256] =
@@ -596,11 +596,11 @@ static yyconst flex_int16_t yy_chk[187] =
     } ;
 
 /* Table of booleans, true if rule could match eol. */
-static yyconst flex_int32_t yy_rule_can_match_eol[43] =
+static yyconst flex_int32_t yy_rule_can_match_eol[45] =
     {   0,
 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 
-    0, 1, 0,     };
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 
+    0, 0, 0, 1, 0,     };
 
 static yy_state_type yy_last_accepting_state;
 static char *yy_last_accepting_cpos;
@@ -608,13 +608,13 @@ static char *yy_last_accepting_cpos;
 extern int yy_flex_debug;
 int yy_flex_debug = 1;
 
-static yyconst flex_int16_t yy_rule_linenum[42] =
+static yyconst flex_int16_t yy_rule_linenum[44] =
     {   0,
        36,   37,   38,   39,   40,   41,   42,   43,   44,   45,
        46,   47,   48,   49,   50,   51,   52,   53,   54,   55,
        56,   57,   58,   59,   60,   61,   62,   63,   64,   65,
-       66,   67,   68,   69,   70,   72,   74,   76,   78,   80,
-       82
+       66,   67,   68,   69,   70,   71,   72,   74,   76,   78,
+       80,   82,   84
     } ;
 
 /* The intent behind this definition is that it'll catch
@@ -990,13 +990,13 @@ do_action:	/* This label is used only to access EOF actions. */
 			{
 			if ( yy_act == 0 )
 				fprintf( stderr, "--scanner backing up\n" );
-			else if ( yy_act < 42 )
+			else if ( yy_act < 44 )
 				fprintf( stderr, "--accepting rule at line %ld (\"%s\")\n",
 				         (long)yy_rule_linenum[yy_act], yytext );
-			else if ( yy_act == 42 )
+			else if ( yy_act == 44 )
 				fprintf( stderr, "--accepting default rule (\"%s\")\n",
 				         yytext );
-			else if ( yy_act == 43 )
+			else if ( yy_act == 45 )
 				fprintf( stderr, "--(end of buffer or a NUL)\n" );
 			else
 				fprintf( stderr, "--EOF (start condition %d)\n", YY_START );
@@ -1135,96 +1135,106 @@ YY_RULE_SETUP
 case 25:
 YY_RULE_SETUP
 #line 60 "valve.l"
-{debugPrintf("TEST_FOR_EQUAL"); return TEST_FOR_EQUAL;}
+{debugPrintf("BITWISEOR"); return BITWISEOR;}
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
 #line 61 "valve.l"
-{debugPrintf("ARRAYDEFINE"); return ARRAYDEFINE;}
+{debugPrintf("BITWISEAND"); return BITWISEAND;}
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
 #line 62 "valve.l"
-{debugPrintf("IF"); return IF;}
+{debugPrintf("TEST_FOR_EQUAL"); return TEST_FOR_EQUAL;}
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
 #line 63 "valve.l"
-{debugPrintf("ELSE"); return ELSE;}
+{debugPrintf("ARRAYDEFINE"); return ARRAYDEFINE;}
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
 #line 64 "valve.l"
-{debugPrintf("WHILE"); return WHILE;}
+{debugPrintf("IF"); return IF;}
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
 #line 65 "valve.l"
-{debugPrintf("MAIN"); return MAIN;}
+{debugPrintf("ELSE"); return ELSE;}
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
 #line 66 "valve.l"
-{debugPrintf("CONST"); yylval.string = strdup(yytext); return CONST;}	/* constant integer */
+{debugPrintf("WHILE"); return WHILE;}
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
 #line 67 "valve.l"
-{debugPrintf("CONST_FLOAT"); yylval.floatingPoint = atof(yytext); return CONST_FLOAT;}	/* constant floating-point */
+{debugPrintf("MAIN"); return MAIN;}
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
 #line 68 "valve.l"
-{debugPrintf("VAR"); yylval.string = strdup(yytext); return VAR;}	/* variable */
+{debugPrintf("CONST"); yylval.string = strdup(yytext); return CONST;}	/* constant integer */
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
 #line 69 "valve.l"
-{debugPrintf("VAR_METHOD"); yylval.string = strdup(yytext); return VAR_METHOD;}	/* method */
+{debugPrintf("CONST_FLOAT"); yylval.floatingPoint = atof(yytext); return CONST_FLOAT;}	/* constant floating-point */
 	YY_BREAK
 case 35:
-/* rule 35 can match eol */
 YY_RULE_SETUP
 #line 70 "valve.l"
-{}  /* Need this to get yylineno incrementing. */
+{debugPrintf("VAR"); yylval.string = strdup(yytext); return VAR;}	/* variable */
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 72 "valve.l"
-BEGIN(comment);
+#line 71 "valve.l"
+{debugPrintf("VAR_METHOD"); yylval.string = strdup(yytext); return VAR_METHOD;}	/* method */
 	YY_BREAK
 case 37:
+/* rule 37 can match eol */
 YY_RULE_SETUP
-#line 74 "valve.l"
-/* eat anything that's not a '*' */
+#line 72 "valve.l"
+{}  /* Need this to get yylineno incrementing. */
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 76 "valve.l"
-BEGIN(INITIAL);
+#line 74 "valve.l"
+BEGIN(comment);
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
-#line 78 "valve.l"
-BEGIN(commentNew);
+#line 76 "valve.l"
+/* eat anything that's not a '*' */
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 80 "valve.l"
-/* eat everything until '\n' */
+#line 78 "valve.l"
+BEGIN(INITIAL);
 	YY_BREAK
 case 41:
-/* rule 41 can match eol */
 YY_RULE_SETUP
-#line 82 "valve.l"
-BEGIN(INITIAL);
+#line 80 "valve.l"
+BEGIN(commentNew);
 	YY_BREAK
 case 42:
 YY_RULE_SETUP
-#line 85 "valve.l"
+#line 82 "valve.l"
+/* eat everything until '\n' */
+	YY_BREAK
+case 43:
+/* rule 43 can match eol */
+YY_RULE_SETUP
+#line 84 "valve.l"
+BEGIN(INITIAL);
+	YY_BREAK
+case 44:
+YY_RULE_SETUP
+#line 87 "valve.l"
 ECHO;
 	YY_BREAK
-#line 1228 "lex.yy.c"
+#line 1238 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 case YY_STATE_EOF(comment):
 case YY_STATE_EOF(commentNew):
@@ -2325,7 +2335,7 @@ void yyfree (void * ptr )
 
 /* %ok-for-header */
 
-#line 85 "valve.l"
+#line 87 "valve.l"
 
 
 /* Start of user defined code section. */

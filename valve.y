@@ -32,11 +32,11 @@ unsigned int syntaxTableFreeIndex = 0;
 syntaxNode statementTable[STATEMENT_ITEMS];
 unsigned int statementTableFreeIndex = 0;
 
-syntaxNode argumentTable[ARGUMENT_ITEMS];
-unsigned int argumentTableFreeIndex = 0;
-
-FILE* fp = NULL; // Parse tree file pointer
-FILE* fpSymbol = NULL;  // Symbol table file point
+// Stored function arguments
+#if 0
+varNode argTable[ARG_ITEMS];
+unsigned int argTableFreeIndex = 0;
+#endif
 
 %}
 
@@ -53,7 +53,7 @@ FILE* fpSymbol = NULL;  // Symbol table file point
 %token EQUAL LBRACE RBRACE ARRAYDEFINE IF ELSE WHILE
 %token <string>	VAR VAR_METHOD CONST CONST_FLOAT MAIN
 
-%left AND OR
+%left AND OR BITWISEAND BITWISEOR
 %left TEST_FOR_EQUAL GEQ LEQ NEQ GTR LSS
 %left LPAREN 
 %left PLUS MINUS
@@ -67,7 +67,7 @@ FILE* fpSymbol = NULL;  // Symbol table file point
 /* non-terminals */
 %type <integer> arrayDefine
 //%type <string>
-%type <pSyntaxNode>  statement statementAssign statementIf statementWhile expr statementList functionDefnList argList commaArgList
+%type <pSyntaxNode>  statement statementAssign statementIf statementWhile expr statementList functionDefnList argList commaArgList defnArgList defnCommaArgList
 
 %defines	/* generate valve.tab.h for use with lex.yy.c */
 %require "2.4.2"
@@ -77,37 +77,26 @@ FILE* fpSymbol = NULL;  // Symbol table file point
 %start program
 
 %% /* Grammar rules and actions */
-program:    functionDefnMain functionDefnList   {}
+program:    functionDefnMain functionDefnList   {}  // Keep it simple. Require main() to always be first function at top of file.
 
 functionDefnList:   /* empty */     {}
         | functionDefnList functionDefn {}
 
-functionDefnMain: 	MAIN LPAREN argList RPAREN LBRACE statementList RBRACE	{fpSymbol = fopen("symbolTable.txt", "wb"); dumpSymbolTable(); fclose(fpSymbol);
+functionDefnMain: 	MAIN LPAREN argList RPAREN LBRACE statementList RBRACE	{dumpSymbolTable("symbolTable.txt");
                             printf("\nFunction: main"); 
-                            fp = fopen("tree.txt", "wb"); fwrite("0 0 Start 0\n", 1, 12, fp); /*printf("\nstatementList=%d", (int)$1);*/ /* args */walkList($3); /* statements */walkList($6); fclose(fp);}
-;
+                            FILE* fp = fopen("tree.txt", "wb"); fwrite("0 0 Start 0\n", 1, 12, fp); /*printf("\nstatementList=%d", (int)$1);*/ walkList($3, fp)/*args*/; walkList($6, fp)/*statements*/; fclose(fp);}
 
-functionDefn: 	VAR LPAREN argList RPAREN LBRACE statementList RBRACE	{printf("Function: %s", $1); //fpSymbol = fopen("symbolTable.txt", "wb"); dumpSymbolTable(); fclose(fpSymbol);
-//                            fp = fopen("tree.txt", "wb"); fwrite("0 0 Start 0\n", 1, 12, fp); printf("\nstatementTableFreeIndex=%d", statementTableFreeIndex); walkList(statementTable+5); fclose(fp);}
-//                            fp = fopen("tree.txt", "wb"); fwrite("0 0 Start 0\n", 1, 12, fp); printf("\nstatementTableFreeIndex=%d", statementTableFreeIndex); walkList(statementTable+statementTableFreeIndex-1); fclose(fp);}
-                            fp = fopen("tree.txt", "ab"); fwrite("0 0 Start 0\n", 1, 12, fp); /*printf("\nstatementList=%d", (int)$1);*/ /* args */walkList($3); /* statements */walkList($6); fclose(fp);}
-;
+functionDefn: 	VAR LPAREN defnArgList RPAREN LBRACE statementList RBRACE	{addFunction($1, $3, $6);}
 
-argList: /* empty */            {$$ = NULL;}
-        | expr commaArgList     {$$ = addArgument($2, $1);}
 
-commaArgList:   /* empty */           {$$ = NULL;}
-            | commaArgList COMMA expr {$$ = addArgument($1, $3);}
-            
 statementList: /* empty */	{$$ = NULL;}    // Make sure 'statementList' starts out as NULL for each new 'statementList'
 		| statementList statement	{/*printf("\nstatementList:%d, statement:%d", (int)$1, (int)$2);*/ /*walkSyntaxTree($2, "start", 0);*/ $$ = addStatement($1, $2); /*printf(" newStatementList:%d", (int)$$);*/}
-;
 
-statement:	        statementAssign	    {/*printf("\nstatementAssign:%d", (int)$1); walkSyntaxTree($1, "start", 0);*/ $$ = $1;}
-                    | statementIf       {/*printf("\nstatementIf:%d", (int)$1);*/ $$ = $1;}
-                    | statementWhile    {$$ = $1;}
-                    | arrayDefine       {$$ = NULL;}
-;			
+statement:	        statementAssign	                    {/*printf("\nstatementAssign:%d", (int)$1); walkSyntaxTree($1, "start", 0);*/ $$ = $1;}
+                    | statementIf                       {/*printf("\nstatementIf:%d", (int)$1);*/ $$ = $1;}
+                    | statementWhile                    {$$ = $1;}
+                    | VAR LPAREN argList RPAREN SEMI    {$$ = addNodeFunctionCall($1, $3);}   // function call
+                    | arrayDefine                       {$$ = NULL;}
 
 statementWhile: WHILE LPAREN expr RPAREN LBRACE statementList RBRACE {$$ = addNodeIfOrWhile($3, $6, NULL, nodeWhile);}
 
@@ -116,34 +105,47 @@ statementIf:  IF LPAREN expr RPAREN LBRACE statementList RBRACE	{/*printf("state
 //                                             printf("\n\n"); fp = fopen("actionTree.txt", "wb");
 //                                             fwrite("0 0 Action 0\n", 1, 13/* strlen("0 0 Action 0\n") */, fp); walkList($6); fclose(fp);}
               | IF LPAREN expr RPAREN LBRACE statementList RBRACE ELSE LBRACE statementList RBRACE	{/*printf("statementIf:statementList:%d", (int)$6);*/ $$ = addNodeIfOrWhile($3, $6, $10, nodeIf);}
-;
 
-statementAssign:    VAR EQUAL expr SEMI	    {$$ = addNodeVariableOperator(EQUAL, addVarToSymbolTable($1), $3);}
-//                    | array EQUAL expr SEMI {$$ = addNodeBinaryOperator(EQUAL, $1, $3);}
-                      | VAR LBRACKET expr RBRACKET EQUAL expr SEMI {$$ = addNodeBinaryOperator(EQUAL, addNodeArray($1, $3), $6);} // array
-;    
+statementAssign:    VAR EQUAL expr SEMI	                            {$$ = addNodeVariableOperator(EQUAL, addVarToSymbolTable($1), $3);}
+//                    | array EQUAL expr SEMI                       {$$ = addNodeBinaryOperator(EQUAL, $1, $3);}
+                      | VAR LBRACKET expr RBRACKET EQUAL expr SEMI  {$$ = addNodeBinaryOperator(EQUAL, addNodeArray($1, $3), $6);} // array    
 
-expr:	LPAREN expr RPAREN	{$$ = $2;}
-		| expr PLUS  expr	{$$ = addNodeBinaryOperator(PLUS, $1, $3);}
-		| expr MINUS expr	{$$ = addNodeBinaryOperator(MINUS, $1, $3);}
-		| expr MULT  expr	{$$ = addNodeBinaryOperator(MULT, $1, $3);}
-		| expr DIV   expr	{$$ = addNodeBinaryOperator(DIV, $1, $3);}
-		| expr XOR   expr	{$$ = addNodeBinaryOperator(XOR, $1, $3);}
-		| expr AND   expr	{$$ = addNodeBinaryOperator(AND, $1, $3);}
-		| expr OR    expr	{$$ = addNodeBinaryOperator(OR, $1, $3);}
-		| expr TEST_FOR_EQUAL expr	{$$ = addNodeBinaryOperator(TEST_FOR_EQUAL, $1, $3);}
-		| expr NEQ   expr	{$$ = addNodeBinaryOperator(NEQ, $1, $3);}
-		| expr GEQ   expr	{$$ = addNodeBinaryOperator(GEQ, $1, $3);}
-		| expr LEQ   expr	{$$ = addNodeBinaryOperator(LEQ, $1, $3);}
-		| expr GTR   expr	{$$ = addNodeBinaryOperator(GTR, $1, $3);}
-		| expr LSS   expr	{$$ = addNodeBinaryOperator(LSS, $1, $3);}
-		| VAR				{$$ = addNodeSymbolIndex(addVarToSymbolTable($1));}
-		| CONST				{$$ = addNodeSymbolIndex(addVarToSymbolTable($1));}
-        | VAR LBRACKET expr RBRACKET        {$$ = addNodeArray($1, $3);}    // array
-;						
+expr:	LPAREN expr RPAREN	            {$$ = $2;}
+		| expr PLUS  expr	            {$$ = addNodeBinaryOperator(PLUS, $1, $3);}
+		| expr MINUS expr	            {$$ = addNodeBinaryOperator(MINUS, $1, $3);}
+		| expr MULT  expr	            {$$ = addNodeBinaryOperator(MULT, $1, $3);}
+		| expr DIV   expr	            {$$ = addNodeBinaryOperator(DIV, $1, $3);}
+		| expr XOR   expr	            {$$ = addNodeBinaryOperator(XOR, $1, $3);}
+		| expr AND   expr	            {$$ = addNodeBinaryOperator(AND, $1, $3);}
+		| expr OR    expr	            {$$ = addNodeBinaryOperator(OR, $1, $3);}
+		| expr BITWISEAND  expr         {$$ = addNodeBinaryOperator(BITWISEAND, $1, $3);}
+		| expr BITWISEOR   expr         {$$ = addNodeBinaryOperator(BITWISEOR, $1, $3);}
+		| expr TEST_FOR_EQUAL expr      {$$ = addNodeBinaryOperator(TEST_FOR_EQUAL, $1, $3);}
+		| expr NEQ   expr	            {$$ = addNodeBinaryOperator(NEQ, $1, $3);}
+		| expr GEQ   expr	            {$$ = addNodeBinaryOperator(GEQ, $1, $3);}
+		| expr LEQ   expr	            {$$ = addNodeBinaryOperator(LEQ, $1, $3);}
+		| expr GTR   expr	            {$$ = addNodeBinaryOperator(GTR, $1, $3);}
+		| expr LSS   expr	            {$$ = addNodeBinaryOperator(LSS, $1, $3);}
+		| VAR				            {$$ = addNodeSymbolIndex(addVarToSymbolTable($1));}
+		| CONST				            {$$ = addNodeSymbolIndex(addVarToSymbolTable($1));}
+        | VAR LPAREN argList RPAREN     {$$ = addNodeFunctionCall($1, $3);}  // function call
+        | VAR LBRACKET expr RBRACKET    {$$ = addNodeArray($1, $3);}    // array						
 
+argList: /* empty */            {$$ = NULL;}
+        | expr commaArgList     {$$ = addArgument($2, $1);}
+
+commaArgList:   /* empty */           {$$ = NULL;}
+            | commaArgList COMMA expr {$$ = addArgument($1, $3);}
+            
+defnArgList: /* empty */            {$$ = NULL;}
+        | VAR defnCommaArgList      {$$ = addDefnArgument($2, $1);} // This is pass-by-value
+        | BITWISEAND VAR defnCommaArgList      {$$ = addDefnArgument($3, $2);}  // The '&' represents a reference, not a bitwise AND. This is pass-by-reference
+
+defnCommaArgList:   /* empty */           {$$ = NULL;}
+            | defnCommaArgList COMMA VAR  {$$ = addDefnArgument($1, $3);}   // This is pass-by-value
+            | defnCommaArgList COMMA BITWISEAND VAR  {$$ = addDefnArgument($1, $4);}   // The '&' represents a reference, not a bitwise AND. This is pass-by-reference
+            
 arrayDefine:    ARRAYDEFINE VAR LBRACKET CONST RBRACKET SEMI    {$$ = addArrayToSymbolTable($2, atoi($4));}
-;
 
 %% /* Additional C code */
 
@@ -174,6 +176,7 @@ int main ()
 #endif
 
 	initVarTable();
+    //initArgTable();
 	// To turn on debugging, make sure the next line is uncommented and
 	//  turn on the -t (also use -v -l) options in bison.exe.
 	yydebug = 1; 
@@ -189,6 +192,16 @@ void initVarTable(void) {
 		varTable[len].val = DEFAULT_VAR_VALUE;	// Initialize variable to 0
 	}
 }
+
+#if 0
+void initArgTable(void) {
+	int len;
+	for (len = ARG_ITEMS - 1; len >= 0; len--) {
+		argTable[len].name[0] = EOS;
+		argTable[len].val = DEFAULT_VAR_VALUE;	// Initialize variable to 0
+	}
+}
+#endif
 
 // Return index of variable or constant in symbol table
 int insertVariable(varNode* pVar) {
@@ -224,7 +237,14 @@ int setVariable(varNode* pVar) {
 }
 #endif
 
-// Return index where variable is located in varTable, or -1 on failure.
+// Return index of variable (included function names), or VAR_NOT_FOUND if not found.
+int findVariableByName(const char* pVarName) {
+    varNode thisNode;
+    buildVariable(pVarName, 0, &thisNode);
+    return findVariable(&thisNode);
+}
+
+// Return index where variable is located in varTable, or VAR_NOT_FOUND if not found.
 int findVariable(varNode* pVar) {
 	int i;
 	for (i = 0; i < varTableFreeIndex; ++i) {
@@ -283,6 +303,73 @@ syntaxNode* addNodeVariableOperator(int operator, int varIndex, syntaxNode* pRig
     return addNodeBinaryOperator(operator, pLeft, pRight);
 }
 
+// Add either a function call (pStatmentList = NULL) or a function definition (pStatmentList != NULL)
+syntaxNode* addFunction(const char* pFuncName, syntaxNode* pArgList, syntaxNode* pStatementList) {
+    // Essentially the same as addNodeFunctionCall() except this is a definition, not a call.
+    // 0. Count number of arguments and assign that value to its syntax node
+    int argCount = countArguments(pArgList);
+    // 1. See if pFuncName is already in the symbol list. It could be there from
+    //     another function call or the function definition.
+    // Make symbol table entry and add to symbol table
+    int symbolIndex = findVariableByName(pFuncName);
+    if (symbolIndex == VAR_NOT_FOUND) {
+        varNode funcNode;
+        buildVariable(pFuncName, argCount, &funcNode);
+        funcNode.type = nodeFunctionCall;
+        int symbolIndex = insertVariable(&funcNode);
+        if (symbolIndex == VAR_TABLE_LIMIT) {
+            return NULL;
+        }
+    } else {
+        // Make sure value = argCount and type = nodeFunctionCall
+        if (varTable[symbolIndex].val != argCount) {
+            debugAssert(ERR:addNodeFunctionCall():varTable[symbolIndex].val != argCount);
+            return NULL;
+        }
+        if (varTable[symbolIndex].type != nodeFunctionCall) {
+            debugAssert(ERR:addNodeFunctionCall():varTable[symbolIndex].type != nodeFunctionCall);
+            return NULL;
+        }
+    }
+    
+    // 3. Walk statement list to see if there's already a call to this function.
+    //     If so, check that the argument count matches
+    // No need to do this. We checked the symbol table already and every function call or definition
+    //  will do the same.
+    // walkList(statementTable);   // Still needs modified to search for functions by this name
+    
+    if (pStatementList == NULL) {
+        // This is a function call
+        syntaxNode* p = getNextArithNode();
+        if (p == NULL) {
+            debugAssert(ERR:addNodeFunctionCall():p == NULL);
+            return p;
+        }
+        p->type = nodeFunctionCall;
+        p->value = symbolIndex;
+        p->pNext = pArgList;
+        return p;
+    } else {
+        // This is a function definition not a function call
+        if (pFuncName == NULL) {
+            debugAssert(ERR:addNodeFunction():pFuncName == NULL);
+        } else {
+            printf("\nFunction: %s", pFuncName);
+        }
+        FILE* fp = fopen("tree.txt", "ab");
+        fwrite("0 0 Start 0\n", 1, 12, fp);
+        /*printf("\nstatementList=%d", (int)$1);*/
+        walkList(pArgList, fp);
+        walkList(pStatementList, fp);
+        fclose(fp);
+    }
+    return NULL;
+}
+
+syntaxNode* addNodeFunctionCall(char* pFuncName, syntaxNode* pArgList) {
+    return addFunction(pFuncName, pArgList, NULL);
+}
+
 /*
 syntaxNode* addNodeArrayConstIndex(char* pVarName, int symbolTableIndex) {
     syntaxNode* pArrayNode = addNodeArray(pVarName, addNodeSymbolIndex(symbolTableIndex));
@@ -324,7 +411,7 @@ syntaxNode* addNodeArray(char* pVarName, syntaxNode* pArrayIndex) {
 syntaxNode* addNodeSymbolIndex(int varIndex) {
 	syntaxNode* p = getNextArithNode();
 	if (p == NULL) {
-		debugAssert("ERR:addNodeSymbolIndex():p == NULL");
+		debugAssert(ERR:addNodeSymbolIndex():p == NULL);
 		return p;
 	}
 	p->type = nodeVar;
@@ -366,19 +453,7 @@ syntaxNode* getNextStatementNode(void) {
 	return NULL;
 }
 
-syntaxNode* getNextArgumentNode(void) {
-	if (argumentTableFreeIndex < ARGUMENT_ITEMS) {
-#if REGRESS_1    
-        printf("getNextArgumentNode() %d\n", argumentTableFreeIndex);
-        fflush(stdout);
-#endif /* REGRESS_1 */
-        initNode(argumentTable + argumentTableFreeIndex);
-		return argumentTable + argumentTableFreeIndex++;
-	}
-	return NULL;
-}
-
-// A variable may not start with a number. One that does we'll consider a constant.
+// A variable may not start with a number. One that does is consider a constant.
 int isConstant(varNode* pVar) {
 	if (isdigit((int)pVar->name[0])) {
 		return TRUE;
@@ -386,7 +461,7 @@ int isConstant(varNode* pVar) {
 	return FALSE;
 }
 
-void buildVariable(char* name, int value, varNode* varNode) {
+void buildVariable(const char* name, int value, varNode* varNode) {
     if (name == NULL || varNode == NULL) {
         debugAssert(ERR:buildVariable());
         return;
@@ -414,7 +489,7 @@ int addArrayToSymbolTable(char* var, const unsigned int maxRange) {
             return VAR_TABLE_LIMIT;
         }
         if (varTableFreeIndex + maxRange >= VAR_ITEMS) {
-            varTableFreeIndex--;    // Remove variable just insterted with insertVariable().
+            varTableFreeIndex--;    // Remove variable just inserted with insertVariable().
             return VAR_TABLE_LIMIT;
         }
         varTableFreeIndex += maxRange;
@@ -433,16 +508,23 @@ int addVarToSymbolTable(char* var) {
 	return found;
 }
 
+syntaxNode* addDefnArgument(syntaxNode* pArgumentListNode, const char* pArgumentName) {
+    // TODO
+    return NULL;
+}
+
 syntaxNode* addArgument(syntaxNode* pArgumentListNode, syntaxNode* pArgumentNode) {
     if (pArgumentNode == NULL) {
-        // assert(pArgumentNode != NULL);
-        return pArgumentNode;
+        // There are no arguments!
     }
-	syntaxNode* p = getNextArgumentNode();
+	syntaxNode* p = getNextArithNode();
 	if (p == NULL) {
 		//assert(p != NULL);
 		return p;
 	}
+    if (pArgumentNode->type == nodeVar) {
+        // Duplicate names should be handled already. No need to do anything here I think.
+    }
     p->type = nodeArgument;
 	p->pLeft = pArgumentNode;
     p->pNext = pArgumentListNode;
@@ -470,8 +552,8 @@ syntaxNode* addStatement(syntaxNode* pStatementListNode, syntaxNode* pStatementN
 	return p;
 }
 
-// Walk tree in infix mode; left, right, root.
-void walkSyntaxTree(syntaxNode* pSyntaxNode, char* position, int indent) {
+// Walk tree in postfix order; left, right, root.
+void walkSyntaxTree(syntaxNode* pSyntaxNode, char* position, int indent, FILE* fp) {
 	if (pSyntaxNode == NULL) {
 		return;
 	}
@@ -480,9 +562,9 @@ void walkSyntaxTree(syntaxNode* pSyntaxNode, char* position, int indent) {
     }
 	//printf("Start pattern walk");
     if (pSyntaxNode->type != nodeIf && pSyntaxNode->type != nodeWhile) {
-        walkSyntaxTree(pSyntaxNode->pLeft, "LEFT", indent + 1);
-        walkSyntaxTree(pSyntaxNode->pCentre, "CENTRE", indent + 1);  // TODO: Only used by if-then-else and while. Not necessary
-        walkSyntaxTree(pSyntaxNode->pRight, "RIGHT", indent + 1);
+        walkSyntaxTree(pSyntaxNode->pLeft, "LEFT", indent + 1, fp);
+        walkSyntaxTree(pSyntaxNode->pCentre, "CENTRE", indent + 1, fp);  // TODO: Only used by if-then-else and while. Not necessary
+        walkSyntaxTree(pSyntaxNode->pRight, "RIGHT", indent + 1, fp);
     }
     printIndent(indent);
     printf("%s", position);
@@ -520,7 +602,7 @@ void walkSyntaxTree(syntaxNode* pSyntaxNode, char* position, int indent) {
         }
         printIndent(indent);
 		printf("If %d", pSyntaxNode->value);
-        walkSyntaxTree(pSyntaxNode->pLeft, "LEFT", indent + 1);
+        walkSyntaxTree(pSyntaxNode->pLeft, "LEFT", indent + 1, fp);
         
         if (fp != NULL) {
             sprintf(tmp, "%d %s EVAL0 %d\n", indent, position, pSyntaxNode->value);
@@ -530,7 +612,7 @@ void walkSyntaxTree(syntaxNode* pSyntaxNode, char* position, int indent) {
         printIndent(indent);
 		printf("If EVAL == 0 JMP Else %d", pSyntaxNode->value);
 		//printf("THEN %d", pSyntaxNode->value);
-        walkList(pSyntaxNode->pCentre);
+        walkList(pSyntaxNode->pCentre, fp);
         
         if (fp != NULL) {
             sprintf(tmp, "%d %s JmpEndIf %d\n", indent, position, pSyntaxNode->value);
@@ -541,7 +623,7 @@ void walkSyntaxTree(syntaxNode* pSyntaxNode, char* position, int indent) {
         printIndent(indent);
 		printf("JMP EndIf %d", pSyntaxNode->value);
 		printf("\nElse %d", pSyntaxNode->value);
-        walkList(pSyntaxNode->pRight);
+        walkList(pSyntaxNode->pRight, fp);
         
         if (fp != NULL) {
             sprintf(tmp, "%d %s EndIf %d\n", indent, position, pSyntaxNode->value);
@@ -557,7 +639,7 @@ void walkSyntaxTree(syntaxNode* pSyntaxNode, char* position, int indent) {
         }
         printIndent(indent);
 		printf("While %d", pSyntaxNode->value);
-        walkSyntaxTree(pSyntaxNode->pLeft, "LEFT", indent + 1);
+        walkSyntaxTree(pSyntaxNode->pLeft, "LEFT", indent + 1, fp);
         
         if (fp != NULL) {
             sprintf(tmp, "%d %s Do %d\n", indent, position, pSyntaxNode->value);
@@ -566,7 +648,7 @@ void walkSyntaxTree(syntaxNode* pSyntaxNode, char* position, int indent) {
         printIndent(indent);
 		printf("If EVAL == 0 JMP EndWhile %d", pSyntaxNode->value);
 		//printf("Do %d", pSyntaxNode->value);
-        walkList(pSyntaxNode->pCentre);
+        walkList(pSyntaxNode->pCentre, fp);
         
         if (fp != NULL) {
             sprintf(tmp, "%d %s EndWhile %d\n", indent, position, pSyntaxNode->value);
@@ -597,7 +679,7 @@ void walkSyntaxTree(syntaxNode* pSyntaxNode, char* position, int indent) {
 	//printf("End pattern walk");
 }
 
-void walkList(syntaxNode* pListNode) {
+void walkList(syntaxNode* pListNode, FILE* fp) {
 #if REGRESS_1
     printf("\nwalkList(syntaxNode* pListNode=%d)\n", (int)pListNode);
     fflush(stdout);
@@ -609,16 +691,30 @@ void walkList(syntaxNode* pListNode) {
     printf("\nwalkList(pListNode->pNext)=%d\n", (int)pListNode->pNext);
     fflush(stdout);
 #endif /* REGRESS_1 */    
-    walkList(pListNode->pNext);
+    walkList(pListNode->pNext, fp);
     
 #if REGRESS_1    
     printf("walkSyntaxTree(pListNode->pLeft=%d, ROOT, 0)\n", (int)pListNode->pLeft);
     fflush(stdout);
 #endif /* REGRESS_1 */    
-	walkSyntaxTree(pListNode->pLeft, "ROOT", 0);
+	walkSyntaxTree(pListNode->pLeft, "ROOT", 0, fp);
 }
 
-void printIndent(unsigned int indent) {
+unsigned int countArguments(syntaxNode* pArgNode) {
+    unsigned int argCount = 0;
+    while (pArgNode != NULL) {
+        if (pArgNode->type != nodeArgument) {
+            debugAssert(ERR:countArguments());
+            // Shouldn't happen
+            return 0;
+        }
+        ++argCount;
+        pArgNode = pArgNode->pNext;
+    }
+    return argCount;
+}
+
+void printIndent(const unsigned int indent) {
     int i;
     printf("\n");
     for (i = indent; i > 0; --i) {
@@ -626,16 +722,26 @@ void printIndent(unsigned int indent) {
     }
 }
 
-void dumpSymbolTable(void) {
+void dumpSymbolTable(const char* fileName) {
 	int i;
+    FILE* fpSymbol = NULL;
+    if (fileName != NULL) {
+        fpSymbol = fopen(fileName, "wb");
+        if (fpSymbol == NULL) {
+            debugAssert(ERR:dumpSymbolTable() fpSymbol == NULL);
+        }
+    }
     printf("\n\nSymbol table start:");
 	for (i = 0; i < varTableFreeIndex; ++i) {
-		dumpSymbol(i);
+		dumpSymbol(i, fpSymbol);
 	}
     printf("\nSymbol table end:\n");
+    if (fpSymbol != NULL) {
+        fclose(fpSymbol);
+    }
 }
 
-void dumpSymbol(int i) {
+void dumpSymbol(int i, FILE* fpSymbol) {
     nodeType symbolType = isConstant(&varTable[i]) ? nodeConst : nodeVar;
 	printf("\nindex:%d, name:%s, type:%d, val:%d", i, varTable[i].name, symbolType, varTable[i].val);
     char tmp[64];
@@ -645,7 +751,7 @@ void dumpSymbol(int i) {
     }
 }
 
-void printOperator(int value) {
+void printOperator(const int value) {
     switch (value) {
     case BANG:
         printf("!");
@@ -688,6 +794,12 @@ void printOperator(int value) {
         break;
     case OR:
         printf("||");
+        break;
+    case BITWISEAND:
+        printf("&");
+        break;
+    case BITWISEOR:
+        printf("|");
         break;
     case TEST_FOR_EQUAL:
         printf("==");

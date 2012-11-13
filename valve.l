@@ -57,6 +57,8 @@ inputs	 	{debugPrintf("INPUTS"); return INPUTS;}
 "<" 		{debugPrintf("LSS"); return LSS;}
 "||"		{debugPrintf("OR"); return OR;}
 "&&"  		{debugPrintf("AND"); return AND;}
+"|"		    {debugPrintf("BITWISEOR"); return BITWISEOR;}
+"&"  		{debugPrintf("BITWISEAND"); return BITWISEAND;}
 "=="    	{debugPrintf("TEST_FOR_EQUAL"); return TEST_FOR_EQUAL;}
 "ARRAY"     {debugPrintf("ARRAYDEFINE"); return ARRAYDEFINE;}
 "if"	    {debugPrintf("IF"); return IF;}
