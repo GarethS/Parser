@@ -57,7 +57,7 @@ typedef struct thisSyntaxNode {
 	struct thisSyntaxNode* pCentre;
 	struct thisSyntaxNode* pNext;   // Used for walking each statement. When used by symbol table, walks to next table.
     varNode* pVarNode;
-} syntaxNode;
+} astNode;
 
 /*
 typedef struct thisStatmentNode {
@@ -73,27 +73,27 @@ void printBoilerplate(void);
 
 // The following 2 functions are only used by 'pattern' in the 
 //  'pattern {action} part of the grammar.
-syntaxNode* addNodeBinaryOperator(int operator, syntaxNode* pLeft, syntaxNode* pRight);
-syntaxNode* addNodeArray(char* pVar, syntaxNode* pASTNode);
-//syntaxNode* addNodeArrayConstIndex(char* pVar, int symbolTableIndex);
-syntaxNode* addNodeVariableOperator(int operator, int varIndex, syntaxNode* pRight);
-syntaxNode* addNodeSymbolIndex(int varIndex);
-syntaxNode* addNodeSymbolIndexNew(syntaxNode* pVar);
-syntaxNode* addNodeIfOrWhile(syntaxNode* pExpr, syntaxNode* pIfOrWhileStatementList, syntaxNode* pElseStatementList, nodeType type);
+astNode* addNodeBinaryOperator(int operator, astNode* pLeft, astNode* pRight);
+astNode* addNodeArray(char* pVar, astNode* pASTNode);
+//astNode* addNodeArrayConstIndex(char* pVar, int symbolTableIndex);
+astNode* addNodeVariableOperator(int operator, int varIndex, astNode* pRight);
+astNode* addNodeSymbolIndex(int varIndex);
+astNode* addNodeSymbolIndexNew(astNode* pVar);
+astNode* addNodeIfOrWhile(astNode* pExpr, astNode* pIfOrWhileStatementList, astNode* pElseStatementList, nodeType type);
 
-syntaxNode* addStatement(syntaxNode* pStatementListNode, syntaxNode* pStatementNode);
-syntaxNode* addFcnCallArgument(syntaxNode* pArgumentListNode, syntaxNode* pArgumentNode);
-syntaxNode* addFcnDefnArgument(syntaxNode* pArgumentListNode, const char* pArgumentName, const int passByValueOrReference);
-syntaxNode* addFunction(const char* pFuncName, syntaxNode* pArgList, syntaxNode* pStatementList);
-syntaxNode* addNodeFunctionCall(char* pFuncName, syntaxNode* pArgList);
+astNode* addStatement(astNode* pStatementListNode, astNode* pStatementNode);
+astNode* addFcnCallArgument(astNode* pArgumentListNode, astNode* pArgumentNode);
+astNode* addFcnDefnArgument(astNode* pArgumentListNode, const char* pArgumentName, const int passByValueOrReference);
+astNode* addFunction(const char* pFuncName, astNode* pArgList, astNode* pStatementList);
+astNode* addNodeFunctionCall(char* pFuncName, astNode* pArgList);
 
 
 // New functions 
 int addVarToSymbolTable(char* var);
-syntaxNode* addVarToSymbolTableNew(syntaxNode* pVarTable, char* var);
+astNode* addVarToSymbolTableNew(astNode* pVarTable, char* var);
 void buildVariable(const char* name, int value, varNode* varNode);
 int addArrayToSymbolTable(char* varName, const unsigned int maxRange);
-syntaxNode* addArrayToSymbolTableNew(syntaxNode* pVarTable, char* varName, const unsigned int maxRange);
+astNode* addArrayToSymbolTableNew(astNode* pVarTable, char* varName, const unsigned int maxRange);
 
 void initVarTable(void);
 void initArgTable(void);
@@ -101,19 +101,19 @@ int insertVariable(varNode* pVar);
 //int getVariableIndex(varNode* pVar);
 //int setVariable(varNode* pVar);
 int findVariable(varNode* pVar);
-syntaxNode* findVariableNew(syntaxNode* pVarTable, varNode* pVar);
+astNode* findVariableNew(astNode* pVarTable, varNode* pVar);
 int findVariableByName(const char* pVarName);
 int isConstant(varNode* pVar);
 
-void initNode(syntaxNode* pSyntaxNode);
-syntaxNode* getNextASTNode(void);
-syntaxNode* getNextStatementNode(void);
+void initNode(astNode* pSyntaxNode);
+astNode* getNextASTNode(void);
+astNode* getNextStatementNode(void);
 
 void printIndent(const unsigned int indent);
 void printOperator(const int value);
-void walkSyntaxTree(syntaxNode* pSyntaxNode, char* position, int indent, FILE* fp);
-void walkList(syntaxNode* pListNode, FILE* fp);   // Walk statements or argument lists
-unsigned int countArguments(syntaxNode* pArgNode);
+void walkSyntaxTree(astNode* pSyntaxNode, char* position, int indent, FILE* fp);
+void walkList(astNode* pListNode, FILE* fp);   // Walk statements or argument lists
+unsigned int countArguments(astNode* pArgNode);
 void dumpSymbolTable(const char* fileName);
 void dumpSymbol(int i, FILE* fpSymbol);
 //void freeNode(node* pNode);

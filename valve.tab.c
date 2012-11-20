@@ -83,10 +83,10 @@ varNode varTable[VAR_ITEMS];
 unsigned int varTableFreeIndex = 0;
 
 // Abstract syntax tree table
-syntaxNode syntaxTable[SYNTAX_ITEMS];
+astNode syntaxTable[SYNTAX_ITEMS];
 unsigned int syntaxTableFreeIndex = 0;
 
-syntaxNode statementTable[STATEMENT_ITEMS];
+astNode statementTable[STATEMENT_ITEMS];
 unsigned int statementTableFreeIndex = 0;
 
 
@@ -170,7 +170,7 @@ typedef union YYSTYPE
 	int integer;
     float floatingPoint;
 	char* string;
-	syntaxNode* pSyntaxNode;
+	astNode* pSyntaxNode;
 
 
 
@@ -2111,7 +2111,7 @@ int insertVariable(varNode* pVar) {
 }
 
 // Use new symbol table structure.
-syntaxNode* insertVariableNew(syntaxNode* pVarTable, varNode* pVar) {
+astNode* insertVariableNew(astNode* pVarTable, varNode* pVar) {
     if (pVarTable == NULL) {
         debugAssert(ERR:insertVariableNew():pVarTable == NULL);
         return NULL;
@@ -2126,7 +2126,7 @@ syntaxNode* insertVariableNew(syntaxNode* pVarTable, varNode* pVar) {
 	} else {
         return NULL;
     }
-    syntaxNode* pVarNode = getNextASTNode();
+    astNode* pVarNode = getNextASTNode();
     pVarNode->pVarNode = varTable + varTableFreeIndex++;  // Just the pointer into the variable table
     pVarNode->pNext = pVarTable->pLeft;
     pVarTable->pLeft = pVarNode;
@@ -2177,12 +2177,12 @@ int findVariable(varNode* pVar) {
 }
 
 // Use new symbol table structure.
-syntaxNode* findVariableNew(syntaxNode* pVarTable, varNode* pVar) {
+astNode* findVariableNew(astNode* pVarTable, varNode* pVar) {
     if (pVarTable == NULL) {
         debugAssert(ERR:findVariableNew():pVarTable == NULL);
         return NULL;
     }
-    syntaxNode* pSymbolTable = pVarTable->pLeft;
+    astNode* pSymbolTable = pVarTable->pLeft;
 	for (; pSymbolTable != NULL; pSymbolTable = pSymbolTable->pNext) {
         if (pSymbolTable->pVarNode == NULL) {
             debugAssert(ERR:findVariableNew():pSymbolTable->pVarNode == NULL);
@@ -2200,10 +2200,10 @@ syntaxNode* findVariableNew(syntaxNode* pVarTable, varNode* pVar) {
 
 // e.g. if (x==2) {x = 1;} else {x = 4;}
 // Note that both pIfStatementList and pElseStatementList can both be NULL. This can happen if they have empty statement lists.
-syntaxNode* addNodeIfOrWhile(syntaxNode* pExpr, syntaxNode* pIfOrWhileStatementList, syntaxNode* pElseStatementList, nodeType type) {
+astNode* addNodeIfOrWhile(astNode* pExpr, astNode* pIfOrWhileStatementList, astNode* pElseStatementList, nodeType type) {
     static int id = 0;
 
-	syntaxNode* p = getNextASTNode();
+	astNode* p = getNextASTNode();
 	if (p == NULL) {
         debugAssert(ERR:addNodeIfOrWhile():p == NULL);
 		return p;
@@ -2221,8 +2221,8 @@ syntaxNode* addNodeIfOrWhile(syntaxNode* pExpr, syntaxNode* pIfOrWhileStatementL
 }
 
 // e.g. '4 * c1'
-syntaxNode* addNodeBinaryOperator(int operator, syntaxNode* pLeft, syntaxNode* pRight) {
-	syntaxNode* p = getNextASTNode();
+astNode* addNodeBinaryOperator(int operator, astNode* pLeft, astNode* pRight) {
+	astNode* p = getNextASTNode();
 	if (p == NULL) {
         debugAssert("ERROR:addNodeBinaryOperator():p == NULL");
 		return p;
@@ -2235,8 +2235,8 @@ syntaxNode* addNodeBinaryOperator(int operator, syntaxNode* pLeft, syntaxNode* p
 }
 
 // e.g. 'c3 == 4 * c1;' where 'operator' is '='
-syntaxNode* addNodeVariableOperator(int operator, int varIndex, syntaxNode* pRight) {
-	syntaxNode* pLeft= getNextASTNode();
+astNode* addNodeVariableOperator(int operator, int varIndex, astNode* pRight) {
+	astNode* pLeft= getNextASTNode();
 	if (pLeft == NULL) {
         debugAssert(ERR:addNodeVariableOperator():pLeft == NULL);
 		return pLeft;
@@ -2247,7 +2247,7 @@ syntaxNode* addNodeVariableOperator(int operator, int varIndex, syntaxNode* pRig
 }
 
 // Add either a function call (pStatmentList = NULL) or a function definition (pStatmentList != NULL)
-syntaxNode* addFunction(const char* pFuncName, syntaxNode* pArgList, syntaxNode* pStatementList) {
+astNode* addFunction(const char* pFuncName, astNode* pArgList, astNode* pStatementList) {
     // Essentially the same as addNodeFunctionCall() except this is a definition, not a call.
     // 0. Count number of arguments and assign that value to its syntax node
     int argCount = countArguments(pArgList);
@@ -2283,7 +2283,7 @@ syntaxNode* addFunction(const char* pFuncName, syntaxNode* pArgList, syntaxNode*
     
     if (pStatementList == NULL) {
         // This is a function call
-        syntaxNode* p = getNextASTNode();
+        astNode* p = getNextASTNode();
         if (p == NULL) {
             debugAssert(ERR:addNodeFunctionCall():p == NULL);
             return p;
@@ -2311,16 +2311,16 @@ syntaxNode* addFunction(const char* pFuncName, syntaxNode* pArgList, syntaxNode*
     return NULL;
 }
 
-syntaxNode* addNodeFunctionCall(char* pFuncName, syntaxNode* pArgList) {
+astNode* addNodeFunctionCall(char* pFuncName, astNode* pArgList) {
     return addFunction(pFuncName, pArgList, NULL);
 }
 
-syntaxNode* addNodeArray(char* pVarName, syntaxNode* pASTNode) {
-    // 1. Make new syntaxNode to contain index of array (starting point). Actual array
+astNode* addNodeArray(char* pVarName, astNode* pASTNode) {
+    // 1. Make new astNode to contain index of array (starting point). Actual array
     //     index can't be determined until run time.
     //printf("xxx root=%d, left=%d, right=%d", pASTNode->value, pASTNode->pLeft->value, pASTNode->pRight->value);
     //printf("xxx root=%d\n", pASTNode->value);
-	syntaxNode* pArrayVar = getNextASTNode();
+	astNode* pArrayVar = getNextASTNode();
 	if (pArrayVar == NULL) {
         debugAssert(ERR:addNodeArray():pArrayVar == NULL);
 		return NULL;
@@ -2338,14 +2338,14 @@ syntaxNode* addNodeArray(char* pVarName, syntaxNode* pASTNode) {
 #else    
     // This passes, but looks like it's using the wrong index in the array
     //return addNodeBinaryOperator(LBRACKET, pArrayVar, pASTNode);
-    syntaxNode* pan = addNodeBinaryOperator(LBRACKET, pArrayVar, pASTNode);
+    astNode* pan = addNodeBinaryOperator(LBRACKET, pArrayVar, pASTNode);
     //printf("yyyroot=%d, left=%d, right=%d", pan->value, pan->pLeft->value, pan->pRight->value);
     return pan;
 #endif    
 }
 
-syntaxNode* addNodeSymbolIndex(int varIndex) {
-	syntaxNode* p = getNextASTNode();
+astNode* addNodeSymbolIndex(int varIndex) {
+	astNode* p = getNextASTNode();
 	if (p == NULL) {
 		debugAssert(ERR:addNodeSymbolIndex():p == NULL);
 		return NULL;
@@ -2355,8 +2355,8 @@ syntaxNode* addNodeSymbolIndex(int varIndex) {
 	return p;	
 }
 
-syntaxNode* addNodeSymbolIndexNew(syntaxNode* pVar) {
-	syntaxNode* p = getNextASTNode();
+astNode* addNodeSymbolIndexNew(astNode* pVar) {
+	astNode* p = getNextASTNode();
 	if (p == NULL) {
 		debugAssert(ERR:addNodeSymbolIndex():p == NULL);
 		return NULL;
@@ -2368,7 +2368,7 @@ syntaxNode* addNodeSymbolIndexNew(syntaxNode* pVar) {
 	return p;	
 }
 
-void initNode(syntaxNode* pSyntaxNode) {
+void initNode(astNode* pSyntaxNode) {
     if (pSyntaxNode == NULL) {
         debugAssert(ERR:initNode():pSyntaxNode == NULL);
         return;
@@ -2382,7 +2382,7 @@ void initNode(syntaxNode* pSyntaxNode) {
     pSyntaxNode->pVarNode = NULL;
 }
 
-syntaxNode* getNextASTNode(void) {
+astNode* getNextASTNode(void) {
 	if (syntaxTableFreeIndex < SYNTAX_ITEMS) {
         // Initialize all members before making this node available
         initNode(syntaxTable + syntaxTableFreeIndex);
@@ -2392,7 +2392,7 @@ syntaxNode* getNextASTNode(void) {
 	return NULL;
 }
 
-syntaxNode* getNextStatementNode(void) {
+astNode* getNextStatementNode(void) {
 	if (statementTableFreeIndex < STATEMENT_ITEMS) {
 #if REGRESS_1    
         printf("getNextStatementNode() %d\n", statementTableFreeIndex);
@@ -2448,13 +2448,13 @@ int addArrayToSymbolTable(char* var, const unsigned int maxRange) {
     return found;
 }
 
-syntaxNode* addArrayToSymbolTableNew(syntaxNode* pVarTable, char* var, const unsigned int maxRange) {
+astNode* addArrayToSymbolTableNew(astNode* pVarTable, char* var, const unsigned int maxRange) {
     //printf("addArrayToSymbolTable: %s, %d", var, maxRange);
     varNode tmp;
     buildVariable(var, maxRange, &tmp);
-    syntaxNode* pFoundNode = findVariableNew(pVarTable, &tmp);
+    astNode* pFoundNode = findVariableNew(pVarTable, &tmp);
 	if (pFoundNode == NULL) {
-        syntaxNode* pArrayNode = insertVariableNew(pVarTable, &tmp);
+        astNode* pArrayNode = insertVariableNew(pVarTable, &tmp);
         if (pArrayNode == NULL) {
             return NULL;
         }
@@ -2480,22 +2480,22 @@ int addVarToSymbolTable(char* var) {
 }
 
 // Use new symbol table structure.
-syntaxNode* addVarToSymbolTableNew(syntaxNode* pVarTable, char* var) {
+astNode* addVarToSymbolTableNew(astNode* pVarTable, char* var) {
 	varNode tmp;
     buildVariable(var, DEFAULT_VAR_VALUE, &tmp);
-	syntaxNode* pFoundNode = findVariableNew(pVarTable, &tmp);
+	astNode* pFoundNode = findVariableNew(pVarTable, &tmp);
 	if (pFoundNode == NULL) {
 		return insertVariableNew(pVarTable, &tmp);
 	}
 	return pFoundNode;
 }
 
-syntaxNode* addFcnDefnArgument(syntaxNode* pArgumentListNode, const char* pArgumentName, const int passByValueOrReference) {
+astNode* addFcnDefnArgument(astNode* pArgumentListNode, const char* pArgumentName, const int passByValueOrReference) {
     if (pArgumentName == NULL) {
         debugAssert(ERR:addFcnDefnArgument() pArgumentName == NULL);
         return NULL;
     }
-	syntaxNode* p = getNextASTNode();
+	astNode* p = getNextASTNode();
 	if (p == NULL) {
         debugAssert(ERR:addFcnDefnArgument() p == NULL);
 		return p;
@@ -2510,11 +2510,11 @@ syntaxNode* addFcnDefnArgument(syntaxNode* pArgumentListNode, const char* pArgum
     return NULL;
 }
 
-syntaxNode* addFcnCallArgument(syntaxNode* pArgumentListNode, syntaxNode* pArgumentNode) {
+astNode* addFcnCallArgument(astNode* pArgumentListNode, astNode* pArgumentNode) {
     if (pArgumentNode == NULL) {
         // There are no arguments!
     }
-	syntaxNode* p = getNextASTNode();
+	astNode* p = getNextASTNode();
 	if (p == NULL) {
         debugAssert(ERR:addFcnCallArgument() p == NULL);
 		return p;
@@ -2528,9 +2528,9 @@ syntaxNode* addFcnCallArgument(syntaxNode* pArgumentListNode, syntaxNode* pArgum
 	return p;
 }
 
-syntaxNode* addStatement(syntaxNode* pStatementListNode, syntaxNode* pStatementNode) {
+astNode* addStatement(astNode* pStatementListNode, astNode* pStatementNode) {
 #if REGRESS_1    
-    printf("!!addStatement(syntaxNode* pStatementListNode=%d, syntaxNode* pStatementNode=%d)\n", pStatementListNode, pStatementNode);
+    printf("!!addStatement(astNode* pStatementListNode=%d, astNode* pStatementNode=%d)\n", pStatementListNode, pStatementNode);
     printf("pStatementListNode->Next=%d\n", pStatementListNode->pNext);
     fflush(stdout);
 #endif /* REGRESS_1 */    
@@ -2538,7 +2538,7 @@ syntaxNode* addStatement(syntaxNode* pStatementListNode, syntaxNode* pStatementN
         // Special case for array definition
         return pStatementListNode;
     }
-	syntaxNode* p = getNextStatementNode();
+	astNode* p = getNextStatementNode();
 	if (p == NULL) {
 		//assert(p != NULL);
 		return p;
@@ -2550,7 +2550,7 @@ syntaxNode* addStatement(syntaxNode* pStatementListNode, syntaxNode* pStatementN
 }
 
 // Walk tree in postfix order; left, right, root.
-void walkSyntaxTree(syntaxNode* pSyntaxNode, char* position, int indent, FILE* fp) {
+void walkSyntaxTree(astNode* pSyntaxNode, char* position, int indent, FILE* fp) {
 	if (pSyntaxNode == NULL) {
 		return;
 	}
@@ -2676,9 +2676,9 @@ void walkSyntaxTree(syntaxNode* pSyntaxNode, char* position, int indent, FILE* f
 	//printf("End pattern walk");
 }
 
-void walkList(syntaxNode* pListNode, FILE* fp) {
+void walkList(astNode* pListNode, FILE* fp) {
 #if REGRESS_1
-    printf("\nwalkList(syntaxNode* pListNode=%d)\n", (int)pListNode);
+    printf("\nwalkList(astNode* pListNode=%d)\n", (int)pListNode);
     fflush(stdout);
 #endif /* REGRESS_1 */    
 	if (pListNode == NULL) {
@@ -2697,7 +2697,7 @@ void walkList(syntaxNode* pListNode, FILE* fp) {
 	walkSyntaxTree(pListNode->pLeft, "ROOT", 0, fp);
 }
 
-unsigned int countArguments(syntaxNode* pArgNode) {
+unsigned int countArguments(astNode* pArgNode) {
     unsigned int argCount = 0;
     while (pArgNode != NULL) {
         // This node should either be for a function call or function definition
