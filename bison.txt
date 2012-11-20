@@ -12,7 +12,7 @@ Shifting token LPAREN ()
 Entering state 4
 Reading a token: --accepting rule at line 43 (")")
 Next token is token RPAREN ()
-Reducing stack by rule 38 (line 134):
+Reducing stack by rule 38 (line 128):
 -> $$ = nterm argList ()
 Stack now 0 1 4
 Entering state 11
@@ -24,7 +24,7 @@ Reading a token: --accepting default rule (" ")
 Next token is token LBRACE ()
 Shifting token LBRACE ()
 Entering state 54
-Reducing stack by rule 6 (line 92):
+Reducing stack by rule 6 (line 86):
 -> $$ = nterm statementList ()
 Stack now 0 1 4 11 33 54
 Entering state 61
@@ -51,7 +51,7 @@ Entering state 7
 Reading a token: --accepting default rule (" ")
 --accepting rule at line 54 ("<=")
 Next token is token LEQ ()
-Reducing stack by rule 34 (line 129):
+Reducing stack by rule 34 (line 123):
    $1 = token VAR ()
 -> $$ = nterm expr ()
 Stack now 0 1 4 11 33 54 61 67 79
@@ -64,7 +64,7 @@ Reading a token: --accepting default rule (" ")
 Next token is token CONST ()
 Shifting token CONST ()
 Entering state 8
-Reducing stack by rule 35 (line 130):
+Reducing stack by rule 35 (line 124):
    $1 = token CONST ()
 -> $$ = nterm expr ()
 Stack now 0 1 4 11 33 54 61 67 79 88 24
@@ -72,7 +72,7 @@ Entering state 45
 Reading a token: --accepting default rule (" ")
 --accepting rule at line 58 ("||")
 Next token is token OR ()
-Reducing stack by rule 31 (line 126):
+Reducing stack by rule 31 (line 120):
    $1 = nterm expr ()
    $2 = token LEQ ()
    $3 = nterm expr ()
@@ -90,7 +90,7 @@ Entering state 7
 Reading a token: --accepting default rule (" ")
 --accepting rule at line 56 (">")
 Next token is token GTR ()
-Reducing stack by rule 34 (line 129):
+Reducing stack by rule 34 (line 123):
    $1 = token VAR ()
 -> $$ = nterm expr ()
 Stack now 0 1 4 11 33 54 61 67 79 88 19
@@ -103,14 +103,14 @@ Reading a token: --accepting default rule (" ")
 Next token is token CONST ()
 Shifting token CONST ()
 Entering state 8
-Reducing stack by rule 35 (line 130):
+Reducing stack by rule 35 (line 124):
    $1 = token CONST ()
 -> $$ = nterm expr ()
 Stack now 0 1 4 11 33 54 61 67 79 88 19 40 22
 Entering state 43
 Reading a token: --accepting rule at line 43 (")")
 Next token is token RPAREN ()
-Reducing stack by rule 32 (line 127):
+Reducing stack by rule 32 (line 121):
    $1 = nterm expr ()
    $2 = token GTR ()
    $3 = nterm expr ()
@@ -118,7 +118,7 @@ Reducing stack by rule 32 (line 127):
 Stack now 0 1 4 11 33 54 61 67 79 88 19
 Entering state 40
 Next token is token RPAREN ()
-Reducing stack by rule 25 (line 120):
+Reducing stack by rule 25 (line 114):
    $1 = nterm expr ()
    $2 = token OR ()
    $3 = nterm expr ()
@@ -133,7 +133,7 @@ Reading a token: --accepting default rule (" ")
 Next token is token LBRACE ()
 Shifting token LBRACE ()
 Entering state 102
-Reducing stack by rule 6 (line 92):
+Reducing stack by rule 6 (line 86):
 -> $$ = nterm statementList ()
 Stack now 0 1 4 11 33 54 61 67 79 88 96 102
 Entering state 107
@@ -162,7 +162,7 @@ Reading a token: --accepting default rule (" ")
 Next token is token CONST ()
 Shifting token CONST ()
 Entering state 8
-Reducing stack by rule 35 (line 130):
+Reducing stack by rule 35 (line 124):
    $1 = token CONST ()
 -> $$ = nterm expr ()
 Stack now 0 1 4 11 33 54 61 67 79 88 96 102 107 69 81
@@ -171,7 +171,7 @@ Reading a token: --accepting rule at line 45 (";")
 Next token is token SEMI ()
 Shifting token SEMI ()
 Entering state 98
-Reducing stack by rule 16 (line 109):
+Reducing stack by rule 16 (line 103):
    $1 = token VAR ()
    $2 = token EQUAL ()
    $3 = nterm expr ()
@@ -179,12 +179,12 @@ Reducing stack by rule 16 (line 109):
 -> $$ = nterm statementAssign ()
 Stack now 0 1 4 11 33 54 61 67 79 88 96 102 107
 Entering state 73
-Reducing stack by rule 8 (line 95):
+Reducing stack by rule 8 (line 89):
    $1 = nterm statementAssign ()
 -> $$ = nterm statement ()
 Stack now 0 1 4 11 33 54 61 67 79 88 96 102 107
 Entering state 70
-Reducing stack by rule 7 (line 93):
+Reducing stack by rule 7 (line 87):
    $1 = nterm statementList ()
    $2 = nterm statement ()
 -> $$ = nterm statementList ()
@@ -215,7 +215,7 @@ Reading a token: --accepting default rule (" ")
 Next token is token CONST ()
 Shifting token CONST ()
 Entering state 8
-Reducing stack by rule 35 (line 130):
+Reducing stack by rule 35 (line 124):
    $1 = token CONST ()
 -> $$ = nterm expr ()
 Stack now 0 1 4 11 33 54 61 67 79 88 96 102 107 69 81
@@ -224,7 +224,7 @@ Reading a token: --accepting rule at line 45 (";")
 Next token is token SEMI ()
 Shifting token SEMI ()
 Entering state 98
-Reducing stack by rule 16 (line 109):
+Reducing stack by rule 16 (line 103):
    $1 = token VAR ()
    $2 = token EQUAL ()
    $3 = nterm expr ()
@@ -232,12 +232,12 @@ Reducing stack by rule 16 (line 109):
 -> $$ = nterm statementAssign ()
 Stack now 0 1 4 11 33 54 61 67 79 88 96 102 107
 Entering state 73
-Reducing stack by rule 8 (line 95):
+Reducing stack by rule 8 (line 89):
    $1 = nterm statementAssign ()
 -> $$ = nterm statement ()
 Stack now 0 1 4 11 33 54 61 67 79 88 96 102 107
 Entering state 70
-Reducing stack by rule 7 (line 93):
+Reducing stack by rule 7 (line 87):
    $1 = nterm statementList ()
    $2 = nterm statement ()
 -> $$ = nterm statementList ()
@@ -268,7 +268,7 @@ Reading a token: --accepting default rule (" ")
 Next token is token CONST ()
 Shifting token CONST ()
 Entering state 8
-Reducing stack by rule 35 (line 130):
+Reducing stack by rule 35 (line 124):
    $1 = token CONST ()
 -> $$ = nterm expr ()
 Stack now 0 1 4 11 33 54 61 67 79 88 96 102 107 69 81
@@ -277,7 +277,7 @@ Reading a token: --accepting rule at line 45 (";")
 Next token is token SEMI ()
 Shifting token SEMI ()
 Entering state 98
-Reducing stack by rule 16 (line 109):
+Reducing stack by rule 16 (line 103):
    $1 = token VAR ()
    $2 = token EQUAL ()
    $3 = nterm expr ()
@@ -285,12 +285,12 @@ Reducing stack by rule 16 (line 109):
 -> $$ = nterm statementAssign ()
 Stack now 0 1 4 11 33 54 61 67 79 88 96 102 107
 Entering state 73
-Reducing stack by rule 8 (line 95):
+Reducing stack by rule 8 (line 89):
    $1 = nterm statementAssign ()
 -> $$ = nterm statement ()
 Stack now 0 1 4 11 33 54 61 67 79 88 96 102 107
 Entering state 70
-Reducing stack by rule 7 (line 93):
+Reducing stack by rule 7 (line 87):
    $1 = nterm statementList ()
    $2 = nterm statement ()
 -> $$ = nterm statementList ()
@@ -323,7 +323,7 @@ Entering state 7
 Reading a token: --accepting default rule (" ")
 --accepting rule at line 62 ("==")
 Next token is token TEST_FOR_EQUAL ()
-Reducing stack by rule 34 (line 129):
+Reducing stack by rule 34 (line 123):
    $1 = token VAR ()
 -> $$ = nterm expr ()
 Stack now 0 1 4 11 33 54 61 67 79 88 96 102 107 67 79
@@ -336,14 +336,14 @@ Reading a token: --accepting default rule (" ")
 Next token is token CONST ()
 Shifting token CONST ()
 Entering state 8
-Reducing stack by rule 35 (line 130):
+Reducing stack by rule 35 (line 124):
    $1 = token CONST ()
 -> $$ = nterm expr ()
 Stack now 0 1 4 11 33 54 61 67 79 88 96 102 107 67 79 88 26
 Entering state 47
 Reading a token: --accepting rule at line 43 (")")
 Next token is token RPAREN ()
-Reducing stack by rule 28 (line 123):
+Reducing stack by rule 28 (line 117):
    $1 = nterm expr ()
    $2 = token TEST_FOR_EQUAL ()
    $3 = nterm expr ()
@@ -358,7 +358,7 @@ Reading a token: --accepting default rule (" ")
 Next token is token LBRACE ()
 Shifting token LBRACE ()
 Entering state 102
-Reducing stack by rule 6 (line 92):
+Reducing stack by rule 6 (line 86):
 -> $$ = nterm statementList ()
 Stack now 0 1 4 11 33 54 61 67 79 88 96 102 107 67 79 88 96 102
 Entering state 107
@@ -391,7 +391,7 @@ Reading a token: --accepting default rule (" ")
 Next token is token CONST ()
 Shifting token CONST ()
 Entering state 8
-Reducing stack by rule 35 (line 130):
+Reducing stack by rule 35 (line 124):
    $1 = token CONST ()
 -> $$ = nterm expr ()
 Stack now 0 1 4 11 33 54 61 67 79 88 96 102 107 67 79 88 96 102 107 69 81
@@ -400,7 +400,7 @@ Reading a token: --accepting rule at line 45 (";")
 Next token is token SEMI ()
 Shifting token SEMI ()
 Entering state 98
-Reducing stack by rule 16 (line 109):
+Reducing stack by rule 16 (line 103):
    $1 = token VAR ()
    $2 = token EQUAL ()
    $3 = nterm expr ()
@@ -408,12 +408,12 @@ Reducing stack by rule 16 (line 109):
 -> $$ = nterm statementAssign ()
 Stack now 0 1 4 11 33 54 61 67 79 88 96 102 107 67 79 88 96 102 107
 Entering state 73
-Reducing stack by rule 8 (line 95):
+Reducing stack by rule 8 (line 89):
    $1 = nterm statementAssign ()
 -> $$ = nterm statement ()
 Stack now 0 1 4 11 33 54 61 67 79 88 96 102 107 67 79 88 96 102 107
 Entering state 70
-Reducing stack by rule 7 (line 93):
+Reducing stack by rule 7 (line 87):
    $1 = nterm statementList ()
    $2 = nterm statement ()
 -> $$ = nterm statementList ()
@@ -482,7 +482,7 @@ Reading a token: --accepting default rule (" ")
 --accepting default rule (" ")
 --accepting rule at line 66 ("while")
 Next token is token WHILE ()
-Reducing stack by rule 14 (line 103):
+Reducing stack by rule 14 (line 97):
    $1 = token IF ()
    $2 = token LPAREN ()
    $3 = nterm expr ()
@@ -493,12 +493,12 @@ Reducing stack by rule 14 (line 103):
 -> $$ = nterm statementIf ()
 Stack now 0 1 4 11 33 54 61 67 79 88 96 102 107
 Entering state 72
-Reducing stack by rule 9 (line 96):
+Reducing stack by rule 9 (line 90):
    $1 = nterm statementIf ()
 -> $$ = nterm statement ()
 Stack now 0 1 4 11 33 54 61 67 79 88 96 102 107
 Entering state 70
-Reducing stack by rule 7 (line 93):
+Reducing stack by rule 7 (line 87):
    $1 = nterm statementList ()
    $2 = nterm statement ()
 -> $$ = nterm statementList ()
@@ -519,7 +519,7 @@ Entering state 7
 Reading a token: --accepting default rule (" ")
 --accepting rule at line 62 ("==")
 Next token is token TEST_FOR_EQUAL ()
-Reducing stack by rule 34 (line 129):
+Reducing stack by rule 34 (line 123):
    $1 = token VAR ()
 -> $$ = nterm expr ()
 Stack now 0 1 4 11 33 54 61 67 79 88 96 102 107 68 80
@@ -532,14 +532,14 @@ Reading a token: --accepting default rule (" ")
 Next token is token CONST ()
 Shifting token CONST ()
 Entering state 8
-Reducing stack by rule 35 (line 130):
+Reducing stack by rule 35 (line 124):
    $1 = token CONST ()
 -> $$ = nterm expr ()
 Stack now 0 1 4 11 33 54 61 67 79 88 96 102 107 68 80 89 26
 Entering state 47
 Reading a token: --accepting rule at line 43 (")")
 Next token is token RPAREN ()
-Reducing stack by rule 28 (line 123):
+Reducing stack by rule 28 (line 117):
    $1 = nterm expr ()
    $2 = token TEST_FOR_EQUAL ()
    $3 = nterm expr ()
@@ -554,7 +554,7 @@ Reading a token: --accepting default rule (" ")
 Next token is token LBRACE ()
 Shifting token LBRACE ()
 Entering state 103
-Reducing stack by rule 6 (line 92):
+Reducing stack by rule 6 (line 86):
 -> $$ = nterm statementList ()
 Stack now 0 1 4 11 33 54 61 67 79 88 96 102 107 68 80 89 97 103
 Entering state 108
@@ -590,7 +590,7 @@ Entering state 7
 Reading a token: --accepting default rule (" ")
 --accepting rule at line 48 ("+")
 Next token is token PLUS ()
-Reducing stack by rule 34 (line 129):
+Reducing stack by rule 34 (line 123):
    $1 = token VAR ()
 -> $$ = nterm expr ()
 Stack now 0 1 4 11 33 54 61 67 79 88 96 102 107 68 80 89 97 103 108 69 81
@@ -603,7 +603,7 @@ Reading a token: --accepting default rule (" ")
 Next token is token CONST ()
 Shifting token CONST ()
 Entering state 8
-Reducing stack by rule 35 (line 130):
+Reducing stack by rule 35 (line 124):
    $1 = token CONST ()
 -> $$ = nterm expr ()
 Stack now 0 1 4 11 33 54 61 67 79 88 96 102 107 68 80 89 97 103 108 69 81 90 28
@@ -611,7 +611,7 @@ Entering state 49
 Reading a token: --accepting default rule (" ")
 --accepting rule at line 48 ("+")
 Next token is token PLUS ()
-Reducing stack by rule 19 (line 114):
+Reducing stack by rule 19 (line 108):
    $1 = nterm expr ()
    $2 = token PLUS ()
    $3 = nterm expr ()
@@ -628,13 +628,13 @@ Shifting token VAR ()
 Entering state 7
 Reading a token: --accepting rule at line 45 (";")
 Next token is token SEMI ()
-Reducing stack by rule 34 (line 129):
+Reducing stack by rule 34 (line 123):
    $1 = token VAR ()
 -> $$ = nterm expr ()
 Stack now 0 1 4 11 33 54 61 67 79 88 96 102 107 68 80 89 97 103 108 69 81 90 28
 Entering state 49
 Next token is token SEMI ()
-Reducing stack by rule 19 (line 114):
+Reducing stack by rule 19 (line 108):
    $1 = nterm expr ()
    $2 = token PLUS ()
    $3 = nterm expr ()
@@ -644,7 +644,7 @@ Entering state 90
 Next token is token SEMI ()
 Shifting token SEMI ()
 Entering state 98
-Reducing stack by rule 16 (line 109):
+Reducing stack by rule 16 (line 103):
    $1 = token VAR ()
    $2 = token EQUAL ()
    $3 = nterm expr ()
@@ -652,12 +652,12 @@ Reducing stack by rule 16 (line 109):
 -> $$ = nterm statementAssign ()
 Stack now 0 1 4 11 33 54 61 67 79 88 96 102 107 68 80 89 97 103 108
 Entering state 73
-Reducing stack by rule 8 (line 95):
+Reducing stack by rule 8 (line 89):
    $1 = nterm statementAssign ()
 -> $$ = nterm statement ()
 Stack now 0 1 4 11 33 54 61 67 79 88 96 102 107 68 80 89 97 103 108
 Entering state 70
-Reducing stack by rule 7 (line 93):
+Reducing stack by rule 7 (line 87):
    $1 = nterm statementList ()
    $2 = nterm statement ()
 -> $$ = nterm statementList ()
@@ -678,7 +678,7 @@ Reading a token: --accepting default rule ("")
 Next token is token RBRACE ()
 Shifting token RBRACE ()
 Entering state 111
-Reducing stack by rule 13 (line 101):
+Reducing stack by rule 13 (line 95):
    $1 = token WHILE ()
    $2 = token LPAREN ()
    $3 = nterm expr ()
@@ -689,12 +689,12 @@ Reducing stack by rule 13 (line 101):
 -> $$ = nterm statementWhile ()
 Stack now 0 1 4 11 33 54 61 67 79 88 96 102 107
 Entering state 71
-Reducing stack by rule 10 (line 97):
+Reducing stack by rule 10 (line 91):
    $1 = nterm statementWhile ()
 -> $$ = nterm statement ()
 Stack now 0 1 4 11 33 54 61 67 79 88 96 102 107
 Entering state 70
-Reducing stack by rule 7 (line 93):
+Reducing stack by rule 7 (line 87):
    $1 = nterm statementList ()
    $2 = nterm statement ()
 -> $$ = nterm statementList ()
@@ -721,7 +721,7 @@ Reading a token: --accepting default rule (" ")
 Next token is token LBRACE ()
 Shifting token LBRACE ()
 Entering state 114
-Reducing stack by rule 6 (line 92):
+Reducing stack by rule 6 (line 86):
 -> $$ = nterm statementList ()
 Stack now 0 1 4 11 33 54 61 67 79 88 96 102 107 110 113 114
 Entering state 115
@@ -750,7 +750,7 @@ Reading a token: --accepting default rule (" ")
 Next token is token CONST ()
 Shifting token CONST ()
 Entering state 8
-Reducing stack by rule 35 (line 130):
+Reducing stack by rule 35 (line 124):
    $1 = token CONST ()
 -> $$ = nterm expr ()
 Stack now 0 1 4 11 33 54 61 67 79 88 96 102 107 110 113 114 115 69 81
@@ -759,7 +759,7 @@ Reading a token: --accepting rule at line 45 (";")
 Next token is token SEMI ()
 Shifting token SEMI ()
 Entering state 98
-Reducing stack by rule 16 (line 109):
+Reducing stack by rule 16 (line 103):
    $1 = token VAR ()
    $2 = token EQUAL ()
    $3 = nterm expr ()
@@ -767,12 +767,12 @@ Reducing stack by rule 16 (line 109):
 -> $$ = nterm statementAssign ()
 Stack now 0 1 4 11 33 54 61 67 79 88 96 102 107 110 113 114 115
 Entering state 73
-Reducing stack by rule 8 (line 95):
+Reducing stack by rule 8 (line 89):
    $1 = nterm statementAssign ()
 -> $$ = nterm statement ()
 Stack now 0 1 4 11 33 54 61 67 79 88 96 102 107 110 113 114 115
 Entering state 70
-Reducing stack by rule 7 (line 93):
+Reducing stack by rule 7 (line 87):
    $1 = nterm statementList ()
    $2 = nterm statement ()
 -> $$ = nterm statementList ()
@@ -803,7 +803,7 @@ Reading a token: --accepting default rule (" ")
 Next token is token CONST ()
 Shifting token CONST ()
 Entering state 8
-Reducing stack by rule 35 (line 130):
+Reducing stack by rule 35 (line 124):
    $1 = token CONST ()
 -> $$ = nterm expr ()
 Stack now 0 1 4 11 33 54 61 67 79 88 96 102 107 110 113 114 115 69 81
@@ -812,7 +812,7 @@ Reading a token: --accepting rule at line 45 (";")
 Next token is token SEMI ()
 Shifting token SEMI ()
 Entering state 98
-Reducing stack by rule 16 (line 109):
+Reducing stack by rule 16 (line 103):
    $1 = token VAR ()
    $2 = token EQUAL ()
    $3 = nterm expr ()
@@ -820,12 +820,12 @@ Reducing stack by rule 16 (line 109):
 -> $$ = nterm statementAssign ()
 Stack now 0 1 4 11 33 54 61 67 79 88 96 102 107 110 113 114 115
 Entering state 73
-Reducing stack by rule 8 (line 95):
+Reducing stack by rule 8 (line 89):
    $1 = nterm statementAssign ()
 -> $$ = nterm statement ()
 Stack now 0 1 4 11 33 54 61 67 79 88 96 102 107 110 113 114 115
 Entering state 70
-Reducing stack by rule 7 (line 93):
+Reducing stack by rule 7 (line 87):
    $1 = nterm statementList ()
    $2 = nterm statement ()
 -> $$ = nterm statementList ()
@@ -842,7 +842,7 @@ Reading a token: --accepting default rule ("")
 Next token is token RBRACE ()
 Shifting token RBRACE ()
 Entering state 116
-Reducing stack by rule 15 (line 107):
+Reducing stack by rule 15 (line 101):
    $1 = token IF ()
    $2 = token LPAREN ()
    $3 = nterm expr ()
@@ -857,12 +857,12 @@ Reducing stack by rule 15 (line 107):
 -> $$ = nterm statementIf ()
 Stack now 0 1 4 11 33 54 61
 Entering state 72
-Reducing stack by rule 9 (line 96):
+Reducing stack by rule 9 (line 90):
    $1 = nterm statementIf ()
 -> $$ = nterm statement ()
 Stack now 0 1 4 11 33 54 61
 Entering state 70
-Reducing stack by rule 7 (line 93):
+Reducing stack by rule 7 (line 87):
    $1 = nterm statementList ()
    $2 = nterm statement ()
 -> $$ = nterm statementList ()
@@ -875,7 +875,7 @@ Reading a token: --accepting default rule ("")
 Next token is token RBRACE ()
 Shifting token RBRACE ()
 Entering state 65
-Reducing stack by rule 4 (line 85):
+Reducing stack by rule 4 (line 79):
    $1 = token MAIN ()
    $2 = token LPAREN ()
    $3 = nterm argList ()
@@ -886,7 +886,7 @@ Reducing stack by rule 4 (line 85):
 -> $$ = nterm functionDefnMain ()
 Stack now 0
 Entering state 3
-Reducing stack by rule 2 (line 82):
+Reducing stack by rule 2 (line 76):
 -> $$ = nterm functionDefnList ()
 Stack now 0 3
 Entering state 6
@@ -909,7 +909,7 @@ Reading a token: --accepting rule at line 70 ("x")
 Next token is token VAR ()
 Shifting token VAR ()
 Entering state 55
-Reducing stack by rule 45 (line 144):
+Reducing stack by rule 45 (line 138):
 -> $$ = nterm defnCommaArgList ()
 Stack now 0 3 6 12 34 55
 Entering state 62
@@ -922,7 +922,7 @@ Reading a token: --accepting default rule (" ")
 Next token is token VAR ()
 Shifting token VAR ()
 Entering state 84
-Reducing stack by rule 46 (line 145):
+Reducing stack by rule 46 (line 139):
    $1 = nterm defnCommaArgList ()
    $2 = token COMMA ()
    $3 = token VAR ()
@@ -931,7 +931,7 @@ Stack now 0 3 6 12 34 55
 Entering state 62
 Reading a token: --accepting rule at line 43 (")")
 Next token is token RPAREN ()
-Reducing stack by rule 43 (line 141):
+Reducing stack by rule 43 (line 135):
    $1 = token VAR ()
    $2 = nterm defnCommaArgList ()
 -> $$ = nterm defnArgList ()
@@ -945,7 +945,7 @@ Reading a token: --accepting default rule (" ")
 Next token is token LBRACE ()
 Shifting token LBRACE ()
 Entering state 77
-Reducing stack by rule 6 (line 92):
+Reducing stack by rule 6 (line 86):
 -> $$ = nterm statementList ()
 Stack now 0 3 6 12 34 57 64 77
 Entering state 86
@@ -970,7 +970,7 @@ Reading a token: --accepting default rule (" ")
 Next token is token CONST ()
 Shifting token CONST ()
 Entering state 8
-Reducing stack by rule 35 (line 130):
+Reducing stack by rule 35 (line 124):
    $1 = token CONST ()
 -> $$ = nterm expr ()
 Stack now 0 3 6 12 34 57 64 77 86 69 81
@@ -979,7 +979,7 @@ Reading a token: --accepting rule at line 45 (";")
 Next token is token SEMI ()
 Shifting token SEMI ()
 Entering state 98
-Reducing stack by rule 16 (line 109):
+Reducing stack by rule 16 (line 103):
    $1 = token VAR ()
    $2 = token EQUAL ()
    $3 = nterm expr ()
@@ -987,12 +987,12 @@ Reducing stack by rule 16 (line 109):
 -> $$ = nterm statementAssign ()
 Stack now 0 3 6 12 34 57 64 77 86
 Entering state 73
-Reducing stack by rule 8 (line 95):
+Reducing stack by rule 8 (line 89):
    $1 = nterm statementAssign ()
 -> $$ = nterm statement ()
 Stack now 0 3 6 12 34 57 64 77 86
 Entering state 70
-Reducing stack by rule 7 (line 93):
+Reducing stack by rule 7 (line 87):
    $1 = nterm statementList ()
    $2 = nterm statement ()
 -> $$ = nterm statementList ()
@@ -1005,7 +1005,7 @@ Reading a token: --accepting default rule ("")
 Next token is token RBRACE ()
 Shifting token RBRACE ()
 Entering state 94
-Reducing stack by rule 5 (line 89):
+Reducing stack by rule 5 (line 83):
    $1 = token VAR ()
    $2 = token LPAREN ()
    $3 = nterm defnArgList ()
@@ -1016,7 +1016,7 @@ Reducing stack by rule 5 (line 89):
 -> $$ = nterm functionDefn ()
 Stack now 0 3 6
 Entering state 13
-Reducing stack by rule 3 (line 83):
+Reducing stack by rule 3 (line 77):
    $1 = nterm functionDefnList ()
    $2 = nterm functionDefn ()
 -> $$ = nterm functionDefnList ()
@@ -1025,7 +1025,7 @@ Entering state 6
 Reading a token: --(end of buffer or a NUL)
 --EOF (start condition 0)
 Now at end of input.
-Reducing stack by rule 1 (line 80):
+Reducing stack by rule 1 (line 74):
    $1 = nterm functionDefnMain ()
    $2 = nterm functionDefnList ()
 -> $$ = nterm program ()

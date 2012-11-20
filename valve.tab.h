@@ -84,7 +84,7 @@ typedef union YYSTYPE
 {
 
 /* Line 1685 of yacc.c  */
-#line 44 "valve.y"
+#line 38 "valve.y"
 
 	int integer;
     float floatingPoint;
