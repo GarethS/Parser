@@ -29,7 +29,7 @@ typedef enum {OP_PLUS, OP_MINUS, OP_MULT, OP_DIV, OP_XOR, OP_AND, OP_OR, OP_EQUA
 
 #define DEFAULT_VAR_VALUE   (0)
 
-typedef struct thisVariableNode {
+typedef struct thisSymbolNode {
 	char name[VAR_NAME_LENGTH];
 	int val;        // Value of constant or variable. For functions, equals number of arguments.
     float valFloat; // for future use. Currently only ints allowed
@@ -37,12 +37,10 @@ typedef struct thisVariableNode {
     // If this is either nodeArgumentValue or nodeArgumentReference then it should be skipped over when searching for symbols.
     //  The reason for this is that 2 separate functions can have identical parameter names.
     nodeType type;
-} varNode;
+} symbolNode;
 
-// OLD: This node can contain either a line id (e.g. a3) or an operator. Operators
-//  will always have 2 operand nodes.
-// Generic node structure that the syntax tree is made of.
-typedef struct thisSyntaxNode {
+// Generic node structure the abstract syntax tree is made of.
+typedef struct thisASTNode {
 #if 0
 	// old stuff - meaning left over from first compiler done for Circuit Cellar
 	operandType operand;	// &&, ||
@@ -52,19 +50,12 @@ typedef struct thisSyntaxNode {
     // If nodeConst or nodeVar, this is the index into symbol table. If nodeOperator, this is the operator. If nodeIf, the unique IF-THEN-ELSE id.
 	int	value;	
 	
-	struct thisSyntaxNode* pLeft;   // Overloaded by statement list to point to tree.
-	struct thisSyntaxNode* pRight;
-	struct thisSyntaxNode* pCentre;
-	struct thisSyntaxNode* pNext;   // Used for walking each statement. When used by symbol table, walks to next table.
-    varNode* pVarNode;
+	struct thisASTNode* pLeft;   // Overloaded by statement list to point to tree.
+	struct thisASTNode* pRight;
+	struct thisASTNode* pCentre;
+	struct thisASTNode* pNext;   // Used for walking each statement. When used by symbol table, walks to next table.
+    symbolNode* pVarNode;
 } astNode;
-
-/*
-typedef struct thisStatmentNode {
-	struct thisSyntaxNode* pArith;
-	struct thisStatmentNode* pNext;
-} statementNode;
-*/
 
 // Function prototypes.
 void yyerror (char* s);
@@ -91,19 +82,19 @@ astNode* addNodeFunctionCall(char* pFuncName, astNode* pArgList);
 // New functions 
 int addVarToSymbolTable(char* var);
 astNode* addVarToSymbolTableNew(astNode* pVarTable, char* var);
-void buildVariable(const char* name, int value, varNode* varNode);
+void buildVariable(const char* name, int value, symbolNode* varNode);
 int addArrayToSymbolTable(char* varName, const unsigned int maxRange);
 astNode* addArrayToSymbolTableNew(astNode* pVarTable, char* varName, const unsigned int maxRange);
 
 void initVarTable(void);
 void initArgTable(void);
-int insertVariable(varNode* pVar);
-//int getVariableIndex(varNode* pVar);
-//int setVariable(varNode* pVar);
-int findVariable(varNode* pVar);
-astNode* findVariableNew(astNode* pVarTable, varNode* pVar);
+int insertVariable(symbolNode* pVar);
+//int getVariableIndex(symbolNode* pVar);
+//int setVariable(symbolNode* pVar);
+int findVariable(symbolNode* pVar);
+astNode* findVariableNew(astNode* pVarTable, symbolNode* pVar);
 int findVariableByName(const char* pVarName);
-int isConstant(varNode* pVar);
+int isConstant(symbolNode* pVar);
 
 void initNode(astNode* pSyntaxNode);
 astNode* getNextASTNode(void);

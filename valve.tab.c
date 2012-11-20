@@ -79,7 +79,7 @@
 #include "compiler.h"
 
 // Variable and constants symbol table
-varNode varTable[VAR_ITEMS];
+symbolNode varTable[VAR_ITEMS];
 unsigned int varTableFreeIndex = 0;
 
 // Abstract syntax tree table
@@ -2102,7 +2102,7 @@ void initVarTable(void) {
 }
 
 // Return index of variable/constant in symbol table
-int insertVariable(varNode* pVar) {
+int insertVariable(symbolNode* pVar) {
 	if (varTableFreeIndex < VAR_ITEMS) {
 		varTable[varTableFreeIndex] = *pVar;
 		return varTableFreeIndex++;
@@ -2111,7 +2111,7 @@ int insertVariable(varNode* pVar) {
 }
 
 // Use new symbol table structure.
-astNode* insertVariableNew(astNode* pVarTable, varNode* pVar) {
+astNode* insertVariableNew(astNode* pVarTable, symbolNode* pVar) {
     if (pVarTable == NULL) {
         debugAssert(ERR:insertVariableNew():pVarTable == NULL);
         return NULL;
@@ -2136,7 +2136,7 @@ astNode* insertVariableNew(astNode* pVarTable, varNode* pVar) {
 #if 0
 // Get value of variable or constant.
 // Return index where variable is located in varTable, or -1 on failure.
-int getVariableIndex(varNode* pVar) {
+int getVariableIndex(symbolNode* pVar) {
 	int found = findVariable(pVar);
 	if (found == VAR_NOT_FOUND) {
 		return insertVariable(pVar);
@@ -2146,7 +2146,7 @@ int getVariableIndex(varNode* pVar) {
 
 // Set value of variable but not of constant.
 // Return index of variable or constant in symbol table
-int setVariable(varNode* pVar) {
+int setVariable(symbolNode* pVar) {
 	int found = findVariable(pVar);
 	if (found == VAR_NOT_FOUND) {
 		return insertVariable(pVar);
@@ -2160,13 +2160,13 @@ int setVariable(varNode* pVar) {
 
 // Return index of variable (included function names), or VAR_NOT_FOUND if not found.
 int findVariableByName(const char* pVarName) {
-    varNode thisNode;
+    symbolNode thisNode;
     buildVariable(pVarName, 0, &thisNode);
     return findVariable(&thisNode);
 }
 
 // Return index where variable is located in varTable, or VAR_NOT_FOUND if not found.
-int findVariable(varNode* pVar) {
+int findVariable(symbolNode* pVar) {
 	int i;
 	for (i = 0; i < varTableFreeIndex; ++i) {
 		if (strncmp(varTable[i].name, pVar->name, VAR_NAME_LENGTH-1) == 0) {
@@ -2177,7 +2177,7 @@ int findVariable(varNode* pVar) {
 }
 
 // Use new symbol table structure.
-astNode* findVariableNew(astNode* pVarTable, varNode* pVar) {
+astNode* findVariableNew(astNode* pVarTable, symbolNode* pVar) {
     if (pVarTable == NULL) {
         debugAssert(ERR:findVariableNew():pVarTable == NULL);
         return NULL;
@@ -2188,8 +2188,8 @@ astNode* findVariableNew(astNode* pVarTable, varNode* pVar) {
             debugAssert(ERR:findVariableNew():pSymbolTable->pVarNode == NULL);
             return NULL;
         } else {
-            varNode* pVarNode = pSymbolTable->pVarNode;
-            //varNode* varTable = pSymbolTable->pVarNode;
+            symbolNode* pVarNode = pSymbolTable->pVarNode;
+            //symbolNode* varTable = pSymbolTable->pVarNode;
             if (strncmp(pVarNode->name, pVar->name, VAR_NAME_LENGTH-1) == 0) {
                 return pSymbolTable;
             }
@@ -2256,7 +2256,7 @@ astNode* addFunction(const char* pFuncName, astNode* pArgList, astNode* pStateme
     // Make symbol table entry and add to symbol table
     int symbolIndex = findVariableByName(pFuncName);
     if (symbolIndex == VAR_NOT_FOUND) {
-        varNode funcNode;
+        symbolNode funcNode;
         buildVariable(pFuncName, argCount, &funcNode);
         funcNode.type = nodeFunctionCall;
         int symbolIndex = insertVariable(&funcNode);
@@ -2326,7 +2326,7 @@ astNode* addNodeArray(char* pVarName, astNode* pASTNode) {
 		return NULL;
 	}
 	pArrayVar->type = nodeArray;
-    varNode pArrayNode;
+    symbolNode pArrayNode;
     buildVariable(pVarName, 0, &pArrayNode);
 	pArrayVar->value = findVariable(&pArrayNode);
     if (pArrayVar->value == VAR_NOT_FOUND) {
@@ -2362,7 +2362,7 @@ astNode* addNodeSymbolIndexNew(astNode* pVar) {
 		return NULL;
 	}
 	p->type = nodeVar;
-    varNode* pVarNode = pVar->pVarNode;
+    symbolNode* pVarNode = pVar->pVarNode;
 	p->value = (pVarNode - varTable) / sizeof(varTable[0]); // Calculated the symbol table index.
 	//p->value = varIndex;
 	return p;	
@@ -2405,14 +2405,14 @@ astNode* getNextStatementNode(void) {
 }
 
 // A variable may not start with a number. One that does is consider a constant.
-int isConstant(varNode* pVar) {
+int isConstant(symbolNode* pVar) {
 	if (isdigit((int)pVar->name[0])) {
 		return TRUE;
 	}
 	return FALSE;
 }
 
-void buildVariable(const char* name, int value, varNode* varNode) {
+void buildVariable(const char* name, int value, symbolNode* varNode) {
     if (name == NULL || varNode == NULL) {
         debugAssert(ERR:buildVariable());
         return;
@@ -2432,7 +2432,7 @@ void buildVariable(const char* name, int value, varNode* varNode) {
 // N.B. If maxRange is 2, then maxIndex is 1.
 int addArrayToSymbolTable(char* var, const unsigned int maxRange) {
     //printf("addArrayToSymbolTable: %s, %d", var, maxRange);
-    varNode tmp;
+    symbolNode tmp;
     buildVariable(var, maxRange, &tmp);
     int found = findVariable(&tmp);
 	if (found == VAR_NOT_FOUND) {
@@ -2450,7 +2450,7 @@ int addArrayToSymbolTable(char* var, const unsigned int maxRange) {
 
 astNode* addArrayToSymbolTableNew(astNode* pVarTable, char* var, const unsigned int maxRange) {
     //printf("addArrayToSymbolTable: %s, %d", var, maxRange);
-    varNode tmp;
+    symbolNode tmp;
     buildVariable(var, maxRange, &tmp);
     astNode* pFoundNode = findVariableNew(pVarTable, &tmp);
 	if (pFoundNode == NULL) {
@@ -2470,7 +2470,7 @@ astNode* addArrayToSymbolTableNew(astNode* pVarTable, char* var, const unsigned 
 
 // Return index in symbol table
 int addVarToSymbolTable(char* var) {
-	varNode tmp;
+	symbolNode tmp;
     buildVariable(var, DEFAULT_VAR_VALUE, &tmp);
 	int found = findVariable(&tmp);
 	if (found == VAR_NOT_FOUND) {
@@ -2481,7 +2481,7 @@ int addVarToSymbolTable(char* var) {
 
 // Use new symbol table structure.
 astNode* addVarToSymbolTableNew(astNode* pVarTable, char* var) {
-	varNode tmp;
+	symbolNode tmp;
     buildVariable(var, DEFAULT_VAR_VALUE, &tmp);
 	astNode* pFoundNode = findVariableNew(pVarTable, &tmp);
 	if (pFoundNode == NULL) {
@@ -2497,12 +2497,12 @@ astNode* addFcnDefnArgument(astNode* pArgumentListNode, const char* pArgumentNam
     }
 	astNode* p = getNextASTNode();
 	if (p == NULL) {
-        debugAssert(ERR:addFcnDefnArgument() p == NULL);
-		return p;
+        debugAssert(ERR:addFcnDefnArgument():p == NULL);
+		return NULL;
 	}
     p->type = passByValueOrReference;
     // Create variable in symbol table
-    varNode tmp;
+    symbolNode tmp;
     buildVariable(pArgumentName, DEFAULT_VAR_VALUE, &tmp);
     tmp.type = passByValueOrReference;
     //p->Left = 
@@ -2516,8 +2516,8 @@ astNode* addFcnCallArgument(astNode* pArgumentListNode, astNode* pArgumentNode) 
     }
 	astNode* p = getNextASTNode();
 	if (p == NULL) {
-        debugAssert(ERR:addFcnCallArgument() p == NULL);
-		return p;
+        debugAssert(ERR:addFcnCallArgument():p == NULL);
+		return NULL;
 	}
     if (pArgumentNode->type == nodeVar) {
         // Duplicate names should be handled already. No need to do anything here I think.
