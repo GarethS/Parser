@@ -22,8 +22,8 @@
 #include "compiler.h"
 
 // Variable and constants symbol table
-symbolNode varTable[VAR_ITEMS];
-unsigned int varTableFreeIndex = 0;
+symbolNode symbolTable[VAR_ITEMS];
+unsigned int symbolTableFreeIndex = 0;
 
 // Abstract syntax tree table
 astNode syntaxTable[SYNTAX_ITEMS];
@@ -181,16 +181,16 @@ int main ()
 void initVarTable(void) {
 	int len;
 	for (len = VAR_ITEMS - 1; len >= 0; len--) {
-		varTable[len].name[0] = EOS;
-		varTable[len].val = DEFAULT_VAR_VALUE;	// Initialize variable to 0
+		symbolTable[len].name[0] = EOS;
+		symbolTable[len].val = DEFAULT_VAR_VALUE;	// Initialize variable to 0
 	}
 }
 
 // Return index of variable/constant in symbol table
 int insertVariable(symbolNode* pVar) {
-	if (varTableFreeIndex < VAR_ITEMS) {
-		varTable[varTableFreeIndex] = *pVar;
-		return varTableFreeIndex++;
+	if (symbolTableFreeIndex < VAR_ITEMS) {
+		symbolTable[symbolTableFreeIndex] = *pVar;
+		return symbolTableFreeIndex++;
 	}
 	return VAR_TABLE_LIMIT;
 }
@@ -205,14 +205,14 @@ astNode* insertVariableNew(astNode* pVarTable, symbolNode* pVar) {
         debugAssert(ERR:insertVariableNew():pVarTable->pLeft == NULL);
         return NULL;
     }
-	if (varTableFreeIndex < VAR_ITEMS) {
-		varTable[varTableFreeIndex] = *pVar;
-		//return varTableFreeIndex++;
+	if (symbolTableFreeIndex < VAR_ITEMS) {
+		symbolTable[symbolTableFreeIndex] = *pVar;
+		//return symbolTableFreeIndex++;
 	} else {
         return NULL;
     }
     astNode* pVarNode = getNextASTNode();
-    pVarNode->pSymbolNode = varTable + varTableFreeIndex++;  // Just the pointer into the variable table
+    pVarNode->pSymbolNode = symbolTable + symbolTableFreeIndex++;  // Just the pointer into the variable table
     pVarNode->pNext = pVarTable->pLeft;
     pVarTable->pLeft = pVarNode;
 	return pVarNode;
@@ -225,11 +225,11 @@ int findVariableByName(const char* pVarName) {
     return findVariable(&thisNode);
 }
 
-// Return index where variable is located in varTable, or VAR_NOT_FOUND if not found.
+// Return index where variable is located in symbolTable, or VAR_NOT_FOUND if not found.
 int findVariable(symbolNode* pVar) {
 	int i;
-	for (i = 0; i < varTableFreeIndex; ++i) {
-		if (strncmp(varTable[i].name, pVar->name, VAR_NAME_LENGTH-1) == 0) {
+	for (i = 0; i < symbolTableFreeIndex; ++i) {
+		if (strncmp(symbolTable[i].name, pVar->name, VAR_NAME_LENGTH-1) == 0) {
 			return i;
 		}
 	}
@@ -249,7 +249,7 @@ astNode* findVariableNew(astNode* pVarTable, symbolNode* pVar) {
             return NULL;
         } else {
             symbolNode* pVarNode = pSymbolTable->pSymbolNode;
-            //symbolNode* varTable = pSymbolTable->pSymbolNode;
+            //symbolNode* symbolTable = pSymbolTable->pSymbolNode;
             if (strncmp(pVarNode->name, pVar->name, VAR_NAME_LENGTH-1) == 0) {
                 return pSymbolTable;
             }
@@ -261,18 +261,18 @@ astNode* findVariableNew(astNode* pVarTable, symbolNode* pVar) {
 // e.g. if (x==2) {x = 1;} else {x = 4;}
 // Note that both pIfStatementList and pElseStatementList can both be NULL. This can happen if they have empty statement lists.
 astNode* addNodeIfOrWhile(astNode* pExpr, astNode* pIfOrWhileStatementList, astNode* pElseStatementList, nodeType type) {
-    static int id = 0;
+    static int uniqueID = 0;
 
 	astNode* p = getNextASTNode();
     if (pExpr == NULL) {
         debugAssert(ERR:addNodeIfOrWhile():pExpr == NULL);
-		return p;
+		return NULL;
     }
-    p->type = type;
-    p->value = id++;
-    p->pLeft   = pExpr;
-    p->pCentre = pIfOrWhileStatementList;
-    p->pRight  = pElseStatementList;
+    p->type     = type;
+    p->value    = uniqueID++;
+    p->pLeft    = pExpr;
+    p->pCentre  = pIfOrWhileStatementList;
+    p->pRight   = pElseStatementList;
     return p;
 }
 
@@ -313,12 +313,12 @@ astNode* addFunction(const char* pFuncName, astNode* pArgList, astNode* pStateme
         }
     } else {
         // Make sure value = argCount and type = nodeFunctionCall
-        if (varTable[symbolIndex].val != argCount) {
-            debugAssert(ERR:addNodeFunctionCall():varTable[symbolIndex].val != argCount);
+        if (symbolTable[symbolIndex].val != argCount) {
+            debugAssert(ERR:addNodeFunctionCall():symbolTable[symbolIndex].val != argCount);
             return NULL;
         }
-        if (varTable[symbolIndex].type != nodeFunctionCall) {
-            debugAssert(ERR:addNodeFunctionCall():varTable[symbolIndex].type != nodeFunctionCall);
+        if (symbolTable[symbolIndex].type != nodeFunctionCall) {
+            debugAssert(ERR:addNodeFunctionCall():symbolTable[symbolIndex].type != nodeFunctionCall);
             return NULL;
         }
     }
@@ -394,7 +394,7 @@ astNode* addNodeSymbolIndex(int varIndex) {
 astNode* addNodeSymbolIndexNew(astNode* pVar) {
 	astNode* p = getNextASTNode();
 	p->type = nodeVariable;
-	p->value = (pVar->pSymbolNode - varTable) / sizeof(varTable[0]); // Calculate the symbol table index.
+	p->value = (pVar->pSymbolNode - symbolTable) / sizeof(symbolTable[0]); // Calculate the symbol table index.
 	return p;	
 }
 
@@ -432,6 +432,7 @@ astNode* getNextStatementNode(void) {
         initNode(statementTable + statementTableFreeIndex);
 		return statementTable + statementTableFreeIndex++;
 	}
+    debugAssert(ERR:FATAL:getNextStatementNode():);
 	return NULL;
 }
 
@@ -470,11 +471,11 @@ int addArrayToSymbolTable(char* var, const unsigned int maxRange) {
         if (insertVariable(&tmp) == VAR_TABLE_LIMIT) {
             return VAR_TABLE_LIMIT;
         }
-        if (varTableFreeIndex + maxRange >= VAR_ITEMS) {
-            varTableFreeIndex--;    // Remove variable just inserted with insertVariable().
+        if (symbolTableFreeIndex + maxRange >= VAR_ITEMS) {
+            symbolTableFreeIndex--;    // Remove variable just inserted with insertVariable().
             return VAR_TABLE_LIMIT;
         }
-        varTableFreeIndex += maxRange;
+        symbolTableFreeIndex += maxRange;
     }
     return found;
 }
@@ -489,11 +490,11 @@ astNode* addArrayToSymbolTableNew(astNode* pVarTable, char* var, const unsigned 
         if (pArrayNode == NULL) {
             return NULL;
         }
-        if (varTableFreeIndex + maxRange >= VAR_ITEMS) {
-            varTableFreeIndex--;    // Remove variable just inserted with insertVariable().
+        if (symbolTableFreeIndex + maxRange >= VAR_ITEMS) {
+            symbolTableFreeIndex--;    // Remove variable just inserted with insertVariable().
             return NULL;
         }
-        varTableFreeIndex += maxRange;
+        symbolTableFreeIndex += maxRange;
         return pArrayNode;
     }
     return pFoundNode;
@@ -563,10 +564,6 @@ astNode* addStatement(astNode* pStatementListNode, astNode* pStatementNode) {
         return pStatementListNode;
     }
 	astNode* p = getNextStatementNode();
-	if (p == NULL) {
-		//assert(p != NULL);
-		return p;
-	}
     p->type = nodeStatement;
 	p->pLeft = pStatementNode;
     p->pNext = pStatementListNode;
@@ -606,7 +603,7 @@ void walkSyntaxTree(astNode* pSyntaxNode, char* position, int indent, FILE* fp) 
             fwrite(tmp, 1, strlen(tmp), fp);
         }
 
-		printf(" Var: index,%d name,%s", pSyntaxNode->value, varTable[pSyntaxNode->value].name);
+		printf(" Var: index,%d name,%s", pSyntaxNode->value, symbolTable[pSyntaxNode->value].name);
 		break;
     case (nodeArray):
         if (fp != NULL) {
@@ -614,7 +611,7 @@ void walkSyntaxTree(astNode* pSyntaxNode, char* position, int indent, FILE* fp) 
             fwrite(tmp, 1, strlen(tmp), fp);
         }
 
-		printf(" Array: index,%d name,%s", pSyntaxNode->value, varTable[pSyntaxNode->value].name);
+		printf(" Array: index,%d name,%s", pSyntaxNode->value, symbolTable[pSyntaxNode->value].name);
         break;
     case (nodeIf):
         if (fp != NULL) {
@@ -754,7 +751,7 @@ void dumpSymbolTable(const char* fileName) {
         }
     }
     printf("\n\nSymbol table start:");
-	for (i = 0; i < varTableFreeIndex; ++i) {
+	for (i = 0; i < symbolTableFreeIndex; ++i) {
 		dumpSymbol(i, fpSymbol);
 	}
     printf("\nSymbol table end:\n");
@@ -764,10 +761,10 @@ void dumpSymbolTable(const char* fileName) {
 }
 
 void dumpSymbol(int i, FILE* fpSymbol) {
-    nodeType symbolType = isConstant(&varTable[i]) ? nodeConst : nodeVariable;
-	printf("\nindex:%d, name:%s, type:%d, val:%d", i, varTable[i].name, symbolType, varTable[i].val);
+    nodeType symbolType = isConstant(&symbolTable[i]) ? nodeConst : nodeVariable;
+	printf("\nindex:%d, name:%s, type:%d, val:%d", i, symbolTable[i].name, symbolType, symbolTable[i].val);
     char tmp[64];
-    sprintf(tmp, "%d %d\n", /*varTable[i].name,*/ symbolType, varTable[i].val);
+    sprintf(tmp, "%d %d\n", /*symbolTable[i].name,*/ symbolType, symbolTable[i].val);
     if (fpSymbol != NULL) {
         fwrite(tmp, 1, strlen(tmp), fpSymbol);
     }
