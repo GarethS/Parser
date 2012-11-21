@@ -16,7 +16,7 @@
 #define NOT_FOUND   (-1)
 
 // nodeStartAction is the start of an action sequence in the program
-typedef enum {nodeVar,
+typedef enum {nodeVariable,
                 nodeConst,
                 nodeOperator,
                 nodeArray,

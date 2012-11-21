@@ -2127,36 +2127,11 @@ astNode* insertVariableNew(astNode* pVarTable, symbolNode* pVar) {
         return NULL;
     }
     astNode* pVarNode = getNextASTNode();
-    pVarNode->pVarNode = varTable + varTableFreeIndex++;  // Just the pointer into the variable table
+    pVarNode->pSymbolNode = varTable + varTableFreeIndex++;  // Just the pointer into the variable table
     pVarNode->pNext = pVarTable->pLeft;
     pVarTable->pLeft = pVarNode;
 	return pVarNode;
 }
-
-#if 0
-// Get value of variable or constant.
-// Return index where variable is located in varTable, or -1 on failure.
-int getVariableIndex(symbolNode* pVar) {
-	int found = findVariable(pVar);
-	if (found == VAR_NOT_FOUND) {
-		return insertVariable(pVar);
-	}
-	return found;
-}
-
-// Set value of variable but not of constant.
-// Return index of variable or constant in symbol table
-int setVariable(symbolNode* pVar) {
-	int found = findVariable(pVar);
-	if (found == VAR_NOT_FOUND) {
-		return insertVariable(pVar);
-	} else {
-		// found it
-		varTable[found].val = pVar->val;
-	}
-	return found;
-}
-#endif
 
 // Return index of variable (included function names), or VAR_NOT_FOUND if not found.
 int findVariableByName(const char* pVarName) {
@@ -2184,12 +2159,12 @@ astNode* findVariableNew(astNode* pVarTable, symbolNode* pVar) {
     }
     astNode* pSymbolTable = pVarTable->pLeft;
 	for (; pSymbolTable != NULL; pSymbolTable = pSymbolTable->pNext) {
-        if (pSymbolTable->pVarNode == NULL) {
-            debugAssert(ERR:findVariableNew():pSymbolTable->pVarNode == NULL);
+        if (pSymbolTable->pSymbolNode == NULL) {
+            debugAssert(ERR:findVariableNew():pSymbolTable->pSymbolNode == NULL);
             return NULL;
         } else {
-            symbolNode* pVarNode = pSymbolTable->pVarNode;
-            //symbolNode* varTable = pSymbolTable->pVarNode;
+            symbolNode* pVarNode = pSymbolTable->pSymbolNode;
+            //symbolNode* varTable = pSymbolTable->pSymbolNode;
             if (strncmp(pVarNode->name, pVar->name, VAR_NAME_LENGTH-1) == 0) {
                 return pSymbolTable;
             }
@@ -2204,10 +2179,6 @@ astNode* addNodeIfOrWhile(astNode* pExpr, astNode* pIfOrWhileStatementList, astN
     static int id = 0;
 
 	astNode* p = getNextASTNode();
-	if (p == NULL) {
-        debugAssert(ERR:addNodeIfOrWhile():p == NULL);
-		return p;
-	}
     if (pExpr == NULL) {
         debugAssert(ERR:addNodeIfOrWhile():pExpr == NULL);
 		return p;
@@ -2223,10 +2194,6 @@ astNode* addNodeIfOrWhile(astNode* pExpr, astNode* pIfOrWhileStatementList, astN
 // e.g. '4 * c1'
 astNode* addNodeBinaryOperator(int operator, astNode* pLeft, astNode* pRight) {
 	astNode* p = getNextASTNode();
-	if (p == NULL) {
-        debugAssert("ERROR:addNodeBinaryOperator():p == NULL");
-		return p;
-	}
 	p->type = nodeOperator;
 	p->value = operator;
 	p->pLeft = pLeft;
@@ -2237,11 +2204,7 @@ astNode* addNodeBinaryOperator(int operator, astNode* pLeft, astNode* pRight) {
 // e.g. 'c3 == 4 * c1;' where 'operator' is '='
 astNode* addNodeVariableOperator(int operator, int varIndex, astNode* pRight) {
 	astNode* pLeft= getNextASTNode();
-	if (pLeft == NULL) {
-        debugAssert(ERR:addNodeVariableOperator():pLeft == NULL);
-		return pLeft;
-	}
-	pLeft->type = nodeVar;
+	pLeft->type = nodeVariable;
 	pLeft->value = varIndex;
     return addNodeBinaryOperator(operator, pLeft, pRight);
 }
@@ -2284,10 +2247,6 @@ astNode* addFunction(const char* pFuncName, astNode* pArgList, astNode* pStateme
     if (pStatementList == NULL) {
         // This is a function call
         astNode* p = getNextASTNode();
-        if (p == NULL) {
-            debugAssert(ERR:addNodeFunctionCall():p == NULL);
-            return p;
-        }
         p->type = nodeFunctionCall;
         p->value = symbolIndex;
         p->pNext = pArgList;
@@ -2321,10 +2280,6 @@ astNode* addNodeArray(char* pVarName, astNode* pASTNode) {
     //printf("xxx root=%d, left=%d, right=%d", pASTNode->value, pASTNode->pLeft->value, pASTNode->pRight->value);
     //printf("xxx root=%d\n", pASTNode->value);
 	astNode* pArrayVar = getNextASTNode();
-	if (pArrayVar == NULL) {
-        debugAssert(ERR:addNodeArray():pArrayVar == NULL);
-		return NULL;
-	}
 	pArrayVar->type = nodeArray;
     symbolNode pArrayNode;
     buildVariable(pVarName, 0, &pArrayNode);
@@ -2346,25 +2301,15 @@ astNode* addNodeArray(char* pVarName, astNode* pASTNode) {
 
 astNode* addNodeSymbolIndex(int varIndex) {
 	astNode* p = getNextASTNode();
-	if (p == NULL) {
-		debugAssert(ERR:addNodeSymbolIndex():p == NULL);
-		return NULL;
-	}
-	p->type = nodeVar;
+	p->type = nodeVariable;
 	p->value = varIndex;
 	return p;	
 }
 
 astNode* addNodeSymbolIndexNew(astNode* pVar) {
 	astNode* p = getNextASTNode();
-	if (p == NULL) {
-		debugAssert(ERR:addNodeSymbolIndex():p == NULL);
-		return NULL;
-	}
-	p->type = nodeVar;
-    symbolNode* pVarNode = pVar->pVarNode;
-	p->value = (pVarNode - varTable) / sizeof(varTable[0]); // Calculated the symbol table index.
-	//p->value = varIndex;
+	p->type = nodeVariable;
+	p->value = (pVar->pSymbolNode - varTable) / sizeof(varTable[0]); // Calculate the symbol table index.
 	return p;	
 }
 
@@ -2379,7 +2324,7 @@ void initNode(astNode* pSyntaxNode) {
     pSyntaxNode->pRight = NULL;
     pSyntaxNode->pCentre = NULL;
     pSyntaxNode->pNext = NULL;
-    pSyntaxNode->pVarNode = NULL;
+    pSyntaxNode->pSymbolNode = NULL;
 }
 
 astNode* getNextASTNode(void) {
@@ -2388,7 +2333,8 @@ astNode* getNextASTNode(void) {
         initNode(syntaxTable + syntaxTableFreeIndex);
 		return syntaxTable + syntaxTableFreeIndex++;
 	}
-    debugAssert(ERR:getNextASTNode():syntaxTableFreeIndex < SYNTAX_ITEMS);
+    // Cannot survive this condition.
+    debugAssert(FATAL:ERR:getNextASTNode():syntaxTableFreeIndex >= SYNTAX_ITEMS);
 	return NULL;
 }
 
@@ -2496,10 +2442,6 @@ astNode* addFcnDefnArgument(astNode* pArgumentListNode, const char* pArgumentNam
         return NULL;
     }
 	astNode* p = getNextASTNode();
-	if (p == NULL) {
-        debugAssert(ERR:addFcnDefnArgument():p == NULL);
-		return NULL;
-	}
     p->type = passByValueOrReference;
     // Create variable in symbol table
     symbolNode tmp;
@@ -2512,20 +2454,17 @@ astNode* addFcnDefnArgument(astNode* pArgumentListNode, const char* pArgumentNam
 
 astNode* addFcnCallArgument(astNode* pArgumentListNode, astNode* pArgumentNode) {
     if (pArgumentNode == NULL) {
-        // There are no arguments!
+        // There are no arguments! Just return current argument list.
+        return pArgumentListNode;
     }
-	astNode* p = getNextASTNode();
-	if (p == NULL) {
-        debugAssert(ERR:addFcnCallArgument():p == NULL);
-		return NULL;
-	}
-    if (pArgumentNode->type == nodeVar) {
+	astNode* pNewArgumentNode = getNextASTNode();
+    if (pArgumentNode->type == nodeVariable) {
         // Duplicate names should be handled already. No need to do anything here I think.
     }
-    p->type = nodeArgumentCall;
-	p->pLeft = pArgumentNode;
-    p->pNext = pArgumentListNode;
-	return p;
+    pNewArgumentNode->type = nodeArgumentCall;
+	pNewArgumentNode->pLeft = pArgumentNode;
+    pNewArgumentNode->pNext = pArgumentListNode;
+	return pNewArgumentNode;
 }
 
 astNode* addStatement(astNode* pStatementListNode, astNode* pStatementNode) {
@@ -2576,7 +2515,7 @@ void walkSyntaxTree(astNode* pSyntaxNode, char* position, int indent, FILE* fp) 
 		printf(" Operator: ");
         printOperator(pSyntaxNode->value);
 		break;
-	case (nodeVar):
+	case (nodeVariable):
         if (fp != NULL) {
             sprintf(tmp, "%d %s Variable %d\n", indent, position, pSyntaxNode->value);
             fwrite(tmp, 1, strlen(tmp), fp);
@@ -2740,7 +2679,7 @@ void dumpSymbolTable(const char* fileName) {
 }
 
 void dumpSymbol(int i, FILE* fpSymbol) {
-    nodeType symbolType = isConstant(&varTable[i]) ? nodeConst : nodeVar;
+    nodeType symbolType = isConstant(&varTable[i]) ? nodeConst : nodeVariable;
 	printf("\nindex:%d, name:%s, type:%d, val:%d", i, varTable[i].name, symbolType, varTable[i].val);
     char tmp[64];
     sprintf(tmp, "%d %d\n", /*varTable[i].name,*/ symbolType, varTable[i].val);

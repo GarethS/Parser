@@ -43,8 +43,8 @@ bool symbolTableEntry::operator==(symbolTableEntry& p) const {
 #if CYGWIN
 void symbolTableEntry::dumpEntry(void) {
     switch (type()) {
-    case nodeVar:
-        oss() << "nodeVar";
+    case nodeVariable:
+        oss() << "nodeVariable";
         break;
     case nodeConst:
         oss() << "nodeConst";

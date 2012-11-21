@@ -54,8 +54,8 @@ bool parseTreeEntry::operator==(parseTreeEntry& p) const {
 #if CYGWIN
 void parseTreeEntry::dumpEntry(void) {
     switch (type()) {
-    case nodeVar:
-        oss() << "nodeVar";
+    case nodeVariable:
+        oss() << "nodeVariable";
         break;
     case nodeConst:
         oss() << "nodeConst";

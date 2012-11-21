@@ -47,14 +47,14 @@ typedef struct thisASTNode {
 	char   idValue[4];		// Only used when operand = enumId
 #endif
 	nodeType type;
-    // If nodeConst or nodeVar, this is the index into symbol table. If nodeOperator, this is the operator. If nodeIf, the unique IF-THEN-ELSE id.
+    // If nodeConst or nodeVariable, this is the index into symbol table. If nodeOperator, this is the operator. If nodeIf, the unique IF-THEN-ELSE id.
 	int	value;	
 	
 	struct thisASTNode* pLeft;   // Overloaded by statement list to point to tree.
 	struct thisASTNode* pRight;
 	struct thisASTNode* pCentre;
 	struct thisASTNode* pNext;   // Used for walking each statement. When used by symbol table, walks to next table.
-    symbolNode* pVarNode;
+    symbolNode* pSymbolNode;
 } astNode;
 
 // Function prototypes.
