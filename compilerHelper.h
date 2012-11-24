@@ -27,8 +27,8 @@ typedef enum {nodeVariable,
                 nodeIf,
                 nodeWhile,
                 nodeStatement,
-                nodeArgumentCall,   // Used by function call
-                nodeArgumentValue,  // Used by function definition
+                nodeArgumentCall,       // Used by function call
+                nodeArgumentValue,      // Used by function definition
                 nodeArgumentReference,  // Used by function definition
                 nodeFloat,
                 nodeFunctionCall,

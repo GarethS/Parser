@@ -1,52 +1,38 @@
-                                                                                                                                                                         
-
-Symbol table start:
-index:0, name:counter, type:0, val:0
-index:1, name:4, type:1, val:4
-index:2, name:x, type:0, val:0
-index:3, name:1, type:1, val:1
-index:4, name:5, type:1, val:5
-index:5, name:6, type:1, val:6
-index:6, name:2, type:1, val:2
-index:7, name:d, type:0, val:0
-index:8, name:3, type:1, val:3
-index:9, name:7, type:1, val:7
-Symbol table end:
-
+                                                                                                                                                                                 
 Function: main
 Statement:
 ROOT
 If 2
-***LEFT Var: index,0 name,counter
-***RIGHT Var: index,1 name,4
+***LEFT Var: index,1 name,counter
+***RIGHT Var: index,2 name,4
 **LEFT Operator: <= 281
-***LEFT Var: index,2 name,x
-***RIGHT Var: index,3 name,1
+***LEFT Var: index,3 name,x
+***RIGHT Var: index,4 name,1
 **RIGHT Operator: > 279
 *LEFT Operator: || 276
 If EVAL == 0 JMP Else 2
 Statement:
-*LEFT Var: index,0 name,counter
-*RIGHT Var: index,4 name,5
+*LEFT Var: index,1 name,counter
+*RIGHT Var: index,5 name,5
 ROOT Operator: = 262
 Statement:
-*LEFT Var: index,0 name,counter
-*RIGHT Var: index,5 name,6
+*LEFT Var: index,1 name,counter
+*RIGHT Var: index,6 name,6
 ROOT Operator: = 262
 Statement:
-*LEFT Var: index,0 name,counter
-*RIGHT Var: index,5 name,6
+*LEFT Var: index,1 name,counter
+*RIGHT Var: index,6 name,6
 ROOT Operator: = 262
 Statement:
 ROOT
 If 0
-**LEFT Var: index,2 name,x
-**RIGHT Var: index,6 name,2
+**LEFT Var: index,3 name,x
+**RIGHT Var: index,7 name,2
 *LEFT Operator: == 283
 If EVAL == 0 JMP Else 0
 Statement:
-*LEFT Var: index,0 name,counter
-*RIGHT Var: index,1 name,4
+*LEFT Var: index,1 name,counter
+*RIGHT Var: index,2 name,4
 ROOT Operator: = 262
 JMP EndIf 0
 Else 0
@@ -54,32 +40,56 @@ EndIf 0
 Statement:
 ROOT
 While 1
-**LEFT Var: index,7 name,d
-**RIGHT Var: index,8 name,3
+**LEFT Var: index,8 name,d
+**RIGHT Var: index,9 name,3
 *LEFT Operator: == 283
 If EVAL == 0 JMP EndWhile 1
 Statement:
-*LEFT Var: index,7 name,d
-***LEFT Var: index,7 name,d
-***RIGHT Var: index,3 name,1
+*LEFT Var: index,8 name,d
+***LEFT Var: index,8 name,d
+***RIGHT Var: index,4 name,1
 **LEFT Operator: + 286
-**RIGHT Var: index,7 name,d
+**RIGHT Var: index,8 name,d
 *RIGHT Operator: + 286
 ROOT Operator: = 262
 EndWhile 1
 JMP EndIf 2
 Else 2
 Statement:
-*LEFT Var: index,0 name,counter
-*RIGHT Var: index,9 name,7
+*LEFT Var: index,1 name,counter
+*RIGHT Var: index,10 name,7
 ROOT Operator: = 262
 Statement:
-*LEFT Var: index,2 name,x
-*RIGHT Var: index,9 name,7
+*LEFT Var: index,3 name,x
+*RIGHT Var: index,10 name,7
 ROOT Operator: = 262
-EndIf 2	        
+EndIf 2	              
 Function: foo
 Statement:
-*LEFT Var: index,10 name,n
-*RIGHT Var: index,8 name,3
+*LEFT Var: index,15 name,n
+*RIGHT Var: index,14 name,3
 ROOT Operator: = 262
+Statement:
+*LEFT Var: index,16 name,b
+*RIGHT Var: index,13 name,x
+ROOT Operator: = 262
+
+Symbol table start:
+index:0, name:main, type:16, val:0
+index:1, name:counter, type:0, val:0
+index:2, name:4, type:1, val:4
+index:3, name:x, type:0, val:0
+index:4, name:1, type:1, val:1
+index:5, name:5, type:1, val:5
+index:6, name:6, type:1, val:6
+index:7, name:2, type:1, val:2
+index:8, name:d, type:0, val:0
+index:9, name:3, type:1, val:3
+index:10, name:7, type:1, val:7
+index:11, name:foo, type:16, val:0
+index:12, name:y, type:12, val:0
+index:13, name:x, type:12, val:1
+index:14, name:3, type:1, val:3
+index:15, name:n, type:0, val:0
+index:16, name:b, type:0, val:0
+Symbol table end:

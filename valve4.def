@@ -14,9 +14,11 @@ main () {
     } else {
         counter = 7;
         x = 7;
+        //foo(1,2);
     }
 }	
 
 foo(x, y) {
     n = 3;
+    b = x;
 }

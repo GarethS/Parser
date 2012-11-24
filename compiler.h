@@ -22,12 +22,20 @@ typedef enum {OP_PLUS, OP_MINUS, OP_MULT, OP_DIV, OP_XOR, OP_AND, OP_OR, OP_EQUA
 #define STATEMENT_ITEMS	(20000)
 //#define VAR_MAX_INDEX	(VAR_ITEMS-1)
 #define VAR_NAME_LENGTH	(12)
-#define VAR_NOT_FOUND	(-1)
-#define VAR_TABLE_LIMIT	(-2)	// Ran out of room in table
+#define VAR_NOT_FOUND	    (-1)
+#define VAR_TABLE_LIMIT	    (-2)	// Ran out of room in table
+#define VAR_TABLE_INVALID	(-3)
 #define VAR_PASS_BY_VALUE       (1)
 #define VAR_PASS_BY_REFERENCE   (2)
 
 #define DEFAULT_VAR_VALUE   (0)
+
+// To help make the AST traversal make more sense, these macros are used.
+// Statements:
+//#define pNextStatement  pNext
+//#define pStatement      pLeft
+// Symbols:
+//#define pNextSymbol     pNext
 
 typedef struct thisSymbolNode {
 	char name[VAR_NAME_LENGTH];
@@ -66,6 +74,7 @@ void printBoilerplate(void);
 //  'pattern {action} part of the grammar.
 astNode* addNodeBinaryOperator(int operator, astNode* pLeft, astNode* pRight);
 astNode* addNodeArray(char* pVar, astNode* pASTNode);
+astNode* addNodeArrayNew(astNode* pSymbolTable, char* pVarName, astNode* pASTNode);
 //astNode* addNodeArrayConstIndex(char* pVar, int symbolTableIndex);
 astNode* addNodeVariableOperator(int operator, int varIndex, astNode* pRight);
 astNode* addNodeSymbolIndex(int varIndex);
@@ -81,24 +90,28 @@ astNode* addNodeFunctionCall(char* pFuncName, astNode* pArgList);
 
 // New functions 
 int addVarToSymbolTable(char* var);
-astNode* addVarToSymbolTableNew(astNode* pVarTable, char* var);
+int addVarToSymbolTableNew(astNode* pVarTable, char* var);
 void buildVariable(const char* name, int value, symbolNode* varNode);
 int addArrayToSymbolTable(char* varName, const unsigned int maxRange);
-astNode* addArrayToSymbolTableNew(astNode* pVarTable, char* varName, const unsigned int maxRange);
+int addArrayToSymbolTableNew(astNode* pVarTable, char* varName, const unsigned int maxRange);
 
 void initVarTable(void);
 void initArgTable(void);
 int insertVariable(symbolNode* pVar);
+void insertVariableAtIndex(symbolNode* pVar, const unsigned int index);
+int insertVariableNew(astNode* pSymbolTable, symbolNode* pSymbol);
 //int getVariableIndex(symbolNode* pVar);
 //int setVariable(symbolNode* pVar);
 int findVariable(symbolNode* pVar);
-astNode* findVariableNew(astNode* pVarTable, symbolNode* pVar);
+int findVariableNew(astNode* pVarTable, symbolNode* pVar);
 int findVariableByName(const char* pVarName);
+int findVariableByNameNew(astNode* pSymbolTable, const char* pVarName);
 int isConstant(symbolNode* pVar);
 
 void initNode(astNode* pSyntaxNode);
 astNode* getNextASTNode(void);
 astNode* getNextStatementNode(void);
+int getSymbolTableIndex(symbolNode* pSymbol);
 
 void printIndent(const unsigned int indent);
 void printOperator(const int value);

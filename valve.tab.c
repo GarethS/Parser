@@ -78,9 +78,19 @@
 //#include <assert.h>
 #include "compiler.h"
 
-// Variable and constants symbol table
+// Variable, constant and function name symbol table
 symbolNode symbolTable[VAR_ITEMS];
-unsigned int symbolTableFreeIndex = 0;
+// When the function name gets parsed (the last thing to be done after parsing
+//  the statements), this is the index used to hold the function name. When
+//  this happens, a space will be reserved at the current 'symbolTableFreeIndex'
+//  to hold the next function name. 
+//  In addition, all the variables in the scope of the current function will be
+//  inspected, and if they are the same name as a function parameter, they will
+//  be marked as stack based variables. Their entry in the symbol table will,
+//  likewise, be noted.
+unsigned int symbolTableLastFunctionIndex = 0;
+unsigned int symbolTableFreeIndex = 1;
+unsigned int functionParameterIndex = 0; // Index of argument on execution stack so interpreter knows how to access this variable. 
 
 // Abstract syntax tree table
 astNode syntaxTable[SYNTAX_ITEMS];
@@ -92,7 +102,7 @@ unsigned int statementTableFreeIndex = 0;
 
 
 /* Line 189 of yacc.c  */
-#line 96 "valve.tab.c"
+#line 106 "valve.tab.c"
 
 /* Enabling traces.  */
 #ifndef YYDEBUG
@@ -165,7 +175,7 @@ typedef union YYSTYPE
 {
 
 /* Line 214 of yacc.c  */
-#line 38 "valve.y"
+#line 48 "valve.y"
 
 	int integer;
     float floatingPoint;
@@ -175,7 +185,7 @@ typedef union YYSTYPE
 
 
 /* Line 214 of yacc.c  */
-#line 179 "valve.tab.c"
+#line 189 "valve.tab.c"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
@@ -187,7 +197,7 @@ typedef union YYSTYPE
 
 
 /* Line 264 of yacc.c  */
-#line 191 "valve.tab.c"
+#line 201 "valve.tab.c"
 
 #ifdef short
 # undef short
@@ -471,7 +481,7 @@ static const yytype_uint8 yyprhs[] =
 static const yytype_int8 yyrhs[] =
 {
       40,     0,    -1,    42,    41,    -1,    -1,    41,    43,    -1,
-      18,    29,    50,    37,     8,    44,     9,    -1,    14,    29,
+      18,    29,    52,    37,     8,    44,     9,    -1,    14,    29,
       52,    37,     8,    44,     9,    -1,    -1,    44,    45,    -1,
       48,    -1,    47,    -1,    46,    -1,    14,    29,    50,    37,
       38,    -1,    54,    -1,    13,    29,    49,    37,     8,    44,
@@ -495,11 +505,11 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    74,    74,    76,    77,    79,    83,    86,    87,    89,
-      90,    91,    92,    93,    95,    97,   101,   103,   105,   107,
-     108,   109,   110,   111,   112,   113,   114,   115,   116,   117,
-     118,   119,   120,   121,   122,   123,   124,   125,   126,   128,
-     129,   131,   132,   134,   135,   136,   138,   139,   140,   142
+       0,    84,    84,    86,    87,    89,    91,    93,    94,    96,
+      97,    98,    99,   100,   102,   104,   108,   110,   112,   114,
+     115,   116,   117,   118,   119,   120,   121,   122,   123,   124,
+     125,   126,   127,   128,   129,   130,   131,   132,   133,   135,
+     136,   138,   139,   141,   142,   143,   145,   146,   147,   149
 };
 #endif
 
@@ -557,51 +567,51 @@ static const yytype_uint8 yyr2[] =
    means the default is an error.  */
 static const yytype_uint8 yydefact[] =
 {
-       0,     0,     0,     3,    39,     1,     2,    35,    36,     0,
-      41,     0,     0,     4,    39,     0,     0,     0,     0,     0,
+       0,     0,     0,     3,    43,     1,     2,    46,     0,     0,
+       0,     4,    44,    46,     0,    43,     0,    45,     7,     0,
+      47,     0,     0,     0,    48,     5,     0,     0,     0,     0,
+       8,    11,    10,     9,    13,     7,     0,     0,     0,     0,
+      39,     0,     0,     0,    35,    36,     0,     0,     0,     0,
+      41,     0,     0,     6,     0,    39,     0,     0,     0,     0,
        0,     0,     0,     0,     0,     0,     0,     0,     0,     0,
-       0,     0,    40,     0,    43,     0,     0,    19,    28,    27,
-      26,    25,    34,    33,    30,    32,    31,    29,    21,    20,
-      24,    23,    22,     0,     7,    46,     0,     0,    37,    38,
-      42,     0,    44,    46,     0,     5,     0,     0,     0,     0,
-       8,    11,    10,     9,    13,     0,    45,     7,     0,     0,
-       0,     0,    39,     0,    47,     0,     0,     0,     0,     0,
-       0,     0,     0,    48,     6,     0,     0,     0,    17,     0,
-       0,     0,     7,     7,    12,     0,    49,     0,     0,     0,
+       0,     0,     0,     0,     0,    17,    40,     0,     0,     0,
+       0,     0,    19,    28,    27,    26,    25,    34,    33,    30,
+      32,    31,    29,    21,    20,    24,    23,    22,     7,     7,
+       0,    12,     0,    49,    37,    38,     0,     0,    42,     0,
       15,    14,    18,     0,     7,     0,    16
 };
 
 /* YYDEFGOTO[NTERM-NUM].  */
 static const yytype_int8 yydefgoto[] =
 {
-      -1,     2,     6,     3,    13,    61,    70,    71,    72,    73,
-      10,    11,    32,    57,    62,    74
+      -1,     2,     6,     3,    11,    22,    30,    31,    32,    33,
+      50,    51,    76,     9,    12,    34
 };
 
 /* YYPACT[STATE-NUM] -- Index in YYTABLE of the portion describing
    STATE-NUM.  */
-#define YYPACT_NINF -76
+#define YYPACT_NINF -36
 static const yytype_int16 yypact[] =
 {
-     -11,     7,    43,   -76,   192,   -76,    41,    -6,   -76,   192,
-     171,    30,    39,   -76,   192,   192,    78,   192,   192,   192,
-     192,   192,   192,   192,   192,   192,   192,   192,   192,   192,
-     192,   192,    68,    77,    10,    54,   135,   -76,   186,   186,
-     186,   186,   210,   210,   210,   210,   210,   210,     8,     8,
-     -29,   -76,   -76,   192,   -76,   -76,    79,    55,   -76,   -76,
-     171,    24,    90,   -76,    99,   -76,   100,    84,   103,    -4,
-     -76,   -76,   -76,   -76,   -76,    12,    90,   -76,    91,   192,
-     192,   192,   192,   192,   -76,   119,    52,   129,    97,   116,
-      26,   114,   153,   -76,   -76,   128,   144,   162,   -76,   150,
-     175,   169,   -76,   -76,   -76,   192,   -76,   213,   219,    56,
-     188,   -76,   -76,   207,   -76,   225,   -76
+      -7,   -15,    18,   -36,    -5,   -36,     6,   -36,     9,     7,
+      14,   -36,    51,   -36,    54,    -5,    -4,    51,   -36,    30,
+     -36,    71,   201,    78,   -36,   -36,    73,    76,    77,    10,
+     -36,   -36,   -36,   -36,   -36,   -36,    64,    -8,    -8,    -8,
+      -8,    -8,   207,   102,   -16,   -36,    -8,    70,    89,    27,
+     163,    87,   127,   -36,   101,    -8,    -8,   108,    -8,    -8,
+      -8,    -8,    -8,    -8,    -8,    -8,    -8,    -8,    -8,    -8,
+      -8,    -8,    -8,   117,   135,   -36,   139,   118,   155,   136,
+     143,   145,   -36,   175,   175,   175,   175,   210,   210,   210,
+     210,   210,   210,     8,     8,   -32,   -36,   -36,   -36,   -36,
+      -8,   -36,    -8,   -36,   -36,   -36,   213,   219,   163,    50,
+     180,   -36,   -36,   196,   -36,   225,   -36
 };
 
 /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int16 yypgoto[] =
 {
-     -76,   -76,   -76,   -76,   -76,   -75,   -76,   -76,   -76,   -76,
-      -9,   -13,   -76,   -76,   168,   -76
+     -36,   -36,   -36,   -36,   -36,   -35,   -36,   -36,   -36,   -36,
+     -34,   158,   -36,   204,   212,   -36
 };
 
 /* YYTABLE[YYPACT[STATE-NUM]].  What to do in state STATE-NUM.  If
@@ -611,59 +621,59 @@ static const yytype_int16 yypgoto[] =
 #define YYTABLE_NINF -1
 static const yytype_uint8 yytable[] =
 {
-      16,    35,    86,    81,    30,    31,    36,     1,    38,    39,
-      40,    41,    42,    43,    44,    45,    46,    47,    48,    49,
-      50,    51,    52,    14,    55,    82,    84,   107,   108,    15,
-      56,    83,    85,    65,    66,    67,     4,    68,    69,   115,
-      29,    30,    31,     5,    60,    17,    18,    19,    20,    21,
-      22,    23,    24,    25,    26,    12,    27,    28,    29,    30,
-      31,    94,    66,    67,    98,    68,    69,    33,    34,    91,
-      88,    89,    90,    53,    92,    17,    18,    19,    20,    21,
-      22,    23,    24,    25,    26,    54,    27,    28,    29,    30,
-      31,    58,    64,    63,   112,    75,   109,    17,    18,    19,
-      20,    21,    22,    23,    24,    25,    26,    77,    27,    28,
-      29,    30,    31,    79,    78,    37,    17,    18,    19,    20,
-      21,    22,    23,    24,    25,    26,    87,    27,    28,    29,
-      30,    31,    80,    93,    96,    17,    18,    19,    20,    21,
-      22,    23,    24,    25,    26,    95,    27,    28,    29,    30,
-      31,    99,   102,    97,    17,    18,    19,    20,    21,    22,
-      23,    24,    25,    26,   101,    27,    28,    29,    30,    31,
-     103,    59,    17,    18,    19,    20,    21,    22,    23,    24,
-      25,    26,   105,    27,    28,    29,    30,    31,   104,   100,
-      17,    18,    19,    20,    21,    22,    23,    24,    25,    26,
-     113,    27,    28,    29,    30,    31,     7,   106,     8,    21,
-      22,    23,    24,    25,    26,   114,    27,    28,    29,    30,
-      31,     9,   110,    66,    67,     0,    68,    69,   111,    66,
-      67,    76,    68,    69,   116,    66,    67,     0,    68,    69,
-      27,    28,    29,    30,    31
+      42,    71,    72,    47,    48,    49,    44,    52,    45,     7,
+      20,     1,    57,    55,     4,     8,    21,    39,     5,    56,
+      10,    46,    81,    13,    83,    84,    85,    86,    87,    88,
+      89,    90,    91,    92,    93,    94,    95,    96,    97,    40,
+      70,    71,    72,    15,    14,    41,    58,    59,    60,    61,
+      62,    63,    64,    65,    66,    67,    16,    68,    69,    70,
+      71,    72,    18,   106,   107,    75,   108,    23,   109,    58,
+      59,    60,    61,    62,    63,    64,    65,    66,    67,   115,
+      68,    69,    70,    71,    72,    24,    35,    36,   112,    58,
+      59,    60,    61,    62,    63,    64,    65,    66,    67,    43,
+      68,    69,    70,    71,    72,    37,    38,    73,    58,    59,
+      60,    61,    62,    63,    64,    65,    66,    67,    54,    68,
+      69,    70,    71,    72,    77,    98,    74,    58,    59,    60,
+      61,    62,    63,    64,    65,    66,    67,    79,    68,    69,
+      70,    71,    72,    99,   100,    82,    58,    59,    60,    61,
+      62,    63,    64,    65,    66,    67,   101,    68,    69,    70,
+      71,    72,   102,    78,    58,    59,    60,    61,    62,    63,
+      64,    65,    66,    67,   103,    68,    69,    70,    71,    72,
+     104,   105,    58,    59,    60,    61,    62,    63,    64,    65,
+      66,    67,   113,    68,    69,    70,    71,    72,    62,    63,
+      64,    65,    66,    67,   114,    68,    69,    70,    71,    72,
+      25,    26,    27,    80,    28,    29,    53,    26,    27,    19,
+      28,    29,   110,    26,    27,    17,    28,    29,   111,    26,
+      27,     0,    28,    29,   116,    26,    27,     0,    28,    29,
+      68,    69,    70,    71,    72
 };
 
 static const yytype_int8 yycheck[] =
 {
-       9,    14,    77,     7,    33,    34,    15,    18,    17,    18,
-      19,    20,    21,    22,    23,    24,    25,    26,    27,    28,
-      29,    30,    31,    29,    14,    29,    14,   102,   103,    35,
-      20,    35,    20,     9,    10,    11,    29,    13,    14,   114,
-      32,    33,    34,     0,    53,    19,    20,    21,    22,    23,
-      24,    25,    26,    27,    28,    14,    30,    31,    32,    33,
-      34,     9,    10,    11,    38,    13,    14,    37,    29,    82,
-      79,    80,    81,     5,    83,    19,    20,    21,    22,    23,
-      24,    25,    26,    27,    28,     8,    30,    31,    32,    33,
-      34,    37,    37,    14,    38,     5,   105,    19,    20,    21,
-      22,    23,    24,    25,    26,    27,    28,     8,    30,    31,
-      32,    33,    34,    29,    14,    37,    19,    20,    21,    22,
-      23,    24,    25,    26,    27,    28,    35,    30,    31,    32,
-      33,    34,    29,    14,    37,    19,    20,    21,    22,    23,
-      24,    25,    26,    27,    28,    16,    30,    31,    32,    33,
-      34,    37,     8,    37,    19,    20,    21,    22,    23,    24,
-      25,    26,    27,    28,    36,    30,    31,    32,    33,    34,
-       8,    36,    19,    20,    21,    22,    23,    24,    25,    26,
-      27,    28,     7,    30,    31,    32,    33,    34,    38,    36,
-      19,    20,    21,    22,    23,    24,    25,    26,    27,    28,
-      12,    30,    31,    32,    33,    34,    14,    38,    16,    23,
-      24,    25,    26,    27,    28,     8,    30,    31,    32,    33,
-      34,    29,     9,    10,    11,    -1,    13,    14,     9,    10,
-      11,    63,    13,    14,     9,    10,    11,    -1,    13,    14,
+      35,    33,    34,    37,    38,    39,    14,    41,    16,    14,
+      14,    18,    46,    29,    29,    20,    20,     7,     0,    35,
+      14,    29,    56,    14,    58,    59,    60,    61,    62,    63,
+      64,    65,    66,    67,    68,    69,    70,    71,    72,    29,
+      32,    33,    34,    29,    37,    35,    19,    20,    21,    22,
+      23,    24,    25,    26,    27,    28,     5,    30,    31,    32,
+      33,    34,     8,    98,    99,    38,   100,    37,   102,    19,
+      20,    21,    22,    23,    24,    25,    26,    27,    28,   114,
+      30,    31,    32,    33,    34,    14,     8,    14,    38,    19,
+      20,    21,    22,    23,    24,    25,    26,    27,    28,    35,
+      30,    31,    32,    33,    34,    29,    29,    37,    19,    20,
+      21,    22,    23,    24,    25,    26,    27,    28,    16,    30,
+      31,    32,    33,    34,    37,     8,    37,    19,    20,    21,
+      22,    23,    24,    25,    26,    27,    28,    36,    30,    31,
+      32,    33,    34,     8,     5,    37,    19,    20,    21,    22,
+      23,    24,    25,    26,    27,    28,    38,    30,    31,    32,
+      33,    34,     7,    36,    19,    20,    21,    22,    23,    24,
+      25,    26,    27,    28,    38,    30,    31,    32,    33,    34,
+      37,    36,    19,    20,    21,    22,    23,    24,    25,    26,
+      27,    28,    12,    30,    31,    32,    33,    34,    23,    24,
+      25,    26,    27,    28,     8,    30,    31,    32,    33,    34,
+       9,    10,    11,    55,    13,    14,     9,    10,    11,    15,
+      13,    14,     9,    10,    11,    13,    13,    14,     9,    10,
+      11,    -1,    13,    14,     9,    10,    11,    -1,    13,    14,
       30,    31,    32,    33,    34
 };
 
@@ -671,17 +681,17 @@ static const yytype_int8 yycheck[] =
    symbol of state STATE-NUM.  */
 static const yytype_uint8 yystos[] =
 {
-       0,    18,    40,    42,    29,     0,    41,    14,    16,    29,
-      49,    50,    14,    43,    29,    35,    49,    19,    20,    21,
-      22,    23,    24,    25,    26,    27,    28,    30,    31,    32,
-      33,    34,    51,    37,    29,    50,    49,    37,    49,    49,
-      49,    49,    49,    49,    49,    49,    49,    49,    49,    49,
-      49,    49,    49,     5,     8,    14,    20,    52,    37,    36,
-      49,    44,    53,    14,    37,     9,    10,    11,    13,    14,
-      45,    46,    47,    48,    54,     5,    53,     8,    14,    29,
-      29,     7,    29,    35,    14,    20,    44,    35,    49,    49,
-      49,    50,    49,    14,     9,    16,    37,    37,    38,    37,
-      36,    36,     8,     8,    38,     7,    38,    44,    44,    49,
+       0,    18,    40,    42,    29,     0,    41,    14,    20,    52,
+      14,    43,    53,    14,    37,    29,     5,    53,     8,    52,
+      14,    20,    44,    37,    14,     9,    10,    11,    13,    14,
+      45,    46,    47,    48,    54,     8,    14,    29,    29,     7,
+      29,    35,    44,    35,    14,    16,    29,    49,    49,    49,
+      49,    50,    49,     9,    16,    29,    35,    49,    19,    20,
+      21,    22,    23,    24,    25,    26,    27,    28,    30,    31,
+      32,    33,    34,    37,    37,    38,    51,    37,    36,    36,
+      50,    49,    37,    49,    49,    49,    49,    49,    49,    49,
+      49,    49,    49,    49,    49,    49,    49,    49,     8,     8,
+       5,    38,     7,    38,    37,    36,    44,    44,    49,    49,
        9,     9,    38,    12,     8,    44,     9
 };
 
@@ -1505,345 +1515,343 @@ yyreduce:
         case 2:
 
 /* Line 1464 of yacc.c  */
-#line 74 "valve.y"
-    {;}
+#line 84 "valve.y"
+    {dumpSymbolTable("symbolTable.txt");;}
     break;
 
   case 3:
 
 /* Line 1464 of yacc.c  */
-#line 76 "valve.y"
+#line 86 "valve.y"
     {;}
     break;
 
   case 4:
 
 /* Line 1464 of yacc.c  */
-#line 77 "valve.y"
+#line 87 "valve.y"
     {;}
     break;
 
   case 5:
 
 /* Line 1464 of yacc.c  */
-#line 79 "valve.y"
-    {dumpSymbolTable("symbolTable.txt");
-                            printf("\nFunction: main"); 
-                            FILE* fp = fopen("tree.txt", "wb"); fwrite("0 0 Start 0\n", 1, 12, fp); /*printf("\nstatementList=%d", (int)$1);*/ walkList((yyvsp[(3) - (7)].pSyntaxNode), fp)/*args*/; walkList((yyvsp[(6) - (7)].pSyntaxNode), fp)/*statements*/; fclose(fp);;}
+#line 89 "valve.y"
+    {addFunction("main", (yyvsp[(3) - (7)].pSyntaxNode), (yyvsp[(6) - (7)].pSyntaxNode));;}
     break;
 
   case 6:
 
 /* Line 1464 of yacc.c  */
-#line 83 "valve.y"
+#line 91 "valve.y"
     {addFunction((yyvsp[(1) - (7)].string), (yyvsp[(3) - (7)].pSyntaxNode), (yyvsp[(6) - (7)].pSyntaxNode));;}
     break;
 
   case 7:
 
 /* Line 1464 of yacc.c  */
-#line 86 "valve.y"
+#line 93 "valve.y"
     {(yyval.pSyntaxNode) = NULL;;}
     break;
 
   case 8:
 
 /* Line 1464 of yacc.c  */
-#line 87 "valve.y"
-    {/*printf("\nstatementList:%d, statement:%d", (int)$1, (int)$2);*/ /*walkSyntaxTree($2, "start", 0);*/ (yyval.pSyntaxNode) = addStatement((yyvsp[(1) - (2)].pSyntaxNode), (yyvsp[(2) - (2)].pSyntaxNode)); /*printf(" newStatementList:%d", (int)$$);*/;}
+#line 94 "valve.y"
+    {/*printf("\nstatementList:%d, statement:%d", (int)$1, (int)$2);*/ (yyval.pSyntaxNode) = addStatement((yyvsp[(1) - (2)].pSyntaxNode), (yyvsp[(2) - (2)].pSyntaxNode)); /*printf(" newStatementList:%d", (int)$$);*/;}
     break;
 
   case 9:
 
 /* Line 1464 of yacc.c  */
-#line 89 "valve.y"
+#line 96 "valve.y"
     {/*printf("\nstatementAssign:%d", (int)$1); walkSyntaxTree($1, "start", 0);*/ (yyval.pSyntaxNode) = (yyvsp[(1) - (1)].pSyntaxNode);;}
     break;
 
   case 10:
 
 /* Line 1464 of yacc.c  */
-#line 90 "valve.y"
+#line 97 "valve.y"
     {/*printf("\nstatementIf:%d", (int)$1);*/ (yyval.pSyntaxNode) = (yyvsp[(1) - (1)].pSyntaxNode);;}
     break;
 
   case 11:
 
 /* Line 1464 of yacc.c  */
-#line 91 "valve.y"
+#line 98 "valve.y"
     {(yyval.pSyntaxNode) = (yyvsp[(1) - (1)].pSyntaxNode);;}
     break;
 
   case 12:
 
 /* Line 1464 of yacc.c  */
-#line 92 "valve.y"
+#line 99 "valve.y"
     {(yyval.pSyntaxNode) = addNodeFunctionCall((yyvsp[(1) - (5)].string), (yyvsp[(3) - (5)].pSyntaxNode));;}
     break;
 
   case 13:
 
 /* Line 1464 of yacc.c  */
-#line 93 "valve.y"
+#line 100 "valve.y"
     {(yyval.pSyntaxNode) = NULL;;}
     break;
 
   case 14:
 
 /* Line 1464 of yacc.c  */
-#line 95 "valve.y"
+#line 102 "valve.y"
     {(yyval.pSyntaxNode) = addNodeIfOrWhile((yyvsp[(3) - (7)].pSyntaxNode), (yyvsp[(6) - (7)].pSyntaxNode), NULL, nodeWhile);;}
     break;
 
   case 15:
 
 /* Line 1464 of yacc.c  */
-#line 97 "valve.y"
+#line 104 "valve.y"
     {/*printf("statementIf:statementList:%d", (int)$6);*/ (yyval.pSyntaxNode) = addNodeIfOrWhile((yyvsp[(3) - (7)].pSyntaxNode), (yyvsp[(6) - (7)].pSyntaxNode), NULL, nodeIf);;}
     break;
 
   case 16:
 
 /* Line 1464 of yacc.c  */
-#line 101 "valve.y"
+#line 108 "valve.y"
     {/*printf("statementIf:statementList:%d", (int)$6);*/ (yyval.pSyntaxNode) = addNodeIfOrWhile((yyvsp[(3) - (11)].pSyntaxNode), (yyvsp[(6) - (11)].pSyntaxNode), (yyvsp[(10) - (11)].pSyntaxNode), nodeIf);;}
     break;
 
   case 17:
 
 /* Line 1464 of yacc.c  */
-#line 103 "valve.y"
+#line 110 "valve.y"
     {(yyval.pSyntaxNode) = addNodeVariableOperator(EQUAL, addVarToSymbolTable((yyvsp[(1) - (4)].string)), (yyvsp[(3) - (4)].pSyntaxNode));;}
     break;
 
   case 18:
 
 /* Line 1464 of yacc.c  */
-#line 105 "valve.y"
+#line 112 "valve.y"
     {(yyval.pSyntaxNode) = addNodeBinaryOperator(EQUAL, addNodeArray((yyvsp[(1) - (7)].string), (yyvsp[(3) - (7)].pSyntaxNode)), (yyvsp[(6) - (7)].pSyntaxNode));;}
     break;
 
   case 19:
 
 /* Line 1464 of yacc.c  */
-#line 107 "valve.y"
+#line 114 "valve.y"
     {(yyval.pSyntaxNode) = (yyvsp[(2) - (3)].pSyntaxNode);;}
     break;
 
   case 20:
 
 /* Line 1464 of yacc.c  */
-#line 108 "valve.y"
+#line 115 "valve.y"
     {(yyval.pSyntaxNode) = addNodeBinaryOperator(PLUS, (yyvsp[(1) - (3)].pSyntaxNode), (yyvsp[(3) - (3)].pSyntaxNode));;}
     break;
 
   case 21:
 
 /* Line 1464 of yacc.c  */
-#line 109 "valve.y"
+#line 116 "valve.y"
     {(yyval.pSyntaxNode) = addNodeBinaryOperator(MINUS, (yyvsp[(1) - (3)].pSyntaxNode), (yyvsp[(3) - (3)].pSyntaxNode));;}
     break;
 
   case 22:
 
 /* Line 1464 of yacc.c  */
-#line 110 "valve.y"
+#line 117 "valve.y"
     {(yyval.pSyntaxNode) = addNodeBinaryOperator(MULT, (yyvsp[(1) - (3)].pSyntaxNode), (yyvsp[(3) - (3)].pSyntaxNode));;}
     break;
 
   case 23:
 
 /* Line 1464 of yacc.c  */
-#line 111 "valve.y"
+#line 118 "valve.y"
     {(yyval.pSyntaxNode) = addNodeBinaryOperator(DIV, (yyvsp[(1) - (3)].pSyntaxNode), (yyvsp[(3) - (3)].pSyntaxNode));;}
     break;
 
   case 24:
 
 /* Line 1464 of yacc.c  */
-#line 112 "valve.y"
+#line 119 "valve.y"
     {(yyval.pSyntaxNode) = addNodeBinaryOperator(XOR, (yyvsp[(1) - (3)].pSyntaxNode), (yyvsp[(3) - (3)].pSyntaxNode));;}
     break;
 
   case 25:
 
 /* Line 1464 of yacc.c  */
-#line 113 "valve.y"
+#line 120 "valve.y"
     {(yyval.pSyntaxNode) = addNodeBinaryOperator(AND, (yyvsp[(1) - (3)].pSyntaxNode), (yyvsp[(3) - (3)].pSyntaxNode));;}
     break;
 
   case 26:
 
 /* Line 1464 of yacc.c  */
-#line 114 "valve.y"
+#line 121 "valve.y"
     {(yyval.pSyntaxNode) = addNodeBinaryOperator(OR, (yyvsp[(1) - (3)].pSyntaxNode), (yyvsp[(3) - (3)].pSyntaxNode));;}
     break;
 
   case 27:
 
 /* Line 1464 of yacc.c  */
-#line 115 "valve.y"
+#line 122 "valve.y"
     {(yyval.pSyntaxNode) = addNodeBinaryOperator(BITWISEAND, (yyvsp[(1) - (3)].pSyntaxNode), (yyvsp[(3) - (3)].pSyntaxNode));;}
     break;
 
   case 28:
 
 /* Line 1464 of yacc.c  */
-#line 116 "valve.y"
+#line 123 "valve.y"
     {(yyval.pSyntaxNode) = addNodeBinaryOperator(BITWISEOR, (yyvsp[(1) - (3)].pSyntaxNode), (yyvsp[(3) - (3)].pSyntaxNode));;}
     break;
 
   case 29:
 
 /* Line 1464 of yacc.c  */
-#line 117 "valve.y"
+#line 124 "valve.y"
     {(yyval.pSyntaxNode) = addNodeBinaryOperator(TEST_FOR_EQUAL, (yyvsp[(1) - (3)].pSyntaxNode), (yyvsp[(3) - (3)].pSyntaxNode));;}
     break;
 
   case 30:
 
 /* Line 1464 of yacc.c  */
-#line 118 "valve.y"
+#line 125 "valve.y"
     {(yyval.pSyntaxNode) = addNodeBinaryOperator(NEQ, (yyvsp[(1) - (3)].pSyntaxNode), (yyvsp[(3) - (3)].pSyntaxNode));;}
     break;
 
   case 31:
 
 /* Line 1464 of yacc.c  */
-#line 119 "valve.y"
+#line 126 "valve.y"
     {(yyval.pSyntaxNode) = addNodeBinaryOperator(GEQ, (yyvsp[(1) - (3)].pSyntaxNode), (yyvsp[(3) - (3)].pSyntaxNode));;}
     break;
 
   case 32:
 
 /* Line 1464 of yacc.c  */
-#line 120 "valve.y"
+#line 127 "valve.y"
     {(yyval.pSyntaxNode) = addNodeBinaryOperator(LEQ, (yyvsp[(1) - (3)].pSyntaxNode), (yyvsp[(3) - (3)].pSyntaxNode));;}
     break;
 
   case 33:
 
 /* Line 1464 of yacc.c  */
-#line 121 "valve.y"
+#line 128 "valve.y"
     {(yyval.pSyntaxNode) = addNodeBinaryOperator(GTR, (yyvsp[(1) - (3)].pSyntaxNode), (yyvsp[(3) - (3)].pSyntaxNode));;}
     break;
 
   case 34:
 
 /* Line 1464 of yacc.c  */
-#line 122 "valve.y"
+#line 129 "valve.y"
     {(yyval.pSyntaxNode) = addNodeBinaryOperator(LSS, (yyvsp[(1) - (3)].pSyntaxNode), (yyvsp[(3) - (3)].pSyntaxNode));;}
     break;
 
   case 35:
 
 /* Line 1464 of yacc.c  */
-#line 123 "valve.y"
+#line 130 "valve.y"
     {(yyval.pSyntaxNode) = addNodeSymbolIndex(addVarToSymbolTable((yyvsp[(1) - (1)].string)));;}
     break;
 
   case 36:
 
 /* Line 1464 of yacc.c  */
-#line 124 "valve.y"
+#line 131 "valve.y"
     {(yyval.pSyntaxNode) = addNodeSymbolIndex(addVarToSymbolTable((yyvsp[(1) - (1)].string)));;}
     break;
 
   case 37:
 
 /* Line 1464 of yacc.c  */
-#line 125 "valve.y"
+#line 132 "valve.y"
     {(yyval.pSyntaxNode) = addNodeFunctionCall((yyvsp[(1) - (4)].string), (yyvsp[(3) - (4)].pSyntaxNode));;}
     break;
 
   case 38:
 
 /* Line 1464 of yacc.c  */
-#line 126 "valve.y"
+#line 133 "valve.y"
     {(yyval.pSyntaxNode) = addNodeArray((yyvsp[(1) - (4)].string), (yyvsp[(3) - (4)].pSyntaxNode));;}
     break;
 
   case 39:
 
 /* Line 1464 of yacc.c  */
-#line 128 "valve.y"
+#line 135 "valve.y"
     {(yyval.pSyntaxNode) = NULL;;}
     break;
 
   case 40:
 
 /* Line 1464 of yacc.c  */
-#line 129 "valve.y"
+#line 136 "valve.y"
     {(yyval.pSyntaxNode) = addFcnCallArgument((yyvsp[(2) - (2)].pSyntaxNode), (yyvsp[(1) - (2)].pSyntaxNode));;}
     break;
 
   case 41:
 
 /* Line 1464 of yacc.c  */
-#line 131 "valve.y"
+#line 138 "valve.y"
     {(yyval.pSyntaxNode) = NULL;;}
     break;
 
   case 42:
 
 /* Line 1464 of yacc.c  */
-#line 132 "valve.y"
+#line 139 "valve.y"
     {(yyval.pSyntaxNode) = addFcnCallArgument((yyvsp[(1) - (3)].pSyntaxNode), (yyvsp[(3) - (3)].pSyntaxNode));;}
     break;
 
   case 43:
 
 /* Line 1464 of yacc.c  */
-#line 134 "valve.y"
+#line 141 "valve.y"
     {(yyval.pSyntaxNode) = NULL;;}
     break;
 
   case 44:
 
 /* Line 1464 of yacc.c  */
-#line 135 "valve.y"
+#line 142 "valve.y"
     {(yyval.pSyntaxNode) = addFcnDefnArgument((yyvsp[(2) - (2)].pSyntaxNode), (yyvsp[(1) - (2)].string), VAR_PASS_BY_VALUE);;}
     break;
 
   case 45:
 
 /* Line 1464 of yacc.c  */
-#line 136 "valve.y"
+#line 143 "valve.y"
     {(yyval.pSyntaxNode) = addFcnDefnArgument((yyvsp[(3) - (3)].pSyntaxNode), (yyvsp[(2) - (3)].string), VAR_PASS_BY_REFERENCE);;}
     break;
 
   case 46:
 
 /* Line 1464 of yacc.c  */
-#line 138 "valve.y"
+#line 145 "valve.y"
     {(yyval.pSyntaxNode) = NULL;;}
     break;
 
   case 47:
 
 /* Line 1464 of yacc.c  */
-#line 139 "valve.y"
+#line 146 "valve.y"
     {(yyval.pSyntaxNode) = addFcnDefnArgument((yyvsp[(1) - (3)].pSyntaxNode), (yyvsp[(3) - (3)].string), VAR_PASS_BY_VALUE);;}
     break;
 
   case 48:
 
 /* Line 1464 of yacc.c  */
-#line 140 "valve.y"
+#line 147 "valve.y"
     {(yyval.pSyntaxNode) = addFcnDefnArgument((yyvsp[(1) - (4)].pSyntaxNode), (yyvsp[(4) - (4)].string), VAR_PASS_BY_REFERENCE);;}
     break;
 
   case 49:
 
 /* Line 1464 of yacc.c  */
-#line 142 "valve.y"
+#line 149 "valve.y"
     {(yyval.integer) = addArrayToSymbolTable((yyvsp[(2) - (6)].string), atoi((yyvsp[(4) - (6)].string)));;}
     break;
 
 
 
 /* Line 1464 of yacc.c  */
-#line 1847 "valve.tab.c"
+#line 1855 "valve.tab.c"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -2055,7 +2063,7 @@ yyreturn:
 
 
 /* Line 1684 of yacc.c  */
-#line 144 "valve.y"
+#line 151 "valve.y"
  /* Additional C code */
 
 
@@ -2110,40 +2118,54 @@ int insertVariable(symbolNode* pVar) {
 	return VAR_TABLE_LIMIT;
 }
 
-// Use new symbol table structure.
-astNode* insertVariableNew(astNode* pVarTable, symbolNode* pVar) {
-    if (pVarTable == NULL) {
-        debugAssert(ERR:insertVariableNew():pVarTable == NULL);
-        return NULL;
-    }
-    if (pVarTable->pLeft == NULL) {
-        debugAssert(ERR:insertVariableNew():pVarTable->pLeft == NULL);
-        return NULL;
-    }
-	if (symbolTableFreeIndex < VAR_ITEMS) {
-		symbolTable[symbolTableFreeIndex] = *pVar;
-		//return symbolTableFreeIndex++;
-	} else {
-        return NULL;
-    }
-    astNode* pVarNode = getNextASTNode();
-    pVarNode->pSymbolNode = symbolTable + symbolTableFreeIndex++;  // Just the pointer into the variable table
-    pVarNode->pNext = pVarTable->pLeft;
-    pVarTable->pLeft = pVarNode;
-	return pVarNode;
+// A little danger here. Forces symbol to be placed at a specific index.
+// Used to insert function name at start of symbol list for that function.
+void insertVariableAtIndex(symbolNode* pVar, const unsigned int index) {
+    symbolTable[index] = *pVar;
 }
 
-// Return index of variable (included function names), or VAR_NOT_FOUND if not found.
+int insertVariableNew(astNode* pSymbolTable, symbolNode* pSymbol) {
+    if (pSymbolTable == NULL) {
+        debugAssert(ERR:insertVariableNew():pSymbolTable == NULL);
+        return VAR_TABLE_INVALID;
+    }
+    if (pSymbolTable->pLeft == NULL) {
+        debugAssert(ERR:insertVariableNew():pSymbolTable->pLeft == NULL);
+        return VAR_TABLE_INVALID;
+    }
+	if (symbolTableFreeIndex < VAR_ITEMS) {
+		symbolTable[symbolTableFreeIndex] = *pSymbol;
+		//return symbolTableFreeIndex++;
+	} else {
+        debugAssert(ERR:FATAL:insertVariableNew():symbolTableFreeIndex >= VAR_ITEMS);
+        return VAR_TABLE_LIMIT;
+    }
+    astNode* p              = getNextASTNode();
+    p->pSymbolNode          = symbolTable + symbolTableFreeIndex++;  // Just the pointer into the variable table
+    p->pNext                = pSymbolTable->pLeft;  // Insert at top of list
+    pSymbolTable->pLeft     = p;
+	return symbolTableFreeIndex;
+}
+
+// Return index of variable (includes function names), or VAR_NOT_FOUND if not found.
 int findVariableByName(const char* pVarName) {
     symbolNode thisNode;
     buildVariable(pVarName, 0, &thisNode);
     return findVariable(&thisNode);
 }
 
+int findVariableByNameNew(astNode* pSymbolTable, const char* pVarName) {
+    symbolNode thisNode;
+    buildVariable(pVarName, 0, &thisNode);
+    return findVariableNew(pSymbolTable, &thisNode);
+}
+
 // Return index where variable is located in symbolTable, or VAR_NOT_FOUND if not found.
+// TODO: nodeConst can be anywhere in symbol table since its value never varies.
 int findVariable(symbolNode* pVar) {
 	int i;
-	for (i = 0; i < symbolTableFreeIndex; ++i) {
+    // Only search within the scope of the function currently being parsed.
+	for (i = symbolTableLastFunctionIndex; i < symbolTableFreeIndex; ++i) {
 		if (strncmp(symbolTable[i].name, pVar->name, VAR_NAME_LENGTH-1) == 0) {
 			return i;
 		}
@@ -2151,26 +2173,26 @@ int findVariable(symbolNode* pVar) {
 	return VAR_NOT_FOUND;
 }
 
-// Use new symbol table structure.
-astNode* findVariableNew(astNode* pVarTable, symbolNode* pVar) {
+int findVariableNew(astNode* pVarTable, symbolNode* pVar) {
     if (pVarTable == NULL) {
         debugAssert(ERR:findVariableNew():pVarTable == NULL);
-        return NULL;
+        return VAR_NOT_FOUND;
     }
-    astNode* pSymbolTable = pVarTable->pLeft;
-	for (; pSymbolTable != NULL; pSymbolTable = pSymbolTable->pNext) {
-        if (pSymbolTable->pSymbolNode == NULL) {
-            debugAssert(ERR:findVariableNew():pSymbolTable->pSymbolNode == NULL);
-            return NULL;
+    astNode* pSymbol = pVarTable->pLeft;
+	for (; pSymbol != NULL; pSymbol = pSymbol->pNext) {
+        if (pSymbol->pSymbolNode == NULL) {
+            debugAssert(ERR:findVariableNew():pSymbol->pSymbolNode == NULL);
+            return VAR_NOT_FOUND;
         } else {
-            symbolNode* pVarNode = pSymbolTable->pSymbolNode;
-            //symbolNode* symbolTable = pSymbolTable->pSymbolNode;
-            if (strncmp(pVarNode->name, pVar->name, VAR_NAME_LENGTH-1) == 0) {
-                return pSymbolTable;
+            //symbolNode* pVarNode = pSymbol->pSymbolNode;
+            //symbolNode* symbolTable = pSymbol->pSymbolNode;
+            if (strncmp(pSymbol->pSymbolNode->name, pVar->name, VAR_NAME_LENGTH-1) == 0) {
+                return getSymbolTableIndex(pSymbol->pSymbolNode);
+                //return pSymbol;
             }
         }
 	}
-	return NULL;
+	return VAR_NOT_FOUND;
 }
 
 // e.g. if (x==2) {x = 1;} else {x = 4;}
@@ -2193,19 +2215,19 @@ astNode* addNodeIfOrWhile(astNode* pExpr, astNode* pIfOrWhileStatementList, astN
 
 // e.g. '4 * c1'
 astNode* addNodeBinaryOperator(int operator, astNode* pLeft, astNode* pRight) {
-	astNode* p = getNextASTNode();
-	p->type = nodeOperator;
-	p->value = operator;
-	p->pLeft = pLeft;
-	p->pRight = pRight;
+	astNode* p  = getNextASTNode();
+	p->type     = nodeOperator;
+	p->value    = operator;
+	p->pLeft    = pLeft;
+	p->pRight   = pRight;
 	return p;	
 }
 
-// e.g. 'c3 == 4 * c1;' where 'operator' is '='
+// e.g. 'c3 = 4 * c1;' where 'operator' is '='
 astNode* addNodeVariableOperator(int operator, int varIndex, astNode* pRight) {
-	astNode* pLeft= getNextASTNode();
-	pLeft->type = nodeVariable;
-	pLeft->value = varIndex;
+	astNode* pLeft  = getNextASTNode();
+	pLeft->type     = nodeVariable;
+	pLeft->value    = varIndex;
     return addNodeBinaryOperator(operator, pLeft, pRight);
 }
 
@@ -2213,10 +2235,11 @@ astNode* addNodeVariableOperator(int operator, int varIndex, astNode* pRight) {
 astNode* addFunction(const char* pFuncName, astNode* pArgList, astNode* pStatementList) {
     // Essentially the same as addNodeFunctionCall() except this is a definition, not a call.
     // 0. Count number of arguments and assign that value to its syntax node
-    int argCount = countArguments(pArgList);
+    // int argCount = countArguments(pArgList);
     // 1. See if pFuncName is already in the symbol list. It could be there from
     //     another function call or the function definition.
     // Make symbol table entry and add to symbol table
+#if 0    
     int symbolIndex = findVariableByName(pFuncName);
     if (symbolIndex == VAR_NOT_FOUND) {
         symbolNode funcNode;
@@ -2237,6 +2260,7 @@ astNode* addFunction(const char* pFuncName, astNode* pArgList, astNode* pStateme
             return NULL;
         }
     }
+#endif    
     
     // 3. Walk statement list to see if there's already a call to this function.
     //     If so, check that the argument count matches
@@ -2248,7 +2272,7 @@ astNode* addFunction(const char* pFuncName, astNode* pArgList, astNode* pStateme
         // This is a function call
         astNode* p = getNextASTNode();
         p->type = nodeFunctionCall;
-        p->value = symbolIndex;
+        //p->value = symbolIndex;
         p->pNext = pArgList;
         return p;
     } else {
@@ -2260,7 +2284,21 @@ astNode* addFunction(const char* pFuncName, astNode* pArgList, astNode* pStateme
         }
         // TODO: Go through pStatementList, fixing up references to arguments so they get
         //  picked off the evaluation stack, rather than the symbol table.
-        FILE* fp = fopen("tree.txt", "ab");
+        // Add function name to reserved space in symbol table.
+        functionParameterIndex = 0; // Reset for every new function definition
+        symbolNode functionNode;
+        buildVariable(pFuncName, 0, &functionNode);
+        functionNode.type = nodeFunctionDefinition;
+        insertVariableAtIndex(&functionNode, symbolTableLastFunctionIndex);
+        symbolTableLastFunctionIndex = symbolTableFreeIndex++;
+        
+        FILE* fp = NULL;
+        if (strcmp(pFuncName, "main") == 0) {
+            // Clears the file so it doesn't keep getting bigger each time this program is run.
+            fp = fopen("tree.txt", "wb");
+        } else {
+            fp = fopen("tree.txt", "ab");
+        }
         fwrite("0 0 Start 0\n", 1, 12, fp);
         /*printf("\nstatementList=%d", (int)$1);*/
         walkList(pArgList, fp);
@@ -2299,17 +2337,34 @@ astNode* addNodeArray(char* pVarName, astNode* pASTNode) {
 #endif    
 }
 
+astNode* addNodeArrayNew(astNode* pSymbolTable, char* pVarName, astNode* pASTNode) {
+    // 1. Make new astNode to contain index of array (starting point). Actual array
+    //     index can't be determined until run time.
+    //printf("xxx root=%d, left=%d, right=%d", pASTNode->value, pASTNode->pLeft->value, pASTNode->pRight->value);
+    //printf("xxx root=%d\n", pASTNode->value);
+	astNode* pArrayVar = getNextASTNode();
+	pArrayVar->type = nodeArray;
+    symbolNode pArrayNode;
+    buildVariable(pVarName, 0, &pArrayNode);
+    pArrayVar->value = findVariableNew(pSymbolTable, &pArrayNode);
+    if (pArrayVar->value == VAR_NOT_FOUND) {
+        debugAssert(ERR: addNodeArrayNew():VAR_NOT_FOUND);
+        //return NULL;
+    }
+    return addNodeBinaryOperator(LBRACKET, pArrayVar, pASTNode);
+}
+
 astNode* addNodeSymbolIndex(int varIndex) {
-	astNode* p = getNextASTNode();
-	p->type = nodeVariable;
-	p->value = varIndex;
+	astNode* p  = getNextASTNode();
+	p->type     = nodeVariable;
+	p->value    = varIndex;
 	return p;	
 }
 
 astNode* addNodeSymbolIndexNew(astNode* pVar) {
-	astNode* p = getNextASTNode();
-	p->type = nodeVariable;
-	p->value = (pVar->pSymbolNode - symbolTable) / sizeof(symbolTable[0]); // Calculate the symbol table index.
+	astNode* p  = getNextASTNode();
+	p->type     = nodeVariable;
+	p->value    = getSymbolTableIndex(pVar->pSymbolNode);
 	return p;	
 }
 
@@ -2318,13 +2373,13 @@ void initNode(astNode* pSyntaxNode) {
         debugAssert(ERR:initNode():pSyntaxNode == NULL);
         return;
     }
-    pSyntaxNode->type = nodeInvalid;
-    pSyntaxNode->value = -1;
-    pSyntaxNode->pLeft = NULL;
-    pSyntaxNode->pRight = NULL;
-    pSyntaxNode->pCentre = NULL;
-    pSyntaxNode->pNext = NULL;
-    pSyntaxNode->pSymbolNode = NULL;
+    pSyntaxNode->type           = nodeInvalid;
+    pSyntaxNode->value          = -1;
+    pSyntaxNode->pLeft          = NULL;
+    pSyntaxNode->pRight         = NULL;
+    pSyntaxNode->pCentre        = NULL;
+    pSyntaxNode->pNext          = NULL;
+    pSyntaxNode->pSymbolNode    = NULL;
 }
 
 astNode* getNextASTNode(void) {
@@ -2367,10 +2422,12 @@ void buildVariable(const char* name, int value, symbolNode* varNode) {
 	strncpy(varNode->name, name, VAR_NAME_LENGTH-1);
 	varNode->name[VAR_NAME_LENGTH-1] = EOS;
 	varNode->val = value;
+    varNode->type = nodeVariable;
 	if (isConstant(varNode)) {
 		// Assume it's a constant, but can just treat it like a variable, making sure that
 		//  any variable that starts with a number (i.e. a constant) is never altered.
 		varNode->val = atoi(name);
+        varNode->type = nodeConst;
 	}
 }
 
@@ -2395,24 +2452,22 @@ int addArrayToSymbolTable(char* var, const unsigned int maxRange) {
     return found;
 }
 
-astNode* addArrayToSymbolTableNew(astNode* pVarTable, char* var, const unsigned int maxRange) {
+int addArrayToSymbolTableNew(astNode* pVarTable, char* var, const unsigned int maxRange) {
     //printf("addArrayToSymbolTable: %s, %d", var, maxRange);
     symbolNode tmp;
     buildVariable(var, maxRange, &tmp);
-    astNode* pFoundNode = findVariableNew(pVarTable, &tmp);
-	if (pFoundNode == NULL) {
-        astNode* pArrayNode = insertVariableNew(pVarTable, &tmp);
-        if (pArrayNode == NULL) {
-            return NULL;
+    int found = findVariableNew(pVarTable, &tmp);
+	if (found == VAR_NOT_FOUND) {
+        if (insertVariable(&tmp) == VAR_TABLE_LIMIT) {
+            return VAR_TABLE_LIMIT;
         }
         if (symbolTableFreeIndex + maxRange >= VAR_ITEMS) {
             symbolTableFreeIndex--;    // Remove variable just inserted with insertVariable().
-            return NULL;
+            return VAR_TABLE_LIMIT;
         }
         symbolTableFreeIndex += maxRange;
-        return pArrayNode;
     }
-    return pFoundNode;
+    return found;
 }
 
 // Return index in symbol table
@@ -2426,22 +2481,33 @@ int addVarToSymbolTable(char* var) {
 	return found;
 }
 
-// Use new symbol table structure.
-astNode* addVarToSymbolTableNew(astNode* pVarTable, char* var) {
-	symbolNode tmp;
-    buildVariable(var, DEFAULT_VAR_VALUE, &tmp);
-	astNode* pFoundNode = findVariableNew(pVarTable, &tmp);
-	if (pFoundNode == NULL) {
-		return insertVariableNew(pVarTable, &tmp);
+int addVarToSymbolTableNew(astNode* pVarTable, char* var) {
+	symbolNode tmpSymbolNode;
+    buildVariable(var, DEFAULT_VAR_VALUE, &tmpSymbolNode);
+	int found = findVariableNew(pVarTable, &tmpSymbolNode);
+	if (found == VAR_NOT_FOUND) {
+		return insertVariableNew(pVarTable, &tmpSymbolNode);
 	}
-	return pFoundNode;
+	return found;
 }
 
 astNode* addFcnDefnArgument(astNode* pArgumentListNode, const char* pArgumentName, const int passByValueOrReference) {
     if (pArgumentName == NULL) {
-        debugAssert(ERR:addFcnDefnArgument() pArgumentName == NULL);
+        debugAssert(ERR:addFcnDefnArgument():pArgumentName == NULL);
         return NULL;
     }
+    //printf("\naddFcnDefnArgument():pArgumentName=%s", pArgumentName);
+    // Add symbols to symbol table, marking them as function parameters.
+    // Note that the variable value refers to its index on the execution stack.
+    symbolNode argumentNode;
+    buildVariable(pArgumentName, functionParameterIndex++, &argumentNode);
+    argumentNode.type = nodeArgumentValue;
+    if (passByValueOrReference == VAR_PASS_BY_REFERENCE) {
+        argumentNode.type = nodeArgumentReference;
+    }
+    insertVariable(&argumentNode);
+    return NULL;
+    
 	astNode* p = getNextASTNode();
     p->type = passByValueOrReference;
     // Create variable in symbol table
@@ -2478,10 +2544,10 @@ astNode* addStatement(astNode* pStatementListNode, astNode* pStatementNode) {
         // Special case for array definition
         return pStatementListNode;
     }
-	astNode* p = getNextStatementNode();
-    p->type = nodeStatement;
-	p->pLeft = pStatementNode;
-    p->pNext = pStatementListNode;
+	astNode* p          = getNextStatementNode();
+    p->type             = nodeStatement;
+	p->pLeft            = pStatementNode;
+    p->pNext            = pStatementListNode;
 	return p;
 }
 
@@ -2666,7 +2732,9 @@ void dumpSymbolTable(const char* fileName) {
         }
     }
     printf("\n\nSymbol table start:");
-	for (i = 0; i < symbolTableFreeIndex; ++i) {
+    // Subtract 1 from symbolTableFreeIndex because the last index is a place
+    //  holder for the function name.
+	for (i = 0; i < symbolTableFreeIndex - 1; ++i) {
 		dumpSymbol(i, fpSymbol);
 	}
     printf("\nSymbol table end:\n");
@@ -2676,13 +2744,22 @@ void dumpSymbolTable(const char* fileName) {
 }
 
 void dumpSymbol(int i, FILE* fpSymbol) {
-    nodeType symbolType = isConstant(&symbolTable[i]) ? nodeConst : nodeVariable;
+    //nodeType symbolType = isConstant(&symbolTable[i]) ? nodeConst : nodeVariable;
+    nodeType symbolType = symbolTable[i].type;
 	printf("\nindex:%d, name:%s, type:%d, val:%d", i, symbolTable[i].name, symbolType, symbolTable[i].val);
     char tmp[64];
     sprintf(tmp, "%d %d\n", /*symbolTable[i].name,*/ symbolType, symbolTable[i].val);
     if (fpSymbol != NULL) {
         fwrite(tmp, 1, strlen(tmp), fpSymbol);
     }
+}
+
+// Calculate the symbol table index.
+int getSymbolTableIndex(symbolNode* pSymbol) {
+    if (pSymbol == NULL) {
+        debugAssert(ERR:getSymbolTableIndex():pSymbol == NULL);
+    }
+    return (pSymbol - symbolTable) / sizeof(symbolTable[0]);
 }
 
 void printOperator(const int value) {
