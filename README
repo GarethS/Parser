@@ -67,7 +67,8 @@ TODO:
 23. Are functions needed? YES! And need to pass parameters to these function.
      Do we need local variables? Yes, all variables are local to their function.
 24. Fix-up function parameter variables in function definition
-25. Fix-up function call indices after entire program is parsed     
+25. Fix-up function call indices after entire program is parsed 
+26. Error when number of function parameters don't match call and definition.    
 
 TODO optional:
 6. Multiple pattern{action} blocks

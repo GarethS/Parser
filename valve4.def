@@ -14,11 +14,14 @@ main () {
     } else {
         counter = 7;
         x = 7;
-        //foo(1,2);
+        // foo() hasn't been defined yet so can't check number of parameters until
+        //  we reach the definition
+        foo(1,2);
+        q = x;
     }
 }	
 
-foo(x, y) {
+foo(x, &y) {
     n = 3;
     b = x;
 }

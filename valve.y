@@ -194,7 +194,7 @@ void initVarTable(void) {
 }
 
 // Return index of variable/constant in symbol table
-int insertVariable(symbolNode* pVar) {
+int insertSymbol(symbolNode* pVar) {
 	if (symbolTableFreeIndex < VAR_ITEMS) {
 		symbolTable[symbolTableFreeIndex] = *pVar;
 		return symbolTableFreeIndex++;
@@ -204,77 +204,30 @@ int insertVariable(symbolNode* pVar) {
 
 // A little danger here. Forces symbol to be placed at a specific index.
 // Used to insert function name at start of symbol list for that function.
-void insertVariableAtIndex(symbolNode* pVar, const unsigned int index) {
+void insertSymbolAtIndex(symbolNode* pVar, const unsigned int index) {
+    if (index >= VAR_ITEMS) {
+        debugAssert(ERR:insertSymbolAtIndex():index >= VAR_ITEMS);
+        return;
+    }
     symbolTable[index] = *pVar;
 }
 
-int insertVariableNew(astNode* pSymbolTable, symbolNode* pSymbol) {
-    if (pSymbolTable == NULL) {
-        debugAssert(ERR:insertVariableNew():pSymbolTable == NULL);
-        return VAR_TABLE_INVALID;
-    }
-    if (pSymbolTable->pLeft == NULL) {
-        debugAssert(ERR:insertVariableNew():pSymbolTable->pLeft == NULL);
-        return VAR_TABLE_INVALID;
-    }
-	if (symbolTableFreeIndex < VAR_ITEMS) {
-		symbolTable[symbolTableFreeIndex] = *pSymbol;
-		//return symbolTableFreeIndex++;
-	} else {
-        debugAssert(ERR:FATAL:insertVariableNew():symbolTableFreeIndex >= VAR_ITEMS);
-        return VAR_TABLE_LIMIT;
-    }
-    astNode* p              = getNextASTNode();
-    p->pSymbolNode          = symbolTable + symbolTableFreeIndex++;  // Just the pointer into the variable table
-    p->pNext                = pSymbolTable->pLeft;  // Insert at top of list
-    pSymbolTable->pLeft     = p;
-	return symbolTableFreeIndex;
-}
-
 // Return index of variable (includes function names), or VAR_NOT_FOUND if not found.
-int findVariableByName(const char* pVarName) {
+int findSymbolByName(const char* pVarName) {
     symbolNode thisNode;
-    buildVariable(pVarName, 0, &thisNode);
-    return findVariable(&thisNode);
-}
-
-int findVariableByNameNew(astNode* pSymbolTable, const char* pVarName) {
-    symbolNode thisNode;
-    buildVariable(pVarName, 0, &thisNode);
-    return findVariableNew(pSymbolTable, &thisNode);
+    buildSymbol(pVarName, 0, &thisNode);
+    return findSymbol(&thisNode);
 }
 
 // Return index where variable is located in symbolTable, or VAR_NOT_FOUND if not found.
-// TODO: nodeConst can be anywhere in symbol table since its value never varies.
-int findVariable(symbolNode* pVar) {
+// TODO: nodeConst can be anywhere in symbol table since its value never varies. May want to reuse these constants.
+int findSymbol(symbolNode* pVar) {
 	int i;
     // Only search within the scope of the function currently being parsed.
 	for (i = symbolTableLastFunctionIndex; i < symbolTableFreeIndex; ++i) {
 		if (strncmp(symbolTable[i].name, pVar->name, VAR_NAME_LENGTH-1) == 0) {
 			return i;
 		}
-	}
-	return VAR_NOT_FOUND;
-}
-
-int findVariableNew(astNode* pVarTable, symbolNode* pVar) {
-    if (pVarTable == NULL) {
-        debugAssert(ERR:findVariableNew():pVarTable == NULL);
-        return VAR_NOT_FOUND;
-    }
-    astNode* pSymbol = pVarTable->pLeft;
-	for (; pSymbol != NULL; pSymbol = pSymbol->pNext) {
-        if (pSymbol->pSymbolNode == NULL) {
-            debugAssert(ERR:findVariableNew():pSymbol->pSymbolNode == NULL);
-            return VAR_NOT_FOUND;
-        } else {
-            //symbolNode* pVarNode = pSymbol->pSymbolNode;
-            //symbolNode* symbolTable = pSymbol->pSymbolNode;
-            if (strncmp(pSymbol->pSymbolNode->name, pVar->name, VAR_NAME_LENGTH-1) == 0) {
-                return getSymbolTableIndex(pSymbol->pSymbolNode);
-                //return pSymbol;
-            }
-        }
 	}
 	return VAR_NOT_FOUND;
 }
@@ -315,21 +268,27 @@ astNode* addNodeVariableOperator(int operator, int varIndex, astNode* pRight) {
     return addNodeBinaryOperator(operator, pLeft, pRight);
 }
 
+astNode* addNodeFunctionCall(char* pFuncName, astNode* pArgList) {
+    printf("\naddNodeFunctionCall()");
+    return addFunction(pFuncName, pArgList, NULL);
+}
+
 // Add either a function call (pStatmentList = NULL) or a function definition (pStatmentList != NULL)
 astNode* addFunction(const char* pFuncName, astNode* pArgList, astNode* pStatementList) {
     // Essentially the same as addNodeFunctionCall() except this is a definition, not a call.
     // 0. Count number of arguments and assign that value to its syntax node
-    // int argCount = countArguments(pArgList);
+    //int argCount = countArguments(pArgList);
+    //printf("\naddFunction():argCount=%d", argCount);
     // 1. See if pFuncName is already in the symbol list. It could be there from
     //     another function call or the function definition.
     // Make symbol table entry and add to symbol table
 #if 0    
-    int symbolIndex = findVariableByName(pFuncName);
+    int symbolIndex = findSymbolByName(pFuncName);
     if (symbolIndex == VAR_NOT_FOUND) {
         symbolNode funcNode;
-        buildVariable(pFuncName, argCount, &funcNode);
+        buildSymbol(pFuncName, argCount, &funcNode);
         funcNode.type = nodeFunctionCall;
-        int symbolIndex = insertVariable(&funcNode);
+        int symbolIndex = insertSymbol(&funcNode);
         if (symbolIndex == VAR_TABLE_LIMIT) {
             return NULL;
         }
@@ -354,6 +313,24 @@ astNode* addFunction(const char* pFuncName, astNode* pArgList, astNode* pStateme
     
     if (pStatementList == NULL) {
         // This is a function call
+        // Add function name to this function's symbol table
+        int argCount = countArguments(pArgList);
+        int symbolIndex = findSymbolByName(pFuncName);
+        if (symbolIndex == VAR_NOT_FOUND) {
+            symbolNode funcNode;
+            buildSymbol(pFuncName, argCount, &funcNode);
+            funcNode.type = nodeFunctionCall;
+            int symbolIndex = insertSymbol(&funcNode);
+            if (symbolIndex == VAR_TABLE_LIMIT) {
+                return NULL;
+            }
+        } else {
+            if (symbolTable[symbolIndex].type != nodeFunctionCall) {
+                debugAssert(ERR:addNodeFunctionCall():symbolTable[symbolIndex].type != nodeFunctionCall);
+                return NULL;
+            }
+        }
+        
         astNode* p = getNextASTNode();
         p->type = nodeFunctionCall;
         //p->value = symbolIndex;
@@ -369,11 +346,11 @@ astNode* addFunction(const char* pFuncName, astNode* pArgList, astNode* pStateme
         // TODO: Go through pStatementList, fixing up references to arguments so they get
         //  picked off the evaluation stack, rather than the symbol table.
         // Add function name to reserved space in symbol table.
-        functionParameterIndex = 0; // Reset for every new function definition
         symbolNode functionNode;
-        buildVariable(pFuncName, 0, &functionNode);
+        buildSymbol(pFuncName, functionParameterIndex /* equals num arguments */, &functionNode);
+        functionParameterIndex = 0; // Reset for every new function definition. Don't need it any more for this function.
         functionNode.type = nodeFunctionDefinition;
-        insertVariableAtIndex(&functionNode, symbolTableLastFunctionIndex);
+        insertSymbolAtIndex(&functionNode, symbolTableLastFunctionIndex);
         symbolTableLastFunctionIndex = symbolTableFreeIndex++;
         
         FILE* fp = NULL;
@@ -392,10 +369,6 @@ astNode* addFunction(const char* pFuncName, astNode* pArgList, astNode* pStateme
     return NULL;
 }
 
-astNode* addNodeFunctionCall(char* pFuncName, astNode* pArgList) {
-    return addFunction(pFuncName, pArgList, NULL);
-}
-
 astNode* addNodeArray(char* pVarName, astNode* pASTNode) {
     // 1. Make new astNode to contain index of array (starting point). Actual array
     //     index can't be determined until run time.
@@ -404,8 +377,8 @@ astNode* addNodeArray(char* pVarName, astNode* pASTNode) {
 	astNode* pArrayVar = getNextASTNode();
 	pArrayVar->type = nodeArray;
     symbolNode pArrayNode;
-    buildVariable(pVarName, 0, &pArrayNode);
-	pArrayVar->value = findVariable(&pArrayNode);
+    buildSymbol(pVarName, 0, &pArrayNode);
+	pArrayVar->value = findSymbol(&pArrayNode);
     if (pArrayVar->value == VAR_NOT_FOUND) {
         debugAssert(ERR: addNodeArray():VAR_NOT_FOUND);
     }
@@ -421,34 +394,10 @@ astNode* addNodeArray(char* pVarName, astNode* pASTNode) {
 #endif    
 }
 
-astNode* addNodeArrayNew(astNode* pSymbolTable, char* pVarName, astNode* pASTNode) {
-    // 1. Make new astNode to contain index of array (starting point). Actual array
-    //     index can't be determined until run time.
-    //printf("xxx root=%d, left=%d, right=%d", pASTNode->value, pASTNode->pLeft->value, pASTNode->pRight->value);
-    //printf("xxx root=%d\n", pASTNode->value);
-	astNode* pArrayVar = getNextASTNode();
-	pArrayVar->type = nodeArray;
-    symbolNode pArrayNode;
-    buildVariable(pVarName, 0, &pArrayNode);
-    pArrayVar->value = findVariableNew(pSymbolTable, &pArrayNode);
-    if (pArrayVar->value == VAR_NOT_FOUND) {
-        debugAssert(ERR: addNodeArrayNew():VAR_NOT_FOUND);
-        //return NULL;
-    }
-    return addNodeBinaryOperator(LBRACKET, pArrayVar, pASTNode);
-}
-
 astNode* addNodeSymbolIndex(int varIndex) {
 	astNode* p  = getNextASTNode();
 	p->type     = nodeVariable;
 	p->value    = varIndex;
-	return p;	
-}
-
-astNode* addNodeSymbolIndexNew(astNode* pVar) {
-	astNode* p  = getNextASTNode();
-	p->type     = nodeVariable;
-	p->value    = getSymbolTableIndex(pVar->pSymbolNode);
 	return p;	
 }
 
@@ -463,7 +412,6 @@ void initNode(astNode* pSyntaxNode) {
     pSyntaxNode->pRight         = NULL;
     pSyntaxNode->pCentre        = NULL;
     pSyntaxNode->pNext          = NULL;
-    pSyntaxNode->pSymbolNode    = NULL;
 }
 
 astNode* getNextASTNode(void) {
@@ -490,7 +438,7 @@ astNode* getNextStatementNode(void) {
 	return NULL;
 }
 
-// A variable may not start with a number. One that does is consider a constant.
+// A variable may not start with a number. One that does is considered a constant.
 int isConstant(symbolNode* pVar) {
 	if (isdigit((int)pVar->name[0])) {
 		return TRUE;
@@ -498,9 +446,9 @@ int isConstant(symbolNode* pVar) {
 	return FALSE;
 }
 
-void buildVariable(const char* name, int value, symbolNode* varNode) {
+void buildSymbol(const char* name, int value, symbolNode* varNode) {
     if (name == NULL || varNode == NULL) {
-        debugAssert(ERR:buildVariable());
+        debugAssert(ERR:buildSymbol());
         return;
     }
 	strncpy(varNode->name, name, VAR_NAME_LENGTH-1);
@@ -521,32 +469,14 @@ void buildVariable(const char* name, int value, symbolNode* varNode) {
 int addArrayToSymbolTable(char* var, const unsigned int maxRange) {
     //printf("addArrayToSymbolTable: %s, %d", var, maxRange);
     symbolNode tmp;
-    buildVariable(var, maxRange, &tmp);
-    int found = findVariable(&tmp);
+    buildSymbol(var, maxRange, &tmp);
+    int found = findSymbol(&tmp);
 	if (found == VAR_NOT_FOUND) {
-        if (insertVariable(&tmp) == VAR_TABLE_LIMIT) {
+        if (insertSymbol(&tmp) == VAR_TABLE_LIMIT) {
             return VAR_TABLE_LIMIT;
         }
         if (symbolTableFreeIndex + maxRange >= VAR_ITEMS) {
-            symbolTableFreeIndex--;    // Remove variable just inserted with insertVariable().
-            return VAR_TABLE_LIMIT;
-        }
-        symbolTableFreeIndex += maxRange;
-    }
-    return found;
-}
-
-int addArrayToSymbolTableNew(astNode* pVarTable, char* var, const unsigned int maxRange) {
-    //printf("addArrayToSymbolTable: %s, %d", var, maxRange);
-    symbolNode tmp;
-    buildVariable(var, maxRange, &tmp);
-    int found = findVariableNew(pVarTable, &tmp);
-	if (found == VAR_NOT_FOUND) {
-        if (insertVariable(&tmp) == VAR_TABLE_LIMIT) {
-            return VAR_TABLE_LIMIT;
-        }
-        if (symbolTableFreeIndex + maxRange >= VAR_ITEMS) {
-            symbolTableFreeIndex--;    // Remove variable just inserted with insertVariable().
+            symbolTableFreeIndex--;    // Remove variable just inserted with insertSymbol().
             return VAR_TABLE_LIMIT;
         }
         symbolTableFreeIndex += maxRange;
@@ -557,24 +487,20 @@ int addArrayToSymbolTableNew(astNode* pVarTable, char* var, const unsigned int m
 // Return index in symbol table
 int addVarToSymbolTable(char* var) {
 	symbolNode tmp;
-    buildVariable(var, DEFAULT_VAR_VALUE, &tmp);
-	int found = findVariable(&tmp);
+    buildSymbol(var, DEFAULT_VAR_VALUE, &tmp);
+	int found = findSymbol(&tmp);
+    if (var == NULL) {
+        debugAssert(ERR:addVarToSymbolTable():var == NULL);
+        return VAR_NOT_FOUND;
+    }
 	if (found == VAR_NOT_FOUND) {
-		return insertVariable(&tmp);
+		return insertSymbol(&tmp);
 	}
 	return found;
 }
 
-int addVarToSymbolTableNew(astNode* pVarTable, char* var) {
-	symbolNode tmpSymbolNode;
-    buildVariable(var, DEFAULT_VAR_VALUE, &tmpSymbolNode);
-	int found = findVariableNew(pVarTable, &tmpSymbolNode);
-	if (found == VAR_NOT_FOUND) {
-		return insertVariableNew(pVarTable, &tmpSymbolNode);
-	}
-	return found;
-}
-
+// TODO: Return value of this function can be void since we're inserting arguments right in the symbol table. 
+//        The only AST is used in a function call, not the definition.
 astNode* addFcnDefnArgument(astNode* pArgumentListNode, const char* pArgumentName, const int passByValueOrReference) {
     if (pArgumentName == NULL) {
         debugAssert(ERR:addFcnDefnArgument():pArgumentName == NULL);
@@ -584,19 +510,19 @@ astNode* addFcnDefnArgument(astNode* pArgumentListNode, const char* pArgumentNam
     // Add symbols to symbol table, marking them as function parameters.
     // Note that the variable value refers to its index on the execution stack.
     symbolNode argumentNode;
-    buildVariable(pArgumentName, functionParameterIndex++, &argumentNode);
+    buildSymbol(pArgumentName, functionParameterIndex++, &argumentNode);
     argumentNode.type = nodeArgumentValue;
     if (passByValueOrReference == VAR_PASS_BY_REFERENCE) {
         argumentNode.type = nodeArgumentReference;
     }
-    insertVariable(&argumentNode);
+    insertSymbol(&argumentNode);
     return NULL;
     
 	astNode* p = getNextASTNode();
     p->type = passByValueOrReference;
     // Create variable in symbol table
     symbolNode tmp;
-    buildVariable(pArgumentName, DEFAULT_VAR_VALUE, &tmp);
+    buildSymbol(pArgumentName, DEFAULT_VAR_VALUE, &tmp);
     tmp.type = passByValueOrReference;
     //p->Left = 
     p->pNext = pArgumentListNode;
@@ -615,6 +541,7 @@ astNode* addFcnCallArgument(astNode* pArgumentListNode, astNode* pArgumentNode) 
     pNewArgumentNode->type = nodeArgumentCall;
 	pNewArgumentNode->pLeft = pArgumentNode;
     pNewArgumentNode->pNext = pArgumentListNode;
+    printf("\naddFcnCallArgument()");
 	return pNewArgumentNode;
 }
 
@@ -754,6 +681,12 @@ void walkSyntaxTree(astNode* pSyntaxNode, char* position, int indent, FILE* fp) 
             fwrite(tmp, 1, strlen(tmp), fp);
         }
         break;
+    case (nodeFunctionCall):
+        if (fp != NULL) {
+            sprintf(tmp, "%d %s Function call%d\n", indent, position, pSyntaxNode->value);
+            fwrite(tmp, 1, strlen(tmp), fp);
+        }
+        break;
 	default:
 		printf(" walkSyntaxTree: Unknown type:%d", pSyntaxNode->type);
 		break;
@@ -787,6 +720,7 @@ unsigned int countArguments(astNode* pArgNode) {
     unsigned int argCount = 0;
     while (pArgNode != NULL) {
         // This node should either be for a function call or function definition
+        printf("\ncountArguments()");
         if (pArgNode->type != nodeArgumentCall && pArgNode->type != nodeArgumentValue && pArgNode->type != nodeArgumentReference) {
             debugAssert(ERR:countArguments());
             // Shouldn't happen

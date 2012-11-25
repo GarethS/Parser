@@ -1,5 +1,5 @@
 /*************************************************
- *  Copyright (C) 2012 by Gareth Scott
+ *  Copyright (C) 2011, 2012 by Gareth Scott
  *  All Rights Reserved
  *************************************************/
 
@@ -15,28 +15,28 @@
 
 #define NOT_FOUND   (-1)
 
-// nodeStartAction is the start of an action sequence in the program
 typedef enum {nodeVariable,
                 nodeConst,
                 nodeOperator,
                 nodeArray,
                 nodeInvalid,
                 nodeStartAction,
-                nodeNOP,    // Skip past this node.
+                nodeNOP,                // Skip past this node.
                 nodeTemporary,
                 nodeIf,
                 nodeWhile,
-                nodeStatement,
+                nodeStatement,          // 10
                 nodeArgumentCall,       // Used by function call
                 nodeArgumentValue,      // Used by function definition
                 nodeArgumentReference,  // Used by function definition
                 nodeFloat,
-                nodeFunctionCall,
+                nodeFunctionCall,       // 15
                 nodeFunctionDefinition,
                 nodeMotorMove,
                 nodeMotorGetPosition
                 } nodeType;
-typedef enum {symbolVar, symbolConst, symbolArray, symbolInvalid, symbolTemporary, symbolFloat} symbolType;
-typedef enum {nodeLeft, nodeRight, nodeRoot} nodePosition;
+                
+//typedef enum {symbolVar, symbolConst, symbolArray, symbolInvalid, symbolTemporary, symbolFloat} symbolType;
+//typedef enum {nodeLeft, nodeRight, nodeRoot} nodePosition;
 
 #endif /* _COMPILERHELPER_H_ */

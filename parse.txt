@@ -1,4 +1,9 @@
-                                                                                                                                                                                 
+                                                                                                                                                                                             
+addFcnCallArgument()
+addFcnCallArgument()
+addNodeFunctionCall()
+countArguments()
+countArguments()              
 Function: main
 Statement:
 ROOT
@@ -63,15 +68,21 @@ Statement:
 *LEFT Var: index,3 name,x
 *RIGHT Var: index,10 name,7
 ROOT Operator: = 262
+Statement:
+ROOT
+Statement:
+*LEFT Var: index,12 name,q
+*RIGHT Var: index,3 name,x
+ROOT Operator: = 262
 EndIf 2	              
 Function: foo
 Statement:
-*LEFT Var: index,15 name,n
-*RIGHT Var: index,14 name,3
+*LEFT Var: index,17 name,n
+*RIGHT Var: index,16 name,3
 ROOT Operator: = 262
 Statement:
-*LEFT Var: index,16 name,b
-*RIGHT Var: index,13 name,x
+*LEFT Var: index,18 name,b
+*RIGHT Var: index,15 name,x
 ROOT Operator: = 262
 
 Symbol table start:
@@ -86,10 +97,12 @@ index:7, name:2, type:1, val:2
 index:8, name:d, type:0, val:0
 index:9, name:3, type:1, val:3
 index:10, name:7, type:1, val:7
-index:11, name:foo, type:16, val:0
-index:12, name:y, type:12, val:0
-index:13, name:x, type:12, val:1
-index:14, name:3, type:1, val:3
-index:15, name:n, type:0, val:0
-index:16, name:b, type:0, val:0
+index:11, name:foo, type:15, val:2
+index:12, name:q, type:0, val:0
+index:13, name:foo, type:16, val:2
+index:14, name:y, type:13, val:0
+index:15, name:x, type:12, val:1
+index:16, name:3, type:1, val:3
+index:17, name:n, type:0, val:0
+index:18, name:b, type:0, val:0
 Symbol table end:

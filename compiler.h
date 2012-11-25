@@ -1,5 +1,5 @@
 /*************************************************
- *  Copyright (C) 2003 by  Gareth Scott
+ *  Copyright (C) 2003, 2011, 2012 by  Gareth Scott
  *  All Rights Reserved
  *************************************************/
 
@@ -10,11 +10,8 @@
 //#include <assert.h>
 #include "compilerHelper.h"
 
-typedef enum {enumId, enumAnd, enumOr, enumAction} operandType;	// old stuff
-
-typedef enum {OP_PLUS, OP_MINUS, OP_MULT, OP_DIV, OP_XOR, OP_AND, OP_OR, OP_EQUALS, OP_TEST_FOR_EQUAL} operatorType;
-
-
+//typedef enum {enumId, enumAnd, enumOr, enumAction} operandType;	// old stuff
+//typedef enum {OP_PLUS, OP_MINUS, OP_MULT, OP_DIV, OP_XOR, OP_AND, OP_OR, OP_EQUALS, OP_TEST_FOR_EQUAL} operatorType;
 
 #define EOS				'\0'	// End of string
 #define VAR_ITEMS		(2000)  // Size of variable table
@@ -24,18 +21,11 @@ typedef enum {OP_PLUS, OP_MINUS, OP_MULT, OP_DIV, OP_XOR, OP_AND, OP_OR, OP_EQUA
 #define VAR_NAME_LENGTH	(12)
 #define VAR_NOT_FOUND	    (-1)
 #define VAR_TABLE_LIMIT	    (-2)	// Ran out of room in table
-#define VAR_TABLE_INVALID	(-3)
+//#define VAR_TABLE_INVALID	(-3)
 #define VAR_PASS_BY_VALUE       (1)
 #define VAR_PASS_BY_REFERENCE   (2)
 
 #define DEFAULT_VAR_VALUE   (0)
-
-// To help make the AST traversal make more sense, these macros are used.
-// Statements:
-//#define pNextStatement  pNext
-//#define pStatement      pLeft
-// Symbols:
-//#define pNextSymbol     pNext
 
 typedef struct thisSymbolNode {
 	char name[VAR_NAME_LENGTH];
@@ -49,11 +39,6 @@ typedef struct thisSymbolNode {
 
 // Generic node structure the abstract syntax tree is made of.
 typedef struct thisASTNode {
-#if 0
-	// old stuff - meaning left over from first compiler done for Circuit Cellar
-	operandType operand;	// &&, ||
-	char   idValue[4];		// Only used when operand = enumId
-#endif
 	nodeType type;
     // If nodeConst or nodeVariable, this is the index into symbol table. If nodeOperator, this is the operator. If nodeIf, the unique IF-THEN-ELSE id.
 	int	value;	
@@ -62,23 +47,17 @@ typedef struct thisASTNode {
 	struct thisASTNode* pRight;
 	struct thisASTNode* pCentre;
 	struct thisASTNode* pNext;   // Used for walking each statement. When used by symbol table, walks to next table.
-    symbolNode* pSymbolNode;
 } astNode;
 
 // Function prototypes.
 void yyerror (char* s);
 int  yylex(void);
-void printBoilerplate(void);
+//void printBoilerplate(void);
 
-// The following 2 functions are only used by 'pattern' in the 
-//  'pattern {action} part of the grammar.
 astNode* addNodeBinaryOperator(int operator, astNode* pLeft, astNode* pRight);
 astNode* addNodeArray(char* pVar, astNode* pASTNode);
-astNode* addNodeArrayNew(astNode* pSymbolTable, char* pVarName, astNode* pASTNode);
-//astNode* addNodeArrayConstIndex(char* pVar, int symbolTableIndex);
 astNode* addNodeVariableOperator(int operator, int varIndex, astNode* pRight);
 astNode* addNodeSymbolIndex(int varIndex);
-astNode* addNodeSymbolIndexNew(astNode* pVar);
 astNode* addNodeIfOrWhile(astNode* pExpr, astNode* pIfOrWhileStatementList, astNode* pElseStatementList, nodeType type);
 
 astNode* addStatement(astNode* pStatementListNode, astNode* pStatementNode);
@@ -87,25 +66,19 @@ astNode* addFcnDefnArgument(astNode* pArgumentListNode, const char* pArgumentNam
 astNode* addFunction(const char* pFuncName, astNode* pArgList, astNode* pStatementList);
 astNode* addNodeFunctionCall(char* pFuncName, astNode* pArgList);
 
-
 // New functions 
 int addVarToSymbolTable(char* var);
-int addVarToSymbolTableNew(astNode* pVarTable, char* var);
-void buildVariable(const char* name, int value, symbolNode* varNode);
+void buildSymbol(const char* name, int value, symbolNode* varNode);
 int addArrayToSymbolTable(char* varName, const unsigned int maxRange);
-int addArrayToSymbolTableNew(astNode* pVarTable, char* varName, const unsigned int maxRange);
 
 void initVarTable(void);
 void initArgTable(void);
-int insertVariable(symbolNode* pVar);
-void insertVariableAtIndex(symbolNode* pVar, const unsigned int index);
-int insertVariableNew(astNode* pSymbolTable, symbolNode* pSymbol);
+int insertSymbol(symbolNode* pVar);
+void insertSymbolAtIndex(symbolNode* pVar, const unsigned int index);
 //int getVariableIndex(symbolNode* pVar);
 //int setVariable(symbolNode* pVar);
-int findVariable(symbolNode* pVar);
-int findVariableNew(astNode* pVarTable, symbolNode* pVar);
-int findVariableByName(const char* pVarName);
-int findVariableByNameNew(astNode* pSymbolTable, const char* pVarName);
+int findSymbol(symbolNode* pVar);
+int findSymbolByName(const char* pVarName);
 int isConstant(symbolNode* pVar);
 
 void initNode(astNode* pSyntaxNode);
