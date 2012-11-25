@@ -686,6 +686,7 @@ void walkSyntaxTree(astNode* pSyntaxNode, char* position, int indent, FILE* fp) 
             sprintf(tmp, "%d %s Function call%d\n", indent, position, pSyntaxNode->value);
             fwrite(tmp, 1, strlen(tmp), fp);
         }
+        walkList(pSyntaxNode, fp);
         break;
 	default:
 		printf(" walkSyntaxTree: Unknown type:%d", pSyntaxNode->type);

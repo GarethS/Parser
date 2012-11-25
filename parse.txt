@@ -71,6 +71,10 @@ ROOT Operator: = 262
 Statement:
 ROOT
 Statement:
+ROOT Var: index,7 name,2
+Statement:
+ROOT Var: index,4 name,1
+Statement:
 *LEFT Var: index,12 name,q
 *RIGHT Var: index,3 name,x
 ROOT Operator: = 262
