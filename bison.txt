@@ -998,7 +998,29 @@ Reducing stack by rule 35 (line 131):
 -> $$ = nterm expr ()
 Stack now 0 1 4 9 14 18 22 27 37 47 73 98 106 110 113 114 115 29 40 50 76 100
 Entering state 108
+Reading a token: --accepting rule at line 48 ("+")
+Next token is token PLUS ()
+Shifting token PLUS ()
+Entering state 69
+Reading a token: --accepting rule at line 70 ("x")
+Next token is token VAR ()
+Shifting token VAR ()
+Entering state 44
 Reading a token: --accepting rule at line 43 (")")
+Next token is token RPAREN ()
+Reducing stack by rule 34 (line 130):
+   $1 = token VAR ()
+-> $$ = nterm expr ()
+Stack now 0 1 4 9 14 18 22 27 37 47 73 98 106 110 113 114 115 29 40 50 76 100 108 69
+Entering state 94
+Next token is token RPAREN ()
+Reducing stack by rule 19 (line 115):
+   $1 = nterm expr ()
+   $2 = token PLUS ()
+   $3 = nterm expr ()
+-> $$ = nterm expr ()
+Stack now 0 1 4 9 14 18 22 27 37 47 73 98 106 110 113 114 115 29 40 50 76 100
+Entering state 108
 Next token is token RPAREN ()
 Reducing stack by rule 41 (line 139):
    $1 = nterm commaArgList ()

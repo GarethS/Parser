@@ -269,7 +269,7 @@ astNode* addNodeVariableOperator(int operator, int varIndex, astNode* pRight) {
 }
 
 astNode* addNodeFunctionCall(char* pFuncName, astNode* pArgList) {
-    printf("\naddNodeFunctionCall()");
+    //printf("\naddNodeFunctionCall()");
     return addFunction(pFuncName, pArgList, NULL);
 }
 
@@ -320,7 +320,7 @@ astNode* addFunction(const char* pFuncName, astNode* pArgList, astNode* pStateme
             symbolNode funcNode;
             buildSymbol(pFuncName, argCount, &funcNode);
             funcNode.type = nodeFunctionCall;
-            int symbolIndex = insertSymbol(&funcNode);
+            symbolIndex = insertSymbol(&funcNode);
             if (symbolIndex == VAR_TABLE_LIMIT) {
                 return NULL;
             }
@@ -333,7 +333,7 @@ astNode* addFunction(const char* pFuncName, astNode* pArgList, astNode* pStateme
         
         astNode* p = getNextASTNode();
         p->type = nodeFunctionCall;
-        //p->value = symbolIndex;
+        p->value = symbolIndex;
         p->pNext = pArgList;
         return p;
     } else {
@@ -341,7 +341,7 @@ astNode* addFunction(const char* pFuncName, astNode* pArgList, astNode* pStateme
         if (pFuncName == NULL) {
             debugAssert(ERR:addNodeFunction():pFuncName == NULL);
         } else {
-            printf("\nFunction: %s", pFuncName);
+            printf("\nFunctionDefn: %s", pFuncName);
         }
         // TODO: Go through pStatementList, fixing up references to arguments so they get
         //  picked off the evaluation stack, rather than the symbol table.
@@ -541,7 +541,7 @@ astNode* addFcnCallArgument(astNode* pArgumentListNode, astNode* pArgumentNode) 
     pNewArgumentNode->type = nodeArgumentCall;
 	pNewArgumentNode->pLeft = pArgumentNode;
     pNewArgumentNode->pNext = pArgumentListNode;
-    printf("\naddFcnCallArgument()");
+    //printf("\naddFcnCallArgument()");
 	return pNewArgumentNode;
 }
 
@@ -680,12 +680,15 @@ void walkSyntaxTree(astNode* pSyntaxNode, char* position, int indent, FILE* fp) 
             sprintf(tmp, "%d %s Argument call%d\n", indent, position, pSyntaxNode->value);
             fwrite(tmp, 1, strlen(tmp), fp);
         }
+        //printf("\n Function argument:");
         break;
     case (nodeFunctionCall):
         if (fp != NULL) {
-            sprintf(tmp, "%d %s Function call%d\n", indent, position, pSyntaxNode->value);
+            sprintf(tmp, "%d %s FunctionCall %d\n", indent, position, pSyntaxNode->value);
             fwrite(tmp, 1, strlen(tmp), fp);
         }
+        // Function name in symbol index 11. Why is value -1?
+        printf(" FunctionCall: index,%d name,%s", pSyntaxNode->value, symbolTable[pSyntaxNode->value].name);
         walkList(pSyntaxNode, fp);
         break;
 	default:
@@ -721,7 +724,7 @@ unsigned int countArguments(astNode* pArgNode) {
     unsigned int argCount = 0;
     while (pArgNode != NULL) {
         // This node should either be for a function call or function definition
-        printf("\ncountArguments()");
+        //printf("\ncountArguments()");
         if (pArgNode->type != nodeArgumentCall && pArgNode->type != nodeArgumentValue && pArgNode->type != nodeArgumentReference) {
             debugAssert(ERR:countArguments());
             // Shouldn't happen

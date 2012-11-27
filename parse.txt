@@ -1,10 +1,5 @@
-                                                                                                                                                                                             
-addFcnCallArgument()
-addFcnCallArgument()
-addNodeFunctionCall()
-countArguments()
-countArguments()              
-Function: main
+                                                                                                                                                                                                           
+FunctionDefn: main
 Statement:
 ROOT
 If 2
@@ -69,9 +64,11 @@ Statement:
 *RIGHT Var: index,10 name,7
 ROOT Operator: = 262
 Statement:
-ROOT
+ROOT FunctionCall: index,11 name,foo
 Statement:
-ROOT Var: index,7 name,2
+*LEFT Var: index,7 name,2
+*RIGHT Var: index,3 name,x
+ROOT Operator: + 286
 Statement:
 ROOT Var: index,4 name,1
 Statement:
@@ -79,7 +76,7 @@ Statement:
 *RIGHT Var: index,3 name,x
 ROOT Operator: = 262
 EndIf 2	              
-Function: foo
+FunctionDefn: foo
 Statement:
 *LEFT Var: index,17 name,n
 *RIGHT Var: index,16 name,3
