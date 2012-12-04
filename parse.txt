@@ -1,15 +1,15 @@
-                                                                                                                                                                                                           
+                                                                                                                                                                                                                    
 FunctionDefn: main
 Statement:
 ROOT
 If 2
 ***LEFT Var: index,1 name,counter
 ***RIGHT Var: index,2 name,4
-**LEFT Operator: <= 281
+**LEFT Operator: <= 284
 ***LEFT Var: index,3 name,x
 ***RIGHT Var: index,4 name,1
-**RIGHT Operator: > 279
-*LEFT Operator: || 276
+**RIGHT Operator: > 282
+*LEFT Operator: || 279
 If EVAL == 0 JMP Else 2
 Statement:
 *LEFT Var: index,1 name,counter
@@ -28,7 +28,7 @@ ROOT
 If 0
 **LEFT Var: index,3 name,x
 **RIGHT Var: index,7 name,2
-*LEFT Operator: == 283
+*LEFT Operator: == 286
 If EVAL == 0 JMP Else 0
 Statement:
 *LEFT Var: index,1 name,counter
@@ -42,15 +42,15 @@ ROOT
 While 1
 **LEFT Var: index,8 name,d
 **RIGHT Var: index,9 name,3
-*LEFT Operator: == 283
+*LEFT Operator: == 286
 If EVAL == 0 JMP EndWhile 1
 Statement:
 *LEFT Var: index,8 name,d
 ***LEFT Var: index,8 name,d
 ***RIGHT Var: index,4 name,1
-**LEFT Operator: + 286
+**LEFT Operator: + 289
 **RIGHT Var: index,8 name,d
-*RIGHT Operator: + 286
+*RIGHT Operator: + 289
 ROOT Operator: = 262
 EndWhile 1
 JMP EndIf 2
@@ -68,22 +68,28 @@ ROOT FunctionCall: index,11 name,foo
 Statement:
 *LEFT Var: index,7 name,2
 *RIGHT Var: index,3 name,x
-ROOT Operator: + 286
+ROOT Operator: + 289
 Statement:
 ROOT Var: index,4 name,1
 Statement:
 *LEFT Var: index,12 name,q
 *RIGHT Var: index,3 name,x
 ROOT Operator: = 262
+Statement:
+ROOT FunctionCall: index,13 name,moveAbsolute
+Statement:
+ROOT Var: index,3 name,x
+Statement:
+ROOT Var: index,7 name,2
 EndIf 2	              
 FunctionDefn: foo
 Statement:
-*LEFT Var: index,17 name,n
-*RIGHT Var: index,16 name,3
+*LEFT Var: index,18 name,n
+*RIGHT Var: index,17 name,3
 ROOT Operator: = 262
 Statement:
-*LEFT Var: index,18 name,b
-*RIGHT Var: index,15 name,x
+*LEFT Var: index,19 name,b
+*RIGHT Var: index,16 name,x
 ROOT Operator: = 262
 
 Symbol table start:
@@ -100,10 +106,11 @@ index:9, name:3, type:1, val:3
 index:10, name:7, type:1, val:7
 index:11, name:foo, type:15, val:2
 index:12, name:q, type:0, val:0
-index:13, name:foo, type:16, val:2
-index:14, name:y, type:13, val:0
-index:15, name:x, type:12, val:1
-index:16, name:3, type:1, val:3
-index:17, name:n, type:0, val:0
-index:18, name:b, type:0, val:0
+index:13, name:moveAbsolute, type:15, val:2
+index:14, name:foo, type:16, val:2
+index:15, name:y, type:13, val:0
+index:16, name:x, type:12, val:1
+index:17, name:3, type:1, val:3
+index:18, name:n, type:0, val:0
+index:19, name:b, type:0, val:0
 Symbol table end:

@@ -54,26 +54,29 @@
      CONST = 271,
      CONST_FLOAT = 272,
      MAIN = 273,
-     BITWISEOR = 274,
-     BITWISEAND = 275,
-     OR = 276,
-     AND = 277,
-     LSS = 278,
-     GTR = 279,
-     NEQ = 280,
-     LEQ = 281,
-     GEQ = 282,
-     TEST_FOR_EQUAL = 283,
-     LPAREN = 284,
-     MINUS = 285,
-     PLUS = 286,
-     XOR = 287,
-     DIV = 288,
-     MULT = 289,
-     LBRACKET = 290,
-     RBRACKET = 291,
-     RPAREN = 292,
-     SEMI = 293
+     MOVEABSOLUTE = 274,
+     MOVERELATIVE = 275,
+     SLEEP = 276,
+     BITWISEOR = 277,
+     BITWISEAND = 278,
+     OR = 279,
+     AND = 280,
+     LSS = 281,
+     GTR = 282,
+     NEQ = 283,
+     LEQ = 284,
+     GEQ = 285,
+     TEST_FOR_EQUAL = 286,
+     LPAREN = 287,
+     MINUS = 288,
+     PLUS = 289,
+     XOR = 290,
+     DIV = 291,
+     MULT = 292,
+     LBRACKET = 293,
+     RBRACKET = 294,
+     RPAREN = 295,
+     SEMI = 296
    };
 #endif
 
@@ -94,7 +97,7 @@ typedef union YYSTYPE
 
 
 /* Line 1685 of yacc.c  */
-#line 98 "valve.tab.h"
+#line 101 "valve.tab.h"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */

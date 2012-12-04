@@ -55,7 +55,8 @@ unsigned int statementTableFreeIndex = 0;
 /* TERMINALS */
 %token INPUTS OUTPUTS  COMMA BANG
 %token EQUAL LBRACE RBRACE ARRAYDEFINE IF ELSE WHILE
-%token <string>	VAR VAR_METHOD CONST CONST_FLOAT MAIN
+// 4. Add intrinsic function name from flex here
+%token <string>	VAR VAR_METHOD CONST CONST_FLOAT MAIN MOVEABSOLUTE MOVERELATIVE SLEEP
 
 %left AND OR BITWISEAND BITWISEOR
 %left TEST_FOR_EQUAL GEQ LEQ NEQ GTR LSS
@@ -89,6 +90,8 @@ functionDefnList:   /* empty */     {}
 functionDefnMain: 	MAIN LPAREN defnArgList RPAREN LBRACE statementList RBRACE	{addFunction("main", $3, $6);}
 
 functionDefn: 	VAR LPAREN defnArgList RPAREN LBRACE statementList RBRACE	{addFunction($1, $3, $6);}
+                // 3. Finally, make sure there is no function definition for this intrinsic. After all, it is built-in
+                | MOVEABSOLUTE LPAREN defnArgList RPAREN LBRACE statementList RBRACE {yyerror("moveAbsolute");}
 
 statementList: /* empty */	{$$ = NULL;}    // Make sure 'statementList' starts out as NULL for each new 'statementList'
 		| statementList statement	{/*printf("\nstatementList:%d, statement:%d", (int)$1, (int)$2);*/ $$ = addStatement($1, $2); /*printf(" newStatementList:%d", (int)$$);*/}
@@ -96,7 +99,19 @@ statementList: /* empty */	{$$ = NULL;}    // Make sure 'statementList' starts o
 statement:	        statementAssign	                    {/*printf("\nstatementAssign:%d", (int)$1); walkSyntaxTree($1, "start", 0);*/ $$ = $1;}
                     | statementIf                       {/*printf("\nstatementIf:%d", (int)$1);*/ $$ = $1;}
                     | statementWhile                    {$$ = $1;}
-                    | VAR LPAREN argList RPAREN SEMI    {$$ = addNodeFunctionCall($1, $3);}   // function call
+                    | VAR LPAREN argList RPAREN SEMI    {$$ = addNodeFunctionCall($1, $3);}   // user defined function call
+                    
+                    // 1. To add an intrinsic (built-in) function, add its exact prototype here.
+                    | MOVEABSOLUTE LPAREN BITWISEAND VAR COMMA expr RPAREN SEMI {$$ = addNodeInstrinsicFunction1("moveAbsolute", $4, $6);}
+                    // 2. Make sure any other combination of parameters is caught here.
+                    | MOVEABSOLUTE LPAREN argList RPAREN SEMI {$$ = NULL; yyerror("moveAbsolute");} // catch incorrect parameters
+                    
+                    | MOVERELATIVE LPAREN BITWISEAND VAR COMMA expr RPAREN SEMI {$$ = addNodeInstrinsicFunction1("moveRelative", $4, $6);}
+                    | MOVERELATIVE LPAREN argList RPAREN SEMI {$$ = NULL; yyerror("moveRelative");}
+                    
+                    | SLEEP LPAREN BITWISEAND VAR COMMA expr RPAREN SEMI {$$ = addNodeInstrinsicFunction1("sleep", $4, $6);}
+                    | SLEEP LPAREN argList RPAREN SEMI {$$ = NULL; yyerror("sleep");}
+                    
                     | arrayDefine                       {$$ = NULL;}
 
 statementWhile: WHILE LPAREN expr RPAREN LBRACE statementList RBRACE {$$ = addNodeIfOrWhile($3, $6, NULL, nodeWhile);}
@@ -266,6 +281,13 @@ astNode* addNodeVariableOperator(int operator, int varIndex, astNode* pRight) {
 	pLeft->type     = nodeVariable;
 	pLeft->value    = varIndex;
     return addNodeBinaryOperator(operator, pLeft, pRight);
+}
+
+astNode* addNodeInstrinsicFunction1(char* functionName, char* returnValue, astNode* parameter1) {
+    astNode* p1 = addNodeSymbolIndex(addVarToSymbolTable(returnValue));
+    astNode* p2 = addFcnCallArgument(NULL, p1);
+    astNode* p3 = addFcnCallArgument(p2, parameter1);
+    return addNodeFunctionCall(functionName, p3);
 }
 
 astNode* addNodeFunctionCall(char* pFuncName, astNode* pArgList) {

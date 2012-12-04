@@ -18,6 +18,7 @@ main () {
         //  we reach the definition
         foo(1,2+x);
         q = x;
+        moveAbsolute(&x, 2);
     }
 }	
 

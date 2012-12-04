@@ -18,7 +18,7 @@
 #define SYNTAX_ITEMS	(20000)
 #define STATEMENT_ITEMS	(20000)
 //#define VAR_MAX_INDEX	(VAR_ITEMS-1)
-#define VAR_NAME_LENGTH	(12)
+#define VAR_NAME_LENGTH	(16)
 #define VAR_NOT_FOUND	    (-1)
 #define VAR_TABLE_LIMIT	    (-2)	// Ran out of room in table
 //#define VAR_TABLE_INVALID	(-3)
@@ -65,6 +65,7 @@ astNode* addFcnCallArgument(astNode* pArgumentListNode, astNode* pArgumentNode);
 astNode* addFcnDefnArgument(astNode* pArgumentListNode, const char* pArgumentName, const int passByValueOrReference);
 astNode* addFunction(const char* pFuncName, astNode* pArgList, astNode* pStatementList);
 astNode* addNodeFunctionCall(char* pFuncName, astNode* pArgList);
+astNode* addNodeInstrinsicFunction1(char* functionName, char* returnValue, astNode* parameter1);
 
 // New functions 
 int addVarToSymbolTable(char* var);
