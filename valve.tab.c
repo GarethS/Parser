@@ -1720,7 +1720,7 @@ yyreduce:
 
 /* Line 1464 of yacc.c  */
 #line 125 "valve.y"
-    {(yyval.pSyntaxNode) = addNodeVariableOperator(EQUAL, addVarToSymbolTable((yyvsp[(1) - (4)].string)), (yyvsp[(3) - (4)].pSyntaxNode));;}
+    {/*printf("\nstatementAssign");*/ (yyval.pSyntaxNode) = addNodeVariableOperator(EQUAL, addVarToSymbolTable((yyvsp[(1) - (4)].string)), (yyvsp[(3) - (4)].pSyntaxNode));;}
     break;
 
   case 25:
@@ -1909,14 +1909,14 @@ yyreduce:
 
 /* Line 1464 of yacc.c  */
 #line 157 "valve.y"
-    {(yyval.pSyntaxNode) = addFcnDefnArgument((yyvsp[(2) - (2)].pSyntaxNode), (yyvsp[(1) - (2)].string), VAR_PASS_BY_VALUE);;}
+    {/*printf("\ndefnArgList");*/ (yyval.pSyntaxNode) = addFcnDefnArgument((yyvsp[(2) - (2)].pSyntaxNode), (yyvsp[(1) - (2)].string), VAR_PASS_BY_VALUE, VAR_FIRST_PARAMETER);;}
     break;
 
   case 52:
 
 /* Line 1464 of yacc.c  */
 #line 158 "valve.y"
-    {(yyval.pSyntaxNode) = addFcnDefnArgument((yyvsp[(3) - (3)].pSyntaxNode), (yyvsp[(2) - (3)].string), VAR_PASS_BY_REFERENCE);;}
+    {(yyval.pSyntaxNode) = addFcnDefnArgument((yyvsp[(3) - (3)].pSyntaxNode), (yyvsp[(2) - (3)].string), VAR_PASS_BY_REFERENCE, VAR_FIRST_PARAMETER);;}
     break;
 
   case 53:
@@ -1930,14 +1930,14 @@ yyreduce:
 
 /* Line 1464 of yacc.c  */
 #line 161 "valve.y"
-    {(yyval.pSyntaxNode) = addFcnDefnArgument((yyvsp[(1) - (3)].pSyntaxNode), (yyvsp[(3) - (3)].string), VAR_PASS_BY_VALUE);;}
+    {/*printf("\ndefnCommaArgList");*/ (yyval.pSyntaxNode) = addFcnDefnArgument((yyvsp[(1) - (3)].pSyntaxNode), (yyvsp[(3) - (3)].string), VAR_PASS_BY_VALUE, VAR_SUBSEQUENT_PARAMETER);;}
     break;
 
   case 55:
 
 /* Line 1464 of yacc.c  */
 #line 162 "valve.y"
-    {(yyval.pSyntaxNode) = addFcnDefnArgument((yyvsp[(1) - (4)].pSyntaxNode), (yyvsp[(4) - (4)].string), VAR_PASS_BY_REFERENCE);;}
+    {(yyval.pSyntaxNode) = addFcnDefnArgument((yyvsp[(1) - (4)].pSyntaxNode), (yyvsp[(4) - (4)].string), VAR_PASS_BY_REFERENCE, VAR_SUBSEQUENT_PARAMETER);;}
     break;
 
   case 56:
@@ -2370,7 +2370,9 @@ astNode* addFunction(const char* pFuncName, astNode* pArgList, astNode* pStateme
         // Add function name to reserved space in symbol table.
         symbolNode functionNode;
         buildSymbol(pFuncName, functionParameterIndex /* equals num arguments */, &functionNode);
-        functionParameterIndex = 0; // Reset for every new function definition. Don't need it any more for this function.
+        // This is set to 1 because of the way function parameters are parsed. The first parameter doesn't actually get parsed until last
+        //  but should have index 0. We correct for this by noting in the addFcnDefnArgument() call if it's the first parameter.
+        functionParameterIndex = 1; // Reset for every new function definition. Don't need it any more for this function.
         functionNode.type = nodeFunctionDefinition;
         insertSymbolAtIndex(&functionNode, symbolTableLastFunctionIndex);
         symbolTableLastFunctionIndex = symbolTableFreeIndex++;
@@ -2523,16 +2525,20 @@ int addVarToSymbolTable(char* var) {
 
 // TODO: Return value of this function can be void since we're inserting arguments right in the symbol table. 
 //        The only AST is used in a function call, not the definition.
-astNode* addFcnDefnArgument(astNode* pArgumentListNode, const char* pArgumentName, const int passByValueOrReference) {
+astNode* addFcnDefnArgument(astNode* pArgumentListNode, const char* pArgumentName, const int passByValueOrReference, const int firstOrSebsequentParameter) {
     if (pArgumentName == NULL) {
         debugAssert(ERR:addFcnDefnArgument():pArgumentName == NULL);
         return NULL;
     }
-    //printf("\naddFcnDefnArgument():pArgumentName=%s", pArgumentName);
+    //printf("\naddFcnDefnArgument():pArgumentName=%s, pArgumentListNode=%x", pArgumentName, (unsigned int)pArgumentListNode);
     // Add symbols to symbol table, marking them as function parameters.
     // Note that the variable value refers to its index on the execution stack.
     symbolNode argumentNode;
-    buildSymbol(pArgumentName, functionParameterIndex++, &argumentNode);
+    if (firstOrSebsequentParameter == VAR_FIRST_PARAMETER) {
+        buildSymbol(pArgumentName, 0, &argumentNode);
+    } else {
+        buildSymbol(pArgumentName, functionParameterIndex++, &argumentNode);
+    }
     argumentNode.type = nodeArgumentValue;
     if (passByValueOrReference == VAR_PASS_BY_REFERENCE) {
         argumentNode.type = nodeArgumentReference;

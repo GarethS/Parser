@@ -16,13 +16,18 @@ main () {
         x = 7;
         // foo() hasn't been defined yet so can't check number of parameters until
         //  we reach the definition
-        foo(1,2+x);
+        foo(1, 2+x, 3);
         q = x;
         moveAbsolute(&x, 2);
     }
 }	
 
-foo(x, &y) {
+foo(x, &y, z) {
+    y = 3;
+    b = x;
+}
+
+bar(a, b, c) {
     n = 3;
     b = x;
 }

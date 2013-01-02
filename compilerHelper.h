@@ -15,12 +15,12 @@
 
 #define NOT_FOUND   (-1)
 
-typedef enum {nodeVariable,
+typedef enum {nodeVariable,             // 0
                 nodeConst,
                 nodeOperator,
                 nodeArray,
                 nodeInvalid,
-                nodeStartAction,
+                nodeStartAction,        // 5
                 nodeNOP,                // Skip past this node.
                 nodeTemporary,
                 nodeIf,

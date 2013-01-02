@@ -25,6 +25,9 @@
 #define VAR_PASS_BY_VALUE       (1)
 #define VAR_PASS_BY_REFERENCE   (2)
 
+#define VAR_FIRST_PARAMETER         (0)
+#define VAR_SUBSEQUENT_PARAMETER    (1)
+
 #define DEFAULT_VAR_VALUE   (0)
 
 typedef struct thisSymbolNode {
@@ -62,7 +65,7 @@ astNode* addNodeIfOrWhile(astNode* pExpr, astNode* pIfOrWhileStatementList, astN
 
 astNode* addStatement(astNode* pStatementListNode, astNode* pStatementNode);
 astNode* addFcnCallArgument(astNode* pArgumentListNode, astNode* pArgumentNode);
-astNode* addFcnDefnArgument(astNode* pArgumentListNode, const char* pArgumentName, const int passByValueOrReference);
+astNode* addFcnDefnArgument(astNode* pArgumentListNode, const char* pArgumentName, const int passByValueOrReference, const int firstOrSebsequentParameter);
 astNode* addFunction(const char* pFuncName, astNode* pArgList, astNode* pStatementList);
 astNode* addNodeFunctionCall(char* pFuncName, astNode* pArgList);
 astNode* addNodeInstrinsicFunction1(char* functionName, char* returnValue, astNode* parameter1);

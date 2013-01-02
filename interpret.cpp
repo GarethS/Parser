@@ -33,6 +33,7 @@
 #include <string>
 #include <istream>
 #include <sstream>
+#include <complex>
 #endif /* CYGWIN */
 #include <assert.h>
 
@@ -87,7 +88,7 @@ void interpret::_loadTree(const string& s) {
         pte.level(level);
         pte.value(value);
         if (variableOperator == "Variable") {
-            pte.type(nodeVar);
+            pte.type(nodeVariable);
         } else if (variableOperator == "Operator") {
             pte.type(nodeOperator);
         } else if (variableOperator == "Action") {
@@ -193,9 +194,9 @@ void interpret::run(void) {
         //dumpEvaluationStack();
 #endif /* CYGWIN */    
         switch (_currentProgramNodeType()) {
-        case nodeVar:
+        case nodeVariable:
         case nodeConst:
-            //printf("nodeVar or nodeConst\n");
+            //printf("nodeVariable or nodeConst\n");
             _evaluationStack.push_front(_currentProgramNodeValue());
             //_shortCircuitOptimization();
             break;
@@ -780,6 +781,17 @@ void stepper::_timerStart(bool start /* = true */) {
 #endif
 
 int main(void) {
+#define PI  (3.1415926535897932384626433832795)
+    std::complex<float> localComplex1(std::polar(1.23, 0.2768 + (PI * 1.0)));
+    cout << "localComplex1:" << localComplex1 << endl;
+    std::complex<float> localComplex2(std::polar(1.23, 0.2768 + (PI * 2.0)));
+    cout << "localComplex2:" << localComplex2 << endl;
+    std::complex<float> localComplex3(std::polar(1.23, 0.2768 + (PI * 3.0)));
+    cout << "localComplex3:" << localComplex3 << endl;
+    std::complex<float> localComplex4(std::polar(1.23, 0.2768 + (PI * 4.0)));
+    cout << "localComplex4:" << localComplex4 << endl;
+    return 0;
+
     interpret i;
     i.load();
 #if CYGWIN
