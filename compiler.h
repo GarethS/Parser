@@ -82,13 +82,14 @@ void insertSymbolAtIndex(symbolNode* pVar, const unsigned int index);
 //int getVariableIndex(symbolNode* pVar);
 //int setVariable(symbolNode* pVar);
 int findSymbol(symbolNode* pVar);
+int findSymbolExplicit(symbolNode* pVar);
 int findSymbolByName(const char* pVarName);
 int isConstant(symbolNode* pVar);
 
 void initNode(astNode* pSyntaxNode);
 astNode* getNextASTNode(void);
 astNode* getNextStatementNode(void);
-int getSymbolTableIndex(symbolNode* pSymbol);
+//int getSymbolTableIndex(symbolNode* pSymbol);
 
 void printIndent(const unsigned int indent);
 void printOperator(const int value);
@@ -98,6 +99,7 @@ unsigned int countArguments(astNode* pArgNode);
 void dumpSymbolTable(const char* fileName);
 void dumpSymbol(int i, FILE* fpSymbol);
 //void freeNode(node* pNode);
+void checkFcnSanity(void);
 
 #define debugAssert(x)  printf("\n" #x); fflush(stdout);
 

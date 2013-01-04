@@ -1566,7 +1566,7 @@ yyreduce:
 
 /* Line 1464 of yacc.c  */
 #line 85 "valve.y"
-    {dumpSymbolTable("symbolTable.txt");;}
+    {dumpSymbolTable("symbolTable.txt"); checkFcnSanity();;}
     break;
 
   case 3:
@@ -2200,6 +2200,33 @@ int main ()
     return 0;
 }
 
+void checkFcnSanity(void) {
+    //printf("checkFcnSanity");
+    // 0. Check for a function called main()
+	symbolNode tmp;
+    buildSymbol("main", 0, &tmp);
+    tmp.type = nodeFunctionDefinition;
+    int count = findSymbolExplicit(&tmp);
+    if (count == 0) {
+        debugAssert(ERR:checkFcnSanity():no 'main()' found);
+    }
+    
+    // 1. Check for duplicate definitions
+    int i;
+	for (i = 0; i < symbolTableFreeIndex - 1; ++i) {
+        if (symbolTable[i].type == nodeFunctionDefinition) {
+            count = findSymbolExplicit(symbolTable + i);
+            if (count > 1) {
+                debugAssert(ERR:checkFcnSanity():multiple definitions found:);
+                printf("%s", symbolTable[i].name);
+                break;
+            }
+        }
+    }
+    
+    // 2. Check number of parameters match function call and definition
+}
+
 void initVarTable(void) {
 	int len;
 	for (len = VAR_ITEMS - 1; len >= 0; len--) {
@@ -2245,6 +2272,23 @@ int findSymbol(symbolNode* pVar) {
 		}
 	}
 	return VAR_NOT_FOUND;
+}
+
+int findSymbolExplicit(symbolNode* pVar) {
+    unsigned int count = 0;
+    int i;
+    //printf("symbolTableFreeIndex=%d", symbolTableFreeIndex);
+	for (i = 0; i < symbolTableFreeIndex - 1; ++i) {
+        //printf("\ntype=%d, val=%d, name=%s", symbolTable[i].type, symbolTable[i].val, symbolTable[i].name);
+        //printf("\ntype=%d, val=%d, name=%s", pVar->type, pVar->val, pVar->name);
+		if (pVar->type == symbolTable[i].type &&
+            pVar->val == symbolTable[i].val &&
+            //strcmp(symbolTable[i].name, pVar->name) == 0) {
+            strncmp(symbolTable[i].name, pVar->name, VAR_NAME_LENGTH-1) == 0) {
+            ++count;
+        }
+	}
+    return count;
 }
 
 // e.g. if (x==2) {x = 1;} else {x = 4;}
@@ -2804,6 +2848,7 @@ void dumpSymbol(int i, FILE* fpSymbol) {
     }
 }
 
+#if 0
 // Calculate the symbol table index.
 int getSymbolTableIndex(symbolNode* pSymbol) {
     if (pSymbol == NULL) {
@@ -2811,6 +2856,7 @@ int getSymbolTableIndex(symbolNode* pSymbol) {
     }
     return (pSymbol - symbolTable) / sizeof(symbolTable[0]);
 }
+#endif
 
 void printOperator(const int value) {
     switch (value) {
