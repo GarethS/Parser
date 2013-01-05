@@ -104,7 +104,7 @@ Statement:
 ROOT Operator: = 262
 
 Symbol table start:
-index:0, name:main, type:16, val:0
+index:0, name:main, type:16, val:0, fcnLink:0
 index:1, name:counter, type:0, val:0
 index:2, name:4, type:1, val:4
 index:3, name:x, type:0, val:0
@@ -118,13 +118,13 @@ index:10, name:7, type:1, val:7
 index:11, name:foo, type:15, val:3
 index:12, name:q, type:0, val:0
 index:13, name:moveAbsolute, type:15, val:2
-index:14, name:foo, type:16, val:3
+index:14, name:foo, type:16, val:3, fcnLink:64
 index:15, name:y, type:13, val:1
 index:16, name:z, type:12, val:2
 index:17, name:x, type:12, val:0
 index:18, name:3, type:1, val:3
 index:19, name:b, type:0, val:0
-index:20, name:bar, type:16, val:3
+index:20, name:bar, type:16, val:3, fcnLink:71
 index:21, name:b, type:12, val:1
 index:22, name:c, type:12, val:2
 index:23, name:a, type:12, val:0

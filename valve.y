@@ -42,6 +42,8 @@ unsigned int syntaxTableFreeIndex = 0;
 astNode statementTable[STATEMENT_ITEMS];
 unsigned int statementTableFreeIndex = 0;
 
+unsigned int statementOutputIndex = 0;
+
 #define QUOTES_MAIN             "main"
 #define QUOTES_MOVEABSOLUTE     "moveAbsolute"
 #define QUOTES_MOVERELATIVE     "moveRelative"
@@ -60,7 +62,7 @@ unsigned int statementTableFreeIndex = 0;
 /* TERMINALS */
 %token INPUTS OUTPUTS  COMMA BANG
 %token EQUAL LBRACE RBRACE ARRAYDEFINE IF ELSE WHILE
-// 4. Add intrinsic function name from flex here
+// 4x. Add intrinsic function name from flex here
 %token <string>	VAR VAR_METHOD CONST CONST_FLOAT MAIN MOVEABSOLUTE MOVERELATIVE SLEEP
 
 %left AND OR BITWISEAND BITWISEOR
@@ -87,7 +89,7 @@ unsigned int statementTableFreeIndex = 0;
 %start program
 
 %% /* Grammar rules and actions */
-program:    functionDefnMain functionDefnList   {dumpSymbolTable("symbolTable.txt"); checkFcnSanity();}  // Keep it simple. Require main() to be first function at top of file.
+program:    functionDefnMain functionDefnList   {dumpSymbolTable("symbolTable.txt"); postProcess();}  // Keep it simple. Require main() to be first function at top of file.
 
 functionDefnList:   /* empty */     {}
         | functionDefnList functionDefn {}
@@ -197,13 +199,22 @@ int main ()
 	}
 #endif
 
-	initVarTable();
+	//initVarTable(); // Doesn't seem necessary since we use buildSymbol()
 	// To turn on debugging, make sure the next line is uncommented and
 	//  turn on the -t (also use -v -l) options in bison.exe.
 	yydebug = 1; 
     yyin = fopen("valve4.def", "r" );
 	yyparse ();
     return 0;
+}
+
+void postProcess(void) {
+    checkFcnSanity();
+    fixupFcnCalls();
+}
+
+// Replace function call fcnDefnLink with the index of the function definition
+void fixupFcnCalls(void) {
 }
 
 void checkFcnSanity(void) {
@@ -243,13 +254,16 @@ void checkFcnSanity(void) {
     }
 }
 
+#if 0
 void initVarTable(void) {
-	int len;
-	for (len = VAR_ITEMS - 1; len >= 0; len--) {
-		symbolTable[len].name[0] = EOS;
-		symbolTable[len].val = DEFAULT_VAR_VALUE;	// Initialize variable to 0
+	int i;
+	for (i = VAR_ITEMS - 1; i >= 0; i--) {
+		symbolTable[i].name[0] = EOS;
+		symbolTable[i].val = DEFAULT_VAR_VALUE;	// Initialize variable to 0
+        symbolTable[i].fcnDefnLink = VAR_FCN_LINK_UNDEFINED;
 	}
 }
+#endif
 
 // Return index of variable/constant in symbol table
 int insertSymbol(symbolNode* pVar) {
@@ -446,6 +460,9 @@ astNode* addFunction(const char* pFuncName, astNode* pArgList, astNode* pStateme
         //  but should have index 0. We correct for this by noting in the addFcnDefnArgument() call if it's the first parameter.
         functionParameterIndex = 1; // Reset for every new function definition. Don't need it any more for this function.
         functionNode.type = nodeFunctionDefinition;
+        // statementOutputIndex contains the index into execution list. Put that value into fcnDefnLink
+        //  of the function definition symbol.
+        functionNode.fcnDefnLink = statementOutputIndex;
         insertSymbolAtIndex(&functionNode, symbolTableLastFunctionIndex);
         symbolTableLastFunctionIndex = symbolTableFreeIndex++;
         
@@ -453,10 +470,12 @@ astNode* addFunction(const char* pFuncName, astNode* pArgList, astNode* pStateme
         if (strcmp(pFuncName, QUOTES_MAIN) == 0) {
             // Clears the file so it doesn't keep getting bigger each time this program is run.
             fp = fopen("tree.txt", "wb");
+            statementOutputIndex = 0;
         } else {
             fp = fopen("tree.txt", "ab");
         }
         fwrite("0 0 Start 0\n", 1, 12, fp);
+        ++statementOutputIndex;
         /*printf("\nstatementList=%d", (int)$1);*/
         walkList(pArgList, fp);
         walkList(pStatementList, fp);
@@ -551,6 +570,7 @@ void buildSymbol(const char* name, int value, symbolNode* varNode) {
 	varNode->name[VAR_NAME_LENGTH-1] = EOS;
 	varNode->val = value;
     varNode->type = nodeVariable;
+    varNode->fcnDefnLink = VAR_FCN_LINK_UNDEFINED;
 	if (isConstant(varNode)) {
 		// Assume it's a constant, but can just treat it like a variable, making sure that
 		//  any variable that starts with a number (i.e. a constant) is never altered.
@@ -683,7 +703,7 @@ void walkSyntaxTree(astNode* pSyntaxNode, char* position, int indent, FILE* fp) 
 	case (nodeOperator):
         if (fp != NULL) {
             sprintf(tmp, "%d %s Operator %d\n", indent, position, pSyntaxNode->value);
-            fwrite(tmp, 1, strlen(tmp), fp);
+            writeStatement(tmp, fp);
         }
 
 		printf(" Operator: ");
@@ -692,7 +712,7 @@ void walkSyntaxTree(astNode* pSyntaxNode, char* position, int indent, FILE* fp) 
 	case (nodeVariable):
         if (fp != NULL) {
             sprintf(tmp, "%d %s Variable %d\n", indent, position, pSyntaxNode->value);
-            fwrite(tmp, 1, strlen(tmp), fp);
+            writeStatement(tmp, fp);
         }
 
 		printf(" Var: index,%d name,%s", pSyntaxNode->value, symbolTable[pSyntaxNode->value].name);
@@ -700,7 +720,7 @@ void walkSyntaxTree(astNode* pSyntaxNode, char* position, int indent, FILE* fp) 
     case (nodeArray):
         if (fp != NULL) {
             sprintf(tmp, "%d %s Variable %d\n", indent, position, pSyntaxNode->value);
-            fwrite(tmp, 1, strlen(tmp), fp);
+            writeStatement(tmp, fp);
         }
 
 		printf(" Array: index,%d name,%s", pSyntaxNode->value, symbolTable[pSyntaxNode->value].name);
@@ -708,7 +728,7 @@ void walkSyntaxTree(astNode* pSyntaxNode, char* position, int indent, FILE* fp) 
     case (nodeIf):
         if (fp != NULL) {
             sprintf(tmp, "%d %s If %d\n", indent, position, pSyntaxNode->value);
-            fwrite(tmp, 1, strlen(tmp), fp);
+            writeStatement(tmp, fp);
         }
         printIndent(indent);
 		printf("If %d", pSyntaxNode->value);
@@ -717,7 +737,7 @@ void walkSyntaxTree(astNode* pSyntaxNode, char* position, int indent, FILE* fp) 
         if (fp != NULL) {
             sprintf(tmp, "%d %s EVAL0 %d\n", indent, position, pSyntaxNode->value);
             //sprintf(tmp, "%d %s Then %d\n", indent, position, pSyntaxNode->value);
-            fwrite(tmp, 1, strlen(tmp), fp);
+            writeStatement(tmp, fp);
         }
         printIndent(indent);
 		printf("If EVAL == 0 JMP Else %d", pSyntaxNode->value);
@@ -726,9 +746,9 @@ void walkSyntaxTree(astNode* pSyntaxNode, char* position, int indent, FILE* fp) 
         
         if (fp != NULL) {
             sprintf(tmp, "%d %s JmpEndIf %d\n", indent, position, pSyntaxNode->value);
-            fwrite(tmp, 1, strlen(tmp), fp);
+            writeStatement(tmp, fp);
             sprintf(tmp, "%d %s Else %d\n", indent, position, pSyntaxNode->value);
-            fwrite(tmp, 1, strlen(tmp), fp);
+            writeStatement(tmp, fp);
         }
         printIndent(indent);
 		printf("JMP EndIf %d", pSyntaxNode->value);
@@ -737,7 +757,7 @@ void walkSyntaxTree(astNode* pSyntaxNode, char* position, int indent, FILE* fp) 
         
         if (fp != NULL) {
             sprintf(tmp, "%d %s EndIf %d\n", indent, position, pSyntaxNode->value);
-            fwrite(tmp, 1, strlen(tmp), fp);
+            writeStatement(tmp, fp);
         }
         printf("\nEndIf %d", pSyntaxNode->value);
         
@@ -745,7 +765,7 @@ void walkSyntaxTree(astNode* pSyntaxNode, char* position, int indent, FILE* fp) 
     case (nodeWhile):
         if (fp != NULL) {
             sprintf(tmp, "%d %s While %d\n", indent, position, pSyntaxNode->value);
-            fwrite(tmp, 1, strlen(tmp), fp);
+            writeStatement(tmp, fp);
         }
         printIndent(indent);
 		printf("While %d", pSyntaxNode->value);
@@ -753,7 +773,7 @@ void walkSyntaxTree(astNode* pSyntaxNode, char* position, int indent, FILE* fp) 
         
         if (fp != NULL) {
             sprintf(tmp, "%d %s Do %d\n", indent, position, pSyntaxNode->value);
-            fwrite(tmp, 1, strlen(tmp), fp);
+            writeStatement(tmp, fp);
         }
         printIndent(indent);
 		printf("If EVAL == 0 JMP EndWhile %d", pSyntaxNode->value);
@@ -762,7 +782,7 @@ void walkSyntaxTree(astNode* pSyntaxNode, char* position, int indent, FILE* fp) 
         
         if (fp != NULL) {
             sprintf(tmp, "%d %s EndWhile %d\n", indent, position, pSyntaxNode->value);
-            fwrite(tmp, 1, strlen(tmp), fp);
+            writeStatement(tmp, fp);
         }
         printf("\nEndWhile %d", pSyntaxNode->value);
         
@@ -770,7 +790,7 @@ void walkSyntaxTree(astNode* pSyntaxNode, char* position, int indent, FILE* fp) 
     case (nodeStatement):
         if (fp != NULL) {
             sprintf(tmp, "%d %s Statement %d\n", indent, position, pSyntaxNode->value);
-            fwrite(tmp, 1, strlen(tmp), fp);
+            writeStatement(tmp, fp);
         }
 
 		//printf(" Statement: index,%d", pSyntaxNode->value);
@@ -778,14 +798,14 @@ void walkSyntaxTree(astNode* pSyntaxNode, char* position, int indent, FILE* fp) 
     case (nodeArgumentCall):
         if (fp != NULL) {
             sprintf(tmp, "%d %s Argument call%d\n", indent, position, pSyntaxNode->value);
-            fwrite(tmp, 1, strlen(tmp), fp);
+            writeStatement(tmp, fp);
         }
         //printf("\n Function argument:");
         break;
     case (nodeFunctionCall):
         if (fp != NULL) {
             sprintf(tmp, "%d %s FunctionCall %d\n", indent, position, pSyntaxNode->value);
-            fwrite(tmp, 1, strlen(tmp), fp);
+            writeStatement(tmp, fp);
         }
         // Function name in symbol index 11. Why is value -1?
         printf(" FunctionCall: index,%d name,%s", pSyntaxNode->value, symbolTable[pSyntaxNode->value].name);
@@ -797,6 +817,11 @@ void walkSyntaxTree(astNode* pSyntaxNode, char* position, int indent, FILE* fp) 
 	}
 	//walkSyntaxTree(pSyntaxNode->pRight, "RIGHT", indent + 1);
 	//printf("End pattern walk");
+}
+
+void writeStatement(const char* pTmp, FILE* fp) {
+    fwrite(pTmp, 1, strlen(pTmp), fp);
+    ++statementOutputIndex;
 }
 
 void walkList(astNode* pListNode, FILE* fp) {
@@ -869,8 +894,12 @@ void dumpSymbol(int i, FILE* fpSymbol) {
     //nodeType symbolType = isConstant(&symbolTable[i]) ? nodeConst : nodeVariable;
     nodeType symbolType = symbolTable[i].type;
 	printf("\nindex:%d, name:%s, type:%d, val:%d", i, symbolTable[i].name, symbolType, symbolTable[i].val);
+    if (symbolTable[i].fcnDefnLink != VAR_FCN_LINK_UNDEFINED) {
+        // Function definition link is defined
+        printf(", fcnLink:%d", symbolTable[i].fcnDefnLink);
+    }
     char tmp[64];
-    sprintf(tmp, "%d %d\n", /*symbolTable[i].name,*/ symbolType, symbolTable[i].val);
+    sprintf(tmp, "%d %d %d\n", /*symbolTable[i].name,*/ symbolType, symbolTable[i].val, symbolTable[i].fcnDefnLink);
     if (fpSymbol != NULL) {
         fwrite(tmp, 1, strlen(tmp), fpSymbol);
     }

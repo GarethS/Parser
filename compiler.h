@@ -1,5 +1,5 @@
 /*************************************************
- *  Copyright (C) 2003, 2011, 2012 by  Gareth Scott
+ *  Copyright (C) 2003, 2011, 2012, 2013 by  Gareth Scott
  *  All Rights Reserved
  *************************************************/
 
@@ -27,6 +27,7 @@
 
 #define VAR_FIRST_PARAMETER         (0)
 #define VAR_SUBSEQUENT_PARAMETER    (1)
+#define VAR_FCN_LINK_UNDEFINED      (-1)
 
 #define DEFAULT_VAR_VALUE   (0)
 
@@ -38,6 +39,9 @@ typedef struct thisSymbolNode {
     // If this is either nodeArgumentValue or nodeArgumentReference then it should be skipped over when searching for symbols.
     //  The reason for this is that 2 separate functions can have identical parameter names.
     nodeType type;
+     // Index of where this function definition is located in the statement table. Note that this is used by both
+     //  function definitions and function calls.
+    int fcnDefnLink;
 } symbolNode;
 
 // Generic node structure the abstract syntax tree is made of.
@@ -75,7 +79,7 @@ int addVarToSymbolTable(char* var);
 void buildSymbol(const char* name, int value, symbolNode* varNode);
 int addArrayToSymbolTable(char* varName, const unsigned int maxRange);
 
-void initVarTable(void);
+//void initVarTable(void);
 void initArgTable(void);
 int insertSymbol(symbolNode* pVar);
 void insertSymbolAtIndex(symbolNode* pVar, const unsigned int index);
@@ -95,11 +99,14 @@ void printIndent(const unsigned int indent);
 void printOperator(const int value);
 void walkSyntaxTree(astNode* pSyntaxNode, char* position, int indent, FILE* fp);
 void walkList(astNode* pListNode, FILE* fp);   // Walk statements or argument lists
+void writeStatement(const char* pTmp, FILE* fp);
 unsigned int countArguments(astNode* pArgNode);
 void dumpSymbolTable(const char* fileName);
 void dumpSymbol(int i, FILE* fpSymbol);
 //void freeNode(node* pNode);
+void postProcess(void);
 void checkFcnSanity(void);
+void fixupFcnCalls(void);
 
 #define debugAssert(x)  printf("\n" #x); fflush(stdout);
 
