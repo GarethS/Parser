@@ -48,7 +48,7 @@ unsigned int statementOutputIndex = 0;
 #define QUOTES_MOVEABSOLUTE     "moveAbsolute"
 #define QUOTES_MOVERELATIVE     "moveRelative"
 #define QUOTES_SLEEP            "sleep"
-#define NUM_PARAMETERS_TWO      2   // The above intrinsic functions all take 2 parameters.
+
 %}
 
 /* See compiler.h for structure definitions */
@@ -89,7 +89,7 @@ unsigned int statementOutputIndex = 0;
 %start program
 
 %% /* Grammar rules and actions */
-program:    functionDefnMain functionDefnList   {dumpSymbolTable("symbolTable.txt"); postProcess();}  // Keep it simple. Require main() to be first function at top of file.
+program:    functionDefnMain functionDefnList   {postProcess(); dumpSymbolTable("symbolTable.txt");}  // Keep it simple. Require main() to be first function at top of file.
 
 functionDefnList:   /* empty */     {}
         | functionDefnList functionDefn {}
@@ -215,14 +215,30 @@ void postProcess(void) {
 
 // Replace function call fcnDefnLink with the index of the function definition
 void fixupFcnCalls(void) {
+    int i;
+	for (i = 0; i < symbolTableFreeIndex - 1; ++i) {
+        if (symbolTable[i].type == nodeFunctionCall) {
+            // Find the definition for this call and grab it's statement link index.
+            int fcnDefnIndex;
+            int count = findSymbolFcnDefinition(symbolTable + i, &fcnDefnIndex);
+            if (count != 1) {
+                // We should have only one definition and this should have been detected in checkFcnSanity()
+                debugAssert(ERR:fixupFcnCalls():incorrect number of function definitions);
+                return;
+            }
+            symbolTable[i].fcnDefnLink = fcnDefnIndex;
+            break;
+        }
+    }
 }
 
 void checkFcnSanity(void) {
     //printf("checkFcnSanity");
     // 0. Check for a function called main()
 	symbolNode tmp;
+    int fcnDefnIndex;
     buildSymbol(QUOTES_MAIN, 0, &tmp);
-    int count = findSymbolFcnDefinition(&tmp);
+    int count = findSymbolFcnDefinition(&tmp, &fcnDefnIndex);
     if (count == 0) {
         debugAssert(ERR:checkFcnSanity():no 'main()' found);
     }
@@ -231,7 +247,7 @@ void checkFcnSanity(void) {
     int i;
 	for (i = 0; i < symbolTableFreeIndex - 1; ++i) {
         if (symbolTable[i].type == nodeFunctionDefinition) {
-            count = findSymbolFcnDefinition(symbolTable + i);
+            count = findSymbolFcnDefinition(symbolTable + i, &fcnDefnIndex);
             if (count > 1) {
                 debugAssert(ERR:checkFcnSanity():multiple definitions found:);
                 printf("%s", symbolTable[i].name);
@@ -244,7 +260,7 @@ void checkFcnSanity(void) {
 	for (i = 0; i < symbolTableFreeIndex - 1; ++i) {
         if (symbolTable[i].type == nodeFunctionCall) {
             // Make sure there's a matching definition.
-            count = findSymbolFcnDefinition(symbolTable + i);
+            count = findSymbolFcnDefinition(symbolTable + i, &fcnDefnIndex);
             if (count == 0) {
                 debugAssert(ERR:checkFcnSanity():no definition found:check parameter count:);
                 printf("%s", symbolTable[i].name);
@@ -304,7 +320,14 @@ int findSymbol(symbolNode* pVar) {
 	return VAR_NOT_FOUND;
 }
 
-int findSymbolFcnDefinition(symbolNode* pVar) {
+// Returns the number of function definitions that match the symbolNode. Also return
+//  the index where it can be found. That symbol contains the index into the statement list
+//  for the actual location of the definition.
+int findSymbolFcnDefinition(symbolNode* pVar, int* pFcnDefnIndex) {
+    if (pFcnDefnIndex == NULL) {
+        debugAssert(ERR:findSymbolFcnDefinition():pFcnDefnIndex == NULL);
+        return 0;
+    }
     unsigned int count = 0;
     int i;
     //printf("symbolTableFreeIndex=%d", symbolTableFreeIndex);
@@ -313,20 +336,23 @@ int findSymbolFcnDefinition(symbolNode* pVar) {
         //printf("\ntype=%d, val=%d, name=%s", pVar->type, pVar->val, pVar->name);
 		if (symbolTable[i].type == nodeFunctionDefinition &&
             symbolTable[i].val == pVar->val /* contains number of arguments to this function */ &&
-            //strcmp(symbolTable[i].name, pVar->name) == 0) {
             strncmp(symbolTable[i].name, pVar->name, VAR_NAME_LENGTH-1) == 0) {
+            *pFcnDefnIndex = symbolTable[i].fcnDefnLink;
             ++count;
         }
 	}
-    // 4x. Add test for intrinsic functions here. TODO: Find a better way to do this.
+    // 5x. Add test for intrinsic functions here. TODO: Find a better way to do this!
     if (strncmp(QUOTES_MOVEABSOLUTE, pVar->name, VAR_NAME_LENGTH-1) == 0 &&
         pVar->val == NUM_PARAMETERS_TWO) {
+        *pFcnDefnIndex = INTRINSIC_FCN_DEFN_MOVE_ABSOLUTE;
         ++count;
     } else if (strncmp(QUOTES_MOVERELATIVE, pVar->name, VAR_NAME_LENGTH-1) == 0 &&
         pVar->val == NUM_PARAMETERS_TWO) {
+        *pFcnDefnIndex = INTRINSIC_FCN_DEFN_MOVE_RELATIVE;
         ++count;
     } else if (strncmp(QUOTES_SLEEP, pVar->name, VAR_NAME_LENGTH-1) == 0 &&
         pVar->val == NUM_PARAMETERS_TWO) {
+        *pFcnDefnIndex = INTRINSIC_FCN_DEFN_SLEEP;
         ++count;
     }
     return count;

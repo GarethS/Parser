@@ -115,7 +115,7 @@ index:7, name:2, type:1, val:2
 index:8, name:d, type:0, val:0
 index:9, name:3, type:1, val:3
 index:10, name:7, type:1, val:7
-index:11, name:foo, type:15, val:3
+index:11, name:foo, type:15, val:3, fcnLink:64
 index:12, name:q, type:0, val:0
 index:13, name:moveAbsolute, type:15, val:2
 index:14, name:foo, type:16, val:3, fcnLink:64
