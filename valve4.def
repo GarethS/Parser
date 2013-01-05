@@ -19,6 +19,7 @@ main () {
         foo(1, 2+x, 3);
         q = x;
         moveAbsolute(&x, 2);
+        //bar(1,   2);
     }
 }	
 

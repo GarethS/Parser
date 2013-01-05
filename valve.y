@@ -1,5 +1,5 @@
 
-/* Copyright (c) 2011, 2012 Gareth Scott */
+/* Copyright (c) 2011, 2012, 2013 Gareth Scott */
 
 /*
        Sample of motor control language:
@@ -42,6 +42,11 @@ unsigned int syntaxTableFreeIndex = 0;
 astNode statementTable[STATEMENT_ITEMS];
 unsigned int statementTableFreeIndex = 0;
 
+#define QUOTES_MAIN             "main"
+#define QUOTES_MOVEABSOLUTE     "moveAbsolute"
+#define QUOTES_MOVERELATIVE     "moveRelative"
+#define QUOTES_SLEEP            "sleep"
+#define NUM_PARAMETERS_TWO      2   // The above intrinsic functions all take 2 parameters.
 %}
 
 /* See compiler.h for structure definitions */
@@ -87,11 +92,11 @@ program:    functionDefnMain functionDefnList   {dumpSymbolTable("symbolTable.tx
 functionDefnList:   /* empty */     {}
         | functionDefnList functionDefn {}
 
-functionDefnMain: 	MAIN LPAREN defnArgList RPAREN LBRACE statementList RBRACE	{addFunction("main", $3, $6);}
+functionDefnMain: 	MAIN LPAREN defnArgList RPAREN LBRACE statementList RBRACE	{addFunction(QUOTES_MAIN, $3, $6);}
 
 functionDefn: 	VAR LPAREN defnArgList RPAREN LBRACE statementList RBRACE	{addFunction($1, $3, $6);}
-                // 3. Finally, make sure there is no function definition for this intrinsic. After all, it is built-in
-                | MOVEABSOLUTE LPAREN defnArgList RPAREN LBRACE statementList RBRACE {yyerror("moveAbsolute");}
+                // 3x. Finally, make sure there is no function definition for this intrinsic. After all, it is built-in
+                | MOVEABSOLUTE LPAREN defnArgList RPAREN LBRACE statementList RBRACE {yyerror(QUOTES_MOVEABSOLUTE);}
 
 statementList: /* empty */	{$$ = NULL;}    // Make sure 'statementList' starts out as NULL for each new 'statementList'
 		| statementList statement	{/*printf("\nstatementList:%d, statement:%d", (int)$1, (int)$2);*/ $$ = addStatement($1, $2); /*printf(" newStatementList:%d", (int)$$);*/}
@@ -101,16 +106,17 @@ statement:	        statementAssign	                    {/*printf("\nstatementAss
                     | statementWhile                    {$$ = $1;}
                     | VAR LPAREN argList RPAREN SEMI    {$$ = addNodeFunctionCall($1, $3);}   // user defined function call
                     
-                    // 1. To add an intrinsic (built-in) function, add its exact prototype here.
-                    | MOVEABSOLUTE LPAREN BITWISEAND VAR COMMA expr RPAREN SEMI {$$ = addNodeInstrinsicFunction1("moveAbsolute", $4, $6);}
-                    // 2. Make sure any other combination of parameters is caught here.
-                    | MOVEABSOLUTE LPAREN argList RPAREN SEMI {$$ = NULL; yyerror("moveAbsolute");} // catch incorrect parameters
+                    // 1x. To add an intrinsic (built-in) function, add its exact prototype here. Note, the 'x.' is an aid to searching for the things
+                    //      that need done to add intrinsic functions.
+                    | MOVEABSOLUTE LPAREN BITWISEAND VAR COMMA expr RPAREN SEMI {$$ = addNodeInstrinsicFunction1(QUOTES_MOVEABSOLUTE, $4, $6);}
+                    // 2x. Make sure any other combination of parameters is caught here.
+                    | MOVEABSOLUTE LPAREN argList RPAREN SEMI {$$ = NULL; yyerror(QUOTES_MOVEABSOLUTE);} // catch incorrect parameters
                     
-                    | MOVERELATIVE LPAREN BITWISEAND VAR COMMA expr RPAREN SEMI {$$ = addNodeInstrinsicFunction1("moveRelative", $4, $6);}
-                    | MOVERELATIVE LPAREN argList RPAREN SEMI {$$ = NULL; yyerror("moveRelative");}
+                    | MOVERELATIVE LPAREN BITWISEAND VAR COMMA expr RPAREN SEMI {$$ = addNodeInstrinsicFunction1(QUOTES_MOVERELATIVE, $4, $6);}
+                    | MOVERELATIVE LPAREN argList RPAREN SEMI {$$ = NULL; yyerror(QUOTES_MOVERELATIVE);}
                     
-                    | SLEEP LPAREN BITWISEAND VAR COMMA expr RPAREN SEMI {$$ = addNodeInstrinsicFunction1("sleep", $4, $6);}
-                    | SLEEP LPAREN argList RPAREN SEMI {$$ = NULL; yyerror("sleep");}
+                    | SLEEP LPAREN BITWISEAND VAR COMMA expr RPAREN SEMI {$$ = addNodeInstrinsicFunction1(QUOTES_SLEEP, $4, $6);}
+                    | SLEEP LPAREN argList RPAREN SEMI {$$ = NULL; yyerror(QUOTES_SLEEP);}
                     
                     | arrayDefine                       {$$ = NULL;}
 
@@ -204,18 +210,17 @@ void checkFcnSanity(void) {
     //printf("checkFcnSanity");
     // 0. Check for a function called main()
 	symbolNode tmp;
-    buildSymbol("main", 0, &tmp);
-    tmp.type = nodeFunctionDefinition;
-    int count = findSymbolExplicit(&tmp);
+    buildSymbol(QUOTES_MAIN, 0, &tmp);
+    int count = findSymbolFcnDefinition(&tmp);
     if (count == 0) {
         debugAssert(ERR:checkFcnSanity():no 'main()' found);
     }
     
-    // 1. Check for duplicate definitions
+    // 1. Check for duplicate definitions including duplicates of 'main()'
     int i;
 	for (i = 0; i < symbolTableFreeIndex - 1; ++i) {
         if (symbolTable[i].type == nodeFunctionDefinition) {
-            count = findSymbolExplicit(symbolTable + i);
+            count = findSymbolFcnDefinition(symbolTable + i);
             if (count > 1) {
                 debugAssert(ERR:checkFcnSanity():multiple definitions found:);
                 printf("%s", symbolTable[i].name);
@@ -225,7 +230,17 @@ void checkFcnSanity(void) {
     }
     
     // 2. Check number of parameters match function call and definition
-    // TODO
+	for (i = 0; i < symbolTableFreeIndex - 1; ++i) {
+        if (symbolTable[i].type == nodeFunctionCall) {
+            // Make sure there's a matching definition.
+            count = findSymbolFcnDefinition(symbolTable + i);
+            if (count == 0) {
+                debugAssert(ERR:checkFcnSanity():no definition found:check parameter count:);
+                printf("%s", symbolTable[i].name);
+                break;
+            }
+        }
+    }
 }
 
 void initVarTable(void) {
@@ -275,20 +290,31 @@ int findSymbol(symbolNode* pVar) {
 	return VAR_NOT_FOUND;
 }
 
-int findSymbolExplicit(symbolNode* pVar) {
+int findSymbolFcnDefinition(symbolNode* pVar) {
     unsigned int count = 0;
     int i;
     //printf("symbolTableFreeIndex=%d", symbolTableFreeIndex);
 	for (i = 0; i < symbolTableFreeIndex - 1; ++i) {
         //printf("\ntype=%d, val=%d, name=%s", symbolTable[i].type, symbolTable[i].val, symbolTable[i].name);
         //printf("\ntype=%d, val=%d, name=%s", pVar->type, pVar->val, pVar->name);
-		if (pVar->type == symbolTable[i].type &&
-            pVar->val == symbolTable[i].val &&
+		if (symbolTable[i].type == nodeFunctionDefinition &&
+            symbolTable[i].val == pVar->val /* contains number of arguments to this function */ &&
             //strcmp(symbolTable[i].name, pVar->name) == 0) {
             strncmp(symbolTable[i].name, pVar->name, VAR_NAME_LENGTH-1) == 0) {
             ++count;
         }
 	}
+    // 4x. Add test for intrinsic functions here. TODO: Find a better way to do this.
+    if (strncmp(QUOTES_MOVEABSOLUTE, pVar->name, VAR_NAME_LENGTH-1) == 0 &&
+        pVar->val == NUM_PARAMETERS_TWO) {
+        ++count;
+    } else if (strncmp(QUOTES_MOVERELATIVE, pVar->name, VAR_NAME_LENGTH-1) == 0 &&
+        pVar->val == NUM_PARAMETERS_TWO) {
+        ++count;
+    } else if (strncmp(QUOTES_SLEEP, pVar->name, VAR_NAME_LENGTH-1) == 0 &&
+        pVar->val == NUM_PARAMETERS_TWO) {
+        ++count;
+    }
     return count;
 }
 
@@ -328,6 +354,7 @@ astNode* addNodeVariableOperator(int operator, int varIndex, astNode* pRight) {
     return addNodeBinaryOperator(operator, pLeft, pRight);
 }
 
+// The 1 stands for 1 parameter with this call
 astNode* addNodeInstrinsicFunction1(char* functionName, char* returnValue, astNode* parameter1) {
     astNode* p1 = addNodeSymbolIndex(addVarToSymbolTable(returnValue));
     astNode* p2 = addFcnCallArgument(NULL, p1);
@@ -423,7 +450,7 @@ astNode* addFunction(const char* pFuncName, astNode* pArgList, astNode* pStateme
         symbolTableLastFunctionIndex = symbolTableFreeIndex++;
         
         FILE* fp = NULL;
-        if (strcmp(pFuncName, "main") == 0) {
+        if (strcmp(pFuncName, QUOTES_MAIN) == 0) {
             // Clears the file so it doesn't keep getting bigger each time this program is run.
             fp = fopen("tree.txt", "wb");
         } else {

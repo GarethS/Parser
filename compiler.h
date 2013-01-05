@@ -82,7 +82,7 @@ void insertSymbolAtIndex(symbolNode* pVar, const unsigned int index);
 //int getVariableIndex(symbolNode* pVar);
 //int setVariable(symbolNode* pVar);
 int findSymbol(symbolNode* pVar);
-int findSymbolExplicit(symbolNode* pVar);
+int findSymbolFcnDefinition(symbolNode* pVar);
 int findSymbolByName(const char* pVarName);
 int isConstant(symbolNode* pVar);
 

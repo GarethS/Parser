@@ -99,10 +99,15 @@ unsigned int syntaxTableFreeIndex = 0;
 astNode statementTable[STATEMENT_ITEMS];
 unsigned int statementTableFreeIndex = 0;
 
+#define QUOTES_MAIN             "main"
+#define QUOTES_MOVEABSOLUTE     "moveAbsolute"
+#define QUOTES_MOVERELATIVE     "moveRelative"
+#define QUOTES_SLEEP            "sleep"
+#define NUM_PARAMETERS_TWO      2   // The above intrinsic functions all take 2 parameters.
 
 
 /* Line 189 of yacc.c  */
-#line 106 "valve.tab.c"
+#line 111 "valve.tab.c"
 
 /* Enabling traces.  */
 #ifndef YYDEBUG
@@ -178,7 +183,7 @@ typedef union YYSTYPE
 {
 
 /* Line 214 of yacc.c  */
-#line 48 "valve.y"
+#line 53 "valve.y"
 
 	int integer;
     float floatingPoint;
@@ -188,7 +193,7 @@ typedef union YYSTYPE
 
 
 /* Line 214 of yacc.c  */
-#line 192 "valve.tab.c"
+#line 197 "valve.tab.c"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
@@ -200,7 +205,7 @@ typedef union YYSTYPE
 
 
 /* Line 264 of yacc.c  */
-#line 204 "valve.tab.c"
+#line 209 "valve.tab.c"
 
 #ifdef short
 # undef short
@@ -514,12 +519,12 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    85,    85,    87,    88,    90,    92,    94,    96,    97,
-      99,   100,   101,   102,   105,   107,   109,   110,   112,   113,
-     115,   117,   119,   123,   125,   127,   129,   130,   131,   132,
-     133,   134,   135,   136,   137,   138,   139,   140,   141,   142,
-     143,   144,   145,   146,   147,   148,   150,   151,   153,   154,
-     156,   157,   158,   160,   161,   162,   164
+       0,    90,    90,    92,    93,    95,    97,    99,   101,   102,
+     104,   105,   106,   107,   111,   113,   115,   116,   118,   119,
+     121,   123,   125,   129,   131,   133,   135,   136,   137,   138,
+     139,   140,   141,   142,   143,   144,   145,   146,   147,   148,
+     149,   150,   151,   152,   153,   154,   156,   157,   159,   160,
+     162,   163,   164,   166,   167,   168,   170
 };
 #endif
 
@@ -1565,392 +1570,392 @@ yyreduce:
         case 2:
 
 /* Line 1464 of yacc.c  */
-#line 85 "valve.y"
+#line 90 "valve.y"
     {dumpSymbolTable("symbolTable.txt"); checkFcnSanity();;}
     break;
 
   case 3:
 
 /* Line 1464 of yacc.c  */
-#line 87 "valve.y"
+#line 92 "valve.y"
     {;}
     break;
 
   case 4:
 
 /* Line 1464 of yacc.c  */
-#line 88 "valve.y"
+#line 93 "valve.y"
     {;}
     break;
 
   case 5:
 
 /* Line 1464 of yacc.c  */
-#line 90 "valve.y"
-    {addFunction("main", (yyvsp[(3) - (7)].pSyntaxNode), (yyvsp[(6) - (7)].pSyntaxNode));;}
+#line 95 "valve.y"
+    {addFunction(QUOTES_MAIN, (yyvsp[(3) - (7)].pSyntaxNode), (yyvsp[(6) - (7)].pSyntaxNode));;}
     break;
 
   case 6:
 
 /* Line 1464 of yacc.c  */
-#line 92 "valve.y"
+#line 97 "valve.y"
     {addFunction((yyvsp[(1) - (7)].string), (yyvsp[(3) - (7)].pSyntaxNode), (yyvsp[(6) - (7)].pSyntaxNode));;}
     break;
 
   case 7:
 
 /* Line 1464 of yacc.c  */
-#line 94 "valve.y"
-    {yyerror("moveAbsolute");;}
+#line 99 "valve.y"
+    {yyerror(QUOTES_MOVEABSOLUTE);;}
     break;
 
   case 8:
 
 /* Line 1464 of yacc.c  */
-#line 96 "valve.y"
+#line 101 "valve.y"
     {(yyval.pSyntaxNode) = NULL;;}
     break;
 
   case 9:
 
 /* Line 1464 of yacc.c  */
-#line 97 "valve.y"
+#line 102 "valve.y"
     {/*printf("\nstatementList:%d, statement:%d", (int)$1, (int)$2);*/ (yyval.pSyntaxNode) = addStatement((yyvsp[(1) - (2)].pSyntaxNode), (yyvsp[(2) - (2)].pSyntaxNode)); /*printf(" newStatementList:%d", (int)$$);*/;}
     break;
 
   case 10:
 
 /* Line 1464 of yacc.c  */
-#line 99 "valve.y"
+#line 104 "valve.y"
     {/*printf("\nstatementAssign:%d", (int)$1); walkSyntaxTree($1, "start", 0);*/ (yyval.pSyntaxNode) = (yyvsp[(1) - (1)].pSyntaxNode);;}
     break;
 
   case 11:
 
 /* Line 1464 of yacc.c  */
-#line 100 "valve.y"
+#line 105 "valve.y"
     {/*printf("\nstatementIf:%d", (int)$1);*/ (yyval.pSyntaxNode) = (yyvsp[(1) - (1)].pSyntaxNode);;}
     break;
 
   case 12:
 
 /* Line 1464 of yacc.c  */
-#line 101 "valve.y"
+#line 106 "valve.y"
     {(yyval.pSyntaxNode) = (yyvsp[(1) - (1)].pSyntaxNode);;}
     break;
 
   case 13:
 
 /* Line 1464 of yacc.c  */
-#line 102 "valve.y"
+#line 107 "valve.y"
     {(yyval.pSyntaxNode) = addNodeFunctionCall((yyvsp[(1) - (5)].string), (yyvsp[(3) - (5)].pSyntaxNode));;}
     break;
 
   case 14:
 
 /* Line 1464 of yacc.c  */
-#line 105 "valve.y"
-    {(yyval.pSyntaxNode) = addNodeInstrinsicFunction1("moveAbsolute", (yyvsp[(4) - (8)].string), (yyvsp[(6) - (8)].pSyntaxNode));;}
+#line 111 "valve.y"
+    {(yyval.pSyntaxNode) = addNodeInstrinsicFunction1(QUOTES_MOVEABSOLUTE, (yyvsp[(4) - (8)].string), (yyvsp[(6) - (8)].pSyntaxNode));;}
     break;
 
   case 15:
 
 /* Line 1464 of yacc.c  */
-#line 107 "valve.y"
-    {(yyval.pSyntaxNode) = NULL; yyerror("moveAbsolute");;}
+#line 113 "valve.y"
+    {(yyval.pSyntaxNode) = NULL; yyerror(QUOTES_MOVEABSOLUTE);;}
     break;
 
   case 16:
 
 /* Line 1464 of yacc.c  */
-#line 109 "valve.y"
-    {(yyval.pSyntaxNode) = addNodeInstrinsicFunction1("moveRelative", (yyvsp[(4) - (8)].string), (yyvsp[(6) - (8)].pSyntaxNode));;}
+#line 115 "valve.y"
+    {(yyval.pSyntaxNode) = addNodeInstrinsicFunction1(QUOTES_MOVERELATIVE, (yyvsp[(4) - (8)].string), (yyvsp[(6) - (8)].pSyntaxNode));;}
     break;
 
   case 17:
 
 /* Line 1464 of yacc.c  */
-#line 110 "valve.y"
-    {(yyval.pSyntaxNode) = NULL; yyerror("moveRelative");;}
+#line 116 "valve.y"
+    {(yyval.pSyntaxNode) = NULL; yyerror(QUOTES_MOVERELATIVE);;}
     break;
 
   case 18:
 
 /* Line 1464 of yacc.c  */
-#line 112 "valve.y"
-    {(yyval.pSyntaxNode) = addNodeInstrinsicFunction1("sleep", (yyvsp[(4) - (8)].string), (yyvsp[(6) - (8)].pSyntaxNode));;}
+#line 118 "valve.y"
+    {(yyval.pSyntaxNode) = addNodeInstrinsicFunction1(QUOTES_SLEEP, (yyvsp[(4) - (8)].string), (yyvsp[(6) - (8)].pSyntaxNode));;}
     break;
 
   case 19:
 
 /* Line 1464 of yacc.c  */
-#line 113 "valve.y"
-    {(yyval.pSyntaxNode) = NULL; yyerror("sleep");;}
+#line 119 "valve.y"
+    {(yyval.pSyntaxNode) = NULL; yyerror(QUOTES_SLEEP);;}
     break;
 
   case 20:
 
 /* Line 1464 of yacc.c  */
-#line 115 "valve.y"
+#line 121 "valve.y"
     {(yyval.pSyntaxNode) = NULL;;}
     break;
 
   case 21:
 
 /* Line 1464 of yacc.c  */
-#line 117 "valve.y"
+#line 123 "valve.y"
     {(yyval.pSyntaxNode) = addNodeIfOrWhile((yyvsp[(3) - (7)].pSyntaxNode), (yyvsp[(6) - (7)].pSyntaxNode), NULL, nodeWhile);;}
     break;
 
   case 22:
 
 /* Line 1464 of yacc.c  */
-#line 119 "valve.y"
+#line 125 "valve.y"
     {/*printf("statementIf:statementList:%d", (int)$6);*/ (yyval.pSyntaxNode) = addNodeIfOrWhile((yyvsp[(3) - (7)].pSyntaxNode), (yyvsp[(6) - (7)].pSyntaxNode), NULL, nodeIf);;}
     break;
 
   case 23:
 
 /* Line 1464 of yacc.c  */
-#line 123 "valve.y"
+#line 129 "valve.y"
     {/*printf("statementIf:statementList:%d", (int)$6);*/ (yyval.pSyntaxNode) = addNodeIfOrWhile((yyvsp[(3) - (11)].pSyntaxNode), (yyvsp[(6) - (11)].pSyntaxNode), (yyvsp[(10) - (11)].pSyntaxNode), nodeIf);;}
     break;
 
   case 24:
 
 /* Line 1464 of yacc.c  */
-#line 125 "valve.y"
+#line 131 "valve.y"
     {/*printf("\nstatementAssign");*/ (yyval.pSyntaxNode) = addNodeVariableOperator(EQUAL, addVarToSymbolTable((yyvsp[(1) - (4)].string)), (yyvsp[(3) - (4)].pSyntaxNode));;}
     break;
 
   case 25:
 
 /* Line 1464 of yacc.c  */
-#line 127 "valve.y"
+#line 133 "valve.y"
     {(yyval.pSyntaxNode) = addNodeBinaryOperator(EQUAL, addNodeArray((yyvsp[(1) - (7)].string), (yyvsp[(3) - (7)].pSyntaxNode)), (yyvsp[(6) - (7)].pSyntaxNode));;}
     break;
 
   case 26:
 
 /* Line 1464 of yacc.c  */
-#line 129 "valve.y"
+#line 135 "valve.y"
     {(yyval.pSyntaxNode) = (yyvsp[(2) - (3)].pSyntaxNode);;}
     break;
 
   case 27:
 
 /* Line 1464 of yacc.c  */
-#line 130 "valve.y"
+#line 136 "valve.y"
     {(yyval.pSyntaxNode) = addNodeBinaryOperator(PLUS, (yyvsp[(1) - (3)].pSyntaxNode), (yyvsp[(3) - (3)].pSyntaxNode));;}
     break;
 
   case 28:
 
 /* Line 1464 of yacc.c  */
-#line 131 "valve.y"
+#line 137 "valve.y"
     {(yyval.pSyntaxNode) = addNodeBinaryOperator(MINUS, (yyvsp[(1) - (3)].pSyntaxNode), (yyvsp[(3) - (3)].pSyntaxNode));;}
     break;
 
   case 29:
 
 /* Line 1464 of yacc.c  */
-#line 132 "valve.y"
+#line 138 "valve.y"
     {(yyval.pSyntaxNode) = addNodeBinaryOperator(MULT, (yyvsp[(1) - (3)].pSyntaxNode), (yyvsp[(3) - (3)].pSyntaxNode));;}
     break;
 
   case 30:
 
 /* Line 1464 of yacc.c  */
-#line 133 "valve.y"
+#line 139 "valve.y"
     {(yyval.pSyntaxNode) = addNodeBinaryOperator(DIV, (yyvsp[(1) - (3)].pSyntaxNode), (yyvsp[(3) - (3)].pSyntaxNode));;}
     break;
 
   case 31:
 
 /* Line 1464 of yacc.c  */
-#line 134 "valve.y"
+#line 140 "valve.y"
     {(yyval.pSyntaxNode) = addNodeBinaryOperator(XOR, (yyvsp[(1) - (3)].pSyntaxNode), (yyvsp[(3) - (3)].pSyntaxNode));;}
     break;
 
   case 32:
 
 /* Line 1464 of yacc.c  */
-#line 135 "valve.y"
+#line 141 "valve.y"
     {(yyval.pSyntaxNode) = addNodeBinaryOperator(AND, (yyvsp[(1) - (3)].pSyntaxNode), (yyvsp[(3) - (3)].pSyntaxNode));;}
     break;
 
   case 33:
 
 /* Line 1464 of yacc.c  */
-#line 136 "valve.y"
+#line 142 "valve.y"
     {(yyval.pSyntaxNode) = addNodeBinaryOperator(OR, (yyvsp[(1) - (3)].pSyntaxNode), (yyvsp[(3) - (3)].pSyntaxNode));;}
     break;
 
   case 34:
 
 /* Line 1464 of yacc.c  */
-#line 137 "valve.y"
+#line 143 "valve.y"
     {(yyval.pSyntaxNode) = addNodeBinaryOperator(BITWISEAND, (yyvsp[(1) - (3)].pSyntaxNode), (yyvsp[(3) - (3)].pSyntaxNode));;}
     break;
 
   case 35:
 
 /* Line 1464 of yacc.c  */
-#line 138 "valve.y"
+#line 144 "valve.y"
     {(yyval.pSyntaxNode) = addNodeBinaryOperator(BITWISEOR, (yyvsp[(1) - (3)].pSyntaxNode), (yyvsp[(3) - (3)].pSyntaxNode));;}
     break;
 
   case 36:
 
 /* Line 1464 of yacc.c  */
-#line 139 "valve.y"
+#line 145 "valve.y"
     {(yyval.pSyntaxNode) = addNodeBinaryOperator(TEST_FOR_EQUAL, (yyvsp[(1) - (3)].pSyntaxNode), (yyvsp[(3) - (3)].pSyntaxNode));;}
     break;
 
   case 37:
 
 /* Line 1464 of yacc.c  */
-#line 140 "valve.y"
+#line 146 "valve.y"
     {(yyval.pSyntaxNode) = addNodeBinaryOperator(NEQ, (yyvsp[(1) - (3)].pSyntaxNode), (yyvsp[(3) - (3)].pSyntaxNode));;}
     break;
 
   case 38:
 
 /* Line 1464 of yacc.c  */
-#line 141 "valve.y"
+#line 147 "valve.y"
     {(yyval.pSyntaxNode) = addNodeBinaryOperator(GEQ, (yyvsp[(1) - (3)].pSyntaxNode), (yyvsp[(3) - (3)].pSyntaxNode));;}
     break;
 
   case 39:
 
 /* Line 1464 of yacc.c  */
-#line 142 "valve.y"
+#line 148 "valve.y"
     {(yyval.pSyntaxNode) = addNodeBinaryOperator(LEQ, (yyvsp[(1) - (3)].pSyntaxNode), (yyvsp[(3) - (3)].pSyntaxNode));;}
     break;
 
   case 40:
 
 /* Line 1464 of yacc.c  */
-#line 143 "valve.y"
+#line 149 "valve.y"
     {(yyval.pSyntaxNode) = addNodeBinaryOperator(GTR, (yyvsp[(1) - (3)].pSyntaxNode), (yyvsp[(3) - (3)].pSyntaxNode));;}
     break;
 
   case 41:
 
 /* Line 1464 of yacc.c  */
-#line 144 "valve.y"
+#line 150 "valve.y"
     {(yyval.pSyntaxNode) = addNodeBinaryOperator(LSS, (yyvsp[(1) - (3)].pSyntaxNode), (yyvsp[(3) - (3)].pSyntaxNode));;}
     break;
 
   case 42:
 
 /* Line 1464 of yacc.c  */
-#line 145 "valve.y"
+#line 151 "valve.y"
     {(yyval.pSyntaxNode) = addNodeSymbolIndex(addVarToSymbolTable((yyvsp[(1) - (1)].string)));;}
     break;
 
   case 43:
 
 /* Line 1464 of yacc.c  */
-#line 146 "valve.y"
+#line 152 "valve.y"
     {(yyval.pSyntaxNode) = addNodeSymbolIndex(addVarToSymbolTable((yyvsp[(1) - (1)].string)));;}
     break;
 
   case 44:
 
 /* Line 1464 of yacc.c  */
-#line 147 "valve.y"
+#line 153 "valve.y"
     {(yyval.pSyntaxNode) = addNodeFunctionCall((yyvsp[(1) - (4)].string), (yyvsp[(3) - (4)].pSyntaxNode));;}
     break;
 
   case 45:
 
 /* Line 1464 of yacc.c  */
-#line 148 "valve.y"
+#line 154 "valve.y"
     {(yyval.pSyntaxNode) = addNodeArray((yyvsp[(1) - (4)].string), (yyvsp[(3) - (4)].pSyntaxNode));;}
     break;
 
   case 46:
 
 /* Line 1464 of yacc.c  */
-#line 150 "valve.y"
+#line 156 "valve.y"
     {(yyval.pSyntaxNode) = NULL;;}
     break;
 
   case 47:
 
 /* Line 1464 of yacc.c  */
-#line 151 "valve.y"
+#line 157 "valve.y"
     {(yyval.pSyntaxNode) = addFcnCallArgument((yyvsp[(2) - (2)].pSyntaxNode), (yyvsp[(1) - (2)].pSyntaxNode));;}
     break;
 
   case 48:
 
 /* Line 1464 of yacc.c  */
-#line 153 "valve.y"
+#line 159 "valve.y"
     {(yyval.pSyntaxNode) = NULL;;}
     break;
 
   case 49:
 
 /* Line 1464 of yacc.c  */
-#line 154 "valve.y"
+#line 160 "valve.y"
     {(yyval.pSyntaxNode) = addFcnCallArgument((yyvsp[(1) - (3)].pSyntaxNode), (yyvsp[(3) - (3)].pSyntaxNode));;}
     break;
 
   case 50:
 
 /* Line 1464 of yacc.c  */
-#line 156 "valve.y"
+#line 162 "valve.y"
     {(yyval.pSyntaxNode) = NULL;;}
     break;
 
   case 51:
 
 /* Line 1464 of yacc.c  */
-#line 157 "valve.y"
+#line 163 "valve.y"
     {/*printf("\ndefnArgList");*/ (yyval.pSyntaxNode) = addFcnDefnArgument((yyvsp[(2) - (2)].pSyntaxNode), (yyvsp[(1) - (2)].string), VAR_PASS_BY_VALUE, VAR_FIRST_PARAMETER);;}
     break;
 
   case 52:
 
 /* Line 1464 of yacc.c  */
-#line 158 "valve.y"
+#line 164 "valve.y"
     {(yyval.pSyntaxNode) = addFcnDefnArgument((yyvsp[(3) - (3)].pSyntaxNode), (yyvsp[(2) - (3)].string), VAR_PASS_BY_REFERENCE, VAR_FIRST_PARAMETER);;}
     break;
 
   case 53:
 
 /* Line 1464 of yacc.c  */
-#line 160 "valve.y"
+#line 166 "valve.y"
     {(yyval.pSyntaxNode) = NULL;;}
     break;
 
   case 54:
 
 /* Line 1464 of yacc.c  */
-#line 161 "valve.y"
+#line 167 "valve.y"
     {/*printf("\ndefnCommaArgList");*/ (yyval.pSyntaxNode) = addFcnDefnArgument((yyvsp[(1) - (3)].pSyntaxNode), (yyvsp[(3) - (3)].string), VAR_PASS_BY_VALUE, VAR_SUBSEQUENT_PARAMETER);;}
     break;
 
   case 55:
 
 /* Line 1464 of yacc.c  */
-#line 162 "valve.y"
+#line 168 "valve.y"
     {(yyval.pSyntaxNode) = addFcnDefnArgument((yyvsp[(1) - (4)].pSyntaxNode), (yyvsp[(4) - (4)].string), VAR_PASS_BY_REFERENCE, VAR_SUBSEQUENT_PARAMETER);;}
     break;
 
   case 56:
 
 /* Line 1464 of yacc.c  */
-#line 164 "valve.y"
+#line 170 "valve.y"
     {(yyval.integer) = addArrayToSymbolTable((yyvsp[(2) - (6)].string), atoi((yyvsp[(4) - (6)].string)));;}
     break;
 
 
 
 /* Line 1464 of yacc.c  */
-#line 1954 "valve.tab.c"
+#line 1959 "valve.tab.c"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -2162,7 +2167,7 @@ yyreturn:
 
 
 /* Line 1684 of yacc.c  */
-#line 166 "valve.y"
+#line 172 "valve.y"
  /* Additional C code */
 
 
@@ -2204,18 +2209,17 @@ void checkFcnSanity(void) {
     //printf("checkFcnSanity");
     // 0. Check for a function called main()
 	symbolNode tmp;
-    buildSymbol("main", 0, &tmp);
-    tmp.type = nodeFunctionDefinition;
-    int count = findSymbolExplicit(&tmp);
+    buildSymbol(QUOTES_MAIN, 0, &tmp);
+    int count = findSymbolFcnDefinition(&tmp);
     if (count == 0) {
         debugAssert(ERR:checkFcnSanity():no 'main()' found);
     }
     
-    // 1. Check for duplicate definitions
+    // 1. Check for duplicate definitions including duplicates of 'main()'
     int i;
 	for (i = 0; i < symbolTableFreeIndex - 1; ++i) {
         if (symbolTable[i].type == nodeFunctionDefinition) {
-            count = findSymbolExplicit(symbolTable + i);
+            count = findSymbolFcnDefinition(symbolTable + i);
             if (count > 1) {
                 debugAssert(ERR:checkFcnSanity():multiple definitions found:);
                 printf("%s", symbolTable[i].name);
@@ -2225,6 +2229,17 @@ void checkFcnSanity(void) {
     }
     
     // 2. Check number of parameters match function call and definition
+	for (i = 0; i < symbolTableFreeIndex - 1; ++i) {
+        if (symbolTable[i].type == nodeFunctionCall) {
+            // Make sure there's a matching definition.
+            count = findSymbolFcnDefinition(symbolTable + i);
+            if (count == 0) {
+                debugAssert(ERR:checkFcnSanity():no definition found:check parameter count:);
+                printf("%s", symbolTable[i].name);
+                break;
+            }
+        }
+    }
 }
 
 void initVarTable(void) {
@@ -2274,20 +2289,31 @@ int findSymbol(symbolNode* pVar) {
 	return VAR_NOT_FOUND;
 }
 
-int findSymbolExplicit(symbolNode* pVar) {
+int findSymbolFcnDefinition(symbolNode* pVar) {
     unsigned int count = 0;
     int i;
     //printf("symbolTableFreeIndex=%d", symbolTableFreeIndex);
 	for (i = 0; i < symbolTableFreeIndex - 1; ++i) {
         //printf("\ntype=%d, val=%d, name=%s", symbolTable[i].type, symbolTable[i].val, symbolTable[i].name);
         //printf("\ntype=%d, val=%d, name=%s", pVar->type, pVar->val, pVar->name);
-		if (pVar->type == symbolTable[i].type &&
-            pVar->val == symbolTable[i].val &&
+		if (symbolTable[i].type == nodeFunctionDefinition &&
+            symbolTable[i].val == pVar->val /* contains number of arguments to this function */ &&
             //strcmp(symbolTable[i].name, pVar->name) == 0) {
             strncmp(symbolTable[i].name, pVar->name, VAR_NAME_LENGTH-1) == 0) {
             ++count;
         }
 	}
+    // 4x. Add test for intrinsic functions here. TODO: Find a better way to do this.
+    if (strncmp(QUOTES_MOVEABSOLUTE, pVar->name, VAR_NAME_LENGTH-1) == 0 &&
+        pVar->val == NUM_PARAMETERS_TWO) {
+        ++count;
+    } else if (strncmp(QUOTES_MOVERELATIVE, pVar->name, VAR_NAME_LENGTH-1) == 0 &&
+        pVar->val == NUM_PARAMETERS_TWO) {
+        ++count;
+    } else if (strncmp(QUOTES_SLEEP, pVar->name, VAR_NAME_LENGTH-1) == 0 &&
+        pVar->val == NUM_PARAMETERS_TWO) {
+        ++count;
+    }
     return count;
 }
 
@@ -2327,6 +2353,7 @@ astNode* addNodeVariableOperator(int operator, int varIndex, astNode* pRight) {
     return addNodeBinaryOperator(operator, pLeft, pRight);
 }
 
+// The 1 stands for 1 parameter with this call
 astNode* addNodeInstrinsicFunction1(char* functionName, char* returnValue, astNode* parameter1) {
     astNode* p1 = addNodeSymbolIndex(addVarToSymbolTable(returnValue));
     astNode* p2 = addFcnCallArgument(NULL, p1);
@@ -2422,7 +2449,7 @@ astNode* addFunction(const char* pFuncName, astNode* pArgList, astNode* pStateme
         symbolTableLastFunctionIndex = symbolTableFreeIndex++;
         
         FILE* fp = NULL;
-        if (strcmp(pFuncName, "main") == 0) {
+        if (strcmp(pFuncName, QUOTES_MAIN) == 0) {
             // Clears the file so it doesn't keep getting bigger each time this program is run.
             fp = fopen("tree.txt", "wb");
         } else {
