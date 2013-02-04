@@ -1,5 +1,5 @@
 /*
-	Copyright (c) Gareth Scott 2012
+	Copyright (c) Gareth Scott 2012, 2013
 
 	interpret.h 
 
@@ -67,6 +67,11 @@ private:
     symbolTableEntry _symbolTable[MAX_SYMBOL_TABLE_ENTRY];
     unsigned int _programIndex;
     unsigned int _symbolTableIndex;
+    // Stack frames on the intel 8086 were set up using the idiom:
+    //   push bp
+    //   move bp, sp
+    // With a nod to posterity, the same idiom is being used here
+    unsigned int _bp;  // base pointer 
     unsigned int _symbolTableTemporaryBoundaryIndex; // Boundary between temporary symbols (higher index) and regular symbols (index from 0). Use for optimization later on.
     tinyQueue<int> _evaluationStack;    // Contains the index of a symbol, not its value.
     //deque<int> _evaluationStack;    // TODO: Initial version only use int. In future, floats or fixed-point arithmetic

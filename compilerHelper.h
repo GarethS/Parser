@@ -1,5 +1,5 @@
 /*************************************************
- *  Copyright (C) 2011, 2012 by Gareth Scott
+ *  Copyright (C) 2011, 2012, 2013 by Gareth Scott
  *  All Rights Reserved
  *************************************************/
 
@@ -33,10 +33,18 @@ typedef enum {nodeVariable,             // 0
                 nodeFunctionCall,       // 15
                 nodeFunctionDefinition,
                 nodeMotorMove,
-                nodeMotorGetPosition
+                nodeMotorGetPosition,
+                // Nodes below here only used by interpreter
+                nodeIfEval0,
+                nodeElse,               // 20
+                nodeEndif,
+                nodeEndWhile,
+                nodeDo,
+                nodeJmpEndIf,
+                nodeBasePointer
                 } nodeType;
                 
 //typedef enum {symbolVar, symbolConst, symbolArray, symbolInvalid, symbolTemporary, symbolFloat} symbolType;
-//typedef enum {nodeLeft, nodeRight, nodeRoot} nodePosition;
+typedef enum {nodeLeft, nodeRight, nodeRoot} nodePosition;
 
 #endif /* _COMPILERHELPER_H_ */

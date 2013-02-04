@@ -1,5 +1,5 @@
 /*
-	Copyright (c) Gareth Scott 2012
+	Copyright (c) Gareth Scott 2012, 2013
 
 	symbolTableEntry.cpp 
 
@@ -58,8 +58,20 @@ void symbolTableEntry::dumpEntry(void) {
     case nodeTemporary:
         oss() << "nodeTemporary";
         break;
+    case nodeFunctionCall:
+        oss() << "nodeFunctionCall";
+        break;
+    case nodeFunctionDefinition:
+        oss() << "nodeFunctionDefinition";
+        break;
+    case nodeArgumentValue:
+        oss() << "nodeArgumentValue";
+        break;
+    case nodeArgumentReference:
+        oss() << "nodeArgumentReference";
+        break;
     default:
-        oss() << "ERROR nodeUnknown";
+        oss() << "ERROR symbolTableEntry nodeUnknown:" << type();
         break;
     }
     oss() << " " << " " << value();

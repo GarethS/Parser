@@ -1,5 +1,5 @@
 /*
-	Copyright (c) Gareth Scott 2012
+	Copyright (c) Gareth Scott 2012, 2013
 
 	interpret.cpp 
 
@@ -33,7 +33,7 @@
 #include <string>
 #include <istream>
 #include <sstream>
-#include <complex>
+//#include <complex>
 #endif /* CYGWIN */
 #include <assert.h>
 
@@ -41,7 +41,7 @@ interpret::interpret() :
 #if CYGWIN 
 					logc(std::string("INTERPRETER"))
 #endif /* CYGWIN */		
-                    , _programIndex(0), _symbolTableIndex(0), _evaluatingPattern(true) {
+                    , _programIndex(0), _symbolTableIndex(0), _bp(0), _evaluatingPattern(true) {
 #if 0                    
     for (int i = 0; i < MAX_PROGRAM_ENTRY; ++i) {
         //printf("%d %d\n", i, _program[i].type());
@@ -54,8 +54,9 @@ interpret::interpret() :
 
 #if CYGWIN
 void interpret::load(void) {
-    _loadTree(string("patternTree.txt"));
-    _loadTree(string("actionTree.txt"));
+    //_loadTree(string("patternTree.txt"));
+    //_loadTree(string("actionTree.txt"));
+    _loadTree(string("tree.txt"));
     _loadSymbolTable("symbolTable.txt");
 }
 
@@ -68,11 +69,7 @@ void interpret::_loadTree(const string& s) {
     }
     oss() << "interpret::" << s;
     dump();
-    // Typical line to read: '3 LEFT Variable 0'
-    unsigned int level;
-    string leftRight;
-    string variableOperator;
-    int value;
+    // Typical line reads: '3 LEFT Variable 0'
     while (!ifs.eof()) {
         string inputString;
         //ifs.getline(inputString);
@@ -83,10 +80,15 @@ void interpret::_loadTree(const string& s) {
             break;
         }
         istringstream iss(inputString);
+        unsigned int level;
+        string leftRight;
+        string variableOperator;
+        int value;
         iss >> level >> leftRight >> variableOperator >> value;
         parseTreeEntry pte;
         pte.level(level);
         pte.value(value);
+        // Note that these need to be matched in interpret::run()
         if (variableOperator == "Variable") {
             pte.type(nodeVariable);
         } else if (variableOperator == "Operator") {
@@ -95,6 +97,26 @@ void interpret::_loadTree(const string& s) {
             pte.type(nodeStartAction);
         } else if (variableOperator == "If") {
             pte.type(nodeIf);
+        } else if (variableOperator == "EVAL0") {
+            pte.type(nodeIfEval0);
+        } else if (variableOperator == "Else") {
+            pte.type(nodeElse);
+        } else if (variableOperator == "EndIf") {
+            pte.type(nodeEndif);
+        } else if (variableOperator == "While") {
+            pte.type(nodeWhile);
+        } else if (variableOperator == "EndWhile") {
+            pte.type(nodeEndWhile);
+        } else if (variableOperator == "FunctionCall") {
+            pte.type(nodeFunctionCall);
+        } else if (variableOperator == "Do") {
+            pte.type(nodeDo);
+        } else if (variableOperator == "JmpEndIf") {
+            pte.type(nodeJmpEndIf);
+        } else if (variableOperator == "Start") {
+            pte.type(nodeFunctionDefinition);
+        } else {
+            oss() << endl << "ERROR:unrecognized variableOperator:" << variableOperator;
         }
         _program[_programIndex++] = pte;
         if (_programIndex >= MAX_PROGRAM_ENTRY) {
@@ -121,9 +143,8 @@ void interpret::_loadSymbolTable(const string& s) {
     }
     oss() << "interpret::" << s;
     dump();
-    // Typical line to read: '1 4', where 1 = nodeType, 4 = value. In this case it's a constant with value = 4.
-    unsigned int type;
-    int value;
+    // Typical line to read: '1 4 -1', where 1 = nodeType, 4 = value and -1 is funcion link. In this case it's a constant with value = 4 and no function link.
+    //  Note that function linking is only needed by function calls and function definitions.
     while (!ifs.eof()) {
         string inputString;
         //ifs.getline(inputString);
@@ -134,10 +155,14 @@ void interpret::_loadSymbolTable(const string& s) {
             break;
         }
         istringstream iss(inputString);
-        iss >> type >> value;
+        unsigned int type;
+        int value;
+        int fcnLink;
+        iss >> type >> value >> fcnLink;
         symbolTableEntry ste;
         ste.type((nodeType)type);
         ste.value(value);
+        ste.fcnLink(fcnLink);
         _symbolTable[_symbolTableIndex++] = ste;
         if (_symbolTableIndex >= MAX_SYMBOL_TABLE_ENTRY) {
             oss() << "Exceeded symbol table size. Aborting.";
@@ -192,7 +217,7 @@ void interpret::run(void) {
         oss() << endl << "Run programIndex=" << _programIndex;
         dump();
         //dumpEvaluationStack();
-#endif /* CYGWIN */    
+#endif /* CYGWIN */
         switch (_currentProgramNodeType()) {
         case nodeVariable:
         case nodeConst:
@@ -206,6 +231,9 @@ void interpret::run(void) {
             //_shortCircuitOptimization();
             break;
         case nodeStartAction:
+            // This now has a different meaning. It's both the start of a function and
+            //  if you're in a function and hit this, you've reached the end of your function
+            //  and need to reset the stack frame.
             // Look at value on top of stack and see if action should be executed.
 #if CYGWIN
                 oss() << endl << "nodeStartAction _evalValuePeek:" << _evalValuePeek();
@@ -226,8 +254,46 @@ void interpret::run(void) {
                 _evaluatingPattern = false; // Now evaluating action part
             }
             break;
+        case nodeIf:
+        case nodeEndif:
+        case nodeFunctionDefinition:
+            // Nothing to do except increment the program counter for these nodes.
+            ++_programIndex;
+            break;
+        case nodeIfEval0:
+            // Result of nodeIf now sits on top of evaluation stack. If it's 0
+            //  jump to nodeElse of that same index.
+            _programIndex = _currentProgramNodeValue();
+            break;
+        case nodeJmpEndIf:
+            {
+                parseTreeEntry pte(nodeEndif, _currentProgramNodeValue(), _currentProgramNodeLevel() );
+                int newProgramIndex = _findFirstParseTreeEntry(pte);
+                if (newProgramIndex == NOT_FOUND) {
+                    assert(newProgramIndex != NOT_FOUND);
+                } else {
+                    _programIndex = newProgramIndex;
+                }
+            }
+            break;
+        case nodeFunctionCall:
+            // 1. push bp
+            {
+                symbolTableEntry ste;
+                ste.type((nodeType)nodeBasePointer);
+                ste.value(_bp);
+                _symbolTable[_symbolTableIndex++] = ste;
+            }
+            // 2. mov bp, sp
+            _bp = _programIndex;
+            break;
         default:
+#if CYGWIN
+            oss() << endl << "ERROR interpret::run, invalid node type:" << _currentProgramNodeType();
+            dump();
+#endif /* CYGWIN */    
             assert(false);
+        case nodeNOP:
             break;
         }
 #if CYGWIN
@@ -258,7 +324,7 @@ int interpret::_findFirstParseTreeEntry(const parseTreeEntry& p) {
     for (unsigned int i = _programIndex; _programNodeType(i) != nodeInvalid/*_programIndexMax*/; ++i) {
         if (_program[i].type() == p.type() && _program[i].level() == p.level()) {
             if (_program[i].value() == p.value()) {
-                return true;
+                return i;
             }
             return NOT_FOUND;
         }
@@ -397,6 +463,22 @@ void interpret::evaluate(unsigned int op) {
         oss() << lhs << " || " << rhs;
 #endif /* CYGWIN */    
         break;
+    case BITWISEAND:
+        assert(_evaluationStack.size() >= 1);
+        lhs = _symbolTable[_evalValue()].value();
+        _pushSymbolOnEvaluationStack(lhs & rhs);
+#if CYGWIN
+        oss() << lhs << " & " << rhs;
+#endif /* CYGWIN */
+        break;
+    case BITWISEOR:
+        assert(_evaluationStack.size() >= 1);
+        lhs = _symbolTable[_evalValue()].value();
+        _pushSymbolOnEvaluationStack(lhs | rhs);
+#if CYGWIN
+        oss() << lhs << " | " << rhs;
+#endif /* CYGWIN */    
+        break;
     case TEST_FOR_EQUAL:
         assert(_evaluationStack.size() >= 1);
         lhs = _symbolTable[_evalValue()].value();
@@ -454,10 +536,10 @@ void interpret::evaluate(unsigned int op) {
         }
         break;
     default:
-        assert(false);
 #if CYGWIN
-        oss() << "ERROR interpret::evaluate";
+        oss() << "ERROR interpret::evaluate, op=" << op;
 #endif /* CYGWIN */    
+        //assert(false);
         break;
     }
 #if CYGWIN
@@ -781,6 +863,7 @@ void stepper::_timerStart(bool start /* = true */) {
 #endif
 
 int main(void) {
+#if 0
 #define PI  (3.1415926535897932384626433832795)
     std::complex<float> localComplex1(std::polar(1.23, 0.2768 + (PI * 1.0)));
     cout << "localComplex1:" << localComplex1 << endl;
@@ -791,7 +874,8 @@ int main(void) {
     std::complex<float> localComplex4(std::polar(1.23, 0.2768 + (PI * 4.0)));
     cout << "localComplex4:" << localComplex4 << endl;
     return 0;
-
+#endif
+    
     interpret i;
     i.load();
 #if CYGWIN

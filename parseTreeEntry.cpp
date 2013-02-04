@@ -1,5 +1,5 @@
 /*
-	Copyright (c) Gareth Scott 2012
+	Copyright (c) Gareth Scott 2012, 2013
 
 	parseTreeEntry.cpp 
 
@@ -69,8 +69,38 @@ void parseTreeEntry::dumpEntry(void) {
     case nodeStartAction:
         oss() << "nodeStartAction";
         break;
+    case nodeIf:
+        oss() << "nodeIf";
+        break;
+    case nodeElse:
+        oss() << "nodeElse";
+        break;
+    case nodeEndif:
+        oss() << "nodeEndif";
+        break;
+    case nodeJmpEndIf:
+        oss() << "nodeJmpEndIf";
+        break;
+    case nodeFunctionCall:
+        oss() << "nodeFunctionCall";
+        break;
+    case nodeFunctionDefinition:
+        oss() << "nodeFunctionDefinition";
+        break;
+    case nodeIfEval0:
+        oss() << "nodeIfEval0";
+        break;
+    case nodeWhile:
+        oss() << "nodeWhile";
+        break;
+    case nodeEndWhile:
+        oss() << "nodeEndWhile";
+        break;
+    case nodeDo:
+        oss() << "nodeDo";
+        break;
     default:
-        oss() << "ERROR nodeUnknown";
+        oss() << "ERROR parseTreeEntry, nodeUnknown:" << type();
         break;
     }
     oss() << " " << level() << " " << value();

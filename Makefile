@@ -22,8 +22,8 @@ GPP_FLAGS =
 DEBUG_FLAGS = -D CYGWIN=1
 endif 
 
-all: lextest.exe parsetest.exe lex.yy.c valve.tab.c run
-#all: lextest.exe parsetest.exe lex.yy.c valve.tab.c interpret.exe run
+#all: lextest.exe parsetest.exe lex.yy.c valve.tab.c run
+all: lextest.exe parsetest.exe lex.yy.c valve.tab.c interpret.exe run
 
 clean:
 	rm lex.yy.c
@@ -51,5 +51,5 @@ run:
 	./parsetest >parse.txt 2>bison.txt
 	#mv log1.txt log2.txt
 	#mv log.txt log1.txt
-	#rm log.txt
-	#./interpret
+	rm log.txt  # Delete log file, otherwise results will be concatenated to the end of the file
+	./interpret
