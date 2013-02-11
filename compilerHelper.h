@@ -41,7 +41,8 @@ typedef enum {nodeVariable,             // 0
                 nodeEndWhile,
                 nodeDo,
                 nodeJmpEndIf,
-                nodeBasePointer
+                nodeBasePointer,        // 25
+                nodeFunctionCallEnd 
                 } nodeType;
                 
 //typedef enum {symbolVar, symbolConst, symbolArray, symbolInvalid, symbolTemporary, symbolFloat} symbolType;

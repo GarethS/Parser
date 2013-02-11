@@ -70,8 +70,8 @@ Reducing stack by rule 42 (line 154):
 Stack now 0 1 4 9 15 20 25 31 45 59 84
 Entering state 115
 Reading a token: --accepting default rule (" ")
---accepting rule at line 58 ("||")
-Next token is token OR ()
+--accepting rule at line 59 ("&&")
+Next token is token AND ()
 Reducing stack by rule 38 (line 150):
    $1 = nterm expr ()
    $2 = token LEQ ()
@@ -79,9 +79,9 @@ Reducing stack by rule 38 (line 150):
 -> $$ = nterm expr ()
 Stack now 0 1 4 9 15 20 25 31 45
 Entering state 59
-Next token is token OR ()
-Shifting token OR ()
-Entering state 79
+Next token is token AND ()
+Shifting token AND ()
+Entering state 80
 Reading a token: --accepting default rule (" ")
 --accepting rule at line 73 ("x")
 Next token is token VAR ()
@@ -93,8 +93,8 @@ Next token is token GTR ()
 Reducing stack by rule 41 (line 153):
    $1 = token VAR ()
 -> $$ = nterm expr ()
-Stack now 0 1 4 9 15 20 25 31 45 59 79
-Entering state 110
+Stack now 0 1 4 9 15 20 25 31 45 59 80
+Entering state 111
 Next token is token GTR ()
 Shifting token GTR ()
 Entering state 82
@@ -106,7 +106,7 @@ Entering state 57
 Reducing stack by rule 42 (line 154):
    $1 = token CONST ()
 -> $$ = nterm expr ()
-Stack now 0 1 4 9 15 20 25 31 45 59 79 110 82
+Stack now 0 1 4 9 15 20 25 31 45 59 80 111 82
 Entering state 113
 Reading a token: --accepting rule at line 43 (")")
 Next token is token RPAREN ()
@@ -115,12 +115,12 @@ Reducing stack by rule 39 (line 151):
    $2 = token GTR ()
    $3 = nterm expr ()
 -> $$ = nterm expr ()
-Stack now 0 1 4 9 15 20 25 31 45 59 79
-Entering state 110
+Stack now 0 1 4 9 15 20 25 31 45 59 80
+Entering state 111
 Next token is token RPAREN ()
-Reducing stack by rule 32 (line 144):
+Reducing stack by rule 31 (line 143):
    $1 = nterm expr ()
-   $2 = token OR ()
+   $2 = token AND ()
    $3 = nterm expr ()
 -> $$ = nterm expr ()
 Stack now 0 1 4 9 15 20 25 31 45

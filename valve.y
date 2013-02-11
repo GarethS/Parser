@@ -836,6 +836,11 @@ void walkSyntaxTree(astNode* pSyntaxNode, char* position, int indent, FILE* fp) 
         // Function name in symbol index 11. Why is value -1?
         printf(" FunctionCall: index,%d name,%s", pSyntaxNode->value, symbolTable[pSyntaxNode->value].name);
         walkList(pSyntaxNode, fp);
+        if (fp != NULL) {
+            sprintf(tmp, "%d %s FunctionCallEnd %d\n", indent, position, pSyntaxNode->value);
+            writeStatement(tmp, fp);
+        }
+        printf(" \nFunctionCallEnd: index,%d name,%s", pSyntaxNode->value, symbolTable[pSyntaxNode->value].name);
         break;
 	default:
 		printf(" walkSyntaxTree: Unknown type:%d", pSyntaxNode->type);

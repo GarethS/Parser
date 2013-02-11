@@ -84,6 +84,9 @@ void parseTreeEntry::dumpEntry(void) {
     case nodeFunctionCall:
         oss() << "nodeFunctionCall";
         break;
+    case nodeFunctionCallEnd:
+        oss() << "nodeFunctionCallEnd";
+        break;
     case nodeFunctionDefinition:
         oss() << "nodeFunctionDefinition";
         break;

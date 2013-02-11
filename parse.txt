@@ -9,7 +9,7 @@ If 2
 ***LEFT Var: index,3 name,x
 ***RIGHT Var: index,4 name,1
 **RIGHT Operator: > 282
-*LEFT Operator: || 279
+*LEFT Operator: && 280
 If EVAL == 0 JMP Else 2
 Statement:
 *LEFT Var: index,1 name,counter
@@ -72,7 +72,8 @@ ROOT Operator: + 289
 Statement:
 ROOT Var: index,9 name,3
 Statement:
-ROOT Var: index,4 name,1
+ROOT Var: index,4 name,1 
+FunctionCallEnd: index,11 name,foo
 Statement:
 *LEFT Var: index,12 name,q
 *RIGHT Var: index,3 name,x
@@ -82,7 +83,8 @@ ROOT FunctionCall: index,13 name,moveAbsolute
 Statement:
 ROOT Var: index,3 name,x
 Statement:
-ROOT Var: index,7 name,2
+ROOT Var: index,7 name,2 
+FunctionCallEnd: index,13 name,moveAbsolute
 EndIf 2	               
 FunctionDefn: foo
 Statement:
@@ -115,16 +117,16 @@ index:7, name:2, type:1, val:2
 index:8, name:d, type:0, val:0
 index:9, name:3, type:1, val:3
 index:10, name:7, type:1, val:7
-index:11, name:foo, type:15, val:3, fcnLink:64
+index:11, name:foo, type:15, val:3, fcnLink:66
 index:12, name:q, type:0, val:0
 index:13, name:moveAbsolute, type:15, val:2
-index:14, name:foo, type:16, val:3, fcnLink:64
+index:14, name:foo, type:16, val:3, fcnLink:66
 index:15, name:y, type:13, val:1
 index:16, name:z, type:12, val:2
 index:17, name:x, type:12, val:0
 index:18, name:3, type:1, val:3
 index:19, name:b, type:0, val:0
-index:20, name:bar, type:16, val:3, fcnLink:71
+index:20, name:bar, type:16, val:3, fcnLink:73
 index:21, name:b, type:12, val:1
 index:22, name:c, type:12, val:2
 index:23, name:a, type:12, val:0

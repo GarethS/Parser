@@ -12,20 +12,21 @@ symbolTableEntry::symbolTableEntry() :
 #if CYGWIN 
 					logc(std::string("SYMBOLTABLEENTRY"))
 #endif /* CYGWIN */					
-                    , _type(nodeInvalid) {
+                    , _type(nodeInvalid), _value(0), _fcnLink(0) {
 }
 
 symbolTableEntry::symbolTableEntry(nodeType t, int value) :
 #if CYGWIN 
 					logc(std::string("SYMBOLTABLEENTRY2"))
 #endif /* CYGWIN */					
-					, _type(t), _value(value) {
+					, _type(t), _value(value), _fcnLink(0) {
 }
 
 symbolTableEntry& symbolTableEntry::operator=(const symbolTableEntry& p) {
 	if (this != &p) {
 		type(p.type());
         value(p.value());
+        fcnLink(p.fcnLink());
 	}
 	return *this;
 }
@@ -70,11 +71,14 @@ void symbolTableEntry::dumpEntry(void) {
     case nodeArgumentReference:
         oss() << "nodeArgumentReference";
         break;
+    case nodeBasePointer:
+        oss() << "nodeBasePointer";
+        break;
     default:
         oss() << "ERROR symbolTableEntry nodeUnknown:" << type();
         break;
     }
-    oss() << " " << " " << value();
+    oss() << " " << " " << value() << " " << fcnLink();
     dump();
 }
 #endif /* CYGWIN */

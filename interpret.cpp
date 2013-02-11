@@ -109,6 +109,8 @@ void interpret::_loadTree(const string& s) {
             pte.type(nodeEndWhile);
         } else if (variableOperator == "FunctionCall") {
             pte.type(nodeFunctionCall);
+        } else if (variableOperator == "FunctionCallEnd") {
+            pte.type(nodeFunctionCallEnd);
         } else if (variableOperator == "Do") {
             pte.type(nodeDo);
         } else if (variableOperator == "JmpEndIf") {
@@ -214,7 +216,7 @@ void interpret::run(void) {
     assert(_evaluationStack.empty());
     for (_programIndex = 0; _program[_programIndex].type() != nodeInvalid; ++_programIndex) {
 #if CYGWIN
-        oss() << endl << "Run programIndex=" << _programIndex;
+        oss() << endl << "Run programIndex=" << _programIndex << " programNodeType:" << _currentProgramNodeType() << " programNodeValue:" << _currentProgramNodeValue();
         dump();
         //dumpEvaluationStack();
 #endif /* CYGWIN */
@@ -260,10 +262,37 @@ void interpret::run(void) {
             // Nothing to do except increment the program counter for these nodes.
             ++_programIndex;
             break;
+#if 0
+        case nodeFunctionDefinition:
+            _programIndex = _bp;
+            break;
+#endif            
         case nodeIfEval0:
             // Result of nodeIf now sits on top of evaluation stack. If it's 0
             //  jump to nodeElse of that same index.
-            _programIndex = _currentProgramNodeValue();
+            // Get value from top of _evaluationStack
+            
+            //_programIndex = _currentProgramNodeValue();
+            //int ifEval0Value = _evalValuePeek();
+            if (_symbolTable[_evalValue()].value()) {
+                ++_programIndex;
+            } else {
+#if CYGWIN
+            oss() << endl << "!!nodeIfEval0 _currentProgramNodeValue():" << _currentProgramNodeValue() << " _currentProgramNodeLevel()" << _currentProgramNodeLevel() ;
+            dump();
+#endif /* CYGWIN */                
+                parseTreeEntry pte(nodeElse, _currentProgramNodeValue(), _currentProgramNodeLevel() );
+                int newProgramIndex = _findFirstParseTreeEntry(pte);
+                if (newProgramIndex == NOT_FOUND) {
+                    assert(newProgramIndex != NOT_FOUND);
+                } else {
+                    _programIndex = newProgramIndex; // Jump one past nodeIfEval0
+                }
+            }
+#if CYGWIN
+            oss() << endl << "!!nodeIfEval0 _programIndex:" << _programIndex;
+            dump();
+#endif /* CYGWIN */                
             break;
         case nodeJmpEndIf:
             {
@@ -287,6 +316,13 @@ void interpret::run(void) {
             // 2. mov bp, sp
             _bp = _programIndex;
             break;
+        case nodeFunctionCallEnd:
+            // 1. Get the _programIndex from symbolTable
+            _symbolTable[_currentProgramNodeValue()].dumpEntry();
+            oss() << endl << "!!!_currentProgramNodeValue()" << _currentProgramNodeValue();
+            dump();
+            _programIndex = _symbolTable[_currentProgramNodeValue()].fcnLink();
+            break;
         default:
 #if CYGWIN
             oss() << endl << "ERROR interpret::run, invalid node type:" << _currentProgramNodeType();
@@ -298,6 +334,7 @@ void interpret::run(void) {
         }
 #if CYGWIN
         dumpEvaluationStack();
+        dumpSymbolTable();
 #endif /* CYGWIN */    
     }
     _resetSymbolTableTemporaryBoundary();
@@ -322,11 +359,16 @@ void interpret::_shortCircuitOptimization(void) {
 // Return programIndex location of the found entry
 int interpret::_findFirstParseTreeEntry(const parseTreeEntry& p) {
     for (unsigned int i = _programIndex; _programNodeType(i) != nodeInvalid/*_programIndexMax*/; ++i) {
+#if CYGWIN
+        //_program[i].dumpEntry();
+#endif /* CYGWIN */    
         if (_program[i].type() == p.type() && _program[i].level() == p.level()) {
+            // TODO: Combine this with above 'if' statement.
             if (_program[i].value() == p.value()) {
                 return i;
             }
-            return NOT_FOUND;
+            continue;
+            //return NOT_FOUND;
         }
     }
     return NOT_FOUND;
