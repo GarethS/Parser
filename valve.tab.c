@@ -2492,10 +2492,12 @@ astNode* addFunction(const char* pFuncName, astNode* pArgList, astNode* pStateme
         symbolTableLastFunctionIndex = symbolTableFreeIndex++;
         
         FILE* fp = NULL;
+        int inMain = FALSE;
         if (strcmp(pFuncName, QUOTES_MAIN) == 0) {
             // Clears the file so it doesn't keep getting bigger each time this program is run.
             fp = fopen("tree.txt", "wb");
             statementOutputIndex = 0;
+            inMain = TRUE;
         } else {
             fp = fopen("tree.txt", "ab");
         }
@@ -2504,6 +2506,10 @@ astNode* addFunction(const char* pFuncName, astNode* pArgList, astNode* pStateme
         /*printf("\nstatementList=%d", (int)$1);*/
         walkList(pArgList, fp);
         walkList(pStatementList, fp);
+        if (inMain) {
+            writeStatement("0 0 ProgramEnd 0\n", fp);
+            printf("\nProgramEnd");
+        }
         fclose(fp);
     }
     return NULL;
@@ -2832,7 +2838,6 @@ void walkSyntaxTree(astNode* pSyntaxNode, char* position, int indent, FILE* fp) 
             sprintf(tmp, "%d %s FunctionCall %d\n", indent, position, pSyntaxNode->value);
             writeStatement(tmp, fp);
         }
-        // Function name in symbol index 11. Why is value -1?
         printf(" FunctionCall: index,%d name,%s", pSyntaxNode->value, symbolTable[pSyntaxNode->value].name);
         walkList(pSyntaxNode, fp);
         if (fp != NULL) {

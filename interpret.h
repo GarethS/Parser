@@ -26,8 +26,9 @@
 using namespace std;
 #endif /* CYGWIN */
 
-#define MAX_PROGRAM_ENTRY   (200)
-#define MAX_SYMBOL_TABLE_ENTRY  (40)
+#define MAX_PROGRAM_ENTRY           (200)
+#define MAX_SYMBOL_TABLE_ENTRY      (40)
+#define PROGRAM_INDEX_START         (0)
 
 class interpret
 #if CYGWIN

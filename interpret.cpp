@@ -41,7 +41,7 @@ interpret::interpret() :
 #if CYGWIN 
 					logc(std::string("INTERPRETER"))
 #endif /* CYGWIN */		
-                    , _programIndex(0), _symbolTableIndex(0), _bp(0), _evaluatingPattern(true) {
+                    , _programIndex(PROGRAM_INDEX_START), _symbolTableIndex(0), _bp(PROGRAM_INDEX_START), _evaluatingPattern(true) {
 #if 0                    
     for (int i = 0; i < MAX_PROGRAM_ENTRY; ++i) {
         //printf("%d %d\n", i, _program[i].type());
@@ -117,6 +117,8 @@ void interpret::_loadTree(const string& s) {
             pte.type(nodeJmpEndIf);
         } else if (variableOperator == "Start") {
             pte.type(nodeFunctionDefinition);
+        } else if (variableOperator == "ProgramEnd") {
+            pte.type(nodeProgramEnd);
         } else {
             oss() << endl << "ERROR:unrecognized variableOperator:" << variableOperator;
         }
@@ -232,6 +234,7 @@ void interpret::run(void) {
             evaluate(_currentProgramNodeValue());
             //_shortCircuitOptimization();
             break;
+#if 0            
         case nodeStartAction:
             // This now has a different meaning. It's both the start of a function and
             //  if you're in a function and hit this, you've reached the end of your function
@@ -256,17 +259,22 @@ void interpret::run(void) {
                 _evaluatingPattern = false; // Now evaluating action part
             }
             break;
+#endif            
         case nodeIf:
         case nodeEndif:
-        case nodeFunctionDefinition:
             // Nothing to do except increment the program counter for these nodes.
             ++_programIndex;
             break;
-#if 0
         case nodeFunctionDefinition:
-            _programIndex = _bp;
+            oss() << endl << "***nodeFunctionDefinition _programIndex:" << _programIndex ;
+            dump();
+            if (_programIndex == PROGRAM_INDEX_START) {
+                // Entering main
+                ++_programIndex;
+            } else {
+                _programIndex = _bp;
+            }
             break;
-#endif            
         case nodeIfEval0:
             // Result of nodeIf now sits on top of evaluation stack. If it's 0
             //  jump to nodeElse of that same index.
@@ -314,15 +322,20 @@ void interpret::run(void) {
                 _symbolTable[_symbolTableIndex++] = ste;
             }
             // 2. mov bp, sp
-            _bp = _programIndex;
+            //_bp = _programIndex;
             break;
         case nodeFunctionCallEnd:
             // 1. Get the _programIndex from symbolTable
             _symbolTable[_currentProgramNodeValue()].dumpEntry();
-            oss() << endl << "!!!_currentProgramNodeValue()" << _currentProgramNodeValue();
+            //oss() << endl << "!!!_currentProgramNodeValue()" << _currentProgramNodeValue();
             dump();
+            // 2. mov bp, sp
+            _bp = _programIndex;
             _programIndex = _symbolTable[_currentProgramNodeValue()].fcnLink();
             break;
+        case nodeProgramEnd:
+            // done
+            return;
         default:
 #if CYGWIN
             oss() << endl << "ERROR interpret::run, invalid node type:" << _currentProgramNodeType();
@@ -922,15 +935,15 @@ int main(void) {
     i.load();
 #if CYGWIN
     i.dumpProgram();
-    i.dumpSymbolTable();
+    //i.dumpSymbolTable();
 #endif /* CYGWIN */ 
     i.run();
 #if CYGWIN
-    i.dumpSymbolTable();
+    //i.dumpSymbolTable();
 #endif /* CYGWIN */ 
-    i.run();
+    //i.run();
 #if CYGWIN
-    i.dumpSymbolTable();
+    //i.dumpSymbolTable();
 #endif /* CYGWIN */ 
     return 0;
 }

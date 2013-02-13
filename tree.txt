@@ -64,6 +64,7 @@
 0 ROOT Variable 7
 0 ROOT FunctionCallEnd 13
 0 ROOT EndIf 2
+0 0 ProgramEnd 0
 0 0 Start 0
 1 LEFT Variable 15
 1 RIGHT Variable 18
