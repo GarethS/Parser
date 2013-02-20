@@ -27,6 +27,7 @@ class symbolTableEntry
 public:
     symbolTableEntry();
     symbolTableEntry(nodeType t, int value);
+    symbolTableEntry(nodeType t, int value, int fcnLink);
     ~symbolTableEntry() {}
     
 #if CYGWIN

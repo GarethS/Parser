@@ -13,7 +13,8 @@
 #define TRUE  (!FALSE)
 #endif /* TRUE */
 
-#define NOT_FOUND   (-1)
+#define NOT_FOUND       (-1)
+#define INVALID_VALUE   (-1)
 
 typedef enum {nodeVariable,             // 0
                 nodeConst,
@@ -30,7 +31,7 @@ typedef enum {nodeVariable,             // 0
                 nodeArgumentValue,      // Used by function definition
                 nodeArgumentReference,  // Used by function definition
                 nodeFloat,
-                nodeFunctionCall,       // 15
+                nodeFunctionCall,       // 15   Better name would be nodeFunctionCallStart to match nodeFunctionCallEnd below
                 nodeFunctionDefinition,
                 nodeMotorMove,
                 nodeMotorGetPosition,
@@ -42,8 +43,10 @@ typedef enum {nodeVariable,             // 0
                 nodeDo,
                 nodeJmpEndIf,
                 nodeBasePointer,        // 25
-                nodeFunctionCallEnd,
-                nodeProgramEnd
+                nodeFunctionCallEnd,    // Function call parameters are finished, time to actually call the function
+                nodeProgramEnd,
+                nodeFunctionReturn,
+                nodeAvailable           // After being used, this node is now available
                 } nodeType;
                 
 //typedef enum {symbolVar, symbolConst, symbolArray, symbolInvalid, symbolTemporary, symbolFloat} symbolType;

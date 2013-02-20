@@ -22,6 +22,13 @@ symbolTableEntry::symbolTableEntry(nodeType t, int value) :
 					, _type(t), _value(value), _fcnLink(0) {
 }
 
+symbolTableEntry::symbolTableEntry(nodeType t, int value, int fcnLink) :
+#if CYGWIN 
+					logc(std::string("SYMBOLTABLEENTRY3"))
+#endif /* CYGWIN */					
+					, _type(t), _value(value), _fcnLink(fcnLink) {
+}
+
 symbolTableEntry& symbolTableEntry::operator=(const symbolTableEntry& p) {
 	if (this != &p) {
 		type(p.type());
@@ -73,6 +80,9 @@ void symbolTableEntry::dumpEntry(void) {
         break;
     case nodeBasePointer:
         oss() << "nodeBasePointer";
+        break;
+    case nodeFunctionReturn:
+        oss() << "nodeFunctionReturn";
         break;
     default:
         oss() << "ERROR symbolTableEntry nodeUnknown:" << type();

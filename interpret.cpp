@@ -163,10 +163,7 @@ void interpret::_loadSymbolTable(const string& s) {
         int value;
         int fcnLink;
         iss >> type >> value >> fcnLink;
-        symbolTableEntry ste;
-        ste.type((nodeType)type);
-        ste.value(value);
-        ste.fcnLink(fcnLink);
+        symbolTableEntry ste((nodeType)type, value, fcnLink);
         _symbolTable[_symbolTableIndex++] = ste;
         if (_symbolTableIndex >= MAX_SYMBOL_TABLE_ENTRY) {
             oss() << "Exceeded symbol table size. Aborting.";
@@ -272,7 +269,21 @@ void interpret::run(void) {
                 // Entering main
                 ++_programIndex;
             } else {
-                _programIndex = _bp;
+                // End of function, time to return from whence we came
+                {
+                    // TODO: This is the time to return any nodeTemporary symbols on the _evaluationStack to being marked as nodeUnused
+                    unsigned int nodeFunctionReturnIndex = _evaluationStack.peekAtIndex(_bp+1); 
+                    //oss() << endl << "!!!nodeFunctionReturnIndex:" << nodeFunctionReturnIndex;
+                    //dump();
+                    _programIndex = _symbolTable[nodeFunctionReturnIndex].value();
+                    
+                    _evaluationStack.stackFrameIndex(_bp);   // mov sp, bp
+                    unsigned int bpIndex = _evaluationStack.front();
+                    _bp = _symbolTable[bpIndex].value();
+                    _evaluationStack.pop_front();
+                    
+                    _evaluationStack.pop_front();   // pop the function return index
+                }
             }
             break;
         case nodeIfEval0:
@@ -286,8 +297,8 @@ void interpret::run(void) {
                 ++_programIndex;
             } else {
 #if CYGWIN
-            oss() << endl << "!!nodeIfEval0 _currentProgramNodeValue():" << _currentProgramNodeValue() << " _currentProgramNodeLevel()" << _currentProgramNodeLevel() ;
-            dump();
+                //oss() << endl << "!!nodeIfEval0 _currentProgramNodeValue():" << _currentProgramNodeValue() << " _currentProgramNodeLevel()" << _currentProgramNodeLevel() ;
+                //dump();
 #endif /* CYGWIN */                
                 parseTreeEntry pte(nodeElse, _currentProgramNodeValue(), _currentProgramNodeLevel() );
                 int newProgramIndex = _findFirstParseTreeEntry(pte);
@@ -298,8 +309,8 @@ void interpret::run(void) {
                 }
             }
 #if CYGWIN
-            oss() << endl << "!!nodeIfEval0 _programIndex:" << _programIndex;
-            dump();
+            //oss() << endl << "!!nodeIfEval0 _programIndex:" << _programIndex;
+            //dump();
 #endif /* CYGWIN */                
             break;
         case nodeJmpEndIf:
@@ -316,22 +327,36 @@ void interpret::run(void) {
         case nodeFunctionCall:
             // 1. push bp
             {
-                symbolTableEntry ste;
-                ste.type((nodeType)nodeBasePointer);
-                ste.value(_bp);
-                _symbolTable[_symbolTableIndex++] = ste;
+                symbolTableEntry symbolReturnValue(nodeFunctionReturn, INVALID_VALUE);  // Filled in later at nodeFunctionCallEnd when all parameters are on the stack
+                _symbolTable[_symbolTableIndex] = symbolReturnValue;
+                _evaluationStack.push_front(_symbolTableIndex++);   // push function return value
+                
+                symbolTableEntry symbolBasePointer(nodeBasePointer, _bp);
+                _symbolTable[_symbolTableIndex] = symbolBasePointer;
+                _evaluationStack.push_front(_symbolTableIndex++);   // push bp
+                // _bp points to next available index. Note that 1 plus this index is the nodeFunctionReturn which we'll have to fill in when nodeFunctionCallEnd is called.
             }
             // 2. mov bp, sp
-            //_bp = _programIndex;
+            _bp = _evaluationStack.stackFrameIndex();    
             break;
         case nodeFunctionCallEnd:
             // 1. Get the _programIndex from symbolTable
             _symbolTable[_currentProgramNodeValue()].dumpEntry();
             //oss() << endl << "!!!_currentProgramNodeValue()" << _currentProgramNodeValue();
-            dump();
+            //dump();
+            
+            // Time to fill in nodeFunctionReturn
+            {
+                // _evaluationStack grows down and nodeFunctionReturn was pushed first so add 1 here.
+                int nodeFunctionReturnIndex = _evaluationStack.peekAtIndex(_bp + 1);
+                oss() << endl << "!!!nodeFunctionReturnIndex:" << nodeFunctionReturnIndex;
+                dump();
+                _symbolTable[nodeFunctionReturnIndex].value(_programIndex/*+1*/);   // Want to return to the next _programIndex, so + 1. Update, _programIndex is incremented so we don't have to do it here.
+            }
+            
             // 2. mov bp, sp
-            _bp = _programIndex;
-            _programIndex = _symbolTable[_currentProgramNodeValue()].fcnLink();
+            //_bp = _programIndex;
+            _programIndex = _symbolTable[_currentProgramNodeValue()].fcnLink(); // Jump to new location
             break;
         case nodeProgramEnd:
             // done
@@ -347,6 +372,9 @@ void interpret::run(void) {
         }
 #if CYGWIN
         dumpEvaluationStack();
+        // Show _bp and evaluationStack index
+        oss() << "_bp:" << _bp << " _evaluationStack.stackFrameIndex():" << _evaluationStack.stackFrameIndex() << " _evaluationStack.size():" << _evaluationStack.size();
+        dump();
         dumpSymbolTable();
 #endif /* CYGWIN */    
     }
