@@ -33,9 +33,16 @@
 #include <string>
 #include <istream>
 #include <sstream>
+//#include <math.h>
 //#include <complex>
 #endif /* CYGWIN */
 #include <assert.h>
+
+static int moveAbsolute(int position) {
+    printf("\nmoveAbsolute():%d\n", position);
+    fflush(stdout);
+    return 27;
+}
 
 interpret::interpret() :
 #if CYGWIN 
@@ -200,9 +207,9 @@ void interpret::dumpEvaluationStack(void) {
     // 1. Save current eval stack
     tinyQueue<int> _evaluationCopy;
     _evaluationCopy = _evaluationStack;
-    // 2. Dump contents of the copy
+    // 2. Dump contents of the copy. Using a copy because content gets destroyed when an item is poped off stack.
     while (!_evaluationCopy.empty()) {
-        oss() << "Symbol index=" << _evaluationCopy.front() << " value=" << _symbolTable[_evaluationCopy.front()].value();
+        oss() << "Symbol index=" << _evaluationCopy.front() << " value=" << _symbolTable[_evaluationCopy.front()].value() << " stackFrameIndex():" << _evaluationCopy.stackFrameIndex();
         dump();
         _evaluationCopy.pop_front();
     }
@@ -259,8 +266,8 @@ void interpret::run(void) {
 #endif            
         case nodeIf:
         case nodeEndif:
-            // Nothing to do except increment the program counter for these nodes.
-            ++_programIndex;
+            // Nothing to do except increment the program counter for these nodes. Which is done automatically in the for loop.
+            //++_programIndex;
             break;
         case nodeFunctionDefinition:
             oss() << endl << "***nodeFunctionDefinition _programIndex:" << _programIndex ;
@@ -269,7 +276,7 @@ void interpret::run(void) {
                 // Entering main
                 ++_programIndex;
             } else {
-                // End of function, time to return from whence we came
+                // End of function, time to return from whence we came. In other words, hitting a function definition means we've reached the end of the current function.
                 {
                     // TODO: This is the time to return any nodeTemporary symbols on the _evaluationStack to being marked as nodeUnused
                     unsigned int nodeFunctionReturnIndex = _evaluationStack.peekAtIndex(_bp+1); 
@@ -356,10 +363,52 @@ void interpret::run(void) {
             
             // 2. mov bp, sp
             //_bp = _programIndex;
-            _programIndex = _symbolTable[_currentProgramNodeValue()].fcnLink(); // Jump to new location
+            {
+                int tentativeProgramIndex = _symbolTable[_currentProgramNodeValue()].fcnLink(); // Jump to new location
+                if (tentativeProgramIndex < 0) {
+                    // It's an intrinsic function call so make the call here locally.
+                    int intrinsicReturnValue = 0;
+                    int symbolIndexParameter1;
+                    int symbolIndexReturnValue;
+                    switch (tentativeProgramIndex) {
+                    case INTRINSIC_FCN_DEFN_MOVE_ABSOLUTE:
+                        oss() << endl << "hello_programIndex:" << _programIndex;
+                        dump();
+                        // 1. Get parameters and make the call to the intrinsic function. 
+                        //     First parameter is always by reference since it's the return value, second parameter is by value
+                        symbolIndexParameter1 = _evaluationStack.peekAtIndex(_bp - 2); // _bp points to the return symbol index ...
+                        symbolIndexReturnValue = _evaluationStack.peekAtIndex(_bp - 1); // ... which is here
+                        //oss() << endl << "_bp:" << _bp << " symbolIndexParameter1:" << symbolIndexParameter1;
+                        //dump();
+                        intrinsicReturnValue = moveAbsolute(_symbolTable[symbolIndexParameter1].value());
+                        _symbolTable[symbolIndexReturnValue].value(intrinsicReturnValue);
+                        break;
+                    case INTRINSIC_FCN_DEFN_MOVE_RELATIVE:
+                        break;
+                    case INTRINSIC_FCN_DEFN_SLEEP:
+                        break;
+                    default:
+                        break;
+                    }
+#if 1                    
+                    _evaluationStack.stackFrameIndex(_bp);   // mov sp, bp
+                    unsigned int bpIndex = _evaluationStack.front();
+                    _bp = _symbolTable[bpIndex].value();
+                    _evaluationStack.pop_front();
+                    
+                    _evaluationStack.pop_front();   // pop the function return index
+#endif                    
+                } else {
+                    _programIndex = tentativeProgramIndex;
+                }
+            }
             break;
         case nodeProgramEnd:
             // done
+#if CYGWIN
+            oss() << endl << "nodeProgramEnd";
+            dump();
+#endif /* CYGWIN */    
             return;
         default:
 #if CYGWIN
@@ -948,6 +997,9 @@ void stepper::_timerStart(bool start /* = true */) {
 int main(void) {
 #if 0
 #define PI  (3.1415926535897932384626433832795)
+    cout << "PI * PI:" << PI * PI << endl;
+    cout << "PI^2:" << pow(PI,2) << endl;
+
     std::complex<float> localComplex1(std::polar(1.23, 0.2768 + (PI * 1.0)));
     cout << "localComplex1:" << localComplex1 << endl;
     std::complex<float> localComplex2(std::polar(1.23, 0.2768 + (PI * 2.0)));

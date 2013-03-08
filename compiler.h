@@ -28,6 +28,7 @@
 #define VAR_FIRST_PARAMETER         (0)
 #define VAR_SUBSEQUENT_PARAMETER    (1)
 
+#if 0
 #define VAR_FCN_LINK_UNDEFINED              (-1)
 // Used by interpreter to call intrinsic (built-in) functions. All intrinsics
 //  use a negative number to distinguish them from user defined functions.
@@ -35,6 +36,7 @@
 #define INTRINSIC_FCN_DEFN_MOVE_RELATIVE    (-3)
 #define INTRINSIC_FCN_DEFN_SLEEP            (-4)
 #define NUM_PARAMETERS_TWO      2   // The above intrinsic functions all take 2 parameters.
+#endif
 
 #define DEFAULT_VAR_VALUE   (0)
 

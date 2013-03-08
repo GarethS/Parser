@@ -217,6 +217,7 @@ void postProcess(void) {
 void fixupFcnCalls(void) {
     int i;
 	for (i = 0; i < symbolTableFreeIndex - 1; ++i) {
+        //printf("\nindex:%d, type:%d", i, symbolTable[i].type);
         if (symbolTable[i].type == nodeFunctionCall) {
             // Find the definition for this call and grab it's statement link index.
             int fcnDefnIndex;
@@ -226,8 +227,9 @@ void fixupFcnCalls(void) {
                 debugAssert(ERR:fixupFcnCalls():incorrect number of function definitions);
                 return;
             }
+            //printf("\nfixupFcnCalls():%d, %d", i, symbolTableFreeIndex);
             symbolTable[i].fcnDefnLink = fcnDefnIndex;
-            break;
+            //break;
         }
     }
 }
@@ -345,6 +347,7 @@ int findSymbolFcnDefinition(symbolNode* pVar, int* pFcnDefnIndex) {
     if (strncmp(QUOTES_MOVEABSOLUTE, pVar->name, VAR_NAME_LENGTH-1) == 0 &&
         pVar->val == NUM_PARAMETERS_TWO) {
         *pFcnDefnIndex = INTRINSIC_FCN_DEFN_MOVE_ABSOLUTE;
+        //printf(QUOTES_MOVEABSOLUTE);
         ++count;
     } else if (strncmp(QUOTES_MOVERELATIVE, pVar->name, VAR_NAME_LENGTH-1) == 0 &&
         pVar->val == NUM_PARAMETERS_TWO) {
