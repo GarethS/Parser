@@ -156,19 +156,19 @@ expr:	LPAREN expr RPAREN	            {$$ = $2;}
         | VAR LBRACKET expr RBRACKET    {$$ = addNodeArray($1, $3);}    // array						
 
 argList: /* empty */            {$$ = NULL;}
-        | expr commaArgList     {$$ = addFcnCallArgument($2, $1);}
+        | commaArgList          {$$ = $1;}
 
-commaArgList:   /* empty */           {$$ = NULL;}
-            | commaArgList COMMA expr {$$ = addFcnCallArgument($1, $3);}
+commaArgList: expr              {$$ = addFcnCallArgument(NULL, $1);}
+        | expr COMMA commaArgList {$$ = addFcnCallArgument($3, $1);}
             
-defnArgList: /* empty */            {$$ = NULL;}
-        | VAR defnCommaArgList      {/*printf("\ndefnArgList");*/ $$ = addFcnDefnArgument($2, $1, VAR_PASS_BY_VALUE, VAR_FIRST_PARAMETER);} // This is pass-by-value
-        | BITWISEAND VAR defnCommaArgList      {$$ = addFcnDefnArgument($3, $2, VAR_PASS_BY_REFERENCE, VAR_FIRST_PARAMETER);}  // The '&' represents pass-by-reference, not bitwise AND.
+defnArgList: /* empty */        {$$ = NULL;}
+        | defnCommaArgList      {$$ = $1;}
 
-defnCommaArgList:   /* empty */           {$$ = NULL;}
-            | defnCommaArgList COMMA VAR  {/*printf("\ndefnCommaArgList");*/ $$ = addFcnDefnArgument($1, $3, VAR_PASS_BY_VALUE, VAR_SUBSEQUENT_PARAMETER);}   // This is pass-by-value
-            | defnCommaArgList COMMA BITWISEAND VAR  {$$ = addFcnDefnArgument($1, $4, VAR_PASS_BY_REFERENCE, VAR_SUBSEQUENT_PARAMETER);}   // The '&' represents pass-by-reference, not bitwise AND.
-            
+defnCommaArgList: VAR  {$$ = addFcnDefnArgument(NULL, $1, VAR_PASS_BY_VALUE, VAR_FIRST_PARAMETER);}
+        | BITWISEAND VAR {$$ = addFcnDefnArgument(NULL, $2, VAR_PASS_BY_REFERENCE, VAR_FIRST_PARAMETER);}
+        | VAR COMMA defnCommaArgList {$$ = addFcnDefnArgument($3, $1, VAR_PASS_BY_VALUE, VAR_SUBSEQUENT_PARAMETER);}
+        | BITWISEAND VAR COMMA defnCommaArgList {$$ = addFcnDefnArgument($4, $2, VAR_PASS_BY_REFERENCE, VAR_SUBSEQUENT_PARAMETER);}
+
 arrayDefine:    ARRAYDEFINE VAR LBRACKET CONST RBRACKET SEMI    {$$ = addArrayToSymbolTable($2, atoi($4));}
 
 %% /* Additional C code */
@@ -219,7 +219,7 @@ void fixupFcnCalls(void) {
 	for (i = 0; i < symbolTableFreeIndex - 1; ++i) {
         //printf("\nindex:%d, type:%d", i, symbolTable[i].type);
         if (symbolTable[i].type == nodeFunctionCall) {
-            // Find the definition for this call and grab it's statement link index.
+            // Find the definition for this call and grab its statement link index.
             int fcnDefnIndex;
             int count = findSymbolFcnDefinition(symbolTable + i, &fcnDefnIndex);
             if (count != 1) {
@@ -400,8 +400,8 @@ astNode* addNodeVariableOperator(int operator, int varIndex, astNode* pRight) {
 // The 1 stands for 1 parameter with this call
 astNode* addNodeInstrinsicFunction1(char* functionName, char* returnValue, astNode* parameter1) {
     astNode* p1 = addNodeSymbolIndex(addVarToSymbolTable(returnValue));
-    astNode* p2 = addFcnCallArgument(NULL, p1);
-    astNode* p3 = addFcnCallArgument(p2, parameter1);
+    astNode* p2 = addFcnCallArgument(NULL, parameter1);
+    astNode* p3 = addFcnCallArgument(p2, p1);
     return addNodeFunctionCall(functionName, p3);
 }
 
@@ -843,7 +843,8 @@ void walkSyntaxTree(astNode* pSyntaxNode, char* position, int indent, FILE* fp) 
             writeStatement(tmp, fp);
         }
         printf(" FunctionCall: index,%d name,%s", pSyntaxNode->value, symbolTable[pSyntaxNode->value].name);
-        walkList(pSyntaxNode, fp);
+        //walkList(pSyntaxNode, fp);
+        walkListBackwards(pSyntaxNode, fp);
         if (fp != NULL) {
             sprintf(tmp, "%d %s FunctionCallEnd %d\n", indent, position, pSyntaxNode->value);
             writeStatement(tmp, fp);
@@ -882,6 +883,28 @@ void walkList(astNode* pListNode, FILE* fp) {
     fflush(stdout);
 #endif /* REGRESS_1 */    
 	walkSyntaxTree(pListNode->pLeft, "ROOT", 0, fp);
+}
+
+void walkListBackwards(astNode* pListNode, FILE* fp) {
+#if REGRESS_1
+    printf("\nwalkList(astNode* pListNode=%d)\n", (int)pListNode);
+    fflush(stdout);
+#endif /* REGRESS_1 */    
+	if (pListNode == NULL) {
+		return;
+	}
+
+#if REGRESS_1    
+    printf("walkSyntaxTree(pListNode->pLeft=%d, ROOT, 0)\n", (int)pListNode->pLeft);
+    fflush(stdout);
+#endif /* REGRESS_1 */    
+	walkSyntaxTree(pListNode->pLeft, "ROOT", 0, fp);
+
+    #if REGRESS_1    
+    printf("\nwalkList(pListNode->pNext)=%d\n", (int)pListNode->pNext);
+    fflush(stdout);
+#endif /* REGRESS_1 */    
+    walkListBackwards(pListNode->pNext, fp);
 }
 
 unsigned int countArguments(astNode* pArgNode) {

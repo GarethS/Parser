@@ -39,7 +39,7 @@
 #include <assert.h>
 
 static int moveAbsolute(int position) {
-    printf("\nmoveAbsolute():%d\n", position);
+    printf("moveAbsolute(%d)\n", position);
     fflush(stdout);
     return 27;
 }
@@ -264,11 +264,6 @@ void interpret::run(void) {
             }
             break;
 #endif            
-        case nodeIf:
-        case nodeEndif:
-            // Nothing to do except increment the program counter for these nodes. Which is done automatically in the for loop.
-            //++_programIndex;
-            break;
         case nodeFunctionDefinition:
             oss() << endl << "***nodeFunctionDefinition _programIndex:" << _programIndex ;
             dump();
@@ -356,8 +351,8 @@ void interpret::run(void) {
             {
                 // _evaluationStack grows down and nodeFunctionReturn was pushed first so add 1 here.
                 int nodeFunctionReturnIndex = _evaluationStack.peekAtIndex(_bp + 1);
-                oss() << endl << "!!!nodeFunctionReturnIndex:" << nodeFunctionReturnIndex;
-                dump();
+                //oss() << endl << "!!!nodeFunctionReturnIndex:" << nodeFunctionReturnIndex;
+                //dump();
                 _symbolTable[nodeFunctionReturnIndex].value(_programIndex/*+1*/);   // Want to return to the next _programIndex, so + 1. Update, _programIndex is incremented so we don't have to do it here.
             }
             
@@ -370,18 +365,17 @@ void interpret::run(void) {
                     int intrinsicReturnValue = 0;
                     int symbolIndexParameter1;
                     int symbolIndexReturnValue;
+                    // 1. Get parameters and make the call to the intrinsic function. 
+                    //     First parameter is always by reference since it's the return value, second parameter is by value
+                    symbolIndexParameter1 = _evaluationStack.peekAtIndex(_bp - 2); // _bp points to the return symbol index ...
+                    symbolIndexReturnValue = _evaluationStack.peekAtIndex(_bp - 1); // ... which is here
                     switch (tentativeProgramIndex) {
                     case INTRINSIC_FCN_DEFN_MOVE_ABSOLUTE:
-                        oss() << endl << "hello_programIndex:" << _programIndex;
-                        dump();
-                        // 1. Get parameters and make the call to the intrinsic function. 
-                        //     First parameter is always by reference since it's the return value, second parameter is by value
-                        symbolIndexParameter1 = _evaluationStack.peekAtIndex(_bp - 2); // _bp points to the return symbol index ...
-                        symbolIndexReturnValue = _evaluationStack.peekAtIndex(_bp - 1); // ... which is here
+                        //oss() << endl << "hello_programIndex:" << _programIndex;
+                        //dump();
                         //oss() << endl << "_bp:" << _bp << " symbolIndexParameter1:" << symbolIndexParameter1;
                         //dump();
                         intrinsicReturnValue = moveAbsolute(_symbolTable[symbolIndexParameter1].value());
-                        _symbolTable[symbolIndexReturnValue].value(intrinsicReturnValue);
                         break;
                     case INTRINSIC_FCN_DEFN_MOVE_RELATIVE:
                         break;
@@ -390,14 +384,14 @@ void interpret::run(void) {
                     default:
                         break;
                     }
-#if 1                    
+                    _symbolTable[symbolIndexReturnValue].value(intrinsicReturnValue);
+
                     _evaluationStack.stackFrameIndex(_bp);   // mov sp, bp
                     unsigned int bpIndex = _evaluationStack.front();
                     _bp = _symbolTable[bpIndex].value();
                     _evaluationStack.pop_front();
                     
                     _evaluationStack.pop_front();   // pop the function return index
-#endif                    
                 } else {
                     _programIndex = tentativeProgramIndex;
                 }
@@ -417,6 +411,10 @@ void interpret::run(void) {
 #endif /* CYGWIN */    
             assert(false);
         case nodeNOP:
+        case nodeIf:
+        case nodeEndif:
+            // Nothing to do except increment the program counter for these nodes. Which is done automatically in the for loop.
+            //++_programIndex;
             break;
         }
 #if CYGWIN
@@ -628,12 +626,38 @@ void interpret::evaluate(unsigned int op) {
             oss() << leftHandSymbolTableIndex << "(symbol index) = " << rhs;
 #endif /* CYGWIN */    
             // Set symbol table entry = rhs;
+#if 1
+            unsigned int functionArgumentIndex, stackFrameIndex;
+            switch (_symbolTable[leftHandSymbolTableIndex].type()) {
+            case nodeConst:
+                // It's a constant so don't modify it's value
+                assert(_symbolTable[leftHandSymbolTableIndex].type() != nodeConst);
+                break;
+            case nodeVariable:
+                _symbolTable[leftHandSymbolTableIndex].value(rhs);
+                break;
+            case nodeArgumentValue:
+                break;
+            case nodeArgumentReference:
+                functionArgumentIndex = _symbolTable[leftHandSymbolTableIndex].value();
+                // Now get index off the stack frame
+                stackFrameIndex = _evaluationStack.peekAtIndex(_bp - functionArgumentIndex);
+#if CYGWIN
+                oss() << " functionArgumentIndex:" << functionArgumentIndex << " stackFrameIndex:" << stackFrameIndex;
+#endif /* CYGWIN */    
+                break;
+            default:
+                assert(false);
+                break;
+            }
+#else            
             if (_symbolTable[leftHandSymbolTableIndex].type() == nodeConst) {
                 // It's a constant so don't modify it's value
                 assert(_symbolTable[leftHandSymbolTableIndex].type() != nodeConst);
             } else {
                 _symbolTable[leftHandSymbolTableIndex].value(rhs);
             }
+#endif            
             //_evaluationStack.push_front(_evalValue() == _evalValue());
         }
         break;

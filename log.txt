@@ -53,11 +53,11 @@ PARSETREEENTRY nodeVariable 1 3
 PARSETREEENTRY nodeVariable 1 10
 PARSETREEENTRY nodeOperator 0 262
 PARSETREEENTRY nodeFunctionCall 0 11
+PARSETREEENTRY nodeVariable 0 4
 PARSETREEENTRY nodeVariable 1 7
 PARSETREEENTRY nodeVariable 1 3
 PARSETREEENTRY nodeOperator 0 289
 PARSETREEENTRY nodeVariable 0 9
-PARSETREEENTRY nodeVariable 0 4
 PARSETREEENTRY nodeFunctionCallEnd 0 11
 PARSETREEENTRY nodeVariable 1 12
 PARSETREEENTRY nodeVariable 1 3
@@ -69,7 +69,7 @@ PARSETREEENTRY nodeFunctionCallEnd 0 13
 PARSETREEENTRY nodeEndif 0 2
 PARSETREEENTRY nodeProgramEnd 0 0
 PARSETREEENTRY nodeFunctionDefinition 0 0
-PARSETREEENTRY nodeVariable 1 15
+PARSETREEENTRY nodeVariable 1 16
 PARSETREEENTRY nodeVariable 1 18
 PARSETREEENTRY nodeOperator 0 262
 PARSETREEENTRY nodeVariable 1 19
@@ -79,7 +79,7 @@ PARSETREEENTRY nodeFunctionDefinition 0 0
 PARSETREEENTRY nodeVariable 1 25
 PARSETREEENTRY nodeVariable 1 24
 PARSETREEENTRY nodeOperator 0 262
-PARSETREEENTRY nodeVariable 1 21
+PARSETREEENTRY nodeVariable 1 22
 PARSETREEENTRY nodeVariable 1 26
 PARSETREEENTRY nodeOperator 0 262
 INTERPRETER 
@@ -105,15 +105,15 @@ SYMBOLTABLEENTRY 11 nodeFunctionCall  3 67
 SYMBOLTABLEENTRY 12 nodeVariable  0 -1
 SYMBOLTABLEENTRY 13 nodeFunctionCall  2 -2
 SYMBOLTABLEENTRY 14 nodeFunctionDefinition  3 67
-SYMBOLTABLEENTRY 15 nodeArgumentReference  1 -1
-SYMBOLTABLEENTRY 16 nodeArgumentValue  2 -1
-SYMBOLTABLEENTRY 17 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 15 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 16 nodeArgumentReference  1 -1
+SYMBOLTABLEENTRY 17 nodeArgumentValue  2 -1
 SYMBOLTABLEENTRY 18 nodeConst  3 -1
 SYMBOLTABLEENTRY 19 nodeVariable  0 -1
 SYMBOLTABLEENTRY 20 nodeFunctionDefinition  3 74
-SYMBOLTABLEENTRY 21 nodeArgumentValue  1 -1
-SYMBOLTABLEENTRY 22 nodeArgumentValue  2 -1
-SYMBOLTABLEENTRY 23 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 21 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 22 nodeArgumentValue  1 -1
+SYMBOLTABLEENTRY 23 nodeArgumentValue  2 -1
 SYMBOLTABLEENTRY 24 nodeConst  3 -1
 SYMBOLTABLEENTRY 25 nodeVariable  0 -1
 SYMBOLTABLEENTRY 26 nodeVariable  0 -1
@@ -139,15 +139,15 @@ SYMBOLTABLEENTRY 11 nodeFunctionCall  3 67
 SYMBOLTABLEENTRY 12 nodeVariable  0 -1
 SYMBOLTABLEENTRY 13 nodeFunctionCall  2 -2
 SYMBOLTABLEENTRY 14 nodeFunctionDefinition  3 67
-SYMBOLTABLEENTRY 15 nodeArgumentReference  1 -1
-SYMBOLTABLEENTRY 16 nodeArgumentValue  2 -1
-SYMBOLTABLEENTRY 17 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 15 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 16 nodeArgumentReference  1 -1
+SYMBOLTABLEENTRY 17 nodeArgumentValue  2 -1
 SYMBOLTABLEENTRY 18 nodeConst  3 -1
 SYMBOLTABLEENTRY 19 nodeVariable  0 -1
 SYMBOLTABLEENTRY 20 nodeFunctionDefinition  3 74
-SYMBOLTABLEENTRY 21 nodeArgumentValue  1 -1
-SYMBOLTABLEENTRY 22 nodeArgumentValue  2 -1
-SYMBOLTABLEENTRY 23 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 21 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 22 nodeArgumentValue  1 -1
+SYMBOLTABLEENTRY 23 nodeArgumentValue  2 -1
 SYMBOLTABLEENTRY 24 nodeConst  3 -1
 SYMBOLTABLEENTRY 25 nodeVariable  0 -1
 SYMBOLTABLEENTRY 26 nodeVariable  0 -1
@@ -174,15 +174,15 @@ SYMBOLTABLEENTRY 11 nodeFunctionCall  3 67
 SYMBOLTABLEENTRY 12 nodeVariable  0 -1
 SYMBOLTABLEENTRY 13 nodeFunctionCall  2 -2
 SYMBOLTABLEENTRY 14 nodeFunctionDefinition  3 67
-SYMBOLTABLEENTRY 15 nodeArgumentReference  1 -1
-SYMBOLTABLEENTRY 16 nodeArgumentValue  2 -1
-SYMBOLTABLEENTRY 17 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 15 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 16 nodeArgumentReference  1 -1
+SYMBOLTABLEENTRY 17 nodeArgumentValue  2 -1
 SYMBOLTABLEENTRY 18 nodeConst  3 -1
 SYMBOLTABLEENTRY 19 nodeVariable  0 -1
 SYMBOLTABLEENTRY 20 nodeFunctionDefinition  3 74
-SYMBOLTABLEENTRY 21 nodeArgumentValue  1 -1
-SYMBOLTABLEENTRY 22 nodeArgumentValue  2 -1
-SYMBOLTABLEENTRY 23 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 21 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 22 nodeArgumentValue  1 -1
+SYMBOLTABLEENTRY 23 nodeArgumentValue  2 -1
 SYMBOLTABLEENTRY 24 nodeConst  3 -1
 SYMBOLTABLEENTRY 25 nodeVariable  0 -1
 SYMBOLTABLEENTRY 26 nodeVariable  0 -1
@@ -209,15 +209,15 @@ SYMBOLTABLEENTRY 11 nodeFunctionCall  3 67
 SYMBOLTABLEENTRY 12 nodeVariable  0 -1
 SYMBOLTABLEENTRY 13 nodeFunctionCall  2 -2
 SYMBOLTABLEENTRY 14 nodeFunctionDefinition  3 67
-SYMBOLTABLEENTRY 15 nodeArgumentReference  1 -1
-SYMBOLTABLEENTRY 16 nodeArgumentValue  2 -1
-SYMBOLTABLEENTRY 17 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 15 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 16 nodeArgumentReference  1 -1
+SYMBOLTABLEENTRY 17 nodeArgumentValue  2 -1
 SYMBOLTABLEENTRY 18 nodeConst  3 -1
 SYMBOLTABLEENTRY 19 nodeVariable  0 -1
 SYMBOLTABLEENTRY 20 nodeFunctionDefinition  3 74
-SYMBOLTABLEENTRY 21 nodeArgumentValue  1 -1
-SYMBOLTABLEENTRY 22 nodeArgumentValue  2 -1
-SYMBOLTABLEENTRY 23 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 21 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 22 nodeArgumentValue  1 -1
+SYMBOLTABLEENTRY 23 nodeArgumentValue  2 -1
 SYMBOLTABLEENTRY 24 nodeConst  3 -1
 SYMBOLTABLEENTRY 25 nodeVariable  0 -1
 SYMBOLTABLEENTRY 26 nodeVariable  0 -1
@@ -245,15 +245,15 @@ SYMBOLTABLEENTRY 11 nodeFunctionCall  3 67
 SYMBOLTABLEENTRY 12 nodeVariable  0 -1
 SYMBOLTABLEENTRY 13 nodeFunctionCall  2 -2
 SYMBOLTABLEENTRY 14 nodeFunctionDefinition  3 67
-SYMBOLTABLEENTRY 15 nodeArgumentReference  1 -1
-SYMBOLTABLEENTRY 16 nodeArgumentValue  2 -1
-SYMBOLTABLEENTRY 17 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 15 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 16 nodeArgumentReference  1 -1
+SYMBOLTABLEENTRY 17 nodeArgumentValue  2 -1
 SYMBOLTABLEENTRY 18 nodeConst  3 -1
 SYMBOLTABLEENTRY 19 nodeVariable  0 -1
 SYMBOLTABLEENTRY 20 nodeFunctionDefinition  3 74
-SYMBOLTABLEENTRY 21 nodeArgumentValue  1 -1
-SYMBOLTABLEENTRY 22 nodeArgumentValue  2 -1
-SYMBOLTABLEENTRY 23 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 21 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 22 nodeArgumentValue  1 -1
+SYMBOLTABLEENTRY 23 nodeArgumentValue  2 -1
 SYMBOLTABLEENTRY 24 nodeConst  3 -1
 SYMBOLTABLEENTRY 25 nodeVariable  0 -1
 SYMBOLTABLEENTRY 26 nodeVariable  0 -1
@@ -282,15 +282,15 @@ SYMBOLTABLEENTRY 11 nodeFunctionCall  3 67
 SYMBOLTABLEENTRY 12 nodeVariable  0 -1
 SYMBOLTABLEENTRY 13 nodeFunctionCall  2 -2
 SYMBOLTABLEENTRY 14 nodeFunctionDefinition  3 67
-SYMBOLTABLEENTRY 15 nodeArgumentReference  1 -1
-SYMBOLTABLEENTRY 16 nodeArgumentValue  2 -1
-SYMBOLTABLEENTRY 17 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 15 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 16 nodeArgumentReference  1 -1
+SYMBOLTABLEENTRY 17 nodeArgumentValue  2 -1
 SYMBOLTABLEENTRY 18 nodeConst  3 -1
 SYMBOLTABLEENTRY 19 nodeVariable  0 -1
 SYMBOLTABLEENTRY 20 nodeFunctionDefinition  3 74
-SYMBOLTABLEENTRY 21 nodeArgumentValue  1 -1
-SYMBOLTABLEENTRY 22 nodeArgumentValue  2 -1
-SYMBOLTABLEENTRY 23 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 21 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 22 nodeArgumentValue  1 -1
+SYMBOLTABLEENTRY 23 nodeArgumentValue  2 -1
 SYMBOLTABLEENTRY 24 nodeConst  3 -1
 SYMBOLTABLEENTRY 25 nodeVariable  0 -1
 SYMBOLTABLEENTRY 26 nodeVariable  0 -1
@@ -319,15 +319,15 @@ SYMBOLTABLEENTRY 11 nodeFunctionCall  3 67
 SYMBOLTABLEENTRY 12 nodeVariable  0 -1
 SYMBOLTABLEENTRY 13 nodeFunctionCall  2 -2
 SYMBOLTABLEENTRY 14 nodeFunctionDefinition  3 67
-SYMBOLTABLEENTRY 15 nodeArgumentReference  1 -1
-SYMBOLTABLEENTRY 16 nodeArgumentValue  2 -1
-SYMBOLTABLEENTRY 17 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 15 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 16 nodeArgumentReference  1 -1
+SYMBOLTABLEENTRY 17 nodeArgumentValue  2 -1
 SYMBOLTABLEENTRY 18 nodeConst  3 -1
 SYMBOLTABLEENTRY 19 nodeVariable  0 -1
 SYMBOLTABLEENTRY 20 nodeFunctionDefinition  3 74
-SYMBOLTABLEENTRY 21 nodeArgumentValue  1 -1
-SYMBOLTABLEENTRY 22 nodeArgumentValue  2 -1
-SYMBOLTABLEENTRY 23 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 21 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 22 nodeArgumentValue  1 -1
+SYMBOLTABLEENTRY 23 nodeArgumentValue  2 -1
 SYMBOLTABLEENTRY 24 nodeConst  3 -1
 SYMBOLTABLEENTRY 25 nodeVariable  0 -1
 SYMBOLTABLEENTRY 26 nodeVariable  0 -1
@@ -356,15 +356,15 @@ SYMBOLTABLEENTRY 11 nodeFunctionCall  3 67
 SYMBOLTABLEENTRY 12 nodeVariable  0 -1
 SYMBOLTABLEENTRY 13 nodeFunctionCall  2 -2
 SYMBOLTABLEENTRY 14 nodeFunctionDefinition  3 67
-SYMBOLTABLEENTRY 15 nodeArgumentReference  1 -1
-SYMBOLTABLEENTRY 16 nodeArgumentValue  2 -1
-SYMBOLTABLEENTRY 17 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 15 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 16 nodeArgumentReference  1 -1
+SYMBOLTABLEENTRY 17 nodeArgumentValue  2 -1
 SYMBOLTABLEENTRY 18 nodeConst  3 -1
 SYMBOLTABLEENTRY 19 nodeVariable  0 -1
 SYMBOLTABLEENTRY 20 nodeFunctionDefinition  3 74
-SYMBOLTABLEENTRY 21 nodeArgumentValue  1 -1
-SYMBOLTABLEENTRY 22 nodeArgumentValue  2 -1
-SYMBOLTABLEENTRY 23 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 21 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 22 nodeArgumentValue  1 -1
+SYMBOLTABLEENTRY 23 nodeArgumentValue  2 -1
 SYMBOLTABLEENTRY 24 nodeConst  3 -1
 SYMBOLTABLEENTRY 25 nodeVariable  0 -1
 SYMBOLTABLEENTRY 26 nodeVariable  0 -1
@@ -392,15 +392,15 @@ SYMBOLTABLEENTRY 11 nodeFunctionCall  3 67
 SYMBOLTABLEENTRY 12 nodeVariable  0 -1
 SYMBOLTABLEENTRY 13 nodeFunctionCall  2 -2
 SYMBOLTABLEENTRY 14 nodeFunctionDefinition  3 67
-SYMBOLTABLEENTRY 15 nodeArgumentReference  1 -1
-SYMBOLTABLEENTRY 16 nodeArgumentValue  2 -1
-SYMBOLTABLEENTRY 17 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 15 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 16 nodeArgumentReference  1 -1
+SYMBOLTABLEENTRY 17 nodeArgumentValue  2 -1
 SYMBOLTABLEENTRY 18 nodeConst  3 -1
 SYMBOLTABLEENTRY 19 nodeVariable  0 -1
 SYMBOLTABLEENTRY 20 nodeFunctionDefinition  3 74
-SYMBOLTABLEENTRY 21 nodeArgumentValue  1 -1
-SYMBOLTABLEENTRY 22 nodeArgumentValue  2 -1
-SYMBOLTABLEENTRY 23 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 21 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 22 nodeArgumentValue  1 -1
+SYMBOLTABLEENTRY 23 nodeArgumentValue  2 -1
 SYMBOLTABLEENTRY 24 nodeConst  3 -1
 SYMBOLTABLEENTRY 25 nodeVariable  0 -1
 SYMBOLTABLEENTRY 26 nodeVariable  0 -1
@@ -429,15 +429,15 @@ SYMBOLTABLEENTRY 11 nodeFunctionCall  3 67
 SYMBOLTABLEENTRY 12 nodeVariable  0 -1
 SYMBOLTABLEENTRY 13 nodeFunctionCall  2 -2
 SYMBOLTABLEENTRY 14 nodeFunctionDefinition  3 67
-SYMBOLTABLEENTRY 15 nodeArgumentReference  1 -1
-SYMBOLTABLEENTRY 16 nodeArgumentValue  2 -1
-SYMBOLTABLEENTRY 17 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 15 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 16 nodeArgumentReference  1 -1
+SYMBOLTABLEENTRY 17 nodeArgumentValue  2 -1
 SYMBOLTABLEENTRY 18 nodeConst  3 -1
 SYMBOLTABLEENTRY 19 nodeVariable  0 -1
 SYMBOLTABLEENTRY 20 nodeFunctionDefinition  3 74
-SYMBOLTABLEENTRY 21 nodeArgumentValue  1 -1
-SYMBOLTABLEENTRY 22 nodeArgumentValue  2 -1
-SYMBOLTABLEENTRY 23 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 21 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 22 nodeArgumentValue  1 -1
+SYMBOLTABLEENTRY 23 nodeArgumentValue  2 -1
 SYMBOLTABLEENTRY 24 nodeConst  3 -1
 SYMBOLTABLEENTRY 25 nodeVariable  0 -1
 SYMBOLTABLEENTRY 26 nodeVariable  0 -1
@@ -467,15 +467,15 @@ SYMBOLTABLEENTRY 11 nodeFunctionCall  3 67
 SYMBOLTABLEENTRY 12 nodeVariable  0 -1
 SYMBOLTABLEENTRY 13 nodeFunctionCall  2 -2
 SYMBOLTABLEENTRY 14 nodeFunctionDefinition  3 67
-SYMBOLTABLEENTRY 15 nodeArgumentReference  1 -1
-SYMBOLTABLEENTRY 16 nodeArgumentValue  2 -1
-SYMBOLTABLEENTRY 17 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 15 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 16 nodeArgumentReference  1 -1
+SYMBOLTABLEENTRY 17 nodeArgumentValue  2 -1
 SYMBOLTABLEENTRY 18 nodeConst  3 -1
 SYMBOLTABLEENTRY 19 nodeVariable  0 -1
 SYMBOLTABLEENTRY 20 nodeFunctionDefinition  3 74
-SYMBOLTABLEENTRY 21 nodeArgumentValue  1 -1
-SYMBOLTABLEENTRY 22 nodeArgumentValue  2 -1
-SYMBOLTABLEENTRY 23 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 21 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 22 nodeArgumentValue  1 -1
+SYMBOLTABLEENTRY 23 nodeArgumentValue  2 -1
 SYMBOLTABLEENTRY 24 nodeConst  3 -1
 SYMBOLTABLEENTRY 25 nodeVariable  0 -1
 SYMBOLTABLEENTRY 26 nodeVariable  0 -1
@@ -504,15 +504,15 @@ SYMBOLTABLEENTRY 11 nodeFunctionCall  3 67
 SYMBOLTABLEENTRY 12 nodeVariable  0 -1
 SYMBOLTABLEENTRY 13 nodeFunctionCall  2 -2
 SYMBOLTABLEENTRY 14 nodeFunctionDefinition  3 67
-SYMBOLTABLEENTRY 15 nodeArgumentReference  1 -1
-SYMBOLTABLEENTRY 16 nodeArgumentValue  2 -1
-SYMBOLTABLEENTRY 17 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 15 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 16 nodeArgumentReference  1 -1
+SYMBOLTABLEENTRY 17 nodeArgumentValue  2 -1
 SYMBOLTABLEENTRY 18 nodeConst  3 -1
 SYMBOLTABLEENTRY 19 nodeVariable  0 -1
 SYMBOLTABLEENTRY 20 nodeFunctionDefinition  3 74
-SYMBOLTABLEENTRY 21 nodeArgumentValue  1 -1
-SYMBOLTABLEENTRY 22 nodeArgumentValue  2 -1
-SYMBOLTABLEENTRY 23 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 21 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 22 nodeArgumentValue  1 -1
+SYMBOLTABLEENTRY 23 nodeArgumentValue  2 -1
 SYMBOLTABLEENTRY 24 nodeConst  3 -1
 SYMBOLTABLEENTRY 25 nodeVariable  0 -1
 SYMBOLTABLEENTRY 26 nodeVariable  0 -1
@@ -541,15 +541,15 @@ SYMBOLTABLEENTRY 11 nodeFunctionCall  3 67
 SYMBOLTABLEENTRY 12 nodeVariable  0 -1
 SYMBOLTABLEENTRY 13 nodeFunctionCall  2 -2
 SYMBOLTABLEENTRY 14 nodeFunctionDefinition  3 67
-SYMBOLTABLEENTRY 15 nodeArgumentReference  1 -1
-SYMBOLTABLEENTRY 16 nodeArgumentValue  2 -1
-SYMBOLTABLEENTRY 17 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 15 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 16 nodeArgumentReference  1 -1
+SYMBOLTABLEENTRY 17 nodeArgumentValue  2 -1
 SYMBOLTABLEENTRY 18 nodeConst  3 -1
 SYMBOLTABLEENTRY 19 nodeVariable  0 -1
 SYMBOLTABLEENTRY 20 nodeFunctionDefinition  3 74
-SYMBOLTABLEENTRY 21 nodeArgumentValue  1 -1
-SYMBOLTABLEENTRY 22 nodeArgumentValue  2 -1
-SYMBOLTABLEENTRY 23 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 21 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 22 nodeArgumentValue  1 -1
+SYMBOLTABLEENTRY 23 nodeArgumentValue  2 -1
 SYMBOLTABLEENTRY 24 nodeConst  3 -1
 SYMBOLTABLEENTRY 25 nodeVariable  0 -1
 SYMBOLTABLEENTRY 26 nodeVariable  0 -1
@@ -579,15 +579,15 @@ SYMBOLTABLEENTRY 11 nodeFunctionCall  3 67
 SYMBOLTABLEENTRY 12 nodeVariable  0 -1
 SYMBOLTABLEENTRY 13 nodeFunctionCall  2 -2
 SYMBOLTABLEENTRY 14 nodeFunctionDefinition  3 67
-SYMBOLTABLEENTRY 15 nodeArgumentReference  1 -1
-SYMBOLTABLEENTRY 16 nodeArgumentValue  2 -1
-SYMBOLTABLEENTRY 17 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 15 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 16 nodeArgumentReference  1 -1
+SYMBOLTABLEENTRY 17 nodeArgumentValue  2 -1
 SYMBOLTABLEENTRY 18 nodeConst  3 -1
 SYMBOLTABLEENTRY 19 nodeVariable  0 -1
 SYMBOLTABLEENTRY 20 nodeFunctionDefinition  3 74
-SYMBOLTABLEENTRY 21 nodeArgumentValue  1 -1
-SYMBOLTABLEENTRY 22 nodeArgumentValue  2 -1
-SYMBOLTABLEENTRY 23 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 21 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 22 nodeArgumentValue  1 -1
+SYMBOLTABLEENTRY 23 nodeArgumentValue  2 -1
 SYMBOLTABLEENTRY 24 nodeConst  3 -1
 SYMBOLTABLEENTRY 25 nodeVariable  0 -1
 SYMBOLTABLEENTRY 26 nodeVariable  0 -1
@@ -616,15 +616,15 @@ SYMBOLTABLEENTRY 11 nodeFunctionCall  3 67
 SYMBOLTABLEENTRY 12 nodeVariable  0 -1
 SYMBOLTABLEENTRY 13 nodeFunctionCall  2 -2
 SYMBOLTABLEENTRY 14 nodeFunctionDefinition  3 67
-SYMBOLTABLEENTRY 15 nodeArgumentReference  1 -1
-SYMBOLTABLEENTRY 16 nodeArgumentValue  2 -1
-SYMBOLTABLEENTRY 17 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 15 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 16 nodeArgumentReference  1 -1
+SYMBOLTABLEENTRY 17 nodeArgumentValue  2 -1
 SYMBOLTABLEENTRY 18 nodeConst  3 -1
 SYMBOLTABLEENTRY 19 nodeVariable  0 -1
 SYMBOLTABLEENTRY 20 nodeFunctionDefinition  3 74
-SYMBOLTABLEENTRY 21 nodeArgumentValue  1 -1
-SYMBOLTABLEENTRY 22 nodeArgumentValue  2 -1
-SYMBOLTABLEENTRY 23 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 21 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 22 nodeArgumentValue  1 -1
+SYMBOLTABLEENTRY 23 nodeArgumentValue  2 -1
 SYMBOLTABLEENTRY 24 nodeConst  3 -1
 SYMBOLTABLEENTRY 25 nodeVariable  0 -1
 SYMBOLTABLEENTRY 26 nodeVariable  0 -1
@@ -654,15 +654,15 @@ SYMBOLTABLEENTRY 11 nodeFunctionCall  3 67
 SYMBOLTABLEENTRY 12 nodeVariable  0 -1
 SYMBOLTABLEENTRY 13 nodeFunctionCall  2 -2
 SYMBOLTABLEENTRY 14 nodeFunctionDefinition  3 67
-SYMBOLTABLEENTRY 15 nodeArgumentReference  1 -1
-SYMBOLTABLEENTRY 16 nodeArgumentValue  2 -1
-SYMBOLTABLEENTRY 17 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 15 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 16 nodeArgumentReference  1 -1
+SYMBOLTABLEENTRY 17 nodeArgumentValue  2 -1
 SYMBOLTABLEENTRY 18 nodeConst  3 -1
 SYMBOLTABLEENTRY 19 nodeVariable  0 -1
 SYMBOLTABLEENTRY 20 nodeFunctionDefinition  3 74
-SYMBOLTABLEENTRY 21 nodeArgumentValue  1 -1
-SYMBOLTABLEENTRY 22 nodeArgumentValue  2 -1
-SYMBOLTABLEENTRY 23 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 21 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 22 nodeArgumentValue  1 -1
+SYMBOLTABLEENTRY 23 nodeArgumentValue  2 -1
 SYMBOLTABLEENTRY 24 nodeConst  3 -1
 SYMBOLTABLEENTRY 25 nodeVariable  0 -1
 SYMBOLTABLEENTRY 26 nodeVariable  0 -1
@@ -672,9 +672,9 @@ SYMBOLTABLEENTRY 29 nodeTemporary  0 0
 SYMBOLTABLEENTRY 30 nodeFunctionReturn  -1 0
 SYMBOLTABLEENTRY 31 nodeBasePointer  0 0
 INTERPRETER 
-Run programIndex=52 programNodeType:0 programNodeValue:7
+Run programIndex=52 programNodeType:0 programNodeValue:4
 INTERPRETER ENTER interpret::dumpEvaluationStack
-INTERPRETER Symbol index=7 value=2 stackFrameIndex():252
+INTERPRETER Symbol index=4 value=1 stackFrameIndex():252
 INTERPRETER Symbol index=31 value=0 stackFrameIndex():253
 INTERPRETER Symbol index=30 value=-1 stackFrameIndex():254
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -695,15 +695,15 @@ SYMBOLTABLEENTRY 11 nodeFunctionCall  3 67
 SYMBOLTABLEENTRY 12 nodeVariable  0 -1
 SYMBOLTABLEENTRY 13 nodeFunctionCall  2 -2
 SYMBOLTABLEENTRY 14 nodeFunctionDefinition  3 67
-SYMBOLTABLEENTRY 15 nodeArgumentReference  1 -1
-SYMBOLTABLEENTRY 16 nodeArgumentValue  2 -1
-SYMBOLTABLEENTRY 17 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 15 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 16 nodeArgumentReference  1 -1
+SYMBOLTABLEENTRY 17 nodeArgumentValue  2 -1
 SYMBOLTABLEENTRY 18 nodeConst  3 -1
 SYMBOLTABLEENTRY 19 nodeVariable  0 -1
 SYMBOLTABLEENTRY 20 nodeFunctionDefinition  3 74
-SYMBOLTABLEENTRY 21 nodeArgumentValue  1 -1
-SYMBOLTABLEENTRY 22 nodeArgumentValue  2 -1
-SYMBOLTABLEENTRY 23 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 21 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 22 nodeArgumentValue  1 -1
+SYMBOLTABLEENTRY 23 nodeArgumentValue  2 -1
 SYMBOLTABLEENTRY 24 nodeConst  3 -1
 SYMBOLTABLEENTRY 25 nodeVariable  0 -1
 SYMBOLTABLEENTRY 26 nodeVariable  0 -1
@@ -713,10 +713,10 @@ SYMBOLTABLEENTRY 29 nodeTemporary  0 0
 SYMBOLTABLEENTRY 30 nodeFunctionReturn  -1 0
 SYMBOLTABLEENTRY 31 nodeBasePointer  0 0
 INTERPRETER 
-Run programIndex=53 programNodeType:0 programNodeValue:3
+Run programIndex=53 programNodeType:0 programNodeValue:7
 INTERPRETER ENTER interpret::dumpEvaluationStack
-INTERPRETER Symbol index=3 value=7 stackFrameIndex():251
-INTERPRETER Symbol index=7 value=2 stackFrameIndex():252
+INTERPRETER Symbol index=7 value=2 stackFrameIndex():251
+INTERPRETER Symbol index=4 value=1 stackFrameIndex():252
 INTERPRETER Symbol index=31 value=0 stackFrameIndex():253
 INTERPRETER Symbol index=30 value=-1 stackFrameIndex():254
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -737,15 +737,15 @@ SYMBOLTABLEENTRY 11 nodeFunctionCall  3 67
 SYMBOLTABLEENTRY 12 nodeVariable  0 -1
 SYMBOLTABLEENTRY 13 nodeFunctionCall  2 -2
 SYMBOLTABLEENTRY 14 nodeFunctionDefinition  3 67
-SYMBOLTABLEENTRY 15 nodeArgumentReference  1 -1
-SYMBOLTABLEENTRY 16 nodeArgumentValue  2 -1
-SYMBOLTABLEENTRY 17 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 15 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 16 nodeArgumentReference  1 -1
+SYMBOLTABLEENTRY 17 nodeArgumentValue  2 -1
 SYMBOLTABLEENTRY 18 nodeConst  3 -1
 SYMBOLTABLEENTRY 19 nodeVariable  0 -1
 SYMBOLTABLEENTRY 20 nodeFunctionDefinition  3 74
-SYMBOLTABLEENTRY 21 nodeArgumentValue  1 -1
-SYMBOLTABLEENTRY 22 nodeArgumentValue  2 -1
-SYMBOLTABLEENTRY 23 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 21 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 22 nodeArgumentValue  1 -1
+SYMBOLTABLEENTRY 23 nodeArgumentValue  2 -1
 SYMBOLTABLEENTRY 24 nodeConst  3 -1
 SYMBOLTABLEENTRY 25 nodeVariable  0 -1
 SYMBOLTABLEENTRY 26 nodeVariable  0 -1
@@ -755,97 +755,11 @@ SYMBOLTABLEENTRY 29 nodeTemporary  0 0
 SYMBOLTABLEENTRY 30 nodeFunctionReturn  -1 0
 SYMBOLTABLEENTRY 31 nodeBasePointer  0 0
 INTERPRETER 
-Run programIndex=54 programNodeType:2 programNodeValue:289
-INTERPRETER 2 + 7
+Run programIndex=54 programNodeType:0 programNodeValue:3
 INTERPRETER ENTER interpret::dumpEvaluationStack
-INTERPRETER Symbol index=32 value=9 stackFrameIndex():252
-INTERPRETER Symbol index=31 value=0 stackFrameIndex():253
-INTERPRETER Symbol index=30 value=-1 stackFrameIndex():254
-INTERPRETER LEAVE interpret::dumpEvaluationStack
-INTERPRETER _bp:253 _evaluationStack.stackFrameIndex():252 _evaluationStack.size():3
-INTERPRETER interpret::dumpSymbolTable
-SYMBOLTABLEENTRY 0 nodeFunctionDefinition  0 0
-SYMBOLTABLEENTRY 1 nodeVariable  7 -1
-SYMBOLTABLEENTRY 2 nodeConst  4 -1
-SYMBOLTABLEENTRY 3 nodeVariable  7 -1
-SYMBOLTABLEENTRY 4 nodeConst  1 -1
-SYMBOLTABLEENTRY 5 nodeConst  5 -1
-SYMBOLTABLEENTRY 6 nodeConst  6 -1
-SYMBOLTABLEENTRY 7 nodeConst  2 -1
-SYMBOLTABLEENTRY 8 nodeVariable  0 -1
-SYMBOLTABLEENTRY 9 nodeConst  3 -1
-SYMBOLTABLEENTRY 10 nodeConst  7 -1
-SYMBOLTABLEENTRY 11 nodeFunctionCall  3 67
-SYMBOLTABLEENTRY 12 nodeVariable  0 -1
-SYMBOLTABLEENTRY 13 nodeFunctionCall  2 -2
-SYMBOLTABLEENTRY 14 nodeFunctionDefinition  3 67
-SYMBOLTABLEENTRY 15 nodeArgumentReference  1 -1
-SYMBOLTABLEENTRY 16 nodeArgumentValue  2 -1
-SYMBOLTABLEENTRY 17 nodeArgumentValue  0 -1
-SYMBOLTABLEENTRY 18 nodeConst  3 -1
-SYMBOLTABLEENTRY 19 nodeVariable  0 -1
-SYMBOLTABLEENTRY 20 nodeFunctionDefinition  3 74
-SYMBOLTABLEENTRY 21 nodeArgumentValue  1 -1
-SYMBOLTABLEENTRY 22 nodeArgumentValue  2 -1
-SYMBOLTABLEENTRY 23 nodeArgumentValue  0 -1
-SYMBOLTABLEENTRY 24 nodeConst  3 -1
-SYMBOLTABLEENTRY 25 nodeVariable  0 -1
-SYMBOLTABLEENTRY 26 nodeVariable  0 -1
-SYMBOLTABLEENTRY 27 nodeTemporary  1 0
-SYMBOLTABLEENTRY 28 nodeTemporary  0 0
-SYMBOLTABLEENTRY 29 nodeTemporary  0 0
-SYMBOLTABLEENTRY 30 nodeFunctionReturn  -1 0
-SYMBOLTABLEENTRY 31 nodeBasePointer  0 0
-SYMBOLTABLEENTRY 32 nodeTemporary  9 0
-INTERPRETER 
-Run programIndex=55 programNodeType:0 programNodeValue:9
-INTERPRETER ENTER interpret::dumpEvaluationStack
-INTERPRETER Symbol index=9 value=3 stackFrameIndex():251
-INTERPRETER Symbol index=32 value=9 stackFrameIndex():252
-INTERPRETER Symbol index=31 value=0 stackFrameIndex():253
-INTERPRETER Symbol index=30 value=-1 stackFrameIndex():254
-INTERPRETER LEAVE interpret::dumpEvaluationStack
-INTERPRETER _bp:253 _evaluationStack.stackFrameIndex():251 _evaluationStack.size():4
-INTERPRETER interpret::dumpSymbolTable
-SYMBOLTABLEENTRY 0 nodeFunctionDefinition  0 0
-SYMBOLTABLEENTRY 1 nodeVariable  7 -1
-SYMBOLTABLEENTRY 2 nodeConst  4 -1
-SYMBOLTABLEENTRY 3 nodeVariable  7 -1
-SYMBOLTABLEENTRY 4 nodeConst  1 -1
-SYMBOLTABLEENTRY 5 nodeConst  5 -1
-SYMBOLTABLEENTRY 6 nodeConst  6 -1
-SYMBOLTABLEENTRY 7 nodeConst  2 -1
-SYMBOLTABLEENTRY 8 nodeVariable  0 -1
-SYMBOLTABLEENTRY 9 nodeConst  3 -1
-SYMBOLTABLEENTRY 10 nodeConst  7 -1
-SYMBOLTABLEENTRY 11 nodeFunctionCall  3 67
-SYMBOLTABLEENTRY 12 nodeVariable  0 -1
-SYMBOLTABLEENTRY 13 nodeFunctionCall  2 -2
-SYMBOLTABLEENTRY 14 nodeFunctionDefinition  3 67
-SYMBOLTABLEENTRY 15 nodeArgumentReference  1 -1
-SYMBOLTABLEENTRY 16 nodeArgumentValue  2 -1
-SYMBOLTABLEENTRY 17 nodeArgumentValue  0 -1
-SYMBOLTABLEENTRY 18 nodeConst  3 -1
-SYMBOLTABLEENTRY 19 nodeVariable  0 -1
-SYMBOLTABLEENTRY 20 nodeFunctionDefinition  3 74
-SYMBOLTABLEENTRY 21 nodeArgumentValue  1 -1
-SYMBOLTABLEENTRY 22 nodeArgumentValue  2 -1
-SYMBOLTABLEENTRY 23 nodeArgumentValue  0 -1
-SYMBOLTABLEENTRY 24 nodeConst  3 -1
-SYMBOLTABLEENTRY 25 nodeVariable  0 -1
-SYMBOLTABLEENTRY 26 nodeVariable  0 -1
-SYMBOLTABLEENTRY 27 nodeTemporary  1 0
-SYMBOLTABLEENTRY 28 nodeTemporary  0 0
-SYMBOLTABLEENTRY 29 nodeTemporary  0 0
-SYMBOLTABLEENTRY 30 nodeFunctionReturn  -1 0
-SYMBOLTABLEENTRY 31 nodeBasePointer  0 0
-SYMBOLTABLEENTRY 32 nodeTemporary  9 0
-INTERPRETER 
-Run programIndex=56 programNodeType:0 programNodeValue:4
-INTERPRETER ENTER interpret::dumpEvaluationStack
-INTERPRETER Symbol index=4 value=1 stackFrameIndex():250
-INTERPRETER Symbol index=9 value=3 stackFrameIndex():251
-INTERPRETER Symbol index=32 value=9 stackFrameIndex():252
+INTERPRETER Symbol index=3 value=7 stackFrameIndex():250
+INTERPRETER Symbol index=7 value=2 stackFrameIndex():251
+INTERPRETER Symbol index=4 value=1 stackFrameIndex():252
 INTERPRETER Symbol index=31 value=0 stackFrameIndex():253
 INTERPRETER Symbol index=30 value=-1 stackFrameIndex():254
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -866,15 +780,102 @@ SYMBOLTABLEENTRY 11 nodeFunctionCall  3 67
 SYMBOLTABLEENTRY 12 nodeVariable  0 -1
 SYMBOLTABLEENTRY 13 nodeFunctionCall  2 -2
 SYMBOLTABLEENTRY 14 nodeFunctionDefinition  3 67
-SYMBOLTABLEENTRY 15 nodeArgumentReference  1 -1
-SYMBOLTABLEENTRY 16 nodeArgumentValue  2 -1
-SYMBOLTABLEENTRY 17 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 15 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 16 nodeArgumentReference  1 -1
+SYMBOLTABLEENTRY 17 nodeArgumentValue  2 -1
 SYMBOLTABLEENTRY 18 nodeConst  3 -1
 SYMBOLTABLEENTRY 19 nodeVariable  0 -1
 SYMBOLTABLEENTRY 20 nodeFunctionDefinition  3 74
-SYMBOLTABLEENTRY 21 nodeArgumentValue  1 -1
-SYMBOLTABLEENTRY 22 nodeArgumentValue  2 -1
-SYMBOLTABLEENTRY 23 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 21 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 22 nodeArgumentValue  1 -1
+SYMBOLTABLEENTRY 23 nodeArgumentValue  2 -1
+SYMBOLTABLEENTRY 24 nodeConst  3 -1
+SYMBOLTABLEENTRY 25 nodeVariable  0 -1
+SYMBOLTABLEENTRY 26 nodeVariable  0 -1
+SYMBOLTABLEENTRY 27 nodeTemporary  1 0
+SYMBOLTABLEENTRY 28 nodeTemporary  0 0
+SYMBOLTABLEENTRY 29 nodeTemporary  0 0
+SYMBOLTABLEENTRY 30 nodeFunctionReturn  -1 0
+SYMBOLTABLEENTRY 31 nodeBasePointer  0 0
+INTERPRETER 
+Run programIndex=55 programNodeType:2 programNodeValue:289
+INTERPRETER 2 + 7
+INTERPRETER ENTER interpret::dumpEvaluationStack
+INTERPRETER Symbol index=32 value=9 stackFrameIndex():251
+INTERPRETER Symbol index=4 value=1 stackFrameIndex():252
+INTERPRETER Symbol index=31 value=0 stackFrameIndex():253
+INTERPRETER Symbol index=30 value=-1 stackFrameIndex():254
+INTERPRETER LEAVE interpret::dumpEvaluationStack
+INTERPRETER _bp:253 _evaluationStack.stackFrameIndex():251 _evaluationStack.size():4
+INTERPRETER interpret::dumpSymbolTable
+SYMBOLTABLEENTRY 0 nodeFunctionDefinition  0 0
+SYMBOLTABLEENTRY 1 nodeVariable  7 -1
+SYMBOLTABLEENTRY 2 nodeConst  4 -1
+SYMBOLTABLEENTRY 3 nodeVariable  7 -1
+SYMBOLTABLEENTRY 4 nodeConst  1 -1
+SYMBOLTABLEENTRY 5 nodeConst  5 -1
+SYMBOLTABLEENTRY 6 nodeConst  6 -1
+SYMBOLTABLEENTRY 7 nodeConst  2 -1
+SYMBOLTABLEENTRY 8 nodeVariable  0 -1
+SYMBOLTABLEENTRY 9 nodeConst  3 -1
+SYMBOLTABLEENTRY 10 nodeConst  7 -1
+SYMBOLTABLEENTRY 11 nodeFunctionCall  3 67
+SYMBOLTABLEENTRY 12 nodeVariable  0 -1
+SYMBOLTABLEENTRY 13 nodeFunctionCall  2 -2
+SYMBOLTABLEENTRY 14 nodeFunctionDefinition  3 67
+SYMBOLTABLEENTRY 15 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 16 nodeArgumentReference  1 -1
+SYMBOLTABLEENTRY 17 nodeArgumentValue  2 -1
+SYMBOLTABLEENTRY 18 nodeConst  3 -1
+SYMBOLTABLEENTRY 19 nodeVariable  0 -1
+SYMBOLTABLEENTRY 20 nodeFunctionDefinition  3 74
+SYMBOLTABLEENTRY 21 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 22 nodeArgumentValue  1 -1
+SYMBOLTABLEENTRY 23 nodeArgumentValue  2 -1
+SYMBOLTABLEENTRY 24 nodeConst  3 -1
+SYMBOLTABLEENTRY 25 nodeVariable  0 -1
+SYMBOLTABLEENTRY 26 nodeVariable  0 -1
+SYMBOLTABLEENTRY 27 nodeTemporary  1 0
+SYMBOLTABLEENTRY 28 nodeTemporary  0 0
+SYMBOLTABLEENTRY 29 nodeTemporary  0 0
+SYMBOLTABLEENTRY 30 nodeFunctionReturn  -1 0
+SYMBOLTABLEENTRY 31 nodeBasePointer  0 0
+SYMBOLTABLEENTRY 32 nodeTemporary  9 0
+INTERPRETER 
+Run programIndex=56 programNodeType:0 programNodeValue:9
+INTERPRETER ENTER interpret::dumpEvaluationStack
+INTERPRETER Symbol index=9 value=3 stackFrameIndex():250
+INTERPRETER Symbol index=32 value=9 stackFrameIndex():251
+INTERPRETER Symbol index=4 value=1 stackFrameIndex():252
+INTERPRETER Symbol index=31 value=0 stackFrameIndex():253
+INTERPRETER Symbol index=30 value=-1 stackFrameIndex():254
+INTERPRETER LEAVE interpret::dumpEvaluationStack
+INTERPRETER _bp:253 _evaluationStack.stackFrameIndex():250 _evaluationStack.size():5
+INTERPRETER interpret::dumpSymbolTable
+SYMBOLTABLEENTRY 0 nodeFunctionDefinition  0 0
+SYMBOLTABLEENTRY 1 nodeVariable  7 -1
+SYMBOLTABLEENTRY 2 nodeConst  4 -1
+SYMBOLTABLEENTRY 3 nodeVariable  7 -1
+SYMBOLTABLEENTRY 4 nodeConst  1 -1
+SYMBOLTABLEENTRY 5 nodeConst  5 -1
+SYMBOLTABLEENTRY 6 nodeConst  6 -1
+SYMBOLTABLEENTRY 7 nodeConst  2 -1
+SYMBOLTABLEENTRY 8 nodeVariable  0 -1
+SYMBOLTABLEENTRY 9 nodeConst  3 -1
+SYMBOLTABLEENTRY 10 nodeConst  7 -1
+SYMBOLTABLEENTRY 11 nodeFunctionCall  3 67
+SYMBOLTABLEENTRY 12 nodeVariable  0 -1
+SYMBOLTABLEENTRY 13 nodeFunctionCall  2 -2
+SYMBOLTABLEENTRY 14 nodeFunctionDefinition  3 67
+SYMBOLTABLEENTRY 15 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 16 nodeArgumentReference  1 -1
+SYMBOLTABLEENTRY 17 nodeArgumentValue  2 -1
+SYMBOLTABLEENTRY 18 nodeConst  3 -1
+SYMBOLTABLEENTRY 19 nodeVariable  0 -1
+SYMBOLTABLEENTRY 20 nodeFunctionDefinition  3 74
+SYMBOLTABLEENTRY 21 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 22 nodeArgumentValue  1 -1
+SYMBOLTABLEENTRY 23 nodeArgumentValue  2 -1
 SYMBOLTABLEENTRY 24 nodeConst  3 -1
 SYMBOLTABLEENTRY 25 nodeVariable  0 -1
 SYMBOLTABLEENTRY 26 nodeVariable  0 -1
@@ -887,12 +888,10 @@ SYMBOLTABLEENTRY 32 nodeTemporary  9 0
 INTERPRETER 
 Run programIndex=57 programNodeType:26 programNodeValue:11
 SYMBOLTABLEENTRY nodeFunctionCall  3 67
-INTERPRETER 
-!!!nodeFunctionReturnIndex:30
 INTERPRETER ENTER interpret::dumpEvaluationStack
-INTERPRETER Symbol index=4 value=1 stackFrameIndex():250
-INTERPRETER Symbol index=9 value=3 stackFrameIndex():251
-INTERPRETER Symbol index=32 value=9 stackFrameIndex():252
+INTERPRETER Symbol index=9 value=3 stackFrameIndex():250
+INTERPRETER Symbol index=32 value=9 stackFrameIndex():251
+INTERPRETER Symbol index=4 value=1 stackFrameIndex():252
 INTERPRETER Symbol index=31 value=0 stackFrameIndex():253
 INTERPRETER Symbol index=30 value=57 stackFrameIndex():254
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -913,15 +912,15 @@ SYMBOLTABLEENTRY 11 nodeFunctionCall  3 67
 SYMBOLTABLEENTRY 12 nodeVariable  0 -1
 SYMBOLTABLEENTRY 13 nodeFunctionCall  2 -2
 SYMBOLTABLEENTRY 14 nodeFunctionDefinition  3 67
-SYMBOLTABLEENTRY 15 nodeArgumentReference  1 -1
-SYMBOLTABLEENTRY 16 nodeArgumentValue  2 -1
-SYMBOLTABLEENTRY 17 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 15 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 16 nodeArgumentReference  1 -1
+SYMBOLTABLEENTRY 17 nodeArgumentValue  2 -1
 SYMBOLTABLEENTRY 18 nodeConst  3 -1
 SYMBOLTABLEENTRY 19 nodeVariable  0 -1
 SYMBOLTABLEENTRY 20 nodeFunctionDefinition  3 74
-SYMBOLTABLEENTRY 21 nodeArgumentValue  1 -1
-SYMBOLTABLEENTRY 22 nodeArgumentValue  2 -1
-SYMBOLTABLEENTRY 23 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 21 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 22 nodeArgumentValue  1 -1
+SYMBOLTABLEENTRY 23 nodeArgumentValue  2 -1
 SYMBOLTABLEENTRY 24 nodeConst  3 -1
 SYMBOLTABLEENTRY 25 nodeVariable  0 -1
 SYMBOLTABLEENTRY 26 nodeVariable  0 -1
@@ -932,12 +931,12 @@ SYMBOLTABLEENTRY 30 nodeFunctionReturn  57 0
 SYMBOLTABLEENTRY 31 nodeBasePointer  0 0
 SYMBOLTABLEENTRY 32 nodeTemporary  9 0
 INTERPRETER 
-Run programIndex=68 programNodeType:0 programNodeValue:15
+Run programIndex=68 programNodeType:0 programNodeValue:16
 INTERPRETER ENTER interpret::dumpEvaluationStack
-INTERPRETER Symbol index=15 value=1 stackFrameIndex():249
-INTERPRETER Symbol index=4 value=1 stackFrameIndex():250
-INTERPRETER Symbol index=9 value=3 stackFrameIndex():251
-INTERPRETER Symbol index=32 value=9 stackFrameIndex():252
+INTERPRETER Symbol index=16 value=1 stackFrameIndex():249
+INTERPRETER Symbol index=9 value=3 stackFrameIndex():250
+INTERPRETER Symbol index=32 value=9 stackFrameIndex():251
+INTERPRETER Symbol index=4 value=1 stackFrameIndex():252
 INTERPRETER Symbol index=31 value=0 stackFrameIndex():253
 INTERPRETER Symbol index=30 value=57 stackFrameIndex():254
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -958,15 +957,15 @@ SYMBOLTABLEENTRY 11 nodeFunctionCall  3 67
 SYMBOLTABLEENTRY 12 nodeVariable  0 -1
 SYMBOLTABLEENTRY 13 nodeFunctionCall  2 -2
 SYMBOLTABLEENTRY 14 nodeFunctionDefinition  3 67
-SYMBOLTABLEENTRY 15 nodeArgumentReference  1 -1
-SYMBOLTABLEENTRY 16 nodeArgumentValue  2 -1
-SYMBOLTABLEENTRY 17 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 15 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 16 nodeArgumentReference  1 -1
+SYMBOLTABLEENTRY 17 nodeArgumentValue  2 -1
 SYMBOLTABLEENTRY 18 nodeConst  3 -1
 SYMBOLTABLEENTRY 19 nodeVariable  0 -1
 SYMBOLTABLEENTRY 20 nodeFunctionDefinition  3 74
-SYMBOLTABLEENTRY 21 nodeArgumentValue  1 -1
-SYMBOLTABLEENTRY 22 nodeArgumentValue  2 -1
-SYMBOLTABLEENTRY 23 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 21 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 22 nodeArgumentValue  1 -1
+SYMBOLTABLEENTRY 23 nodeArgumentValue  2 -1
 SYMBOLTABLEENTRY 24 nodeConst  3 -1
 SYMBOLTABLEENTRY 25 nodeVariable  0 -1
 SYMBOLTABLEENTRY 26 nodeVariable  0 -1
@@ -980,10 +979,10 @@ INTERPRETER
 Run programIndex=69 programNodeType:0 programNodeValue:18
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=18 value=3 stackFrameIndex():248
-INTERPRETER Symbol index=15 value=1 stackFrameIndex():249
-INTERPRETER Symbol index=4 value=1 stackFrameIndex():250
-INTERPRETER Symbol index=9 value=3 stackFrameIndex():251
-INTERPRETER Symbol index=32 value=9 stackFrameIndex():252
+INTERPRETER Symbol index=16 value=1 stackFrameIndex():249
+INTERPRETER Symbol index=9 value=3 stackFrameIndex():250
+INTERPRETER Symbol index=32 value=9 stackFrameIndex():251
+INTERPRETER Symbol index=4 value=1 stackFrameIndex():252
 INTERPRETER Symbol index=31 value=0 stackFrameIndex():253
 INTERPRETER Symbol index=30 value=57 stackFrameIndex():254
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -1004,15 +1003,15 @@ SYMBOLTABLEENTRY 11 nodeFunctionCall  3 67
 SYMBOLTABLEENTRY 12 nodeVariable  0 -1
 SYMBOLTABLEENTRY 13 nodeFunctionCall  2 -2
 SYMBOLTABLEENTRY 14 nodeFunctionDefinition  3 67
-SYMBOLTABLEENTRY 15 nodeArgumentReference  1 -1
-SYMBOLTABLEENTRY 16 nodeArgumentValue  2 -1
-SYMBOLTABLEENTRY 17 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 15 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 16 nodeArgumentReference  1 -1
+SYMBOLTABLEENTRY 17 nodeArgumentValue  2 -1
 SYMBOLTABLEENTRY 18 nodeConst  3 -1
 SYMBOLTABLEENTRY 19 nodeVariable  0 -1
 SYMBOLTABLEENTRY 20 nodeFunctionDefinition  3 74
-SYMBOLTABLEENTRY 21 nodeArgumentValue  1 -1
-SYMBOLTABLEENTRY 22 nodeArgumentValue  2 -1
-SYMBOLTABLEENTRY 23 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 21 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 22 nodeArgumentValue  1 -1
+SYMBOLTABLEENTRY 23 nodeArgumentValue  2 -1
 SYMBOLTABLEENTRY 24 nodeConst  3 -1
 SYMBOLTABLEENTRY 25 nodeVariable  0 -1
 SYMBOLTABLEENTRY 26 nodeVariable  0 -1
@@ -1024,11 +1023,11 @@ SYMBOLTABLEENTRY 31 nodeBasePointer  0 0
 SYMBOLTABLEENTRY 32 nodeTemporary  9 0
 INTERPRETER 
 Run programIndex=70 programNodeType:2 programNodeValue:262
-INTERPRETER 15(symbol index) = 3
+INTERPRETER 16(symbol index) = 3 functionArgumentIndex:1 stackFrameIndex:4
 INTERPRETER ENTER interpret::dumpEvaluationStack
-INTERPRETER Symbol index=4 value=1 stackFrameIndex():250
-INTERPRETER Symbol index=9 value=3 stackFrameIndex():251
-INTERPRETER Symbol index=32 value=9 stackFrameIndex():252
+INTERPRETER Symbol index=9 value=3 stackFrameIndex():250
+INTERPRETER Symbol index=32 value=9 stackFrameIndex():251
+INTERPRETER Symbol index=4 value=1 stackFrameIndex():252
 INTERPRETER Symbol index=31 value=0 stackFrameIndex():253
 INTERPRETER Symbol index=30 value=57 stackFrameIndex():254
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -1049,15 +1048,15 @@ SYMBOLTABLEENTRY 11 nodeFunctionCall  3 67
 SYMBOLTABLEENTRY 12 nodeVariable  0 -1
 SYMBOLTABLEENTRY 13 nodeFunctionCall  2 -2
 SYMBOLTABLEENTRY 14 nodeFunctionDefinition  3 67
-SYMBOLTABLEENTRY 15 nodeArgumentReference  3 -1
-SYMBOLTABLEENTRY 16 nodeArgumentValue  2 -1
-SYMBOLTABLEENTRY 17 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 15 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 16 nodeArgumentReference  1 -1
+SYMBOLTABLEENTRY 17 nodeArgumentValue  2 -1
 SYMBOLTABLEENTRY 18 nodeConst  3 -1
 SYMBOLTABLEENTRY 19 nodeVariable  0 -1
 SYMBOLTABLEENTRY 20 nodeFunctionDefinition  3 74
-SYMBOLTABLEENTRY 21 nodeArgumentValue  1 -1
-SYMBOLTABLEENTRY 22 nodeArgumentValue  2 -1
-SYMBOLTABLEENTRY 23 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 21 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 22 nodeArgumentValue  1 -1
+SYMBOLTABLEENTRY 23 nodeArgumentValue  2 -1
 SYMBOLTABLEENTRY 24 nodeConst  3 -1
 SYMBOLTABLEENTRY 25 nodeVariable  0 -1
 SYMBOLTABLEENTRY 26 nodeVariable  0 -1
@@ -1071,9 +1070,9 @@ INTERPRETER
 Run programIndex=71 programNodeType:0 programNodeValue:19
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=19 value=0 stackFrameIndex():249
-INTERPRETER Symbol index=4 value=1 stackFrameIndex():250
-INTERPRETER Symbol index=9 value=3 stackFrameIndex():251
-INTERPRETER Symbol index=32 value=9 stackFrameIndex():252
+INTERPRETER Symbol index=9 value=3 stackFrameIndex():250
+INTERPRETER Symbol index=32 value=9 stackFrameIndex():251
+INTERPRETER Symbol index=4 value=1 stackFrameIndex():252
 INTERPRETER Symbol index=31 value=0 stackFrameIndex():253
 INTERPRETER Symbol index=30 value=57 stackFrameIndex():254
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -1094,15 +1093,15 @@ SYMBOLTABLEENTRY 11 nodeFunctionCall  3 67
 SYMBOLTABLEENTRY 12 nodeVariable  0 -1
 SYMBOLTABLEENTRY 13 nodeFunctionCall  2 -2
 SYMBOLTABLEENTRY 14 nodeFunctionDefinition  3 67
-SYMBOLTABLEENTRY 15 nodeArgumentReference  3 -1
-SYMBOLTABLEENTRY 16 nodeArgumentValue  2 -1
-SYMBOLTABLEENTRY 17 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 15 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 16 nodeArgumentReference  1 -1
+SYMBOLTABLEENTRY 17 nodeArgumentValue  2 -1
 SYMBOLTABLEENTRY 18 nodeConst  3 -1
 SYMBOLTABLEENTRY 19 nodeVariable  0 -1
 SYMBOLTABLEENTRY 20 nodeFunctionDefinition  3 74
-SYMBOLTABLEENTRY 21 nodeArgumentValue  1 -1
-SYMBOLTABLEENTRY 22 nodeArgumentValue  2 -1
-SYMBOLTABLEENTRY 23 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 21 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 22 nodeArgumentValue  1 -1
+SYMBOLTABLEENTRY 23 nodeArgumentValue  2 -1
 SYMBOLTABLEENTRY 24 nodeConst  3 -1
 SYMBOLTABLEENTRY 25 nodeVariable  0 -1
 SYMBOLTABLEENTRY 26 nodeVariable  0 -1
@@ -1115,11 +1114,11 @@ SYMBOLTABLEENTRY 32 nodeTemporary  9 0
 INTERPRETER 
 Run programIndex=72 programNodeType:0 programNodeValue:17
 INTERPRETER ENTER interpret::dumpEvaluationStack
-INTERPRETER Symbol index=17 value=0 stackFrameIndex():248
+INTERPRETER Symbol index=17 value=2 stackFrameIndex():248
 INTERPRETER Symbol index=19 value=0 stackFrameIndex():249
-INTERPRETER Symbol index=4 value=1 stackFrameIndex():250
-INTERPRETER Symbol index=9 value=3 stackFrameIndex():251
-INTERPRETER Symbol index=32 value=9 stackFrameIndex():252
+INTERPRETER Symbol index=9 value=3 stackFrameIndex():250
+INTERPRETER Symbol index=32 value=9 stackFrameIndex():251
+INTERPRETER Symbol index=4 value=1 stackFrameIndex():252
 INTERPRETER Symbol index=31 value=0 stackFrameIndex():253
 INTERPRETER Symbol index=30 value=57 stackFrameIndex():254
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -1140,15 +1139,15 @@ SYMBOLTABLEENTRY 11 nodeFunctionCall  3 67
 SYMBOLTABLEENTRY 12 nodeVariable  0 -1
 SYMBOLTABLEENTRY 13 nodeFunctionCall  2 -2
 SYMBOLTABLEENTRY 14 nodeFunctionDefinition  3 67
-SYMBOLTABLEENTRY 15 nodeArgumentReference  3 -1
-SYMBOLTABLEENTRY 16 nodeArgumentValue  2 -1
-SYMBOLTABLEENTRY 17 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 15 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 16 nodeArgumentReference  1 -1
+SYMBOLTABLEENTRY 17 nodeArgumentValue  2 -1
 SYMBOLTABLEENTRY 18 nodeConst  3 -1
 SYMBOLTABLEENTRY 19 nodeVariable  0 -1
 SYMBOLTABLEENTRY 20 nodeFunctionDefinition  3 74
-SYMBOLTABLEENTRY 21 nodeArgumentValue  1 -1
-SYMBOLTABLEENTRY 22 nodeArgumentValue  2 -1
-SYMBOLTABLEENTRY 23 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 21 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 22 nodeArgumentValue  1 -1
+SYMBOLTABLEENTRY 23 nodeArgumentValue  2 -1
 SYMBOLTABLEENTRY 24 nodeConst  3 -1
 SYMBOLTABLEENTRY 25 nodeVariable  0 -1
 SYMBOLTABLEENTRY 26 nodeVariable  0 -1
@@ -1160,11 +1159,11 @@ SYMBOLTABLEENTRY 31 nodeBasePointer  0 0
 SYMBOLTABLEENTRY 32 nodeTemporary  9 0
 INTERPRETER 
 Run programIndex=73 programNodeType:2 programNodeValue:262
-INTERPRETER 19(symbol index) = 0
+INTERPRETER 19(symbol index) = 2
 INTERPRETER ENTER interpret::dumpEvaluationStack
-INTERPRETER Symbol index=4 value=1 stackFrameIndex():250
-INTERPRETER Symbol index=9 value=3 stackFrameIndex():251
-INTERPRETER Symbol index=32 value=9 stackFrameIndex():252
+INTERPRETER Symbol index=9 value=3 stackFrameIndex():250
+INTERPRETER Symbol index=32 value=9 stackFrameIndex():251
+INTERPRETER Symbol index=4 value=1 stackFrameIndex():252
 INTERPRETER Symbol index=31 value=0 stackFrameIndex():253
 INTERPRETER Symbol index=30 value=57 stackFrameIndex():254
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -1185,15 +1184,15 @@ SYMBOLTABLEENTRY 11 nodeFunctionCall  3 67
 SYMBOLTABLEENTRY 12 nodeVariable  0 -1
 SYMBOLTABLEENTRY 13 nodeFunctionCall  2 -2
 SYMBOLTABLEENTRY 14 nodeFunctionDefinition  3 67
-SYMBOLTABLEENTRY 15 nodeArgumentReference  3 -1
-SYMBOLTABLEENTRY 16 nodeArgumentValue  2 -1
-SYMBOLTABLEENTRY 17 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 15 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 16 nodeArgumentReference  1 -1
+SYMBOLTABLEENTRY 17 nodeArgumentValue  2 -1
 SYMBOLTABLEENTRY 18 nodeConst  3 -1
-SYMBOLTABLEENTRY 19 nodeVariable  0 -1
+SYMBOLTABLEENTRY 19 nodeVariable  2 -1
 SYMBOLTABLEENTRY 20 nodeFunctionDefinition  3 74
-SYMBOLTABLEENTRY 21 nodeArgumentValue  1 -1
-SYMBOLTABLEENTRY 22 nodeArgumentValue  2 -1
-SYMBOLTABLEENTRY 23 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 21 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 22 nodeArgumentValue  1 -1
+SYMBOLTABLEENTRY 23 nodeArgumentValue  2 -1
 SYMBOLTABLEENTRY 24 nodeConst  3 -1
 SYMBOLTABLEENTRY 25 nodeVariable  0 -1
 SYMBOLTABLEENTRY 26 nodeVariable  0 -1
@@ -1226,15 +1225,15 @@ SYMBOLTABLEENTRY 11 nodeFunctionCall  3 67
 SYMBOLTABLEENTRY 12 nodeVariable  0 -1
 SYMBOLTABLEENTRY 13 nodeFunctionCall  2 -2
 SYMBOLTABLEENTRY 14 nodeFunctionDefinition  3 67
-SYMBOLTABLEENTRY 15 nodeArgumentReference  3 -1
-SYMBOLTABLEENTRY 16 nodeArgumentValue  2 -1
-SYMBOLTABLEENTRY 17 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 15 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 16 nodeArgumentReference  1 -1
+SYMBOLTABLEENTRY 17 nodeArgumentValue  2 -1
 SYMBOLTABLEENTRY 18 nodeConst  3 -1
-SYMBOLTABLEENTRY 19 nodeVariable  0 -1
+SYMBOLTABLEENTRY 19 nodeVariable  2 -1
 SYMBOLTABLEENTRY 20 nodeFunctionDefinition  3 74
-SYMBOLTABLEENTRY 21 nodeArgumentValue  1 -1
-SYMBOLTABLEENTRY 22 nodeArgumentValue  2 -1
-SYMBOLTABLEENTRY 23 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 21 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 22 nodeArgumentValue  1 -1
+SYMBOLTABLEENTRY 23 nodeArgumentValue  2 -1
 SYMBOLTABLEENTRY 24 nodeConst  3 -1
 SYMBOLTABLEENTRY 25 nodeVariable  0 -1
 SYMBOLTABLEENTRY 26 nodeVariable  0 -1
@@ -1266,15 +1265,15 @@ SYMBOLTABLEENTRY 11 nodeFunctionCall  3 67
 SYMBOLTABLEENTRY 12 nodeVariable  0 -1
 SYMBOLTABLEENTRY 13 nodeFunctionCall  2 -2
 SYMBOLTABLEENTRY 14 nodeFunctionDefinition  3 67
-SYMBOLTABLEENTRY 15 nodeArgumentReference  3 -1
-SYMBOLTABLEENTRY 16 nodeArgumentValue  2 -1
-SYMBOLTABLEENTRY 17 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 15 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 16 nodeArgumentReference  1 -1
+SYMBOLTABLEENTRY 17 nodeArgumentValue  2 -1
 SYMBOLTABLEENTRY 18 nodeConst  3 -1
-SYMBOLTABLEENTRY 19 nodeVariable  0 -1
+SYMBOLTABLEENTRY 19 nodeVariable  2 -1
 SYMBOLTABLEENTRY 20 nodeFunctionDefinition  3 74
-SYMBOLTABLEENTRY 21 nodeArgumentValue  1 -1
-SYMBOLTABLEENTRY 22 nodeArgumentValue  2 -1
-SYMBOLTABLEENTRY 23 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 21 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 22 nodeArgumentValue  1 -1
+SYMBOLTABLEENTRY 23 nodeArgumentValue  2 -1
 SYMBOLTABLEENTRY 24 nodeConst  3 -1
 SYMBOLTABLEENTRY 25 nodeVariable  0 -1
 SYMBOLTABLEENTRY 26 nodeVariable  0 -1
@@ -1307,15 +1306,15 @@ SYMBOLTABLEENTRY 11 nodeFunctionCall  3 67
 SYMBOLTABLEENTRY 12 nodeVariable  0 -1
 SYMBOLTABLEENTRY 13 nodeFunctionCall  2 -2
 SYMBOLTABLEENTRY 14 nodeFunctionDefinition  3 67
-SYMBOLTABLEENTRY 15 nodeArgumentReference  3 -1
-SYMBOLTABLEENTRY 16 nodeArgumentValue  2 -1
-SYMBOLTABLEENTRY 17 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 15 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 16 nodeArgumentReference  1 -1
+SYMBOLTABLEENTRY 17 nodeArgumentValue  2 -1
 SYMBOLTABLEENTRY 18 nodeConst  3 -1
-SYMBOLTABLEENTRY 19 nodeVariable  0 -1
+SYMBOLTABLEENTRY 19 nodeVariable  2 -1
 SYMBOLTABLEENTRY 20 nodeFunctionDefinition  3 74
-SYMBOLTABLEENTRY 21 nodeArgumentValue  1 -1
-SYMBOLTABLEENTRY 22 nodeArgumentValue  2 -1
-SYMBOLTABLEENTRY 23 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 21 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 22 nodeArgumentValue  1 -1
+SYMBOLTABLEENTRY 23 nodeArgumentValue  2 -1
 SYMBOLTABLEENTRY 24 nodeConst  3 -1
 SYMBOLTABLEENTRY 25 nodeVariable  0 -1
 SYMBOLTABLEENTRY 26 nodeVariable  0 -1
@@ -1347,15 +1346,15 @@ SYMBOLTABLEENTRY 11 nodeFunctionCall  3 67
 SYMBOLTABLEENTRY 12 nodeVariable  7 -1
 SYMBOLTABLEENTRY 13 nodeFunctionCall  2 -2
 SYMBOLTABLEENTRY 14 nodeFunctionDefinition  3 67
-SYMBOLTABLEENTRY 15 nodeArgumentReference  3 -1
-SYMBOLTABLEENTRY 16 nodeArgumentValue  2 -1
-SYMBOLTABLEENTRY 17 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 15 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 16 nodeArgumentReference  1 -1
+SYMBOLTABLEENTRY 17 nodeArgumentValue  2 -1
 SYMBOLTABLEENTRY 18 nodeConst  3 -1
-SYMBOLTABLEENTRY 19 nodeVariable  0 -1
+SYMBOLTABLEENTRY 19 nodeVariable  2 -1
 SYMBOLTABLEENTRY 20 nodeFunctionDefinition  3 74
-SYMBOLTABLEENTRY 21 nodeArgumentValue  1 -1
-SYMBOLTABLEENTRY 22 nodeArgumentValue  2 -1
-SYMBOLTABLEENTRY 23 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 21 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 22 nodeArgumentValue  1 -1
+SYMBOLTABLEENTRY 23 nodeArgumentValue  2 -1
 SYMBOLTABLEENTRY 24 nodeConst  3 -1
 SYMBOLTABLEENTRY 25 nodeVariable  0 -1
 SYMBOLTABLEENTRY 26 nodeVariable  0 -1
@@ -1388,15 +1387,15 @@ SYMBOLTABLEENTRY 11 nodeFunctionCall  3 67
 SYMBOLTABLEENTRY 12 nodeVariable  7 -1
 SYMBOLTABLEENTRY 13 nodeFunctionCall  2 -2
 SYMBOLTABLEENTRY 14 nodeFunctionDefinition  3 67
-SYMBOLTABLEENTRY 15 nodeArgumentReference  3 -1
-SYMBOLTABLEENTRY 16 nodeArgumentValue  2 -1
-SYMBOLTABLEENTRY 17 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 15 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 16 nodeArgumentReference  1 -1
+SYMBOLTABLEENTRY 17 nodeArgumentValue  2 -1
 SYMBOLTABLEENTRY 18 nodeConst  3 -1
-SYMBOLTABLEENTRY 19 nodeVariable  0 -1
+SYMBOLTABLEENTRY 19 nodeVariable  2 -1
 SYMBOLTABLEENTRY 20 nodeFunctionDefinition  3 74
-SYMBOLTABLEENTRY 21 nodeArgumentValue  1 -1
-SYMBOLTABLEENTRY 22 nodeArgumentValue  2 -1
-SYMBOLTABLEENTRY 23 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 21 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 22 nodeArgumentValue  1 -1
+SYMBOLTABLEENTRY 23 nodeArgumentValue  2 -1
 SYMBOLTABLEENTRY 24 nodeConst  3 -1
 SYMBOLTABLEENTRY 25 nodeVariable  0 -1
 SYMBOLTABLEENTRY 26 nodeVariable  0 -1
@@ -1432,15 +1431,15 @@ SYMBOLTABLEENTRY 11 nodeFunctionCall  3 67
 SYMBOLTABLEENTRY 12 nodeVariable  7 -1
 SYMBOLTABLEENTRY 13 nodeFunctionCall  2 -2
 SYMBOLTABLEENTRY 14 nodeFunctionDefinition  3 67
-SYMBOLTABLEENTRY 15 nodeArgumentReference  3 -1
-SYMBOLTABLEENTRY 16 nodeArgumentValue  2 -1
-SYMBOLTABLEENTRY 17 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 15 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 16 nodeArgumentReference  1 -1
+SYMBOLTABLEENTRY 17 nodeArgumentValue  2 -1
 SYMBOLTABLEENTRY 18 nodeConst  3 -1
-SYMBOLTABLEENTRY 19 nodeVariable  0 -1
+SYMBOLTABLEENTRY 19 nodeVariable  2 -1
 SYMBOLTABLEENTRY 20 nodeFunctionDefinition  3 74
-SYMBOLTABLEENTRY 21 nodeArgumentValue  1 -1
-SYMBOLTABLEENTRY 22 nodeArgumentValue  2 -1
-SYMBOLTABLEENTRY 23 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 21 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 22 nodeArgumentValue  1 -1
+SYMBOLTABLEENTRY 23 nodeArgumentValue  2 -1
 SYMBOLTABLEENTRY 24 nodeConst  3 -1
 SYMBOLTABLEENTRY 25 nodeVariable  0 -1
 SYMBOLTABLEENTRY 26 nodeVariable  0 -1
@@ -1477,15 +1476,15 @@ SYMBOLTABLEENTRY 11 nodeFunctionCall  3 67
 SYMBOLTABLEENTRY 12 nodeVariable  7 -1
 SYMBOLTABLEENTRY 13 nodeFunctionCall  2 -2
 SYMBOLTABLEENTRY 14 nodeFunctionDefinition  3 67
-SYMBOLTABLEENTRY 15 nodeArgumentReference  3 -1
-SYMBOLTABLEENTRY 16 nodeArgumentValue  2 -1
-SYMBOLTABLEENTRY 17 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 15 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 16 nodeArgumentReference  1 -1
+SYMBOLTABLEENTRY 17 nodeArgumentValue  2 -1
 SYMBOLTABLEENTRY 18 nodeConst  3 -1
-SYMBOLTABLEENTRY 19 nodeVariable  0 -1
+SYMBOLTABLEENTRY 19 nodeVariable  2 -1
 SYMBOLTABLEENTRY 20 nodeFunctionDefinition  3 74
-SYMBOLTABLEENTRY 21 nodeArgumentValue  1 -1
-SYMBOLTABLEENTRY 22 nodeArgumentValue  2 -1
-SYMBOLTABLEENTRY 23 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 21 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 22 nodeArgumentValue  1 -1
+SYMBOLTABLEENTRY 23 nodeArgumentValue  2 -1
 SYMBOLTABLEENTRY 24 nodeConst  3 -1
 SYMBOLTABLEENTRY 25 nodeVariable  0 -1
 SYMBOLTABLEENTRY 26 nodeVariable  0 -1
@@ -1500,10 +1499,6 @@ SYMBOLTABLEENTRY 34 nodeBasePointer  0 0
 INTERPRETER 
 Run programIndex=64 programNodeType:26 programNodeValue:13
 SYMBOLTABLEENTRY nodeFunctionCall  2 -2
-INTERPRETER 
-!!!nodeFunctionReturnIndex:33
-INTERPRETER 
-hello_programIndex:64
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -1523,15 +1518,15 @@ SYMBOLTABLEENTRY 11 nodeFunctionCall  3 67
 SYMBOLTABLEENTRY 12 nodeVariable  7 -1
 SYMBOLTABLEENTRY 13 nodeFunctionCall  2 -2
 SYMBOLTABLEENTRY 14 nodeFunctionDefinition  3 67
-SYMBOLTABLEENTRY 15 nodeArgumentReference  3 -1
-SYMBOLTABLEENTRY 16 nodeArgumentValue  2 -1
-SYMBOLTABLEENTRY 17 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 15 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 16 nodeArgumentReference  1 -1
+SYMBOLTABLEENTRY 17 nodeArgumentValue  2 -1
 SYMBOLTABLEENTRY 18 nodeConst  3 -1
-SYMBOLTABLEENTRY 19 nodeVariable  0 -1
+SYMBOLTABLEENTRY 19 nodeVariable  2 -1
 SYMBOLTABLEENTRY 20 nodeFunctionDefinition  3 74
-SYMBOLTABLEENTRY 21 nodeArgumentValue  1 -1
-SYMBOLTABLEENTRY 22 nodeArgumentValue  2 -1
-SYMBOLTABLEENTRY 23 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 21 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 22 nodeArgumentValue  1 -1
+SYMBOLTABLEENTRY 23 nodeArgumentValue  2 -1
 SYMBOLTABLEENTRY 24 nodeConst  3 -1
 SYMBOLTABLEENTRY 25 nodeVariable  0 -1
 SYMBOLTABLEENTRY 26 nodeVariable  0 -1
@@ -1564,15 +1559,15 @@ SYMBOLTABLEENTRY 11 nodeFunctionCall  3 67
 SYMBOLTABLEENTRY 12 nodeVariable  7 -1
 SYMBOLTABLEENTRY 13 nodeFunctionCall  2 -2
 SYMBOLTABLEENTRY 14 nodeFunctionDefinition  3 67
-SYMBOLTABLEENTRY 15 nodeArgumentReference  3 -1
-SYMBOLTABLEENTRY 16 nodeArgumentValue  2 -1
-SYMBOLTABLEENTRY 17 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 15 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 16 nodeArgumentReference  1 -1
+SYMBOLTABLEENTRY 17 nodeArgumentValue  2 -1
 SYMBOLTABLEENTRY 18 nodeConst  3 -1
-SYMBOLTABLEENTRY 19 nodeVariable  0 -1
+SYMBOLTABLEENTRY 19 nodeVariable  2 -1
 SYMBOLTABLEENTRY 20 nodeFunctionDefinition  3 74
-SYMBOLTABLEENTRY 21 nodeArgumentValue  1 -1
-SYMBOLTABLEENTRY 22 nodeArgumentValue  2 -1
-SYMBOLTABLEENTRY 23 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 21 nodeArgumentValue  0 -1
+SYMBOLTABLEENTRY 22 nodeArgumentValue  1 -1
+SYMBOLTABLEENTRY 23 nodeArgumentValue  2 -1
 SYMBOLTABLEENTRY 24 nodeConst  3 -1
 SYMBOLTABLEENTRY 25 nodeVariable  0 -1
 SYMBOLTABLEENTRY 26 nodeVariable  0 -1

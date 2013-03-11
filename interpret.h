@@ -63,6 +63,7 @@ private:
     void _shortCircuitOptimization(void);
     void _resetSymbolTableTemporaryBoundary(void) {_symbolTableIndex = _symbolTableTemporaryBoundaryIndex;}
     void _pushSymbolOnEvaluationStack(unsigned int value);
+    //unsigned int _functionArgumentIndexToStackFrameIndex(const unsigned int functionArgumentIndex) {}
 
     parseTreeEntry _program[MAX_PROGRAM_ENTRY];
     symbolTableEntry _symbolTable[MAX_SYMBOL_TABLE_ENTRY];
