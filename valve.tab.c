@@ -514,8 +514,8 @@ static const yytype_int8 yyrhs[] =
       52,    -1,    14,    -1,    16,    -1,    14,    32,    53,    40,
       -1,    14,    38,    52,    39,    -1,    -1,    54,    -1,    52,
       -1,    52,     5,    54,    -1,    -1,    56,    -1,    14,    -1,
-      23,    14,    -1,    14,     5,    56,    -1,    23,    14,     5,
-      56,    -1,    10,    14,    38,    16,    39,    41,    -1
+      23,    14,    -1,    56,     5,    14,    -1,    56,     5,    23,
+      14,    -1,    10,    14,    38,    16,    39,    41,    -1
 };
 
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
@@ -526,7 +526,7 @@ static const yytype_uint8 yyrline[] =
      123,   125,   127,   131,   133,   135,   137,   138,   139,   140,
      141,   142,   143,   144,   145,   146,   147,   148,   149,   150,
      151,   152,   153,   154,   155,   156,   158,   159,   161,   162,
-     164,   165,   167,   168,   169,   170,   172
+     165,   166,   168,   169,   170,   171,   173
 };
 #endif
 
@@ -589,8 +589,8 @@ static const yytype_uint8 yyr2[] =
 static const yytype_uint8 yydefact[] =
 {
        0,     0,     0,     3,    50,     1,     2,    52,     0,     0,
-      51,     0,     0,     4,     0,    53,     0,    50,    50,    54,
-       0,     8,     0,     0,    55,     0,     0,     0,     5,     0,
+      51,     0,     0,     4,    53,     0,     0,    50,    50,     8,
+      54,     0,     0,     0,     0,    55,     0,     0,     5,     0,
        0,     0,     0,     0,     0,     0,     9,    12,    11,    10,
       20,     8,     8,     0,     0,     0,     0,    46,     0,    46,
       46,    46,     0,     0,     0,    42,    43,     0,     0,     0,
@@ -609,7 +609,7 @@ static const yytype_uint8 yydefact[] =
 /* YYDEFGOTO[NTERM-NUM].  */
 static const yytype_int8 yydefgoto[] =
 {
-      -1,     2,     6,     3,    13,    25,    36,    37,    38,    39,
+      -1,     2,     6,     3,    13,    24,    36,    37,    38,    39,
       61,    62,    63,     9,    10,    40
 };
 
@@ -618,12 +618,12 @@ static const yytype_int8 yydefgoto[] =
 #define YYPACT_NINF -43
 static const yytype_int16 yypact[] =
 {
-      -2,    -3,    61,   -43,     5,   -43,    60,    75,    63,    44,
-     -43,    55,    59,   -43,     5,    88,    96,     5,     5,   -43,
-       5,   -43,    84,   104,   -43,    11,   142,   143,   -43,   149,
+      -2,    -3,    80,   -43,     5,   -43,    60,   -43,    70,    51,
+      82,    61,    78,   -43,   -43,    96,    47,     5,     5,   -43,
+     -43,    97,    84,   104,    11,   -43,   142,   143,   -43,   149,
      137,   138,    43,   156,   157,   175,   -43,   -43,   -43,   -43,
      -43,   -43,   -43,   144,    57,    57,    57,    57,    57,    -9,
-      -6,    -5,   275,   288,   185,    38,   -43,    57,   112,   131,
+      -6,    -5,   275,   288,   185,    40,   -43,    57,   112,   131,
       72,    29,   168,   -43,   226,   206,   186,   213,   199,   231,
      218,   -43,   -43,   225,    57,    57,   150,    57,    57,    57,
       57,    57,    57,    57,    57,    57,    57,    57,    57,    57,
@@ -640,7 +640,7 @@ static const yytype_int16 yypact[] =
 static const yytype_int16 yypgoto[] =
 {
      -43,   -43,   -43,   -43,   -43,   -41,   -43,   -43,   -43,   -43,
-     -42,    18,   224,    93,    58,   -43
+     -42,    18,   224,    59,   -43,   -43
 };
 
 /* YYTABLE[YYPACT[STATE-NUM]].  What to do in state STATE-NUM.  If
@@ -656,12 +656,12 @@ static const yytype_uint8 yytable[] =
       33,    34,    35,   106,    95,   108,   109,   110,   111,   112,
      113,   114,   115,   116,   117,   118,   119,   120,   121,   122,
       46,    77,    78,    79,    80,    81,    82,    83,    84,    85,
-      86,     5,    87,    88,    89,    90,    91,    66,    68,    70,
-      74,    55,    19,    56,    11,    47,    75,    15,    24,    12,
-      14,    48,   137,   138,    16,   139,   140,    17,   141,    57,
-     142,    18,   105,    20,    77,    78,    79,    80,    81,    82,
-      83,    84,    85,    86,    21,    87,    88,    89,    90,    91,
-      22,    23,   154,    94,    77,    78,    79,    80,    81,    82,
+      86,    20,    87,    88,    89,    90,    91,    66,    68,    70,
+      21,    55,    74,    56,    11,    47,    22,    23,    75,    12,
+       5,    48,   137,   138,    14,   139,   140,    16,   141,    57,
+     142,    15,   105,    17,    77,    78,    79,    80,    81,    82,
+      83,    84,    85,    86,    19,    87,    88,    89,    90,    91,
+      18,    25,   154,    94,    77,    78,    79,    80,    81,    82,
       83,    84,    85,    86,    26,    87,    88,    89,    90,    91,
       89,    90,    91,   145,    77,    78,    79,    80,    81,    82,
       83,    84,    85,    86,    27,    87,    88,    89,    90,    91,
@@ -697,12 +697,12 @@ static const yytype_int16 yycheck[] =
       19,    20,    21,    75,     5,    77,    78,    79,    80,    81,
       82,    83,    84,    85,    86,    87,    88,    89,    90,    91,
        7,    22,    23,    24,    25,    26,    27,    28,    29,    30,
-      31,     0,    33,    34,    35,    36,    37,    49,    50,    51,
-      32,    14,    14,    16,    14,    32,    38,    14,    20,    19,
-       5,    38,   123,   124,    40,   127,   128,    32,   130,    32,
-     132,    32,    74,     5,    22,    23,    24,    25,    26,    27,
+      31,    14,    33,    34,    35,    36,    37,    49,    50,    51,
+      23,    14,    32,    16,    14,    32,    17,    18,    38,    19,
+       0,    38,   123,   124,    14,   127,   128,     5,   130,    32,
+     132,    40,    74,    32,    22,    23,    24,    25,    26,    27,
       28,    29,    30,    31,     8,    33,    34,    35,    36,    37,
-      17,    18,   153,    41,    22,    23,    24,    25,    26,    27,
+      32,    14,   153,    41,    22,    23,    24,    25,    26,    27,
       28,    29,    30,    31,    40,    33,    34,    35,    36,    37,
       35,    36,    37,    41,    22,    23,    24,    25,    26,    27,
       28,    29,    30,    31,    40,    33,    34,    35,    36,    37,
@@ -735,8 +735,8 @@ static const yytype_int16 yycheck[] =
 static const yytype_uint8 yystos[] =
 {
        0,    18,    43,    45,    32,     0,    44,    14,    23,    55,
-      56,    14,    19,    46,     5,    14,    40,    32,    32,    56,
-       5,     8,    55,    55,    56,    47,    40,    40,     9,    10,
+      56,    14,    19,    46,    14,    40,     5,    32,    32,     8,
+      14,    23,    55,    55,    47,    14,    40,    40,     9,    10,
       11,    13,    14,    19,    20,    21,    48,    49,    50,    51,
       57,     8,     8,    14,    32,    32,     7,    32,    38,    32,
       32,    32,    47,    47,    38,    14,    16,    32,    52,    52,
@@ -1908,49 +1908,49 @@ yyreduce:
   case 50:
 
 /* Line 1464 of yacc.c  */
-#line 164 "valve.y"
+#line 165 "valve.y"
     {(yyval.pSyntaxNode) = NULL;;}
     break;
 
   case 51:
 
 /* Line 1464 of yacc.c  */
-#line 165 "valve.y"
+#line 166 "valve.y"
     {(yyval.pSyntaxNode) = (yyvsp[(1) - (1)].pSyntaxNode);;}
     break;
 
   case 52:
 
 /* Line 1464 of yacc.c  */
-#line 167 "valve.y"
+#line 168 "valve.y"
     {(yyval.pSyntaxNode) = addFcnDefnArgument(NULL, (yyvsp[(1) - (1)].string), VAR_PASS_BY_VALUE, VAR_FIRST_PARAMETER);;}
     break;
 
   case 53:
 
 /* Line 1464 of yacc.c  */
-#line 168 "valve.y"
+#line 169 "valve.y"
     {(yyval.pSyntaxNode) = addFcnDefnArgument(NULL, (yyvsp[(2) - (2)].string), VAR_PASS_BY_REFERENCE, VAR_FIRST_PARAMETER);;}
     break;
 
   case 54:
 
 /* Line 1464 of yacc.c  */
-#line 169 "valve.y"
-    {(yyval.pSyntaxNode) = addFcnDefnArgument((yyvsp[(3) - (3)].pSyntaxNode), (yyvsp[(1) - (3)].string), VAR_PASS_BY_VALUE, VAR_SUBSEQUENT_PARAMETER);;}
+#line 170 "valve.y"
+    {(yyval.pSyntaxNode) = addFcnDefnArgument((yyvsp[(1) - (3)].pSyntaxNode), (yyvsp[(3) - (3)].string), VAR_PASS_BY_VALUE, VAR_SUBSEQUENT_PARAMETER);;}
     break;
 
   case 55:
 
 /* Line 1464 of yacc.c  */
-#line 170 "valve.y"
-    {(yyval.pSyntaxNode) = addFcnDefnArgument((yyvsp[(4) - (4)].pSyntaxNode), (yyvsp[(2) - (4)].string), VAR_PASS_BY_REFERENCE, VAR_SUBSEQUENT_PARAMETER);;}
+#line 171 "valve.y"
+    {(yyval.pSyntaxNode) = addFcnDefnArgument((yyvsp[(1) - (4)].pSyntaxNode), (yyvsp[(4) - (4)].string), VAR_PASS_BY_REFERENCE, VAR_SUBSEQUENT_PARAMETER);;}
     break;
 
   case 56:
 
 /* Line 1464 of yacc.c  */
-#line 172 "valve.y"
+#line 173 "valve.y"
     {(yyval.integer) = addArrayToSymbolTable((yyvsp[(2) - (6)].string), atoi((yyvsp[(4) - (6)].string)));;}
     break;
 
@@ -2169,7 +2169,7 @@ yyreturn:
 
 
 /* Line 1684 of yacc.c  */
-#line 174 "valve.y"
+#line 175 "valve.y"
  /* Additional C code */
 
 
@@ -2399,13 +2399,8 @@ astNode* addNodeVariableOperator(int operator, int varIndex, astNode* pRight) {
 // The 1 stands for 1 parameter with this call
 astNode* addNodeInstrinsicFunction1(char* functionName, char* returnValue, astNode* parameter1) {
     astNode* p1 = addNodeSymbolIndex(addVarToSymbolTable(returnValue));
-#if 1
     astNode* p2 = addFcnCallArgument(NULL, parameter1);
     astNode* p3 = addFcnCallArgument(p2, p1);
-#else    
-    astNode* p2 = addFcnCallArgument(NULL, p1);
-    astNode* p3 = addFcnCallArgument(p2, parameter1);
-#endif    
     return addNodeFunctionCall(functionName, p3);
 }
 
@@ -2491,7 +2486,7 @@ astNode* addFunction(const char* pFuncName, astNode* pArgList, astNode* pStateme
         buildSymbol(pFuncName, functionParameterIndex /* equals num arguments */, &functionNode);
         // This is set to 1 because of the way function parameters are parsed. The first parameter doesn't actually get parsed until last
         //  but should have index 0. We correct for this by noting in the addFcnDefnArgument() call if it's the first parameter.
-        functionParameterIndex = 1; // Reset for every new function definition. Don't need it any more for this function.
+        functionParameterIndex = 0; // Reset for every new function definition. Don't need it any more for this function.
         functionNode.type = nodeFunctionDefinition;
         // statementOutputIndex contains the index into execution list. Put that value into fcnDefnLink
         //  of the function definition symbol.
@@ -2512,7 +2507,7 @@ astNode* addFunction(const char* pFuncName, astNode* pArgList, astNode* pStateme
         fwrite("0 0 Start 0\n", 1, 12, fp);
         ++statementOutputIndex;
         /*printf("\nstatementList=%d", (int)$1);*/
-        walkList(pArgList, fp);
+        //walkList(pArgList, fp);   // Doesn't seem to be necessary since function parameters have alreay been added to the symbol table
         walkList(pStatementList, fp);
         if (inMain) {
             writeStatement("0 0 ProgramEnd 0\n", fp);
@@ -2665,18 +2660,15 @@ astNode* addFcnDefnArgument(astNode* pArgumentListNode, const char* pArgumentNam
     // Add symbols to symbol table, marking them as function parameters.
     // Note that the variable value refers to its index on the execution stack.
     symbolNode argumentNode;
-    if (firstOrSebsequentParameter == VAR_FIRST_PARAMETER) {
-        buildSymbol(pArgumentName, 0, &argumentNode);
-    } else {
-        buildSymbol(pArgumentName, functionParameterIndex++, &argumentNode);
-    }
+    buildSymbol(pArgumentName, functionParameterIndex++, &argumentNode);
     argumentNode.type = nodeArgumentValue;
     if (passByValueOrReference == VAR_PASS_BY_REFERENCE) {
         argumentNode.type = nodeArgumentReference;
     }
     insertSymbol(&argumentNode);
     return NULL;
-    
+#if 0    
+    // Old code
 	astNode* p = getNextASTNode();
     p->type = passByValueOrReference;
     // Create variable in symbol table
@@ -2686,6 +2678,7 @@ astNode* addFcnDefnArgument(astNode* pArgumentListNode, const char* pArgumentNam
     //p->Left = 
     p->pNext = pArgumentListNode;
     return NULL;
+#endif    
 }
 
 astNode* addFcnCallArgument(astNode* pArgumentListNode, astNode* pArgumentNode) {

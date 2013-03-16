@@ -474,8 +474,38 @@ int interpret::_findParseTreeEntry(nodeType t, nodePosition p, int value, unsign
 }
 #endif
 
+// Normally symbolTableIndex will return itself, however, for function arguments the symbolTableIndex
+//  is pointed to by the entry in the stack frame. That's where the morphing comes in.
+int interpret::symbolTableIndexMorph(const int symbolTableIndex) {
+    //int symbolTableIndex = _evalValue();
+    int symbolTableIndexReturn = symbolTableIndex;
+    unsigned int functionArgumentIndex;
+    switch (_symbolTable[symbolTableIndex].type()) {
+    case nodeVariable:
+    case nodeConst:
+        //return symbolTableIndexReturn;
+        break;
+    case nodeArgumentValue:
+    case nodeArgumentReference:
+        functionArgumentIndex = _symbolTable[symbolTableIndex].value();
+        // Now get index off the stack frame
+        symbolTableIndexReturn = _evaluationStack.peekAtIndex(_bp - functionArgumentIndex - 1); // First parameter starts at: _bp - 1; second at _bp -2, etc.
+#if CYGWIN
+        oss() << " functionArgumentIndex:" << functionArgumentIndex << " symbolTableIndex:" << symbolTableIndex;
+#endif /* CYGWIN */
+        //return symbolTableIndexReturn;
+        break;
+    default:
+        assert(false);
+        break;
+    }
+    // Almost certainly not what we want to do but not sure what to do at this point.
+    return symbolTableIndexReturn;
+}
+
 void interpret::evaluate(unsigned int op) {
     assert(_evaluationStack.size() >= 1);
+    // Need to determine the type and then decide what to do with it. See: case EQUAL 
     int rhs = _symbolTable[_evalValue()].value(); // this is usually the right-hand side of the parse node, the exception being BANG below
     int lhs;
     switch (op) {
@@ -627,7 +657,7 @@ void interpret::evaluate(unsigned int op) {
 #endif /* CYGWIN */    
             // Set symbol table entry = rhs;
 #if 1
-            unsigned int functionArgumentIndex, stackFrameIndex;
+            unsigned int functionArgumentIndex, symbolTableIndex;
             switch (_symbolTable[leftHandSymbolTableIndex].type()) {
             case nodeConst:
                 // It's a constant so don't modify it's value
@@ -637,14 +667,15 @@ void interpret::evaluate(unsigned int op) {
                 _symbolTable[leftHandSymbolTableIndex].value(rhs);
                 break;
             case nodeArgumentValue:
-                break;
+                //break;
             case nodeArgumentReference:
                 functionArgumentIndex = _symbolTable[leftHandSymbolTableIndex].value();
                 // Now get index off the stack frame
-                stackFrameIndex = _evaluationStack.peekAtIndex(_bp - functionArgumentIndex);
+                symbolTableIndex = _evaluationStack.peekAtIndex(_bp - functionArgumentIndex - 1); // First parameter starts at: _bp - 1; second at _bp -2, etc.
 #if CYGWIN
-                oss() << " functionArgumentIndex:" << functionArgumentIndex << " stackFrameIndex:" << stackFrameIndex;
-#endif /* CYGWIN */    
+                oss() << " functionArgumentIndex:" << functionArgumentIndex << " symbolTableIndex:" << symbolTableIndex;
+#endif /* CYGWIN */ 
+                _symbolTable[symbolTableIndex].value(rhs);
                 break;
             default:
                 assert(false);

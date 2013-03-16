@@ -94,7 +94,7 @@ Statement:
 ROOT Operator: = 262
 Statement:
 *LEFT Var: index,19 name,b
-*RIGHT Var: index,17 name,x
+*RIGHT Var: index,15 name,x
 ROOT Operator: = 262               
 FunctionDefn: bar
 Statement:
@@ -122,15 +122,15 @@ index:11, name:foo, type:15, val:3, fcnLink:67
 index:12, name:q, type:0, val:0
 index:13, name:moveAbsolute, type:15, val:2, fcnLink:-2
 index:14, name:foo, type:16, val:3, fcnLink:67
-index:15, name:z, type:12, val:0
+index:15, name:x, type:12, val:0
 index:16, name:y, type:13, val:1
-index:17, name:x, type:12, val:2
+index:17, name:z, type:12, val:2
 index:18, name:3, type:1, val:3
 index:19, name:b, type:0, val:0
 index:20, name:bar, type:16, val:3, fcnLink:74
-index:21, name:c, type:12, val:0
+index:21, name:a, type:12, val:0
 index:22, name:b, type:12, val:1
-index:23, name:a, type:12, val:2
+index:23, name:c, type:12, val:2
 index:24, name:3, type:1, val:3
 index:25, name:n, type:0, val:0
 index:26, name:x, type:0, val:0

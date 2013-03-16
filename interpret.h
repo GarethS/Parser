@@ -64,7 +64,9 @@ private:
     void _resetSymbolTableTemporaryBoundary(void) {_symbolTableIndex = _symbolTableTemporaryBoundaryIndex;}
     void _pushSymbolOnEvaluationStack(unsigned int value);
     //unsigned int _functionArgumentIndexToStackFrameIndex(const unsigned int functionArgumentIndex) {}
+    int symbolTableIndexMorph(const int symbolTableIndex);
 
+    
     parseTreeEntry _program[MAX_PROGRAM_ENTRY];
     symbolTableEntry _symbolTable[MAX_SYMBOL_TABLE_ENTRY];
     int _programIndex;  // Negative values indicate a built-in function

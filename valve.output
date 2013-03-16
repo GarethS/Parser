@@ -76,8 +76,8 @@ Grammar
 
    51 defnCommaArgList: VAR
    52                 | BITWISEAND VAR
-   53                 | VAR COMMA defnCommaArgList
-   54                 | BITWISEAND VAR COMMA defnCommaArgList
+   53                 | defnCommaArgList COMMA VAR
+   54                 | defnCommaArgList COMMA BITWISEAND VAR
 
    55 arrayDefine: ARRAYDEFINE VAR LBRACKET CONST RBRACKET SEMI
 
@@ -234,9 +234,6 @@ state 6
 state 7
 
    51 defnCommaArgList: VAR .
-   53                 | VAR . COMMA defnCommaArgList
-
-    COMMA  shift, and go to state 14
 
     $default  reduce using rule 51 (defnCommaArgList)
 
@@ -244,21 +241,24 @@ state 7
 state 8
 
    52 defnCommaArgList: BITWISEAND . VAR
-   54                 | BITWISEAND . VAR COMMA defnCommaArgList
 
-    VAR  shift, and go to state 15
+    VAR  shift, and go to state 14
 
 
 state 9
 
     4 functionDefnMain: MAIN LPAREN defnArgList . RPAREN LBRACE statementList RBRACE
 
-    RPAREN  shift, and go to state 16
+    RPAREN  shift, and go to state 15
 
 
 state 10
 
    50 defnArgList: defnCommaArgList .
+   53 defnCommaArgList: defnCommaArgList . COMMA VAR
+   54                 | defnCommaArgList . COMMA BITWISEAND VAR
+
+    COMMA  shift, and go to state 16
 
     $default  reduce using rule 50 (defnArgList)
 
@@ -286,29 +286,25 @@ state 13
 
 state 14
 
-   53 defnCommaArgList: VAR COMMA . defnCommaArgList
-
-    VAR         shift, and go to state 7
-    BITWISEAND  shift, and go to state 8
-
-    defnCommaArgList  go to state 19
-
-
-state 15
-
    52 defnCommaArgList: BITWISEAND VAR .
-   54                 | BITWISEAND VAR . COMMA defnCommaArgList
-
-    COMMA  shift, and go to state 20
 
     $default  reduce using rule 52 (defnCommaArgList)
 
 
-state 16
+state 15
 
     4 functionDefnMain: MAIN LPAREN defnArgList RPAREN . LBRACE statementList RBRACE
 
-    LBRACE  shift, and go to state 21
+    LBRACE  shift, and go to state 19
+
+
+state 16
+
+   53 defnCommaArgList: defnCommaArgList COMMA . VAR
+   54                 | defnCommaArgList COMMA . BITWISEAND VAR
+
+    VAR         shift, and go to state 20
+    BITWISEAND  shift, and go to state 21
 
 
 state 17
@@ -339,28 +335,25 @@ state 18
 
 state 19
 
-   53 defnCommaArgList: VAR COMMA defnCommaArgList .
-
-    $default  reduce using rule 53 (defnCommaArgList)
-
-
-state 20
-
-   54 defnCommaArgList: BITWISEAND VAR COMMA . defnCommaArgList
-
-    VAR         shift, and go to state 7
-    BITWISEAND  shift, and go to state 8
-
-    defnCommaArgList  go to state 24
-
-
-state 21
-
     4 functionDefnMain: MAIN LPAREN defnArgList RPAREN LBRACE . statementList RBRACE
 
     $default  reduce using rule 7 (statementList)
 
-    statementList  go to state 25
+    statementList  go to state 24
+
+
+state 20
+
+   53 defnCommaArgList: defnCommaArgList COMMA VAR .
+
+    $default  reduce using rule 53 (defnCommaArgList)
+
+
+state 21
+
+   54 defnCommaArgList: defnCommaArgList COMMA BITWISEAND . VAR
+
+    VAR  shift, and go to state 25
 
 
 state 22
@@ -379,13 +372,6 @@ state 23
 
 state 24
 
-   54 defnCommaArgList: BITWISEAND VAR COMMA defnCommaArgList .
-
-    $default  reduce using rule 54 (defnCommaArgList)
-
-
-state 25
-
     4 functionDefnMain: MAIN LPAREN defnArgList RPAREN LBRACE statementList . RBRACE
     8 statementList: statementList . statement
 
@@ -403,6 +389,13 @@ state 25
     statementIf      go to state 38
     statementAssign  go to state 39
     arrayDefine      go to state 40
+
+
+state 25
+
+   54 defnCommaArgList: defnCommaArgList COMMA BITWISEAND VAR .
+
+    $default  reduce using rule 54 (defnCommaArgList)
 
 
 state 26

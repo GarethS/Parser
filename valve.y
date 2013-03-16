@@ -60,11 +60,12 @@ unsigned int statementOutputIndex = 0;
 }
 
 /* TERMINALS */
-%token INPUTS OUTPUTS  COMMA BANG
+%token INPUTS OUTPUTS COMMA BANG
 %token EQUAL LBRACE RBRACE ARRAYDEFINE IF ELSE WHILE
 // 4x. Add intrinsic function name from flex here
 %token <string>	VAR VAR_METHOD CONST CONST_FLOAT MAIN MOVEABSOLUTE MOVERELATIVE SLEEP
 
+// %left or %right takes the place of %token
 %left AND OR BITWISEAND BITWISEOR
 %left TEST_FOR_EQUAL GEQ LEQ NEQ GTR LSS
 %left LPAREN 
@@ -74,7 +75,7 @@ unsigned int statementOutputIndex = 0;
 %left LBRACKET
 %right RPAREN RBRACKET
 %right SEMI
-/* last entry gets highest precedence */
+/* last entry gets highest precedence. Section 3.7.3 bison.pdf */
 
 /* non-terminals */
 %type <integer> arrayDefine
@@ -84,7 +85,6 @@ unsigned int statementOutputIndex = 0;
 %defines	/* generate valve.tab.h for use with lex.yy.c */
 %require "2.4.2"
 
-/* %left pattern */
 
 %start program
 
@@ -159,15 +159,16 @@ argList: /* empty */            {$$ = NULL;}
         | commaArgList          {$$ = $1;}
 
 commaArgList: expr              {$$ = addFcnCallArgument(NULL, $1);}
-        | expr COMMA commaArgList {$$ = addFcnCallArgument($3, $1);}
+        | expr COMMA commaArgList {$$ = addFcnCallArgument($3, $1);}    // right-recursive
+//        | commaArgList COMMA expr {$$ = addFcnCallArgument($1, $3);}  // left-recursive
             
 defnArgList: /* empty */        {$$ = NULL;}
         | defnCommaArgList      {$$ = $1;}
 
 defnCommaArgList: VAR  {$$ = addFcnDefnArgument(NULL, $1, VAR_PASS_BY_VALUE, VAR_FIRST_PARAMETER);}
         | BITWISEAND VAR {$$ = addFcnDefnArgument(NULL, $2, VAR_PASS_BY_REFERENCE, VAR_FIRST_PARAMETER);}
-        | VAR COMMA defnCommaArgList {$$ = addFcnDefnArgument($3, $1, VAR_PASS_BY_VALUE, VAR_SUBSEQUENT_PARAMETER);}
-        | BITWISEAND VAR COMMA defnCommaArgList {$$ = addFcnDefnArgument($4, $2, VAR_PASS_BY_REFERENCE, VAR_SUBSEQUENT_PARAMETER);}
+        | defnCommaArgList COMMA VAR {$$ = addFcnDefnArgument($1, $3, VAR_PASS_BY_VALUE, VAR_SUBSEQUENT_PARAMETER);}
+        | defnCommaArgList COMMA BITWISEAND VAR  {$$ = addFcnDefnArgument($1, $4, VAR_PASS_BY_REFERENCE, VAR_SUBSEQUENT_PARAMETER);}
 
 arrayDefine:    ARRAYDEFINE VAR LBRACKET CONST RBRACKET SEMI    {$$ = addArrayToSymbolTable($2, atoi($4));}
 
@@ -487,7 +488,7 @@ astNode* addFunction(const char* pFuncName, astNode* pArgList, astNode* pStateme
         buildSymbol(pFuncName, functionParameterIndex /* equals num arguments */, &functionNode);
         // This is set to 1 because of the way function parameters are parsed. The first parameter doesn't actually get parsed until last
         //  but should have index 0. We correct for this by noting in the addFcnDefnArgument() call if it's the first parameter.
-        functionParameterIndex = 1; // Reset for every new function definition. Don't need it any more for this function.
+        functionParameterIndex = 0; // Reset for every new function definition. Don't need it any more for this function.
         functionNode.type = nodeFunctionDefinition;
         // statementOutputIndex contains the index into execution list. Put that value into fcnDefnLink
         //  of the function definition symbol.
@@ -508,7 +509,7 @@ astNode* addFunction(const char* pFuncName, astNode* pArgList, astNode* pStateme
         fwrite("0 0 Start 0\n", 1, 12, fp);
         ++statementOutputIndex;
         /*printf("\nstatementList=%d", (int)$1);*/
-        walkList(pArgList, fp);
+        //walkList(pArgList, fp);   // Doesn't seem to be necessary since function parameters have alreay been added to the symbol table
         walkList(pStatementList, fp);
         if (inMain) {
             writeStatement("0 0 ProgramEnd 0\n", fp);
@@ -661,18 +662,15 @@ astNode* addFcnDefnArgument(astNode* pArgumentListNode, const char* pArgumentNam
     // Add symbols to symbol table, marking them as function parameters.
     // Note that the variable value refers to its index on the execution stack.
     symbolNode argumentNode;
-    if (firstOrSebsequentParameter == VAR_FIRST_PARAMETER) {
-        buildSymbol(pArgumentName, 0, &argumentNode);
-    } else {
-        buildSymbol(pArgumentName, functionParameterIndex++, &argumentNode);
-    }
+    buildSymbol(pArgumentName, functionParameterIndex++, &argumentNode);
     argumentNode.type = nodeArgumentValue;
     if (passByValueOrReference == VAR_PASS_BY_REFERENCE) {
         argumentNode.type = nodeArgumentReference;
     }
     insertSymbol(&argumentNode);
     return NULL;
-    
+#if 0    
+    // Old code
 	astNode* p = getNextASTNode();
     p->type = passByValueOrReference;
     // Create variable in symbol table
@@ -682,6 +680,7 @@ astNode* addFcnDefnArgument(astNode* pArgumentListNode, const char* pArgumentNam
     //p->Left = 
     p->pNext = pArgumentListNode;
     return NULL;
+#endif    
 }
 
 astNode* addFcnCallArgument(astNode* pArgumentListNode, astNode* pArgumentNode) {
