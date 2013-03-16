@@ -67,7 +67,7 @@ unsigned int statementOutputIndex = 0;
 
 // %left or %right takes the place of %token
 %left AND OR BITWISEAND BITWISEOR
-%left TEST_FOR_EQUAL GEQ LEQ NEQ GTR LSS
+%left TEST_FOR_EQUAL GEQ LEQ NEQ GTR LSS SHL SHR
 %left LPAREN 
 %left PLUS MINUS
 %left XOR

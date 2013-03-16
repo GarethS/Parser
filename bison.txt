@@ -1,7 +1,7 @@
 Starting parse
 Entering state 0
 Reading a token: --(end of buffer or a NUL)
---accepting rule at line 67 ("main")
+--accepting rule at line 69 ("main")
 Next token is token MAIN ()
 Shifting token MAIN ()
 Entering state 1
@@ -29,13 +29,13 @@ Reducing stack by rule 7 (line 103):
 Stack now 0 1 4 9 15 19
 Entering state 24
 Reading a token: --accepting default rule ("")
---accepting rule at line 75 ("
+--accepting rule at line 77 ("
 ")
 --accepting default rule (" ")
 --accepting default rule (" ")
 --accepting default rule (" ")
 --accepting default rule (" ")
---accepting rule at line 64 ("if")
+--accepting rule at line 66 ("if")
 Next token is token IF ()
 Shifting token IF ()
 Entering state 30
@@ -44,7 +44,7 @@ Reading a token: --accepting default rule (" ")
 Next token is token LPAREN ()
 Shifting token LPAREN ()
 Entering state 44
-Reading a token: --accepting rule at line 73 ("counter")
+Reading a token: --accepting rule at line 75 ("counter")
 Next token is token VAR ()
 Shifting token VAR ()
 Entering state 55
@@ -60,7 +60,7 @@ Next token is token LEQ ()
 Shifting token LEQ ()
 Entering state 84
 Reading a token: --accepting default rule (" ")
---accepting rule at line 71 ("4")
+--accepting rule at line 73 ("4")
 Next token is token CONST ()
 Shifting token CONST ()
 Entering state 56
@@ -70,7 +70,7 @@ Reducing stack by rule 42 (line 154):
 Stack now 0 1 4 9 15 19 24 30 44 58 84
 Entering state 115
 Reading a token: --accepting default rule (" ")
---accepting rule at line 59 ("&&")
+--accepting rule at line 61 ("&&")
 Next token is token AND ()
 Reducing stack by rule 38 (line 150):
    $1 = nterm expr ()
@@ -83,7 +83,7 @@ Next token is token AND ()
 Shifting token AND ()
 Entering state 80
 Reading a token: --accepting default rule (" ")
---accepting rule at line 73 ("x")
+--accepting rule at line 75 ("x")
 Next token is token VAR ()
 Shifting token VAR ()
 Entering state 55
@@ -99,7 +99,7 @@ Next token is token GTR ()
 Shifting token GTR ()
 Entering state 82
 Reading a token: --accepting default rule (" ")
---accepting rule at line 71 ("1")
+--accepting rule at line 73 ("1")
 Next token is token CONST ()
 Shifting token CONST ()
 Entering state 56
@@ -138,7 +138,7 @@ Reducing stack by rule 7 (line 103):
 Stack now 0 1 4 9 15 19 24 30 44 58 92 123
 Entering state 137
 Reading a token: --accepting default rule ("")
---accepting rule at line 75 ("
+--accepting rule at line 77 ("
 ")
 --accepting default rule (" ")
 --accepting default rule (" ")
@@ -148,7 +148,7 @@ Reading a token: --accepting default rule ("")
 --accepting default rule (" ")
 --accepting default rule (" ")
 --accepting default rule (" ")
---accepting rule at line 73 ("counter")
+--accepting rule at line 75 ("counter")
 Next token is token VAR ()
 Shifting token VAR ()
 Entering state 32
@@ -158,7 +158,7 @@ Next token is token EQUAL ()
 Shifting token EQUAL ()
 Entering state 46
 Reading a token: --accepting default rule (" ")
---accepting rule at line 71 ("5")
+--accepting rule at line 73 ("5")
 Next token is token CONST ()
 Shifting token CONST ()
 Entering state 56
@@ -191,7 +191,7 @@ Reducing stack by rule 8 (line 104):
 Stack now 0 1 4 9 15 19 24 30 44 58 92 123
 Entering state 137
 Reading a token: --accepting default rule ("")
---accepting rule at line 75 ("
+--accepting rule at line 77 ("
 ")
 --accepting default rule (" ")
 --accepting default rule (" ")
@@ -201,7 +201,7 @@ Reading a token: --accepting default rule ("")
 --accepting default rule (" ")
 --accepting default rule (" ")
 --accepting default rule (" ")
---accepting rule at line 73 ("counter")
+--accepting rule at line 75 ("counter")
 Next token is token VAR ()
 Shifting token VAR ()
 Entering state 32
@@ -211,7 +211,7 @@ Next token is token EQUAL ()
 Shifting token EQUAL ()
 Entering state 46
 Reading a token: --accepting default rule (" ")
---accepting rule at line 71 ("6")
+--accepting rule at line 73 ("6")
 Next token is token CONST ()
 Shifting token CONST ()
 Entering state 56
@@ -244,7 +244,7 @@ Reducing stack by rule 8 (line 104):
 Stack now 0 1 4 9 15 19 24 30 44 58 92 123
 Entering state 137
 Reading a token: --accepting default rule ("")
---accepting rule at line 75 ("
+--accepting rule at line 77 ("
 ")
 --accepting default rule (" ")
 --accepting default rule (" ")
@@ -254,7 +254,7 @@ Reading a token: --accepting default rule ("")
 --accepting default rule (" ")
 --accepting default rule (" ")
 --accepting default rule (" ")
---accepting rule at line 73 ("counter")
+--accepting rule at line 75 ("counter")
 Next token is token VAR ()
 Shifting token VAR ()
 Entering state 32
@@ -264,7 +264,7 @@ Next token is token EQUAL ()
 Shifting token EQUAL ()
 Entering state 46
 Reading a token: --accepting default rule (" ")
---accepting rule at line 71 ("6")
+--accepting rule at line 73 ("6")
 Next token is token CONST ()
 Shifting token CONST ()
 Entering state 56
@@ -297,7 +297,7 @@ Reducing stack by rule 8 (line 104):
 Stack now 0 1 4 9 15 19 24 30 44 58 92 123
 Entering state 137
 Reading a token: --accepting default rule ("")
---accepting rule at line 75 ("
+--accepting rule at line 77 ("
 ")
 --accepting default rule (" ")
 --accepting default rule (" ")
@@ -307,7 +307,7 @@ Reading a token: --accepting default rule ("")
 --accepting default rule (" ")
 --accepting default rule (" ")
 --accepting default rule (" ")
---accepting rule at line 64 ("if")
+--accepting rule at line 66 ("if")
 Next token is token IF ()
 Shifting token IF ()
 Entering state 30
@@ -316,12 +316,12 @@ Reading a token: --accepting default rule (" ")
 Next token is token LPAREN ()
 Shifting token LPAREN ()
 Entering state 44
-Reading a token: --accepting rule at line 73 ("x")
+Reading a token: --accepting rule at line 75 ("x")
 Next token is token VAR ()
 Shifting token VAR ()
 Entering state 55
 Reading a token: --accepting default rule (" ")
---accepting rule at line 62 ("==")
+--accepting rule at line 64 ("==")
 Next token is token TEST_FOR_EQUAL ()
 Reducing stack by rule 41 (line 153):
    $1 = token VAR ()
@@ -332,7 +332,7 @@ Next token is token TEST_FOR_EQUAL ()
 Shifting token TEST_FOR_EQUAL ()
 Entering state 86
 Reading a token: --accepting default rule (" ")
---accepting rule at line 71 ("2")
+--accepting rule at line 73 ("2")
 Next token is token CONST ()
 Shifting token CONST ()
 Entering state 56
@@ -363,7 +363,7 @@ Reducing stack by rule 7 (line 103):
 Stack now 0 1 4 9 15 19 24 30 44 58 92 123 137 30 44 58 92 123
 Entering state 137
 Reading a token: --accepting default rule ("")
---accepting rule at line 75 ("
+--accepting rule at line 77 ("
 ")
 --accepting default rule (" ")
 --accepting default rule (" ")
@@ -377,7 +377,7 @@ Reading a token: --accepting default rule ("")
 --accepting default rule (" ")
 --accepting default rule (" ")
 --accepting default rule (" ")
---accepting rule at line 73 ("counter")
+--accepting rule at line 75 ("counter")
 Next token is token VAR ()
 Shifting token VAR ()
 Entering state 32
@@ -387,7 +387,7 @@ Next token is token EQUAL ()
 Shifting token EQUAL ()
 Entering state 46
 Reading a token: --accepting default rule (" ")
---accepting rule at line 71 ("4")
+--accepting rule at line 73 ("4")
 Next token is token CONST ()
 Shifting token CONST ()
 Entering state 56
@@ -420,7 +420,7 @@ Reducing stack by rule 8 (line 104):
 Stack now 0 1 4 9 15 19 24 30 44 58 92 123 137 30 44 58 92 123
 Entering state 137
 Reading a token: --accepting default rule ("")
---accepting rule at line 75 ("
+--accepting rule at line 77 ("
 ")
 --accepting default rule (" ")
 --accepting default rule (" ")
@@ -434,11 +434,11 @@ Reading a token: --accepting default rule ("")
 --accepting default rule (" ")
 --accepting default rule (" ")
 --accepting default rule (" ")
---accepting rule at line 77 ("/*")
---accepting rule at line 79 (" don't do this line ")
---accepting rule at line 81 ("*/")
+--accepting rule at line 79 ("/*")
+--accepting rule at line 81 (" don't do this line ")
+--accepting rule at line 83 ("*/")
 --accepting default rule ("")
---accepting rule at line 75 ("
+--accepting rule at line 77 ("
 ")
 --accepting default rule (" ")
 --accepting default rule (" ")
@@ -450,11 +450,11 @@ Reading a token: --accepting default rule ("")
 --accepting default rule (" ")
 --accepting default rule (" ")
 --accepting default rule (" ")
---accepting rule at line 83 ("//")
---accepting rule at line 85 (" ")
---accepting rule at line 85 ("d")
---accepting rule at line 85 ("")
---accepting rule at line 87 ("
+--accepting rule at line 85 ("//")
+--accepting rule at line 87 (" ")
+--accepting rule at line 87 ("d")
+--accepting rule at line 87 ("")
+--accepting rule at line 89 ("
 ")
 --accepting default rule (" ")
 --accepting default rule (" ")
@@ -470,7 +470,7 @@ Shifting token RBRACE ()
 Entering state 143
 Reading a token: --accepting default rule (" ")
 --accepting default rule ("")
---accepting rule at line 75 ("
+--accepting rule at line 77 ("
 ")
 --accepting default rule (" ")
 --accepting default rule (" ")
@@ -480,7 +480,7 @@ Reading a token: --accepting default rule (" ")
 --accepting default rule (" ")
 --accepting default rule (" ")
 --accepting default rule (" ")
---accepting rule at line 66 ("while")
+--accepting rule at line 68 ("while")
 Next token is token WHILE ()
 Reducing stack by rule 21 (line 127):
    $1 = token IF ()
@@ -512,12 +512,12 @@ Reading a token: --accepting default rule (" ")
 Next token is token LPAREN ()
 Shifting token LPAREN ()
 Entering state 45
-Reading a token: --accepting rule at line 73 ("d")
+Reading a token: --accepting rule at line 75 ("d")
 Next token is token VAR ()
 Shifting token VAR ()
 Entering state 55
 Reading a token: --accepting default rule (" ")
---accepting rule at line 62 ("==")
+--accepting rule at line 64 ("==")
 Next token is token TEST_FOR_EQUAL ()
 Reducing stack by rule 41 (line 153):
    $1 = token VAR ()
@@ -528,7 +528,7 @@ Next token is token TEST_FOR_EQUAL ()
 Shifting token TEST_FOR_EQUAL ()
 Entering state 86
 Reading a token: --accepting default rule (" ")
---accepting rule at line 71 ("3")
+--accepting rule at line 73 ("3")
 Next token is token CONST ()
 Shifting token CONST ()
 Entering state 56
@@ -559,7 +559,7 @@ Reducing stack by rule 7 (line 103):
 Stack now 0 1 4 9 15 19 24 30 44 58 92 123 137 31 45 59 93 124
 Entering state 138
 Reading a token: --accepting default rule ("")
---accepting rule at line 75 ("
+--accepting rule at line 77 ("
 ")
 --accepting default rule (" ")
 --accepting default rule (" ")
@@ -573,7 +573,7 @@ Reading a token: --accepting default rule ("")
 --accepting default rule (" ")
 --accepting default rule (" ")
 --accepting default rule (" ")
---accepting rule at line 73 ("d")
+--accepting rule at line 75 ("d")
 Next token is token VAR ()
 Shifting token VAR ()
 Entering state 32
@@ -583,7 +583,7 @@ Next token is token EQUAL ()
 Shifting token EQUAL ()
 Entering state 46
 Reading a token: --accepting default rule (" ")
---accepting rule at line 73 ("d")
+--accepting rule at line 75 ("d")
 Next token is token VAR ()
 Shifting token VAR ()
 Entering state 55
@@ -599,7 +599,7 @@ Next token is token PLUS ()
 Shifting token PLUS ()
 Entering state 88
 Reading a token: --accepting default rule (" ")
---accepting rule at line 71 ("1")
+--accepting rule at line 73 ("1")
 Next token is token CONST ()
 Shifting token CONST ()
 Entering state 56
@@ -622,7 +622,7 @@ Next token is token PLUS ()
 Shifting token PLUS ()
 Entering state 88
 Reading a token: --accepting default rule (" ")
---accepting rule at line 73 ("d")
+--accepting rule at line 75 ("d")
 Next token is token VAR ()
 Shifting token VAR ()
 Entering state 55
@@ -664,7 +664,7 @@ Reducing stack by rule 8 (line 104):
 Stack now 0 1 4 9 15 19 24 30 44 58 92 123 137 31 45 59 93 124
 Entering state 138
 Reading a token: --accepting default rule ("")
---accepting rule at line 75 ("
+--accepting rule at line 77 ("
 ")
 --accepting default rule (" ")
 --accepting default rule (" ")
@@ -701,7 +701,7 @@ Reducing stack by rule 8 (line 104):
 Stack now 0 1 4 9 15 19 24 30 44 58 92 123
 Entering state 137
 Reading a token: --accepting default rule ("")
---accepting rule at line 75 ("
+--accepting rule at line 77 ("
 ")
 --accepting default rule (" ")
 --accepting default rule (" ")
@@ -712,7 +712,7 @@ Next token is token RBRACE ()
 Shifting token RBRACE ()
 Entering state 143
 Reading a token: --accepting default rule (" ")
---accepting rule at line 65 ("else")
+--accepting rule at line 67 ("else")
 Next token is token ELSE ()
 Shifting token ELSE ()
 Entering state 149
@@ -726,7 +726,7 @@ Reducing stack by rule 7 (line 103):
 Stack now 0 1 4 9 15 19 24 30 44 58 92 123 137 143 149 153
 Entering state 154
 Reading a token: --accepting default rule ("")
---accepting rule at line 75 ("
+--accepting rule at line 77 ("
 ")
 --accepting default rule (" ")
 --accepting default rule (" ")
@@ -736,7 +736,7 @@ Reading a token: --accepting default rule ("")
 --accepting default rule (" ")
 --accepting default rule (" ")
 --accepting default rule (" ")
---accepting rule at line 73 ("counter")
+--accepting rule at line 75 ("counter")
 Next token is token VAR ()
 Shifting token VAR ()
 Entering state 32
@@ -746,7 +746,7 @@ Next token is token EQUAL ()
 Shifting token EQUAL ()
 Entering state 46
 Reading a token: --accepting default rule (" ")
---accepting rule at line 71 ("7")
+--accepting rule at line 73 ("7")
 Next token is token CONST ()
 Shifting token CONST ()
 Entering state 56
@@ -779,7 +779,7 @@ Reducing stack by rule 8 (line 104):
 Stack now 0 1 4 9 15 19 24 30 44 58 92 123 137 143 149 153
 Entering state 154
 Reading a token: --accepting default rule ("")
---accepting rule at line 75 ("
+--accepting rule at line 77 ("
 ")
 --accepting default rule (" ")
 --accepting default rule (" ")
@@ -789,7 +789,7 @@ Reading a token: --accepting default rule ("")
 --accepting default rule (" ")
 --accepting default rule (" ")
 --accepting default rule (" ")
---accepting rule at line 73 ("x")
+--accepting rule at line 75 ("x")
 Next token is token VAR ()
 Shifting token VAR ()
 Entering state 32
@@ -799,7 +799,7 @@ Next token is token EQUAL ()
 Shifting token EQUAL ()
 Entering state 46
 Reading a token: --accepting default rule (" ")
---accepting rule at line 71 ("7")
+--accepting rule at line 73 ("7")
 Next token is token CONST ()
 Shifting token CONST ()
 Entering state 56
@@ -832,7 +832,7 @@ Reducing stack by rule 8 (line 104):
 Stack now 0 1 4 9 15 19 24 30 44 58 92 123 137 143 149 153
 Entering state 154
 Reading a token: --accepting default rule ("")
---accepting rule at line 75 ("
+--accepting rule at line 77 ("
 ")
 --accepting default rule (" ")
 --accepting default rule (" ")
@@ -842,81 +842,81 @@ Reading a token: --accepting default rule ("")
 --accepting default rule (" ")
 --accepting default rule (" ")
 --accepting default rule (" ")
---accepting rule at line 83 ("//")
---accepting rule at line 85 (" ")
---accepting rule at line 85 ("f")
---accepting rule at line 85 ("o")
---accepting rule at line 85 ("o")
---accepting rule at line 85 ("(")
---accepting rule at line 85 (")")
---accepting rule at line 85 (" ")
---accepting rule at line 85 ("h")
---accepting rule at line 85 ("a")
---accepting rule at line 85 ("s")
---accepting rule at line 85 ("n")
---accepting rule at line 85 ("'")
---accepting rule at line 85 ("t")
---accepting rule at line 85 (" ")
---accepting rule at line 85 ("b")
---accepting rule at line 85 ("e")
---accepting rule at line 85 ("e")
---accepting rule at line 85 ("n")
---accepting rule at line 85 (" ")
---accepting rule at line 85 ("d")
---accepting rule at line 85 ("e")
---accepting rule at line 85 ("f")
---accepting rule at line 85 ("i")
---accepting rule at line 85 ("n")
---accepting rule at line 85 ("e")
---accepting rule at line 85 ("d")
---accepting rule at line 85 (" ")
---accepting rule at line 85 ("y")
---accepting rule at line 85 ("e")
---accepting rule at line 85 ("t")
---accepting rule at line 85 (" ")
---accepting rule at line 85 ("s")
---accepting rule at line 85 ("o")
---accepting rule at line 85 (" ")
---accepting rule at line 85 ("c")
---accepting rule at line 85 ("a")
---accepting rule at line 85 ("n")
---accepting rule at line 85 ("'")
---accepting rule at line 85 ("t")
---accepting rule at line 85 (" ")
---accepting rule at line 85 ("c")
---accepting rule at line 85 ("h")
---accepting rule at line 85 ("e")
---accepting rule at line 85 ("c")
---accepting rule at line 85 ("k")
---accepting rule at line 85 (" ")
---accepting rule at line 85 ("n")
---accepting rule at line 85 ("u")
---accepting rule at line 85 ("m")
---accepting rule at line 85 ("b")
---accepting rule at line 85 ("e")
---accepting rule at line 85 ("r")
---accepting rule at line 85 (" ")
---accepting rule at line 85 ("o")
---accepting rule at line 85 ("f")
---accepting rule at line 85 (" ")
---accepting rule at line 85 ("p")
---accepting rule at line 85 ("a")
---accepting rule at line 85 ("r")
---accepting rule at line 85 ("a")
---accepting rule at line 85 ("m")
---accepting rule at line 85 ("e")
---accepting rule at line 85 ("t")
---accepting rule at line 85 ("e")
---accepting rule at line 85 ("r")
---accepting rule at line 85 ("s")
---accepting rule at line 85 (" ")
---accepting rule at line 85 ("u")
---accepting rule at line 85 ("n")
---accepting rule at line 85 ("t")
---accepting rule at line 85 ("i")
---accepting rule at line 85 ("l")
---accepting rule at line 85 ("")
---accepting rule at line 87 ("
+--accepting rule at line 85 ("//")
+--accepting rule at line 87 (" ")
+--accepting rule at line 87 ("f")
+--accepting rule at line 87 ("o")
+--accepting rule at line 87 ("o")
+--accepting rule at line 87 ("(")
+--accepting rule at line 87 (")")
+--accepting rule at line 87 (" ")
+--accepting rule at line 87 ("h")
+--accepting rule at line 87 ("a")
+--accepting rule at line 87 ("s")
+--accepting rule at line 87 ("n")
+--accepting rule at line 87 ("'")
+--accepting rule at line 87 ("t")
+--accepting rule at line 87 (" ")
+--accepting rule at line 87 ("b")
+--accepting rule at line 87 ("e")
+--accepting rule at line 87 ("e")
+--accepting rule at line 87 ("n")
+--accepting rule at line 87 (" ")
+--accepting rule at line 87 ("d")
+--accepting rule at line 87 ("e")
+--accepting rule at line 87 ("f")
+--accepting rule at line 87 ("i")
+--accepting rule at line 87 ("n")
+--accepting rule at line 87 ("e")
+--accepting rule at line 87 ("d")
+--accepting rule at line 87 (" ")
+--accepting rule at line 87 ("y")
+--accepting rule at line 87 ("e")
+--accepting rule at line 87 ("t")
+--accepting rule at line 87 (" ")
+--accepting rule at line 87 ("s")
+--accepting rule at line 87 ("o")
+--accepting rule at line 87 (" ")
+--accepting rule at line 87 ("c")
+--accepting rule at line 87 ("a")
+--accepting rule at line 87 ("n")
+--accepting rule at line 87 ("'")
+--accepting rule at line 87 ("t")
+--accepting rule at line 87 (" ")
+--accepting rule at line 87 ("c")
+--accepting rule at line 87 ("h")
+--accepting rule at line 87 ("e")
+--accepting rule at line 87 ("c")
+--accepting rule at line 87 ("k")
+--accepting rule at line 87 (" ")
+--accepting rule at line 87 ("n")
+--accepting rule at line 87 ("u")
+--accepting rule at line 87 ("m")
+--accepting rule at line 87 ("b")
+--accepting rule at line 87 ("e")
+--accepting rule at line 87 ("r")
+--accepting rule at line 87 (" ")
+--accepting rule at line 87 ("o")
+--accepting rule at line 87 ("f")
+--accepting rule at line 87 (" ")
+--accepting rule at line 87 ("p")
+--accepting rule at line 87 ("a")
+--accepting rule at line 87 ("r")
+--accepting rule at line 87 ("a")
+--accepting rule at line 87 ("m")
+--accepting rule at line 87 ("e")
+--accepting rule at line 87 ("t")
+--accepting rule at line 87 ("e")
+--accepting rule at line 87 ("r")
+--accepting rule at line 87 ("s")
+--accepting rule at line 87 (" ")
+--accepting rule at line 87 ("u")
+--accepting rule at line 87 ("n")
+--accepting rule at line 87 ("t")
+--accepting rule at line 87 ("i")
+--accepting rule at line 87 ("l")
+--accepting rule at line 87 ("")
+--accepting rule at line 89 ("
 ")
 --accepting default rule (" ")
 --accepting default rule (" ")
@@ -926,34 +926,34 @@ Reading a token: --accepting default rule ("")
 --accepting default rule (" ")
 --accepting default rule (" ")
 --accepting default rule (" ")
---accepting rule at line 83 ("//")
---accepting rule at line 85 (" ")
---accepting rule at line 85 (" ")
---accepting rule at line 85 ("w")
---accepting rule at line 85 ("e")
---accepting rule at line 85 (" ")
---accepting rule at line 85 ("r")
---accepting rule at line 85 ("e")
---accepting rule at line 85 ("a")
---accepting rule at line 85 ("c")
---accepting rule at line 85 ("h")
---accepting rule at line 85 (" ")
---accepting rule at line 85 ("t")
---accepting rule at line 85 ("h")
---accepting rule at line 85 ("e")
---accepting rule at line 85 (" ")
---accepting rule at line 85 ("d")
---accepting rule at line 85 ("e")
---accepting rule at line 85 ("f")
---accepting rule at line 85 ("i")
---accepting rule at line 85 ("n")
---accepting rule at line 85 ("i")
---accepting rule at line 85 ("t")
---accepting rule at line 85 ("i")
---accepting rule at line 85 ("o")
---accepting rule at line 85 ("n")
---accepting rule at line 85 ("")
---accepting rule at line 87 ("
+--accepting rule at line 85 ("//")
+--accepting rule at line 87 (" ")
+--accepting rule at line 87 (" ")
+--accepting rule at line 87 ("w")
+--accepting rule at line 87 ("e")
+--accepting rule at line 87 (" ")
+--accepting rule at line 87 ("r")
+--accepting rule at line 87 ("e")
+--accepting rule at line 87 ("a")
+--accepting rule at line 87 ("c")
+--accepting rule at line 87 ("h")
+--accepting rule at line 87 (" ")
+--accepting rule at line 87 ("t")
+--accepting rule at line 87 ("h")
+--accepting rule at line 87 ("e")
+--accepting rule at line 87 (" ")
+--accepting rule at line 87 ("d")
+--accepting rule at line 87 ("e")
+--accepting rule at line 87 ("f")
+--accepting rule at line 87 ("i")
+--accepting rule at line 87 ("n")
+--accepting rule at line 87 ("i")
+--accepting rule at line 87 ("t")
+--accepting rule at line 87 ("i")
+--accepting rule at line 87 ("o")
+--accepting rule at line 87 ("n")
+--accepting rule at line 87 ("")
+--accepting rule at line 89 ("
 ")
 --accepting default rule (" ")
 --accepting default rule (" ")
@@ -963,7 +963,7 @@ Reading a token: --accepting default rule ("")
 --accepting default rule (" ")
 --accepting default rule (" ")
 --accepting default rule (" ")
---accepting rule at line 73 ("foo")
+--accepting rule at line 75 ("foo")
 Next token is token VAR ()
 Shifting token VAR ()
 Entering state 32
@@ -971,7 +971,7 @@ Reading a token: --accepting rule at line 42 ("(")
 Next token is token LPAREN ()
 Shifting token LPAREN ()
 Entering state 47
-Reading a token: --accepting rule at line 71 ("1")
+Reading a token: --accepting rule at line 73 ("1")
 Next token is token CONST ()
 Shifting token CONST ()
 Entering state 56
@@ -985,7 +985,7 @@ Next token is token COMMA ()
 Shifting token COMMA ()
 Entering state 95
 Reading a token: --accepting default rule (" ")
---accepting rule at line 71 ("2")
+--accepting rule at line 73 ("2")
 Next token is token CONST ()
 Shifting token CONST ()
 Entering state 56
@@ -998,7 +998,7 @@ Reading a token: --accepting rule at line 48 ("+")
 Next token is token PLUS ()
 Shifting token PLUS ()
 Entering state 88
-Reading a token: --accepting rule at line 73 ("x")
+Reading a token: --accepting rule at line 75 ("x")
 Next token is token VAR ()
 Shifting token VAR ()
 Entering state 55
@@ -1021,7 +1021,7 @@ Next token is token COMMA ()
 Shifting token COMMA ()
 Entering state 95
 Reading a token: --accepting default rule (" ")
---accepting rule at line 71 ("3")
+--accepting rule at line 73 ("3")
 Next token is token CONST ()
 Shifting token CONST ()
 Entering state 56
@@ -1079,7 +1079,7 @@ Reducing stack by rule 8 (line 104):
 Stack now 0 1 4 9 15 19 24 30 44 58 92 123 137 143 149 153
 Entering state 154
 Reading a token: --accepting default rule ("")
---accepting rule at line 75 ("
+--accepting rule at line 77 ("
 ")
 --accepting default rule (" ")
 --accepting default rule (" ")
@@ -1089,7 +1089,7 @@ Reading a token: --accepting default rule ("")
 --accepting default rule (" ")
 --accepting default rule (" ")
 --accepting default rule (" ")
---accepting rule at line 73 ("q")
+--accepting rule at line 75 ("q")
 Next token is token VAR ()
 Shifting token VAR ()
 Entering state 32
@@ -1099,7 +1099,7 @@ Next token is token EQUAL ()
 Shifting token EQUAL ()
 Entering state 46
 Reading a token: --accepting default rule (" ")
---accepting rule at line 73 ("x")
+--accepting rule at line 75 ("x")
 Next token is token VAR ()
 Shifting token VAR ()
 Entering state 55
@@ -1133,7 +1133,7 @@ Reducing stack by rule 8 (line 104):
 Stack now 0 1 4 9 15 19 24 30 44 58 92 123 137 143 149 153
 Entering state 154
 Reading a token: --accepting default rule ("")
---accepting rule at line 75 ("
+--accepting rule at line 77 ("
 ")
 --accepting default rule (" ")
 --accepting default rule (" ")
@@ -1143,7 +1143,7 @@ Reading a token: --accepting default rule ("")
 --accepting default rule (" ")
 --accepting default rule (" ")
 --accepting default rule (" ")
---accepting rule at line 68 ("moveAbsolute")
+--accepting rule at line 70 ("moveAbsolute")
 Next token is token MOVEABSOLUTE ()
 Shifting token MOVEABSOLUTE ()
 Entering state 33
@@ -1151,11 +1151,11 @@ Reading a token: --accepting rule at line 42 ("(")
 Next token is token LPAREN ()
 Shifting token LPAREN ()
 Entering state 49
-Reading a token: --accepting rule at line 61 ("&")
+Reading a token: --accepting rule at line 63 ("&")
 Next token is token BITWISEAND ()
 Shifting token BITWISEAND ()
 Entering state 65
-Reading a token: --accepting rule at line 73 ("x")
+Reading a token: --accepting rule at line 75 ("x")
 Next token is token VAR ()
 Shifting token VAR ()
 Entering state 98
@@ -1164,7 +1164,7 @@ Next token is token COMMA ()
 Shifting token COMMA ()
 Entering state 128
 Reading a token: --accepting default rule (" ")
---accepting rule at line 71 ("2")
+--accepting rule at line 73 ("2")
 Next token is token CONST ()
 Shifting token CONST ()
 Entering state 56
@@ -1200,7 +1200,7 @@ Reducing stack by rule 8 (line 104):
 Stack now 0 1 4 9 15 19 24 30 44 58 92 123 137 143 149 153
 Entering state 154
 Reading a token: --accepting default rule ("")
---accepting rule at line 75 ("
+--accepting rule at line 77 ("
 ")
 --accepting default rule (" ")
 --accepting default rule (" ")
@@ -1210,21 +1210,21 @@ Reading a token: --accepting default rule ("")
 --accepting default rule (" ")
 --accepting default rule (" ")
 --accepting default rule (" ")
---accepting rule at line 83 ("//")
---accepting rule at line 85 ("b")
---accepting rule at line 85 ("a")
---accepting rule at line 85 ("r")
---accepting rule at line 85 ("(")
---accepting rule at line 85 ("1")
---accepting rule at line 85 (",")
---accepting rule at line 85 (" ")
---accepting rule at line 85 (" ")
---accepting rule at line 85 (" ")
---accepting rule at line 85 ("2")
---accepting rule at line 85 (")")
---accepting rule at line 85 (";")
---accepting rule at line 85 ("")
---accepting rule at line 87 ("
+--accepting rule at line 85 ("//")
+--accepting rule at line 87 ("b")
+--accepting rule at line 87 ("a")
+--accepting rule at line 87 ("r")
+--accepting rule at line 87 ("(")
+--accepting rule at line 87 ("1")
+--accepting rule at line 87 (",")
+--accepting rule at line 87 (" ")
+--accepting rule at line 87 (" ")
+--accepting rule at line 87 (" ")
+--accepting rule at line 87 ("2")
+--accepting rule at line 87 (")")
+--accepting rule at line 87 (";")
+--accepting rule at line 87 ("")
+--accepting rule at line 89 ("
 ")
 --accepting default rule (" ")
 --accepting default rule (" ")
@@ -1261,7 +1261,7 @@ Reducing stack by rule 8 (line 104):
 Stack now 0 1 4 9 15 19
 Entering state 24
 Reading a token: --accepting default rule ("")
---accepting rule at line 75 ("
+--accepting rule at line 77 ("
 ")
 --accepting rule at line 39 ("}")
 Next token is token RBRACE ()
@@ -1284,12 +1284,12 @@ Stack now 0 3
 Entering state 6
 Reading a token: --accepting default rule ("	")
 --accepting default rule ("")
---accepting rule at line 75 ("
+--accepting rule at line 77 ("
 ")
 --accepting default rule ("")
---accepting rule at line 75 ("
+--accepting rule at line 77 ("
 ")
---accepting rule at line 73 ("foo")
+--accepting rule at line 75 ("foo")
 Next token is token VAR ()
 Shifting token VAR ()
 Entering state 11
@@ -1297,7 +1297,7 @@ Reading a token: --accepting rule at line 42 ("(")
 Next token is token LPAREN ()
 Shifting token LPAREN ()
 Entering state 17
-Reading a token: --accepting rule at line 73 ("x")
+Reading a token: --accepting rule at line 75 ("x")
 Next token is token VAR ()
 Shifting token VAR ()
 Entering state 7
@@ -1311,11 +1311,11 @@ Next token is token COMMA ()
 Shifting token COMMA ()
 Entering state 16
 Reading a token: --accepting default rule (" ")
---accepting rule at line 61 ("&")
+--accepting rule at line 63 ("&")
 Next token is token BITWISEAND ()
 Shifting token BITWISEAND ()
 Entering state 21
-Reading a token: --accepting rule at line 73 ("y")
+Reading a token: --accepting rule at line 75 ("y")
 Next token is token VAR ()
 Shifting token VAR ()
 Entering state 25
@@ -1332,7 +1332,7 @@ Next token is token COMMA ()
 Shifting token COMMA ()
 Entering state 16
 Reading a token: --accepting default rule (" ")
---accepting rule at line 73 ("z")
+--accepting rule at line 75 ("z")
 Next token is token VAR ()
 Shifting token VAR ()
 Entering state 20
@@ -1363,13 +1363,13 @@ Reducing stack by rule 7 (line 103):
 Stack now 0 3 6 11 17 22 26 41
 Entering state 52
 Reading a token: --accepting default rule ("")
---accepting rule at line 75 ("
+--accepting rule at line 77 ("
 ")
 --accepting default rule (" ")
 --accepting default rule (" ")
 --accepting default rule (" ")
 --accepting default rule (" ")
---accepting rule at line 73 ("y")
+--accepting rule at line 75 ("y")
 Next token is token VAR ()
 Shifting token VAR ()
 Entering state 32
@@ -1379,7 +1379,7 @@ Next token is token EQUAL ()
 Shifting token EQUAL ()
 Entering state 46
 Reading a token: --accepting default rule (" ")
---accepting rule at line 71 ("3")
+--accepting rule at line 73 ("3")
 Next token is token CONST ()
 Shifting token CONST ()
 Entering state 56
@@ -1412,13 +1412,13 @@ Reducing stack by rule 8 (line 104):
 Stack now 0 3 6 11 17 22 26 41
 Entering state 52
 Reading a token: --accepting default rule ("")
---accepting rule at line 75 ("
+--accepting rule at line 77 ("
 ")
 --accepting default rule (" ")
 --accepting default rule (" ")
 --accepting default rule (" ")
 --accepting default rule (" ")
---accepting rule at line 73 ("b")
+--accepting rule at line 75 ("b")
 Next token is token VAR ()
 Shifting token VAR ()
 Entering state 32
@@ -1428,7 +1428,7 @@ Next token is token EQUAL ()
 Shifting token EQUAL ()
 Entering state 46
 Reading a token: --accepting default rule (" ")
---accepting rule at line 73 ("x")
+--accepting rule at line 75 ("x")
 Next token is token VAR ()
 Shifting token VAR ()
 Entering state 55
@@ -1462,7 +1462,7 @@ Reducing stack by rule 8 (line 104):
 Stack now 0 3 6 11 17 22 26 41
 Entering state 52
 Reading a token: --accepting default rule ("")
---accepting rule at line 75 ("
+--accepting rule at line 77 ("
 ")
 --accepting rule at line 39 ("}")
 Next token is token RBRACE ()
@@ -1486,12 +1486,12 @@ Reducing stack by rule 3 (line 95):
 Stack now 0 3
 Entering state 6
 Reading a token: --accepting default rule ("")
---accepting rule at line 75 ("
+--accepting rule at line 77 ("
 ")
 --accepting default rule ("")
---accepting rule at line 75 ("
+--accepting rule at line 77 ("
 ")
---accepting rule at line 73 ("bar")
+--accepting rule at line 75 ("bar")
 Next token is token VAR ()
 Shifting token VAR ()
 Entering state 11
@@ -1499,7 +1499,7 @@ Reading a token: --accepting rule at line 42 ("(")
 Next token is token LPAREN ()
 Shifting token LPAREN ()
 Entering state 17
-Reading a token: --accepting rule at line 73 ("a")
+Reading a token: --accepting rule at line 75 ("a")
 Next token is token VAR ()
 Shifting token VAR ()
 Entering state 7
@@ -1513,7 +1513,7 @@ Next token is token COMMA ()
 Shifting token COMMA ()
 Entering state 16
 Reading a token: --accepting default rule (" ")
---accepting rule at line 73 ("b")
+--accepting rule at line 75 ("b")
 Next token is token VAR ()
 Shifting token VAR ()
 Entering state 20
@@ -1529,7 +1529,7 @@ Next token is token COMMA ()
 Shifting token COMMA ()
 Entering state 16
 Reading a token: --accepting default rule (" ")
---accepting rule at line 73 ("c")
+--accepting rule at line 75 ("c")
 Next token is token VAR ()
 Shifting token VAR ()
 Entering state 20
@@ -1560,13 +1560,13 @@ Reducing stack by rule 7 (line 103):
 Stack now 0 3 6 11 17 22 26 41
 Entering state 52
 Reading a token: --accepting default rule ("")
---accepting rule at line 75 ("
+--accepting rule at line 77 ("
 ")
 --accepting default rule (" ")
 --accepting default rule (" ")
 --accepting default rule (" ")
 --accepting default rule (" ")
---accepting rule at line 73 ("n")
+--accepting rule at line 75 ("n")
 Next token is token VAR ()
 Shifting token VAR ()
 Entering state 32
@@ -1576,7 +1576,7 @@ Next token is token EQUAL ()
 Shifting token EQUAL ()
 Entering state 46
 Reading a token: --accepting default rule (" ")
---accepting rule at line 71 ("3")
+--accepting rule at line 73 ("3")
 Next token is token CONST ()
 Shifting token CONST ()
 Entering state 56
@@ -1609,13 +1609,13 @@ Reducing stack by rule 8 (line 104):
 Stack now 0 3 6 11 17 22 26 41
 Entering state 52
 Reading a token: --accepting default rule ("")
---accepting rule at line 75 ("
+--accepting rule at line 77 ("
 ")
 --accepting default rule (" ")
 --accepting default rule (" ")
 --accepting default rule (" ")
 --accepting default rule (" ")
---accepting rule at line 73 ("b")
+--accepting rule at line 75 ("b")
 Next token is token VAR ()
 Shifting token VAR ()
 Entering state 32
@@ -1625,7 +1625,7 @@ Next token is token EQUAL ()
 Shifting token EQUAL ()
 Entering state 46
 Reading a token: --accepting default rule (" ")
---accepting rule at line 73 ("x")
+--accepting rule at line 75 ("x")
 Next token is token VAR ()
 Shifting token VAR ()
 Entering state 55
@@ -1659,7 +1659,7 @@ Reducing stack by rule 8 (line 104):
 Stack now 0 3 6 11 17 22 26 41
 Entering state 52
 Reading a token: --accepting default rule ("")
---accepting rule at line 75 ("
+--accepting rule at line 77 ("
 ")
 --accepting rule at line 39 ("}")
 Next token is token RBRACE ()

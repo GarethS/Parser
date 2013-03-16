@@ -5,10 +5,10 @@ PARSETREEENTRY nodeFunctionDefinition 0 0
 PARSETREEENTRY nodeIf 0 2
 PARSETREEENTRY nodeVariable 3 1
 PARSETREEENTRY nodeVariable 3 2
-PARSETREEENTRY nodeOperator 2 284
+PARSETREEENTRY nodeOperator 2 286
 PARSETREEENTRY nodeVariable 3 3
 PARSETREEENTRY nodeVariable 3 4
-PARSETREEENTRY nodeOperator 2 282
+PARSETREEENTRY nodeOperator 2 284
 PARSETREEENTRY nodeOperator 1 280
 PARSETREEENTRY nodeIfEval0 0 2
 PARSETREEENTRY nodeVariable 1 1
@@ -23,7 +23,7 @@ PARSETREEENTRY nodeOperator 0 262
 PARSETREEENTRY nodeIf 0 0
 PARSETREEENTRY nodeVariable 2 3
 PARSETREEENTRY nodeVariable 2 7
-PARSETREEENTRY nodeOperator 1 286
+PARSETREEENTRY nodeOperator 1 288
 PARSETREEENTRY nodeIfEval0 0 0
 PARSETREEENTRY nodeVariable 1 1
 PARSETREEENTRY nodeVariable 1 2
@@ -34,14 +34,14 @@ PARSETREEENTRY nodeEndif 0 0
 PARSETREEENTRY nodeWhile 0 1
 PARSETREEENTRY nodeVariable 2 8
 PARSETREEENTRY nodeVariable 2 9
-PARSETREEENTRY nodeOperator 1 286
+PARSETREEENTRY nodeOperator 1 288
 PARSETREEENTRY nodeDo 0 1
 PARSETREEENTRY nodeVariable 1 8
 PARSETREEENTRY nodeVariable 3 8
 PARSETREEENTRY nodeVariable 3 4
-PARSETREEENTRY nodeOperator 2 289
+PARSETREEENTRY nodeOperator 2 291
 PARSETREEENTRY nodeVariable 2 8
-PARSETREEENTRY nodeOperator 1 289
+PARSETREEENTRY nodeOperator 1 291
 PARSETREEENTRY nodeOperator 0 262
 PARSETREEENTRY nodeEndWhile 0 1
 PARSETREEENTRY nodeJmpEndIf 0 2
@@ -56,7 +56,7 @@ PARSETREEENTRY nodeFunctionCall 0 11
 PARSETREEENTRY nodeVariable 0 4
 PARSETREEENTRY nodeVariable 1 7
 PARSETREEENTRY nodeVariable 1 3
-PARSETREEENTRY nodeOperator 0 289
+PARSETREEENTRY nodeOperator 0 291
 PARSETREEENTRY nodeVariable 0 9
 PARSETREEENTRY nodeFunctionCallEnd 0 11
 PARSETREEENTRY nodeVariable 1 12
@@ -187,7 +187,7 @@ SYMBOLTABLEENTRY 24 nodeConst  3 -1
 SYMBOLTABLEENTRY 25 nodeVariable  0 -1
 SYMBOLTABLEENTRY 26 nodeVariable  0 -1
 INTERPRETER 
-Run programIndex=4 programNodeType:2 programNodeValue:284
+Run programIndex=4 programNodeType:2 programNodeValue:286
 INTERPRETER 0 <= 4
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=27 value=1 stackFrameIndex():254
@@ -296,7 +296,7 @@ SYMBOLTABLEENTRY 25 nodeVariable  0 -1
 SYMBOLTABLEENTRY 26 nodeVariable  0 -1
 SYMBOLTABLEENTRY 27 nodeTemporary  1 0
 INTERPRETER 
-Run programIndex=7 programNodeType:2 programNodeValue:282
+Run programIndex=7 programNodeType:2 programNodeValue:284
 INTERPRETER 0 > 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=28 value=0 stackFrameIndex():253
@@ -798,7 +798,7 @@ SYMBOLTABLEENTRY 29 nodeTemporary  0 0
 SYMBOLTABLEENTRY 30 nodeFunctionReturn  -1 0
 SYMBOLTABLEENTRY 31 nodeBasePointer  0 0
 INTERPRETER 
-Run programIndex=55 programNodeType:2 programNodeValue:289
+Run programIndex=55 programNodeType:2 programNodeValue:291
 INTERPRETER 2 + 7
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=32 value=9 stackFrameIndex():251

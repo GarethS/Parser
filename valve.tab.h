@@ -61,22 +61,24 @@
      BITWISEAND = 278,
      OR = 279,
      AND = 280,
-     LSS = 281,
-     GTR = 282,
-     NEQ = 283,
-     LEQ = 284,
-     GEQ = 285,
-     TEST_FOR_EQUAL = 286,
-     LPAREN = 287,
-     MINUS = 288,
-     PLUS = 289,
-     XOR = 290,
-     DIV = 291,
-     MULT = 292,
-     LBRACKET = 293,
-     RBRACKET = 294,
-     RPAREN = 295,
-     SEMI = 296
+     SHR = 281,
+     SHL = 282,
+     LSS = 283,
+     GTR = 284,
+     NEQ = 285,
+     LEQ = 286,
+     GEQ = 287,
+     TEST_FOR_EQUAL = 288,
+     LPAREN = 289,
+     MINUS = 290,
+     PLUS = 291,
+     XOR = 292,
+     DIV = 293,
+     MULT = 294,
+     LBRACKET = 295,
+     RBRACKET = 296,
+     RPAREN = 297,
+     SEMI = 298
    };
 #endif
 
@@ -97,7 +99,7 @@ typedef union YYSTYPE
 
 
 /* Line 1685 of yacc.c  */
-#line 101 "valve.tab.h"
+#line 103 "valve.tab.h"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */

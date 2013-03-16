@@ -591,6 +591,22 @@ void interpret::evaluate(unsigned int op) {
         oss() << lhs << " != " << rhs;
 #endif /* CYGWIN */    
         break;
+    case SHR:   // Shift-right
+        assert(_evaluationStack.size() >= 1);
+        lhs = _symbolTable[_evalValue()].value();
+        _pushSymbolOnEvaluationStack(lhs >> rhs);
+#if CYGWIN
+        oss() << lhs << " >> " << rhs;
+#endif /* CYGWIN */    
+        break;
+    case SHL:   // Shift-left
+        assert(_evaluationStack.size() >= 1);
+        lhs = _symbolTable[_evalValue()].value();
+        _pushSymbolOnEvaluationStack(lhs << rhs);
+#if CYGWIN
+        oss() << lhs << " << " << rhs;
+#endif /* CYGWIN */    
+        break;
     case GTR:
         assert(_evaluationStack.size() >= 1);
         lhs = _symbolTable[_evalValue()].value();

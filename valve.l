@@ -1,5 +1,5 @@
 
-/* Copyright (c) 2011, 2012 Gareth Scott */
+/* Copyright (c) 2011, 2012, 2013 Gareth Scott */
 
 %option noyywrap
 %option yylineno
@@ -55,6 +55,8 @@ inputs	 	{debugPrintf("INPUTS"); return INPUTS;}
 "!="		{debugPrintf("NEQ"); return NEQ;}
 ">" 		{debugPrintf("GTR"); return GTR;}
 "<" 		{debugPrintf("LSS"); return LSS;}
+"<<" 		{debugPrintf("SHL"); return SHL;}
+">>" 		{debugPrintf("SHR"); return SHR;}
 "||"		{debugPrintf("OR"); return OR;}
 "&&"  		{debugPrintf("AND"); return AND;}
 "|"		    {debugPrintf("BITWISEOR"); return BITWISEOR;}
