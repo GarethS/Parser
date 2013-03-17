@@ -17,6 +17,7 @@
 // Can use either tinyQueue or an official deque
 #include "tinyQueue.h"
 //#include <deque>
+#include <assert.h>
 
 #if CYGWIN
 //#include <iostream>
@@ -56,7 +57,7 @@ private:
     unsigned int _currentProgramNodeValue(void) const {return _program[_programIndex].value();}
     unsigned int _currentProgramNodeLevel(void) const {return _program[_programIndex].level();}
     
-    int _evalValue(void) {int _value = _evaluationStack.front(); _evaluationStack.pop_front(); return _value;}
+    int _evalValue(void) {assert(_evaluationStack.size() >= 1); int _value = _evaluationStack.front(); _evaluationStack.pop_front(); return _value;}
     int _evalValuePeek(void) const {return _evaluationStack.front();}
     int _findFirstParseTreeEntry(const parseTreeEntry& p);
     //int _findParseTreeEntry(nodeType t, nodePosition p, int value, unsigned int level);
@@ -65,6 +66,7 @@ private:
     void _pushSymbolOnEvaluationStack(unsigned int value);
     //unsigned int _functionArgumentIndexToStackFrameIndex(const unsigned int functionArgumentIndex) {}
     int symbolTableIndexMorph(const int symbolTableIndex);
+    int symbolFromIndex(const int symbolTableIndex) {return _symbolTable[symbolTableIndexMorph(symbolTableIndex)].value();} // get symbol
 
     
     parseTreeEntry _program[MAX_PROGRAM_ENTRY];

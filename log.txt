@@ -188,7 +188,7 @@ SYMBOLTABLEENTRY 25 nodeVariable  0 -1
 SYMBOLTABLEENTRY 26 nodeVariable  0 -1
 INTERPRETER 
 Run programIndex=4 programNodeType:2 programNodeValue:286
-INTERPRETER 0 <= 4
+INTERPRETER rightHandSymbolTableIndex:2 0 <= 4
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=27 value=1 stackFrameIndex():254
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -297,7 +297,7 @@ SYMBOLTABLEENTRY 26 nodeVariable  0 -1
 SYMBOLTABLEENTRY 27 nodeTemporary  1 0
 INTERPRETER 
 Run programIndex=7 programNodeType:2 programNodeValue:284
-INTERPRETER 0 > 1
+INTERPRETER rightHandSymbolTableIndex:4 0 > 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=28 value=0 stackFrameIndex():253
 INTERPRETER Symbol index=27 value=1 stackFrameIndex():254
@@ -335,7 +335,7 @@ SYMBOLTABLEENTRY 27 nodeTemporary  1 0
 SYMBOLTABLEENTRY 28 nodeTemporary  0 0
 INTERPRETER 
 Run programIndex=8 programNodeType:2 programNodeValue:280
-INTERPRETER 1 && 0
+INTERPRETER rightHandSymbolTableIndex:28 1 && 0
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=29 value=0 stackFrameIndex():254
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -484,7 +484,7 @@ SYMBOLTABLEENTRY 28 nodeTemporary  0 0
 SYMBOLTABLEENTRY 29 nodeTemporary  0 0
 INTERPRETER 
 Run programIndex=47 programNodeType:2 programNodeValue:262
-INTERPRETER 1(symbol index) = 7
+INTERPRETER rightHandSymbolTableIndex:10 1(symbol index) = 7
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -596,7 +596,7 @@ SYMBOLTABLEENTRY 28 nodeTemporary  0 0
 SYMBOLTABLEENTRY 29 nodeTemporary  0 0
 INTERPRETER 
 Run programIndex=50 programNodeType:2 programNodeValue:262
-INTERPRETER 3(symbol index) = 7
+INTERPRETER rightHandSymbolTableIndex:10 3(symbol index) = 7
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -799,7 +799,7 @@ SYMBOLTABLEENTRY 30 nodeFunctionReturn  -1 0
 SYMBOLTABLEENTRY 31 nodeBasePointer  0 0
 INTERPRETER 
 Run programIndex=55 programNodeType:2 programNodeValue:291
-INTERPRETER 2 + 7
+INTERPRETER rightHandSymbolTableIndex:3 2 + 7
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=32 value=9 stackFrameIndex():251
 INTERPRETER Symbol index=4 value=1 stackFrameIndex():252
@@ -1023,7 +1023,7 @@ SYMBOLTABLEENTRY 31 nodeBasePointer  0 0
 SYMBOLTABLEENTRY 32 nodeTemporary  9 0
 INTERPRETER 
 Run programIndex=70 programNodeType:2 programNodeValue:262
-INTERPRETER 16(symbol index) = 3 functionArgumentIndex:1 symbolTableIndex:32
+INTERPRETER rightHandSymbolTableIndex:18 16(symbol index) = 3 functionArgumentIndex:1 symbolTableIndex:32 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=9 value=3 stackFrameIndex():250
 INTERPRETER Symbol index=32 value=3 stackFrameIndex():251
@@ -1159,7 +1159,7 @@ SYMBOLTABLEENTRY 31 nodeBasePointer  0 0
 SYMBOLTABLEENTRY 32 nodeTemporary  3 0
 INTERPRETER 
 Run programIndex=73 programNodeType:2 programNodeValue:262
-INTERPRETER 19(symbol index) = 0
+INTERPRETER rightHandSymbolTableIndex:15  functionArgumentIndex:0 symbolTableIndex:4 19(symbol index) = 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=9 value=3 stackFrameIndex():250
 INTERPRETER Symbol index=32 value=3 stackFrameIndex():251
@@ -1188,7 +1188,7 @@ SYMBOLTABLEENTRY 15 nodeArgumentValue  0 -1
 SYMBOLTABLEENTRY 16 nodeArgumentReference  1 -1
 SYMBOLTABLEENTRY 17 nodeArgumentValue  2 -1
 SYMBOLTABLEENTRY 18 nodeConst  3 -1
-SYMBOLTABLEENTRY 19 nodeVariable  0 -1
+SYMBOLTABLEENTRY 19 nodeVariable  1 -1
 SYMBOLTABLEENTRY 20 nodeFunctionDefinition  3 74
 SYMBOLTABLEENTRY 21 nodeArgumentValue  0 -1
 SYMBOLTABLEENTRY 22 nodeArgumentValue  1 -1
@@ -1229,7 +1229,7 @@ SYMBOLTABLEENTRY 15 nodeArgumentValue  0 -1
 SYMBOLTABLEENTRY 16 nodeArgumentReference  1 -1
 SYMBOLTABLEENTRY 17 nodeArgumentValue  2 -1
 SYMBOLTABLEENTRY 18 nodeConst  3 -1
-SYMBOLTABLEENTRY 19 nodeVariable  0 -1
+SYMBOLTABLEENTRY 19 nodeVariable  1 -1
 SYMBOLTABLEENTRY 20 nodeFunctionDefinition  3 74
 SYMBOLTABLEENTRY 21 nodeArgumentValue  0 -1
 SYMBOLTABLEENTRY 22 nodeArgumentValue  1 -1
@@ -1269,7 +1269,7 @@ SYMBOLTABLEENTRY 15 nodeArgumentValue  0 -1
 SYMBOLTABLEENTRY 16 nodeArgumentReference  1 -1
 SYMBOLTABLEENTRY 17 nodeArgumentValue  2 -1
 SYMBOLTABLEENTRY 18 nodeConst  3 -1
-SYMBOLTABLEENTRY 19 nodeVariable  0 -1
+SYMBOLTABLEENTRY 19 nodeVariable  1 -1
 SYMBOLTABLEENTRY 20 nodeFunctionDefinition  3 74
 SYMBOLTABLEENTRY 21 nodeArgumentValue  0 -1
 SYMBOLTABLEENTRY 22 nodeArgumentValue  1 -1
@@ -1310,7 +1310,7 @@ SYMBOLTABLEENTRY 15 nodeArgumentValue  0 -1
 SYMBOLTABLEENTRY 16 nodeArgumentReference  1 -1
 SYMBOLTABLEENTRY 17 nodeArgumentValue  2 -1
 SYMBOLTABLEENTRY 18 nodeConst  3 -1
-SYMBOLTABLEENTRY 19 nodeVariable  0 -1
+SYMBOLTABLEENTRY 19 nodeVariable  1 -1
 SYMBOLTABLEENTRY 20 nodeFunctionDefinition  3 74
 SYMBOLTABLEENTRY 21 nodeArgumentValue  0 -1
 SYMBOLTABLEENTRY 22 nodeArgumentValue  1 -1
@@ -1326,7 +1326,7 @@ SYMBOLTABLEENTRY 31 nodeBasePointer  0 0
 SYMBOLTABLEENTRY 32 nodeTemporary  3 0
 INTERPRETER 
 Run programIndex=60 programNodeType:2 programNodeValue:262
-INTERPRETER 12(symbol index) = 7
+INTERPRETER rightHandSymbolTableIndex:3 12(symbol index) = 7
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -1350,7 +1350,7 @@ SYMBOLTABLEENTRY 15 nodeArgumentValue  0 -1
 SYMBOLTABLEENTRY 16 nodeArgumentReference  1 -1
 SYMBOLTABLEENTRY 17 nodeArgumentValue  2 -1
 SYMBOLTABLEENTRY 18 nodeConst  3 -1
-SYMBOLTABLEENTRY 19 nodeVariable  0 -1
+SYMBOLTABLEENTRY 19 nodeVariable  1 -1
 SYMBOLTABLEENTRY 20 nodeFunctionDefinition  3 74
 SYMBOLTABLEENTRY 21 nodeArgumentValue  0 -1
 SYMBOLTABLEENTRY 22 nodeArgumentValue  1 -1
@@ -1391,7 +1391,7 @@ SYMBOLTABLEENTRY 15 nodeArgumentValue  0 -1
 SYMBOLTABLEENTRY 16 nodeArgumentReference  1 -1
 SYMBOLTABLEENTRY 17 nodeArgumentValue  2 -1
 SYMBOLTABLEENTRY 18 nodeConst  3 -1
-SYMBOLTABLEENTRY 19 nodeVariable  0 -1
+SYMBOLTABLEENTRY 19 nodeVariable  1 -1
 SYMBOLTABLEENTRY 20 nodeFunctionDefinition  3 74
 SYMBOLTABLEENTRY 21 nodeArgumentValue  0 -1
 SYMBOLTABLEENTRY 22 nodeArgumentValue  1 -1
@@ -1435,7 +1435,7 @@ SYMBOLTABLEENTRY 15 nodeArgumentValue  0 -1
 SYMBOLTABLEENTRY 16 nodeArgumentReference  1 -1
 SYMBOLTABLEENTRY 17 nodeArgumentValue  2 -1
 SYMBOLTABLEENTRY 18 nodeConst  3 -1
-SYMBOLTABLEENTRY 19 nodeVariable  0 -1
+SYMBOLTABLEENTRY 19 nodeVariable  1 -1
 SYMBOLTABLEENTRY 20 nodeFunctionDefinition  3 74
 SYMBOLTABLEENTRY 21 nodeArgumentValue  0 -1
 SYMBOLTABLEENTRY 22 nodeArgumentValue  1 -1
@@ -1480,7 +1480,7 @@ SYMBOLTABLEENTRY 15 nodeArgumentValue  0 -1
 SYMBOLTABLEENTRY 16 nodeArgumentReference  1 -1
 SYMBOLTABLEENTRY 17 nodeArgumentValue  2 -1
 SYMBOLTABLEENTRY 18 nodeConst  3 -1
-SYMBOLTABLEENTRY 19 nodeVariable  0 -1
+SYMBOLTABLEENTRY 19 nodeVariable  1 -1
 SYMBOLTABLEENTRY 20 nodeFunctionDefinition  3 74
 SYMBOLTABLEENTRY 21 nodeArgumentValue  0 -1
 SYMBOLTABLEENTRY 22 nodeArgumentValue  1 -1
@@ -1522,7 +1522,7 @@ SYMBOLTABLEENTRY 15 nodeArgumentValue  0 -1
 SYMBOLTABLEENTRY 16 nodeArgumentReference  1 -1
 SYMBOLTABLEENTRY 17 nodeArgumentValue  2 -1
 SYMBOLTABLEENTRY 18 nodeConst  3 -1
-SYMBOLTABLEENTRY 19 nodeVariable  0 -1
+SYMBOLTABLEENTRY 19 nodeVariable  1 -1
 SYMBOLTABLEENTRY 20 nodeFunctionDefinition  3 74
 SYMBOLTABLEENTRY 21 nodeArgumentValue  0 -1
 SYMBOLTABLEENTRY 22 nodeArgumentValue  1 -1
@@ -1563,7 +1563,7 @@ SYMBOLTABLEENTRY 15 nodeArgumentValue  0 -1
 SYMBOLTABLEENTRY 16 nodeArgumentReference  1 -1
 SYMBOLTABLEENTRY 17 nodeArgumentValue  2 -1
 SYMBOLTABLEENTRY 18 nodeConst  3 -1
-SYMBOLTABLEENTRY 19 nodeVariable  0 -1
+SYMBOLTABLEENTRY 19 nodeVariable  1 -1
 SYMBOLTABLEENTRY 20 nodeFunctionDefinition  3 74
 SYMBOLTABLEENTRY 21 nodeArgumentValue  0 -1
 SYMBOLTABLEENTRY 22 nodeArgumentValue  1 -1

@@ -36,7 +36,6 @@
 //#include <math.h>
 //#include <complex>
 #endif /* CYGWIN */
-#include <assert.h>
 
 static int moveAbsolute(int position) {
     printf("moveAbsolute(%d)\n", position);
@@ -483,7 +482,7 @@ int interpret::symbolTableIndexMorph(const int symbolTableIndex) {
     switch (_symbolTable[symbolTableIndex].type()) {
     case nodeVariable:
     case nodeConst:
-        //return symbolTableIndexReturn;
+    case nodeTemporary:
         break;
     case nodeArgumentValue:
     case nodeArgumentReference:
@@ -491,23 +490,29 @@ int interpret::symbolTableIndexMorph(const int symbolTableIndex) {
         // Now get index off the stack frame
         symbolTableIndexReturn = _evaluationStack.peekAtIndex(_bp - functionArgumentIndex - 1); // First parameter starts at: _bp - 1; second at _bp -2, etc.
 #if CYGWIN
-        oss() << " functionArgumentIndex:" << functionArgumentIndex << " symbolTableIndex:" << symbolTableIndex;
+        oss() << " functionArgumentIndex:" << functionArgumentIndex << " symbolTableIndex:" << symbolTableIndexReturn << " ";
 #endif /* CYGWIN */
-        //return symbolTableIndexReturn;
         break;
     default:
+#if CYGWIN
+        oss() << " _symbolTable[symbolTableIndex].type():" << _symbolTable[symbolTableIndex].type();
+        dump();
+#endif /* CYGWIN */
         assert(false);
+        // Almost certainly not what we want to do but not sure what to do at this point.
         break;
     }
-    // Almost certainly not what we want to do but not sure what to do at this point.
     return symbolTableIndexReturn;
 }
 
 void interpret::evaluate(unsigned int op) {
-    assert(_evaluationStack.size() >= 1);
-    // Need to determine the type and then decide what to do with it. See: case EQUAL 
-    int rhs = _symbolTable[_evalValue()].value(); // this is usually the right-hand side of the parse node, the exception being BANG below
-    int lhs;
+s    int rightHandSymbolTableIndex = _evalValue(); // returns symbol table index
+#if CYGWIN
+    oss() << "rightHandSymbolTableIndex:" << rightHandSymbolTableIndex << " ";
+#endif /* CYGWIN */
+    // rhs -> right-hand symbol; lhs -> left-hand symbol
+    int rhs = symbolFromIndex(rightHandSymbolTableIndex);
+    int lhs; // evaluated in individual case statements below
     switch (op) {
     case BANG:
 #if CYGWIN
@@ -516,34 +521,30 @@ void interpret::evaluate(unsigned int op) {
         _pushSymbolOnEvaluationStack(!rhs);
         break;
     case PLUS:
-        assert(_evaluationStack.size() >= 1);
-        lhs = _symbolTable[_evalValue()].value();
+        lhs = symbolFromIndex(_evalValue());
         _pushSymbolOnEvaluationStack(lhs + rhs);
 #if CYGWIN
         oss() << lhs << " + " << rhs;
 #endif /* CYGWIN */    
         break;
     case MINUS:
-        assert(_evaluationStack.size() >= 1);
-        lhs = _symbolTable[_evalValue()].value();
+        lhs = symbolFromIndex(_evalValue());
         _pushSymbolOnEvaluationStack(lhs - rhs);
 #if CYGWIN
         oss() << lhs << " - " << rhs;
 #endif /* CYGWIN */    
         break;
     case MULT:
-        assert(_evaluationStack.size() >= 1);
-        lhs = _symbolTable[_evalValue()].value();
+        lhs = symbolFromIndex(_evalValue());
         _pushSymbolOnEvaluationStack(lhs * rhs);
 #if CYGWIN
         oss() << lhs << " * " << rhs;
 #endif /* CYGWIN */    
         break;
     case DIV:
-        assert(_evaluationStack.size() >= 1);
         {
             // tmp = denominator
-            int numerator = _symbolTable[_evalValue()].value();
+            int numerator = symbolFromIndex(_evalValue());
             if (rhs == 0) {
                 // If you attempt divide-by-zero we're going to give you back 0.
                 assert(rhs != 0);
@@ -560,157 +561,109 @@ void interpret::evaluate(unsigned int op) {
         }
         break;
     case XOR:
-        assert(_evaluationStack.size() >= 1);
-        lhs = _symbolTable[_evalValue()].value();
+        lhs = symbolFromIndex(_evalValue());
         _pushSymbolOnEvaluationStack(lhs ^ rhs);
 #if CYGWIN
         oss() << lhs << " ^ " << rhs;
 #endif /* CYGWIN */    
         break;
     case GEQ:
-        assert(_evaluationStack.size() >= 1);
-        lhs = _symbolTable[_evalValue()].value();
+        lhs = symbolFromIndex(_evalValue());
         _pushSymbolOnEvaluationStack(lhs >= rhs);
 #if CYGWIN
         oss() << lhs << " >= " << rhs;
 #endif /* CYGWIN */    
         break;
     case LEQ:
-        assert(_evaluationStack.size() >= 1);
-        lhs = _symbolTable[_evalValue()].value();
+        lhs = symbolFromIndex(_evalValue());
         _pushSymbolOnEvaluationStack(lhs <= rhs);
 #if CYGWIN
         oss() << lhs << " <= " << rhs;
 #endif /* CYGWIN */    
         break;
     case NEQ:
-        assert(_evaluationStack.size() >= 1);
-        lhs = _symbolTable[_evalValue()].value();
+        lhs = symbolFromIndex(_evalValue());
         _pushSymbolOnEvaluationStack(lhs != rhs);
 #if CYGWIN
         oss() << lhs << " != " << rhs;
 #endif /* CYGWIN */    
         break;
     case SHR:   // Shift-right
-        assert(_evaluationStack.size() >= 1);
-        lhs = _symbolTable[_evalValue()].value();
+        lhs = symbolFromIndex(_evalValue());
         _pushSymbolOnEvaluationStack(lhs >> rhs);
 #if CYGWIN
         oss() << lhs << " >> " << rhs;
 #endif /* CYGWIN */    
         break;
     case SHL:   // Shift-left
-        assert(_evaluationStack.size() >= 1);
-        lhs = _symbolTable[_evalValue()].value();
+        lhs = symbolFromIndex(_evalValue());
         _pushSymbolOnEvaluationStack(lhs << rhs);
 #if CYGWIN
         oss() << lhs << " << " << rhs;
 #endif /* CYGWIN */    
         break;
     case GTR:
-        assert(_evaluationStack.size() >= 1);
-        lhs = _symbolTable[_evalValue()].value();
+        lhs = symbolFromIndex(_evalValue());
         _pushSymbolOnEvaluationStack(lhs > rhs);
 #if CYGWIN
         oss() << lhs << " > " << rhs;
 #endif /* CYGWIN */    
         break;
     case LSS:
-        assert(_evaluationStack.size() >= 1);
-        lhs = _symbolTable[_evalValue()].value();
+        lhs = symbolFromIndex(_evalValue());
         _pushSymbolOnEvaluationStack(lhs < rhs);
 #if CYGWIN
         oss() << lhs << " < " << rhs;
 #endif /* CYGWIN */    
         break;
     case AND:
-        assert(_evaluationStack.size() >= 1);
-        lhs = _symbolTable[_evalValue()].value();
+        lhs = symbolFromIndex(_evalValue());
         _pushSymbolOnEvaluationStack(lhs && rhs);
 #if CYGWIN
         oss() << lhs << " && " << rhs;
 #endif /* CYGWIN */
         break;
     case OR:
-        assert(_evaluationStack.size() >= 1);
-        lhs = _symbolTable[_evalValue()].value();
+        lhs = symbolFromIndex(_evalValue());
         _pushSymbolOnEvaluationStack(lhs || rhs);
 #if CYGWIN
         oss() << lhs << " || " << rhs;
 #endif /* CYGWIN */    
         break;
     case BITWISEAND:
-        assert(_evaluationStack.size() >= 1);
-        lhs = _symbolTable[_evalValue()].value();
+        lhs = symbolFromIndex(_evalValue());
         _pushSymbolOnEvaluationStack(lhs & rhs);
 #if CYGWIN
         oss() << lhs << " & " << rhs;
 #endif /* CYGWIN */
         break;
     case BITWISEOR:
-        assert(_evaluationStack.size() >= 1);
-        lhs = _symbolTable[_evalValue()].value();
+        lhs = symbolFromIndex(_evalValue());
         _pushSymbolOnEvaluationStack(lhs | rhs);
 #if CYGWIN
         oss() << lhs << " | " << rhs;
 #endif /* CYGWIN */    
         break;
     case TEST_FOR_EQUAL:
-        assert(_evaluationStack.size() >= 1);
-        lhs = _symbolTable[_evalValue()].value();
+        lhs = symbolFromIndex(_evalValue());
         _pushSymbolOnEvaluationStack(lhs == rhs);
 #if CYGWIN
         oss() << lhs << " == " << rhs;
 #endif /* CYGWIN */    
         break;
     case EQUAL:
-        assert(_evaluationStack.size() >= 1);
         {
             // left-hand side = right-hand side
            int leftHandSymbolTableIndex = _evalValue(); // returns symbol table index
 #if CYGWIN
             oss() << leftHandSymbolTableIndex << "(symbol index) = " << rhs;
-#endif /* CYGWIN */    
-            // Set symbol table entry = rhs;
-#if 1
-            unsigned int functionArgumentIndex, symbolTableIndex;
-            switch (_symbolTable[leftHandSymbolTableIndex].type()) {
-            case nodeConst:
-                // It's a constant so don't modify it's value
-                assert(_symbolTable[leftHandSymbolTableIndex].type() != nodeConst);
-                break;
-            case nodeVariable:
-                _symbolTable[leftHandSymbolTableIndex].value(rhs);
-                break;
-            case nodeArgumentValue:
-                //break;
-            case nodeArgumentReference:
-                functionArgumentIndex = _symbolTable[leftHandSymbolTableIndex].value();
-                // Now get index off the stack frame
-                symbolTableIndex = _evaluationStack.peekAtIndex(_bp - functionArgumentIndex - 1); // First parameter starts at: _bp - 1; second at _bp -2, etc.
-#if CYGWIN
-                oss() << " functionArgumentIndex:" << functionArgumentIndex << " symbolTableIndex:" << symbolTableIndex;
-#endif /* CYGWIN */ 
-                _symbolTable[symbolTableIndex].value(rhs);
-                break;
-            default:
-                assert(false);
-                break;
-            }
-#else            
-            if (_symbolTable[leftHandSymbolTableIndex].type() == nodeConst) {
-                // It's a constant so don't modify it's value
-                assert(_symbolTable[leftHandSymbolTableIndex].type() != nodeConst);
-            } else {
-                _symbolTable[leftHandSymbolTableIndex].value(rhs);
-            }
-#endif            
+#endif /* CYGWIN */
+            _symbolTable[symbolTableIndexMorph(leftHandSymbolTableIndex)].value(rhs);
             //_evaluationStack.push_front(_evalValue() == _evalValue());
         }
         break;
     case LBRACKET:
         // Got something like: a[x], push symbol table index onto evaluation stack
-        assert(_evaluationStack.size() >= 1);
         lhs = _evalValue();   // Array index
         {
         int arrayRange = _symbolTable[lhs].value();   // Array range. Remember, max index is 1 less.
