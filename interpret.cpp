@@ -506,7 +506,7 @@ int interpret::symbolTableIndexMorph(const int symbolTableIndex) {
 }
 
 void interpret::evaluate(unsigned int op) {
-s    int rightHandSymbolTableIndex = _evalValue(); // returns symbol table index
+    int rightHandSymbolTableIndex = _evalValue(); // returns symbol table index
 #if CYGWIN
     oss() << "rightHandSymbolTableIndex:" << rightHandSymbolTableIndex << " ";
 #endif /* CYGWIN */
