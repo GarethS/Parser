@@ -28,7 +28,7 @@ using namespace std;
 #endif /* CYGWIN */
 
 #define MAX_PROGRAM_ENTRY           (200)
-#define MAX_SYMBOL_TABLE_ENTRY      (40)
+#define MAX_SYMBOL_TABLE_ENTRY      (60)
 #define PROGRAM_INDEX_START         (0)
 
 class interpret
@@ -59,7 +59,7 @@ private:
     
     int _evalValue(void) {assert(_evaluationStack.size() >= 1); int _value = _evaluationStack.front(); _evaluationStack.pop_front(); return _value;}
     int _evalValuePeek(void) const {return _evaluationStack.front();}
-    int _findFirstParseTreeEntry(const parseTreeEntry& p);
+    int _findFirstParseTreeEntry(const parseTreeEntry& p, const unsigned int startIndex);
     //int _findParseTreeEntry(nodeType t, nodePosition p, int value, unsigned int level);
     void _shortCircuitOptimization(void);
     void _resetSymbolTableTemporaryBoundary(void) {_symbolTableIndex = _symbolTableTemporaryBoundaryIndex;}

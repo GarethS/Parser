@@ -54,7 +54,8 @@ typedef enum {nodeVariable,             // 0
                 nodeFunctionCallEnd,    // Function call parameters are finished, time to actually call the function
                 nodeProgramEnd,
                 nodeFunctionReturn,
-                nodeAvailable           // After being used, this node is now available
+                nodeWhileEval0,
+                nodeAvailable           // 30, After being used, this node is now available
                 } nodeType;
                 
 //typedef enum {symbolVar, symbolConst, symbolArray, symbolInvalid, symbolTemporary, symbolFloat} symbolType;

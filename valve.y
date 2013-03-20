@@ -160,7 +160,6 @@ argList: /* empty */            {$$ = NULL;}
 
 commaArgList: expr              {$$ = addFcnCallArgument(NULL, $1);}
         | expr COMMA commaArgList {$$ = addFcnCallArgument($3, $1);}    // right-recursive
-//        | commaArgList COMMA expr {$$ = addFcnCallArgument($1, $3);}  // left-recursive
             
 defnArgList: /* empty */        {$$ = NULL;}
         | defnCommaArgList      {$$ = $1;}
@@ -806,11 +805,11 @@ void walkSyntaxTree(astNode* pSyntaxNode, char* position, int indent, FILE* fp) 
         walkSyntaxTree(pSyntaxNode->pLeft, "LEFT", indent + 1, fp);
         
         if (fp != NULL) {
-            sprintf(tmp, "%d %s Do %d\n", indent, position, pSyntaxNode->value);
+            sprintf(tmp, "%d %s EVALWHILE0 %d\n", indent, position, pSyntaxNode->value);
             writeStatement(tmp, fp);
         }
         printIndent(indent);
-		printf("If EVAL == 0 JMP EndWhile %d", pSyntaxNode->value);
+		printf("If EVALWHILE == 0 JMP EndWhile %d", pSyntaxNode->value);
 		//printf("Do %d", pSyntaxNode->value);
         walkList(pSyntaxNode->pCentre, fp);
         

@@ -105,6 +105,8 @@ void interpret::_loadTree(const string& s) {
             pte.type(nodeIf);
         } else if (variableOperator == "EVAL0") {
             pte.type(nodeIfEval0);
+        } else if (variableOperator == "EVALWHILE0") {
+            pte.type(nodeWhileEval0);
         } else if (variableOperator == "Else") {
             pte.type(nodeElse);
         } else if (variableOperator == "EndIf") {
@@ -287,6 +289,30 @@ void interpret::run(void) {
                 }
             }
             break;
+        case nodeWhileEval0:
+            // Result of nodeIf now sits on top of evaluation stack. If it's 0
+            //  jump to nodeElse of that same index.
+            // Get value from top of _evaluationStack
+            
+            //_programIndex = _currentProgramNodeValue();
+            //int ifEval0Value = _evalValuePeek();
+            if (_symbolTable[_evalValue()].value()) {
+                // TRUE on evaluation stack
+            } else {
+                // FALSE on evaluation stack
+#if CYGWIN
+                //oss() << endl << "!!nodeWhileEval0 _currentProgramNodeValue():" << _currentProgramNodeValue() << " _currentProgramNodeLevel()" << _currentProgramNodeLevel() ;
+                //dump();
+#endif /* CYGWIN */                
+                parseTreeEntry pte(nodeEndWhile, _currentProgramNodeValue(), _currentProgramNodeLevel() );
+                int newProgramIndex = _findFirstParseTreeEntry(pte, _programIndex);
+                if (newProgramIndex == NOT_FOUND) {
+                    assert(newProgramIndex != NOT_FOUND);
+                } else {
+                    _programIndex = newProgramIndex; // Jump one past nodeIfEval0
+                }
+            }
+            break;
         case nodeIfEval0:
             // Result of nodeIf now sits on top of evaluation stack. If it's 0
             //  jump to nodeElse of that same index.
@@ -295,14 +321,14 @@ void interpret::run(void) {
             //_programIndex = _currentProgramNodeValue();
             //int ifEval0Value = _evalValuePeek();
             if (_symbolTable[_evalValue()].value()) {
-                ++_programIndex;
+                ++_programIndex;    // TODO: Is this correct? Don't need to do it for While statement
             } else {
 #if CYGWIN
                 //oss() << endl << "!!nodeIfEval0 _currentProgramNodeValue():" << _currentProgramNodeValue() << " _currentProgramNodeLevel()" << _currentProgramNodeLevel() ;
                 //dump();
 #endif /* CYGWIN */                
                 parseTreeEntry pte(nodeElse, _currentProgramNodeValue(), _currentProgramNodeLevel() );
-                int newProgramIndex = _findFirstParseTreeEntry(pte);
+                int newProgramIndex = _findFirstParseTreeEntry(pte, _programIndex);
                 if (newProgramIndex == NOT_FOUND) {
                     assert(newProgramIndex != NOT_FOUND);
                 } else {
@@ -317,7 +343,24 @@ void interpret::run(void) {
         case nodeJmpEndIf:
             {
                 parseTreeEntry pte(nodeEndif, _currentProgramNodeValue(), _currentProgramNodeLevel() );
-                int newProgramIndex = _findFirstParseTreeEntry(pte);
+                int newProgramIndex = _findFirstParseTreeEntry(pte, _programIndex);
+                if (newProgramIndex == NOT_FOUND) {
+                    assert(newProgramIndex != NOT_FOUND);
+                } else {
+                    _programIndex = newProgramIndex;
+                }
+            }
+            break;
+        case nodeEndWhile:
+            {
+                // At end of while loop and want to jump back to the beginning
+                parseTreeEntry pte(nodeWhile, _currentProgramNodeValue(), _currentProgramNodeLevel() );
+#if CYGWIN
+                pte.dumpEntry();
+                //oss() << endl << "!!_currentProgramNodeValue():" << _currentProgramNodeValue() << " _currentProgramNodeLevel():" << _currentProgramNodeLevel();
+                //dump();
+#endif /* CYGWIN */                
+                int newProgramIndex = _findFirstParseTreeEntry(pte, 0);
                 if (newProgramIndex == NOT_FOUND) {
                     assert(newProgramIndex != NOT_FOUND);
                 } else {
@@ -410,6 +453,7 @@ void interpret::run(void) {
 #endif /* CYGWIN */    
             assert(false);
         case nodeNOP:
+        case nodeWhile:
         case nodeIf:
         case nodeEndif:
             // Nothing to do except increment the program counter for these nodes. Which is done automatically in the for loop.
@@ -429,7 +473,7 @@ void interpret::run(void) {
 
 void interpret::_shortCircuitOptimization(void) {
     parseTreeEntry pte(nodeOperator, OR, _currentProgramNodeLevel() - 1);  // Look for the first operator at (level - 1). Going further will detect an incorrect node.
-    if (int candidateProgramIndex = _findFirstParseTreeEntry(pte) != NOT_FOUND) {
+    if (int candidateProgramIndex = _findFirstParseTreeEntry(pte, _programIndex) != NOT_FOUND) {
         // We found the parse tree entry we were looking for so let's see if the left-hand side it true, or, rather, !false.
         //if (_currentProgramNodeValue() != false) {
         if (_evalValuePeek() != false) { 
@@ -444,8 +488,9 @@ void interpret::_shortCircuitOptimization(void) {
 }
 
 // Return programIndex location of the found entry
-int interpret::_findFirstParseTreeEntry(const parseTreeEntry& p) {
-    for (unsigned int i = _programIndex; _programNodeType(i) != nodeInvalid/*_programIndexMax*/; ++i) {
+int interpret::_findFirstParseTreeEntry(const parseTreeEntry& p, const unsigned int startIndex) {
+    // FIXME: This should start from the top, not _programIndex
+    for (unsigned int i = startIndex; _programNodeType(i) != nodeInvalid/*_programIndexMax*/; ++i) {
 #if CYGWIN
         //_program[i].dumpEntry();
 #endif /* CYGWIN */    

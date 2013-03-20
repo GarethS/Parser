@@ -18,13 +18,18 @@ main () {
         //  we reach the definition
         foo(1, 2+x, 3);
         q = x;
-        moveAbsolute(&x, 2);
+        while (q < 10) {
+            //moveAbsolute(&x, q);
+            q = q + 2;
+        }
+        moveAbsolute(&x, q);
         //bar(1,   2);
     }
 }	
 
 foo(x, &y, z) {
     y = 3;
+    //b = x + 1 + 2;
     b = x;
 }
 

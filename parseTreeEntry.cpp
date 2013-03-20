@@ -95,6 +95,9 @@ void parseTreeEntry::dumpEntry(void) {
     case nodeIfEval0:
         oss() << "nodeIfEval0";
         break;
+    case nodeWhileEval0:
+        oss() << "nodeWhileEval0";
+        break;
     case nodeWhile:
         oss() << "nodeWhile";
         break;
@@ -111,7 +114,7 @@ void parseTreeEntry::dumpEntry(void) {
         oss() << "ERROR parseTreeEntry, nodeUnknown:" << type();
         break;
     }
-    oss() << " " << level() << " " << value();
+    oss() << " level():" << level() << " value():" << value();
     dump();
 }
 #endif /* CYGWIN */

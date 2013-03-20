@@ -1,8 +1,8 @@
-                                                                                                                                                                                                                              
+                                                                                                                                                                                                                                                                              
 FunctionDefn: main
 Statement:
 ROOT
-If 2
+If 3
 ***LEFT Var: index,1 name,counter
 ***RIGHT Var: index,2 name,4
 **LEFT Operator: <= 286
@@ -10,7 +10,7 @@ If 2
 ***RIGHT Var: index,4 name,1
 **RIGHT Operator: > 284
 *LEFT Operator: && 280
-If EVAL == 0 JMP Else 2
+If EVAL == 0 JMP Else 3
 Statement:
 *LEFT Var: index,1 name,counter
 *RIGHT Var: index,5 name,5
@@ -43,7 +43,7 @@ While 1
 **LEFT Var: index,8 name,d
 **RIGHT Var: index,9 name,3
 *LEFT Operator: == 288
-If EVAL == 0 JMP EndWhile 1
+If EVALWHILE == 0 JMP EndWhile 1
 Statement:
 *LEFT Var: index,8 name,d
 ***LEFT Var: index,8 name,d
@@ -53,8 +53,8 @@ Statement:
 *RIGHT Operator: + 291
 ROOT Operator: = 262
 EndWhile 1
-JMP EndIf 2
-Else 2
+JMP EndIf 3
+Else 3
 Statement:
 *LEFT Var: index,1 name,counter
 *RIGHT Var: index,10 name,7
@@ -79,31 +79,45 @@ Statement:
 *RIGHT Var: index,3 name,x
 ROOT Operator: = 262
 Statement:
-ROOT FunctionCall: index,13 name,moveAbsolute
+ROOT
+While 2
+**LEFT Var: index,12 name,q
+**RIGHT Var: index,13 name,10
+*LEFT Operator: < 283
+If EVALWHILE == 0 JMP EndWhile 2
+Statement:
+*LEFT Var: index,12 name,q
+**LEFT Var: index,12 name,q
+**RIGHT Var: index,7 name,2
+*RIGHT Operator: + 291
+ROOT Operator: = 262
+EndWhile 2
+Statement:
+ROOT FunctionCall: index,14 name,moveAbsolute
 Statement:
 ROOT Var: index,3 name,x
 Statement:
-ROOT Var: index,7 name,2 
-FunctionCallEnd: index,13 name,moveAbsolute
-EndIf 2
-ProgramEnd	               
+ROOT Var: index,12 name,q 
+FunctionCallEnd: index,14 name,moveAbsolute
+EndIf 3
+ProgramEnd	                   
 FunctionDefn: foo
 Statement:
-*LEFT Var: index,16 name,y
-*RIGHT Var: index,18 name,3
+*LEFT Var: index,17 name,y
+*RIGHT Var: index,19 name,3
 ROOT Operator: = 262
 Statement:
-*LEFT Var: index,19 name,b
-*RIGHT Var: index,15 name,x
+*LEFT Var: index,20 name,b
+*RIGHT Var: index,16 name,x
 ROOT Operator: = 262               
 FunctionDefn: bar
 Statement:
-*LEFT Var: index,25 name,n
-*RIGHT Var: index,24 name,3
+*LEFT Var: index,26 name,n
+*RIGHT Var: index,25 name,3
 ROOT Operator: = 262
 Statement:
-*LEFT Var: index,22 name,b
-*RIGHT Var: index,26 name,x
+*LEFT Var: index,23 name,b
+*RIGHT Var: index,27 name,x
 ROOT Operator: = 262
 
 Symbol table start:
@@ -118,20 +132,21 @@ index:7, name:2, type:1, val:2
 index:8, name:d, type:0, val:0
 index:9, name:3, type:1, val:3
 index:10, name:7, type:1, val:7
-index:11, name:foo, type:15, val:3, fcnLink:67
+index:11, name:foo, type:15, val:3, fcnLink:78
 index:12, name:q, type:0, val:0
-index:13, name:moveAbsolute, type:15, val:2, fcnLink:-2
-index:14, name:foo, type:16, val:3, fcnLink:67
-index:15, name:x, type:12, val:0
-index:16, name:y, type:13, val:1
-index:17, name:z, type:12, val:2
-index:18, name:3, type:1, val:3
-index:19, name:b, type:0, val:0
-index:20, name:bar, type:16, val:3, fcnLink:74
-index:21, name:a, type:12, val:0
-index:22, name:b, type:12, val:1
-index:23, name:c, type:12, val:2
-index:24, name:3, type:1, val:3
-index:25, name:n, type:0, val:0
-index:26, name:x, type:0, val:0
+index:13, name:10, type:1, val:10
+index:14, name:moveAbsolute, type:15, val:2, fcnLink:-2
+index:15, name:foo, type:16, val:3, fcnLink:78
+index:16, name:x, type:12, val:0
+index:17, name:y, type:13, val:1
+index:18, name:z, type:12, val:2
+index:19, name:3, type:1, val:3
+index:20, name:b, type:0, val:0
+index:21, name:bar, type:16, val:3, fcnLink:85
+index:22, name:a, type:12, val:0
+index:23, name:b, type:12, val:1
+index:24, name:c, type:12, val:2
+index:25, name:3, type:1, val:3
+index:26, name:n, type:0, val:0
+index:27, name:x, type:0, val:0
 Symbol table end:
