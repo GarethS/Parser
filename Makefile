@@ -22,6 +22,9 @@ GPP_FLAGS =
 DEBUG_FLAGS = -D CYGWIN=1
 endif 
 
+includeRTOS = ../../../../dev/docs/rtos/freertos/FreeRTOS/Demo/Common/drivers/LuminaryMicro/
+includeGPIO = ../../../../DriverLib/src
+
 #all: lextest.exe parsetest.exe lex.yy.c valve.tab.c run
 all: lextest.exe parsetest.exe lex.yy.c valve.tab.c interpret.exe run
 
@@ -45,7 +48,7 @@ valve.tab.c valve.tab.h:	valve.y compiler.h compilerHelper.h
 
 interpret.exe: interpret.cpp interpret.h ../motor/log.cpp ../motor/log.h compilerHelper.h parseTreeEntry.cpp parseTreeEntry.h symbolTableEntry.cpp symbolTableEntry.h tinyQueue.h valve.tab.h
 	echo "BUILDING INTERPRETER"
-	g++ $(GPP_FLAGS) $(DEBUG_FLAGS) -I. -I../motor interpret.cpp parseTreeEntry.cpp symbolTableEntry.cpp ../motor/log.cpp -o interpret.exe 
+	g++ $(GPP_FLAGS) $(DEBUG_FLAGS) -I. -I../motor -I$(includeRTOS) -I$(includeGPIO) interpret.cpp parseTreeEntry.cpp symbolTableEntry.cpp ../motor/accel.cpp ../motor/lmi.cpp ../motor/stepper.cpp ../motor/log.cpp -o interpret.exe 
     
 run:
 	./parsetest >parse.txt 2>bison.txt

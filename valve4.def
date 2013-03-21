@@ -19,7 +19,7 @@ main () {
         foo(1, 2+x, 3);
         q = x;
         while (q < 10) {
-            //moveAbsolute(&x, q);
+            moveAbsolute(&x, q);
             q = q + 2;
         }
         moveAbsolute(&x, q);

@@ -1,4 +1,4 @@
-                                                                                                                                                                                                                                                                              
+                                                                                                                                                                                                                                                                               
 FunctionDefn: main
 Statement:
 ROOT
@@ -86,6 +86,13 @@ While 2
 *LEFT Operator: < 283
 If EVALWHILE == 0 JMP EndWhile 2
 Statement:
+ROOT FunctionCall: index,14 name,moveAbsolute
+Statement:
+ROOT Var: index,3 name,x
+Statement:
+ROOT Var: index,12 name,q 
+FunctionCallEnd: index,14 name,moveAbsolute
+Statement:
 *LEFT Var: index,12 name,q
 **LEFT Var: index,12 name,q
 **RIGHT Var: index,7 name,2
@@ -132,17 +139,17 @@ index:7, name:2, type:1, val:2
 index:8, name:d, type:0, val:0
 index:9, name:3, type:1, val:3
 index:10, name:7, type:1, val:7
-index:11, name:foo, type:15, val:3, fcnLink:78
+index:11, name:foo, type:15, val:3, fcnLink:82
 index:12, name:q, type:0, val:0
 index:13, name:10, type:1, val:10
 index:14, name:moveAbsolute, type:15, val:2, fcnLink:-2
-index:15, name:foo, type:16, val:3, fcnLink:78
+index:15, name:foo, type:16, val:3, fcnLink:82
 index:16, name:x, type:12, val:0
 index:17, name:y, type:13, val:1
 index:18, name:z, type:12, val:2
 index:19, name:3, type:1, val:3
 index:20, name:b, type:0, val:0
-index:21, name:bar, type:16, val:3, fcnLink:85
+index:21, name:bar, type:16, val:3, fcnLink:89
 index:22, name:a, type:12, val:0
 index:23, name:b, type:12, val:1
 index:24, name:c, type:12, val:2

@@ -13,6 +13,7 @@
 #define YYSTYPE_IS_DECLARED // prevent compile errors from valve.tab.h
 #define YYSTYPE int         // ditto
 #include "valve.tab.h"
+#include "stepper.h"
 
 // Can use either tinyQueue or an official deque
 #include "tinyQueue.h"
@@ -82,6 +83,7 @@ private:
     tinyQueue<int> _evaluationStack;    // Contains the index of a symbol, not its value.
     //deque<int> _evaluationStack;    // TODO: Initial version only use int. In future, floats or fixed-point arithmetic
     bool _evaluatingPattern;
+    stepper _s;
     
 #if 0    
 	accel a;
