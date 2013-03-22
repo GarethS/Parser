@@ -41,8 +41,8 @@ public:
     interpret();
     ~interpret() {}
     
-#if CYGWIN    
     void load(void);
+#if CYGWIN    
     void dumpProgram(void);
     void dumpSymbolTable(void);
     void dumpEvaluationStack(void);
@@ -51,8 +51,10 @@ public:
     void evaluate(unsigned int op);
 
 private:
+#if CYGWIN
     void _loadTree(const string& s);
     void _loadSymbolTable(const string& s);
+#endif /* CYGWIN */    
     nodeType _currentProgramNodeType(void) const {return _program[_programIndex].type();}
     nodeType _programNodeType(unsigned int i) const {return _program[i].type();}
     unsigned int _currentProgramNodeValue(void) const {return _program[_programIndex].value();}

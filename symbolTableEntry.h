@@ -30,9 +30,7 @@ public:
     symbolTableEntry(nodeType t, int value, int fcnLink);
     ~symbolTableEntry() {}
     
-#if CYGWIN
     void dumpEntry(void);
-#endif /* CYGWIN */
     symbolTableEntry& operator=(const symbolTableEntry& p);
     bool operator==(symbolTableEntry& p) const ;
     

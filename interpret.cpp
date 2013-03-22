@@ -48,9 +48,9 @@ static int moveAbsolute(int position) {
 
 interpret::interpret() :
 #if CYGWIN 
-					logc(std::string("INTERPRETER"))
+					logc(std::string("INTERPRETER")),
 #endif /* CYGWIN */		
-                    , _programIndex(PROGRAM_INDEX_START), _symbolTableIndex(0), _bp(PROGRAM_INDEX_START), _evaluatingPattern(true) {
+                    _programIndex(PROGRAM_INDEX_START), _symbolTableIndex(0), _bp(PROGRAM_INDEX_START), _evaluatingPattern(true) {
 #if 0                    
     for (int i = 0; i < MAX_PROGRAM_ENTRY; ++i) {
         //printf("%d %d\n", i, _program[i].type());
@@ -61,14 +61,16 @@ interpret::interpret() :
 #endif    
 }
 
-#if CYGWIN
 void interpret::load(void) {
+#if CYGWIN
     //_loadTree(string("patternTree.txt"));
     //_loadTree(string("actionTree.txt"));
     _loadTree(string("tree.txt"));
     _loadSymbolTable("symbolTable.txt");
+#endif // CYGWIN    
 }
 
+#if CYGWIN
 void interpret::_loadTree(const string& s) {
     ifstream ifs(s.c_str());
     if (!ifs) {
@@ -122,8 +124,8 @@ void interpret::_loadTree(const string& s) {
             pte.type(nodeFunctionCall);
         } else if (variableOperator == "FunctionCallEnd") {
             pte.type(nodeFunctionCallEnd);
-        } else if (variableOperator == "Do") {
-            pte.type(nodeDo);
+        //} else if (variableOperator == "Do") {
+        //    pte.type(nodeDo);
         } else if (variableOperator == "JmpEndIf") {
             pte.type(nodeJmpEndIf);
         } else if (variableOperator == "Start") {
@@ -269,8 +271,10 @@ void interpret::run(void) {
             break;
 #endif            
         case nodeFunctionDefinition:
+#if CYGWIN        
             oss() << endl << "***nodeFunctionDefinition _programIndex:" << _programIndex ;
             dump();
+#endif /* CYGWIN */            
             if (_programIndex == PROGRAM_INDEX_START) {
                 // Entering main
                 ++_programIndex;
@@ -426,6 +430,8 @@ void interpret::run(void) {
                         //intrinsicReturnValue = moveAbsolute(_symbolTable[symbolIndexParameter1].value());
                         break;
                     case INTRINSIC_FCN_DEFN_MOVE_RELATIVE:
+                        intrinsicReturnValue = 26;  // a dummy value
+                        _s.moveRelative(_symbolTable[symbolIndexParameter1].value());
                         break;
                     case INTRINSIC_FCN_DEFN_SLEEP:
                         break;
@@ -750,6 +756,7 @@ void interpret::_pushSymbolOnEvaluationStack(unsigned int value) {
     assert(_symbolTableIndex < MAX_SYMBOL_TABLE_ENTRY);
 }
 
+#if CYGWIN
 int main(void) {
 #if 0
 #define PI  (3.1415926535897932384626433832795)
@@ -783,3 +790,4 @@ int main(void) {
 #endif /* CYGWIN */ 
     return 0;
 }
+#endif /* CYGWIN */

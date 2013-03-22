@@ -12,23 +12,23 @@
 
 parseTreeEntry::parseTreeEntry() :
 #if CYGWIN 
-					logc(std::string("PARSETREEENTRY"))
+					logc(std::string("PARSETREEENTRY")),
 #endif /* CYGWIN */					
-                    , _type(nodeInvalid) {
+                    _type(nodeInvalid) {
 }
 
 parseTreeEntry::parseTreeEntry(nodeType t, nodePosition p, int value, unsigned int level) :
 #if CYGWIN 
-					logc(std::string("PARSETREEENTRY2"))
+					logc(std::string("PARSETREEENTRY2")),
 #endif /* CYGWIN */					
-					, _type(t), _position(p), _level(level), _value(value) {
+					_type(t), _position(p), _level(level), _value(value) {
 }
 
 parseTreeEntry::parseTreeEntry(nodeType t, int value, unsigned int level) :
 #if CYGWIN 
-					logc(std::string("PARSETREEENTRY3"))
+					logc(std::string("PARSETREEENTRY3")),
 #endif /* CYGWIN */					
-					, _type(t), _level(level), _value(value) {
+					_type(t), _level(level), _value(value) {
 }
 
 parseTreeEntry& parseTreeEntry::operator=(const parseTreeEntry& p) {

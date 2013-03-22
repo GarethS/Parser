@@ -10,23 +10,23 @@
 
 symbolTableEntry::symbolTableEntry() :
 #if CYGWIN 
-					logc(std::string("SYMBOLTABLEENTRY"))
+					logc(std::string("SYMBOLTABLEENTRY")),
 #endif /* CYGWIN */					
-                    , _type(nodeInvalid), _value(0), _fcnLink(0) {
+                    _type(nodeInvalid), _value(0), _fcnLink(0) {
 }
 
 symbolTableEntry::symbolTableEntry(nodeType t, int value) :
 #if CYGWIN 
-					logc(std::string("SYMBOLTABLEENTRY2"))
+					logc(std::string("SYMBOLTABLEENTRY2")),
 #endif /* CYGWIN */					
-					, _type(t), _value(value), _fcnLink(0) {
+					_type(t), _value(value), _fcnLink(0) {
 }
 
 symbolTableEntry::symbolTableEntry(nodeType t, int value, int fcnLink) :
 #if CYGWIN 
-					logc(std::string("SYMBOLTABLEENTRY3"))
+					logc(std::string("SYMBOLTABLEENTRY3")),
 #endif /* CYGWIN */					
-					, _type(t), _value(value), _fcnLink(fcnLink) {
+					_type(t), _value(value), _fcnLink(fcnLink) {
 }
 
 symbolTableEntry& symbolTableEntry::operator=(const symbolTableEntry& p) {
@@ -48,8 +48,8 @@ bool symbolTableEntry::operator==(symbolTableEntry& p) const {
     return false;
 }
 
-#if CYGWIN
 void symbolTableEntry::dumpEntry(void) {
+#if CYGWIN
     switch (type()) {
     case nodeVariable:
         oss() << "nodeVariable";
@@ -90,5 +90,5 @@ void symbolTableEntry::dumpEntry(void) {
     }
     oss() << " " << " " << value() << " " << fcnLink();
     dump();
-}
 #endif /* CYGWIN */
+}

@@ -22,9 +22,9 @@ public:
     void push_front(T p) {if (spaceAvail() == 0) {return;} if (_front == 0) {_front = TINY_QUEUE_SIZE - 1;} else {_front -= 1;} _tq[_front] = p;}
     void pop_front() {if (empty()) {return;} _front += 1; if (_front >= TINY_QUEUE_SIZE) {_front = 0;}}
     
-    void clear() const {_front = _back;} 
+    void clear(void) {_front = _back;} 
     unsigned int spaceAvail(void) const {if (_back >= _front) {return TINY_QUEUE_SIZE - 1 - _back + _front;} {return _front - _back - 1;}}
-    T front() const {return _tq[_front];} 
+    T front(void) const {return _tq[_front];} 
 
     // Allows explicit set/get of stack frame pointer (i.e. _front). Used to set up stack frames for function calls.
     unsigned int stackFrameIndex(void) const {return _front;}
