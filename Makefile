@@ -46,7 +46,7 @@ lex.yy.c: valve.l Makefile valve.tab.h
 valve.tab.c valve.tab.h:	valve.y compiler.h compilerHelper.h
 	bison $(BISON_FLAGS) valve.y	# bison version 2.4.2
 
-interpret.exe: interpret.cpp interpret.h ../motor/log.cpp ../motor/log.h compilerHelper.h parseTreeEntry.cpp parseTreeEntry.h symbolTableEntry.cpp symbolTableEntry.h tinyQueue.h valve.tab.h
+interpret.exe: interpret.cpp interpret.h ../motor/accel.cpp ../motor/accel.h ../motor/lmi.cpp ../motor/stepper.cpp ../motor/stepper.h ../motor/log.cpp ../motor/log.h compilerHelper.h parseTreeEntry.cpp parseTreeEntry.h symbolTableEntry.cpp symbolTableEntry.h tinyQueue.h valve.tab.h
 	echo "BUILDING INTERPRETER"
 	g++ $(GPP_FLAGS) $(DEBUG_FLAGS) -I. -I../motor -I$(includeRTOS) -I$(includeGPIO) interpret.cpp parseTreeEntry.cpp symbolTableEntry.cpp ../motor/accel.cpp ../motor/lmi.cpp ../motor/stepper.cpp ../motor/log.cpp -o interpret.exe 
     
