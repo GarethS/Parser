@@ -84,6 +84,9 @@ void symbolTableEntry::dumpEntry(void) {
     case nodeFunctionReturn:
         oss() << "nodeFunctionReturn";
         break;
+    case nodeAvailable:
+        oss() << "nodeAvailable";
+        break;
     default:
         oss() << "ERROR symbolTableEntry nodeUnknown:" << type();
         break;

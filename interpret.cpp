@@ -58,13 +58,14 @@ interpret::interpret() :
         dump();
         //_program[i].type(nodeInvalid);
     }
-#endif    
+#endif
+#if CYGWIN
+    printf("Version: %s", VERSION_STRING);
+#endif /* CYGWIN */    
 }
 
 void interpret::load(void) {
 #if CYGWIN
-    //_loadTree(string("patternTree.txt"));
-    //_loadTree(string("actionTree.txt"));
     _loadTree(string("tree.txt"));
     _loadSymbolTable("symbolTable.txt");
 #endif // CYGWIN    
@@ -226,6 +227,7 @@ void interpret::dumpEvaluationStack(void) {
 
 void interpret::run(void) {
     assert(_evaluationStack.empty());
+    int localSymbolTableIndex;
     for (_programIndex = 0; _program[_programIndex].type() != nodeInvalid; ++_programIndex) {
 #if CYGWIN
         oss() << endl << "Run programIndex=" << _programIndex << " programNodeType:" << _currentProgramNodeType() << " programNodeValue:" << _currentProgramNodeValue();
@@ -325,9 +327,12 @@ void interpret::run(void) {
             //  jump to nodeElse of that same index.
             // Get value from top of _evaluationStack
             
-            //_programIndex = _currentProgramNodeValue();
-            //int ifEval0Value = _evalValuePeek();
-            if (_symbolTable[_evalValue()].value()) {
+            localSymbolTableIndex = _evalValue();
+            if (_symbolTable[localSymbolTableIndex].type() == nodeTemporary) {
+                // Return temporary variable to pool
+                 _symbolTable[localSymbolTableIndex].type(nodeAvailable);
+            }
+            if (_symbolTable[localSymbolTableIndex].value()) {
                 ++_programIndex;    // TODO: Is this correct? Don't need to do it for While statement
             } else {
 #if CYGWIN
@@ -521,13 +526,14 @@ int interpret::_findFirstParseTreeEntry(const parseTreeEntry& p, const unsigned 
 // Normally symbolTableIndex will return itself, however, for function arguments the symbolTableIndex
 //  is pointed to by the entry in the stack frame. That's where the morphing comes in.
 int interpret::symbolTableIndexMorph(const int symbolTableIndex) {
-    //int symbolTableIndex = _evalValue();
     int symbolTableIndexReturn = symbolTableIndex;
     unsigned int functionArgumentIndex;
     switch (_symbolTable[symbolTableIndex].type()) {
+    case nodeTemporary:
+        // Return to symbol table to be reused
+        _symbolTable[symbolTableIndex].type(nodeAvailable);
     case nodeVariable:
     case nodeConst:
-    case nodeTemporary:
         break;
     case nodeArgumentValue:
     case nodeArgumentReference:
@@ -563,25 +569,25 @@ void interpret::evaluate(unsigned int op) {
 #if CYGWIN
         oss() << "!" << rhs;
 #endif /* CYGWIN */    
-        _pushSymbolOnEvaluationStack(!rhs);
+        _pushTemporarySymbolOnEvaluationStack(!rhs);
         break;
     case PLUS:
         lhs = symbolFromIndex(_evalValue());
-        _pushSymbolOnEvaluationStack(lhs + rhs);
+        _pushTemporarySymbolOnEvaluationStack(lhs + rhs);
 #if CYGWIN
         oss() << lhs << " + " << rhs;
 #endif /* CYGWIN */    
         break;
     case MINUS:
         lhs = symbolFromIndex(_evalValue());
-        _pushSymbolOnEvaluationStack(lhs - rhs);
+        _pushTemporarySymbolOnEvaluationStack(lhs - rhs);
 #if CYGWIN
         oss() << lhs << " - " << rhs;
 #endif /* CYGWIN */    
         break;
     case MULT:
         lhs = symbolFromIndex(_evalValue());
-        _pushSymbolOnEvaluationStack(lhs * rhs);
+        _pushTemporarySymbolOnEvaluationStack(lhs * rhs);
 #if CYGWIN
         oss() << lhs << " * " << rhs;
 #endif /* CYGWIN */    
@@ -596,102 +602,102 @@ void interpret::evaluate(unsigned int op) {
 #if CYGWIN
                 oss() << "ERROR" << numerator << " / 0";
 #endif /* CYGWIN */    
-                _pushSymbolOnEvaluationStack(0);
+                _pushTemporarySymbolOnEvaluationStack(0);
             } else {
 #if CYGWIN
                 oss() << numerator << " / " << rhs;
 #endif /* CYGWIN */    
-                _pushSymbolOnEvaluationStack(numerator / rhs);
+                _pushTemporarySymbolOnEvaluationStack(numerator / rhs);
             }
         }
         break;
     case XOR:
         lhs = symbolFromIndex(_evalValue());
-        _pushSymbolOnEvaluationStack(lhs ^ rhs);
+        _pushTemporarySymbolOnEvaluationStack(lhs ^ rhs);
 #if CYGWIN
         oss() << lhs << " ^ " << rhs;
 #endif /* CYGWIN */    
         break;
     case GEQ:
         lhs = symbolFromIndex(_evalValue());
-        _pushSymbolOnEvaluationStack(lhs >= rhs);
+        _pushTemporarySymbolOnEvaluationStack(lhs >= rhs);
 #if CYGWIN
         oss() << lhs << " >= " << rhs;
 #endif /* CYGWIN */    
         break;
     case LEQ:
         lhs = symbolFromIndex(_evalValue());
-        _pushSymbolOnEvaluationStack(lhs <= rhs);
+        _pushTemporarySymbolOnEvaluationStack(lhs <= rhs);
 #if CYGWIN
         oss() << lhs << " <= " << rhs;
 #endif /* CYGWIN */    
         break;
     case NEQ:
         lhs = symbolFromIndex(_evalValue());
-        _pushSymbolOnEvaluationStack(lhs != rhs);
+        _pushTemporarySymbolOnEvaluationStack(lhs != rhs);
 #if CYGWIN
         oss() << lhs << " != " << rhs;
 #endif /* CYGWIN */    
         break;
     case SHR:   // Shift-right
         lhs = symbolFromIndex(_evalValue());
-        _pushSymbolOnEvaluationStack(lhs >> rhs);
+        _pushTemporarySymbolOnEvaluationStack(lhs >> rhs);
 #if CYGWIN
         oss() << lhs << " >> " << rhs;
 #endif /* CYGWIN */    
         break;
     case SHL:   // Shift-left
         lhs = symbolFromIndex(_evalValue());
-        _pushSymbolOnEvaluationStack(lhs << rhs);
+        _pushTemporarySymbolOnEvaluationStack(lhs << rhs);
 #if CYGWIN
         oss() << lhs << " << " << rhs;
 #endif /* CYGWIN */    
         break;
     case GTR:
         lhs = symbolFromIndex(_evalValue());
-        _pushSymbolOnEvaluationStack(lhs > rhs);
+        _pushTemporarySymbolOnEvaluationStack(lhs > rhs);
 #if CYGWIN
         oss() << lhs << " > " << rhs;
 #endif /* CYGWIN */    
         break;
     case LSS:
         lhs = symbolFromIndex(_evalValue());
-        _pushSymbolOnEvaluationStack(lhs < rhs);
+        _pushTemporarySymbolOnEvaluationStack(lhs < rhs);
 #if CYGWIN
         oss() << lhs << " < " << rhs;
 #endif /* CYGWIN */    
         break;
     case AND:
         lhs = symbolFromIndex(_evalValue());
-        _pushSymbolOnEvaluationStack(lhs && rhs);
+        _pushTemporarySymbolOnEvaluationStack(lhs && rhs);
 #if CYGWIN
         oss() << lhs << " && " << rhs;
 #endif /* CYGWIN */
         break;
     case OR:
         lhs = symbolFromIndex(_evalValue());
-        _pushSymbolOnEvaluationStack(lhs || rhs);
+        _pushTemporarySymbolOnEvaluationStack(lhs || rhs);
 #if CYGWIN
         oss() << lhs << " || " << rhs;
 #endif /* CYGWIN */    
         break;
     case BITWISEAND:
         lhs = symbolFromIndex(_evalValue());
-        _pushSymbolOnEvaluationStack(lhs & rhs);
+        _pushTemporarySymbolOnEvaluationStack(lhs & rhs);
 #if CYGWIN
         oss() << lhs << " & " << rhs;
 #endif /* CYGWIN */
         break;
     case BITWISEOR:
         lhs = symbolFromIndex(_evalValue());
-        _pushSymbolOnEvaluationStack(lhs | rhs);
+        _pushTemporarySymbolOnEvaluationStack(lhs | rhs);
 #if CYGWIN
         oss() << lhs << " | " << rhs;
 #endif /* CYGWIN */    
         break;
     case TEST_FOR_EQUAL:
         lhs = symbolFromIndex(_evalValue());
-        _pushSymbolOnEvaluationStack(lhs == rhs);
+        _pushTemporarySymbolOnEvaluationStack(lhs == rhs);
 #if CYGWIN
         oss() << lhs << " == " << rhs;
 #endif /* CYGWIN */    
@@ -704,6 +710,11 @@ void interpret::evaluate(unsigned int op) {
             oss() << leftHandSymbolTableIndex << "(symbol index) = " << rhs;
 #endif /* CYGWIN */
             _symbolTable[symbolTableIndexMorph(leftHandSymbolTableIndex)].value(rhs);
+#if 0 //CYGWIN            
+            if (_symbolTable[symbolTableIndexMorph(leftHandSymbolTableIndex)].type() == nodeTemporary) {
+                oss() << leftHandSymbolTableIndex << endl << "TEMPORARY SYMBOL ";
+            }
+#endif /* CYGWIN */            
             //_evaluationStack.push_front(_evalValue() == _evalValue());
         }
         break;
@@ -748,8 +759,7 @@ void interpret::evaluate(unsigned int op) {
 #endif /* CYGWIN */    
 }
 
-// Push temporary symbol
-void interpret::_pushSymbolOnEvaluationStack(unsigned int value) {
+void interpret::_pushTemporarySymbolOnEvaluationStack(unsigned int value) {
     symbolTableEntry temporarySymbol(nodeTemporary, value); 
     _symbolTable[_symbolTableIndex] = temporarySymbol;
     _evaluationStack.push_front(_symbolTableIndex++);

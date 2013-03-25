@@ -22,6 +22,9 @@ main () {
             moveAbsolute(&x, q);
             q = q + 2;
         }
+        //q = q + 2 * q;  // parsed as: q = q + (2 * q);
+        //q = (q + 2) * q;  // parses correctly
+        //q = q * 2 * q + 3; 
         moveAbsolute(&x, q);
         //bar(1,   2);
     }

@@ -31,6 +31,7 @@ using namespace std;
 #define MAX_PROGRAM_ENTRY           (200)
 #define MAX_SYMBOL_TABLE_ENTRY      (60)
 #define PROGRAM_INDEX_START         (0)
+#define VERSION_STRING              "0.0.2"
 
 class interpret
 #if CYGWIN
@@ -65,7 +66,7 @@ private:
     int _findFirstParseTreeEntry(const parseTreeEntry& p, const unsigned int startIndex);
     void _shortCircuitOptimization(void);
     void _resetSymbolTableTemporaryBoundary(void) {_symbolTableIndex = _symbolTableTemporaryBoundaryIndex;}
-    void _pushSymbolOnEvaluationStack(unsigned int value);
+    void _pushTemporarySymbolOnEvaluationStack(unsigned int value);
     //unsigned int _functionArgumentIndexToStackFrameIndex(const unsigned int functionArgumentIndex) {}
     int symbolTableIndexMorph(const int symbolTableIndex);
     int symbolFromIndex(const int symbolTableIndex) {return _symbolTable[symbolTableIndexMorph(symbolTableIndex)].value();} // get symbol
@@ -78,11 +79,10 @@ private:
     // Stack frames on the intel 8086 were set up using the idiom:
     //   push bp
     //   move bp, sp
-    // With a nod to posterity, the same idiom is being used here
+    // With a nod to posterity, the same idiom is used here
     unsigned int _bp;  // base pointer 
     unsigned int _symbolTableTemporaryBoundaryIndex; // Boundary between temporary symbols (higher index) and regular symbols (index from 0). Use for optimization later on.
     tinyQueue<int> _evaluationStack;    // Contains the index of a symbol, not its value.
-    //deque<int> _evaluationStack;    // TODO: Initial version only use int. In future, floats or fixed-point arithmetic
     bool _evaluatingPattern;
     stepper _s;
 };
