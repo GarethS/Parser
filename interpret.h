@@ -20,10 +20,9 @@
 //#include <deque>
 #include <assert.h>
 
-#if CYGWIN
-//#include <iostream>
-#include "log.h"
 #include <sstream>
+#if CYGWIN
+#include "log.h"
 
 using namespace std;
 #endif /* CYGWIN */
@@ -31,7 +30,7 @@ using namespace std;
 #define MAX_PROGRAM_ENTRY           (200)
 #define MAX_SYMBOL_TABLE_ENTRY      (60)
 #define PROGRAM_INDEX_START         (0)
-#define VERSION_STRING              "0.0.2"
+#define VERSION_STRING              "0.0.3"
 
 class interpret
 #if CYGWIN
@@ -56,6 +55,8 @@ private:
     void _loadTree(const string& s);
     void _loadSymbolTable(const string& s);
 #endif /* CYGWIN */    
+    bool _loadParseTreeEntry(const string& inputString);
+    bool _loadSymbolTableEntry(const string& inputString);
     nodeType _currentProgramNodeType(void) const {return _program[_programIndex].type();}
     nodeType _programNodeType(unsigned int i) const {return _program[i].type();}
     unsigned int _currentProgramNodeValue(void) const {return _program[_programIndex].value();}

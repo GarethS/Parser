@@ -37,15 +37,6 @@
 //#include <complex>
 #endif /* CYGWIN */
 
-#if 0
-// stepper::moveAbsolute() now called directly from interpreter
-static int moveAbsolute(int position) {
-    printf("moveAbsolute(%d)\n", position);
-    fflush(stdout);
-    return 27;
-}
-#endif
-
 interpret::interpret() :
 #if CYGWIN 
 					logc(std::string("INTERPRETER")),
@@ -71,6 +62,87 @@ void interpret::load(void) {
 #endif // CYGWIN    
 }
 
+bool interpret::_loadParseTreeEntry(const string& inputString) {
+    istringstream iss(inputString);
+    unsigned int level;
+    string leftRight;
+    string variableOperator;
+    int value;
+    iss >> level >> leftRight >> variableOperator >> value;
+    parseTreeEntry pte;
+    pte.level(level);
+    pte.value(value);
+    // Note that these need to be matched in interpret::run()
+    if (variableOperator == "Variable") {
+        pte.type(nodeVariable);
+    } else if (variableOperator == "Operator") {
+        pte.type(nodeOperator);
+    } else if (variableOperator == "Action") {
+        pte.type(nodeStartAction);
+    } else if (variableOperator == "If") {
+        pte.type(nodeIf);
+    } else if (variableOperator == "EVAL0") {
+        pte.type(nodeIfEval0);
+    } else if (variableOperator == "EVALWHILE0") {
+        pte.type(nodeWhileEval0);
+    } else if (variableOperator == "Else") {
+        pte.type(nodeElse);
+    } else if (variableOperator == "EndIf") {
+        pte.type(nodeEndif);
+    } else if (variableOperator == "While") {
+        pte.type(nodeWhile);
+    } else if (variableOperator == "EndWhile") {
+        pte.type(nodeEndWhile);
+    } else if (variableOperator == "FunctionCall") {
+        pte.type(nodeFunctionCall);
+    } else if (variableOperator == "FunctionCallEnd") {
+        pte.type(nodeFunctionCallEnd);
+    //} else if (variableOperator == "Do") {
+    //    pte.type(nodeDo);
+    } else if (variableOperator == "JmpEndIf") {
+        pte.type(nodeJmpEndIf);
+    } else if (variableOperator == "Start") {
+        pte.type(nodeFunctionDefinition);
+    } else if (variableOperator == "ProgramEnd") {
+        pte.type(nodeProgramEnd);
+    } else {
+#if CYGWIN        
+        oss() << endl << "ERROR:unrecognized variableOperator:" << variableOperator;
+#endif /* CYGWIN */        
+    }
+    _program[_programIndex++] = pte;
+    if (_programIndex >= MAX_PROGRAM_ENTRY) {
+#if CYGWIN        
+        oss() << "Out of program memory. Aborting.";
+        dump();
+#endif /* CYGWIN */        
+        return false;
+    }
+    //oss() << level << " " << leftRight << " " << variableOperator << " " << value;
+    //dump();
+    return true;
+}
+
+bool interpret::_loadSymbolTableEntry(const string& inputString) {
+    istringstream iss(inputString);
+    unsigned int type;
+    int value;
+    int fcnLink;
+    iss >> type >> value >> fcnLink;
+    symbolTableEntry ste((nodeType)type, value, fcnLink);
+    _symbolTable[_symbolTableIndex++] = ste;
+    if (_symbolTableIndex >= MAX_SYMBOL_TABLE_ENTRY) {
+#if CYGWIN        
+        oss() << "Exceeded symbol table size. Aborting.";
+        dump();
+#endif /* CYGWIN */        
+        return false;
+    }
+    //oss() << level << " " << leftRight << " " << variableOperator << " " << value;
+    //dump();
+    return true;
+}
+
 #if CYGWIN
 void interpret::_loadTree(const string& s) {
     ifstream ifs(s.c_str());
@@ -87,63 +159,10 @@ void interpret::_loadTree(const string& s) {
         //ifs.getline(inputString);
         getline(ifs, inputString);
         //cout << "IFS:" << inputString << endl;
-        if (inputString == "") {
+        if (inputString == "" || !_loadParseTreeEntry(inputString)) {
             //cout << "Got endln" << endl;
             break;
         }
-        istringstream iss(inputString);
-        unsigned int level;
-        string leftRight;
-        string variableOperator;
-        int value;
-        iss >> level >> leftRight >> variableOperator >> value;
-        parseTreeEntry pte;
-        pte.level(level);
-        pte.value(value);
-        // Note that these need to be matched in interpret::run()
-        if (variableOperator == "Variable") {
-            pte.type(nodeVariable);
-        } else if (variableOperator == "Operator") {
-            pte.type(nodeOperator);
-        } else if (variableOperator == "Action") {
-            pte.type(nodeStartAction);
-        } else if (variableOperator == "If") {
-            pte.type(nodeIf);
-        } else if (variableOperator == "EVAL0") {
-            pte.type(nodeIfEval0);
-        } else if (variableOperator == "EVALWHILE0") {
-            pte.type(nodeWhileEval0);
-        } else if (variableOperator == "Else") {
-            pte.type(nodeElse);
-        } else if (variableOperator == "EndIf") {
-            pte.type(nodeEndif);
-        } else if (variableOperator == "While") {
-            pte.type(nodeWhile);
-        } else if (variableOperator == "EndWhile") {
-            pte.type(nodeEndWhile);
-        } else if (variableOperator == "FunctionCall") {
-            pte.type(nodeFunctionCall);
-        } else if (variableOperator == "FunctionCallEnd") {
-            pte.type(nodeFunctionCallEnd);
-        //} else if (variableOperator == "Do") {
-        //    pte.type(nodeDo);
-        } else if (variableOperator == "JmpEndIf") {
-            pte.type(nodeJmpEndIf);
-        } else if (variableOperator == "Start") {
-            pte.type(nodeFunctionDefinition);
-        } else if (variableOperator == "ProgramEnd") {
-            pte.type(nodeProgramEnd);
-        } else {
-            oss() << endl << "ERROR:unrecognized variableOperator:" << variableOperator;
-        }
-        _program[_programIndex++] = pte;
-        if (_programIndex >= MAX_PROGRAM_ENTRY) {
-            oss() << "Out of program memory. Aborting.";
-            dump();
-            break;
-        }
-        //oss() << level << " " << leftRight << " " << variableOperator << " " << value;
-        //dump();
     }
     ifs.close();
 }
@@ -168,24 +187,10 @@ void interpret::_loadSymbolTable(const string& s) {
         //ifs.getline(inputString);
         getline(ifs, inputString);
         //cout << "IFS:" << inputString << endl;
-        if (inputString == "") {
+        if (inputString == "" || !_loadSymbolTableEntry(inputString)) {
             //cout << "Got endln" << endl;
             break;
         }
-        istringstream iss(inputString);
-        unsigned int type;
-        int value;
-        int fcnLink;
-        iss >> type >> value >> fcnLink;
-        symbolTableEntry ste((nodeType)type, value, fcnLink);
-        _symbolTable[_symbolTableIndex++] = ste;
-        if (_symbolTableIndex >= MAX_SYMBOL_TABLE_ENTRY) {
-            oss() << "Exceeded symbol table size. Aborting.";
-            dump();
-            break;
-        }
-        //oss() << level << " " << leftRight << " " << variableOperator << " " << value;
-        //dump();
     }
     _symbolTableTemporaryBoundaryIndex = _symbolTableIndex;
     ifs.close();
