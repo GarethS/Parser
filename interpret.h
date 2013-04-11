@@ -15,7 +15,7 @@
 #include "valve.tab.h"
 #include "stepper.h"
 
-// Can use either tinyQueue or an official deque
+// Can use either tinyQueue or a standard library deque
 #include "tinyQueue.h"
 //#include <deque>
 #include <assert.h>
@@ -30,7 +30,9 @@ using namespace std;
 #define MAX_PROGRAM_ENTRY           (200)
 #define MAX_SYMBOL_TABLE_ENTRY      (60)
 #define PROGRAM_INDEX_START         (0)
-#define VERSION_STRING              "0.0.3"
+#define VERSION_STRING              "0.0.4"
+
+extern "C" void bufferInput(unsigned char c);
 
 class interpret
 #if CYGWIN

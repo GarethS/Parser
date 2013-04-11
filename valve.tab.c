@@ -2512,13 +2512,12 @@ astNode* addFunction(const char* pFuncName, astNode* pArgList, astNode* pStateme
         } else {
             fp = fopen("tree.txt", "ab");
         }
-        fwrite("0 0 Start 0\n", 1, 12, fp);
-        ++statementOutputIndex;
+        writeStatement("0 0 Start 0", fp);
         /*printf("\nstatementList=%d", (int)$1);*/
         //walkList(pArgList, fp);   // Doesn't seem to be necessary since function parameters have alreay been added to the symbol table
         walkList(pStatementList, fp);
         if (inMain) {
-            writeStatement("0 0 ProgramEnd 0\n", fp);
+            writeStatement("0 0 ProgramEnd 0", fp);
             printf("\nProgramEnd");
         }
         fclose(fp);
@@ -2742,7 +2741,7 @@ void walkSyntaxTree(astNode* pSyntaxNode, char* position, int indent, FILE* fp) 
 	switch (pSyntaxNode->type) {
 	case (nodeOperator):
         if (fp != NULL) {
-            sprintf(tmp, "%d %s Operator %d\n", indent, position, pSyntaxNode->value);
+            sprintf(tmp, "%d %s Operator %d", indent, position, pSyntaxNode->value);
             writeStatement(tmp, fp);
         }
 
@@ -2751,7 +2750,7 @@ void walkSyntaxTree(astNode* pSyntaxNode, char* position, int indent, FILE* fp) 
 		break;
 	case (nodeVariable):
         if (fp != NULL) {
-            sprintf(tmp, "%d %s Variable %d\n", indent, position, pSyntaxNode->value);
+            sprintf(tmp, "%d %s Variable %d", indent, position, pSyntaxNode->value);
             writeStatement(tmp, fp);
         }
 
@@ -2759,7 +2758,7 @@ void walkSyntaxTree(astNode* pSyntaxNode, char* position, int indent, FILE* fp) 
 		break;
     case (nodeArray):
         if (fp != NULL) {
-            sprintf(tmp, "%d %s Variable %d\n", indent, position, pSyntaxNode->value);
+            sprintf(tmp, "%d %s Variable %d", indent, position, pSyntaxNode->value);
             writeStatement(tmp, fp);
         }
 
@@ -2767,7 +2766,7 @@ void walkSyntaxTree(astNode* pSyntaxNode, char* position, int indent, FILE* fp) 
         break;
     case (nodeIf):
         if (fp != NULL) {
-            sprintf(tmp, "%d %s If %d\n", indent, position, pSyntaxNode->value);
+            sprintf(tmp, "%d %s If %d", indent, position, pSyntaxNode->value);
             writeStatement(tmp, fp);
         }
         printIndent(indent);
@@ -2775,7 +2774,7 @@ void walkSyntaxTree(astNode* pSyntaxNode, char* position, int indent, FILE* fp) 
         walkSyntaxTree(pSyntaxNode->pLeft, "LEFT", indent + 1, fp);
         
         if (fp != NULL) {
-            sprintf(tmp, "%d %s EVAL0 %d\n", indent, position, pSyntaxNode->value);
+            sprintf(tmp, "%d %s EVAL0 %d", indent, position, pSyntaxNode->value);
             //sprintf(tmp, "%d %s Then %d\n", indent, position, pSyntaxNode->value);
             writeStatement(tmp, fp);
         }
@@ -2785,9 +2784,9 @@ void walkSyntaxTree(astNode* pSyntaxNode, char* position, int indent, FILE* fp) 
         walkList(pSyntaxNode->pCentre, fp);
         
         if (fp != NULL) {
-            sprintf(tmp, "%d %s JmpEndIf %d\n", indent, position, pSyntaxNode->value);
+            sprintf(tmp, "%d %s JmpEndIf %d", indent, position, pSyntaxNode->value);
             writeStatement(tmp, fp);
-            sprintf(tmp, "%d %s Else %d\n", indent, position, pSyntaxNode->value);
+            sprintf(tmp, "%d %s Else %d", indent, position, pSyntaxNode->value);
             writeStatement(tmp, fp);
         }
         printIndent(indent);
@@ -2796,7 +2795,7 @@ void walkSyntaxTree(astNode* pSyntaxNode, char* position, int indent, FILE* fp) 
         walkList(pSyntaxNode->pRight, fp);
         
         if (fp != NULL) {
-            sprintf(tmp, "%d %s EndIf %d\n", indent, position, pSyntaxNode->value);
+            sprintf(tmp, "%d %s EndIf %d", indent, position, pSyntaxNode->value);
             writeStatement(tmp, fp);
         }
         printf("\nEndIf %d", pSyntaxNode->value);
@@ -2804,7 +2803,7 @@ void walkSyntaxTree(astNode* pSyntaxNode, char* position, int indent, FILE* fp) 
         break;
     case (nodeWhile):
         if (fp != NULL) {
-            sprintf(tmp, "%d %s While %d\n", indent, position, pSyntaxNode->value);
+            sprintf(tmp, "%d %s While %d", indent, position, pSyntaxNode->value);
             writeStatement(tmp, fp);
         }
         printIndent(indent);
@@ -2812,7 +2811,7 @@ void walkSyntaxTree(astNode* pSyntaxNode, char* position, int indent, FILE* fp) 
         walkSyntaxTree(pSyntaxNode->pLeft, "LEFT", indent + 1, fp);
         
         if (fp != NULL) {
-            sprintf(tmp, "%d %s EVALWHILE0 %d\n", indent, position, pSyntaxNode->value);
+            sprintf(tmp, "%d %s EVALWHILE0 %d", indent, position, pSyntaxNode->value);
             writeStatement(tmp, fp);
         }
         printIndent(indent);
@@ -2821,7 +2820,7 @@ void walkSyntaxTree(astNode* pSyntaxNode, char* position, int indent, FILE* fp) 
         walkList(pSyntaxNode->pCentre, fp);
         
         if (fp != NULL) {
-            sprintf(tmp, "%d %s EndWhile %d\n", indent, position, pSyntaxNode->value);
+            sprintf(tmp, "%d %s EndWhile %d", indent, position, pSyntaxNode->value);
             writeStatement(tmp, fp);
         }
         printf("\nEndWhile %d", pSyntaxNode->value);
@@ -2837,21 +2836,21 @@ void walkSyntaxTree(astNode* pSyntaxNode, char* position, int indent, FILE* fp) 
         break;
     case (nodeArgumentCall):
         if (fp != NULL) {
-            sprintf(tmp, "%d %s Argument call%d\n", indent, position, pSyntaxNode->value);
+            sprintf(tmp, "%d %s Argument call%d", indent, position, pSyntaxNode->value);
             writeStatement(tmp, fp);
         }
         //printf("\n Function argument:");
         break;
     case (nodeFunctionCall):
         if (fp != NULL) {
-            sprintf(tmp, "%d %s FunctionCall %d\n", indent, position, pSyntaxNode->value);
+            sprintf(tmp, "%d %s FunctionCall %d", indent, position, pSyntaxNode->value);
             writeStatement(tmp, fp);
         }
         printf(" FunctionCall: index,%d name,%s", pSyntaxNode->value, symbolTable[pSyntaxNode->value].name);
         //walkList(pSyntaxNode, fp);
         walkListBackwards(pSyntaxNode, fp);
         if (fp != NULL) {
-            sprintf(tmp, "%d %s FunctionCallEnd %d\n", indent, position, pSyntaxNode->value);
+            sprintf(tmp, "%d %s FunctionCallEnd %d", indent, position, pSyntaxNode->value);
             writeStatement(tmp, fp);
         }
         printf(" \nFunctionCallEnd: index,%d name,%s", pSyntaxNode->value, symbolTable[pSyntaxNode->value].name);
@@ -2865,7 +2864,9 @@ void walkSyntaxTree(astNode* pSyntaxNode, char* position, int indent, FILE* fp) 
 }
 
 void writeStatement(const char* pTmp, FILE* fp) {
+    fwrite(STATEMENT_PREFIX_PLUS_SPACE, 1, strlen(STATEMENT_PREFIX_PLUS_SPACE), fp);
     fwrite(pTmp, 1, strlen(pTmp), fp);
+    fwrite(STATEMENT_SUFFIX_PLUS_SPACE_AND_EOL, 1, strlen(STATEMENT_SUFFIX_PLUS_SPACE_AND_EOL), fp);
     ++statementOutputIndex;
 }
 
@@ -2966,9 +2967,11 @@ void dumpSymbol(int i, FILE* fpSymbol) {
         printf(", fcnLink:%d", symbolTable[i].fcnDefnLink);
     }
     char tmp[64];
-    sprintf(tmp, "%d %d %d\n", /*symbolTable[i].name,*/ symbolType, symbolTable[i].val, symbolTable[i].fcnDefnLink);
+    sprintf(tmp, "%d %d %d", /*symbolTable[i].name,*/ symbolType, symbolTable[i].val, symbolTable[i].fcnDefnLink);
     if (fpSymbol != NULL) {
+        fwrite(SYMBOL_PREFIX_PLUS_SPACE, 1, strlen(SYMBOL_PREFIX_PLUS_SPACE), fpSymbol);
         fwrite(tmp, 1, strlen(tmp), fpSymbol);
+        fwrite(SYMBOL_SUFFIX_PLUS_SPACE_AND_EOL, 1, strlen(SYMBOL_SUFFIX_PLUS_SPACE_AND_EOL), fpSymbol);
     }
 }
 

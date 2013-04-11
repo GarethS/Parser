@@ -1,96 +1,96 @@
-0 0 Start 0
-0 ROOT If 3
-3 LEFT Variable 1
-3 RIGHT Variable 2
-2 LEFT Operator 286
-3 LEFT Variable 3
-3 RIGHT Variable 4
-2 RIGHT Operator 284
-1 LEFT Operator 280
-0 ROOT EVAL0 3
-1 LEFT Variable 1
-1 RIGHT Variable 5
-0 ROOT Operator 262
-1 LEFT Variable 1
-1 RIGHT Variable 6
-0 ROOT Operator 262
-1 LEFT Variable 1
-1 RIGHT Variable 6
-0 ROOT Operator 262
-0 ROOT If 0
-2 LEFT Variable 3
-2 RIGHT Variable 7
-1 LEFT Operator 288
-0 ROOT EVAL0 0
-1 LEFT Variable 1
-1 RIGHT Variable 2
-0 ROOT Operator 262
-0 ROOT JmpEndIf 0
-0 ROOT Else 0
-0 ROOT EndIf 0
-0 ROOT While 1
-2 LEFT Variable 8
-2 RIGHT Variable 9
-1 LEFT Operator 288
-0 ROOT EVALWHILE0 1
-1 LEFT Variable 8
-3 LEFT Variable 8
-3 RIGHT Variable 4
-2 LEFT Operator 291
-2 RIGHT Variable 8
-1 RIGHT Operator 291
-0 ROOT Operator 262
-0 ROOT EndWhile 1
-0 ROOT JmpEndIf 3
-0 ROOT Else 3
-1 LEFT Variable 1
-1 RIGHT Variable 10
-0 ROOT Operator 262
-1 LEFT Variable 3
-1 RIGHT Variable 10
-0 ROOT Operator 262
-0 ROOT FunctionCall 11
-0 ROOT Variable 4
-1 LEFT Variable 7
-1 RIGHT Variable 3
-0 ROOT Operator 291
-0 ROOT Variable 9
-0 ROOT FunctionCallEnd 11
-1 LEFT Variable 12
-1 RIGHT Variable 3
-0 ROOT Operator 262
-0 ROOT While 2
-2 LEFT Variable 12
-2 RIGHT Variable 13
-1 LEFT Operator 283
-0 ROOT EVALWHILE0 2
-0 ROOT FunctionCall 14
-0 ROOT Variable 3
-0 ROOT Variable 12
-0 ROOT FunctionCallEnd 14
-1 LEFT Variable 12
-2 LEFT Variable 12
-2 RIGHT Variable 7
-1 RIGHT Operator 291
-0 ROOT Operator 262
-0 ROOT EndWhile 2
-0 ROOT FunctionCall 14
-0 ROOT Variable 3
-0 ROOT Variable 12
-0 ROOT FunctionCallEnd 14
-0 ROOT EndIf 3
-0 0 ProgramEnd 0
-0 0 Start 0
-1 LEFT Variable 17
-1 RIGHT Variable 19
-0 ROOT Operator 262
-1 LEFT Variable 20
-1 RIGHT Variable 16
-0 ROOT Operator 262
-0 0 Start 0
-1 LEFT Variable 26
-1 RIGHT Variable 25
-0 ROOT Operator 262
-1 LEFT Variable 23
-1 RIGHT Variable 27
-0 ROOT Operator 262
+<S> 0 0 Start 0 <T>
+<S> 0 ROOT If 3 <T>
+<S> 3 LEFT Variable 1 <T>
+<S> 3 RIGHT Variable 2 <T>
+<S> 2 LEFT Operator 286 <T>
+<S> 3 LEFT Variable 3 <T>
+<S> 3 RIGHT Variable 4 <T>
+<S> 2 RIGHT Operator 284 <T>
+<S> 1 LEFT Operator 280 <T>
+<S> 0 ROOT EVAL0 3 <T>
+<S> 1 LEFT Variable 1 <T>
+<S> 1 RIGHT Variable 5 <T>
+<S> 0 ROOT Operator 262 <T>
+<S> 1 LEFT Variable 1 <T>
+<S> 1 RIGHT Variable 6 <T>
+<S> 0 ROOT Operator 262 <T>
+<S> 1 LEFT Variable 1 <T>
+<S> 1 RIGHT Variable 6 <T>
+<S> 0 ROOT Operator 262 <T>
+<S> 0 ROOT If 0 <T>
+<S> 2 LEFT Variable 3 <T>
+<S> 2 RIGHT Variable 7 <T>
+<S> 1 LEFT Operator 288 <T>
+<S> 0 ROOT EVAL0 0 <T>
+<S> 1 LEFT Variable 1 <T>
+<S> 1 RIGHT Variable 2 <T>
+<S> 0 ROOT Operator 262 <T>
+<S> 0 ROOT JmpEndIf 0 <T>
+<S> 0 ROOT Else 0 <T>
+<S> 0 ROOT EndIf 0 <T>
+<S> 0 ROOT While 1 <T>
+<S> 2 LEFT Variable 8 <T>
+<S> 2 RIGHT Variable 9 <T>
+<S> 1 LEFT Operator 288 <T>
+<S> 0 ROOT EVALWHILE0 1 <T>
+<S> 1 LEFT Variable 8 <T>
+<S> 3 LEFT Variable 8 <T>
+<S> 3 RIGHT Variable 4 <T>
+<S> 2 LEFT Operator 291 <T>
+<S> 2 RIGHT Variable 8 <T>
+<S> 1 RIGHT Operator 291 <T>
+<S> 0 ROOT Operator 262 <T>
+<S> 0 ROOT EndWhile 1 <T>
+<S> 0 ROOT JmpEndIf 3 <T>
+<S> 0 ROOT Else 3 <T>
+<S> 1 LEFT Variable 1 <T>
+<S> 1 RIGHT Variable 10 <T>
+<S> 0 ROOT Operator 262 <T>
+<S> 1 LEFT Variable 3 <T>
+<S> 1 RIGHT Variable 10 <T>
+<S> 0 ROOT Operator 262 <T>
+<S> 0 ROOT FunctionCall 11 <T>
+<S> 0 ROOT Variable 4 <T>
+<S> 1 LEFT Variable 7 <T>
+<S> 1 RIGHT Variable 3 <T>
+<S> 0 ROOT Operator 291 <T>
+<S> 0 ROOT Variable 9 <T>
+<S> 0 ROOT FunctionCallEnd 11 <T>
+<S> 1 LEFT Variable 12 <T>
+<S> 1 RIGHT Variable 3 <T>
+<S> 0 ROOT Operator 262 <T>
+<S> 0 ROOT While 2 <T>
+<S> 2 LEFT Variable 12 <T>
+<S> 2 RIGHT Variable 13 <T>
+<S> 1 LEFT Operator 283 <T>
+<S> 0 ROOT EVALWHILE0 2 <T>
+<S> 0 ROOT FunctionCall 14 <T>
+<S> 0 ROOT Variable 3 <T>
+<S> 0 ROOT Variable 12 <T>
+<S> 0 ROOT FunctionCallEnd 14 <T>
+<S> 1 LEFT Variable 12 <T>
+<S> 2 LEFT Variable 12 <T>
+<S> 2 RIGHT Variable 7 <T>
+<S> 1 RIGHT Operator 291 <T>
+<S> 0 ROOT Operator 262 <T>
+<S> 0 ROOT EndWhile 2 <T>
+<S> 0 ROOT FunctionCall 14 <T>
+<S> 0 ROOT Variable 3 <T>
+<S> 0 ROOT Variable 12 <T>
+<S> 0 ROOT FunctionCallEnd 14 <T>
+<S> 0 ROOT EndIf 3 <T>
+<S> 0 0 ProgramEnd 0 <T>
+<S> 0 0 Start 0 <T>
+<S> 1 LEFT Variable 17 <T>
+<S> 1 RIGHT Variable 19 <T>
+<S> 0 ROOT Operator 262 <T>
+<S> 1 LEFT Variable 20 <T>
+<S> 1 RIGHT Variable 16 <T>
+<S> 0 ROOT Operator 262 <T>
+<S> 0 0 Start 0 <T>
+<S> 1 LEFT Variable 26 <T>
+<S> 1 RIGHT Variable 25 <T>
+<S> 0 ROOT Operator 262 <T>
+<S> 1 LEFT Variable 23 <T>
+<S> 1 RIGHT Variable 27 <T>
+<S> 0 ROOT Operator 262 <T>

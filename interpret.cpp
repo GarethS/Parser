@@ -27,6 +27,7 @@
 */
 
 #include "interpret.h"
+#include "compilerHelper.h"
 #if CYGWIN
 //#include <iostream>
 //#include <fstream>
@@ -36,6 +37,12 @@
 //#include <math.h>
 //#include <complex>
 #endif /* CYGWIN */
+
+void bufferInput(unsigned char c) {
+    static tinyQueue<unsigned char> buffer;
+    
+    buffer.push_front(c);
+}
 
 interpret::interpret() :
 #if CYGWIN 
@@ -64,11 +71,27 @@ void interpret::load(void) {
 
 bool interpret::_loadParseTreeEntry(const string& inputString) {
     istringstream iss(inputString);
+    string prefix;
     unsigned int level;
     string leftRight;
     string variableOperator;
     int value;
-    iss >> level >> leftRight >> variableOperator >> value;
+    string suffix;
+    iss >> prefix >> level >> leftRight >> variableOperator >> value >> suffix;
+    if (prefix != STATEMENT_PREFIX) {
+        //assert(prefix == STATEMENT_PREFIX);
+#if CYGWIN        
+        oss() << endl << "ERROR:STATEMENT_PREFIX:'" << prefix << "'";
+#endif /* CYGWIN */
+        return false;
+    }
+    if (suffix != STATEMENT_SUFFIX) {
+        //assert(suffix == STATEMENT_SUFFIX);
+#if CYGWIN        
+        oss() << endl << "ERROR:STATEMENT_SUFFIX:'" << suffix << "'";
+#endif /* CYGWIN */
+        return false;
+    }
     parseTreeEntry pte;
     pte.level(level);
     pte.value(value);
@@ -125,10 +148,26 @@ bool interpret::_loadParseTreeEntry(const string& inputString) {
 
 bool interpret::_loadSymbolTableEntry(const string& inputString) {
     istringstream iss(inputString);
+    string prefix;
     unsigned int type;
     int value;
     int fcnLink;
-    iss >> type >> value >> fcnLink;
+    string suffix;
+    iss >> prefix >> type >> value >> fcnLink >> suffix;
+    if (prefix != SYMBOL_PREFIX) {
+        //assert(prefix == SYMBOL_PREFIX);
+#if CYGWIN        
+        oss() << endl << "ERROR:SYMBOL_PREFIX:'" << prefix << "'";
+#endif /* CYGWIN */
+        return false;
+    }
+    if (suffix != SYMBOL_SUFFIX) {
+        //assert(suffix == SYMBOL_SUFFIX);
+#if CYGWIN        
+        oss() << endl << "ERROR:SYMBOL_SUFFIX:'" << suffix << "'";
+#endif /* CYGWIN */
+        return false;
+    }
     symbolTableEntry ste((nodeType)type, value, fcnLink);
     _symbolTable[_symbolTableIndex++] = ste;
     if (_symbolTableIndex >= MAX_SYMBOL_TABLE_ENTRY) {
