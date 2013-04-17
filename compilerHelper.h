@@ -6,6 +6,10 @@
 #ifndef _COMPILERHELPER_H_
 #define _COMPILERHELPER_H_
 
+// Function prototypes.
+void yyerror (char* s);
+int  yylex(void);
+
 #ifndef FALSE
 #define FALSE (0)
 #endif /* FALSE */
@@ -16,15 +20,21 @@
 #define NOT_FOUND       (-1)
 #define INVALID_VALUE   (-1)
 
-#define STATEMENT_PREFIX                        "<S>"
-#define STATEMENT_PREFIX_PLUS_SPACE             STATEMENT_PREFIX" "
-#define STATEMENT_SUFFIX                        "<T>"
-#define STATEMENT_SUFFIX_PLUS_SPACE_AND_EOL     " "STATEMENT_SUFFIX"\n" 
+#define SYSTEM_VERSION_PREFIX                   "<VERS>"    // Used to note start of interpreter download
+#define SYSTEM_VERSION_SUFFIX                   "<vers>"
+#define SYSTEM_INTERPRET_DONE                   "<DONE>"    // Time to run the interpreter
 
-#define SYMBOL_PREFIX                           "<M>"
+#define STATEMENT_PREFIX                        "<STMT>"
+#define STATEMENT_PREFIX_PLUS_SPACE             STATEMENT_PREFIX" "
+#define STATEMENT_SUFFIX                        "<stmt>"
+#define STATEMENT_SUFFIX_PLUS_SPACE_AND_EOL     " "STATEMENT_SUFFIX"\n" 
+#define STATEMENT_ACKNOWLEDGE                   "<ASTM>"    // After each statement there's an acknowledge before next statement is sent
+
+#define SYMBOL_PREFIX                           "<SYMB>"
 #define SYMBOL_PREFIX_PLUS_SPACE                SYMBOL_PREFIX" "
-#define SYMBOL_SUFFIX                           "<N>"
+#define SYMBOL_SUFFIX                           "<symb>"
 #define SYMBOL_SUFFIX_PLUS_SPACE_AND_EOL        " "SYMBOL_SUFFIX"\n" 
+#define SYMBOL_ACKNOWLEDGE                      "<ASYM>"
 
 #define VAR_FCN_LINK_UNDEFINED              (-1)
 // Used by interpreter to call intrinsic (built-in) functions. All intrinsics
@@ -70,5 +80,8 @@ typedef enum {nodeVariable,             // 0
                 
 //typedef enum {symbolVar, symbolConst, symbolArray, symbolInvalid, symbolTemporary, symbolFloat} symbolType;
 typedef enum {nodeLeft, nodeRight, nodeRoot} nodePosition;
+
+// Below here used by motor/embedded parser
+typedef enum {nodeEmbeddedUnknown, nodeEmbeddedVersion, nodeEmbeddedStatement, nodeEmbeddedSymbol, nodeEmbeddedProgramEnd} nodeEmbeddedtype;
 
 #endif /* _COMPILERHELPER_H_ */

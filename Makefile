@@ -26,7 +26,7 @@ includeRTOS = ../../../../dev/docs/rtos/freertos/FreeRTOS/Demo/Common/drivers/Lu
 includeGPIO = ../../../../DriverLib/src
 
 #all: lextest.exe parsetest.exe lex.yy.c valve.tab.c run
-all: lextest.exe parsetest.exe lex.yy.c valve.tab.c interpret.exe run
+all: lextest.exe parsetest.exe motorparsetest.exe lex.yy.c motor.yy.c valve.tab.c motor.tab.c interpret.exe run
 
 clean:
 	rm lex.yy.c
@@ -40,11 +40,21 @@ parsetest.exe: valve.tab.c valve.tab.h lex.yy.c
 	echo "BUILDING PARSER"
 	gcc $(GCC_FLAGS) -D BISON_PHASE valve.tab.c -lfl -o parsetest.exe
 	
+motorparsetest.exe: motor.tab.c motor.tab.h motor.yy.c
+	echo "BUILDING MOTOR PARSER"
+	gcc $(GCC_FLAGS) -D BISON_PHASE motor.tab.c -lfl -o motorparsetest.exe
+	
 lex.yy.c: valve.l Makefile valve.tab.h
 	flex $(FLEX_FLAGS) valve.l		# flex version 2.5.35
 	
+motor.yy.c: motor.l Makefile motor.tab.h
+	flex $(FLEX_FLAGS) --outfile=motor.yy.c motor.l		# flex version 2.5.35
+	
 valve.tab.c valve.tab.h:	valve.y compiler.h compilerHelper.h
 	bison $(BISON_FLAGS) valve.y	# bison version 2.4.2
+
+motor.tab.c motor.tab.h:	motor.y
+	bison $(BISON_FLAGS) motor.y	# bison version 2.4.2
 
 interpret.exe: interpret.cpp interpret.h ../motor/accel.cpp ../motor/accel.h ../motor/lmi.cpp ../motor/stepper.cpp ../motor/stepper.h ../motor/log.cpp ../motor/log.h compilerHelper.h parseTreeEntry.cpp parseTreeEntry.h symbolTableEntry.cpp symbolTableEntry.h tinyQueue.h valve.tab.h
 	echo "BUILDING INTERPRETER"
@@ -56,3 +66,5 @@ run:
 	#mv log.txt log1.txt
 	rm log.txt  # Delete log file, otherwise results will be concatenated to the end of the file
 	./interpret
+	./motorparsetest >motorParse.txt 2>motorParseBison.txt
+    

@@ -56,10 +56,6 @@ typedef struct thisASTNode {
 } astNode;
 
 // Function prototypes.
-void yyerror (char* s);
-int  yylex(void);
-//void printBoilerplate(void);
-
 astNode* addNodeBinaryOperator(int operator, astNode* pLeft, astNode* pRight);
 astNode* addNodeArray(char* pVar, astNode* pASTNode);
 astNode* addNodeVariableOperator(int operator, int varIndex, astNode* pRight);

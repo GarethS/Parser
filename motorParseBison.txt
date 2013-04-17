@@ -1,0 +1,67 @@
+Starting parse
+Entering state 0
+Reading a token: --(end of buffer or a NUL)
+--accepting rule at line 38 ("<STMT>")
+Next token is token STATEMENT_BEGIN ()
+Shifting token STATEMENT_BEGIN ()
+Entering state 2
+Reading a token: --accepting default rule (" ")
+--accepting rule at line 59 ("0")
+Next token is token CONST ()
+Shifting token CONST ()
+Entering state 10
+Reading a token: --accepting default rule (" ")
+--accepting rule at line 42 ("ROOT")
+Next token is token ROOT ()
+Shifting token ROOT ()
+Entering state 14
+Reducing stack by rule 8 (line 55):
+   $1 = token ROOT ()
+-> $$ = nterm position ()
+Stack now 0 2 10
+Entering state 18
+Reading a token: --accepting default rule (" ")
+--accepting rule at line 47 ("If")
+Next token is token IF ()
+Shifting token IF ()
+Entering state 22
+Reducing stack by rule 11 (line 59):
+   $1 = token IF ()
+-> $$ = nterm action ()
+Stack now 0 2 10 18
+Entering state 34
+Reading a token: --accepting default rule (" ")
+--accepting rule at line 59 ("3")
+Next token is token CONST ()
+Shifting token CONST ()
+Entering state 36
+Reading a token: --accepting default rule (" ")
+--accepting rule at line 39 ("<stmt>")
+Next token is token STATEMENT_END ()
+Shifting token STATEMENT_END ()
+Entering state 38
+Reducing stack by rule 24 (line 74):
+   $1 = token STATEMENT_BEGIN ()
+   $2 = token CONST ()
+   $3 = nterm position ()
+   $4 = nterm action ()
+   $5 = token CONST ()
+   $6 = token STATEMENT_END ()
+-> $$ = nterm statement ()
+Stack now 0
+Entering state 7
+Reducing stack by rule 1 (line 47):
+   $1 = nterm statement ()
+-> $$ = nterm program ()
+Stack now 0
+Entering state 5
+Reading a token: --accepting rule at line 60 ("
+")
+--(end of buffer or a NUL)
+--EOF (start condition 0)
+Now at end of input.
+Shifting token $end ()
+Entering state 12
+Stack now 0 5 12
+Cleanup: popping token $end ()
+Cleanup: popping nterm program ()
