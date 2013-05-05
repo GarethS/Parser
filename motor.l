@@ -33,30 +33,30 @@ eol             [\n]
 %x 		commentNew
 
 %%
-"<VERS>"            {debugPrintf("VERSION_BEGIN"); return VERSION_BEGIN;}
-"<vers>"            {debugPrintf("VERSION_END"); return VERSION_END;}
-"<STMT>"            {debugPrintf("STATEMENT_BEGIN"); return STATEMENT_BEGIN;}
-"<stmt>"            {debugPrintf("STATEMENT_END"); return STATEMENT_END;}
-"<SYMB>"            {debugPrintf("SYMBOL_BEGIN"); return SYMBOL_BEGIN;}
-"<symb>"            {debugPrintf("SYMBOL_END"); return SYMBOL_END;}
-"ROOT"     	        {debugPrintf("ROOT"); return ROOT;}
-"LEFT"     	        {debugPrintf("LEFT"); return LEFT;}
-"RIGHT"             {debugPrintf("RIGHT"); return RIGHT;}
-"Variable"          {debugPrintf("VARIABLE"); return VARIABLE;}
-"Operator"          {debugPrintf("OPERATOR"); return OPERATOR;}
-"If"                {debugPrintf("IF"); return IF;}
-"EVAL0"             {debugPrintf("EVAL0"); return EVAL0;}
-"EVALWHILE0"        {debugPrintf("EVALWHILE0"); return EVALWHILE0;}
-"Else"              {debugPrintf("ELSE"); return ELSE;}
-"EndIf"             {debugPrintf("ENDIF"); return ENDIF;}
-"While"             {debugPrintf("WHILE"); return WHILE;}
-"EndWhile"          {debugPrintf("ENDWHILE"); return ENDWHILE;}
-"FunctionCall"      {debugPrintf("FUNCTIONCALL"); return FUNCTIONCALL;}
-"FunctionCallEnd"   {debugPrintf("FUNCTIONCALLEND"); return FUNCTIONCALLEND;}
-"JmpEndIf"          {debugPrintf("JMPENDIF"); return JMPENDIF;}
-"Start"             {debugPrintf("START"); return START;}
-"ProgramEnd"        {debugPrintf("PROGRAMEND"); return PROGRAMEND;}
--?{digit}+		    {debugPrintf("CONST"); yylval.string = strdup(yytext); return CONST;}	/* constant integer */
+"<VERS>"            {return VERSION_BEGIN;}
+"<vers>"            {return VERSION_END;}
+"<STMT>"            {return STATEMENT_BEGIN;}
+"<stmt>"            {return STATEMENT_END;}
+"<SYMB>"            {return SYMBOL_BEGIN;}
+"<symb>"            {return SYMBOL_END;}
+"ROOT"     	        {return ROOT;}
+"LEFT"     	        {return LEFT;}
+"RIGHT"             {return RIGHT;}
+"Variable"          {return VARIABLE;}
+"Operator"          {return OPERATOR;}
+"If"                {return IF;}
+"EVAL0"             {return EVAL0;}
+"EVALWHILE0"        {return EVALWHILE0;}
+"Else"              {return ELSE;}
+"EndIf"             {return ENDIF;}
+"While"             {return WHILE;}
+"EndWhile"          {return ENDWHILE;}
+"FunctionCall"      {return FUNCTIONCALL;}
+"FunctionCallEnd"   {return FUNCTIONCALLEND;}
+"JmpEndIf"          {return JMPENDIF;}
+"Start"             {return START;}
+"ProgramEnd"        {return PROGRAMEND;}
+-?{digit}+		    {yylval.string = strdup(yytext); return CONST;}	/* constant integer */
 {eol}       {}  /* Need this to get yylineno incrementing. */
 
 "/*"				BEGIN(comment);
@@ -84,42 +84,5 @@ eol             [\n]
 
 extern int yylex();
 
-#if BISON_PHASE
-#define ECHO_DEBUG	0
-#else /* not BISON_PHASE */
-#define ECHO_DEBUG	1
-#endif /* BISON_PHASE */
-
-#if !ECHO_DEBUG
-// Turn off ECHO
-#ifdef ECHO
-#undef ECHO
-#endif /* ECHO */
-#define ECHO
-#endif /* not ECHO_DEBUG */
-
-void debugPrintf(const char* pc) {
-// FLEX_DEBUG defined with -d command line option
-#if ECHO_DEBUG
-	printf("[%s]", pc);
-#endif /* ECHO_DEBUG */
-}
-
-#if !BISON_PHASE
-int main(int argc, char* argv[])
-{
-	printf("Start scanner\n"); fflush(stdout);
-    yyin = fopen( "valve3x.def", "r" );
-	int r = yylex();
-	while (r != 0) {
-		ECHO;
-		//printf("%d %s\n", r, yylval.string);
-		r = yylex();
-	}
-	printf("\n\nEnd scanner"); fflush(stdout);
-	return r;
-	//return yylex();
-}
-#endif /* BISON_PHASE */
 
 /* End of user defined code section. */

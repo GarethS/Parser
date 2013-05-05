@@ -673,18 +673,6 @@ YYSTYPE yylval;
 #define comment 1
 #define commentNew 2
 
-#ifndef YY_NO_UNISTD_H
-/* Special case for "unistd.h", since it is non-ANSI. We include it way
- * down here because we want the user's section 1 to have been scanned first.
- * The user has a chance to override it with an option.
- */
-/* %if-c-only */
-#include <unistd.h>
-/* %endif */
-/* %if-c++-only */
-/* %endif */
-#endif
-
 #ifndef YY_EXTRA_TYPE
 #define YY_EXTRA_TYPE void *
 #endif
@@ -911,7 +899,7 @@ YY_DECL
 /* %% [7.0] user's declarations go here */
 #line 35 "valve.l"
 
-#line 915 "lex.yy.c"
+#line 903 "lex.yy.c"
 
 	if ( !(yy_init) )
 		{
@@ -1282,7 +1270,7 @@ YY_RULE_SETUP
 #line 92 "valve.l"
 ECHO;
 	YY_BREAK
-#line 1286 "lex.yy.c"
+#line 1274 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 case YY_STATE_EOF(comment):
 case YY_STATE_EOF(commentNew):

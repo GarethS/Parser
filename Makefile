@@ -8,8 +8,8 @@ myDebug := 1
 .PHONY: all clean run
 
 ifeq ($(myDebug), 1)
-FLEX_FLAGS = -d
-#FLEX_FLAGS =
+FLEX_FLAGS = -d --nounistd
+#FLEX_FLAGS = --noline --nounistd
 BISON_FLAGS = --verbose --debug --report=state
 GCC_FLAGS = -g -Wall
 GPP_FLAGS = -g -Wall

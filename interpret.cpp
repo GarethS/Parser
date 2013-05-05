@@ -58,7 +58,7 @@ interpret::interpret() :
     }
 #endif
 #if CYGWIN
-    printf("Version: %s", VERSION_STRING);
+    printf("Version: %s\n", VERSION_STRING);
 #endif /* CYGWIN */    
 }
 

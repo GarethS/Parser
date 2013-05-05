@@ -682,18 +682,6 @@ YYSTYPE yylval;
 #define comment 1
 #define commentNew 2
 
-#ifndef YY_NO_UNISTD_H
-/* Special case for "unistd.h", since it is non-ANSI. We include it way
- * down here because we want the user's section 1 to have been scanned first.
- * The user has a chance to override it with an option.
- */
-/* %if-c-only */
-#include <unistd.h>
-/* %endif */
-/* %if-c++-only */
-/* %endif */
-#endif
-
 #ifndef YY_EXTRA_TYPE
 #define YY_EXTRA_TYPE void *
 #endif
@@ -920,7 +908,7 @@ YY_DECL
 /* %% [7.0] user's declarations go here */
 #line 35 "motor.l"
 
-#line 924 "motor.yy.c"
+#line 912 "motor.yy.c"
 
 	if ( !(yy_init) )
 		{
@@ -1047,122 +1035,122 @@ do_action:	/* This label is used only to access EOF actions. */
 case 1:
 YY_RULE_SETUP
 #line 36 "motor.l"
-{debugPrintf("VERSION_BEGIN"); return VERSION_BEGIN;}
+{return VERSION_BEGIN;}
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
 #line 37 "motor.l"
-{debugPrintf("VERSION_END"); return VERSION_END;}
+{return VERSION_END;}
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
 #line 38 "motor.l"
-{debugPrintf("STATEMENT_BEGIN"); return STATEMENT_BEGIN;}
+{return STATEMENT_BEGIN;}
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
 #line 39 "motor.l"
-{debugPrintf("STATEMENT_END"); return STATEMENT_END;}
+{return STATEMENT_END;}
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
 #line 40 "motor.l"
-{debugPrintf("SYMBOL_BEGIN"); return SYMBOL_BEGIN;}
+{return SYMBOL_BEGIN;}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
 #line 41 "motor.l"
-{debugPrintf("SYMBOL_END"); return SYMBOL_END;}
+{return SYMBOL_END;}
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
 #line 42 "motor.l"
-{debugPrintf("ROOT"); return ROOT;}
+{return ROOT;}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
 #line 43 "motor.l"
-{debugPrintf("LEFT"); return LEFT;}
+{return LEFT;}
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
 #line 44 "motor.l"
-{debugPrintf("RIGHT"); return RIGHT;}
+{return RIGHT;}
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
 #line 45 "motor.l"
-{debugPrintf("VARIABLE"); return VARIABLE;}
+{return VARIABLE;}
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
 #line 46 "motor.l"
-{debugPrintf("OPERATOR"); return OPERATOR;}
+{return OPERATOR;}
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
 #line 47 "motor.l"
-{debugPrintf("IF"); return IF;}
+{return IF;}
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
 #line 48 "motor.l"
-{debugPrintf("EVAL0"); return EVAL0;}
+{return EVAL0;}
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
 #line 49 "motor.l"
-{debugPrintf("EVALWHILE0"); return EVALWHILE0;}
+{return EVALWHILE0;}
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
 #line 50 "motor.l"
-{debugPrintf("ELSE"); return ELSE;}
+{return ELSE;}
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
 #line 51 "motor.l"
-{debugPrintf("ENDIF"); return ENDIF;}
+{return ENDIF;}
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
 #line 52 "motor.l"
-{debugPrintf("WHILE"); return WHILE;}
+{return WHILE;}
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
 #line 53 "motor.l"
-{debugPrintf("ENDWHILE"); return ENDWHILE;}
+{return ENDWHILE;}
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
 #line 54 "motor.l"
-{debugPrintf("FUNCTIONCALL"); return FUNCTIONCALL;}
+{return FUNCTIONCALL;}
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
 #line 55 "motor.l"
-{debugPrintf("FUNCTIONCALLEND"); return FUNCTIONCALLEND;}
+{return FUNCTIONCALLEND;}
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
 #line 56 "motor.l"
-{debugPrintf("JMPENDIF"); return JMPENDIF;}
+{return JMPENDIF;}
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
 #line 57 "motor.l"
-{debugPrintf("START"); return START;}
+{return START;}
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
 #line 58 "motor.l"
-{debugPrintf("PROGRAMEND"); return PROGRAMEND;}
+{return PROGRAMEND;}
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
 #line 59 "motor.l"
-{debugPrintf("CONST"); yylval.string = strdup(yytext); return CONST;}	/* constant integer */
+{yylval.string = strdup(yytext); return CONST;}	/* constant integer */
 	YY_BREAK
 case 25:
 /* rule 25 can match eol */
@@ -1206,7 +1194,7 @@ YY_RULE_SETUP
 #line 75 "motor.l"
 ECHO;
 	YY_BREAK
-#line 1210 "motor.yy.c"
+#line 1198 "motor.yy.c"
 case YY_STATE_EOF(INITIAL):
 case YY_STATE_EOF(comment):
 case YY_STATE_EOF(commentNew):
@@ -2321,43 +2309,6 @@ void yyfree (void * ptr )
 
 extern int yylex();
 
-#if BISON_PHASE
-#define ECHO_DEBUG	0
-#else /* not BISON_PHASE */
-#define ECHO_DEBUG	1
-#endif /* BISON_PHASE */
-
-#if !ECHO_DEBUG
-// Turn off ECHO
-#ifdef ECHO
-#undef ECHO
-#endif /* ECHO */
-#define ECHO
-#endif /* not ECHO_DEBUG */
-
-void debugPrintf(const char* pc) {
-// FLEX_DEBUG defined with -d command line option
-#if ECHO_DEBUG
-	printf("[%s]", pc);
-#endif /* ECHO_DEBUG */
-}
-
-#if !BISON_PHASE
-int main(int argc, char* argv[])
-{
-	printf("Start scanner\n"); fflush(stdout);
-    yyin = fopen( "valve3x.def", "r" );
-	int r = yylex();
-	while (r != 0) {
-		ECHO;
-		//printf("%d %s\n", r, yylval.string);
-		r = yylex();
-	}
-	printf("\n\nEnd scanner"); fflush(stdout);
-	return r;
-	//return yylex();
-}
-#endif /* BISON_PHASE */
 
 /* End of user defined code section. */
 
