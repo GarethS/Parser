@@ -48,13 +48,13 @@ lex.yy.c: valve.l Makefile valve.tab.h
 	flex $(FLEX_FLAGS) valve.l		# flex version 2.5.35
 	
 motor.yy.c: motor.l Makefile motor.tab.h
-	flex $(FLEX_FLAGS) --outfile=motor.yy.c motor.l		# flex version 2.5.35
+	flex --nounistd --outfile=motor.yy.c motor.l		# flex version 2.5.35
 	
 valve.tab.c valve.tab.h:	valve.y compiler.h compilerHelper.h
 	bison $(BISON_FLAGS) valve.y	# bison version 2.4.2
 
 motor.tab.c motor.tab.h:	motor.y
-	bison $(BISON_FLAGS) motor.y	# bison version 2.4.2
+	bison --verbose motor.y	# bison version 2.4.2
 
 interpret.exe: interpret.cpp interpret.h ../motor/accel.cpp ../motor/accel.h ../motor/lmi.cpp ../motor/stepper.cpp ../motor/stepper.h ../motor/log.cpp ../motor/log.h compilerHelper.h parseTreeEntry.cpp parseTreeEntry.h symbolTableEntry.cpp symbolTableEntry.h tinyQueue.h valve.tab.h
 	echo "BUILDING INTERPRETER"
@@ -66,5 +66,5 @@ run:
 	#mv log.txt log1.txt
 	rm log.txt  # Delete log file, otherwise results will be concatenated to the end of the file
 	./interpret
-	./motorparsetest >motorParse.txt 2>motorParseBison.txt
+	./motorparsetest
     

@@ -10,7 +10,7 @@
 */
 
 %{
-/* #define YYDEBUG 1 */
+#define YYDEBUG 0
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
@@ -45,8 +45,8 @@ nodeEmbeddedtype nodeEmbeddedType = nodeEmbeddedUnknown;
 %start program
 
 %% /* Grammar rules and actions */
-program:    statement           {printf("!!STMT\n");}
-            | symbol            {printf("!!SYMB\n");}
+program:    statement           {printf("STMT\n");}
+            | symbol            {printf("SYMB\n");}
             | version
             | PROGRAMEND
 
@@ -92,11 +92,12 @@ int main ()
 {
 	// To turn on debugging, make sure the next line is uncommented and
 	//  turn on the -t (also use -v -l) options in bison.exe.
-	yydebug = 1; 
+	//yydebug = 1; 
 #if 1
     // This code will be done in the embedded system. It's here only for testing.
-#define SERIAL_INPUT_LEN    (54)    
-    char serialInput[SERIAL_INPUT_LEN] = "<STMT> 0 ROOT If 3 <stmt>";
+#define SERIAL_INPUT_LEN    (64)    
+    char serialInput[SERIAL_INPUT_LEN] = " ab <STMT> 0 ROOT FunctionCall 14 <stmt> ";
+//    char serialInput[SERIAL_INPUT_LEN] = "<STMT> 0 ROOT FunctionCall 14 <stmt>  <STMT> 0 ROOT If 3 <stmt>";
     YY_BUFFER_STATE yySerialBuffer = yy_scan_bytes(serialInput, SERIAL_INPUT_LEN);
     yy_switch_to_buffer(yySerialBuffer);
 #else    
