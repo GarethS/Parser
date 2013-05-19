@@ -19,7 +19,6 @@
 //#include <assert.h>
 #include "compilerHelper.h"
 
-
 nodeEmbeddedtype nodeEmbeddedType = nodeEmbeddedUnknown;
 
 %}
@@ -31,8 +30,7 @@ nodeEmbeddedtype nodeEmbeddedType = nodeEmbeddedUnknown;
 }
 
 /* TERMINALS */
-%token <integer> VERSION_BEGIN VERSION_END STATEMENT_BEGIN STATEMENT_END SYMBOL_BEGIN SYMBOL_END ROOT LEFT RIGHT VARIABLE OPERATOR IF EVAL0 EVALWHILE0 ELSE ENDIF WHILE ENDWHILE FUNCTIONCALL FUNCTIONCALLEND JMPENDIF START PROGRAMEND
-%token <string> CONST
+%token <integer> VERSION_BEGIN VERSION_END STATEMENT_BEGIN STATEMENT_END SYMBOL_BEGIN SYMBOL_END ROOT LEFT RIGHT VARIABLE OPERATOR IF EVAL0 EVALWHILE0 ELSE ENDIF WHILE ENDWHILE FUNCTIONCALL FUNCTIONCALLEND JMPENDIF START PROGRAMEND CONST
 
 /* non-terminals */
 %type <integer> statement version symbol position action
@@ -45,12 +43,12 @@ nodeEmbeddedtype nodeEmbeddedType = nodeEmbeddedUnknown;
 %start program
 
 %% /* Grammar rules and actions */
-program:    statement           {printf("STMT\n");}
-            | symbol            {printf("SYMB\n");}
+program:    statement           {/*printf("STMT\n");*/}
+            | symbol            {/*printf("SYMB\n");*/}
             | version
             | PROGRAMEND
 
-position:           CONST       {$$ = atoi($1);}
+position:           CONST       {$$ = $1;}
                     | LEFT      {$$ = $1;}
                     | RIGHT     {$$ = $1;}
                     | ROOT      {$$ = $1;}
@@ -81,11 +79,6 @@ symbol:             SYMBOL_BEGIN CONST CONST CONST SYMBOL_END    {nodeEmbeddedTy
 
 #include "motor.yy.c"
 
-void yyerror (char* s)
-{
-	printf ("Line: %d: %s before '%s'\n", --yylineno, s, yytext);
-}
-
 #if !BISON_IAR
 // Don't include this part if we're embedding in hardware
 int main ()
@@ -103,9 +96,19 @@ int main ()
 #else    
     yyin = fopen("treeMotor.txt", "r" );
 #endif    
-	yyparse ();
+	yyparse();
     //yyin = fopen("symbolTable.txt", "r" );
 	//yyparse ();
     return 0;
+}
+
+void yyerror (char* s)
+{
+	printf ("Line: %d: %s before '%s'\n", --yylineno, s, yytext);
+}
+#else // BISON_IAR
+void yyerror (char* s)
+{
+    // Set flag for interpreter
 }
 #endif // not BISON_IAR

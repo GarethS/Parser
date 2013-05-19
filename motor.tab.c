@@ -78,13 +78,12 @@
 //#include <assert.h>
 #include "compilerHelper.h"
 
-
 nodeEmbeddedtype nodeEmbeddedType = nodeEmbeddedUnknown;
 
 
 
 /* Line 189 of yacc.c  */
-#line 88 "motor.tab.c"
+#line 87 "motor.tab.c"
 
 /* Enabling traces.  */
 #ifndef YYDEBUG
@@ -145,7 +144,7 @@ typedef union YYSTYPE
 {
 
 /* Line 214 of yacc.c  */
-#line 28 "motor.y"
+#line 27 "motor.y"
 
 	int integer;
     char* string;
@@ -153,7 +152,7 @@ typedef union YYSTYPE
 
 
 /* Line 214 of yacc.c  */
-#line 157 "motor.tab.c"
+#line 156 "motor.tab.c"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
@@ -165,7 +164,7 @@ typedef union YYSTYPE
 
 
 /* Line 264 of yacc.c  */
-#line 169 "motor.tab.c"
+#line 168 "motor.tab.c"
 
 #ifdef short
 # undef short
@@ -457,9 +456,9 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    48,    48,    49,    50,    51,    53,    54,    55,    56,
-      58,    59,    60,    61,    62,    63,    64,    65,    66,    67,
-      68,    69,    70,    71,    73,    75,    77
+       0,    46,    46,    47,    48,    49,    51,    52,    53,    54,
+      56,    57,    58,    59,    60,    61,    62,    63,    64,    65,
+      66,    67,    68,    69,    71,    73,    75
 };
 #endif
 
@@ -1389,70 +1388,70 @@ yyreduce:
         case 2:
 
 /* Line 1464 of yacc.c  */
-#line 48 "motor.y"
-    {printf("STMT\n");;}
+#line 46 "motor.y"
+    {/*printf("STMT\n");*/;}
     break;
 
   case 3:
 
 /* Line 1464 of yacc.c  */
-#line 49 "motor.y"
-    {printf("SYMB\n");;}
+#line 47 "motor.y"
+    {/*printf("SYMB\n");*/;}
     break;
 
   case 6:
 
 /* Line 1464 of yacc.c  */
-#line 53 "motor.y"
-    {(yyval.integer) = atoi((yyvsp[(1) - (1)].string));;}
+#line 51 "motor.y"
+    {(yyval.integer) = (yyvsp[(1) - (1)].integer);;}
     break;
 
   case 7:
 
 /* Line 1464 of yacc.c  */
-#line 54 "motor.y"
+#line 52 "motor.y"
     {(yyval.integer) = (yyvsp[(1) - (1)].integer);;}
     break;
 
   case 8:
 
 /* Line 1464 of yacc.c  */
-#line 55 "motor.y"
+#line 53 "motor.y"
     {(yyval.integer) = (yyvsp[(1) - (1)].integer);;}
     break;
 
   case 9:
 
 /* Line 1464 of yacc.c  */
-#line 56 "motor.y"
+#line 54 "motor.y"
     {(yyval.integer) = (yyvsp[(1) - (1)].integer);;}
     break;
 
   case 10:
 
 /* Line 1464 of yacc.c  */
-#line 58 "motor.y"
+#line 56 "motor.y"
     {(yyval.integer) = (yyvsp[(1) - (1)].integer);;}
     break;
 
   case 25:
 
 /* Line 1464 of yacc.c  */
-#line 75 "motor.y"
+#line 73 "motor.y"
     {nodeEmbeddedType = nodeEmbeddedStatement;;}
     break;
 
   case 26:
 
 /* Line 1464 of yacc.c  */
-#line 77 "motor.y"
+#line 75 "motor.y"
     {nodeEmbeddedType = nodeEmbeddedSymbol; ;}
     break;
 
 
 
 /* Line 1464 of yacc.c  */
-#line 1456 "motor.tab.c"
+#line 1455 "motor.tab.c"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -1664,16 +1663,11 @@ yyreturn:
 
 
 /* Line 1684 of yacc.c  */
-#line 79 "motor.y"
+#line 77 "motor.y"
  /* Additional C code */
 
 
 #include "motor.yy.c"
-
-void yyerror (char* s)
-{
-	printf ("Line: %d: %s before '%s'\n", --yylineno, s, yytext);
-}
 
 #if !BISON_IAR
 // Don't include this part if we're embedding in hardware
@@ -1692,10 +1686,20 @@ int main ()
 #else    
     yyin = fopen("treeMotor.txt", "r" );
 #endif    
-	yyparse ();
+	yyparse();
     //yyin = fopen("symbolTable.txt", "r" );
 	//yyparse ();
     return 0;
+}
+
+void yyerror (char* s)
+{
+	printf ("Line: %d: %s before '%s'\n", --yylineno, s, yytext);
+}
+#else // BISON_IAR
+void yyerror (char* s)
+{
+    // Set flag for interpreter
 }
 #endif // not BISON_IAR
 

@@ -30,6 +30,7 @@ public:
     unsigned int stackFrameIndex(void) const {return _front;}
     void stackFrameIndex(const unsigned int setFront) {_front = setFront;}
     int peekAtIndex(const unsigned int index) const {return _tq[index];}
+    T* getBuffer(void) {return _tq;}
     
 private:
     T _tq[TINY_QUEUE_SIZE];

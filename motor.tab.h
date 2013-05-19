@@ -72,7 +72,7 @@ typedef union YYSTYPE
 {
 
 /* Line 1685 of yacc.c  */
-#line 28 "motor.y"
+#line 27 "motor.y"
 
 	int integer;
     char* string;

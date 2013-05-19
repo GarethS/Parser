@@ -42,7 +42,7 @@ parsetest.exe: valve.tab.c valve.tab.h lex.yy.c
 	
 motorparsetest.exe: motor.tab.c motor.tab.h motor.yy.c
 	echo "BUILDING MOTOR PARSER"
-	gcc $(GCC_FLAGS) -D BISON_PHASE motor.tab.c -lfl -o motorparsetest.exe
+	gcc $(GCC_FLAGS) -Wno-unused-function -D BISON_PHASE motor.tab.c -lfl -o motorparsetest.exe
 	
 lex.yy.c: valve.l Makefile valve.tab.h
 	flex $(FLEX_FLAGS) valve.l		# flex version 2.5.35
