@@ -15,18 +15,28 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include <malloc.h>
-#include <string.h>
+//#include <string.h>
 //#include <assert.h>
 #include "compilerHelper.h"
 
-nodeEmbeddedtype nodeEmbeddedType = nodeEmbeddedUnknown;
+nodeEmbeddedtype net = nodeEmbeddedUnknown; // Usually either a statment or symbol
+
+// Statement entries
+int statementNestingLevel;
+int statementPosition;
+int statementType;
+int statementValue;
+
+// Symbol entries
+int symbolType;
+int symbolValue;
+int symbolFcnLink;
 
 %}
 
 /* See compiler.h for structure definitions */
 %union {
 	int integer;
-    char* string;
 }
 
 /* TERMINALS */
@@ -43,10 +53,10 @@ nodeEmbeddedtype nodeEmbeddedType = nodeEmbeddedUnknown;
 %start program
 
 %% /* Grammar rules and actions */
-program:    statement           {/*printf("STMT\n");*/}
-            | symbol            {/*printf("SYMB\n");*/}
-            | version
-            | PROGRAMEND
+program:    statement           {/*printf("STMT\n");*/ net = nodeEmbeddedStatement;}
+            | symbol            {/*printf("SYMB\n");*/ net = nodeEmbeddedSymbol;}
+            | version           {net = nodeEmbeddedVersion;}
+            | PROGRAMEND        {net = nodeEmbeddedProgramEnd;}
 
 position:           CONST       {$$ = $1;}
                     | LEFT      {$$ = $1;}
@@ -70,9 +80,9 @@ action:             VARIABLE                {$$ = $1;}
                     
 version:            VERSION_BEGIN CONST VERSION_END
       
-statement:          STATEMENT_BEGIN CONST/*nestingLevel*/ position action CONST STATEMENT_END   {nodeEmbeddedType = nodeEmbeddedStatement;}
+statement:          STATEMENT_BEGIN CONST/*nestingLevel*/ position action CONST/*value*/ STATEMENT_END   {statementNestingLevel = $2; statementPosition = $3; statementType = $4; statementValue = $5;}
 
-symbol:             SYMBOL_BEGIN CONST CONST CONST SYMBOL_END    {nodeEmbeddedType = nodeEmbeddedSymbol; }                    
+symbol:             SYMBOL_BEGIN CONST/*type*/ CONST/*value*/ CONST/*fcnLink*/ SYMBOL_END    {symbolType = $2; symbolValue = $3; symbolFcnLink = $4;}                    
                     
 %% /* Additional C code */
 
@@ -96,7 +106,8 @@ int main ()
 #else    
     yyin = fopen("treeMotor.txt", "r" );
 #endif    
-	yyparse();
+	int yyparseReturn = yyparse();
+    printf("parse=%d", yyparseReturn);
     //yyin = fopen("symbolTable.txt", "r" );
 	//yyparse ();
     return 0;

@@ -74,16 +74,27 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include <malloc.h>
-#include <string.h>
+//#include <string.h>
 //#include <assert.h>
 #include "compilerHelper.h"
 
-nodeEmbeddedtype nodeEmbeddedType = nodeEmbeddedUnknown;
+nodeEmbeddedtype net = nodeEmbeddedUnknown; // Usually either a statment or symbol
+
+// Statement entries
+int statementNestingLevel;
+int statementPosition;
+int statementType;
+int statementValue;
+
+// Symbol entries
+int symbolType;
+int symbolValue;
+int symbolFcnLink;
 
 
 
 /* Line 189 of yacc.c  */
-#line 87 "motor.tab.c"
+#line 98 "motor.tab.c"
 
 /* Enabling traces.  */
 #ifndef YYDEBUG
@@ -144,15 +155,14 @@ typedef union YYSTYPE
 {
 
 /* Line 214 of yacc.c  */
-#line 27 "motor.y"
+#line 38 "motor.y"
 
 	int integer;
-    char* string;
 
 
 
 /* Line 214 of yacc.c  */
-#line 156 "motor.tab.c"
+#line 166 "motor.tab.c"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
@@ -164,7 +174,7 @@ typedef union YYSTYPE
 
 
 /* Line 264 of yacc.c  */
-#line 168 "motor.tab.c"
+#line 178 "motor.tab.c"
 
 #ifdef short
 # undef short
@@ -456,9 +466,9 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    46,    46,    47,    48,    49,    51,    52,    53,    54,
-      56,    57,    58,    59,    60,    61,    62,    63,    64,    65,
-      66,    67,    68,    69,    71,    73,    75
+       0,    56,    56,    57,    58,    59,    61,    62,    63,    64,
+      66,    67,    68,    69,    70,    71,    72,    73,    74,    75,
+      76,    77,    78,    79,    81,    83,    85
 };
 #endif
 
@@ -1388,70 +1398,84 @@ yyreduce:
         case 2:
 
 /* Line 1464 of yacc.c  */
-#line 46 "motor.y"
-    {/*printf("STMT\n");*/;}
+#line 56 "motor.y"
+    {/*printf("STMT\n");*/ net = nodeEmbeddedStatement;;}
     break;
 
   case 3:
 
 /* Line 1464 of yacc.c  */
-#line 47 "motor.y"
-    {/*printf("SYMB\n");*/;}
+#line 57 "motor.y"
+    {/*printf("SYMB\n");*/ net = nodeEmbeddedSymbol;;}
+    break;
+
+  case 4:
+
+/* Line 1464 of yacc.c  */
+#line 58 "motor.y"
+    {net = nodeEmbeddedVersion;;}
+    break;
+
+  case 5:
+
+/* Line 1464 of yacc.c  */
+#line 59 "motor.y"
+    {net = nodeEmbeddedProgramEnd;;}
     break;
 
   case 6:
 
 /* Line 1464 of yacc.c  */
-#line 51 "motor.y"
+#line 61 "motor.y"
     {(yyval.integer) = (yyvsp[(1) - (1)].integer);;}
     break;
 
   case 7:
 
 /* Line 1464 of yacc.c  */
-#line 52 "motor.y"
+#line 62 "motor.y"
     {(yyval.integer) = (yyvsp[(1) - (1)].integer);;}
     break;
 
   case 8:
 
 /* Line 1464 of yacc.c  */
-#line 53 "motor.y"
+#line 63 "motor.y"
     {(yyval.integer) = (yyvsp[(1) - (1)].integer);;}
     break;
 
   case 9:
 
 /* Line 1464 of yacc.c  */
-#line 54 "motor.y"
+#line 64 "motor.y"
     {(yyval.integer) = (yyvsp[(1) - (1)].integer);;}
     break;
 
   case 10:
 
 /* Line 1464 of yacc.c  */
-#line 56 "motor.y"
+#line 66 "motor.y"
     {(yyval.integer) = (yyvsp[(1) - (1)].integer);;}
     break;
 
   case 25:
 
 /* Line 1464 of yacc.c  */
-#line 73 "motor.y"
-    {nodeEmbeddedType = nodeEmbeddedStatement;;}
+#line 83 "motor.y"
+    {statementNestingLevel = (yyvsp[(2) - (6)].integer); statementPosition = (yyvsp[(3) - (6)].integer); statementType = (yyvsp[(4) - (6)].integer); statementValue = (yyvsp[(5) - (6)].integer);;}
     break;
 
   case 26:
 
 /* Line 1464 of yacc.c  */
-#line 75 "motor.y"
-    {nodeEmbeddedType = nodeEmbeddedSymbol; ;}
+#line 85 "motor.y"
+    {symbolType = (yyvsp[(2) - (5)].integer); symbolValue = (yyvsp[(3) - (5)].integer); symbolFcnLink = (yyvsp[(4) - (5)].integer);;}
     break;
 
 
 
 /* Line 1464 of yacc.c  */
-#line 1455 "motor.tab.c"
+#line 1479 "motor.tab.c"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -1663,7 +1687,7 @@ yyreturn:
 
 
 /* Line 1684 of yacc.c  */
-#line 77 "motor.y"
+#line 87 "motor.y"
  /* Additional C code */
 
 
@@ -1686,7 +1710,8 @@ int main ()
 #else    
     yyin = fopen("treeMotor.txt", "r" );
 #endif    
-	yyparse();
+	int yyparseReturn = yyparse();
+    printf("parse=%d", yyparseReturn);
     //yyin = fopen("symbolTable.txt", "r" );
 	//yyparse ();
     return 0;

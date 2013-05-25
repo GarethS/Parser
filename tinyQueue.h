@@ -13,16 +13,17 @@ class tinyQueue
 public:
 #define TINY_QUEUE_SIZE (256)
     tinyQueue(): _front(TINY_QUEUE_SIZE-1), _back(TINY_QUEUE_SIZE-1) {}
+    tinyQueue(int startIndex): _front(startIndex), _back(startIndex) {}
     ~tinyQueue() {}
     T& operator=(const T& p) {if (*this != p) {_front = p._front; _back = p._back; for (int i = 0; i < TINY_QUEUE_SIZE; ++i) {_tq[i] = p._tq[i];}} return *this;}
     unsigned int size(void) const {return TINY_QUEUE_SIZE - spaceAvail() - 1;} // Buffer can hold up to (TINY_QUEUE_SIZE - 1) elements
     bool empty(void) const {if (size() == 0) {return true;} return false;}
     // Removed 'push()' to make sure nobody is using this as a queue
-    //void push(T p) {if (spaceAvail() == 0) {return;} _tq[_back] = p; _back += 1; if (_back >= TINY_QUEUE_SIZE) {_back = 0;}}
+    void push(T p) {if (spaceAvail() == 0) {return;} _tq[_back] = p; _back += 1; if (_back >= TINY_QUEUE_SIZE) {_back = 0;}}
     void push_front(T p) {if (spaceAvail() == 0) {return;} if (_front == 0) {_front = TINY_QUEUE_SIZE - 1;} else {_front -= 1;} _tq[_front] = p;}
     void pop_front() {if (empty()) {return;} _front += 1; if (_front >= TINY_QUEUE_SIZE) {_front = 0;}}
     
-    void clear(void) {_front = _back;} 
+    void clear(void) {_front = _back = 0;} 
     unsigned int spaceAvail(void) const {if (_back >= _front) {return TINY_QUEUE_SIZE - 1 - _back + _front;} {return _front - _back - 1;}}
     T front(void) const {return _tq[_front];} 
 

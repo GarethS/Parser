@@ -72,15 +72,14 @@ typedef union YYSTYPE
 {
 
 /* Line 1685 of yacc.c  */
-#line 27 "motor.y"
+#line 38 "motor.y"
 
 	int integer;
-    char* string;
 
 
 
 /* Line 1685 of yacc.c  */
-#line 84 "motor.tab.h"
+#line 83 "motor.tab.h"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */

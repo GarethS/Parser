@@ -32,7 +32,9 @@ using namespace std;
 #define PROGRAM_INDEX_START         (0)
 #define VERSION_STRING              "0.0.4"
 
-extern "C" void bufferInput(unsigned char c);
+extern "C" {
+void bufferInput(unsigned char c);
+}
 
 class interpret
 #if CYGWIN
@@ -44,6 +46,8 @@ public:
     ~interpret() {}
     
     void load(void);
+    bool appendToProgram(const parseTreeEntry& pte);
+    bool appendToSymbolTable(const symbolTableEntry& ste);
 #if CYGWIN    
     void dumpProgram(void);
     void dumpSymbolTable(void);
