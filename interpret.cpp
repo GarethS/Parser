@@ -61,6 +61,8 @@ extern nodeType symbolType;
 extern int symbolValue;
 extern int symbolFcnLink;
 
+void UARTSend(const unsigned char *pucBuffer, unsigned long ulCount);
+
 //FreeRTOS specific below
 static portTickType xTaskWakeTime;
 void vTaskDelay( portTickType xTicksToDelay ) PRIVILEGED_FUNCTION;  // task.h
@@ -69,6 +71,26 @@ portTickType xTaskGetTickCount( void ) PRIVILEGED_FUNCTION; // task.h
 }   // extern "C"
 
 interpret interpreter;
+
+void successMsg(void) {
+    static const char* msg = "<OK>";
+    static int msgLen = strlen(msg);
+    UARTSend((unsigned char *)msg, msgLen);
+}
+
+void errMsg(void) {
+    static const char* msg = "<ERR>";
+    static int msgLen = strlen(msg);
+    UARTSend((unsigned char *)msg, msgLen);
+}
+
+void postMsg(bool success) {
+    if (success) {
+        successMsg();
+    } else {
+        errMsg();
+    }
+}
 
 #define YYPARSE_SUCCESS (0)
 void bufferInput(unsigned char c) {
@@ -91,23 +113,15 @@ void bufferInput(unsigned char c) {
             pte.position(statementPosition);
             pte.value(statementValue);
             pte.type(statementType);
-            bool atpReturn = interpreter.appendToProgram(pte);
-           if (atpReturn) {
-                // Post success back
-            } else {
-                // Post error back
-            }
+            bool atpSuccess = interpreter.appendToProgram(pte);
+            postMsg(atpSuccess);
         } else if (net == nodeEmbeddedSymbol) {
             symbolTableEntry ste;
             ste.value(symbolValue);
             ste.type(symbolType);
             ste.fcnLink(symbolFcnLink);
-            bool atstReturn = interpreter.appendToSymbolTable(ste);
-            if (atstReturn) {
-                // Post success back
-            } else {
-                // Post error back
-            }
+            bool atstSuccess = interpreter.appendToSymbolTable(ste);
+            postMsg(atstSuccess);
         } else if (net == nodeEmbeddedProgramEnd) {
             interpreter.run();
         } else if (net == nodeEmbeddedVersion) {
