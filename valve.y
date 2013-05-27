@@ -48,6 +48,8 @@ unsigned int statementOutputIndex = 0;
 #define QUOTES_MOVEABSOLUTE     "moveAbsolute"
 #define QUOTES_MOVERELATIVE     "moveRelative"
 #define QUOTES_SLEEP            "sleep"
+#define QUOTES_SLEEP_UNTIL      "sleepUntil"
+#define QUOTES_LED              "LED"
 
 %}
 
@@ -63,7 +65,7 @@ unsigned int statementOutputIndex = 0;
 %token INPUTS OUTPUTS COMMA BANG
 %token EQUAL LBRACE RBRACE ARRAYDEFINE IF ELSE WHILE
 // 4x. Add intrinsic function name from flex here
-%token <string>	VAR VAR_METHOD CONST CONST_FLOAT MAIN MOVEABSOLUTE MOVERELATIVE SLEEP
+%token <string>	VAR VAR_METHOD CONST CONST_FLOAT MAIN MOVEABSOLUTE MOVERELATIVE SLEEP SLEEPUNTIL LED
 
 // %left or %right takes the place of %token
 %left AND OR BITWISEAND BITWISEOR
@@ -119,6 +121,12 @@ statement:	        statementAssign	                    {/*printf("\nstatementAss
                     
                     | SLEEP LPAREN BITWISEAND VAR COMMA expr RPAREN SEMI {$$ = addNodeInstrinsicFunction1(QUOTES_SLEEP, $4, $6);}
                     | SLEEP LPAREN argList RPAREN SEMI {$$ = NULL; yyerror(QUOTES_SLEEP);}
+                    
+                    | SLEEPUNTIL LPAREN BITWISEAND VAR COMMA expr RPAREN SEMI {$$ = addNodeInstrinsicFunction1(QUOTES_SLEEP_UNTIL, $4, $6);}
+                    | SLEEPUNTIL LPAREN argList RPAREN SEMI {$$ = NULL; yyerror(QUOTES_SLEEP_UNTIL);}
+                    
+                    | LED LPAREN BITWISEAND VAR COMMA expr RPAREN SEMI {$$ = addNodeInstrinsicFunction1(QUOTES_LED, $4, $6);}
+                    | LED LPAREN argList RPAREN SEMI {$$ = NULL; yyerror(QUOTES_LED);}
                     
                     | arrayDefine                       {$$ = NULL;}
 
@@ -356,6 +364,14 @@ int findSymbolFcnDefinition(symbolNode* pVar, int* pFcnDefnIndex) {
     } else if (strncmp(QUOTES_SLEEP, pVar->name, VAR_NAME_LENGTH-1) == 0 &&
         pVar->val == NUM_PARAMETERS_TWO) {
         *pFcnDefnIndex = INTRINSIC_FCN_DEFN_SLEEP;
+        ++count;
+    } else if (strncmp(QUOTES_SLEEP_UNTIL, pVar->name, VAR_NAME_LENGTH-1) == 0 &&
+        pVar->val == NUM_PARAMETERS_TWO) {
+        *pFcnDefnIndex = INTRINSIC_FCN_DEFN_SLEEP_UNTIL;
+        ++count;
+    } else if (strncmp(QUOTES_LED, pVar->name, VAR_NAME_LENGTH-1) == 0 &&
+        pVar->val == NUM_PARAMETERS_TWO) {
+        *pFcnDefnIndex = INTRINSIC_FCN_DEFN_LED;
         ++count;
     }
     return count;

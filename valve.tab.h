@@ -57,28 +57,30 @@
      MOVEABSOLUTE = 274,
      MOVERELATIVE = 275,
      SLEEP = 276,
-     BITWISEOR = 277,
-     BITWISEAND = 278,
-     OR = 279,
-     AND = 280,
-     SHR = 281,
-     SHL = 282,
-     LSS = 283,
-     GTR = 284,
-     NEQ = 285,
-     LEQ = 286,
-     GEQ = 287,
-     TEST_FOR_EQUAL = 288,
-     LPAREN = 289,
-     MINUS = 290,
-     PLUS = 291,
-     XOR = 292,
-     DIV = 293,
-     MULT = 294,
-     LBRACKET = 295,
-     RBRACKET = 296,
-     RPAREN = 297,
-     SEMI = 298
+     SLEEPUNTIL = 277,
+     LED = 278,
+     BITWISEOR = 279,
+     BITWISEAND = 280,
+     OR = 281,
+     AND = 282,
+     SHR = 283,
+     SHL = 284,
+     LSS = 285,
+     GTR = 286,
+     NEQ = 287,
+     LEQ = 288,
+     GEQ = 289,
+     TEST_FOR_EQUAL = 290,
+     LPAREN = 291,
+     MINUS = 292,
+     PLUS = 293,
+     XOR = 294,
+     DIV = 295,
+     MULT = 296,
+     LBRACKET = 297,
+     RBRACKET = 298,
+     RPAREN = 299,
+     SEMI = 300
    };
 #endif
 
@@ -89,7 +91,7 @@ typedef union YYSTYPE
 {
 
 /* Line 1685 of yacc.c  */
-#line 55 "valve.y"
+#line 57 "valve.y"
 
 	int integer;
     float floatingPoint;
@@ -99,7 +101,7 @@ typedef union YYSTYPE
 
 
 /* Line 1685 of yacc.c  */
-#line 103 "valve.tab.h"
+#line 105 "valve.tab.h"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */

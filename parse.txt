@@ -5,11 +5,11 @@ ROOT
 If 3
 ***LEFT Var: index,1 name,counter
 ***RIGHT Var: index,2 name,4
-**LEFT Operator: <= 286
+**LEFT Operator: <= 288
 ***LEFT Var: index,3 name,x
 ***RIGHT Var: index,4 name,1
-**RIGHT Operator: > 284
-*LEFT Operator: && 280
+**RIGHT Operator: > 286
+*LEFT Operator: && 282
 If EVAL == 0 JMP Else 3
 Statement:
 *LEFT Var: index,1 name,counter
@@ -28,7 +28,7 @@ ROOT
 If 0
 **LEFT Var: index,3 name,x
 **RIGHT Var: index,7 name,2
-*LEFT Operator: == 288
+*LEFT Operator: == 290
 If EVAL == 0 JMP Else 0
 Statement:
 *LEFT Var: index,1 name,counter
@@ -42,15 +42,15 @@ ROOT
 While 1
 **LEFT Var: index,8 name,d
 **RIGHT Var: index,9 name,3
-*LEFT Operator: == 288
+*LEFT Operator: == 290
 If EVALWHILE == 0 JMP EndWhile 1
 Statement:
 *LEFT Var: index,8 name,d
 ***LEFT Var: index,8 name,d
 ***RIGHT Var: index,4 name,1
-**LEFT Operator: + 291
+**LEFT Operator: + 293
 **RIGHT Var: index,8 name,d
-*RIGHT Operator: + 291
+*RIGHT Operator: + 293
 ROOT Operator: = 262
 EndWhile 1
 JMP EndIf 3
@@ -70,7 +70,7 @@ ROOT Var: index,4 name,1
 Statement:
 *LEFT Var: index,7 name,2
 *RIGHT Var: index,3 name,x
-ROOT Operator: + 291
+ROOT Operator: + 293
 Statement:
 ROOT Var: index,9 name,3 
 FunctionCallEnd: index,11 name,foo
@@ -83,7 +83,7 @@ ROOT
 While 2
 **LEFT Var: index,12 name,q
 **RIGHT Var: index,13 name,10
-*LEFT Operator: < 283
+*LEFT Operator: < 285
 If EVALWHILE == 0 JMP EndWhile 2
 Statement:
 ROOT FunctionCall: index,14 name,moveAbsolute
@@ -96,7 +96,7 @@ Statement:
 *LEFT Var: index,12 name,q
 **LEFT Var: index,12 name,q
 **RIGHT Var: index,7 name,2
-*RIGHT Operator: + 291
+*RIGHT Operator: + 293
 ROOT Operator: = 262
 EndWhile 2
 Statement:

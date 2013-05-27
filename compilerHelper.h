@@ -42,6 +42,8 @@ int  yylex(void);
 #define INTRINSIC_FCN_DEFN_MOVE_ABSOLUTE    (-2)
 #define INTRINSIC_FCN_DEFN_MOVE_RELATIVE    (-3)
 #define INTRINSIC_FCN_DEFN_SLEEP            (-4)
+#define INTRINSIC_FCN_DEFN_SLEEP_UNTIL      (-5)
+#define INTRINSIC_FCN_DEFN_LED              (-6)
 #define NUM_PARAMETERS_TWO                  (2)   // The above intrinsic functions all take 2 parameters.
 
 typedef enum {nodeVariable,             // 0

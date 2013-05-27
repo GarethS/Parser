@@ -17,6 +17,7 @@
 
 // Can use either tinyQueue or a standard library deque
 #include "tinyQueue.h"
+#include "led.h"
 //#include <deque>
 #include <assert.h>
 
@@ -30,7 +31,7 @@ using namespace std;
 #define MAX_PROGRAM_ENTRY           (200)
 #define MAX_SYMBOL_TABLE_ENTRY      (60)
 #define PROGRAM_INDEX_START         (0)
-#define VERSION_STRING              "0.0.4"
+#define VERSION_STRING              "0.0.5"
 
 extern "C" {
 void bufferInput(unsigned char c);
@@ -92,6 +93,10 @@ private:
     tinyQueue<int> _evaluationStack;    // Contains the index of a symbol, not its value.
     bool _evaluatingPattern;
     stepper _s;
+    led _led;
+#if !CYGWIN
+    bool _firstIntrinsicFcnDefnSleepUntil;
+#endif // not CYGWIN    
 };
 
 #endif /* _INTERPRET_H_ */

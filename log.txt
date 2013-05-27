@@ -305,6 +305,7 @@ ACCEL _scaleYAxisToClockTicks
 98 6666
 99 6666
 
+LED LED on 
 INTERPRETER interpret::tree.txt
 INTERPRETER interpret::symbolTable.txt
 INTERPRETER interpret::dumpProgram
@@ -312,11 +313,11 @@ PARSETREEENTRY nodeFunctionDefinition level():0 value():0
 PARSETREEENTRY nodeIf level():0 value():3
 PARSETREEENTRY nodeVariable level():3 value():1
 PARSETREEENTRY nodeVariable level():3 value():2
-PARSETREEENTRY nodeOperator level():2 value():286
+PARSETREEENTRY nodeOperator level():2 value():288
 PARSETREEENTRY nodeVariable level():3 value():3
 PARSETREEENTRY nodeVariable level():3 value():4
-PARSETREEENTRY nodeOperator level():2 value():284
-PARSETREEENTRY nodeOperator level():1 value():280
+PARSETREEENTRY nodeOperator level():2 value():286
+PARSETREEENTRY nodeOperator level():1 value():282
 PARSETREEENTRY nodeIfEval0 level():0 value():3
 PARSETREEENTRY nodeVariable level():1 value():1
 PARSETREEENTRY nodeVariable level():1 value():5
@@ -330,7 +331,7 @@ PARSETREEENTRY nodeOperator level():0 value():262
 PARSETREEENTRY nodeIf level():0 value():0
 PARSETREEENTRY nodeVariable level():2 value():3
 PARSETREEENTRY nodeVariable level():2 value():7
-PARSETREEENTRY nodeOperator level():1 value():288
+PARSETREEENTRY nodeOperator level():1 value():290
 PARSETREEENTRY nodeIfEval0 level():0 value():0
 PARSETREEENTRY nodeVariable level():1 value():1
 PARSETREEENTRY nodeVariable level():1 value():2
@@ -341,14 +342,14 @@ PARSETREEENTRY nodeEndif level():0 value():0
 PARSETREEENTRY nodeWhile level():0 value():1
 PARSETREEENTRY nodeVariable level():2 value():8
 PARSETREEENTRY nodeVariable level():2 value():9
-PARSETREEENTRY nodeOperator level():1 value():288
+PARSETREEENTRY nodeOperator level():1 value():290
 PARSETREEENTRY nodeWhileEval0 level():0 value():1
 PARSETREEENTRY nodeVariable level():1 value():8
 PARSETREEENTRY nodeVariable level():3 value():8
 PARSETREEENTRY nodeVariable level():3 value():4
-PARSETREEENTRY nodeOperator level():2 value():291
+PARSETREEENTRY nodeOperator level():2 value():293
 PARSETREEENTRY nodeVariable level():2 value():8
-PARSETREEENTRY nodeOperator level():1 value():291
+PARSETREEENTRY nodeOperator level():1 value():293
 PARSETREEENTRY nodeOperator level():0 value():262
 PARSETREEENTRY nodeEndWhile level():0 value():1
 PARSETREEENTRY nodeJmpEndIf level():0 value():3
@@ -363,7 +364,7 @@ PARSETREEENTRY nodeFunctionCall level():0 value():11
 PARSETREEENTRY nodeVariable level():0 value():4
 PARSETREEENTRY nodeVariable level():1 value():7
 PARSETREEENTRY nodeVariable level():1 value():3
-PARSETREEENTRY nodeOperator level():0 value():291
+PARSETREEENTRY nodeOperator level():0 value():293
 PARSETREEENTRY nodeVariable level():0 value():9
 PARSETREEENTRY nodeFunctionCallEnd level():0 value():11
 PARSETREEENTRY nodeVariable level():1 value():12
@@ -372,7 +373,7 @@ PARSETREEENTRY nodeOperator level():0 value():262
 PARSETREEENTRY nodeWhile level():0 value():2
 PARSETREEENTRY nodeVariable level():2 value():12
 PARSETREEENTRY nodeVariable level():2 value():13
-PARSETREEENTRY nodeOperator level():1 value():283
+PARSETREEENTRY nodeOperator level():1 value():285
 PARSETREEENTRY nodeWhileEval0 level():0 value():2
 PARSETREEENTRY nodeFunctionCall level():0 value():14
 PARSETREEENTRY nodeVariable level():0 value():3
@@ -381,7 +382,7 @@ PARSETREEENTRY nodeFunctionCallEnd level():0 value():14
 PARSETREEENTRY nodeVariable level():1 value():12
 PARSETREEENTRY nodeVariable level():2 value():12
 PARSETREEENTRY nodeVariable level():2 value():7
-PARSETREEENTRY nodeOperator level():1 value():291
+PARSETREEENTRY nodeOperator level():1 value():293
 PARSETREEENTRY nodeOperator level():0 value():262
 PARSETREEENTRY nodeEndWhile level():0 value():2
 PARSETREEENTRY nodeFunctionCall level():0 value():14
@@ -512,7 +513,7 @@ SYMBOLTABLEENTRY 25 nodeConst  3 -1
 SYMBOLTABLEENTRY 26 nodeVariable  0 -1
 SYMBOLTABLEENTRY 27 nodeVariable  0 -1
 INTERPRETER 
-Run programIndex=4 programNodeType:2 programNodeValue:286
+Run programIndex=4 programNodeType:2 programNodeValue:288
 INTERPRETER rightHandSymbolTableIndex:2 0 <= 4
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=28 value=1 stackFrameIndex():254
@@ -624,7 +625,7 @@ SYMBOLTABLEENTRY 26 nodeVariable  0 -1
 SYMBOLTABLEENTRY 27 nodeVariable  0 -1
 SYMBOLTABLEENTRY 28 nodeTemporary  1 0
 INTERPRETER 
-Run programIndex=7 programNodeType:2 programNodeValue:284
+Run programIndex=7 programNodeType:2 programNodeValue:286
 INTERPRETER rightHandSymbolTableIndex:4 0 > 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=29 value=0 stackFrameIndex():253
@@ -663,7 +664,7 @@ SYMBOLTABLEENTRY 27 nodeVariable  0 -1
 SYMBOLTABLEENTRY 28 nodeTemporary  1 0
 SYMBOLTABLEENTRY 29 nodeTemporary  0 0
 INTERPRETER 
-Run programIndex=8 programNodeType:2 programNodeValue:280
+Run programIndex=8 programNodeType:2 programNodeValue:282
 INTERPRETER rightHandSymbolTableIndex:29 1 && 0
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=0 stackFrameIndex():254
@@ -1139,7 +1140,7 @@ SYMBOLTABLEENTRY 30 nodeAvailable  0 0
 SYMBOLTABLEENTRY 31 nodeFunctionReturn  -1 0
 SYMBOLTABLEENTRY 32 nodeBasePointer  0 0
 INTERPRETER 
-Run programIndex=55 programNodeType:2 programNodeValue:291
+Run programIndex=55 programNodeType:2 programNodeValue:293
 INTERPRETER rightHandSymbolTableIndex:3 2 + 7
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=33 value=9 stackFrameIndex():251
@@ -1842,7 +1843,7 @@ SYMBOLTABLEENTRY 31 nodeFunctionReturn  57 0
 SYMBOLTABLEENTRY 32 nodeBasePointer  0 0
 SYMBOLTABLEENTRY 33 nodeTemporary  3 0
 INTERPRETER 
-Run programIndex=64 programNodeType:2 programNodeValue:283
+Run programIndex=64 programNodeType:2 programNodeValue:285
 INTERPRETER rightHandSymbolTableIndex:13 7 < 10
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=34 value=1 stackFrameIndex():254
@@ -2568,7 +2569,7 @@ SYMBOLTABLEENTRY 34 nodeTemporary  1 0
 SYMBOLTABLEENTRY 35 nodeFunctionReturn  69 0
 SYMBOLTABLEENTRY 36 nodeBasePointer  0 0
 INTERPRETER 
-Run programIndex=73 programNodeType:2 programNodeValue:291
+Run programIndex=73 programNodeType:2 programNodeValue:293
 INTERPRETER rightHandSymbolTableIndex:7 7 + 2
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=37 value=9 stackFrameIndex():253
@@ -2796,7 +2797,7 @@ SYMBOLTABLEENTRY 35 nodeFunctionReturn  69 0
 SYMBOLTABLEENTRY 36 nodeBasePointer  0 0
 SYMBOLTABLEENTRY 37 nodeAvailable  9 0
 INTERPRETER 
-Run programIndex=64 programNodeType:2 programNodeValue:283
+Run programIndex=64 programNodeType:2 programNodeValue:285
 INTERPRETER rightHandSymbolTableIndex:13 9 < 10
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=38 value=1 stackFrameIndex():254
@@ -3235,7 +3236,7 @@ SYMBOLTABLEENTRY 38 nodeTemporary  1 0
 SYMBOLTABLEENTRY 39 nodeFunctionReturn  69 0
 SYMBOLTABLEENTRY 40 nodeBasePointer  0 0
 INTERPRETER 
-Run programIndex=73 programNodeType:2 programNodeValue:291
+Run programIndex=73 programNodeType:2 programNodeValue:293
 INTERPRETER rightHandSymbolTableIndex:7 9 + 2
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=41 value=11 stackFrameIndex():253
@@ -3483,7 +3484,7 @@ SYMBOLTABLEENTRY 39 nodeFunctionReturn  69 0
 SYMBOLTABLEENTRY 40 nodeBasePointer  0 0
 SYMBOLTABLEENTRY 41 nodeAvailable  11 0
 INTERPRETER 
-Run programIndex=64 programNodeType:2 programNodeValue:283
+Run programIndex=64 programNodeType:2 programNodeValue:285
 INTERPRETER rightHandSymbolTableIndex:13 11 < 10
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=42 value=0 stackFrameIndex():254
@@ -3853,3 +3854,4 @@ INTERPRETER
 Run programIndex=81 programNodeType:27 programNodeValue:0
 INTERPRETER 
 nodeProgramEnd
+LED LED off 

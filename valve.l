@@ -70,6 +70,8 @@ inputs	 	{debugPrintf("INPUTS"); return INPUTS;}
 "moveAbsolute"	{debugPrintf("MOVEABSOLUTE"); return MOVEABSOLUTE;}
 "moveRelative"	{debugPrintf("MOVERELATIVE"); return MOVERELATIVE;}
 "sleep"	        {debugPrintf("SLEEP"); return SLEEP;}
+"sleepUntil"    {debugPrintf("SLEEPUNTIL"); return SLEEPUNTIL;}
+"led"           {debugPrintf("LED"); return LED;}
 -?{digit}+		{debugPrintf("CONST"); yylval.string = strdup(yytext); return CONST;}	/* constant integer */
 -?{digit}+\.{digit}+		{debugPrintf("CONST_FLOAT"); yylval.floatingPoint = atof(yytext); return CONST_FLOAT;}	/* constant floating-point */
 {alpha}{alphanum}*	{debugPrintf("VAR"); yylval.string = strdup(yytext); return VAR;}	/* variable */
