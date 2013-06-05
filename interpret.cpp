@@ -107,8 +107,8 @@ void bufferInput(unsigned char c) {
     }
     serialInput.push(c);
     YY_BUFFER_STATE yySerialBuffer = yy_scan_bytes((const char*)serialInput.getBuffer(), TINY_QUEUE_SIZE);
-    yy_switch_to_buffer(yySerialBuffer);
-    if (yyparse() == YYPARSE_SUCCESS) {
+    yy_switch_to_buffer(yySerialBuffer);    // This is called from yy_scan_buffer() which is called from yy_scan_bytes()
+    if (yyparse() == YYPARSE_SUCCESS /*0*/) {
         if (net == nodeEmbeddedStatement) {
             parseTreeEntry pte;
             pte.level(statementNestingLevel);

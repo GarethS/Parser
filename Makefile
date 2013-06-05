@@ -48,7 +48,7 @@ lex.yy.c: valve.l Makefile valve.tab.h
 	flex $(FLEX_FLAGS) valve.l		# flex version 2.5.35
 	
 motor.yy.c: motor.l Makefile motor.tab.h
-	flex --nounistd --outfile=motor.yy.c motor.l		# flex version 2.5.35
+	flex --nounistd --noline --outfile=motor.yy.c motor.l		# flex version 2.5.35
 	
 valve.tab.c valve.tab.h:	valve.y compiler.h compilerHelper.h
 	bison $(BISON_FLAGS) valve.y	# bison version 2.4.2

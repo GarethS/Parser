@@ -47,7 +47,7 @@ int symbolFcnLink;
 
 %defines	/* generate motor.tab.h for use with motor.yy.c */
 %require "2.4.2"
-// %no-lines 
+%no-lines 
 
 
 %start program
