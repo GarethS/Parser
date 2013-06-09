@@ -144,9 +144,9 @@ nodeType stringToNodeType(const char* pc) {
     }
 }
 
-#define END_OF_TRANSMISSION_CHAR    ('$')
+#define EOT                         ('$')   // End-of-transmission
+#define EOS                         ('\0')  // End-of-string
 #define STMT_STR_LEN                (32)
-#define EOS                         ('\0')  // End of string
 static int stmtNestingLevel;
 static char stmtPosition[STMT_STR_LEN];
 static char stmtType[STMT_STR_LEN];
@@ -159,7 +159,7 @@ void bufferInput(unsigned char c) {
     static const char statementBegin[] = "<STMT>";
     static const char statementEnd[] = "<stmt>";
     
-    if (c != END_OF_TRANSMISSION_CHAR) {
+    if (c != EOT) {
         // We're called from an interrupt so get out quickly!
         serialInput.push(c);
         return;
