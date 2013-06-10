@@ -144,6 +144,36 @@ nodeType stringToNodeType(const char* pc) {
     }
 }
 
+nodeType intToNodeType(const int nt) {
+    switch (nt) {
+    case nodeVariable:
+        return nodeVariable;
+    case nodeConst:
+        return nodeConst;
+    case nodeOperator:
+        return nodeOperator;
+    case nodeTemporary:
+        return nodeTemporary;
+    case nodeFunctionCall:
+        return nodeFunctionCall;
+    case nodeFunctionDefinition:
+        return nodeFunctionDefinition;
+    case nodeArgumentValue:
+        return nodeArgumentValue;
+    case nodeArgumentReference:
+        return nodeArgumentReference;
+    case nodeBasePointer:
+        return nodeBasePointer;
+    case nodeFunctionReturn:
+        return nodeFunctionReturn;
+    case nodeAvailable:
+        return nodeAvailable;
+    case nodeInvalid:
+    default:
+        return nodeInvalid;
+    }
+}
+
 #define EOT                         ('$')   // End-of-transmission
 #define EOS                         ('\0')  // End-of-string
 #define STMT_STR_LEN                (32)
@@ -152,13 +182,24 @@ static char stmtPosition[STMT_STR_LEN];
 static char stmtType[STMT_STR_LEN];
 static int stmtValue;
 
+static int symbType;
+static int symbValue;
+static int symbFcnLink;
+
 #define YYPARSE_SUCCESS (0)
+#define FLEX_BISON      0   // Decided not to use flex/bison code due to unresolved segment fault in lexer
 void bufferInput(unsigned char c) {
     // TODO - make sure _back really starts at 0 or yy_scan_bytes won't work
     static tinyQueue<unsigned char> serialInput(0);
+
     static const char statementBegin[] = "<STMT>";
     static const char statementEnd[] = "<stmt>";
+
+    static const char symbolBegin[] = "<SYMB>";
+    static const char symbolEnd[] = "<symb>";
     
+    static const char programRun[] = "<PRUN>";
+
     if (c != EOT) {
         // We're called from an interrupt so get out quickly!
         serialInput.push(c);
@@ -170,14 +211,12 @@ void bufferInput(unsigned char c) {
         serialInput.clear();
         return;
     }
-#if 1
+#if !FLEX_BISON
     const char* pStatementBegin = strstr((const char*)serialInput.getBuffer(), (const char*)statementBegin);
     const char* pStatementEnd = strstr((const char*)serialInput.getBuffer(), (const char*)statementEnd);
     if (pStatementBegin != NULL && pStatementEnd != NULL) {
         // Got a valid statement. Typical statement: <STMT> 0 0 Start 0 <stmt>
-        int scannedItems = sscanf((const char*)serialInput.getBuffer() + strlen(statementBegin), "%d %s %s %d",
-                                  &stmtNestingLevel,
-                                  stmtPosition, stmtType, &stmtValue);
+        int scannedItems = sscanf(pStatementBegin + strlen(statementBegin), "%d %s %s %d", &stmtNestingLevel, stmtPosition, stmtType, &stmtValue);
         if (scannedItems == 4) {
             parseTreeEntry pte;
             pte.level(stmtNestingLevel);
@@ -187,12 +226,37 @@ void bufferInput(unsigned char c) {
             bool atpSuccess = interpreter.appendToProgram(pte);
             serialInput.clear();
             postMsg(atpSuccess);
+            return;
         }
-#else    
+    }
+    const char* pSymbolBegin = strstr((const char*)serialInput.getBuffer(), (const char*)symbolBegin);
+    const char* pSymbolEnd = strstr((const char*)serialInput.getBuffer(), (const char*)symbolEnd);
+    if (pSymbolBegin != NULL && pSymbolEnd != NULL) {
+        // Got a valid symbol. Typical symbol: <SYMB> 16 0 0 <symb>
+        int scannedItems = sscanf(pSymbolBegin + strlen(symbolBegin), "%d %d %d", &symbType, &symbValue, &symbFcnLink);
+        if (scannedItems == 3) {
+            symbolTableEntry ste;
+            ste.type(intToNodeType(symbType));
+            ste.value(symbValue);
+            ste.fcnLink(symbFcnLink);
+            bool atstSuccess = interpreter.appendToSymbolTable(ste);
+            serialInput.clear();
+            postMsg(atstSuccess);            
+            return;
+        }
+    }
+    const char* pProgramRun = strstr((const char*)serialInput.getBuffer(), (const char*)programRun);
+    if (pProgramRun != NULL) {
+        serialInput.clear();
+        postMsg(TRUE);
+        // Start interpreter running here.
+        return;
+    }
+    
+#else   // not FLEX_BISON   
     YY_BUFFER_STATE yySerialBuffer = yy_scan_bytes((const char*)serialInput.getBuffer(), TINY_QUEUE_SIZE);
     yy_switch_to_buffer(yySerialBuffer);    // This is called from yy_scan_buffer() which is called from yy_scan_bytes()
     if (yyparse() == YYPARSE_SUCCESS /*0*/) {
-#endif    
         if (net == nodeEmbeddedStatement) {
             parseTreeEntry pte;
             pte.level(statementNestingLevel);
@@ -215,6 +279,7 @@ void bufferInput(unsigned char c) {
         }
         serialInput.clear();
     }
+#endif  // FLEX_BISON    
 }
 #endif /* CYGWIN */
 
