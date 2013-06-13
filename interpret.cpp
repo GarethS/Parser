@@ -65,6 +65,7 @@ extern int symbolValue;
 extern int symbolFcnLink;
 
 void UARTSend(const unsigned char *pucBuffer, unsigned long ulCount);
+void interpretRun(void);
 
 //FreeRTOS specific below
 static portTickType xTaskWakeTime;
@@ -74,6 +75,18 @@ portTickType xTaskGetTickCount( void ) PRIVILEGED_FUNCTION; // task.h
 }   // extern "C"
 
 interpret interpreter;
+static bool interpreterRunBool = FALSE;
+
+void interpretRun(void) {
+    for (;;) {
+        if (interpreterRunBool) {
+            interpreter.run();
+        } else {
+            // interpreter.stop();
+            vTaskDelay(100 / portTICK_RATE_MS);
+        }
+    }
+}
 
 void successMsg(void) {
     static const char* msg = "<OK>";
@@ -249,7 +262,7 @@ void bufferInput(unsigned char c) {
     if (pProgramRun != NULL) {
         serialInput.clear();
         postMsg(TRUE);
-        // Start interpreter running here.
+        interpreterRunBool = TRUE;
         return;
     }
     
