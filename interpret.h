@@ -75,6 +75,8 @@ private:
     void _shortCircuitOptimization(void);
     void _resetSymbolTableTemporaryBoundary(void) {_symbolTableIndex = _symbolTableTemporaryBoundaryIndex;}
     void _pushTemporarySymbolOnEvaluationStack(unsigned int value);
+    int _findFirstAvailableNodeInSymbolTable(void);
+    void _cleanUpEvaluationStack(const unsigned int count);
     //unsigned int _functionArgumentIndexToStackFrameIndex(const unsigned int functionArgumentIndex) {}
     int symbolTableIndexMorph(const int symbolTableIndex);
     int symbolFromIndex(const int symbolTableIndex) {return _symbolTable[symbolTableIndexMorph(symbolTableIndex)].value();} // get symbol
@@ -83,7 +85,7 @@ private:
     parseTreeEntry _program[MAX_PROGRAM_ENTRY];
     symbolTableEntry _symbolTable[MAX_SYMBOL_TABLE_ENTRY];
     int _programIndex;  // Negative values indicate a built-in function
-    unsigned int _symbolTableIndex;
+    unsigned int _symbolTableIndex; // Always points to an available symbol location
     // Stack frames on the intel 8086 were set up using the idiom:
     //   push bp
     //   move bp, sp

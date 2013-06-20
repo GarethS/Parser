@@ -80,6 +80,7 @@ static bool interpreterRunBool = FALSE;
 void interpretRun(void) {
     for (;;) {
         if (interpreterRunBool) {
+            led::enable(1);    
             interpreter.run();
         } else {
             // interpreter.stop();
@@ -585,11 +586,12 @@ void interpret::run(void) {
 #endif /* CYGWIN */            
             if (_programIndex == PROGRAM_INDEX_START) {
                 // Entering main
-                ++_programIndex;
+                //++_programIndex;
             } else {
-                // End of function, time to return from whence we came. In other words, hitting a function definition means we've reached the end of the current function.
+                // End of function, time to return from whence we came. In other words, hitting a function definition means we've reached end of current function.
                 {
                     // TODO: This is the time to return any nodeTemporary symbols on the _evaluationStack to being marked as nodeUnused
+                    // TODO: Time to return nodeFunctionReturn and nodeBasePointer to nodeAvailable
                     unsigned int nodeFunctionReturnIndex = _evaluationStack.peekAtIndex(_bp+1); 
                     //oss() << endl << "!!!nodeFunctionReturnIndex:" << nodeFunctionReturnIndex;
                     //dump();
@@ -612,7 +614,7 @@ void interpret::run(void) {
             //_programIndex = _currentProgramNodeValue();
             //int ifEval0Value = _evalValuePeek();
             if (_symbolTable[_evalValue()].value()) {
-                // TRUE on evaluation stack
+                // TRUE on evaluation stack so just carry on with the next statement
             } else {
                 // FALSE on evaluation stack
 #if CYGWIN
@@ -635,6 +637,7 @@ void interpret::run(void) {
             
             localSymbolTableIndex = _evalValue();
             if (_symbolTable[localSymbolTableIndex].type() == nodeTemporary) {
+                // TODO: Need to do this for: nodeWhileEval0 
                 // Return temporary variable to pool
                  _symbolTable[localSymbolTableIndex].type(nodeAvailable);
             }
@@ -772,8 +775,17 @@ void interpret::run(void) {
                     _evaluationStack.stackFrameIndex(_bp);   // mov sp, bp
                     unsigned int bpIndex = _evaluationStack.front();
                     _bp = _symbolTable[bpIndex].value();
+                    
+                    // Need to clean up symbols associated with the bp and function return index. Do it here.
+#if CYGWIN
+                    oss() << "Front" << _evaluationStack.front() << endl;
+                    dump();
+#endif /* CYGWIN */    
+                    //_cleanUpEvaluationStack(2);   // clean up base pointer index, then function return index
+                    _symbolTable[_evaluationStack.front()].type(nodeAvailable);
                     _evaluationStack.pop_front();
                     
+                    _symbolTable[_evaluationStack.front()].type(nodeAvailable);
                     _evaluationStack.pop_front();   // pop the function return index
                 } else {
                     _programIndex = tentativeProgramIndex;
@@ -810,6 +822,13 @@ void interpret::run(void) {
 #endif /* CYGWIN */    
     }
     _resetSymbolTableTemporaryBoundary();
+}
+
+void interpret::_cleanUpEvaluationStack(const unsigned int count) {
+    for (unsigned int i = 0; i < count; ++i) {
+        _symbolTable[_evaluationStack.front()].type(nodeAvailable);
+        _evaluationStack.pop_front();
+    }
 }
 
 void interpret::_shortCircuitOptimization(void) {
@@ -1085,9 +1104,36 @@ void interpret::evaluate(unsigned int op) {
 
 void interpret::_pushTemporarySymbolOnEvaluationStack(unsigned int value) {
     symbolTableEntry temporarySymbol(nodeTemporary, value); 
+#if 1
+    int availableSymbolTableIndex = _findFirstAvailableNodeInSymbolTable();
+    if (availableSymbolTableIndex != NOT_FOUND) {
+        // Found a nodeAvailable
+        _symbolTable[availableSymbolTableIndex] = temporarySymbol;
+        _evaluationStack.push_front(availableSymbolTableIndex);
+        return;
+    }
+#endif    
     _symbolTable[_symbolTableIndex] = temporarySymbol;
     _evaluationStack.push_front(_symbolTableIndex++);
     assert(_symbolTableIndex < MAX_SYMBOL_TABLE_ENTRY);
+}
+
+int interpret::_findFirstAvailableNodeInSymbolTable(void) {
+    if (_symbolTableIndex == 0) {
+        return NOT_FOUND;
+    }
+    unsigned int index = _symbolTableIndex - 1;
+    for (; index != 0; --index) {
+#if 0 //CYGWIN
+        oss() << endl << "index:" << index;
+        dump();
+#endif /* CYGWIN */    
+        symbolTableEntry ste = _symbolTable[index];
+        if (ste.type() == nodeAvailable) {
+            return index;
+        }
+    }
+    return NOT_FOUND;
 }
 
 #if CYGWIN
