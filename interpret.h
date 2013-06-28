@@ -82,7 +82,7 @@ private:
     void _cleanUpEvaluationStack(const unsigned int count);
     void _cleanUpSymbolTable(void);
     void _returnSymbolToAvailablePool(const unsigned int symbolTableIndex) {if (_symbolTable[symbolTableIndex].type() == nodeTemporary) {_symbolTable[symbolTableIndex].type(nodeAvailable);}}
-    void _updateProgramIndex(const nodeType thisNodeType);
+    void _updateProgramIndex(const nodeType thisNodeType, const int programIndex);
     unsigned int _getLastSymbolTableIndex(void) {if (_symbolTableIndex == 0) {return _symbolTableIndex;} return _symbolTableIndex - 1;}
  
     //unsigned int _functionArgumentIndexToStackFrameIndex(const unsigned int functionArgumentIndex) {}

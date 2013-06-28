@@ -618,14 +618,7 @@ void interpret::run(void) {
                 //oss() << endl << "!!nodeWhileEval0 _currentProgramNodeValue():" << _currentProgramNodeValue() << " _currentProgramNodeLevel()" << _currentProgramNodeLevel() ;
                 //dump();
 #endif /* CYGWIN */ 
-                //_updateProgramIndex(nodeEndWhile);
-                parseTreeEntry pte(nodeEndWhile, _currentProgramNodeValue(), _currentProgramNodeLevel() );
-                int newProgramIndex = _findFirstParseTreeEntry(pte, _programIndex);
-                if (newProgramIndex == NOT_FOUND) {
-                    assert(newProgramIndex != NOT_FOUND);
-                } else {
-                    _programIndex = newProgramIndex; // Jump one past nodeIfEval0
-                }
+                _updateProgramIndex(nodeEndWhile, _programIndex);
             }
             break;
         case nodeIfEval0:
@@ -636,20 +629,13 @@ void interpret::run(void) {
             localSymbolTableIndex = _evalValue();
             _returnSymbolToAvailablePool(localSymbolTableIndex);
             if (_symbolTable[localSymbolTableIndex].value()) {
-                ++_programIndex;    // TODO: Is this correct? Don't need to do it for While statement. Looks suspicious!
+                //++_programIndex;    // TODO: Is this correct? Don't need to do it for While statement. Looks suspicious!
             } else {
 #if CYGWIN
                 //oss() << endl << "!!nodeIfEval0 _currentProgramNodeValue():" << _currentProgramNodeValue() << " _currentProgramNodeLevel()" << _currentProgramNodeLevel() ;
                 //dump();
 #endif /* CYGWIN */  
-                //_updateProgramIndex(nodeElse);
-                parseTreeEntry pte(nodeElse, _currentProgramNodeValue(), _currentProgramNodeLevel() );
-                int newProgramIndex = _findFirstParseTreeEntry(pte, _programIndex);
-                if (newProgramIndex == NOT_FOUND) {
-                    assert(newProgramIndex != NOT_FOUND);
-                } else {
-                    _programIndex = newProgramIndex; // Jump one past nodeIfEval0
-                }
+                _updateProgramIndex(nodeElse, _programIndex);
             }
 #if CYGWIN
             //oss() << endl << "!!nodeIfEval0 _programIndex:" << _programIndex;
@@ -658,32 +644,13 @@ void interpret::run(void) {
             break;
         case nodeJmpEndIf:
             {
-                //_updateProgramIndex(nodeEndIf);
-                parseTreeEntry pte(nodeEndif, _currentProgramNodeValue(), _currentProgramNodeLevel() );
-                int newProgramIndex = _findFirstParseTreeEntry(pte, _programIndex);
-                if (newProgramIndex == NOT_FOUND) {
-                    assert(newProgramIndex != NOT_FOUND);
-                } else {
-                    _programIndex = newProgramIndex;
-                }
+                _updateProgramIndex(nodeEndif, _programIndex);
             }
             break;
         case nodeEndWhile:
             {
                 // At end of while loop and want to jump back to the beginning
-                //_updateProgramIndex(nodeWhile);
-                parseTreeEntry pte(nodeWhile, _currentProgramNodeValue(), _currentProgramNodeLevel() );
-#if CYGWIN
-                pte.dumpEntry();
-                //oss() << endl << "!!_currentProgramNodeValue():" << _currentProgramNodeValue() << " _currentProgramNodeLevel():" << _currentProgramNodeLevel();
-                //dump();
-#endif /* CYGWIN */                
-                int newProgramIndex = _findFirstParseTreeEntry(pte, 0);
-                if (newProgramIndex == NOT_FOUND) {
-                    assert(newProgramIndex != NOT_FOUND);
-                } else {
-                    _programIndex = newProgramIndex;
-                }
+                _updateProgramIndex(nodeWhile, 0);
             }
             break;
         case nodeFunctionCall:
@@ -816,9 +783,9 @@ void interpret::run(void) {
     _resetSymbolTableTemporaryBoundary();
 }
 
-void interpret::_updateProgramIndex(const nodeType thisNodeType) {
+void interpret::_updateProgramIndex(const nodeType thisNodeType, const int programIndex) {
     parseTreeEntry pte(thisNodeType, _currentProgramNodeValue(), _currentProgramNodeLevel() );
-    int newProgramIndex = _findFirstParseTreeEntry(pte, _programIndex);
+    int newProgramIndex = _findFirstParseTreeEntry(pte, programIndex);
     if (newProgramIndex == NOT_FOUND) {
         assert(newProgramIndex != NOT_FOUND);
     } else {

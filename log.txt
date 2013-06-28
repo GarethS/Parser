@@ -2571,7 +2571,6 @@ SYMBOLTABLEENTRY 28 nodeAvailable  9 0
 SYMBOLTABLEENTRY 29 nodeTemporary  3 0
 INTERPRETER 
 Run programIndex=75 programNodeType:22 programNodeValue:2
-PARSETREEENTRY3 nodeWhile level():0 value():2
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -3111,7 +3110,6 @@ SYMBOLTABLEENTRY 28 nodeAvailable  11 0
 SYMBOLTABLEENTRY 29 nodeTemporary  3 0
 INTERPRETER 
 Run programIndex=75 programNodeType:22 programNodeValue:2
-PARSETREEENTRY3 nodeWhile level():0 value():2
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
