@@ -261,6 +261,7 @@ void bufferInput(unsigned char c) {
     }
     const char* pProgramRun = strstr((const char*)serialInput.getBuffer(), (const char*)programRun);
     if (pProgramRun != NULL) {
+        interpreter.setLowWaterMarkForTemporarySymbolSearch();
         serialInput.clear();
         postMsg(TRUE);
         interpreterRunBool = TRUE;
@@ -352,6 +353,7 @@ bool interpret::appendToSymbolTable(const symbolTableEntry& ste) {
     return true;
 }
 
+#if CYGWIN
 bool interpret::_loadParseTreeEntry(const string& inputString) {
     istringstream iss(inputString);
     string prefix;
@@ -445,7 +447,6 @@ bool interpret::_loadSymbolTableEntry(const string& inputString) {
     return appendToSymbolTable(ste);
 }
 
-#if CYGWIN
 void interpret::_loadTree(const string& s) {
     ifstream ifs(s.c_str());
     if (!ifs) {
@@ -494,7 +495,7 @@ void interpret::_loadSymbolTable(const string& s) {
             break;
         }
     }
-    _symbolTableTemporaryBoundaryIndex = _symbolTableIndex;
+    setLowWaterMarkForTemporarySymbolSearch();
     ifs.close();
 }
 
@@ -509,7 +510,7 @@ void interpret::dumpProgram(void) {
 void interpret::dumpSymbolTable(void) {
     oss() << "interpret::dumpSymbolTable";
     dump();
-    for (int i = 0; _symbolTable[i].type() != nodeInvalid; ++i) {
+    for (unsigned int i = 0; i < _symbolTableIndex; ++i) {
         oss() << i << " ";
         _symbolTable[i].dumpEntry();
     }
@@ -600,27 +601,24 @@ void interpret::run(void) {
                     _evaluationStack.stackFrameIndex(_bp);   // mov sp, bp
                     unsigned int bpIndex = _evaluationStack.front();
                     _bp = _symbolTable[bpIndex].value();
-                    _evaluationStack.pop_front();
-                    
-                    _evaluationStack.pop_front();   // pop the function return index
+                    _cleanUpEvaluationStack(2);   // clean up base pointer index, then function return index
                 }
             }
             break;
         case nodeWhileEval0:
-            // Result of nodeIf now sits on top of evaluation stack. If it's 0
-            //  jump to nodeElse of that same index.
-            // Get value from top of _evaluationStack
-            
             //_programIndex = _currentProgramNodeValue();
             //int ifEval0Value = _evalValuePeek();
-            if (_symbolTable[_evalValue()].value()) {
+            localSymbolTableIndex = _evalValue();
+            _returnSymbolToAvailablePool(localSymbolTableIndex);
+            if (_symbolTable[localSymbolTableIndex].value()) {
                 // TRUE on evaluation stack so just carry on with the next statement
             } else {
                 // FALSE on evaluation stack
 #if CYGWIN
                 //oss() << endl << "!!nodeWhileEval0 _currentProgramNodeValue():" << _currentProgramNodeValue() << " _currentProgramNodeLevel()" << _currentProgramNodeLevel() ;
                 //dump();
-#endif /* CYGWIN */                
+#endif /* CYGWIN */ 
+                //_updateProgramIndex(nodeEndWhile);
                 parseTreeEntry pte(nodeEndWhile, _currentProgramNodeValue(), _currentProgramNodeLevel() );
                 int newProgramIndex = _findFirstParseTreeEntry(pte, _programIndex);
                 if (newProgramIndex == NOT_FOUND) {
@@ -636,18 +634,15 @@ void interpret::run(void) {
             // Get value from top of _evaluationStack
             
             localSymbolTableIndex = _evalValue();
-            if (_symbolTable[localSymbolTableIndex].type() == nodeTemporary) {
-                // TODO: Need to do this for: nodeWhileEval0 
-                // Return temporary variable to pool
-                 _symbolTable[localSymbolTableIndex].type(nodeAvailable);
-            }
+            _returnSymbolToAvailablePool(localSymbolTableIndex);
             if (_symbolTable[localSymbolTableIndex].value()) {
-                ++_programIndex;    // TODO: Is this correct? Don't need to do it for While statement
+                ++_programIndex;    // TODO: Is this correct? Don't need to do it for While statement. Looks suspicious!
             } else {
 #if CYGWIN
                 //oss() << endl << "!!nodeIfEval0 _currentProgramNodeValue():" << _currentProgramNodeValue() << " _currentProgramNodeLevel()" << _currentProgramNodeLevel() ;
                 //dump();
-#endif /* CYGWIN */                
+#endif /* CYGWIN */  
+                //_updateProgramIndex(nodeElse);
                 parseTreeEntry pte(nodeElse, _currentProgramNodeValue(), _currentProgramNodeLevel() );
                 int newProgramIndex = _findFirstParseTreeEntry(pte, _programIndex);
                 if (newProgramIndex == NOT_FOUND) {
@@ -663,6 +658,7 @@ void interpret::run(void) {
             break;
         case nodeJmpEndIf:
             {
+                //_updateProgramIndex(nodeEndIf);
                 parseTreeEntry pte(nodeEndif, _currentProgramNodeValue(), _currentProgramNodeLevel() );
                 int newProgramIndex = _findFirstParseTreeEntry(pte, _programIndex);
                 if (newProgramIndex == NOT_FOUND) {
@@ -675,6 +671,7 @@ void interpret::run(void) {
         case nodeEndWhile:
             {
                 // At end of while loop and want to jump back to the beginning
+                //_updateProgramIndex(nodeWhile);
                 parseTreeEntry pte(nodeWhile, _currentProgramNodeValue(), _currentProgramNodeLevel() );
 #if CYGWIN
                 pte.dumpEntry();
@@ -780,13 +777,8 @@ void interpret::run(void) {
 #if CYGWIN
                     oss() << "Front" << _evaluationStack.front() << endl;
                     dump();
-#endif /* CYGWIN */    
-                    //_cleanUpEvaluationStack(2);   // clean up base pointer index, then function return index
-                    _symbolTable[_evaluationStack.front()].type(nodeAvailable);
-                    _evaluationStack.pop_front();
-                    
-                    _symbolTable[_evaluationStack.front()].type(nodeAvailable);
-                    _evaluationStack.pop_front();   // pop the function return index
+#endif /* CYGWIN */ 
+                    _cleanUpEvaluationStack(2);   // clean up base pointer index, then function return index
                 } else {
                     _programIndex = tentativeProgramIndex;
                 }
@@ -824,10 +816,36 @@ void interpret::run(void) {
     _resetSymbolTableTemporaryBoundary();
 }
 
+void interpret::_updateProgramIndex(const nodeType thisNodeType) {
+    parseTreeEntry pte(thisNodeType, _currentProgramNodeValue(), _currentProgramNodeLevel() );
+    int newProgramIndex = _findFirstParseTreeEntry(pte, _programIndex);
+    if (newProgramIndex == NOT_FOUND) {
+        assert(newProgramIndex != NOT_FOUND);
+    } else {
+        _programIndex = newProgramIndex;
+    }
+}
+
 void interpret::_cleanUpEvaluationStack(const unsigned int count) {
+#if CYGWIN
+    //oss() << "_cleanUpEvaluationStack" << endl;
+    //dump();
+#endif // CYGWIN
     for (unsigned int i = 0; i < count; ++i) {
-        _symbolTable[_evaluationStack.front()].type(nodeAvailable);
+        _symbolTable[_evalValuePeek()].type(nodeAvailable);
         _evaluationStack.pop_front();
+    }
+    _cleanUpSymbolTable();
+}
+
+void interpret::_cleanUpSymbolTable(void) {
+#if CYGWIN
+    //oss() << "_cleanUpSymbolTable:_symbolTableIndex:" << _getLastSymbolTableIndex() << " type:" << _symbolTable[_getLastSymbolTableIndex()].type() << endl;
+    //dump();
+#endif // CYGWIN
+    while (_symbolTable[_getLastSymbolTableIndex()].type() == nodeAvailable) {
+        //_symbolTable[_getLastSymbolTableIndex()].type(nodeInvalid);
+        --_symbolTableIndex;
     }
 }
 
@@ -1122,8 +1140,8 @@ int interpret::_findFirstAvailableNodeInSymbolTable(void) {
     if (_symbolTableIndex == 0) {
         return NOT_FOUND;
     }
-    unsigned int index = _symbolTableIndex - 1;
-    for (; index != 0; --index) {
+    assert(_getLastSymbolTableIndex() >= getLowWaterMarkForTemporarySymbolSearch());
+    for (unsigned int index = _getLastSymbolTableIndex(); index > getLowWaterMarkForTemporarySymbolSearch(); --index) {
 #if 0 //CYGWIN
         oss() << endl << "index:" << index;
         dump();
