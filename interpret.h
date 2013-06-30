@@ -31,7 +31,7 @@ using namespace std;
 #define MAX_PROGRAM_ENTRY           (200)
 #define MAX_SYMBOL_TABLE_ENTRY      (60)
 #define PROGRAM_INDEX_START         (0)
-#define VERSION_STRING              "0.0.5"
+#define VERSION_STRING              "0.0.6"
 
 extern "C" {
 void bufferInput(unsigned char c);
@@ -54,6 +54,7 @@ public:
     void dumpSymbolTable(void);
     void dumpEvaluationStack(void);
 #else /* not CYGWIN */
+    stepper* getStepper(void) {return &_s;}
     void setLowWaterMarkForTemporarySymbolSearch(void) {_symbolTableTemporaryBoundaryIndex = _symbolTableIndex - 1;}
 #endif /* CYGWIN */    
     void run(void);

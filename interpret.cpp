@@ -76,10 +76,12 @@ portTickType xTaskGetTickCount( void ) PRIVILEGED_FUNCTION; // task.h
 
 interpret interpreter;
 static bool interpreterRunBool = FALSE;
+extern stepper* sp;
 
 void interpretRun(void) {
     for (;;) {
         if (interpreterRunBool) {
+            sp = interpreter.getStepper();
             led::enable(1);    
             interpreter.run();
         } else {

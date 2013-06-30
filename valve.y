@@ -211,7 +211,7 @@ int main ()
 	// To turn on debugging, make sure the next line is uncommented and
 	//  turn on the -t (also use -v -l) options in bison.exe.
 	yydebug = 1; 
-    yyin = fopen("valve4.def", "r" );
+    yyin = fopen("valve5.def", "r" );
 	yyparse ();
     return 0;
 }

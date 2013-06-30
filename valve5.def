@@ -1,0 +1,16 @@
+// "So easy, even your Granny could do it."  (c) 2013
+main () {
+    count = 0;
+    on = 1;
+    x = 0;
+    while (count < 4) {
+        on = 1;
+        led(&x, on);
+        //moveRelative(&x, 1000);
+        on = 0;
+        sleep(&x, 1000);
+        led(&x, on);
+        sleep(&x, 1000);
+        count = count + 1;
+    }
+}
