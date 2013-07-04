@@ -84,6 +84,7 @@ void interpretRun(void) {
             sp = interpreter.getStepper();
             led::enable(1);    
             interpreter.run();
+            interpreterRunBool = FALSE;  // Send another <PRUN> command to start again.
         } else {
             // interpreter.stop();
             vTaskDelay(100 / portTICK_RATE_MS);
@@ -538,8 +539,15 @@ void interpret::dumpEvaluationStack(void) {
 void interpret::run(void) {
     assert(_evaluationStack.empty());
     int localSymbolTableIndex;
+#if CYGWIN
+#define CYGWIN_MAX_INFINITE_LOOP    (1000)
+    static int infiniteLoopCounter = 0;
+#endif /* CYGWIN */    
     for (_programIndex = 0; _program[_programIndex].type() != nodeInvalid; ++_programIndex) {
 #if CYGWIN
+        if (++infiniteLoopCounter > CYGWIN_MAX_INFINITE_LOOP) {
+            break;
+        }
         oss() << endl << "Run programIndex=" << _programIndex << " programNodeType:" << _currentProgramNodeType() << " programNodeValue:" << _currentProgramNodeValue();
         dump();
         //dumpEvaluationStack();

@@ -1,16 +1,23 @@
-// "So easy, even your Granny could do it."  (c) 2013
+// "So easy, even your Granny could do it." 
 main () {
     count = 0;
     on = 1;
     x = 0;
-    while (count < 4) {
+    while (count < 12) {
         on = 1;
         led(&x, on);
-        //moveRelative(&x, 1000);
+        if (count == 2 || count == 4) {
+            moveRelative(&x, 800);
+        } else {
+            moveRelative(&x, 100);
+        }
         on = 0;
         sleep(&x, 1000);
         led(&x, on);
         sleep(&x, 1000);
         count = count + 1;
+        if (count >= 10) {
+            count = 0;
+        }
     }
 }

@@ -4,7 +4,13 @@
 <SYMB> 1 1 -1 <symb>
 <SYMB> 0 0 -1 <symb>
 <SYMB> 0 0 -1 <symb>
-<SYMB> 1 4 -1 <symb>
+<SYMB> 1 12 -1 <symb>
 <SYMB> 15 2 -6 <symb>
+<SYMB> 1 2 -1 <symb>
+<SYMB> 1 4 -1 <symb>
+<SYMB> 1 800 -1 <symb>
+<SYMB> 15 2 -3 <symb>
+<SYMB> 1 100 -1 <symb>
 <SYMB> 1 1000 -1 <symb>
 <SYMB> 15 2 -4 <symb>
+<SYMB> 1 10 -1 <symb>
