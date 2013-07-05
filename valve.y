@@ -605,7 +605,7 @@ astNode* getNextStatementNode(void) {
 
 // A variable may not start with a number. One that does is considered a constant.
 int isConstant(symbolNode* pVar) {
-	if (isdigit((int)pVar->name[0])) {
+	if (isdigit((int)pVar->name[0]) || (pVar->name[0] == '-' && isdigit((int)pVar->name[1]))) {
 		return TRUE;
 	}
 	return FALSE;
