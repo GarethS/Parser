@@ -1,4 +1,4 @@
-                                                                                                                                                                          
+                                                                                                                                                                                                               
 FunctionDefn: main
 Statement:
 *LEFT Var: index,2 name,count
@@ -13,10 +13,18 @@ Statement:
 *RIGHT Var: index,1 name,0
 ROOT Operator: = 262
 Statement:
+*LEFT Var: index,7 name,limit
+*RIGHT Var: index,6 name,16
+ROOT Operator: = 262
+Statement:
+*LEFT Var: index,9 name,moveDistance
+*RIGHT Var: index,8 name,60
+ROOT Operator: = 262
+Statement:
 ROOT
 While 1
 **LEFT Var: index,2 name,count
-**RIGHT Var: index,6 name,12
+**RIGHT Var: index,10 name,142
 *LEFT Operator: < 285
 If EVALWHILE == 0 JMP EndWhile 1
 Statement:
@@ -24,37 +32,37 @@ Statement:
 *RIGHT Var: index,3 name,1
 ROOT Operator: = 262
 Statement:
-ROOT FunctionCall: index,7 name,LED
+ROOT FunctionCall: index,11 name,LED
 Statement:
 ROOT Var: index,5 name,x
 Statement:
 ROOT Var: index,4 name,on 
-FunctionCallEnd: index,7 name,LED
+FunctionCallEnd: index,11 name,LED
 Statement:
 *LEFT Var: index,4 name,on
 *RIGHT Var: index,1 name,0
 ROOT Operator: = 262
 Statement:
-ROOT FunctionCall: index,9 name,sleep
+ROOT FunctionCall: index,13 name,sleep
 Statement:
 ROOT Var: index,5 name,x
 Statement:
-ROOT Var: index,8 name,500 
-FunctionCallEnd: index,9 name,sleep
+ROOT Var: index,12 name,500 
+FunctionCallEnd: index,13 name,sleep
 Statement:
-ROOT FunctionCall: index,7 name,LED
+ROOT FunctionCall: index,11 name,LED
 Statement:
 ROOT Var: index,5 name,x
 Statement:
 ROOT Var: index,4 name,on 
-FunctionCallEnd: index,7 name,LED
+FunctionCallEnd: index,11 name,LED
 Statement:
-ROOT FunctionCall: index,9 name,sleep
+ROOT FunctionCall: index,13 name,sleep
 Statement:
 ROOT Var: index,5 name,x
 Statement:
-ROOT Var: index,8 name,500 
-FunctionCallEnd: index,9 name,sleep
+ROOT Var: index,12 name,500 
+FunctionCallEnd: index,13 name,sleep
 Statement:
 *LEFT Var: index,2 name,count
 **LEFT Var: index,2 name,count
@@ -65,16 +73,24 @@ Statement:
 ROOT
 If 0
 **LEFT Var: index,2 name,count
-**RIGHT Var: index,10 name,10
+**RIGHT Var: index,7 name,limit
 *LEFT Operator: > 286
 If EVAL == 0 JMP Else 0
 Statement:
-ROOT FunctionCall: index,12 name,moveRelative
+*LEFT Var: index,15 name,moveBack
+***LEFT Var: index,9 name,moveDistance
+***RIGHT Var: index,7 name,limit
+**LEFT Operator: * 296
+**RIGHT Var: index,14 name,-1
+*RIGHT Operator: * 296
+ROOT Operator: = 262
+Statement:
+ROOT FunctionCall: index,16 name,moveRelative
 Statement:
 ROOT Var: index,5 name,x
 Statement:
-ROOT Var: index,11 name,-1000 
-FunctionCallEnd: index,12 name,moveRelative
+ROOT Var: index,15 name,moveBack 
+FunctionCallEnd: index,16 name,moveRelative
 Statement:
 *LEFT Var: index,2 name,count
 *RIGHT Var: index,1 name,0
@@ -82,12 +98,12 @@ ROOT Operator: = 262
 JMP EndIf 0
 Else 0
 Statement:
-ROOT FunctionCall: index,12 name,moveRelative
+ROOT FunctionCall: index,16 name,moveRelative
 Statement:
 ROOT Var: index,5 name,x
 Statement:
-ROOT Var: index,13 name,100 
-FunctionCallEnd: index,12 name,moveRelative
+ROOT Var: index,9 name,moveDistance 
+FunctionCallEnd: index,16 name,moveRelative
 EndIf 0
 EndWhile 1
 ProgramEnd
@@ -99,12 +115,15 @@ index:2, name:count, type:0, val:0
 index:3, name:1, type:1, val:1
 index:4, name:on, type:0, val:0
 index:5, name:x, type:0, val:0
-index:6, name:12, type:1, val:12
-index:7, name:LED, type:15, val:2, fcnLink:-6
-index:8, name:500, type:1, val:500
-index:9, name:sleep, type:15, val:2, fcnLink:-4
-index:10, name:10, type:1, val:10
-index:11, name:-1000, type:1, val:-1000
-index:12, name:moveRelative, type:15, val:2, fcnLink:-3
-index:13, name:100, type:1, val:100
+index:6, name:16, type:1, val:16
+index:7, name:limit, type:0, val:0
+index:8, name:60, type:1, val:60
+index:9, name:moveDistance, type:0, val:0
+index:10, name:142, type:1, val:142
+index:11, name:LED, type:15, val:2, fcnLink:-6
+index:12, name:500, type:1, val:500
+index:13, name:sleep, type:15, val:2, fcnLink:-4
+index:14, name:-1, type:1, val:-1
+index:15, name:moveBack, type:0, val:0
+index:16, name:moveRelative, type:15, val:2, fcnLink:-3
 Symbol table end:

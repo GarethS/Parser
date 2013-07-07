@@ -3,19 +3,22 @@ main () {
     count = 0;
     on = 1;
     x = 0;
-    while (count < 12) {
+    limit = 16;
+    moveDistance = 120;
+    while (count < 142) {
         on = 1;
-        led(&x, on);
+        led(&x, on);    // The first paramater, &x, is the return value and is pass-by-reference
         on = 0;
         sleep(&x, 500);
         led(&x, on);
         sleep(&x, 500);
         count = count + 1;
-        if (count > 10) {
-            moveRelative(&x, -1000);
+        if (count > limit) {
+            moveBack = moveDistance * limit * -1;   // Fix me: Should be able to say: -limit
+            moveRelative(&x, moveBack);
             count = 0;
         } else {
-            moveRelative(&x, 100);
+            moveRelative(&x, moveDistance);
         }
     }
 }
