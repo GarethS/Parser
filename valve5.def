@@ -4,7 +4,7 @@ main () {
     on = 1;
     x = 0;
     limit = 16;
-    moveDistance = 120;
+    moveDistance = 60;
     while (count < 142) {
         on = 1;
         led(&x, on);    // The first paramater, &x, is the return value and is pass-by-reference
@@ -14,7 +14,7 @@ main () {
         sleep(&x, 500);
         count = count + 1;
         if (count > limit) {
-            moveBack = moveDistance * limit * -1;   // Fix me: Should be able to say: -limit
+            moveBack = moveDistance * -limit;
             moveRelative(&x, moveBack);
             count = 0;
         } else {

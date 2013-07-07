@@ -142,7 +142,10 @@ statementAssign:    VAR EQUAL expr SEMI	                            {/*printf("\
 //                    | array EQUAL expr SEMI                       {$$ = addNodeBinaryOperator(EQUAL, $1, $3);}
                       | VAR LBRACKET expr RBRACKET EQUAL expr SEMI  {$$ = addNodeBinaryOperator(EQUAL, addNodeArray($1, $3), $6);} // array    
 
-expr:	LPAREN expr RPAREN	            {$$ = $2;}
+                                        /* First statement makes sure '-1' is in symbol table. Second statement multiplies expression by that symbol (i.e. '-1') */
+expr:	MINUS expr	                    {astNode* pMinusOneNode = addNodeSymbolIndex(addVarToSymbolTable("-1")); $$ = addNodeBinaryOperator(MULT, $2, pMinusOneNode);}
+        | BANG expr                     {$$ = addNodeBinaryOperator(BANG, $2, NULL);}
+        | LPAREN expr RPAREN	        {$$ = $2;}
 		| expr PLUS  expr	            {$$ = addNodeBinaryOperator(PLUS, $1, $3);}
 		| expr MINUS expr	            {$$ = addNodeBinaryOperator(MINUS, $1, $3);}
 		| expr MULT  expr	            {$$ = addNodeBinaryOperator(MULT, $1, $3);}
@@ -403,6 +406,11 @@ astNode* addNodeBinaryOperator(int operator, astNode* pLeft, astNode* pRight) {
 	p->pLeft    = pLeft;
 	p->pRight   = pRight;
 	return p;	
+}
+
+// e.g. '!variableName'
+astNode* addNodeUnaryOperator(int operator, astNode* pRight) {
+    return addNodeBinaryOperator(operator, NULL, pRight);
 }
 
 // e.g. 'c3 = 4 * c1;' where 'operator' is '='

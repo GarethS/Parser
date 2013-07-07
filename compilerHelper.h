@@ -48,7 +48,7 @@ int  yylex(void);
 
 typedef enum {nodeVariable,             // 0
                 nodeConst,
-                nodeOperator,
+                nodeOperator,           // Typically a binary operator but can be used for unary operation (e.g. ~) by having the left-hand side NULL
                 nodeArray,
                 nodeInvalid,
                 nodeStartAction,        // 5

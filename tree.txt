@@ -52,10 +52,10 @@
 <STMT> 1 LEFT Operator 286 <stmt>
 <STMT> 0 ROOT EVAL0 0 <stmt>
 <STMT> 1 LEFT Variable 15 <stmt>
-<STMT> 3 LEFT Variable 9 <stmt>
-<STMT> 3 RIGHT Variable 7 <stmt>
-<STMT> 2 LEFT Operator 296 <stmt>
-<STMT> 2 RIGHT Variable 14 <stmt>
+<STMT> 2 LEFT Variable 9 <stmt>
+<STMT> 3 LEFT Variable 7 <stmt>
+<STMT> 3 RIGHT Variable 14 <stmt>
+<STMT> 2 RIGHT Operator 296 <stmt>
 <STMT> 1 RIGHT Operator 296 <stmt>
 <STMT> 0 ROOT Operator 262 <stmt>
 <STMT> 0 ROOT FunctionCall 16 <stmt>

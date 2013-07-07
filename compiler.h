@@ -57,6 +57,7 @@ typedef struct thisASTNode {
 
 // Function prototypes.
 astNode* addNodeBinaryOperator(int operator, astNode* pLeft, astNode* pRight);
+astNode* addNodeUnaryOperator(int operator, astNode* pRight);
 astNode* addNodeArray(char* pVar, astNode* pASTNode);
 astNode* addNodeVariableOperator(int operator, int varIndex, astNode* pRight);
 astNode* addNodeSymbolIndex(int varIndex);

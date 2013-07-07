@@ -31,7 +31,7 @@ using namespace std;
 #define MAX_PROGRAM_ENTRY           (200)
 #define MAX_SYMBOL_TABLE_ENTRY      (60)
 #define PROGRAM_INDEX_START         (0)
-#define VERSION_STRING              "0.0.6"
+#define VERSION_STRING              "0.0.7"
 
 extern "C" {
 void bufferInput(unsigned char c);
@@ -58,7 +58,8 @@ public:
     void setLowWaterMarkForTemporarySymbolSearch(void) {_symbolTableTemporaryBoundaryIndex = _symbolTableIndex - 1;}
 #endif /* CYGWIN */    
     void run(void);
-    void evaluate(unsigned int op);
+    void evaluateOperator(unsigned int op);
+    void evaluateUnaryOperator(unsigned int op);
 
 private:
 #if CYGWIN

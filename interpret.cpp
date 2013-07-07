@@ -3,27 +3,6 @@
 
 	interpret.cpp 
 
-    interpretIndex = 0;
-    while (interpretIndex <= interpretEnd) {
-        switch (program[interpretIndex].type) {
-        case operand: {
-            evalStack.push(program[interpretIndex].value);
-            break;
-        case operator:
-            // A binary operator will pop the 2 operands off the stack,
-            //  evaluate and push the result back.
-            // For short-circuit optimization, look up the program for the
-            //  operator at the next highest level and if it's || and the
-            //  current evaluation is TRUE then move the interpretIndex just
-            //  past that || operator.
-            evaluate(program[interpretIndex].value);
-            break;
-        default:
-            assert(false);
-            break;
-        }
-    }
-    
 */
 
 #include "interpret.h"
@@ -34,8 +13,6 @@
 #include <string>
 #include <istream>
 #include <sstream>
-//#include <math.h>
-//#include <complex>
 #else /* not CYGWIN */
 
 #include "../motor/LED.h"
@@ -561,9 +538,14 @@ void interpret::run(void) {
             break;
         case nodeOperator:
             //printf("nodeOperator\n");
-            evaluate(_currentProgramNodeValue());
+            evaluateOperator(_currentProgramNodeValue());
             //_shortCircuitOptimization();
             break;
+#if 0            
+        case nodeOperatorUnary:
+            evaluateUnaryOperator(_currentProgramNodeValue());
+            break;
+#endif            
 #if 0            
         case nodeStartAction:
             // This now has a different meaning. It's both the start of a function and
@@ -894,7 +876,41 @@ int interpret::symbolTableIndexMorph(const int symbolTableIndex) {
     return symbolTableIndexReturn;
 }
 
-void interpret::evaluate(unsigned int op) {
+#if 0
+void interpret::evaluateUnaryOperator(unsigned int op) {
+    int rightHandSymbolTableIndex = _evalValue(); // returns symbol table index
+#if CYGWIN
+    oss() << "rightHandSymbolTableIndex:" << rightHandSymbolTableIndex << " ";
+#endif /* CYGWIN */
+    // rhs -> right-hand symbol; lhs -> left-hand symbol
+    int rhs = symbolFromIndex(rightHandSymbolTableIndex);
+    switch (op) {
+    case MINUS:
+#if CYGWIN
+        oss() << "-" << rhs;
+#endif /* CYGWIN */    
+        _pushTemporarySymbolOnEvaluationStack(-rhs);
+        break;
+    case BANG:
+#if CYGWIN
+        oss() << "!" << rhs;
+#endif /* CYGWIN */    
+        _pushTemporarySymbolOnEvaluationStack(!rhs);
+        break;
+    default:
+#if CYGWIN
+        oss() << "ERROR interpret::evaluateUnaryOperator, op=" << op;
+#endif /* CYGWIN */    
+        //assert(false);
+        break;
+    }
+#if CYGWIN
+    dump();
+#endif /* CYGWIN */    
+}
+#endif
+
+void interpret::evaluateOperator(unsigned int op) {
     int rightHandSymbolTableIndex = _evalValue(); // returns symbol table index
 #if CYGWIN
     oss() << "rightHandSymbolTableIndex:" << rightHandSymbolTableIndex << " ";
@@ -1087,7 +1103,7 @@ void interpret::evaluate(unsigned int op) {
         break;
     default:
 #if CYGWIN
-        oss() << "ERROR interpret::evaluate, op=" << op;
+        oss() << "ERROR interpret::evaluateBinaryOperator, op=" << op;
 #endif /* CYGWIN */    
         //assert(false);
         break;
@@ -1133,22 +1149,6 @@ int interpret::_findFirstAvailableNodeInSymbolTable(void) {
 
 #if CYGWIN
 int main(void) {
-#if 0
-#define PI  (3.1415926535897932384626433832795)
-    cout << "PI * PI:" << PI * PI << endl;
-    cout << "PI^2:" << pow(PI,2) << endl;
-
-    std::complex<float> localComplex1(std::polar(1.23, 0.2768 + (PI * 1.0)));
-    cout << "localComplex1:" << localComplex1 << endl;
-    std::complex<float> localComplex2(std::polar(1.23, 0.2768 + (PI * 2.0)));
-    cout << "localComplex2:" << localComplex2 << endl;
-    std::complex<float> localComplex3(std::polar(1.23, 0.2768 + (PI * 3.0)));
-    cout << "localComplex3:" << localComplex3 << endl;
-    std::complex<float> localComplex4(std::polar(1.23, 0.2768 + (PI * 4.0)));
-    cout << "localComplex4:" << localComplex4 << endl;
-    return 0;
-#endif
-    
     interpret i;
     i.load();
 #if CYGWIN

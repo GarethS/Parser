@@ -1,4 +1,4 @@
-                                                                                                                                                                                                               
+                                                                                                                                                                                                          
 FunctionDefn: main
 Statement:
 *LEFT Var: index,2 name,count
@@ -78,10 +78,10 @@ If 0
 If EVAL == 0 JMP Else 0
 Statement:
 *LEFT Var: index,15 name,moveBack
-***LEFT Var: index,9 name,moveDistance
-***RIGHT Var: index,7 name,limit
-**LEFT Operator: * 296
-**RIGHT Var: index,14 name,-1
+**LEFT Var: index,9 name,moveDistance
+***LEFT Var: index,7 name,limit
+***RIGHT Var: index,14 name,-1
+**RIGHT Operator: * 296
 *RIGHT Operator: * 296
 ROOT Operator: = 262
 Statement:
