@@ -80,7 +80,8 @@
      LBRACKET = 297,
      RBRACKET = 298,
      RPAREN = 299,
-     SEMI = 300
+     SEMI = 300,
+     TILDE = 301
    };
 #endif
 
@@ -101,7 +102,7 @@ typedef union YYSTYPE
 
 
 /* Line 1685 of yacc.c  */
-#line 105 "valve.tab.h"
+#line 106 "valve.tab.h"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */

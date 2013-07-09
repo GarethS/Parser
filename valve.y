@@ -77,7 +77,10 @@ unsigned int statementOutputIndex = 0;
 %left LBRACKET
 %right RPAREN RBRACKET
 %right SEMI
+%nonassoc TILDE     // Using these in an associative manner is a syntax error
 /* last entry gets highest precedence. Section 3.7.3 bison.pdf */
+/* Also note that the above entries affect their order in valve.tab.h with
+    the highest precedence operators getting numerically higher numbers. */
 
 /* non-terminals */
 %type <integer> arrayDefine
@@ -145,12 +148,13 @@ statementAssign:    VAR EQUAL expr SEMI	                            {/*printf("\
                                         /* First statement makes sure '-1' is in symbol table. Second statement multiplies expression by that symbol (i.e. '-1') */
 expr:	MINUS expr	                    {astNode* pMinusOneNode = addNodeSymbolIndex(addVarToSymbolTable("-1")); $$ = addNodeBinaryOperator(MULT, $2, pMinusOneNode);}
         | BANG expr                     {$$ = addNodeBinaryOperator(BANG, $2, NULL);}
+        | TILDE expr                    {$$ = addNodeBinaryOperator(TILDE, $2, NULL);}
         | LPAREN expr RPAREN	        {$$ = $2;}
 		| expr PLUS  expr	            {$$ = addNodeBinaryOperator(PLUS, $1, $3);}
 		| expr MINUS expr	            {$$ = addNodeBinaryOperator(MINUS, $1, $3);}
 		| expr MULT  expr	            {$$ = addNodeBinaryOperator(MULT, $1, $3);}
 		| expr DIV   expr	            {$$ = addNodeBinaryOperator(DIV, $1, $3);}
-		| expr XOR   expr	            {$$ = addNodeBinaryOperator(XOR, $1, $3);}
+		| expr XOR   expr               {$$ = addNodeBinaryOperator(XOR, $1, $3);}
 		| expr AND   expr	            {$$ = addNodeBinaryOperator(AND, $1, $3);}
 		| expr OR    expr	            {$$ = addNodeBinaryOperator(OR, $1, $3);}
 		| expr BITWISEAND  expr         {$$ = addNodeBinaryOperator(BITWISEAND, $1, $3);}
@@ -1004,6 +1008,9 @@ int getSymbolTableIndex(symbolNode* pSymbol) {
 
 void printOperator(const int value) {
     switch (value) {
+    case TILDE:
+        printf("~");
+        break;
     case BANG:
         printf("!");
         break;

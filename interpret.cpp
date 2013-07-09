@@ -876,40 +876,6 @@ int interpret::symbolTableIndexMorph(const int symbolTableIndex) {
     return symbolTableIndexReturn;
 }
 
-#if 0
-void interpret::evaluateUnaryOperator(unsigned int op) {
-    int rightHandSymbolTableIndex = _evalValue(); // returns symbol table index
-#if CYGWIN
-    oss() << "rightHandSymbolTableIndex:" << rightHandSymbolTableIndex << " ";
-#endif /* CYGWIN */
-    // rhs -> right-hand symbol; lhs -> left-hand symbol
-    int rhs = symbolFromIndex(rightHandSymbolTableIndex);
-    switch (op) {
-    case MINUS:
-#if CYGWIN
-        oss() << "-" << rhs;
-#endif /* CYGWIN */    
-        _pushTemporarySymbolOnEvaluationStack(-rhs);
-        break;
-    case BANG:
-#if CYGWIN
-        oss() << "!" << rhs;
-#endif /* CYGWIN */    
-        _pushTemporarySymbolOnEvaluationStack(!rhs);
-        break;
-    default:
-#if CYGWIN
-        oss() << "ERROR interpret::evaluateUnaryOperator, op=" << op;
-#endif /* CYGWIN */    
-        //assert(false);
-        break;
-    }
-#if CYGWIN
-    dump();
-#endif /* CYGWIN */    
-}
-#endif
-
 void interpret::evaluateOperator(unsigned int op) {
     int rightHandSymbolTableIndex = _evalValue(); // returns symbol table index
 #if CYGWIN
@@ -919,6 +885,12 @@ void interpret::evaluateOperator(unsigned int op) {
     int rhs = symbolFromIndex(rightHandSymbolTableIndex);
     int lhs; // evaluated in individual case statements below
     switch (op) {
+    case TILDE:
+#if CYGWIN
+        oss() << "~" << rhs;
+#endif /* CYGWIN */    
+        _pushTemporarySymbolOnEvaluationStack(~rhs);
+        break;
     case BANG:
 #if CYGWIN
         oss() << "!" << rhs;

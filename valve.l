@@ -43,6 +43,7 @@ inputs	 	{debugPrintf("INPUTS"); return INPUTS;}
 ")"     	{debugPrintf("RPAREN"); return RPAREN;}
 "," 		{debugPrintf("COMMA"); return COMMA;}
 ";" 		{debugPrintf("SEMI"); return SEMI;}
+"~" 		{debugPrintf("TILDE"); yylval.string = strdup(yytext); return TILDE;}
 "!" 		{debugPrintf("BANG"); yylval.string = strdup(yytext); return BANG;}
 "=" 		{debugPrintf("EQUAL"); return EQUAL;}
 "+" 		{debugPrintf("PLUS"); return PLUS;}

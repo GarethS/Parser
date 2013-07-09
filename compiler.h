@@ -10,9 +10,6 @@
 //#include <assert.h>
 #include "compilerHelper.h"
 
-//typedef enum {enumId, enumAnd, enumOr, enumAction} operandType;	// old stuff
-//typedef enum {OP_PLUS, OP_MINUS, OP_MULT, OP_DIV, OP_XOR, OP_AND, OP_OR, OP_EQUALS, OP_TEST_FOR_EQUAL} operatorType;
-
 #define EOS				'\0'	// End of string
 #define VAR_ITEMS		(2000)  // Size of variable table
 #define SYNTAX_ITEMS	(20000)
