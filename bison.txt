@@ -94,7 +94,7 @@ Reading a token: --accepting default rule (" ")
 --accepting rule at line 76 ("0")
 Next token is token CONST ()
 Shifting token CONST ()
-Entering state 61
+Entering state 60
 Reducing stack by rule 49 (line 169):
    $1 = token CONST ()
 -> $$ = nterm expr ()
@@ -143,7 +143,7 @@ Reading a token: --accepting default rule (" ")
 --accepting rule at line 76 ("1")
 Next token is token CONST ()
 Shifting token CONST ()
-Entering state 61
+Entering state 60
 Reducing stack by rule 49 (line 169):
    $1 = token CONST ()
 -> $$ = nterm expr ()
@@ -192,7 +192,7 @@ Reading a token: --accepting default rule (" ")
 --accepting rule at line 76 ("0")
 Next token is token CONST ()
 Shifting token CONST ()
-Entering state 61
+Entering state 60
 Reducing stack by rule 49 (line 169):
    $1 = token CONST ()
 -> $$ = nterm expr ()
@@ -241,7 +241,7 @@ Reading a token: --accepting default rule (" ")
 --accepting rule at line 76 ("16")
 Next token is token CONST ()
 Shifting token CONST ()
-Entering state 61
+Entering state 60
 Reducing stack by rule 49 (line 169):
    $1 = token CONST ()
 -> $$ = nterm expr ()
@@ -290,7 +290,7 @@ Reading a token: --accepting default rule (" ")
 --accepting rule at line 76 ("60")
 Next token is token CONST ()
 Shifting token CONST ()
-Entering state 61
+Entering state 60
 Reducing stack by rule 49 (line 169):
    $1 = token CONST ()
 -> $$ = nterm expr ()
@@ -338,7 +338,7 @@ Entering state 47
 Reading a token: --accepting rule at line 78 ("count")
 Next token is token VAR ()
 Shifting token VAR ()
-Entering state 60
+Entering state 59
 Reading a token: --accepting default rule (" ")
 --accepting rule at line 58 ("<")
 Next token is token LSS ()
@@ -354,7 +354,7 @@ Reading a token: --accepting default rule (" ")
 --accepting rule at line 76 ("142")
 Next token is token CONST ()
 Shifting token CONST ()
-Entering state 61
+Entering state 60
 Reducing stack by rule 49 (line 169):
    $1 = token CONST ()
 -> $$ = nterm expr ()
@@ -405,7 +405,7 @@ Reading a token: --accepting default rule (" ")
 --accepting rule at line 76 ("1")
 Next token is token CONST ()
 Shifting token CONST ()
-Entering state 61
+Entering state 60
 Reducing stack by rule 49 (line 169):
    $1 = token CONST ()
 -> $$ = nterm expr ()
@@ -469,7 +469,7 @@ Reading a token: --accepting default rule (" ")
 --accepting rule at line 78 ("on")
 Next token is token VAR ()
 Shifting token VAR ()
-Entering state 60
+Entering state 59
 Reading a token: --accepting rule at line 43 (")")
 Next token is token RPAREN ()
 Reducing stack by rule 48 (line 168):
@@ -601,7 +601,7 @@ Reading a token: --accepting default rule (" ")
 --accepting rule at line 76 ("0")
 Next token is token CONST ()
 Shifting token CONST ()
-Entering state 61
+Entering state 60
 Reducing stack by rule 49 (line 169):
    $1 = token CONST ()
 -> $$ = nterm expr ()
@@ -665,7 +665,7 @@ Reading a token: --accepting default rule (" ")
 --accepting rule at line 76 ("500")
 Next token is token CONST ()
 Shifting token CONST ()
-Entering state 61
+Entering state 60
 Reducing stack by rule 49 (line 169):
    $1 = token CONST ()
 -> $$ = nterm expr ()
@@ -732,7 +732,7 @@ Reading a token: --accepting default rule (" ")
 --accepting rule at line 78 ("on")
 Next token is token VAR ()
 Shifting token VAR ()
-Entering state 60
+Entering state 59
 Reading a token: --accepting rule at line 43 (")")
 Next token is token RPAREN ()
 Reducing stack by rule 48 (line 168):
@@ -800,7 +800,7 @@ Reading a token: --accepting default rule (" ")
 --accepting rule at line 76 ("500")
 Next token is token CONST ()
 Shifting token CONST ()
-Entering state 61
+Entering state 60
 Reducing stack by rule 49 (line 169):
    $1 = token CONST ()
 -> $$ = nterm expr ()
@@ -856,7 +856,7 @@ Reading a token: --accepting default rule (" ")
 --accepting rule at line 78 ("count")
 Next token is token VAR ()
 Shifting token VAR ()
-Entering state 60
+Entering state 59
 Reading a token: --accepting default rule (" ")
 --accepting rule at line 49 ("+")
 Next token is token PLUS ()
@@ -872,7 +872,7 @@ Reading a token: --accepting default rule (" ")
 --accepting rule at line 76 ("1")
 Next token is token CONST ()
 Shifting token CONST ()
-Entering state 61
+Entering state 60
 Reducing stack by rule 49 (line 169):
    $1 = token CONST ()
 -> $$ = nterm expr ()
@@ -932,7 +932,7 @@ Entering state 46
 Reading a token: --accepting rule at line 78 ("count")
 Next token is token VAR ()
 Shifting token VAR ()
-Entering state 60
+Entering state 59
 Reading a token: --accepting default rule (" ")
 --accepting rule at line 57 (">")
 Next token is token GTR ()
@@ -948,7 +948,7 @@ Reading a token: --accepting default rule (" ")
 --accepting rule at line 78 ("limit")
 Next token is token VAR ()
 Shifting token VAR ()
-Entering state 60
+Entering state 59
 Reading a token: --accepting rule at line 43 (")")
 Next token is token RPAREN ()
 Reducing stack by rule 48 (line 168):
@@ -1004,7 +1004,7 @@ Reading a token: --accepting default rule (" ")
 --accepting rule at line 78 ("moveDistance")
 Next token is token VAR ()
 Shifting token VAR ()
-Entering state 60
+Entering state 59
 Reading a token: --accepting default rule (" ")
 --accepting rule at line 51 ("*")
 Next token is token MULT ()
@@ -1020,18 +1020,18 @@ Reading a token: --accepting default rule (" ")
 --accepting rule at line 50 ("-")
 Next token is token MINUS ()
 Shifting token MINUS ()
-Entering state 63
+Entering state 62
 Reading a token: --accepting rule at line 78 ("limit")
 Next token is token VAR ()
 Shifting token VAR ()
-Entering state 60
+Entering state 59
 Reading a token: --accepting rule at line 45 (";")
 Next token is token SEMI ()
 Reducing stack by rule 48 (line 168):
    $1 = token VAR ()
 -> $$ = nterm expr ()
-Stack now 0 1 4 9 15 19 24 31 47 66 107 142 160 30 46 65 106 141 159 32 48 67 105 63
-Entering state 89
+Stack now 0 1 4 9 15 19 24 31 47 66 107 142 160 30 46 65 106 141 159 32 48 67 105 62
+Entering state 88
 Next token is token SEMI ()
 Reducing stack by rule 29 (line 149):
    $1 = token MINUS ()
@@ -1107,7 +1107,7 @@ Reading a token: --accepting default rule (" ")
 --accepting rule at line 78 ("moveBack")
 Next token is token VAR ()
 Shifting token VAR ()
-Entering state 60
+Entering state 59
 Reading a token: --accepting rule at line 43 (")")
 Next token is token RPAREN ()
 Reducing stack by rule 48 (line 168):
@@ -1168,7 +1168,7 @@ Reading a token: --accepting default rule (" ")
 --accepting rule at line 76 ("0")
 Next token is token CONST ()
 Shifting token CONST ()
-Entering state 61
+Entering state 60
 Reducing stack by rule 49 (line 169):
    $1 = token CONST ()
 -> $$ = nterm expr ()
@@ -1265,7 +1265,7 @@ Reading a token: --accepting default rule (" ")
 --accepting rule at line 78 ("moveDistance")
 Next token is token VAR ()
 Shifting token VAR ()
-Entering state 60
+Entering state 59
 Reading a token: --accepting rule at line 43 (")")
 Next token is token RPAREN ()
 Reducing stack by rule 48 (line 168):

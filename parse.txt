@@ -3,34 +3,34 @@ FunctionDefn: main
 Statement:
 *LEFT Var: index,2 name,count
 *RIGHT Var: index,1 name,0
-ROOT Operator: = 262
+ROOT Operator: = 261
 Statement:
 *LEFT Var: index,4 name,on
 *RIGHT Var: index,3 name,1
-ROOT Operator: = 262
+ROOT Operator: = 261
 Statement:
 *LEFT Var: index,5 name,x
 *RIGHT Var: index,1 name,0
-ROOT Operator: = 262
+ROOT Operator: = 261
 Statement:
 *LEFT Var: index,7 name,limit
 *RIGHT Var: index,6 name,16
-ROOT Operator: = 262
+ROOT Operator: = 261
 Statement:
 *LEFT Var: index,9 name,moveDistance
 *RIGHT Var: index,8 name,60
-ROOT Operator: = 262
+ROOT Operator: = 261
 Statement:
 ROOT
 While 1
 **LEFT Var: index,2 name,count
 **RIGHT Var: index,10 name,142
-*LEFT Operator: < 285
+*LEFT Operator: < 284
 If EVALWHILE == 0 JMP EndWhile 1
 Statement:
 *LEFT Var: index,4 name,on
 *RIGHT Var: index,3 name,1
-ROOT Operator: = 262
+ROOT Operator: = 261
 Statement:
 ROOT FunctionCall: index,11 name,LED
 Statement:
@@ -41,7 +41,7 @@ FunctionCallEnd: index,11 name,LED
 Statement:
 *LEFT Var: index,4 name,on
 *RIGHT Var: index,1 name,0
-ROOT Operator: = 262
+ROOT Operator: = 261
 Statement:
 ROOT FunctionCall: index,13 name,sleep
 Statement:
@@ -67,23 +67,23 @@ Statement:
 *LEFT Var: index,2 name,count
 **LEFT Var: index,2 name,count
 **RIGHT Var: index,3 name,1
-*RIGHT Operator: + 293
-ROOT Operator: = 262
+*RIGHT Operator: + 292
+ROOT Operator: = 261
 Statement:
 ROOT
 If 0
 **LEFT Var: index,2 name,count
 **RIGHT Var: index,7 name,limit
-*LEFT Operator: > 286
+*LEFT Operator: > 285
 If EVAL == 0 JMP Else 0
 Statement:
 *LEFT Var: index,15 name,moveBack
 **LEFT Var: index,9 name,moveDistance
 ***LEFT Var: index,7 name,limit
 ***RIGHT Var: index,14 name,-1
-**RIGHT Operator: * 296
-*RIGHT Operator: * 296
-ROOT Operator: = 262
+**RIGHT Operator: * 295
+*RIGHT Operator: * 295
+ROOT Operator: = 261
 Statement:
 ROOT FunctionCall: index,16 name,moveRelative
 Statement:
@@ -94,7 +94,7 @@ FunctionCallEnd: index,16 name,moveRelative
 Statement:
 *LEFT Var: index,2 name,count
 *RIGHT Var: index,1 name,0
-ROOT Operator: = 262
+ROOT Operator: = 261
 JMP EndIf 0
 Else 0
 Statement:

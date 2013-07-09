@@ -312,34 +312,34 @@ INTERPRETER interpret::dumpProgram
 PARSETREEENTRY nodeFunctionDefinition level():0 value():0
 PARSETREEENTRY nodeVariable level():1 value():2
 PARSETREEENTRY nodeVariable level():1 value():1
-PARSETREEENTRY nodeOperator level():0 value():262
+PARSETREEENTRY nodeOperator level():0 value():261
 PARSETREEENTRY nodeVariable level():1 value():4
 PARSETREEENTRY nodeVariable level():1 value():3
-PARSETREEENTRY nodeOperator level():0 value():262
+PARSETREEENTRY nodeOperator level():0 value():261
 PARSETREEENTRY nodeVariable level():1 value():5
 PARSETREEENTRY nodeVariable level():1 value():1
-PARSETREEENTRY nodeOperator level():0 value():262
+PARSETREEENTRY nodeOperator level():0 value():261
 PARSETREEENTRY nodeVariable level():1 value():7
 PARSETREEENTRY nodeVariable level():1 value():6
-PARSETREEENTRY nodeOperator level():0 value():262
+PARSETREEENTRY nodeOperator level():0 value():261
 PARSETREEENTRY nodeVariable level():1 value():9
 PARSETREEENTRY nodeVariable level():1 value():8
-PARSETREEENTRY nodeOperator level():0 value():262
+PARSETREEENTRY nodeOperator level():0 value():261
 PARSETREEENTRY nodeWhile level():0 value():1
 PARSETREEENTRY nodeVariable level():2 value():2
 PARSETREEENTRY nodeVariable level():2 value():10
-PARSETREEENTRY nodeOperator level():1 value():285
+PARSETREEENTRY nodeOperator level():1 value():284
 PARSETREEENTRY nodeWhileEval0 level():0 value():1
 PARSETREEENTRY nodeVariable level():1 value():4
 PARSETREEENTRY nodeVariable level():1 value():3
-PARSETREEENTRY nodeOperator level():0 value():262
+PARSETREEENTRY nodeOperator level():0 value():261
 PARSETREEENTRY nodeFunctionCall level():0 value():11
 PARSETREEENTRY nodeVariable level():0 value():5
 PARSETREEENTRY nodeVariable level():0 value():4
 PARSETREEENTRY nodeFunctionCallEnd level():0 value():11
 PARSETREEENTRY nodeVariable level():1 value():4
 PARSETREEENTRY nodeVariable level():1 value():1
-PARSETREEENTRY nodeOperator level():0 value():262
+PARSETREEENTRY nodeOperator level():0 value():261
 PARSETREEENTRY nodeFunctionCall level():0 value():13
 PARSETREEENTRY nodeVariable level():0 value():5
 PARSETREEENTRY nodeVariable level():0 value():12
@@ -355,27 +355,27 @@ PARSETREEENTRY nodeFunctionCallEnd level():0 value():13
 PARSETREEENTRY nodeVariable level():1 value():2
 PARSETREEENTRY nodeVariable level():2 value():2
 PARSETREEENTRY nodeVariable level():2 value():3
-PARSETREEENTRY nodeOperator level():1 value():293
-PARSETREEENTRY nodeOperator level():0 value():262
+PARSETREEENTRY nodeOperator level():1 value():292
+PARSETREEENTRY nodeOperator level():0 value():261
 PARSETREEENTRY nodeIf level():0 value():0
 PARSETREEENTRY nodeVariable level():2 value():2
 PARSETREEENTRY nodeVariable level():2 value():7
-PARSETREEENTRY nodeOperator level():1 value():286
+PARSETREEENTRY nodeOperator level():1 value():285
 PARSETREEENTRY nodeIfEval0 level():0 value():0
 PARSETREEENTRY nodeVariable level():1 value():15
 PARSETREEENTRY nodeVariable level():2 value():9
 PARSETREEENTRY nodeVariable level():3 value():7
 PARSETREEENTRY nodeVariable level():3 value():14
-PARSETREEENTRY nodeOperator level():2 value():296
-PARSETREEENTRY nodeOperator level():1 value():296
-PARSETREEENTRY nodeOperator level():0 value():262
+PARSETREEENTRY nodeOperator level():2 value():295
+PARSETREEENTRY nodeOperator level():1 value():295
+PARSETREEENTRY nodeOperator level():0 value():261
 PARSETREEENTRY nodeFunctionCall level():0 value():16
 PARSETREEENTRY nodeVariable level():0 value():5
 PARSETREEENTRY nodeVariable level():0 value():15
 PARSETREEENTRY nodeFunctionCallEnd level():0 value():16
 PARSETREEENTRY nodeVariable level():1 value():2
 PARSETREEENTRY nodeVariable level():1 value():1
-PARSETREEENTRY nodeOperator level():0 value():262
+PARSETREEENTRY nodeOperator level():0 value():261
 PARSETREEENTRY nodeJmpEndIf level():0 value():0
 PARSETREEENTRY nodeElse level():0 value():0
 PARSETREEENTRY nodeFunctionCall level():0 value():16
@@ -460,7 +460,7 @@ SYMBOLTABLEENTRY 14 nodeConst  -1 -1
 SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 INTERPRETER 
-Run programIndex=3 programNodeType:2 programNodeValue:262
+Run programIndex=3 programNodeType:2 programNodeValue:261
 INTERPRETER rightHandSymbolTableIndex:1 2(symbol index) = 0
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -533,7 +533,7 @@ SYMBOLTABLEENTRY 14 nodeConst  -1 -1
 SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 INTERPRETER 
-Run programIndex=6 programNodeType:2 programNodeValue:262
+Run programIndex=6 programNodeType:2 programNodeValue:261
 INTERPRETER rightHandSymbolTableIndex:3 4(symbol index) = 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -606,7 +606,7 @@ SYMBOLTABLEENTRY 14 nodeConst  -1 -1
 SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 INTERPRETER 
-Run programIndex=9 programNodeType:2 programNodeValue:262
+Run programIndex=9 programNodeType:2 programNodeValue:261
 INTERPRETER rightHandSymbolTableIndex:1 5(symbol index) = 0
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -679,7 +679,7 @@ SYMBOLTABLEENTRY 14 nodeConst  -1 -1
 SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 INTERPRETER 
-Run programIndex=12 programNodeType:2 programNodeValue:262
+Run programIndex=12 programNodeType:2 programNodeValue:261
 INTERPRETER rightHandSymbolTableIndex:6 7(symbol index) = 16
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -752,7 +752,7 @@ SYMBOLTABLEENTRY 14 nodeConst  -1 -1
 SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 INTERPRETER 
-Run programIndex=15 programNodeType:2 programNodeValue:262
+Run programIndex=15 programNodeType:2 programNodeValue:261
 INTERPRETER rightHandSymbolTableIndex:8 9(symbol index) = 60
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -848,7 +848,7 @@ SYMBOLTABLEENTRY 14 nodeConst  -1 -1
 SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 INTERPRETER 
-Run programIndex=19 programNodeType:2 programNodeValue:285
+Run programIndex=19 programNodeType:2 programNodeValue:284
 INTERPRETER rightHandSymbolTableIndex:10 0 < 142
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=17 value=1 stackFrameIndex():254
@@ -949,7 +949,7 @@ SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 SYMBOLTABLEENTRY 17 nodeAvailable  1 0
 INTERPRETER 
-Run programIndex=23 programNodeType:2 programNodeValue:262
+Run programIndex=23 programNodeType:2 programNodeValue:261
 INTERPRETER rightHandSymbolTableIndex:3 4(symbol index) = 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -1137,7 +1137,7 @@ SYMBOLTABLEENTRY 14 nodeConst  -1 -1
 SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 INTERPRETER 
-Run programIndex=30 programNodeType:2 programNodeValue:262
+Run programIndex=30 programNodeType:2 programNodeValue:261
 INTERPRETER rightHandSymbolTableIndex:1 4(symbol index) = 0
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -1567,7 +1567,7 @@ SYMBOLTABLEENTRY 14 nodeConst  -1 -1
 SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 INTERPRETER 
-Run programIndex=46 programNodeType:2 programNodeValue:293
+Run programIndex=46 programNodeType:2 programNodeValue:292
 INTERPRETER rightHandSymbolTableIndex:3 0 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=17 value=1 stackFrameIndex():253
@@ -1594,7 +1594,7 @@ SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 SYMBOLTABLEENTRY 17 nodeTemporary  1 0
 INTERPRETER 
-Run programIndex=47 programNodeType:2 programNodeValue:262
+Run programIndex=47 programNodeType:2 programNodeValue:261
 INTERPRETER rightHandSymbolTableIndex:17 2(symbol index) = 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -1694,7 +1694,7 @@ SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 SYMBOLTABLEENTRY 17 nodeAvailable  1 0
 INTERPRETER 
-Run programIndex=51 programNodeType:2 programNodeValue:286
+Run programIndex=51 programNodeType:2 programNodeValue:285
 INTERPRETER rightHandSymbolTableIndex:7 1 > 16
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=17 value=0 stackFrameIndex():254
@@ -2278,7 +2278,7 @@ SYMBOLTABLEENTRY 14 nodeConst  -1 -1
 SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 INTERPRETER 
-Run programIndex=19 programNodeType:2 programNodeValue:285
+Run programIndex=19 programNodeType:2 programNodeValue:284
 INTERPRETER rightHandSymbolTableIndex:10 1 < 142
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=17 value=1 stackFrameIndex():254
@@ -2379,7 +2379,7 @@ SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 SYMBOLTABLEENTRY 17 nodeAvailable  1 0
 INTERPRETER 
-Run programIndex=23 programNodeType:2 programNodeValue:262
+Run programIndex=23 programNodeType:2 programNodeValue:261
 INTERPRETER rightHandSymbolTableIndex:3 4(symbol index) = 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -2567,7 +2567,7 @@ SYMBOLTABLEENTRY 14 nodeConst  -1 -1
 SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 INTERPRETER 
-Run programIndex=30 programNodeType:2 programNodeValue:262
+Run programIndex=30 programNodeType:2 programNodeValue:261
 INTERPRETER rightHandSymbolTableIndex:1 4(symbol index) = 0
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -2997,7 +2997,7 @@ SYMBOLTABLEENTRY 14 nodeConst  -1 -1
 SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 INTERPRETER 
-Run programIndex=46 programNodeType:2 programNodeValue:293
+Run programIndex=46 programNodeType:2 programNodeValue:292
 INTERPRETER rightHandSymbolTableIndex:3 1 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=17 value=2 stackFrameIndex():253
@@ -3024,7 +3024,7 @@ SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 SYMBOLTABLEENTRY 17 nodeTemporary  2 0
 INTERPRETER 
-Run programIndex=47 programNodeType:2 programNodeValue:262
+Run programIndex=47 programNodeType:2 programNodeValue:261
 INTERPRETER rightHandSymbolTableIndex:17 2(symbol index) = 2
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -3124,7 +3124,7 @@ SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 SYMBOLTABLEENTRY 17 nodeAvailable  2 0
 INTERPRETER 
-Run programIndex=51 programNodeType:2 programNodeValue:286
+Run programIndex=51 programNodeType:2 programNodeValue:285
 INTERPRETER rightHandSymbolTableIndex:7 2 > 16
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=17 value=0 stackFrameIndex():254
@@ -3384,7 +3384,7 @@ SYMBOLTABLEENTRY 14 nodeConst  -1 -1
 SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 INTERPRETER 
-Run programIndex=19 programNodeType:2 programNodeValue:285
+Run programIndex=19 programNodeType:2 programNodeValue:284
 INTERPRETER rightHandSymbolTableIndex:10 2 < 142
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=17 value=1 stackFrameIndex():254
@@ -3485,7 +3485,7 @@ SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 SYMBOLTABLEENTRY 17 nodeAvailable  1 0
 INTERPRETER 
-Run programIndex=23 programNodeType:2 programNodeValue:262
+Run programIndex=23 programNodeType:2 programNodeValue:261
 INTERPRETER rightHandSymbolTableIndex:3 4(symbol index) = 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -3673,7 +3673,7 @@ SYMBOLTABLEENTRY 14 nodeConst  -1 -1
 SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 INTERPRETER 
-Run programIndex=30 programNodeType:2 programNodeValue:262
+Run programIndex=30 programNodeType:2 programNodeValue:261
 INTERPRETER rightHandSymbolTableIndex:1 4(symbol index) = 0
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -4103,7 +4103,7 @@ SYMBOLTABLEENTRY 14 nodeConst  -1 -1
 SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 INTERPRETER 
-Run programIndex=46 programNodeType:2 programNodeValue:293
+Run programIndex=46 programNodeType:2 programNodeValue:292
 INTERPRETER rightHandSymbolTableIndex:3 2 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=17 value=3 stackFrameIndex():253
@@ -4130,7 +4130,7 @@ SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 SYMBOLTABLEENTRY 17 nodeTemporary  3 0
 INTERPRETER 
-Run programIndex=47 programNodeType:2 programNodeValue:262
+Run programIndex=47 programNodeType:2 programNodeValue:261
 INTERPRETER rightHandSymbolTableIndex:17 2(symbol index) = 3
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -4230,7 +4230,7 @@ SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 SYMBOLTABLEENTRY 17 nodeAvailable  3 0
 INTERPRETER 
-Run programIndex=51 programNodeType:2 programNodeValue:286
+Run programIndex=51 programNodeType:2 programNodeValue:285
 INTERPRETER rightHandSymbolTableIndex:7 3 > 16
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=17 value=0 stackFrameIndex():254
@@ -4490,7 +4490,7 @@ SYMBOLTABLEENTRY 14 nodeConst  -1 -1
 SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 INTERPRETER 
-Run programIndex=19 programNodeType:2 programNodeValue:285
+Run programIndex=19 programNodeType:2 programNodeValue:284
 INTERPRETER rightHandSymbolTableIndex:10 3 < 142
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=17 value=1 stackFrameIndex():254
@@ -4591,7 +4591,7 @@ SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 SYMBOLTABLEENTRY 17 nodeAvailable  1 0
 INTERPRETER 
-Run programIndex=23 programNodeType:2 programNodeValue:262
+Run programIndex=23 programNodeType:2 programNodeValue:261
 INTERPRETER rightHandSymbolTableIndex:3 4(symbol index) = 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -4779,7 +4779,7 @@ SYMBOLTABLEENTRY 14 nodeConst  -1 -1
 SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 INTERPRETER 
-Run programIndex=30 programNodeType:2 programNodeValue:262
+Run programIndex=30 programNodeType:2 programNodeValue:261
 INTERPRETER rightHandSymbolTableIndex:1 4(symbol index) = 0
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -5209,7 +5209,7 @@ SYMBOLTABLEENTRY 14 nodeConst  -1 -1
 SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 INTERPRETER 
-Run programIndex=46 programNodeType:2 programNodeValue:293
+Run programIndex=46 programNodeType:2 programNodeValue:292
 INTERPRETER rightHandSymbolTableIndex:3 3 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=17 value=4 stackFrameIndex():253
@@ -5236,7 +5236,7 @@ SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 SYMBOLTABLEENTRY 17 nodeTemporary  4 0
 INTERPRETER 
-Run programIndex=47 programNodeType:2 programNodeValue:262
+Run programIndex=47 programNodeType:2 programNodeValue:261
 INTERPRETER rightHandSymbolTableIndex:17 2(symbol index) = 4
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -5336,7 +5336,7 @@ SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 SYMBOLTABLEENTRY 17 nodeAvailable  4 0
 INTERPRETER 
-Run programIndex=51 programNodeType:2 programNodeValue:286
+Run programIndex=51 programNodeType:2 programNodeValue:285
 INTERPRETER rightHandSymbolTableIndex:7 4 > 16
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=17 value=0 stackFrameIndex():254
@@ -5596,7 +5596,7 @@ SYMBOLTABLEENTRY 14 nodeConst  -1 -1
 SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 INTERPRETER 
-Run programIndex=19 programNodeType:2 programNodeValue:285
+Run programIndex=19 programNodeType:2 programNodeValue:284
 INTERPRETER rightHandSymbolTableIndex:10 4 < 142
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=17 value=1 stackFrameIndex():254
@@ -5697,7 +5697,7 @@ SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 SYMBOLTABLEENTRY 17 nodeAvailable  1 0
 INTERPRETER 
-Run programIndex=23 programNodeType:2 programNodeValue:262
+Run programIndex=23 programNodeType:2 programNodeValue:261
 INTERPRETER rightHandSymbolTableIndex:3 4(symbol index) = 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -5885,7 +5885,7 @@ SYMBOLTABLEENTRY 14 nodeConst  -1 -1
 SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 INTERPRETER 
-Run programIndex=30 programNodeType:2 programNodeValue:262
+Run programIndex=30 programNodeType:2 programNodeValue:261
 INTERPRETER rightHandSymbolTableIndex:1 4(symbol index) = 0
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -6315,7 +6315,7 @@ SYMBOLTABLEENTRY 14 nodeConst  -1 -1
 SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 INTERPRETER 
-Run programIndex=46 programNodeType:2 programNodeValue:293
+Run programIndex=46 programNodeType:2 programNodeValue:292
 INTERPRETER rightHandSymbolTableIndex:3 4 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=17 value=5 stackFrameIndex():253
@@ -6342,7 +6342,7 @@ SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 SYMBOLTABLEENTRY 17 nodeTemporary  5 0
 INTERPRETER 
-Run programIndex=47 programNodeType:2 programNodeValue:262
+Run programIndex=47 programNodeType:2 programNodeValue:261
 INTERPRETER rightHandSymbolTableIndex:17 2(symbol index) = 5
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -6442,7 +6442,7 @@ SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 SYMBOLTABLEENTRY 17 nodeAvailable  5 0
 INTERPRETER 
-Run programIndex=51 programNodeType:2 programNodeValue:286
+Run programIndex=51 programNodeType:2 programNodeValue:285
 INTERPRETER rightHandSymbolTableIndex:7 5 > 16
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=17 value=0 stackFrameIndex():254
@@ -6702,7 +6702,7 @@ SYMBOLTABLEENTRY 14 nodeConst  -1 -1
 SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 INTERPRETER 
-Run programIndex=19 programNodeType:2 programNodeValue:285
+Run programIndex=19 programNodeType:2 programNodeValue:284
 INTERPRETER rightHandSymbolTableIndex:10 5 < 142
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=17 value=1 stackFrameIndex():254
@@ -6803,7 +6803,7 @@ SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 SYMBOLTABLEENTRY 17 nodeAvailable  1 0
 INTERPRETER 
-Run programIndex=23 programNodeType:2 programNodeValue:262
+Run programIndex=23 programNodeType:2 programNodeValue:261
 INTERPRETER rightHandSymbolTableIndex:3 4(symbol index) = 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -6991,7 +6991,7 @@ SYMBOLTABLEENTRY 14 nodeConst  -1 -1
 SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 INTERPRETER 
-Run programIndex=30 programNodeType:2 programNodeValue:262
+Run programIndex=30 programNodeType:2 programNodeValue:261
 INTERPRETER rightHandSymbolTableIndex:1 4(symbol index) = 0
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -7421,7 +7421,7 @@ SYMBOLTABLEENTRY 14 nodeConst  -1 -1
 SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 INTERPRETER 
-Run programIndex=46 programNodeType:2 programNodeValue:293
+Run programIndex=46 programNodeType:2 programNodeValue:292
 INTERPRETER rightHandSymbolTableIndex:3 5 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=17 value=6 stackFrameIndex():253
@@ -7448,7 +7448,7 @@ SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 SYMBOLTABLEENTRY 17 nodeTemporary  6 0
 INTERPRETER 
-Run programIndex=47 programNodeType:2 programNodeValue:262
+Run programIndex=47 programNodeType:2 programNodeValue:261
 INTERPRETER rightHandSymbolTableIndex:17 2(symbol index) = 6
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -7548,7 +7548,7 @@ SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 SYMBOLTABLEENTRY 17 nodeAvailable  6 0
 INTERPRETER 
-Run programIndex=51 programNodeType:2 programNodeValue:286
+Run programIndex=51 programNodeType:2 programNodeValue:285
 INTERPRETER rightHandSymbolTableIndex:7 6 > 16
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=17 value=0 stackFrameIndex():254
@@ -7808,7 +7808,7 @@ SYMBOLTABLEENTRY 14 nodeConst  -1 -1
 SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 INTERPRETER 
-Run programIndex=19 programNodeType:2 programNodeValue:285
+Run programIndex=19 programNodeType:2 programNodeValue:284
 INTERPRETER rightHandSymbolTableIndex:10 6 < 142
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=17 value=1 stackFrameIndex():254
@@ -7909,7 +7909,7 @@ SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 SYMBOLTABLEENTRY 17 nodeAvailable  1 0
 INTERPRETER 
-Run programIndex=23 programNodeType:2 programNodeValue:262
+Run programIndex=23 programNodeType:2 programNodeValue:261
 INTERPRETER rightHandSymbolTableIndex:3 4(symbol index) = 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -8097,7 +8097,7 @@ SYMBOLTABLEENTRY 14 nodeConst  -1 -1
 SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 INTERPRETER 
-Run programIndex=30 programNodeType:2 programNodeValue:262
+Run programIndex=30 programNodeType:2 programNodeValue:261
 INTERPRETER rightHandSymbolTableIndex:1 4(symbol index) = 0
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -8527,7 +8527,7 @@ SYMBOLTABLEENTRY 14 nodeConst  -1 -1
 SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 INTERPRETER 
-Run programIndex=46 programNodeType:2 programNodeValue:293
+Run programIndex=46 programNodeType:2 programNodeValue:292
 INTERPRETER rightHandSymbolTableIndex:3 6 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=17 value=7 stackFrameIndex():253
@@ -8554,7 +8554,7 @@ SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 SYMBOLTABLEENTRY 17 nodeTemporary  7 0
 INTERPRETER 
-Run programIndex=47 programNodeType:2 programNodeValue:262
+Run programIndex=47 programNodeType:2 programNodeValue:261
 INTERPRETER rightHandSymbolTableIndex:17 2(symbol index) = 7
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -8654,7 +8654,7 @@ SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 SYMBOLTABLEENTRY 17 nodeAvailable  7 0
 INTERPRETER 
-Run programIndex=51 programNodeType:2 programNodeValue:286
+Run programIndex=51 programNodeType:2 programNodeValue:285
 INTERPRETER rightHandSymbolTableIndex:7 7 > 16
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=17 value=0 stackFrameIndex():254
@@ -8914,7 +8914,7 @@ SYMBOLTABLEENTRY 14 nodeConst  -1 -1
 SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 INTERPRETER 
-Run programIndex=19 programNodeType:2 programNodeValue:285
+Run programIndex=19 programNodeType:2 programNodeValue:284
 INTERPRETER rightHandSymbolTableIndex:10 7 < 142
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=17 value=1 stackFrameIndex():254
@@ -9015,7 +9015,7 @@ SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 SYMBOLTABLEENTRY 17 nodeAvailable  1 0
 INTERPRETER 
-Run programIndex=23 programNodeType:2 programNodeValue:262
+Run programIndex=23 programNodeType:2 programNodeValue:261
 INTERPRETER rightHandSymbolTableIndex:3 4(symbol index) = 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -9203,7 +9203,7 @@ SYMBOLTABLEENTRY 14 nodeConst  -1 -1
 SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 INTERPRETER 
-Run programIndex=30 programNodeType:2 programNodeValue:262
+Run programIndex=30 programNodeType:2 programNodeValue:261
 INTERPRETER rightHandSymbolTableIndex:1 4(symbol index) = 0
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -9633,7 +9633,7 @@ SYMBOLTABLEENTRY 14 nodeConst  -1 -1
 SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 INTERPRETER 
-Run programIndex=46 programNodeType:2 programNodeValue:293
+Run programIndex=46 programNodeType:2 programNodeValue:292
 INTERPRETER rightHandSymbolTableIndex:3 7 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=17 value=8 stackFrameIndex():253
@@ -9660,7 +9660,7 @@ SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 SYMBOLTABLEENTRY 17 nodeTemporary  8 0
 INTERPRETER 
-Run programIndex=47 programNodeType:2 programNodeValue:262
+Run programIndex=47 programNodeType:2 programNodeValue:261
 INTERPRETER rightHandSymbolTableIndex:17 2(symbol index) = 8
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -9760,7 +9760,7 @@ SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 SYMBOLTABLEENTRY 17 nodeAvailable  8 0
 INTERPRETER 
-Run programIndex=51 programNodeType:2 programNodeValue:286
+Run programIndex=51 programNodeType:2 programNodeValue:285
 INTERPRETER rightHandSymbolTableIndex:7 8 > 16
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=17 value=0 stackFrameIndex():254
@@ -10020,7 +10020,7 @@ SYMBOLTABLEENTRY 14 nodeConst  -1 -1
 SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 INTERPRETER 
-Run programIndex=19 programNodeType:2 programNodeValue:285
+Run programIndex=19 programNodeType:2 programNodeValue:284
 INTERPRETER rightHandSymbolTableIndex:10 8 < 142
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=17 value=1 stackFrameIndex():254
@@ -10121,7 +10121,7 @@ SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 SYMBOLTABLEENTRY 17 nodeAvailable  1 0
 INTERPRETER 
-Run programIndex=23 programNodeType:2 programNodeValue:262
+Run programIndex=23 programNodeType:2 programNodeValue:261
 INTERPRETER rightHandSymbolTableIndex:3 4(symbol index) = 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -10309,7 +10309,7 @@ SYMBOLTABLEENTRY 14 nodeConst  -1 -1
 SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 INTERPRETER 
-Run programIndex=30 programNodeType:2 programNodeValue:262
+Run programIndex=30 programNodeType:2 programNodeValue:261
 INTERPRETER rightHandSymbolTableIndex:1 4(symbol index) = 0
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -10739,7 +10739,7 @@ SYMBOLTABLEENTRY 14 nodeConst  -1 -1
 SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 INTERPRETER 
-Run programIndex=46 programNodeType:2 programNodeValue:293
+Run programIndex=46 programNodeType:2 programNodeValue:292
 INTERPRETER rightHandSymbolTableIndex:3 8 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=17 value=9 stackFrameIndex():253
@@ -10766,7 +10766,7 @@ SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 SYMBOLTABLEENTRY 17 nodeTemporary  9 0
 INTERPRETER 
-Run programIndex=47 programNodeType:2 programNodeValue:262
+Run programIndex=47 programNodeType:2 programNodeValue:261
 INTERPRETER rightHandSymbolTableIndex:17 2(symbol index) = 9
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -10866,7 +10866,7 @@ SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 SYMBOLTABLEENTRY 17 nodeAvailable  9 0
 INTERPRETER 
-Run programIndex=51 programNodeType:2 programNodeValue:286
+Run programIndex=51 programNodeType:2 programNodeValue:285
 INTERPRETER rightHandSymbolTableIndex:7 9 > 16
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=17 value=0 stackFrameIndex():254
@@ -11126,7 +11126,7 @@ SYMBOLTABLEENTRY 14 nodeConst  -1 -1
 SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 INTERPRETER 
-Run programIndex=19 programNodeType:2 programNodeValue:285
+Run programIndex=19 programNodeType:2 programNodeValue:284
 INTERPRETER rightHandSymbolTableIndex:10 9 < 142
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=17 value=1 stackFrameIndex():254
@@ -11227,7 +11227,7 @@ SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 SYMBOLTABLEENTRY 17 nodeAvailable  1 0
 INTERPRETER 
-Run programIndex=23 programNodeType:2 programNodeValue:262
+Run programIndex=23 programNodeType:2 programNodeValue:261
 INTERPRETER rightHandSymbolTableIndex:3 4(symbol index) = 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -11415,7 +11415,7 @@ SYMBOLTABLEENTRY 14 nodeConst  -1 -1
 SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 INTERPRETER 
-Run programIndex=30 programNodeType:2 programNodeValue:262
+Run programIndex=30 programNodeType:2 programNodeValue:261
 INTERPRETER rightHandSymbolTableIndex:1 4(symbol index) = 0
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -11845,7 +11845,7 @@ SYMBOLTABLEENTRY 14 nodeConst  -1 -1
 SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 INTERPRETER 
-Run programIndex=46 programNodeType:2 programNodeValue:293
+Run programIndex=46 programNodeType:2 programNodeValue:292
 INTERPRETER rightHandSymbolTableIndex:3 9 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=17 value=10 stackFrameIndex():253
@@ -11872,7 +11872,7 @@ SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 SYMBOLTABLEENTRY 17 nodeTemporary  10 0
 INTERPRETER 
-Run programIndex=47 programNodeType:2 programNodeValue:262
+Run programIndex=47 programNodeType:2 programNodeValue:261
 INTERPRETER rightHandSymbolTableIndex:17 2(symbol index) = 10
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -11972,7 +11972,7 @@ SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 SYMBOLTABLEENTRY 17 nodeAvailable  10 0
 INTERPRETER 
-Run programIndex=51 programNodeType:2 programNodeValue:286
+Run programIndex=51 programNodeType:2 programNodeValue:285
 INTERPRETER rightHandSymbolTableIndex:7 10 > 16
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=17 value=0 stackFrameIndex():254
@@ -12232,7 +12232,7 @@ SYMBOLTABLEENTRY 14 nodeConst  -1 -1
 SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 INTERPRETER 
-Run programIndex=19 programNodeType:2 programNodeValue:285
+Run programIndex=19 programNodeType:2 programNodeValue:284
 INTERPRETER rightHandSymbolTableIndex:10 10 < 142
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=17 value=1 stackFrameIndex():254
@@ -12333,7 +12333,7 @@ SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 SYMBOLTABLEENTRY 17 nodeAvailable  1 0
 INTERPRETER 
-Run programIndex=23 programNodeType:2 programNodeValue:262
+Run programIndex=23 programNodeType:2 programNodeValue:261
 INTERPRETER rightHandSymbolTableIndex:3 4(symbol index) = 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -12521,7 +12521,7 @@ SYMBOLTABLEENTRY 14 nodeConst  -1 -1
 SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 INTERPRETER 
-Run programIndex=30 programNodeType:2 programNodeValue:262
+Run programIndex=30 programNodeType:2 programNodeValue:261
 INTERPRETER rightHandSymbolTableIndex:1 4(symbol index) = 0
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -12951,7 +12951,7 @@ SYMBOLTABLEENTRY 14 nodeConst  -1 -1
 SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 INTERPRETER 
-Run programIndex=46 programNodeType:2 programNodeValue:293
+Run programIndex=46 programNodeType:2 programNodeValue:292
 INTERPRETER rightHandSymbolTableIndex:3 10 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=17 value=11 stackFrameIndex():253
@@ -12978,7 +12978,7 @@ SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 SYMBOLTABLEENTRY 17 nodeTemporary  11 0
 INTERPRETER 
-Run programIndex=47 programNodeType:2 programNodeValue:262
+Run programIndex=47 programNodeType:2 programNodeValue:261
 INTERPRETER rightHandSymbolTableIndex:17 2(symbol index) = 11
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -13078,7 +13078,7 @@ SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 SYMBOLTABLEENTRY 17 nodeAvailable  11 0
 INTERPRETER 
-Run programIndex=51 programNodeType:2 programNodeValue:286
+Run programIndex=51 programNodeType:2 programNodeValue:285
 INTERPRETER rightHandSymbolTableIndex:7 11 > 16
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=17 value=0 stackFrameIndex():254
@@ -13338,7 +13338,7 @@ SYMBOLTABLEENTRY 14 nodeConst  -1 -1
 SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 INTERPRETER 
-Run programIndex=19 programNodeType:2 programNodeValue:285
+Run programIndex=19 programNodeType:2 programNodeValue:284
 INTERPRETER rightHandSymbolTableIndex:10 11 < 142
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=17 value=1 stackFrameIndex():254
@@ -13439,7 +13439,7 @@ SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 SYMBOLTABLEENTRY 17 nodeAvailable  1 0
 INTERPRETER 
-Run programIndex=23 programNodeType:2 programNodeValue:262
+Run programIndex=23 programNodeType:2 programNodeValue:261
 INTERPRETER rightHandSymbolTableIndex:3 4(symbol index) = 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -13627,7 +13627,7 @@ SYMBOLTABLEENTRY 14 nodeConst  -1 -1
 SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 INTERPRETER 
-Run programIndex=30 programNodeType:2 programNodeValue:262
+Run programIndex=30 programNodeType:2 programNodeValue:261
 INTERPRETER rightHandSymbolTableIndex:1 4(symbol index) = 0
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -14057,7 +14057,7 @@ SYMBOLTABLEENTRY 14 nodeConst  -1 -1
 SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 INTERPRETER 
-Run programIndex=46 programNodeType:2 programNodeValue:293
+Run programIndex=46 programNodeType:2 programNodeValue:292
 INTERPRETER rightHandSymbolTableIndex:3 11 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=17 value=12 stackFrameIndex():253
@@ -14084,7 +14084,7 @@ SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 SYMBOLTABLEENTRY 17 nodeTemporary  12 0
 INTERPRETER 
-Run programIndex=47 programNodeType:2 programNodeValue:262
+Run programIndex=47 programNodeType:2 programNodeValue:261
 INTERPRETER rightHandSymbolTableIndex:17 2(symbol index) = 12
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -14184,7 +14184,7 @@ SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 SYMBOLTABLEENTRY 17 nodeAvailable  12 0
 INTERPRETER 
-Run programIndex=51 programNodeType:2 programNodeValue:286
+Run programIndex=51 programNodeType:2 programNodeValue:285
 INTERPRETER rightHandSymbolTableIndex:7 12 > 16
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=17 value=0 stackFrameIndex():254
@@ -14444,7 +14444,7 @@ SYMBOLTABLEENTRY 14 nodeConst  -1 -1
 SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 INTERPRETER 
-Run programIndex=19 programNodeType:2 programNodeValue:285
+Run programIndex=19 programNodeType:2 programNodeValue:284
 INTERPRETER rightHandSymbolTableIndex:10 12 < 142
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=17 value=1 stackFrameIndex():254
@@ -14545,7 +14545,7 @@ SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 SYMBOLTABLEENTRY 17 nodeAvailable  1 0
 INTERPRETER 
-Run programIndex=23 programNodeType:2 programNodeValue:262
+Run programIndex=23 programNodeType:2 programNodeValue:261
 INTERPRETER rightHandSymbolTableIndex:3 4(symbol index) = 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -14733,7 +14733,7 @@ SYMBOLTABLEENTRY 14 nodeConst  -1 -1
 SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 INTERPRETER 
-Run programIndex=30 programNodeType:2 programNodeValue:262
+Run programIndex=30 programNodeType:2 programNodeValue:261
 INTERPRETER rightHandSymbolTableIndex:1 4(symbol index) = 0
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -15163,7 +15163,7 @@ SYMBOLTABLEENTRY 14 nodeConst  -1 -1
 SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 INTERPRETER 
-Run programIndex=46 programNodeType:2 programNodeValue:293
+Run programIndex=46 programNodeType:2 programNodeValue:292
 INTERPRETER rightHandSymbolTableIndex:3 12 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=17 value=13 stackFrameIndex():253
@@ -15190,7 +15190,7 @@ SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 SYMBOLTABLEENTRY 17 nodeTemporary  13 0
 INTERPRETER 
-Run programIndex=47 programNodeType:2 programNodeValue:262
+Run programIndex=47 programNodeType:2 programNodeValue:261
 INTERPRETER rightHandSymbolTableIndex:17 2(symbol index) = 13
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -15290,7 +15290,7 @@ SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 SYMBOLTABLEENTRY 17 nodeAvailable  13 0
 INTERPRETER 
-Run programIndex=51 programNodeType:2 programNodeValue:286
+Run programIndex=51 programNodeType:2 programNodeValue:285
 INTERPRETER rightHandSymbolTableIndex:7 13 > 16
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=17 value=0 stackFrameIndex():254
@@ -15550,7 +15550,7 @@ SYMBOLTABLEENTRY 14 nodeConst  -1 -1
 SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 INTERPRETER 
-Run programIndex=19 programNodeType:2 programNodeValue:285
+Run programIndex=19 programNodeType:2 programNodeValue:284
 INTERPRETER rightHandSymbolTableIndex:10 13 < 142
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=17 value=1 stackFrameIndex():254
@@ -15651,7 +15651,7 @@ SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 SYMBOLTABLEENTRY 17 nodeAvailable  1 0
 INTERPRETER 
-Run programIndex=23 programNodeType:2 programNodeValue:262
+Run programIndex=23 programNodeType:2 programNodeValue:261
 INTERPRETER rightHandSymbolTableIndex:3 4(symbol index) = 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -15839,7 +15839,7 @@ SYMBOLTABLEENTRY 14 nodeConst  -1 -1
 SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 INTERPRETER 
-Run programIndex=30 programNodeType:2 programNodeValue:262
+Run programIndex=30 programNodeType:2 programNodeValue:261
 INTERPRETER rightHandSymbolTableIndex:1 4(symbol index) = 0
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -16269,7 +16269,7 @@ SYMBOLTABLEENTRY 14 nodeConst  -1 -1
 SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 INTERPRETER 
-Run programIndex=46 programNodeType:2 programNodeValue:293
+Run programIndex=46 programNodeType:2 programNodeValue:292
 INTERPRETER rightHandSymbolTableIndex:3 13 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=17 value=14 stackFrameIndex():253
@@ -16296,7 +16296,7 @@ SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 SYMBOLTABLEENTRY 17 nodeTemporary  14 0
 INTERPRETER 
-Run programIndex=47 programNodeType:2 programNodeValue:262
+Run programIndex=47 programNodeType:2 programNodeValue:261
 INTERPRETER rightHandSymbolTableIndex:17 2(symbol index) = 14
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -16396,7 +16396,7 @@ SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 SYMBOLTABLEENTRY 17 nodeAvailable  14 0
 INTERPRETER 
-Run programIndex=51 programNodeType:2 programNodeValue:286
+Run programIndex=51 programNodeType:2 programNodeValue:285
 INTERPRETER rightHandSymbolTableIndex:7 14 > 16
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=17 value=0 stackFrameIndex():254
@@ -16656,7 +16656,7 @@ SYMBOLTABLEENTRY 14 nodeConst  -1 -1
 SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 INTERPRETER 
-Run programIndex=19 programNodeType:2 programNodeValue:285
+Run programIndex=19 programNodeType:2 programNodeValue:284
 INTERPRETER rightHandSymbolTableIndex:10 14 < 142
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=17 value=1 stackFrameIndex():254
@@ -16757,7 +16757,7 @@ SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 SYMBOLTABLEENTRY 17 nodeAvailable  1 0
 INTERPRETER 
-Run programIndex=23 programNodeType:2 programNodeValue:262
+Run programIndex=23 programNodeType:2 programNodeValue:261
 INTERPRETER rightHandSymbolTableIndex:3 4(symbol index) = 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -16945,7 +16945,7 @@ SYMBOLTABLEENTRY 14 nodeConst  -1 -1
 SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 INTERPRETER 
-Run programIndex=30 programNodeType:2 programNodeValue:262
+Run programIndex=30 programNodeType:2 programNodeValue:261
 INTERPRETER rightHandSymbolTableIndex:1 4(symbol index) = 0
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -17375,7 +17375,7 @@ SYMBOLTABLEENTRY 14 nodeConst  -1 -1
 SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 INTERPRETER 
-Run programIndex=46 programNodeType:2 programNodeValue:293
+Run programIndex=46 programNodeType:2 programNodeValue:292
 INTERPRETER rightHandSymbolTableIndex:3 14 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=17 value=15 stackFrameIndex():253
@@ -17402,7 +17402,7 @@ SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 SYMBOLTABLEENTRY 17 nodeTemporary  15 0
 INTERPRETER 
-Run programIndex=47 programNodeType:2 programNodeValue:262
+Run programIndex=47 programNodeType:2 programNodeValue:261
 INTERPRETER rightHandSymbolTableIndex:17 2(symbol index) = 15
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -17502,7 +17502,7 @@ SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 SYMBOLTABLEENTRY 17 nodeAvailable  15 0
 INTERPRETER 
-Run programIndex=51 programNodeType:2 programNodeValue:286
+Run programIndex=51 programNodeType:2 programNodeValue:285
 INTERPRETER rightHandSymbolTableIndex:7 15 > 16
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=17 value=0 stackFrameIndex():254
@@ -17762,7 +17762,7 @@ SYMBOLTABLEENTRY 14 nodeConst  -1 -1
 SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 INTERPRETER 
-Run programIndex=19 programNodeType:2 programNodeValue:285
+Run programIndex=19 programNodeType:2 programNodeValue:284
 INTERPRETER rightHandSymbolTableIndex:10 15 < 142
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=17 value=1 stackFrameIndex():254
@@ -17863,7 +17863,7 @@ SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 SYMBOLTABLEENTRY 17 nodeAvailable  1 0
 INTERPRETER 
-Run programIndex=23 programNodeType:2 programNodeValue:262
+Run programIndex=23 programNodeType:2 programNodeValue:261
 INTERPRETER rightHandSymbolTableIndex:3 4(symbol index) = 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -18051,7 +18051,7 @@ SYMBOLTABLEENTRY 14 nodeConst  -1 -1
 SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 INTERPRETER 
-Run programIndex=30 programNodeType:2 programNodeValue:262
+Run programIndex=30 programNodeType:2 programNodeValue:261
 INTERPRETER rightHandSymbolTableIndex:1 4(symbol index) = 0
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -18481,7 +18481,7 @@ SYMBOLTABLEENTRY 14 nodeConst  -1 -1
 SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 INTERPRETER 
-Run programIndex=46 programNodeType:2 programNodeValue:293
+Run programIndex=46 programNodeType:2 programNodeValue:292
 INTERPRETER rightHandSymbolTableIndex:3 15 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=17 value=16 stackFrameIndex():253
@@ -18508,7 +18508,7 @@ SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 SYMBOLTABLEENTRY 17 nodeTemporary  16 0
 INTERPRETER 
-Run programIndex=47 programNodeType:2 programNodeValue:262
+Run programIndex=47 programNodeType:2 programNodeValue:261
 INTERPRETER rightHandSymbolTableIndex:17 2(symbol index) = 16
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -18608,7 +18608,7 @@ SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 SYMBOLTABLEENTRY 17 nodeAvailable  16 0
 INTERPRETER 
-Run programIndex=51 programNodeType:2 programNodeValue:286
+Run programIndex=51 programNodeType:2 programNodeValue:285
 INTERPRETER rightHandSymbolTableIndex:7 16 > 16
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=17 value=0 stackFrameIndex():254
@@ -18868,7 +18868,7 @@ SYMBOLTABLEENTRY 14 nodeConst  -1 -1
 SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 INTERPRETER 
-Run programIndex=19 programNodeType:2 programNodeValue:285
+Run programIndex=19 programNodeType:2 programNodeValue:284
 INTERPRETER rightHandSymbolTableIndex:10 16 < 142
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=17 value=1 stackFrameIndex():254
@@ -18969,7 +18969,7 @@ SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 SYMBOLTABLEENTRY 17 nodeAvailable  1 0
 INTERPRETER 
-Run programIndex=23 programNodeType:2 programNodeValue:262
+Run programIndex=23 programNodeType:2 programNodeValue:261
 INTERPRETER rightHandSymbolTableIndex:3 4(symbol index) = 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -19157,7 +19157,7 @@ SYMBOLTABLEENTRY 14 nodeConst  -1 -1
 SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 INTERPRETER 
-Run programIndex=30 programNodeType:2 programNodeValue:262
+Run programIndex=30 programNodeType:2 programNodeValue:261
 INTERPRETER rightHandSymbolTableIndex:1 4(symbol index) = 0
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -19587,7 +19587,7 @@ SYMBOLTABLEENTRY 14 nodeConst  -1 -1
 SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 INTERPRETER 
-Run programIndex=46 programNodeType:2 programNodeValue:293
+Run programIndex=46 programNodeType:2 programNodeValue:292
 INTERPRETER rightHandSymbolTableIndex:3 16 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=17 value=17 stackFrameIndex():253
@@ -19614,7 +19614,7 @@ SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 SYMBOLTABLEENTRY 17 nodeTemporary  17 0
 INTERPRETER 
-Run programIndex=47 programNodeType:2 programNodeValue:262
+Run programIndex=47 programNodeType:2 programNodeValue:261
 INTERPRETER rightHandSymbolTableIndex:17 2(symbol index) = 17
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -19714,7 +19714,7 @@ SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 SYMBOLTABLEENTRY 17 nodeAvailable  17 0
 INTERPRETER 
-Run programIndex=51 programNodeType:2 programNodeValue:286
+Run programIndex=51 programNodeType:2 programNodeValue:285
 INTERPRETER rightHandSymbolTableIndex:7 17 > 16
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=17 value=1 stackFrameIndex():254
@@ -19870,7 +19870,7 @@ SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 SYMBOLTABLEENTRY 17 nodeAvailable  1 0
 INTERPRETER 
-Run programIndex=57 programNodeType:2 programNodeValue:296
+Run programIndex=57 programNodeType:2 programNodeValue:295
 INTERPRETER rightHandSymbolTableIndex:14 16 * -1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=17 value=-16 stackFrameIndex():252
@@ -19898,7 +19898,7 @@ SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 SYMBOLTABLEENTRY 17 nodeTemporary  -16 0
 INTERPRETER 
-Run programIndex=58 programNodeType:2 programNodeValue:296
+Run programIndex=58 programNodeType:2 programNodeValue:295
 INTERPRETER rightHandSymbolTableIndex:17 60 * -16
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=17 value=-960 stackFrameIndex():253
@@ -19925,7 +19925,7 @@ SYMBOLTABLEENTRY 15 nodeVariable  0 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 SYMBOLTABLEENTRY 17 nodeTemporary  -960 0
 INTERPRETER 
-Run programIndex=59 programNodeType:2 programNodeValue:262
+Run programIndex=59 programNodeType:2 programNodeValue:261
 INTERPRETER rightHandSymbolTableIndex:17 15(symbol index) = -960
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -20114,7 +20114,7 @@ SYMBOLTABLEENTRY 14 nodeConst  -1 -1
 SYMBOLTABLEENTRY 15 nodeVariable  -960 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 INTERPRETER 
-Run programIndex=66 programNodeType:2 programNodeValue:262
+Run programIndex=66 programNodeType:2 programNodeValue:261
 INTERPRETER rightHandSymbolTableIndex:1 2(symbol index) = 0
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -20233,7 +20233,7 @@ SYMBOLTABLEENTRY 14 nodeConst  -1 -1
 SYMBOLTABLEENTRY 15 nodeVariable  -960 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 INTERPRETER 
-Run programIndex=19 programNodeType:2 programNodeValue:285
+Run programIndex=19 programNodeType:2 programNodeValue:284
 INTERPRETER rightHandSymbolTableIndex:10 0 < 142
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=17 value=1 stackFrameIndex():254
@@ -20334,7 +20334,7 @@ SYMBOLTABLEENTRY 15 nodeVariable  -960 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 SYMBOLTABLEENTRY 17 nodeAvailable  1 0
 INTERPRETER 
-Run programIndex=23 programNodeType:2 programNodeValue:262
+Run programIndex=23 programNodeType:2 programNodeValue:261
 INTERPRETER rightHandSymbolTableIndex:3 4(symbol index) = 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -20522,7 +20522,7 @@ SYMBOLTABLEENTRY 14 nodeConst  -1 -1
 SYMBOLTABLEENTRY 15 nodeVariable  -960 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 INTERPRETER 
-Run programIndex=30 programNodeType:2 programNodeValue:262
+Run programIndex=30 programNodeType:2 programNodeValue:261
 INTERPRETER rightHandSymbolTableIndex:1 4(symbol index) = 0
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -20952,7 +20952,7 @@ SYMBOLTABLEENTRY 14 nodeConst  -1 -1
 SYMBOLTABLEENTRY 15 nodeVariable  -960 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 INTERPRETER 
-Run programIndex=46 programNodeType:2 programNodeValue:293
+Run programIndex=46 programNodeType:2 programNodeValue:292
 INTERPRETER rightHandSymbolTableIndex:3 0 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=17 value=1 stackFrameIndex():253
@@ -20979,7 +20979,7 @@ SYMBOLTABLEENTRY 15 nodeVariable  -960 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 SYMBOLTABLEENTRY 17 nodeTemporary  1 0
 INTERPRETER 
-Run programIndex=47 programNodeType:2 programNodeValue:262
+Run programIndex=47 programNodeType:2 programNodeValue:261
 INTERPRETER rightHandSymbolTableIndex:17 2(symbol index) = 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -21079,7 +21079,7 @@ SYMBOLTABLEENTRY 15 nodeVariable  -960 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 SYMBOLTABLEENTRY 17 nodeAvailable  1 0
 INTERPRETER 
-Run programIndex=51 programNodeType:2 programNodeValue:286
+Run programIndex=51 programNodeType:2 programNodeValue:285
 INTERPRETER rightHandSymbolTableIndex:7 1 > 16
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=17 value=0 stackFrameIndex():254
@@ -21339,7 +21339,7 @@ SYMBOLTABLEENTRY 14 nodeConst  -1 -1
 SYMBOLTABLEENTRY 15 nodeVariable  -960 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 INTERPRETER 
-Run programIndex=19 programNodeType:2 programNodeValue:285
+Run programIndex=19 programNodeType:2 programNodeValue:284
 INTERPRETER rightHandSymbolTableIndex:10 1 < 142
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=17 value=1 stackFrameIndex():254
@@ -21440,7 +21440,7 @@ SYMBOLTABLEENTRY 15 nodeVariable  -960 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 SYMBOLTABLEENTRY 17 nodeAvailable  1 0
 INTERPRETER 
-Run programIndex=23 programNodeType:2 programNodeValue:262
+Run programIndex=23 programNodeType:2 programNodeValue:261
 INTERPRETER rightHandSymbolTableIndex:3 4(symbol index) = 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -21628,7 +21628,7 @@ SYMBOLTABLEENTRY 14 nodeConst  -1 -1
 SYMBOLTABLEENTRY 15 nodeVariable  -960 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 INTERPRETER 
-Run programIndex=30 programNodeType:2 programNodeValue:262
+Run programIndex=30 programNodeType:2 programNodeValue:261
 INTERPRETER rightHandSymbolTableIndex:1 4(symbol index) = 0
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -22058,7 +22058,7 @@ SYMBOLTABLEENTRY 14 nodeConst  -1 -1
 SYMBOLTABLEENTRY 15 nodeVariable  -960 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 INTERPRETER 
-Run programIndex=46 programNodeType:2 programNodeValue:293
+Run programIndex=46 programNodeType:2 programNodeValue:292
 INTERPRETER rightHandSymbolTableIndex:3 1 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=17 value=2 stackFrameIndex():253
@@ -22085,7 +22085,7 @@ SYMBOLTABLEENTRY 15 nodeVariable  -960 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 SYMBOLTABLEENTRY 17 nodeTemporary  2 0
 INTERPRETER 
-Run programIndex=47 programNodeType:2 programNodeValue:262
+Run programIndex=47 programNodeType:2 programNodeValue:261
 INTERPRETER rightHandSymbolTableIndex:17 2(symbol index) = 2
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -22185,7 +22185,7 @@ SYMBOLTABLEENTRY 15 nodeVariable  -960 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 SYMBOLTABLEENTRY 17 nodeAvailable  2 0
 INTERPRETER 
-Run programIndex=51 programNodeType:2 programNodeValue:286
+Run programIndex=51 programNodeType:2 programNodeValue:285
 INTERPRETER rightHandSymbolTableIndex:7 2 > 16
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=17 value=0 stackFrameIndex():254
@@ -22445,7 +22445,7 @@ SYMBOLTABLEENTRY 14 nodeConst  -1 -1
 SYMBOLTABLEENTRY 15 nodeVariable  -960 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 INTERPRETER 
-Run programIndex=19 programNodeType:2 programNodeValue:285
+Run programIndex=19 programNodeType:2 programNodeValue:284
 INTERPRETER rightHandSymbolTableIndex:10 2 < 142
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=17 value=1 stackFrameIndex():254
@@ -22546,7 +22546,7 @@ SYMBOLTABLEENTRY 15 nodeVariable  -960 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 SYMBOLTABLEENTRY 17 nodeAvailable  1 0
 INTERPRETER 
-Run programIndex=23 programNodeType:2 programNodeValue:262
+Run programIndex=23 programNodeType:2 programNodeValue:261
 INTERPRETER rightHandSymbolTableIndex:3 4(symbol index) = 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -22734,7 +22734,7 @@ SYMBOLTABLEENTRY 14 nodeConst  -1 -1
 SYMBOLTABLEENTRY 15 nodeVariable  -960 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 INTERPRETER 
-Run programIndex=30 programNodeType:2 programNodeValue:262
+Run programIndex=30 programNodeType:2 programNodeValue:261
 INTERPRETER rightHandSymbolTableIndex:1 4(symbol index) = 0
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -23164,7 +23164,7 @@ SYMBOLTABLEENTRY 14 nodeConst  -1 -1
 SYMBOLTABLEENTRY 15 nodeVariable  -960 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 INTERPRETER 
-Run programIndex=46 programNodeType:2 programNodeValue:293
+Run programIndex=46 programNodeType:2 programNodeValue:292
 INTERPRETER rightHandSymbolTableIndex:3 2 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=17 value=3 stackFrameIndex():253
@@ -23191,7 +23191,7 @@ SYMBOLTABLEENTRY 15 nodeVariable  -960 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 SYMBOLTABLEENTRY 17 nodeTemporary  3 0
 INTERPRETER 
-Run programIndex=47 programNodeType:2 programNodeValue:262
+Run programIndex=47 programNodeType:2 programNodeValue:261
 INTERPRETER rightHandSymbolTableIndex:17 2(symbol index) = 3
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -23291,7 +23291,7 @@ SYMBOLTABLEENTRY 15 nodeVariable  -960 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 SYMBOLTABLEENTRY 17 nodeAvailable  3 0
 INTERPRETER 
-Run programIndex=51 programNodeType:2 programNodeValue:286
+Run programIndex=51 programNodeType:2 programNodeValue:285
 INTERPRETER rightHandSymbolTableIndex:7 3 > 16
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=17 value=0 stackFrameIndex():254
@@ -23551,7 +23551,7 @@ SYMBOLTABLEENTRY 14 nodeConst  -1 -1
 SYMBOLTABLEENTRY 15 nodeVariable  -960 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 INTERPRETER 
-Run programIndex=19 programNodeType:2 programNodeValue:285
+Run programIndex=19 programNodeType:2 programNodeValue:284
 INTERPRETER rightHandSymbolTableIndex:10 3 < 142
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=17 value=1 stackFrameIndex():254
@@ -23652,7 +23652,7 @@ SYMBOLTABLEENTRY 15 nodeVariable  -960 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 SYMBOLTABLEENTRY 17 nodeAvailable  1 0
 INTERPRETER 
-Run programIndex=23 programNodeType:2 programNodeValue:262
+Run programIndex=23 programNodeType:2 programNodeValue:261
 INTERPRETER rightHandSymbolTableIndex:3 4(symbol index) = 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -23840,7 +23840,7 @@ SYMBOLTABLEENTRY 14 nodeConst  -1 -1
 SYMBOLTABLEENTRY 15 nodeVariable  -960 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 INTERPRETER 
-Run programIndex=30 programNodeType:2 programNodeValue:262
+Run programIndex=30 programNodeType:2 programNodeValue:261
 INTERPRETER rightHandSymbolTableIndex:1 4(symbol index) = 0
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -24270,7 +24270,7 @@ SYMBOLTABLEENTRY 14 nodeConst  -1 -1
 SYMBOLTABLEENTRY 15 nodeVariable  -960 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 INTERPRETER 
-Run programIndex=46 programNodeType:2 programNodeValue:293
+Run programIndex=46 programNodeType:2 programNodeValue:292
 INTERPRETER rightHandSymbolTableIndex:3 3 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=17 value=4 stackFrameIndex():253
@@ -24297,7 +24297,7 @@ SYMBOLTABLEENTRY 15 nodeVariable  -960 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 SYMBOLTABLEENTRY 17 nodeTemporary  4 0
 INTERPRETER 
-Run programIndex=47 programNodeType:2 programNodeValue:262
+Run programIndex=47 programNodeType:2 programNodeValue:261
 INTERPRETER rightHandSymbolTableIndex:17 2(symbol index) = 4
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -24397,7 +24397,7 @@ SYMBOLTABLEENTRY 15 nodeVariable  -960 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 SYMBOLTABLEENTRY 17 nodeAvailable  4 0
 INTERPRETER 
-Run programIndex=51 programNodeType:2 programNodeValue:286
+Run programIndex=51 programNodeType:2 programNodeValue:285
 INTERPRETER rightHandSymbolTableIndex:7 4 > 16
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=17 value=0 stackFrameIndex():254
@@ -24657,7 +24657,7 @@ SYMBOLTABLEENTRY 14 nodeConst  -1 -1
 SYMBOLTABLEENTRY 15 nodeVariable  -960 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 INTERPRETER 
-Run programIndex=19 programNodeType:2 programNodeValue:285
+Run programIndex=19 programNodeType:2 programNodeValue:284
 INTERPRETER rightHandSymbolTableIndex:10 4 < 142
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=17 value=1 stackFrameIndex():254
@@ -24758,7 +24758,7 @@ SYMBOLTABLEENTRY 15 nodeVariable  -960 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 SYMBOLTABLEENTRY 17 nodeAvailable  1 0
 INTERPRETER 
-Run programIndex=23 programNodeType:2 programNodeValue:262
+Run programIndex=23 programNodeType:2 programNodeValue:261
 INTERPRETER rightHandSymbolTableIndex:3 4(symbol index) = 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -24946,7 +24946,7 @@ SYMBOLTABLEENTRY 14 nodeConst  -1 -1
 SYMBOLTABLEENTRY 15 nodeVariable  -960 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 INTERPRETER 
-Run programIndex=30 programNodeType:2 programNodeValue:262
+Run programIndex=30 programNodeType:2 programNodeValue:261
 INTERPRETER rightHandSymbolTableIndex:1 4(symbol index) = 0
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -25376,7 +25376,7 @@ SYMBOLTABLEENTRY 14 nodeConst  -1 -1
 SYMBOLTABLEENTRY 15 nodeVariable  -960 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 INTERPRETER 
-Run programIndex=46 programNodeType:2 programNodeValue:293
+Run programIndex=46 programNodeType:2 programNodeValue:292
 INTERPRETER rightHandSymbolTableIndex:3 4 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=17 value=5 stackFrameIndex():253
@@ -25403,7 +25403,7 @@ SYMBOLTABLEENTRY 15 nodeVariable  -960 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 SYMBOLTABLEENTRY 17 nodeTemporary  5 0
 INTERPRETER 
-Run programIndex=47 programNodeType:2 programNodeValue:262
+Run programIndex=47 programNodeType:2 programNodeValue:261
 INTERPRETER rightHandSymbolTableIndex:17 2(symbol index) = 5
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -25503,7 +25503,7 @@ SYMBOLTABLEENTRY 15 nodeVariable  -960 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 SYMBOLTABLEENTRY 17 nodeAvailable  5 0
 INTERPRETER 
-Run programIndex=51 programNodeType:2 programNodeValue:286
+Run programIndex=51 programNodeType:2 programNodeValue:285
 INTERPRETER rightHandSymbolTableIndex:7 5 > 16
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=17 value=0 stackFrameIndex():254
@@ -25763,7 +25763,7 @@ SYMBOLTABLEENTRY 14 nodeConst  -1 -1
 SYMBOLTABLEENTRY 15 nodeVariable  -960 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 INTERPRETER 
-Run programIndex=19 programNodeType:2 programNodeValue:285
+Run programIndex=19 programNodeType:2 programNodeValue:284
 INTERPRETER rightHandSymbolTableIndex:10 5 < 142
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=17 value=1 stackFrameIndex():254
@@ -25864,7 +25864,7 @@ SYMBOLTABLEENTRY 15 nodeVariable  -960 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 SYMBOLTABLEENTRY 17 nodeAvailable  1 0
 INTERPRETER 
-Run programIndex=23 programNodeType:2 programNodeValue:262
+Run programIndex=23 programNodeType:2 programNodeValue:261
 INTERPRETER rightHandSymbolTableIndex:3 4(symbol index) = 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -26052,7 +26052,7 @@ SYMBOLTABLEENTRY 14 nodeConst  -1 -1
 SYMBOLTABLEENTRY 15 nodeVariable  -960 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 INTERPRETER 
-Run programIndex=30 programNodeType:2 programNodeValue:262
+Run programIndex=30 programNodeType:2 programNodeValue:261
 INTERPRETER rightHandSymbolTableIndex:1 4(symbol index) = 0
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -26482,7 +26482,7 @@ SYMBOLTABLEENTRY 14 nodeConst  -1 -1
 SYMBOLTABLEENTRY 15 nodeVariable  -960 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 INTERPRETER 
-Run programIndex=46 programNodeType:2 programNodeValue:293
+Run programIndex=46 programNodeType:2 programNodeValue:292
 INTERPRETER rightHandSymbolTableIndex:3 5 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=17 value=6 stackFrameIndex():253
@@ -26509,7 +26509,7 @@ SYMBOLTABLEENTRY 15 nodeVariable  -960 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 SYMBOLTABLEENTRY 17 nodeTemporary  6 0
 INTERPRETER 
-Run programIndex=47 programNodeType:2 programNodeValue:262
+Run programIndex=47 programNodeType:2 programNodeValue:261
 INTERPRETER rightHandSymbolTableIndex:17 2(symbol index) = 6
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
@@ -26609,7 +26609,7 @@ SYMBOLTABLEENTRY 15 nodeVariable  -960 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 SYMBOLTABLEENTRY 17 nodeAvailable  6 0
 INTERPRETER 
-Run programIndex=51 programNodeType:2 programNodeValue:286
+Run programIndex=51 programNodeType:2 programNodeValue:285
 INTERPRETER rightHandSymbolTableIndex:7 6 > 16
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=17 value=0 stackFrameIndex():254
@@ -26869,7 +26869,7 @@ SYMBOLTABLEENTRY 14 nodeConst  -1 -1
 SYMBOLTABLEENTRY 15 nodeVariable  -960 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 INTERPRETER 
-Run programIndex=19 programNodeType:2 programNodeValue:285
+Run programIndex=19 programNodeType:2 programNodeValue:284
 INTERPRETER rightHandSymbolTableIndex:10 6 < 142
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=17 value=1 stackFrameIndex():254
@@ -26970,7 +26970,7 @@ SYMBOLTABLEENTRY 15 nodeVariable  -960 -1
 SYMBOLTABLEENTRY 16 nodeFunctionCall  2 -3
 SYMBOLTABLEENTRY 17 nodeAvailable  1 0
 INTERPRETER 
-Run programIndex=23 programNodeType:2 programNodeValue:262
+Run programIndex=23 programNodeType:2 programNodeValue:261
 INTERPRETER rightHandSymbolTableIndex:3 4(symbol index) = 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack

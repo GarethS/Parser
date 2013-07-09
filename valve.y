@@ -62,7 +62,7 @@ unsigned int statementOutputIndex = 0;
 }
 
 /* TERMINALS */
-%token INPUTS OUTPUTS COMMA BANG
+%token INPUTS OUTPUTS COMMA
 %token EQUAL LBRACE RBRACE ARRAYDEFINE IF ELSE WHILE
 // 4x. Add intrinsic function name from flex here
 %token <string>	VAR VAR_METHOD CONST CONST_FLOAT MAIN MOVEABSOLUTE MOVERELATIVE SLEEP SLEEPUNTIL LED
@@ -77,7 +77,7 @@ unsigned int statementOutputIndex = 0;
 %left LBRACKET
 %right RPAREN RBRACKET
 %right SEMI
-%nonassoc TILDE     // Using these in an associative manner is a syntax error
+%nonassoc TILDE BANG     // Using these in an associative manner is a syntax error
 /* last entry gets highest precedence. Section 3.7.3 bison.pdf */
 /* Also note that the above entries affect their order in valve.tab.h with
     the highest precedence operators getting numerically higher numbers. */
