@@ -4,19 +4,20 @@ main () {
     on = 1;
     x = 0;
     limit = 16;
-    moveDistance = 60;
+    moveDistance = 200;
     while (count < 142) {
-        on = 1;
+        on = !on;
         led(&x, on);    // The first paramater, &x, is the return value and is pass-by-reference
-        on = 0;
-        sleep(&x, 500);
+        on = !on;
+        sleep(&x, 200);
         led(&x, on);
-        sleep(&x, 500);
+        sleep(&x, 200);
         count = count + 1;
         if (count > limit) {
             moveBack = moveDistance * -limit;
             moveRelative(&x, moveBack);
             count = 0;
+            sleep(&x, 4000);
         } else {
             moveRelative(&x, moveDistance);
         }

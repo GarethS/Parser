@@ -6,12 +6,12 @@
 <SYMB> 0 0 -1 <symb>
 <SYMB> 1 16 -1 <symb>
 <SYMB> 0 0 -1 <symb>
-<SYMB> 1 60 -1 <symb>
+<SYMB> 1 200 -1 <symb>
 <SYMB> 0 0 -1 <symb>
 <SYMB> 1 142 -1 <symb>
 <SYMB> 15 2 -6 <symb>
-<SYMB> 1 500 -1 <symb>
 <SYMB> 15 2 -4 <symb>
 <SYMB> 1 -1 -1 <symb>
 <SYMB> 0 0 -1 <symb>
 <SYMB> 15 2 -3 <symb>
+<SYMB> 1 4000 -1 <symb>
