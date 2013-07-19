@@ -22,8 +22,14 @@ GPP_FLAGS =
 DEBUG_FLAGS = -D CYGWIN=1
 endif 
 
-includeRTOS = ../../../../dev/docs/rtos/freertos/FreeRTOS/Demo/Common/drivers/LuminaryMicro/
-includeGPIO = ../../../../DriverLib/src
+includeRTOS = .
+includeGPIO = .
+
+#includeRTOS = ../linuxInclude/rtos/freertos/FreeRTOS/Demo/Common/drivers/LuminaryMicro/
+#includeGPIO = ../linuxInclude/DriverLib/src
+
+#includeRTOS = ../../../../dev/docs/rtos/freertos/FreeRTOS/Demo/Common/drivers/LuminaryMicro/
+#includeGPIO = ../../../../DriverLib/src
 
 #all: lextest.exe parsetest.exe lex.yy.c valve.tab.c run
 all: lextest.exe parsetest.exe motorparsetest.exe lex.yy.c motor.yy.c valve.tab.c motor.tab.c interpret.exe run
@@ -61,10 +67,10 @@ interpret.exe: interpret.cpp interpret.h ../motor/led.h ../motor/accel.cpp ../mo
 	g++ $(GPP_FLAGS) $(DEBUG_FLAGS) -I. -I../motor -I$(includeRTOS) -I$(includeGPIO) interpret.cpp parseTreeEntry.cpp symbolTableEntry.cpp ../motor/accel.cpp ../motor/lmi.cpp ../motor/stepper.cpp ../motor/log.cpp -o interpret.exe 
     
 run:
-	./parsetest >parse.txt 2>bison.txt
+	./parsetest.exe >parse.txt 2>bison.txt
 	#mv log1.txt log2.txt
 	#mv log.txt log1.txt
 	rm log.txt  # Delete log file, otherwise results will be concatenated to the end of the file
-	./interpret
-	./motorparsetest
+	./interpret.exe
+	./motorparsetest.exe
     
