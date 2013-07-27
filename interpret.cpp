@@ -15,6 +15,8 @@
 #include <sstream>
 #else /* not CYGWIN */
 
+#include "stdio.h"
+#include "string.h"
 #include "../motor/LED.h"
 #include "FreeRTOS.h"
 
@@ -23,17 +25,6 @@ bool led::_enable = FALSE;
 typedef struct yy_buffer_state *YY_BUFFER_STATE;
 
 extern "C" {
-extern nodeEmbeddedtype net;
-// Statement entries
-extern int statementNestingLevel;
-extern nodePosition statementPosition;
-extern nodeType statementType;
-extern int statementValue;
-
-// Symbol entries
-extern nodeType symbolType;
-extern int symbolValue;
-extern int symbolFcnLink;
 
 void UARTSend(const unsigned char *pucBuffer, unsigned long ulCount);
 void interpretRun(void);
