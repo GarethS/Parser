@@ -238,7 +238,7 @@ Next token is token EQUAL ()
 Shifting token EQUAL ()
 Entering state 48
 Reading a token: --accepting default rule (" ")
---accepting rule at line 76 ("16")
+--accepting rule at line 76 ("4")
 Next token is token CONST ()
 Shifting token CONST ()
 Entering state 60

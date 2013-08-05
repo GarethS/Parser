@@ -65,14 +65,14 @@ void errMsg(void) {
 }
 
 void postMsg(bool success) {
-    led blink;
+    //led blink;
     if (success) {
         successMsg();
     } else {
         errMsg();
-        led blink;  // Second blink to show an error.
+        //led blink;  // Second blink to show an error.
     }
-    vTaskDelay(100 / portTICK_RATE_MS); // So we can see the LED
+    //vTaskDelay(100 / portTICK_RATE_MS); // So we can see the LED
 }
 
 nodePosition stringToNodePosition(const char* pc) {

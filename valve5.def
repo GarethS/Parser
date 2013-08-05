@@ -3,7 +3,7 @@ main () {
     count = 0;
     on = 1;
     x = 0;
-    limit = 16;
+    limit = 4;
     moveDistance = 200;
     while (count < 142) {
         on = !on;
