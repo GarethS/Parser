@@ -5,6 +5,8 @@
 
 */
 
+#include <stdbool.h>
+#include <stdint.h>
 #include "interpret.h"
 #include "compilerHelper.h"
 #if CYGWIN
@@ -248,7 +250,8 @@ interpret::interpret() :
 #endif
 #if CYGWIN
     printf("Version: %s\n", VERSION_STRING);
-#endif /* CYGWIN */    
+#endif /* CYGWIN */
+    //_s.RPM(1, 24);    
 }
 
 void interpret::load(void) {

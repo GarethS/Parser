@@ -93,6 +93,9 @@ private:
     int symbolFromIndex(const int symbolTableIndex) {return _symbolTable[symbolTableIndexMorph(symbolTableIndex)].value();} // get symbol
     unsigned int getLowWaterMarkForTemporarySymbolSearch(void) const {return _symbolTableTemporaryBoundaryIndex;}
     
+#if !CYGWIN
+    bool _firstIntrinsicFcnDefnSleepUntil;
+#endif // not CYGWIN    
     parseTreeEntry _program[MAX_PROGRAM_ENTRY];
     symbolTableEntry _symbolTable[MAX_SYMBOL_TABLE_ENTRY];
     int _programIndex;  // Negative values indicate a built-in function
@@ -107,9 +110,6 @@ private:
     bool _evaluatingPattern;
     stepper _s;
     led _led;
-#if !CYGWIN
-    bool _firstIntrinsicFcnDefnSleepUntil;
-#endif // not CYGWIN    
 };
 
 #endif /* _INTERPRET_H_ */
