@@ -18,6 +18,7 @@
 // Can use either tinyQueue or a standard library deque
 #include "tinyQueue.h"
 #include "led.h"
+#include "flashio.h"
 //#include <deque>
 #include <assert.h>
 
@@ -62,6 +63,9 @@ public:
     void evaluateOperator(unsigned int op);
     void evaluateUnaryOperator(unsigned int op);
 
+    void saveProgram(void);
+    void saveSymbolTable(void);
+    
 private:
 #if CYGWIN
     void _loadTree(const string& s);
@@ -95,6 +99,7 @@ private:
     
 #if !CYGWIN
     bool _firstIntrinsicFcnDefnSleepUntil;
+    flashio _flash;
 #endif // not CYGWIN    
     parseTreeEntry _program[MAX_PROGRAM_ENTRY];
     symbolTableEntry _symbolTable[MAX_SYMBOL_TABLE_ENTRY];

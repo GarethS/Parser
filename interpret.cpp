@@ -36,6 +36,7 @@ static portTickType xTaskWakeTime;
 void vTaskDelay( portTickType xTicksToDelay ) PRIVILEGED_FUNCTION;  // task.h
 void vTaskDelayUntil( portTickType * const pxPreviousWakeTime, portTickType xTimeIncrement ) PRIVILEGED_FUNCTION; // task.h
 portTickType xTaskGetTickCount( void ) PRIVILEGED_FUNCTION; // task.h
+unsigned portBASE_TYPE uxTaskGetStackHighWaterMark( void* xTask ) PRIVILEGED_FUNCTION;
 }   // extern "C"
 
 interpret interpreter;
@@ -43,6 +44,14 @@ static bool interpreterRunBool = FALSE;
 extern stepper* sp;
 
 void interpretRun(void) {
+#if 0    
+    //flashio f;
+#define FLASH_TEST_SIZE (4)    
+    //uint32_t fArray[FLASH_TEST_SIZE] = {0x22, 0x55, 0x73, 0x2};
+    //f.saveData(fArray, FLASH_TEST_SIZE);
+#endif    
+    interpreter.saveProgram();
+    //interpreter.saveSymbolTable();
     for (;;) {
         if (interpreterRunBool) {
             sp = interpreter.getStepper();
@@ -470,6 +479,11 @@ void interpret::dumpEvaluationStack(void) {
 #endif /* CYGWIN */
 
 void interpret::run(void) {
+#if !CYGWIN    
+#ifndef NDEBUG    
+    static unsigned portBASE_TYPE uxHighWaterMark;
+#endif // not NDEBUG 
+#endif // not CYGWIN   
     assert(_evaluationStack.empty());
     int localSymbolTableIndex;
 #if CYGWIN
@@ -484,6 +498,14 @@ void interpret::run(void) {
         oss() << endl << "Run programIndex=" << _programIndex << " programNodeType:" << _currentProgramNodeType() << " programNodeValue:" << _currentProgramNodeValue();
         dump();
         //dumpEvaluationStack();
+#else // not CYGWIN        
+#ifndef NDEBUG    
+        uxHighWaterMark = uxTaskGetStackHighWaterMark(NULL);
+        if (uxHighWaterMark < 120) {
+            // Set breakpoint here to catch this
+            uxHighWaterMark = uxHighWaterMark;
+        }
+#endif // not NDEBUG    
 #endif /* CYGWIN */
         switch (_currentProgramNodeType()) {
         case nodeVariable:
@@ -1074,6 +1096,27 @@ int interpret::_findFirstAvailableNodeInSymbolTable(void) {
     }
     return NOT_FOUND;
 }
+
+void interpret::saveProgram(void) {
+#if !CYGWIN    
+    unsigned int byteCount = sizeof(parseTreeEntry);
+    unsigned int totalByteCount = byteCount * 4 /*MAX_PROGRAM_ENTRY*/;
+    unsigned int modInt = totalByteCount % sizeof(int);
+    unsigned int totalIntCount = totalByteCount / sizeof(int);
+    if (modInt != 0) {
+        // Some stray bytes caused totalByteCount to not be an integral multiple of 4
+        ++totalIntCount;
+    }
+    _flash.saveData((uint32_t*)_program, totalIntCount);
+#endif // not CYGWIN    
+}
+
+void interpret::saveSymbolTable(void) {
+    unsigned int byteCount = sizeof(symbolTableEntry);
+    unsigned int totalByteCount = byteCount * MAX_SYMBOL_TABLE_ENTRY;
+    unsigned int totalIntCount = totalByteCount / sizeof(int);
+}
+
 
 #if CYGWIN
 int main(void) {
