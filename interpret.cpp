@@ -50,10 +50,13 @@ void interpretRun(void) {
     //uint32_t fArray[FLASH_TEST_SIZE] = {0x22, 0x55, 0x73, 0x2};
     //f.saveData(fArray, FLASH_TEST_SIZE);
 #endif    
-    interpreter.saveProgram();
-    //interpreter.saveSymbolTable();
     for (;;) {
         if (interpreterRunBool) {
+#if 0            
+            // For testing
+            interpreter.saveToFlash(FLASH_PROGRAM);
+            interpreter.restoreFromFlash(FLASH_PROGRAM);
+#endif            
             sp = interpreter.getStepper();
             led::enable(1);    
             interpreter.run();
@@ -1097,26 +1100,55 @@ int interpret::_findFirstAvailableNodeInSymbolTable(void) {
     return NOT_FOUND;
 }
 
-void interpret::saveProgram(void) {
+void interpret::saveToFlash(flashRegion fr) {
 #if !CYGWIN    
-    unsigned int byteCount = sizeof(parseTreeEntry);
-    unsigned int totalByteCount = byteCount * 4 /*MAX_PROGRAM_ENTRY*/;
-    unsigned int modInt = totalByteCount % sizeof(int);
-    unsigned int totalIntCount = totalByteCount / sizeof(int);
-    if (modInt != 0) {
-        // Some stray bytes caused totalByteCount to not be an integral multiple of 4
-        ++totalIntCount;
+    switch (fr) {
+    case FLASH_PROGRAM:
+        _flash.saveData((uint32_t*)_program, FLASH_START_ADDRESS_PROGRAM, _getIntSize(fr));
+        break;
+    case FLASH_SYMBOL_TABLE:
+        _flash.saveData((uint32_t*)_symbolTable, FLASH_START_ADDRESS_SYMBOL_TABLE, _getIntSize(fr));
+        break;
+    default:
+        assert(false);
+        break;
     }
-    _flash.saveData((uint32_t*)_program, totalIntCount);
 #endif // not CYGWIN    
 }
 
-void interpret::saveSymbolTable(void) {
-    unsigned int byteCount = sizeof(symbolTableEntry);
-    unsigned int totalByteCount = byteCount * MAX_SYMBOL_TABLE_ENTRY;
-    unsigned int totalIntCount = totalByteCount / sizeof(int);
+void interpret::restoreFromFlash(flashRegion fr) {
+#if !CYGWIN    
+    switch (fr) {
+    case FLASH_PROGRAM:
+        _flash.retrieveData((uint32_t*)_program, FLASH_START_ADDRESS_PROGRAM, _getIntSize(fr));
+        break;
+    case FLASH_SYMBOL_TABLE:
+        _flash.retrieveData((uint32_t*)_symbolTable, FLASH_START_ADDRESS_SYMBOL_TABLE, _getIntSize(fr));
+        break;
+    default:
+        assert(false);
+        break;
+    }
+#endif // not CYGWIN
 }
 
+unsigned int interpret::_getIntSize(flashRegion fr) {
+#if CYGWIN
+    return 0;
+#else // not CYGWIN
+//#define MAX_TEST_ENTRY  (3)    
+    unsigned int totalByteCount = sizeof(parseTreeEntry) * MAX_PROGRAM_ENTRY;
+    if (fr == FLASH_SYMBOL_TABLE) {
+        totalByteCount = sizeof(symbolTableEntry) * MAX_SYMBOL_TABLE_ENTRY;
+    }
+    unsigned int totalIntCount = totalByteCount / sizeof(int);
+    if (totalByteCount % sizeof(int) != 0) {
+        // Some stray bytes caused totalByteCount to not be an integral multiple of 4
+        ++totalIntCount;
+    }
+    return totalIntCount;
+#endif // not CYGWIN    
+}
 
 #if CYGWIN
 int main(void) {

@@ -63,17 +63,18 @@ public:
     void evaluateOperator(unsigned int op);
     void evaluateUnaryOperator(unsigned int op);
 
-    void saveProgram(void);
-    void saveSymbolTable(void);
+    void saveToFlash(flashRegion f);
+    void restoreFromFlash(flashRegion f);
     
 private:
+    unsigned int _getIntSize(flashRegion f);
 #if CYGWIN
     void _loadTree(const string& s);
     void _loadSymbolTable(const string& s);
     void setLowWaterMarkForTemporarySymbolSearch(void) {_symbolTableTemporaryBoundaryIndex = _symbolTableIndex - 1;}
     bool _loadParseTreeEntry(const string& inputString);
     bool _loadSymbolTableEntry(const string& inputString);
-#endif /* CYGWIN */    
+#endif /* CYGWIN */
     nodeType _currentProgramNodeType(void) const {return _program[_programIndex].type();}
     nodeType _programNodeType(unsigned int i) const {return _program[i].type();}
     unsigned int _currentProgramNodeValue(void) const {return _program[_programIndex].value();}
