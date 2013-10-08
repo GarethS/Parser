@@ -58,6 +58,10 @@ void interpretRun(void) {
             interpreter.restoreFromFlash(FLASH_PROGRAM);
 #endif            
             sp = interpreter.getStepper();
+            
+            sp->microstepSet(MICROSTEPS_8);
+            sp->RPM(12, 220);
+            
             led::enable(1);    
             interpreter.run();
             interpreterRunBool = FALSE;  // Send another <PRUN> command to start again.
