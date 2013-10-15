@@ -4,14 +4,14 @@ main () {
     on = 1;
     x = 0;
     limit = 4;
-    moveDistance = 200;
+    moveDistance = 1000;
     while (count < 142) {
         on = !on;
         led(&x, on);    // The first paramater, &x, is the return value and is pass-by-reference
         on = !on;
-        sleep(&x, 200);
+        sleep(&x, 1000);
         led(&x, on);
-        sleep(&x, 200);
+        sleep(&x, 1000);
         count = count + 1;
         if (count > limit) {
             moveBack = moveDistance * -limit;

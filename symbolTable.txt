@@ -6,7 +6,7 @@
 <SYMB> 0 0 -1 <symb>
 <SYMB> 1 4 -1 <symb>
 <SYMB> 0 0 -1 <symb>
-<SYMB> 1 200 -1 <symb>
+<SYMB> 1 1000 -1 <symb>
 <SYMB> 0 0 -1 <symb>
 <SYMB> 1 142 -1 <symb>
 <SYMB> 15 2 -6 <symb>
