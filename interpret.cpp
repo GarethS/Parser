@@ -60,6 +60,7 @@ void interpretRun(void) {
             sp = interpreter.getStepper();
             
             sp->microstepSet(MICROSTEPS_8);
+            sp->accelerationTimeMicrosecs(200000);
             sp->RPM(12, 220);
             
             led::enable(1);    
