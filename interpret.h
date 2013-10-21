@@ -32,8 +32,8 @@ using namespace std;
 #define MAX_PROGRAM_ENTRY           (200)
 #define MAX_SYMBOL_TABLE_ENTRY      (60)
 #define PROGRAM_INDEX_START         (0)
-#define VERSION_STRING              "00.00.07"
-#define VERSION_NUMBER              000007
+#define VERSION_STRING              "00.00.08"
+#define VERSION_NUMBER              000008
 
 extern "C" {
 void bufferInput(unsigned char c);

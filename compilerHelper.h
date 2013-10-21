@@ -39,12 +39,19 @@ int  yylex(void);
 #define VAR_FCN_LINK_UNDEFINED              (-1)
 // Used by interpreter to call intrinsic (built-in) functions. All intrinsics
 //  use a negative number to distinguish them from user defined functions.
-#define INTRINSIC_FCN_DEFN_MOVE_ABSOLUTE    (-2)
-#define INTRINSIC_FCN_DEFN_MOVE_RELATIVE    (-3)
-#define INTRINSIC_FCN_DEFN_SLEEP            (-4)
-#define INTRINSIC_FCN_DEFN_SLEEP_UNTIL      (-5)
-#define INTRINSIC_FCN_DEFN_LED              (-6)
-#define NUM_PARAMETERS_TWO                  (2)   // The above intrinsic functions all take 2 parameters.
+#define INTRINSIC_FCN_DEFN_MOVE_ABSOLUTE        (-2)
+#define INTRINSIC_FCN_DEFN_MOVE_RELATIVE        (-3)
+#define INTRINSIC_FCN_DEFN_SLEEP                (-4)
+#define INTRINSIC_FCN_DEFN_SLEEP_UNTIL          (-5)
+#define INTRINSIC_FCN_DEFN_LED                  (-6)
+#define INTRINSIC_FCN_DEFN_RPM                  (-7)    // 3 parameters
+#define INTRINSIC_FCN_DEFN_RPM_x10k             (-8)    // 3
+#define INTRINSIC_FCN_DEFN_ACCEL_MICROSEC       (-9)
+#define INTRINSIC_FCN_DEFN_DEGREE_x10k_ABSOLUTE (-10)
+#define INTRINSIC_FCN_DEFN_DEGREE_x10k_RELATIVE (-11)
+
+#define NUM_PARAMETERS_TWO                      (2)   // The above intrinsic functions mostly take 2 parameters.
+#define NUM_PARAMETERS_THREE                    (3)
 
 typedef enum {nodeVariable,             // 0
                 nodeConst,

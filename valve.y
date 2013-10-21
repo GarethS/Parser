@@ -44,12 +44,18 @@ unsigned int statementTableFreeIndex = 0;
 
 unsigned int statementOutputIndex = 0;
 
-#define QUOTES_MAIN             "main"
-#define QUOTES_MOVEABSOLUTE     "moveAbsolute"
-#define QUOTES_MOVERELATIVE     "moveRelative"
-#define QUOTES_SLEEP            "sleep"
-#define QUOTES_SLEEP_UNTIL      "sleepUntil"
-#define QUOTES_LED              "LED"
+#define QUOTES_MAIN                     "main"
+#define QUOTES_MOVEABSOLUTE             "moveAbsolute"
+#define QUOTES_MOVERELATIVE             "moveRelative"
+#define QUOTES_SLEEP                    "sleep"
+#define QUOTES_SLEEP_UNTIL              "sleepUntil"
+#define QUOTES_LED                      "LED"
+#define QUOTES_RPM                      "RPM"
+#define QUOTES_RPM_x10k                 "RPMx10k"
+#define QUOTES_ACCEL_MICROSEC           "accelMicroSec"
+#define QUOTES_DEGREE_x10k_ABSOLUTE     "degreex10kAbsolute"
+#define QUOTES_DEGREE_x10k_RELATIVE     "degreex10kRelative"
+
 
 %}
 
@@ -65,7 +71,7 @@ unsigned int statementOutputIndex = 0;
 %token INPUTS OUTPUTS COMMA
 %token EQUAL LBRACE RBRACE ARRAYDEFINE IF ELSE WHILE
 // 4x. Add intrinsic function name from flex here
-%token <string>	VAR VAR_METHOD CONST CONST_FLOAT MAIN MOVEABSOLUTE MOVERELATIVE SLEEP SLEEPUNTIL LED
+%token <string>	VAR VAR_METHOD CONST CONST_FLOAT MAIN MOVEABSOLUTE MOVERELATIVE SLEEP SLEEPUNTIL LED RPM RPMx10k ACCELMICROSEC DEGREEx10kABSOLUTE DEGREEx10kRELATIVE
 
 // %left or %right takes the place of %token
 %left AND OR BITWISEAND BITWISEOR
@@ -113,7 +119,7 @@ statement:	        statementAssign	                    {/*printf("\nstatementAss
                     | statementWhile                    {$$ = $1;}
                     | VAR LPAREN argList RPAREN SEMI    {$$ = addNodeFunctionCall($1, $3);}   // user defined function call
                     
-                    // 1x. To add an intrinsic (built-in) function, add its exact prototype here. Note, the 'x.' is an aid to searching for the things
+                    // 1x. To add an intrinsic (built-in) function, add its exact prototype here. Note, 'x.' is an aid to searching for things
                     //      that need done to add intrinsic functions.
                     | MOVEABSOLUTE LPAREN BITWISEAND VAR COMMA expr RPAREN SEMI {$$ = addNodeInstrinsicFunction1(QUOTES_MOVEABSOLUTE, $4, $6);}
                     // 2x. Make sure any other combination of parameters is caught here.
@@ -130,6 +136,21 @@ statement:	        statementAssign	                    {/*printf("\nstatementAss
                     
                     | LED LPAREN BITWISEAND VAR COMMA expr RPAREN SEMI {$$ = addNodeInstrinsicFunction1(QUOTES_LED, $4, $6);}
                     | LED LPAREN argList RPAREN SEMI {$$ = NULL; yyerror(QUOTES_LED);}
+                    
+                    | RPM LPAREN BITWISEAND VAR COMMA expr COMMA expr RPAREN SEMI {$$ = addNodeInstrinsicFunction2(QUOTES_RPM, $4, $6, $8);}
+                    | RPM LPAREN argList RPAREN SEMI {$$ = NULL; yyerror(QUOTES_RPM);}
+                    
+                    | RPMx10k LPAREN BITWISEAND VAR COMMA expr COMMA expr RPAREN SEMI {$$ = addNodeInstrinsicFunction2(QUOTES_RPM_x10k, $4, $6, $8);}
+                    | RPMx10k LPAREN argList RPAREN SEMI {$$ = NULL; yyerror(QUOTES_RPM_x10k);}
+                    
+                    | ACCELMICROSEC LPAREN BITWISEAND VAR COMMA expr RPAREN SEMI {$$ = addNodeInstrinsicFunction1(QUOTES_ACCEL_MICROSEC, $4, $6);}
+                    | ACCELMICROSEC LPAREN argList RPAREN SEMI {$$ = NULL; yyerror(QUOTES_ACCEL_MICROSEC);}
+                    
+                    | DEGREEx10kABSOLUTE LPAREN BITWISEAND VAR COMMA expr RPAREN SEMI {$$ = addNodeInstrinsicFunction1(QUOTES_DEGREE_x10k_ABSOLUTE, $4, $6);}
+                    | DEGREEx10kABSOLUTE LPAREN argList RPAREN SEMI {$$ = NULL; yyerror(QUOTES_DEGREE_x10k_ABSOLUTE);}
+                    
+                    | DEGREEx10kRELATIVE LPAREN BITWISEAND VAR COMMA expr RPAREN SEMI {$$ = addNodeInstrinsicFunction1(QUOTES_DEGREE_x10k_RELATIVE, $4, $6);}
+                    | DEGREEx10kRELATIVE LPAREN argList RPAREN SEMI {$$ = NULL; yyerror(QUOTES_DEGREE_x10k_RELATIVE);}
                     
                     | arrayDefine                       {$$ = NULL;}
 
@@ -380,6 +401,26 @@ int findSymbolFcnDefinition(symbolNode* pVar, int* pFcnDefnIndex) {
         pVar->val == NUM_PARAMETERS_TWO) {
         *pFcnDefnIndex = INTRINSIC_FCN_DEFN_LED;
         ++count;
+    } else if (strncmp(QUOTES_RPM, pVar->name, VAR_NAME_LENGTH-1) == 0 &&
+        pVar->val == NUM_PARAMETERS_THREE) {
+        *pFcnDefnIndex = INTRINSIC_FCN_DEFN_RPM;
+        ++count;
+    } else if (strncmp(QUOTES_RPM_x10k, pVar->name, VAR_NAME_LENGTH-1) == 0 &&
+        pVar->val == NUM_PARAMETERS_THREE) {
+        *pFcnDefnIndex = INTRINSIC_FCN_DEFN_RPM_x10k;
+        ++count;
+    } else if (strncmp(QUOTES_ACCEL_MICROSEC, pVar->name, VAR_NAME_LENGTH-1) == 0 &&
+        pVar->val == NUM_PARAMETERS_TWO) {
+        *pFcnDefnIndex = INTRINSIC_FCN_DEFN_ACCEL_MICROSEC;
+        ++count;
+    } else if (strncmp(QUOTES_DEGREE_x10k_ABSOLUTE, pVar->name, VAR_NAME_LENGTH-1) == 0 &&
+        pVar->val == NUM_PARAMETERS_TWO) {
+        *pFcnDefnIndex = INTRINSIC_FCN_DEFN_DEGREE_x10k_ABSOLUTE;
+        ++count;
+    } else if (strncmp(QUOTES_DEGREE_x10k_RELATIVE, pVar->name, VAR_NAME_LENGTH-1) == 0 &&
+        pVar->val == NUM_PARAMETERS_TWO) {
+        *pFcnDefnIndex = INTRINSIC_FCN_DEFN_DEGREE_x10k_RELATIVE;
+        ++count;
     }
     return count;
 }
@@ -431,6 +472,16 @@ astNode* addNodeInstrinsicFunction1(char* functionName, char* returnValue, astNo
     astNode* p2 = addFcnCallArgument(NULL, parameter1);
     astNode* p3 = addFcnCallArgument(p2, p1);
     return addNodeFunctionCall(functionName, p3);
+}
+
+// The 2 stands for 2 parameters with this call. Note how return parameter, p1, is added last and it's the first parameter in the function call.
+//  Parameters are added in the reverse order they appear in the function call.
+astNode* addNodeInstrinsicFunction2(char* functionName, char* returnValue, astNode* parameter1, astNode* parameter2) {
+    astNode* p1 = addNodeSymbolIndex(addVarToSymbolTable(returnValue));
+    astNode* p2 = addFcnCallArgument(NULL, parameter2);
+    astNode* p3 = addFcnCallArgument(p2, parameter1);
+    astNode* p4 = addFcnCallArgument(p3, p1);
+    return addNodeFunctionCall(functionName, p4);
 }
 
 astNode* addNodeFunctionCall(char* pFuncName, astNode* pArgList) {

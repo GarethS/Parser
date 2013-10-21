@@ -1,10 +1,12 @@
-// "So easy, even your Granny could do it." 
+// Test program
+// (c) Gareth Scott 2013
 main () {
     count = 0;
     on = 1;
     x = 0;
     limit = 4;
     moveDistance = 1000;
+    RPM(&x, 1, 100);
     while (count < 142) {
         on = !on;
         led(&x, on);    // The first paramater, &x, is the return value and is pass-by-reference

@@ -66,6 +66,7 @@ astNode* addFcnDefnArgument(astNode* pArgumentListNode, const char* pArgumentNam
 astNode* addFunction(const char* pFuncName, astNode* pArgList, astNode* pStatementList);
 astNode* addNodeFunctionCall(char* pFuncName, astNode* pArgList);
 astNode* addNodeInstrinsicFunction1(char* functionName, char* returnValue, astNode* parameter1);
+astNode* addNodeInstrinsicFunction2(char* functionName, char* returnValue, astNode* parameter1, astNode* parameter2);
 
 // New functions 
 int addVarToSymbolTable(char* var);

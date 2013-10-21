@@ -668,7 +668,7 @@ void interpret::run(void) {
                 if (tentativeProgramIndex < 0) {
                     // It's an intrinsic function call so make the call here locally.
                     int intrinsicReturnValue = 0;
-                    int symbolIndexParameter1;
+                    int symbolIndexParameter1, symbolIndexParameter2;
                     int symbolIndexReturnValue;
                     // 1. Get parameters and make the call to the intrinsic function. 
                     //     First parameter is always by reference since it's the return value, second parameter is by value
@@ -706,10 +706,32 @@ void interpret::run(void) {
 #endif // not CYGWIN                    
                         break;
                     case INTRINSIC_FCN_DEFN_LED:
-                        intrinsicReturnValue = 25;  // a dummy value
+                        intrinsicReturnValue = 25;  // dummy value
                         _led.set(_symbolTable[symbolIndexParameter1].value());
                         break;
-                    default:
+                    case INTRINSIC_FCN_DEFN_RPM:
+                        intrinsicReturnValue = 25;  // dummy value
+                        symbolIndexParameter2 = _evaluationStack.peekAtIndex(_bp - 3);
+                        _s.RPM(_symbolTable[symbolIndexParameter1].value(), _symbolTable[symbolIndexParameter2].value());
+                        break;
+                    case INTRINSIC_FCN_DEFN_RPM_x10k:
+                        intrinsicReturnValue = 25;  // dummy value
+                        symbolIndexParameter2 = _evaluationStack.peekAtIndex(_bp - 3);
+                        _s.RPMx10k(_symbolTable[symbolIndexParameter1].value(), _symbolTable[symbolIndexParameter2].value());
+                        break;
+                    case INTRINSIC_FCN_DEFN_ACCEL_MICROSEC:
+                        intrinsicReturnValue = 25;  // dummy value
+                        _s.accelerationTimeMicrosecs(_symbolTable[symbolIndexParameter1].value());
+                        break;
+                    case INTRINSIC_FCN_DEFN_DEGREE_x10k_ABSOLUTE:
+                        intrinsicReturnValue = 25;  // dummy value
+                        _s.moveAbsoluteDegreex10k(_symbolTable[symbolIndexParameter1].value());
+                        break;
+                    case INTRINSIC_FCN_DEFN_DEGREE_x10k_RELATIVE:
+                        intrinsicReturnValue = 25;  // dummy value
+                        _s.moveRelativeDegreex10k(_symbolTable[symbolIndexParameter1].value());
+                        break;
+                   default:
                         break;
                     }
                     _symbolTable[symbolIndexReturnValue].value(intrinsicReturnValue);

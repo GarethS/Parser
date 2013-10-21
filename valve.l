@@ -68,11 +68,16 @@ inputs	 	{debugPrintf("INPUTS"); return INPUTS;}
 "else"	    {debugPrintf("ELSE"); return ELSE;}
 "while"	    {debugPrintf("WHILE"); return WHILE;}
 "main"	    {debugPrintf("MAIN"); return MAIN;}
-"moveAbsolute"	{debugPrintf("MOVEABSOLUTE"); return MOVEABSOLUTE;}
-"moveRelative"	{debugPrintf("MOVERELATIVE"); return MOVERELATIVE;}
-"sleep"	        {debugPrintf("SLEEP"); return SLEEP;}
-"sleepUntil"    {debugPrintf("SLEEPUNTIL"); return SLEEPUNTIL;}
-"led"           {debugPrintf("LED"); return LED;}
+"moveAbsolute"	        {debugPrintf("MOVEABSOLUTE"); return MOVEABSOLUTE;}
+"moveRelative"	        {debugPrintf("MOVERELATIVE"); return MOVERELATIVE;}
+"sleep"	                {debugPrintf("SLEEP"); return SLEEP;}
+"sleepUntil"            {debugPrintf("SLEEPUNTIL"); return SLEEPUNTIL;}
+"led"                   {debugPrintf("LED"); return LED;}
+"RPM"                   {debugPrintf("RPM"); return RPM;}
+"RPMx10k"               {debugPrintf("RPMx10k"); return RPMx10k;}
+"accelMicroSec"         {debugPrintf("ACCELMICROSEC"); return ACCELMICROSEC;}
+"degreex10kAbsolute"    {debugPrintf("DEGREEx10kABSOLUTE"); return DEGREEx10kABSOLUTE;}
+"degreex10kRelative"    {debugPrintf("DEGREEx10kRELATIVE"); return DEGREEx10kRELATIVE;}
 -?{digit}+		{debugPrintf("CONST"); yylval.string = strdup(yytext); return CONST;}	/* constant integer */
 -?{digit}+\.{digit}+		{debugPrintf("CONST_FLOAT"); yylval.floatingPoint = atof(yytext); return CONST_FLOAT;}	/* constant floating-point */
 {alpha}{alphanum}*	{debugPrintf("VAR"); yylval.string = strdup(yytext); return VAR;}	/* variable */

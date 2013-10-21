@@ -58,30 +58,35 @@
      SLEEP = 275,
      SLEEPUNTIL = 276,
      LED = 277,
-     BITWISEOR = 278,
-     BITWISEAND = 279,
-     OR = 280,
-     AND = 281,
-     SHR = 282,
-     SHL = 283,
-     LSS = 284,
-     GTR = 285,
-     NEQ = 286,
-     LEQ = 287,
-     GEQ = 288,
-     TEST_FOR_EQUAL = 289,
-     LPAREN = 290,
-     MINUS = 291,
-     PLUS = 292,
-     XOR = 293,
-     DIV = 294,
-     MULT = 295,
-     LBRACKET = 296,
-     RBRACKET = 297,
-     RPAREN = 298,
-     SEMI = 299,
-     BANG = 300,
-     TILDE = 301
+     RPM = 278,
+     RPMx10k = 279,
+     ACCELMICROSEC = 280,
+     DEGREEx10kABSOLUTE = 281,
+     DEGREEx10kRELATIVE = 282,
+     BITWISEOR = 283,
+     BITWISEAND = 284,
+     OR = 285,
+     AND = 286,
+     SHR = 287,
+     SHL = 288,
+     LSS = 289,
+     GTR = 290,
+     NEQ = 291,
+     LEQ = 292,
+     GEQ = 293,
+     TEST_FOR_EQUAL = 294,
+     LPAREN = 295,
+     MINUS = 296,
+     PLUS = 297,
+     XOR = 298,
+     DIV = 299,
+     MULT = 300,
+     LBRACKET = 301,
+     RBRACKET = 302,
+     RPAREN = 303,
+     SEMI = 304,
+     BANG = 305,
+     TILDE = 306
    };
 #endif
 
@@ -92,7 +97,7 @@ typedef union YYSTYPE
 {
 
 /* Line 1685 of yacc.c  */
-#line 57 "valve.y"
+#line 63 "valve.y"
 
 	int integer;
     float floatingPoint;
@@ -102,7 +107,7 @@ typedef union YYSTYPE
 
 
 /* Line 1685 of yacc.c  */
-#line 106 "valve.tab.h"
+#line 111 "valve.tab.h"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
