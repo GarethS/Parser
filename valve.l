@@ -78,6 +78,12 @@ inputs	 	{debugPrintf("INPUTS"); return INPUTS;}
 "accelMicroSec"         {debugPrintf("ACCELMICROSEC"); return ACCELMICROSEC;}
 "degreex10kAbsolute"    {debugPrintf("DEGREEx10kABSOLUTE"); return DEGREEx10kABSOLUTE;}
 "degreex10kRelative"    {debugPrintf("DEGREEx10kRELATIVE"); return DEGREEx10kRELATIVE;}
+"waitForIdle"           {debugPrintf("WAITFORIDLE"); return WAITFORIDLE;}
+"printNumber"           {debugPrintf("PRINTNUMBER"); return PRINTNUMBER;}
+"getInput"              {debugPrintf("GETINPUT"); return GETINPUT;}
+"setOutput"             {debugPrintf("SETOUTPUT"); return SETOUTPUT;}
+"getADC"                {debugPrintf("GETADC"); return GETADC;}
+"getTemp"               {debugPrintf("GETTEMP"); return GETTEMP;}
 -?{digit}+		{debugPrintf("CONST"); yylval.string = strdup(yytext); return CONST;}	/* constant integer */
 -?{digit}+\.{digit}+		{debugPrintf("CONST_FLOAT"); yylval.floatingPoint = atof(yytext); return CONST_FLOAT;}	/* constant floating-point */
 {alpha}{alphanum}*	{debugPrintf("VAR"); yylval.string = strdup(yytext); return VAR;}	/* variable */

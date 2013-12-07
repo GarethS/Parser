@@ -14,6 +14,7 @@
 #define YYSTYPE int         // ditto
 #include "valve.tab.h"
 #include "stepper.h"
+#include "io.h"
 
 // Can use either tinyQueue or a standard library deque
 #include "tinyQueue.h"
@@ -56,7 +57,7 @@ public:
     void dumpSymbolTable(void);
     void dumpEvaluationStack(void);
 #else /* not CYGWIN */
-    stepper* getStepper(void) {return &_s;}
+    stepper* getStepper(void) {return &_stepper;}
     void setLowWaterMarkForTemporarySymbolSearch(void) {_symbolTableTemporaryBoundaryIndex = _symbolTableIndex - 1;}
 #endif /* CYGWIN */    
     void run(void);
@@ -114,7 +115,8 @@ private:
     unsigned int _symbolTableTemporaryBoundaryIndex; // Boundary between temporary symbols (higher index) and regular symbols (index from 0). Use for optimization later on.
     tinyQueue<int> _evaluationStack;    // Contains the index of a symbol, not its value.
     bool _evaluatingPattern;
-    stepper _s;
+    stepper _stepper;
+    io _io;
     led _led;
 };
 

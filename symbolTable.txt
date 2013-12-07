@@ -8,7 +8,8 @@
 <SYMB> 0 0 -1 <symb>
 <SYMB> 1 1000 -1 <symb>
 <SYMB> 0 0 -1 <symb>
-<SYMB> 1 100 -1 <symb>
+<SYMB> 1 60 -1 <symb>
+<SYMB> 1 120 -1 <symb>
 <SYMB> 15 3 -7 <symb>
 <SYMB> 1 142 -1 <symb>
 <SYMB> 15 2 -6 <symb>

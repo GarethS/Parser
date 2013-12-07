@@ -65,6 +65,7 @@ astNode* addFcnCallArgument(astNode* pArgumentListNode, astNode* pArgumentNode);
 astNode* addFcnDefnArgument(astNode* pArgumentListNode, const char* pArgumentName, const int passByValueOrReference, const int firstOrSebsequentParameter);
 astNode* addFunction(const char* pFuncName, astNode* pArgList, astNode* pStatementList);
 astNode* addNodeFunctionCall(char* pFuncName, astNode* pArgList);
+astNode* addNodeInstrinsicFunction0(char* functionName, char* returnValue);
 astNode* addNodeInstrinsicFunction1(char* functionName, char* returnValue, astNode* parameter1);
 astNode* addNodeInstrinsicFunction2(char* functionName, char* returnValue, astNode* parameter1, astNode* parameter2);
 

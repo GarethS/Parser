@@ -63,30 +63,36 @@
      ACCELMICROSEC = 280,
      DEGREEx10kABSOLUTE = 281,
      DEGREEx10kRELATIVE = 282,
-     BITWISEOR = 283,
-     BITWISEAND = 284,
-     OR = 285,
-     AND = 286,
-     SHR = 287,
-     SHL = 288,
-     LSS = 289,
-     GTR = 290,
-     NEQ = 291,
-     LEQ = 292,
-     GEQ = 293,
-     TEST_FOR_EQUAL = 294,
-     LPAREN = 295,
-     MINUS = 296,
-     PLUS = 297,
-     XOR = 298,
-     DIV = 299,
-     MULT = 300,
-     LBRACKET = 301,
-     RBRACKET = 302,
-     RPAREN = 303,
-     SEMI = 304,
-     BANG = 305,
-     TILDE = 306
+     WAITFORIDLE = 283,
+     PRINTNUMBER = 284,
+     GETINPUT = 285,
+     SETOUTPUT = 286,
+     GETADC = 287,
+     GETTEMP = 288,
+     BITWISEOR = 289,
+     BITWISEAND = 290,
+     OR = 291,
+     AND = 292,
+     SHR = 293,
+     SHL = 294,
+     LSS = 295,
+     GTR = 296,
+     NEQ = 297,
+     LEQ = 298,
+     GEQ = 299,
+     TEST_FOR_EQUAL = 300,
+     LPAREN = 301,
+     MINUS = 302,
+     PLUS = 303,
+     XOR = 304,
+     DIV = 305,
+     MULT = 306,
+     LBRACKET = 307,
+     RBRACKET = 308,
+     RPAREN = 309,
+     SEMI = 310,
+     BANG = 311,
+     TILDE = 312
    };
 #endif
 
@@ -97,7 +103,7 @@ typedef union YYSTYPE
 {
 
 /* Line 1685 of yacc.c  */
-#line 63 "valve.y"
+#line 69 "valve.y"
 
 	int integer;
     float floatingPoint;
@@ -107,7 +113,7 @@ typedef union YYSTYPE
 
 
 /* Line 1685 of yacc.c  */
-#line 111 "valve.tab.h"
+#line 117 "valve.tab.h"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */

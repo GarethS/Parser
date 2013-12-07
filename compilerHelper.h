@@ -49,7 +49,19 @@ int  yylex(void);
 #define INTRINSIC_FCN_DEFN_ACCEL_MICROSEC       (-9)
 #define INTRINSIC_FCN_DEFN_DEGREE_x10k_ABSOLUTE (-10)
 #define INTRINSIC_FCN_DEFN_DEGREE_x10k_RELATIVE (-11)
+#define INTRINSIC_FCN_DEFN_WAIT_FOR_IDLE        (-12)
+#define INTRINSIC_FCN_DEFN_PRINT_NUMBER         (-13)
+#define INTRINSIC_FCN_DEFN_GET_INPUT            (-14)
+#define INTRINSIC_FCN_DEFN_SET_OUTPUT           (-15)
+#define INTRINSIC_FCN_DEFN_GET_ADC              (-16)
+#define INTRINSIC_FCN_DEFN_GET_TEMP             (-17)
+#define INTRINSIC_FCN_DEFN_RESET                (-18)
 
+#define RETURN_OK                               (0)
+#define RETURN_ERR_TIMEOUT                      (1)
+#define RETURN_NOT_IDLE                         (2)
+
+#define NUM_PARAMETERS_ONE                      (1)
 #define NUM_PARAMETERS_TWO                      (2)   // The above intrinsic functions mostly take 2 parameters.
 #define NUM_PARAMETERS_THREE                    (3)
 

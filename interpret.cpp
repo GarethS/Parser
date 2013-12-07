@@ -33,9 +33,13 @@ void interpretRun(void);
 
 //FreeRTOS specific below
 static portTickType xTaskWakeTime;
-void vTaskDelay( portTickType xTicksToDelay ) PRIVILEGED_FUNCTION;  // task.h
-void vTaskDelayUntil( portTickType * const pxPreviousWakeTime, portTickType xTimeIncrement ) PRIVILEGED_FUNCTION; // task.h
-portTickType xTaskGetTickCount( void ) PRIVILEGED_FUNCTION; // task.h
+static portTickType xTaskIdleWaitStartTime;
+static portTickType xTaskIdleWaitCurrentTime;
+static portTickType tickCount;
+
+void vTaskDelay( portTickType xTicksToDelay ) PRIVILEGED_FUNCTION;                                                  // task.h
+void vTaskDelayUntil( portTickType * const pxPreviousWakeTime, portTickType xTimeIncrement ) PRIVILEGED_FUNCTION;   // task.h
+portTickType xTaskGetTickCount( void ) PRIVILEGED_FUNCTION;                                                         // task.h
 unsigned portBASE_TYPE uxTaskGetStackHighWaterMark( void* xTask ) PRIVILEGED_FUNCTION;
 }   // extern "C"
 
@@ -250,6 +254,8 @@ void bufferInput(unsigned char c) {
 }
 #endif /* CYGWIN */
 
+static char tempBuf[32];
+
 interpret::interpret() :
 #if CYGWIN 
 					logc(std::string("INTERPRETER")),
@@ -268,7 +274,7 @@ interpret::interpret() :
 #if CYGWIN
     printf("Version: %s\n", VERSION_STRING);
 #endif /* CYGWIN */
-    //_s.RPM(1, 24);    
+    //_stepper.RPM(1, 24);    
 }
 
 void interpret::load(void) {
@@ -670,6 +676,7 @@ void interpret::run(void) {
                     int intrinsicReturnValue = 0;
                     int symbolIndexParameter1, symbolIndexParameter2;
                     int symbolIndexReturnValue;
+                    unsigned int yieldMilliseconds;
                     // 1. Get parameters and make the call to the intrinsic function. 
                     //     First parameter is always by reference since it's the return value, second parameter is by value
                     symbolIndexParameter1 = _evaluationStack.peekAtIndex(_bp - 2); // _bp points to the return symbol index ...
@@ -682,12 +689,12 @@ void interpret::run(void) {
                         //dump();
                         // There is no return value from stepper::moveAbsolute() so just fake it for now.
                         intrinsicReturnValue = 27;  // a dummy value
-                        _s.moveAbsolute(_symbolTable[symbolIndexParameter1].value());
+                        _stepper.moveAbsolute(_symbolTable[symbolIndexParameter1].value());
                         //intrinsicReturnValue = moveAbsolute(_symbolTable[symbolIndexParameter1].value());
                         break;
                     case INTRINSIC_FCN_DEFN_MOVE_RELATIVE:
                         intrinsicReturnValue = 26;  // a dummy value
-                        _s.moveRelative(_symbolTable[symbolIndexParameter1].value());
+                        _stepper.moveRelative(_symbolTable[symbolIndexParameter1].value());
                         break;
                     case INTRINSIC_FCN_DEFN_SLEEP:
 #if !CYGWIN
@@ -712,24 +719,70 @@ void interpret::run(void) {
                     case INTRINSIC_FCN_DEFN_RPM:
                         intrinsicReturnValue = 25;  // dummy value
                         symbolIndexParameter2 = _evaluationStack.peekAtIndex(_bp - 3);
-                        _s.RPM(_symbolTable[symbolIndexParameter1].value(), _symbolTable[symbolIndexParameter2].value());
+                        _stepper.RPM(_symbolTable[symbolIndexParameter1].value(), _symbolTable[symbolIndexParameter2].value());
                         break;
                     case INTRINSIC_FCN_DEFN_RPM_x10k:
                         intrinsicReturnValue = 25;  // dummy value
                         symbolIndexParameter2 = _evaluationStack.peekAtIndex(_bp - 3);
-                        _s.RPMx10k(_symbolTable[symbolIndexParameter1].value(), _symbolTable[symbolIndexParameter2].value());
+                        _stepper.RPMx10k(_symbolTable[symbolIndexParameter1].value(), _symbolTable[symbolIndexParameter2].value());
                         break;
                     case INTRINSIC_FCN_DEFN_ACCEL_MICROSEC:
                         intrinsicReturnValue = 25;  // dummy value
-                        _s.accelerationTimeMicrosecs(_symbolTable[symbolIndexParameter1].value());
+                        _stepper.accelerationTimeMicrosecs(_symbolTable[symbolIndexParameter1].value());
                         break;
                     case INTRINSIC_FCN_DEFN_DEGREE_x10k_ABSOLUTE:
                         intrinsicReturnValue = 25;  // dummy value
-                        _s.moveAbsoluteDegreex10k(_symbolTable[symbolIndexParameter1].value());
+                        _stepper.moveAbsoluteDegreex10k(_symbolTable[symbolIndexParameter1].value());
                         break;
                     case INTRINSIC_FCN_DEFN_DEGREE_x10k_RELATIVE:
                         intrinsicReturnValue = 25;  // dummy value
-                        _s.moveRelativeDegreex10k(_symbolTable[symbolIndexParameter1].value());
+                        _stepper.moveRelativeDegreex10k(_symbolTable[symbolIndexParameter1].value());
+                        break;
+                    case INTRINSIC_FCN_DEFN_WAIT_FOR_IDLE:
+                        intrinsicReturnValue = RETURN_OK;
+                        yieldMilliseconds = _symbolTable[symbolIndexParameter1].value();
+                        if (yieldMilliseconds == 0) {
+                            // Don't wait, just tell whether motor is busy or idle
+                            if (_stepper.state() != IDLE) {
+                                intrinsicReturnValue = RETURN_NOT_IDLE;
+                            }
+                            break;
+                        }
+#if !CYGWIN                        
+                        xTaskIdleWaitStartTime = xTaskGetTickCount();
+                        while (_stepper.state() != IDLE) {
+                            vTaskDelay(0);  // equivalent to taskYIELD()
+                            xTaskIdleWaitCurrentTime = xTaskGetTickCount();
+                            if (xTaskIdleWaitStartTime > xTaskIdleWaitCurrentTime) {
+                                // Timer count wraparound
+                                tickCount = portMAX_DELAY - xTaskIdleWaitStartTime + xTaskIdleWaitCurrentTime;
+                            } else {
+                                tickCount = xTaskIdleWaitCurrentTime - xTaskIdleWaitStartTime;
+                            }
+                            if (tickCount / portTICK_RATE_MS > yieldMilliseconds) {
+                                intrinsicReturnValue = RETURN_ERR_TIMEOUT;
+                                break;
+                            }
+                        }
+#endif // not CYGWIN                        
+                        break;
+                    case INTRINSIC_FCN_DEFN_PRINT_NUMBER:
+                        intrinsicReturnValue = sprintf(tempBuf, "<%d>", symbolIndexParameter1);
+#if !CYGWIN                        
+                        UARTSend((unsigned char *)tempBuf, intrinsicReturnValue);
+#endif // not CYGWIN                        
+                        break;
+                    case INTRINSIC_FCN_DEFN_GET_INPUT:
+                        intrinsicReturnValue = _io.getInput();
+                        break;
+                    case INTRINSIC_FCN_DEFN_SET_OUTPUT:
+                        _io.setOutput(symbolIndexParameter1);
+                        break;
+                    case INTRINSIC_FCN_DEFN_GET_ADC:
+                        intrinsicReturnValue = _io.getADC(symbolIndexParameter1);
+                        break;
+                    case INTRINSIC_FCN_DEFN_GET_TEMP:
+                        intrinsicReturnValue = _io.getTemperature();
                         break;
                    default:
                         break;

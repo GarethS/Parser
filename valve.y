@@ -55,6 +55,12 @@ unsigned int statementOutputIndex = 0;
 #define QUOTES_ACCEL_MICROSEC           "accelMicroSec"
 #define QUOTES_DEGREE_x10k_ABSOLUTE     "degreex10kAbsolute"
 #define QUOTES_DEGREE_x10k_RELATIVE     "degreex10kRelative"
+#define QUOTES_WAIT_FOR_IDLE            "waitForIdle"
+#define QUOTES_PRINT_NUMBER             "printNumber"
+#define QUOTES_GET_INPUT                "getInput"
+#define QUOTES_SET_OUTPUT               "setOutput"
+#define QUOTES_GET_ADC                  "getADC"
+#define QUOTES_GET_TEMP                 "getTemp"
 
 
 %}
@@ -71,7 +77,7 @@ unsigned int statementOutputIndex = 0;
 %token INPUTS OUTPUTS COMMA
 %token EQUAL LBRACE RBRACE ARRAYDEFINE IF ELSE WHILE
 // 4x. Add intrinsic function name from flex here
-%token <string>	VAR VAR_METHOD CONST CONST_FLOAT MAIN MOVEABSOLUTE MOVERELATIVE SLEEP SLEEPUNTIL LED RPM RPMx10k ACCELMICROSEC DEGREEx10kABSOLUTE DEGREEx10kRELATIVE
+%token <string>	VAR VAR_METHOD CONST CONST_FLOAT MAIN MOVEABSOLUTE MOVERELATIVE SLEEP SLEEPUNTIL LED RPM RPMx10k ACCELMICROSEC DEGREEx10kABSOLUTE DEGREEx10kRELATIVE WAITFORIDLE PRINTNUMBER GETINPUT SETOUTPUT GETADC GETTEMP
 
 // %left or %right takes the place of %token
 %left AND OR BITWISEAND BITWISEOR
@@ -151,6 +157,24 @@ statement:	        statementAssign	                    {/*printf("\nstatementAss
                     
                     | DEGREEx10kRELATIVE LPAREN BITWISEAND VAR COMMA expr RPAREN SEMI {$$ = addNodeInstrinsicFunction1(QUOTES_DEGREE_x10k_RELATIVE, $4, $6);}
                     | DEGREEx10kRELATIVE LPAREN argList RPAREN SEMI {$$ = NULL; yyerror(QUOTES_DEGREE_x10k_RELATIVE);}
+                    
+                    | WAITFORIDLE LPAREN BITWISEAND VAR COMMA expr RPAREN SEMI {$$ = addNodeInstrinsicFunction1(QUOTES_WAIT_FOR_IDLE, $4, $6);}
+                    | WAITFORIDLE LPAREN argList RPAREN SEMI {$$ = NULL; yyerror(QUOTES_WAIT_FOR_IDLE);}
+                    
+                    | PRINTNUMBER LPAREN BITWISEAND VAR COMMA expr RPAREN SEMI {$$ = addNodeInstrinsicFunction1(QUOTES_PRINT_NUMBER, $4, $6);}
+                    | PRINTNUMBER LPAREN argList RPAREN SEMI {$$ = NULL; yyerror(QUOTES_PRINT_NUMBER);}
+                    
+                    | GETINPUT LPAREN BITWISEAND VAR COMMA expr RPAREN SEMI {$$ = addNodeInstrinsicFunction0(QUOTES_GET_INPUT, $4);}
+                    | GETINPUT LPAREN argList RPAREN SEMI {$$ = NULL; yyerror(QUOTES_GET_INPUT);}
+                    
+                    | SETOUTPUT LPAREN BITWISEAND VAR COMMA expr RPAREN SEMI {$$ = addNodeInstrinsicFunction1(QUOTES_SET_OUTPUT, $4, $6);}
+                    | SETOUTPUT LPAREN argList RPAREN SEMI {$$ = NULL; yyerror(QUOTES_SET_OUTPUT);}
+                    
+                    | GETADC LPAREN BITWISEAND VAR COMMA expr RPAREN SEMI {$$ = addNodeInstrinsicFunction1(QUOTES_GET_ADC, $4, $6);}
+                    | GETADC LPAREN argList RPAREN SEMI {$$ = NULL; yyerror(QUOTES_GET_ADC);}
+                    
+                    | GETTEMP LPAREN BITWISEAND VAR COMMA expr RPAREN SEMI {$$ = addNodeInstrinsicFunction0(QUOTES_GET_TEMP, $4);}
+                    | GETTEMP LPAREN argList RPAREN SEMI {$$ = NULL; yyerror(QUOTES_GET_TEMP);}
                     
                     | arrayDefine                       {$$ = NULL;}
 
@@ -421,6 +445,30 @@ int findSymbolFcnDefinition(symbolNode* pVar, int* pFcnDefnIndex) {
         pVar->val == NUM_PARAMETERS_TWO) {
         *pFcnDefnIndex = INTRINSIC_FCN_DEFN_DEGREE_x10k_RELATIVE;
         ++count;
+    } else if (strncmp(QUOTES_WAIT_FOR_IDLE, pVar->name, VAR_NAME_LENGTH-1) == 0 &&
+        pVar->val == NUM_PARAMETERS_TWO) {
+        *pFcnDefnIndex = INTRINSIC_FCN_DEFN_WAIT_FOR_IDLE;
+        ++count;
+    } else if (strncmp(QUOTES_PRINT_NUMBER, pVar->name, VAR_NAME_LENGTH-1) == 0 &&
+        pVar->val == NUM_PARAMETERS_TWO) {
+        *pFcnDefnIndex = INTRINSIC_FCN_DEFN_PRINT_NUMBER;
+        ++count;
+    } else if (strncmp(QUOTES_GET_INPUT, pVar->name, VAR_NAME_LENGTH-1) == 0 &&
+        pVar->val == NUM_PARAMETERS_ONE) {
+        *pFcnDefnIndex = INTRINSIC_FCN_DEFN_GET_INPUT;
+        ++count;
+    } else if (strncmp(QUOTES_SET_OUTPUT, pVar->name, VAR_NAME_LENGTH-1) == 0 &&
+        pVar->val == NUM_PARAMETERS_TWO) {
+        *pFcnDefnIndex = INTRINSIC_FCN_DEFN_SET_OUTPUT;
+        ++count;
+    } else if (strncmp(QUOTES_GET_ADC, pVar->name, VAR_NAME_LENGTH-1) == 0 &&
+        pVar->val == NUM_PARAMETERS_TWO) {
+        *pFcnDefnIndex = INTRINSIC_FCN_DEFN_GET_ADC;
+        ++count;
+    } else if (strncmp(QUOTES_GET_TEMP, pVar->name, VAR_NAME_LENGTH-1) == 0 &&
+        pVar->val == NUM_PARAMETERS_ONE) {
+        *pFcnDefnIndex = INTRINSIC_FCN_DEFN_GET_TEMP;
+        ++count;
     }
     return count;
 }
@@ -464,6 +512,13 @@ astNode* addNodeVariableOperator(int operator, int varIndex, astNode* pRight) {
 	pLeft->type     = nodeVariable;
 	pLeft->value    = varIndex;
     return addNodeBinaryOperator(operator, pLeft, pRight);
+}
+
+astNode* addNodeInstrinsicFunction0(char* functionName, char* returnValue) {
+    astNode* p1 = addNodeSymbolIndex(addVarToSymbolTable(returnValue));
+    //astNode* p2 = addFcnCallArgument(NULL, parameter1);
+    astNode* p3 = addFcnCallArgument(NULL, p1);
+    return addNodeFunctionCall(functionName, p3);
 }
 
 // The 1 stands for 1 parameter with this call
