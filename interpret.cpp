@@ -784,6 +784,12 @@ void interpret::run(void) {
                     case INTRINSIC_FCN_DEFN_GET_TEMP:
                         intrinsicReturnValue = _io.getTemperature();
                         break;
+                    case INTRINSIC_FCN_DEFN_GET_POSITION:
+                        intrinsicReturnValue = _stepper.positionSteps();
+                        break;
+                    case INTRINSIC_FCN_DEFN_RESET:
+                        _io.reset();
+                        break;
                    default:
                         break;
                     }

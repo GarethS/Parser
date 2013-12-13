@@ -84,6 +84,8 @@ inputs	 	{debugPrintf("INPUTS"); return INPUTS;}
 "setOutput"             {debugPrintf("SETOUTPUT"); return SETOUTPUT;}
 "getADC"                {debugPrintf("GETADC"); return GETADC;}
 "getTemp"               {debugPrintf("GETTEMP"); return GETTEMP;}
+"getPosition"           {debugPrintf("GETPOSITION"); return GETPOSITION;}
+"reset"                 {debugPrintf("RESET"); return RESET;}
 -?{digit}+		{debugPrintf("CONST"); yylval.string = strdup(yytext); return CONST;}	/* constant integer */
 -?{digit}+\.{digit}+		{debugPrintf("CONST_FLOAT"); yylval.floatingPoint = atof(yytext); return CONST_FLOAT;}	/* constant floating-point */
 {alpha}{alphanum}*	{debugPrintf("VAR"); yylval.string = strdup(yytext); return VAR;}	/* variable */

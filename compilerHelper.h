@@ -55,7 +55,8 @@ int  yylex(void);
 #define INTRINSIC_FCN_DEFN_SET_OUTPUT           (-15)
 #define INTRINSIC_FCN_DEFN_GET_ADC              (-16)
 #define INTRINSIC_FCN_DEFN_GET_TEMP             (-17)
-#define INTRINSIC_FCN_DEFN_RESET                (-18)
+#define INTRINSIC_FCN_DEFN_GET_POSITION         (-18)
+#define INTRINSIC_FCN_DEFN_RESET                (-19)
 
 #define RETURN_OK                               (0)
 #define RETURN_ERR_TIMEOUT                      (1)

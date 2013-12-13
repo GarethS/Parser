@@ -1,4 +1,4 @@
-                                                                                                                                                                                                                                                     
+                                                                                                                                                                                                                                                     
 FunctionDefn: main
 Statement:
 *LEFT Var: index,2 name,count
@@ -14,7 +14,7 @@ Statement:
 ROOT Operator: = 261
 Statement:
 *LEFT Var: index,7 name,limit
-*RIGHT Var: index,6 name,4
+*RIGHT Var: index,6 name,15
 ROOT Operator: = 261
 Statement:
 *LEFT Var: index,9 name,moveDistance
@@ -34,12 +34,12 @@ ROOT
 While 1
 **LEFT Var: index,2 name,count
 **RIGHT Var: index,13 name,142
-*LEFT Operator: < 295
+*LEFT Operator: < 297
 If EVALWHILE == 0 JMP EndWhile 1
 Statement:
 *LEFT Var: index,4 name,on
 **LEFT Var: index,4 name,on
-*RIGHT Operator: ! 311
+*RIGHT Operator: ! 313
 ROOT Operator: = 261
 Statement:
 ROOT FunctionCall: index,14 name,LED
@@ -51,7 +51,7 @@ FunctionCallEnd: index,14 name,LED
 Statement:
 *LEFT Var: index,4 name,on
 **LEFT Var: index,4 name,on
-*RIGHT Operator: ! 311
+*RIGHT Operator: ! 313
 ROOT Operator: = 261
 Statement:
 ROOT FunctionCall: index,15 name,sleep
@@ -78,30 +78,30 @@ Statement:
 *LEFT Var: index,2 name,count
 **LEFT Var: index,2 name,count
 **RIGHT Var: index,3 name,1
-*RIGHT Operator: + 303
+*RIGHT Operator: + 305
 ROOT Operator: = 261
 Statement:
 ROOT
 If 0
 **LEFT Var: index,2 name,count
 **RIGHT Var: index,7 name,limit
-*LEFT Operator: > 296
+*LEFT Operator: > 298
 If EVAL == 0 JMP Else 0
 Statement:
 *LEFT Var: index,17 name,moveBack
 **LEFT Var: index,9 name,moveDistance
 ***LEFT Var: index,7 name,limit
 ***RIGHT Var: index,16 name,-1
-**RIGHT Operator: * 306
-*RIGHT Operator: * 306
+**RIGHT Operator: * 308
+*RIGHT Operator: * 308
 ROOT Operator: = 261
 Statement:
-ROOT FunctionCall: index,18 name,moveRelative
+ROOT FunctionCall: index,19 name,degreex10kRelat
 Statement:
 ROOT Var: index,5 name,x
 Statement:
-ROOT Var: index,17 name,moveBack 
-FunctionCallEnd: index,18 name,moveRelative
+ROOT Var: index,18 name,-900000 
+FunctionCallEnd: index,19 name,degreex10kRelat
 Statement:
 *LEFT Var: index,2 name,count
 *RIGHT Var: index,1 name,0
@@ -111,17 +111,17 @@ ROOT FunctionCall: index,15 name,sleep
 Statement:
 ROOT Var: index,5 name,x
 Statement:
-ROOT Var: index,19 name,4000 
+ROOT Var: index,20 name,4000 
 FunctionCallEnd: index,15 name,sleep
 JMP EndIf 0
 Else 0
 Statement:
-ROOT FunctionCall: index,18 name,moveRelative
+ROOT FunctionCall: index,19 name,degreex10kRelat
 Statement:
 ROOT Var: index,5 name,x
 Statement:
-ROOT Var: index,9 name,moveDistance 
-FunctionCallEnd: index,18 name,moveRelative
+ROOT Var: index,21 name,60000 
+FunctionCallEnd: index,19 name,degreex10kRelat
 EndIf 0
 EndWhile 1
 ProgramEnd
@@ -133,7 +133,7 @@ index:2, name:count, type:0, val:0
 index:3, name:1, type:1, val:1
 index:4, name:on, type:0, val:0
 index:5, name:x, type:0, val:0
-index:6, name:4, type:1, val:4
+index:6, name:15, type:1, val:15
 index:7, name:limit, type:0, val:0
 index:8, name:1000, type:1, val:1000
 index:9, name:moveDistance, type:0, val:0
@@ -145,6 +145,8 @@ index:14, name:LED, type:15, val:2, fcnLink:-6
 index:15, name:sleep, type:15, val:2, fcnLink:-4
 index:16, name:-1, type:1, val:-1
 index:17, name:moveBack, type:0, val:0
-index:18, name:moveRelative, type:15, val:2, fcnLink:-3
-index:19, name:4000, type:1, val:4000
+index:18, name:-900000, type:1, val:-900000
+index:19, name:degreex10kRelat, type:15, val:2, fcnLink:-11
+index:20, name:4000, type:1, val:4000
+index:21, name:60000, type:1, val:60000
 Symbol table end:

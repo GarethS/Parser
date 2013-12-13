@@ -4,7 +4,7 @@
 <SYMB> 1 1 -1 <symb>
 <SYMB> 0 0 -1 <symb>
 <SYMB> 0 0 -1 <symb>
-<SYMB> 1 4 -1 <symb>
+<SYMB> 1 15 -1 <symb>
 <SYMB> 0 0 -1 <symb>
 <SYMB> 1 1000 -1 <symb>
 <SYMB> 0 0 -1 <symb>
@@ -16,5 +16,7 @@
 <SYMB> 15 2 -4 <symb>
 <SYMB> 1 -1 -1 <symb>
 <SYMB> 0 0 -1 <symb>
-<SYMB> 15 2 -3 <symb>
+<SYMB> 1 -900000 -1 <symb>
+<SYMB> 15 2 -11 <symb>
 <SYMB> 1 4000 -1 <symb>
+<SYMB> 1 60000 -1 <symb>

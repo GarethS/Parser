@@ -4,7 +4,7 @@ main () {
     count = 0;
     on = 1;
     x = 0;
-    limit = 4;
+    limit = 15;
     moveDistance = 1000;
     RPM(&x, 60, 120);
     while (count < 142) {
@@ -17,13 +17,13 @@ main () {
         count = count + 1;
         if (count > limit) {
             moveBack = moveDistance * -limit;
-            moveRelative(&x, moveBack);
-            //degreex10kRelative(&x, -900000);
+            //moveRelative(&x, moveBack);
+            degreex10kRelative(&x, -900000);
             count = 0;
             sleep(&x, 4000);
         } else {
-            moveRelative(&x, moveDistance);
-            //degreex10kRelative(&x, 60000);
+            //moveRelative(&x, moveDistance);
+            degreex10kRelative(&x, 60000);
         }
     }
 }

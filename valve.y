@@ -61,6 +61,8 @@ unsigned int statementOutputIndex = 0;
 #define QUOTES_SET_OUTPUT               "setOutput"
 #define QUOTES_GET_ADC                  "getADC"
 #define QUOTES_GET_TEMP                 "getTemp"
+#define QUOTES_GET_POSITION             "getPosition"
+#define QUOTES_RESET                    "reset"
 
 
 %}
@@ -77,7 +79,7 @@ unsigned int statementOutputIndex = 0;
 %token INPUTS OUTPUTS COMMA
 %token EQUAL LBRACE RBRACE ARRAYDEFINE IF ELSE WHILE
 // 4x. Add intrinsic function name from flex here
-%token <string>	VAR VAR_METHOD CONST CONST_FLOAT MAIN MOVEABSOLUTE MOVERELATIVE SLEEP SLEEPUNTIL LED RPM RPMx10k ACCELMICROSEC DEGREEx10kABSOLUTE DEGREEx10kRELATIVE WAITFORIDLE PRINTNUMBER GETINPUT SETOUTPUT GETADC GETTEMP
+%token <string>	VAR VAR_METHOD CONST CONST_FLOAT MAIN MOVEABSOLUTE MOVERELATIVE SLEEP SLEEPUNTIL LED RPM RPMx10k ACCELMICROSEC DEGREEx10kABSOLUTE DEGREEx10kRELATIVE WAITFORIDLE PRINTNUMBER GETINPUT SETOUTPUT GETADC GETTEMP GETPOSITION RESET
 
 // %left or %right takes the place of %token
 %left AND OR BITWISEAND BITWISEOR
@@ -164,7 +166,7 @@ statement:	        statementAssign	                    {/*printf("\nstatementAss
                     | PRINTNUMBER LPAREN BITWISEAND VAR COMMA expr RPAREN SEMI {$$ = addNodeInstrinsicFunction1(QUOTES_PRINT_NUMBER, $4, $6);}
                     | PRINTNUMBER LPAREN argList RPAREN SEMI {$$ = NULL; yyerror(QUOTES_PRINT_NUMBER);}
                     
-                    | GETINPUT LPAREN BITWISEAND VAR COMMA expr RPAREN SEMI {$$ = addNodeInstrinsicFunction0(QUOTES_GET_INPUT, $4);}
+                    | GETINPUT LPAREN BITWISEAND VAR RPAREN SEMI {$$ = addNodeInstrinsicFunction0(QUOTES_GET_INPUT, $4);}
                     | GETINPUT LPAREN argList RPAREN SEMI {$$ = NULL; yyerror(QUOTES_GET_INPUT);}
                     
                     | SETOUTPUT LPAREN BITWISEAND VAR COMMA expr RPAREN SEMI {$$ = addNodeInstrinsicFunction1(QUOTES_SET_OUTPUT, $4, $6);}
@@ -173,8 +175,14 @@ statement:	        statementAssign	                    {/*printf("\nstatementAss
                     | GETADC LPAREN BITWISEAND VAR COMMA expr RPAREN SEMI {$$ = addNodeInstrinsicFunction1(QUOTES_GET_ADC, $4, $6);}
                     | GETADC LPAREN argList RPAREN SEMI {$$ = NULL; yyerror(QUOTES_GET_ADC);}
                     
-                    | GETTEMP LPAREN BITWISEAND VAR COMMA expr RPAREN SEMI {$$ = addNodeInstrinsicFunction0(QUOTES_GET_TEMP, $4);}
+                    | GETTEMP LPAREN BITWISEAND VAR RPAREN SEMI {$$ = addNodeInstrinsicFunction0(QUOTES_GET_TEMP, $4);}
                     | GETTEMP LPAREN argList RPAREN SEMI {$$ = NULL; yyerror(QUOTES_GET_TEMP);}
+                    
+                    | GETPOSITION LPAREN BITWISEAND VAR RPAREN SEMI {$$ = addNodeInstrinsicFunction0(QUOTES_GET_POSITION, $4);}
+                    | GETPOSITION LPAREN argList RPAREN SEMI {$$ = NULL; yyerror(QUOTES_GET_POSITION);}
+                    
+                    | RESET LPAREN BITWISEAND VAR RPAREN SEMI {$$ = addNodeInstrinsicFunction0(QUOTES_RESET, $4);}
+                    | RESET LPAREN argList RPAREN SEMI {$$ = NULL; yyerror(QUOTES_RESET);}
                     
                     | arrayDefine                       {$$ = NULL;}
 
