@@ -500,6 +500,7 @@ void interpret::run(void) {
 #endif // not CYGWIN   
     assert(_evaluationStack.empty());
     int localSymbolTableIndex;
+    _io.init();
 #if CYGWIN
 #define CYGWIN_MAX_INFINITE_LOOP    (1000)
     static int infiniteLoopCounter = 0;
@@ -767,7 +768,7 @@ void interpret::run(void) {
 #endif // not CYGWIN                        
                         break;
                     case INTRINSIC_FCN_DEFN_PRINT_NUMBER:
-                        intrinsicReturnValue = sprintf(tempBuf, "<%d>", symbolIndexParameter1);
+                        intrinsicReturnValue = sprintf(tempBuf, "<%d>", _symbolTable[symbolIndexParameter1].value());
 #if !CYGWIN                        
                         UARTSend((unsigned char *)tempBuf, intrinsicReturnValue);
 #endif // not CYGWIN                        
@@ -776,10 +777,10 @@ void interpret::run(void) {
                         intrinsicReturnValue = _io.getInput();
                         break;
                     case INTRINSIC_FCN_DEFN_SET_OUTPUT:
-                        _io.setOutput(symbolIndexParameter1);
+                        _io.setOutput(_symbolTable[symbolIndexParameter1].value());
                         break;
                     case INTRINSIC_FCN_DEFN_GET_ADC:
-                        intrinsicReturnValue = _io.getADC(symbolIndexParameter1);
+                        intrinsicReturnValue = _io.getADC(_symbolTable[symbolIndexParameter1].value());
                         break;
                     case INTRINSIC_FCN_DEFN_GET_TEMP:
                         intrinsicReturnValue = _io.getTemperature();
