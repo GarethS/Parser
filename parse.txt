@@ -1,4 +1,4 @@
-                                                                                                                                                                                                                                                     
+                                                                                                                                                                                                                                                                                                                                                                                                                                              
 FunctionDefn: main
 Statement:
 *LEFT Var: index,2 name,count
@@ -17,63 +17,134 @@ Statement:
 *RIGHT Var: index,6 name,15
 ROOT Operator: = 261
 Statement:
-*LEFT Var: index,9 name,moveDistance
-*RIGHT Var: index,8 name,1000
+*LEFT Var: index,9 name,temp
+*RIGHT Var: index,8 name,4
 ROOT Operator: = 261
 Statement:
-ROOT FunctionCall: index,12 name,RPM
+*LEFT Var: index,10 name,testCount
+*RIGHT Var: index,1 name,0
+ROOT Operator: = 261
+Statement:
+*LEFT Var: index,12 name,moveDistance
+*RIGHT Var: index,11 name,1000
+ROOT Operator: = 261
+Statement:
+ROOT FunctionCall: index,15 name,RPM
 Statement:
 ROOT Var: index,5 name,x
 Statement:
-ROOT Var: index,10 name,60
+ROOT Var: index,13 name,60
 Statement:
-ROOT Var: index,11 name,120 
-FunctionCallEnd: index,12 name,RPM
+ROOT Var: index,14 name,120 
+FunctionCallEnd: index,15 name,RPM
+Statement:
+ROOT
+While 3
+**LEFT Var: index,2 name,count
+**RIGHT Var: index,16 name,142
+*LEFT Operator: < 297
+If EVALWHILE == 0 JMP EndWhile 3
+Statement:
+ROOT FunctionCall: index,18 name,sleep
+Statement:
+ROOT Var: index,5 name,x
+Statement:
+ROOT Var: index,17 name,500 
+FunctionCallEnd: index,18 name,sleep
+Statement:
+ROOT FunctionCall: index,19 name,getTemp
+Statement:
+ROOT Var: index,5 name,x 
+FunctionCallEnd: index,19 name,getTemp
+Statement:
+ROOT FunctionCall: index,20 name,printNumber
+Statement:
+ROOT Var: index,5 name,x
+Statement:
+ROOT Var: index,5 name,x 
+FunctionCallEnd: index,20 name,printNumber
+Statement:
+ROOT FunctionCall: index,21 name,getInput
+Statement:
+ROOT Var: index,5 name,x 
+FunctionCallEnd: index,21 name,getInput
+Statement:
+ROOT
+If 0
+**LEFT Var: index,5 name,x
+**RIGHT Var: index,22 name,2
+*LEFT Operator: & 292
+If EVAL == 0 JMP Else 0
+Statement:
+ROOT FunctionCall: index,23 name,setOutput
+Statement:
+ROOT Var: index,5 name,x
+Statement:
+ROOT Var: index,22 name,2 
+FunctionCallEnd: index,23 name,setOutput
+Statement:
+ROOT FunctionCall: index,20 name,printNumber
+Statement:
+ROOT Var: index,5 name,x
+Statement:
+ROOT Var: index,22 name,2 
+FunctionCallEnd: index,20 name,printNumber
+JMP EndIf 0
+Else 0
+Statement:
+ROOT FunctionCall: index,23 name,setOutput
+Statement:
+ROOT Var: index,5 name,x
+Statement:
+ROOT Var: index,1 name,0 
+FunctionCallEnd: index,23 name,setOutput
+Statement:
+ROOT FunctionCall: index,20 name,printNumber
+Statement:
+ROOT Var: index,5 name,x
+Statement:
+ROOT Var: index,1 name,0 
+FunctionCallEnd: index,20 name,printNumber
+EndIf 0
+Statement:
+ROOT FunctionCall: index,20 name,printNumber
+Statement:
+ROOT Var: index,5 name,x
+Statement:
+ROOT Var: index,10 name,testCount 
+FunctionCallEnd: index,20 name,printNumber
 Statement:
 ROOT
 While 1
-**LEFT Var: index,2 name,count
-**RIGHT Var: index,13 name,142
+**LEFT Var: index,10 name,testCount
+**RIGHT Var: index,11 name,1000
 *LEFT Operator: < 297
 If EVALWHILE == 0 JMP EndWhile 1
 Statement:
-*LEFT Var: index,4 name,on
-**LEFT Var: index,4 name,on
-*RIGHT Operator: ! 313
+*LEFT Var: index,10 name,testCount
+**LEFT Var: index,10 name,testCount
+**RIGHT Var: index,3 name,1
+*RIGHT Operator: + 305
+ROOT Operator: = 261
+EndWhile 1
+Statement:
+ROOT FunctionCall: index,20 name,printNumber
+Statement:
+ROOT Var: index,5 name,x
+Statement:
+ROOT Var: index,10 name,testCount 
+FunctionCallEnd: index,20 name,printNumber
+Statement:
+*LEFT Var: index,10 name,testCount
+*RIGHT Var: index,3 name,1
 ROOT Operator: = 261
 Statement:
-ROOT FunctionCall: index,14 name,LED
+ROOT FunctionCall: index,18 name,sleep
 Statement:
 ROOT Var: index,5 name,x
 Statement:
-ROOT Var: index,4 name,on 
-FunctionCallEnd: index,14 name,LED
-Statement:
-*LEFT Var: index,4 name,on
-**LEFT Var: index,4 name,on
-*RIGHT Operator: ! 313
-ROOT Operator: = 261
-Statement:
-ROOT FunctionCall: index,15 name,sleep
-Statement:
-ROOT Var: index,5 name,x
-Statement:
-ROOT Var: index,8 name,1000 
-FunctionCallEnd: index,15 name,sleep
-Statement:
-ROOT FunctionCall: index,14 name,LED
-Statement:
-ROOT Var: index,5 name,x
-Statement:
-ROOT Var: index,4 name,on 
-FunctionCallEnd: index,14 name,LED
-Statement:
-ROOT FunctionCall: index,15 name,sleep
-Statement:
-ROOT Var: index,5 name,x
-Statement:
-ROOT Var: index,8 name,1000 
-FunctionCallEnd: index,15 name,sleep
+ROOT Var: index,17 name,500 
+FunctionCallEnd: index,18 name,sleep
 Statement:
 *LEFT Var: index,2 name,count
 **LEFT Var: index,2 name,count
@@ -82,48 +153,48 @@ Statement:
 ROOT Operator: = 261
 Statement:
 ROOT
-If 0
+If 2
 **LEFT Var: index,2 name,count
 **RIGHT Var: index,7 name,limit
 *LEFT Operator: > 298
-If EVAL == 0 JMP Else 0
+If EVAL == 0 JMP Else 2
 Statement:
-*LEFT Var: index,17 name,moveBack
-**LEFT Var: index,9 name,moveDistance
+*LEFT Var: index,25 name,moveBack
+**LEFT Var: index,12 name,moveDistance
 ***LEFT Var: index,7 name,limit
-***RIGHT Var: index,16 name,-1
+***RIGHT Var: index,24 name,-1
 **RIGHT Operator: * 308
 *RIGHT Operator: * 308
 ROOT Operator: = 261
 Statement:
-ROOT FunctionCall: index,19 name,degreex10kRelat
+ROOT FunctionCall: index,27 name,degreex10kRelat
 Statement:
 ROOT Var: index,5 name,x
 Statement:
-ROOT Var: index,18 name,-900000 
-FunctionCallEnd: index,19 name,degreex10kRelat
+ROOT Var: index,26 name,-900000 
+FunctionCallEnd: index,27 name,degreex10kRelat
 Statement:
 *LEFT Var: index,2 name,count
 *RIGHT Var: index,1 name,0
 ROOT Operator: = 261
 Statement:
-ROOT FunctionCall: index,15 name,sleep
+ROOT FunctionCall: index,18 name,sleep
 Statement:
 ROOT Var: index,5 name,x
 Statement:
-ROOT Var: index,20 name,4000 
-FunctionCallEnd: index,15 name,sleep
-JMP EndIf 0
-Else 0
+ROOT Var: index,28 name,4000 
+FunctionCallEnd: index,18 name,sleep
+JMP EndIf 2
+Else 2
 Statement:
-ROOT FunctionCall: index,19 name,degreex10kRelat
+ROOT FunctionCall: index,27 name,degreex10kRelat
 Statement:
 ROOT Var: index,5 name,x
 Statement:
-ROOT Var: index,21 name,60000 
-FunctionCallEnd: index,19 name,degreex10kRelat
-EndIf 0
-EndWhile 1
+ROOT Var: index,29 name,60000 
+FunctionCallEnd: index,27 name,degreex10kRelat
+EndIf 2
+EndWhile 3
 ProgramEnd
 
 Symbol table start:
@@ -135,18 +206,26 @@ index:4, name:on, type:0, val:0
 index:5, name:x, type:0, val:0
 index:6, name:15, type:1, val:15
 index:7, name:limit, type:0, val:0
-index:8, name:1000, type:1, val:1000
-index:9, name:moveDistance, type:0, val:0
-index:10, name:60, type:1, val:60
-index:11, name:120, type:1, val:120
-index:12, name:RPM, type:15, val:3, fcnLink:-7
-index:13, name:142, type:1, val:142
-index:14, name:LED, type:15, val:2, fcnLink:-6
-index:15, name:sleep, type:15, val:2, fcnLink:-4
-index:16, name:-1, type:1, val:-1
-index:17, name:moveBack, type:0, val:0
-index:18, name:-900000, type:1, val:-900000
-index:19, name:degreex10kRelat, type:15, val:2, fcnLink:-11
-index:20, name:4000, type:1, val:4000
-index:21, name:60000, type:1, val:60000
+index:8, name:4, type:1, val:4
+index:9, name:temp, type:0, val:0
+index:10, name:testCount, type:0, val:0
+index:11, name:1000, type:1, val:1000
+index:12, name:moveDistance, type:0, val:0
+index:13, name:60, type:1, val:60
+index:14, name:120, type:1, val:120
+index:15, name:RPM, type:15, val:3, fcnLink:-7
+index:16, name:142, type:1, val:142
+index:17, name:500, type:1, val:500
+index:18, name:sleep, type:15, val:2, fcnLink:-4
+index:19, name:getTemp, type:15, val:1, fcnLink:-17
+index:20, name:printNumber, type:15, val:2, fcnLink:-13
+index:21, name:getInput, type:15, val:1, fcnLink:-14
+index:22, name:2, type:1, val:2
+index:23, name:setOutput, type:15, val:2, fcnLink:-15
+index:24, name:-1, type:1, val:-1
+index:25, name:moveBack, type:0, val:0
+index:26, name:-900000, type:1, val:-900000
+index:27, name:degreex10kRelat, type:15, val:2, fcnLink:-11
+index:28, name:4000, type:1, val:4000
+index:29, name:60000, type:1, val:60000
 Symbol table end:

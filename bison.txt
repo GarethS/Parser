@@ -274,6 +274,104 @@ Reading a token: --accepting default rule ("")
 --accepting default rule (" ")
 --accepting default rule (" ")
 --accepting default rule (" ")
+--accepting rule at line 91 ("temp")
+Next token is token VAR ()
+Shifting token VAR ()
+Entering state 32
+Reading a token: --accepting default rule (" ")
+--accepting rule at line 48 ("=")
+Next token is token EQUAL ()
+Shifting token EQUAL ()
+Entering state 61
+Reading a token: --accepting default rule (" ")
+--accepting rule at line 89 ("4")
+Next token is token CONST ()
+Shifting token CONST ()
+Entering state 86
+Reducing stack by rule 75 (line 222):
+   $1 = token CONST ()
+-> $$ = nterm expr ()
+Stack now 0 1 4 9 15 19 24 32 61
+Entering state 93
+Reading a token: --accepting rule at line 45 (";")
+Next token is token SEMI ()
+Shifting token SEMI ()
+Entering state 160
+Reducing stack by rule 53 (line 197):
+   $1 = token VAR ()
+   $2 = token EQUAL ()
+   $3 = nterm expr ()
+   $4 = token SEMI ()
+-> $$ = nterm statementAssign ()
+Stack now 0 1 4 9 15 19 24
+Entering state 54
+Reducing stack by rule 9 (line 125):
+   $1 = nterm statementAssign ()
+-> $$ = nterm statement ()
+Stack now 0 1 4 9 15 19 24
+Entering state 51
+Reducing stack by rule 8 (line 123):
+   $1 = nterm statementList ()
+   $2 = nterm statement ()
+-> $$ = nterm statementList ()
+Stack now 0 1 4 9 15 19
+Entering state 24
+Reading a token: --accepting default rule ("")
+--accepting rule at line 93 ("
+")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting rule at line 91 ("testCount")
+Next token is token VAR ()
+Shifting token VAR ()
+Entering state 32
+Reading a token: --accepting default rule (" ")
+--accepting rule at line 48 ("=")
+Next token is token EQUAL ()
+Shifting token EQUAL ()
+Entering state 61
+Reading a token: --accepting default rule (" ")
+--accepting rule at line 89 ("0")
+Next token is token CONST ()
+Shifting token CONST ()
+Entering state 86
+Reducing stack by rule 75 (line 222):
+   $1 = token CONST ()
+-> $$ = nterm expr ()
+Stack now 0 1 4 9 15 19 24 32 61
+Entering state 93
+Reading a token: --accepting rule at line 45 (";")
+Next token is token SEMI ()
+Shifting token SEMI ()
+Entering state 160
+Reducing stack by rule 53 (line 197):
+   $1 = token VAR ()
+   $2 = token EQUAL ()
+   $3 = nterm expr ()
+   $4 = token SEMI ()
+-> $$ = nterm statementAssign ()
+Stack now 0 1 4 9 15 19 24
+Entering state 54
+Reducing stack by rule 9 (line 125):
+   $1 = nterm statementAssign ()
+-> $$ = nterm statement ()
+Stack now 0 1 4 9 15 19 24
+Entering state 51
+Reducing stack by rule 8 (line 123):
+   $1 = nterm statementList ()
+   $2 = nterm statement ()
+-> $$ = nterm statementList ()
+Stack now 0 1 4 9 15 19
+Entering state 24
+Reading a token: --accepting default rule ("")
+--accepting rule at line 93 ("
+")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
 --accepting rule at line 91 ("moveDistance")
 Next token is token VAR ()
 Shifting token VAR ()
@@ -468,61 +566,18 @@ Reading a token: --accepting default rule ("")
 --accepting default rule (" ")
 --accepting default rule (" ")
 --accepting default rule (" ")
---accepting rule at line 91 ("on")
-Next token is token VAR ()
-Shifting token VAR ()
-Entering state 32
-Reading a token: --accepting default rule (" ")
---accepting rule at line 48 ("=")
-Next token is token EQUAL ()
-Shifting token EQUAL ()
-Entering state 61
-Reading a token: --accepting default rule (" ")
---accepting rule at line 47 ("!")
-Next token is token BANG ()
-Shifting token BANG ()
-Entering state 89
-Reading a token: --accepting rule at line 91 ("on")
-Next token is token VAR ()
-Shifting token VAR ()
-Entering state 85
-Reading a token: --accepting rule at line 45 (";")
-Next token is token SEMI ()
-Reducing stack by rule 74 (line 221):
-   $1 = token VAR ()
--> $$ = nterm expr ()
-Stack now 0 1 4 9 15 19 24 31 60 92 159 220 264 32 61 89
-Entering state 141
-Reducing stack by rule 56 (line 203):
-   $1 = token BANG ()
-   $2 = nterm expr ()
--> $$ = nterm expr ()
-Stack now 0 1 4 9 15 19 24 31 60 92 159 220 264 32 61
-Entering state 93
-Next token is token SEMI ()
-Shifting token SEMI ()
-Entering state 160
-Reducing stack by rule 53 (line 197):
-   $1 = token VAR ()
-   $2 = token EQUAL ()
-   $3 = nterm expr ()
-   $4 = token SEMI ()
--> $$ = nterm statementAssign ()
-Stack now 0 1 4 9 15 19 24 31 60 92 159 220 264
-Entering state 54
-Reducing stack by rule 9 (line 125):
-   $1 = nterm statementAssign ()
--> $$ = nterm statement ()
-Stack now 0 1 4 9 15 19 24 31 60 92 159 220 264
-Entering state 51
-Reducing stack by rule 8 (line 123):
-   $1 = nterm statementList ()
-   $2 = nterm statement ()
--> $$ = nterm statementList ()
-Stack now 0 1 4 9 15 19 24 31 60 92 159 220
-Entering state 264
-Reading a token: --accepting default rule ("")
---accepting rule at line 93 ("
+--accepting rule at line 101 ("//")
+--accepting rule at line 103 ("o")
+--accepting rule at line 103 ("n")
+--accepting rule at line 103 (" ")
+--accepting rule at line 103 ("=")
+--accepting rule at line 103 (" ")
+--accepting rule at line 103 ("!")
+--accepting rule at line 103 ("o")
+--accepting rule at line 103 ("n")
+--accepting rule at line 103 (";")
+--accepting rule at line 103 ("")
+--accepting rule at line 105 ("
 ")
 --accepting default rule (" ")
 --accepting default rule (" ")
@@ -532,68 +587,25 @@ Reading a token: --accepting default rule ("")
 --accepting default rule (" ")
 --accepting default rule (" ")
 --accepting default rule (" ")
---accepting rule at line 75 ("led")
-Next token is token LED ()
-Shifting token LED ()
-Entering state 37
-Reading a token: --accepting rule at line 42 ("(")
-Next token is token LPAREN ()
-Shifting token LPAREN ()
-Entering state 68
-Reading a token: --accepting rule at line 64 ("&")
-Next token is token BITWISEAND ()
-Shifting token BITWISEAND ()
-Entering state 106
-Reading a token: --accepting rule at line 91 ("x")
-Next token is token VAR ()
-Shifting token VAR ()
-Entering state 172
-Reading a token: --accepting rule at line 44 (",")
-Next token is token COMMA ()
-Shifting token COMMA ()
-Entering state 232
-Reading a token: --accepting default rule (" ")
---accepting rule at line 91 ("on")
-Next token is token VAR ()
-Shifting token VAR ()
-Entering state 85
-Reading a token: --accepting rule at line 43 (")")
-Next token is token RPAREN ()
-Reducing stack by rule 74 (line 221):
-   $1 = token VAR ()
--> $$ = nterm expr ()
-Stack now 0 1 4 9 15 19 24 31 60 92 159 220 264 37 68 106 172 232
-Entering state 270
-Next token is token RPAREN ()
-Shifting token RPAREN ()
-Entering state 291
-Reading a token: --accepting rule at line 45 (";")
-Next token is token SEMI ()
-Shifting token SEMI ()
-Entering state 306
-Reducing stack by rule 21 (line 145):
-   $1 = token LED ()
-   $2 = token LPAREN ()
-   $3 = token BITWISEAND ()
-   $4 = token VAR ()
-   $5 = token COMMA ()
-   $6 = nterm expr ()
-   $7 = token RPAREN ()
-   $8 = token SEMI ()
--> $$ = nterm statement ()
-Stack now 0 1 4 9 15 19 24 31 60 92 159 220 264
-Entering state 51
-Reducing stack by rule 8 (line 123):
-   $1 = nterm statementList ()
-   $2 = nterm statement ()
--> $$ = nterm statementList ()
-Stack now 0 1 4 9 15 19 24 31 60 92 159 220
-Entering state 264
-Reading a token: --accepting default rule (" ")
---accepting default rule (" ")
---accepting default rule (" ")
---accepting default rule (" ")
 --accepting rule at line 101 ("//")
+--accepting rule at line 103 ("l")
+--accepting rule at line 103 ("e")
+--accepting rule at line 103 ("d")
+--accepting rule at line 103 ("(")
+--accepting rule at line 103 ("&")
+--accepting rule at line 103 ("x")
+--accepting rule at line 103 (",")
+--accepting rule at line 103 (" ")
+--accepting rule at line 103 ("o")
+--accepting rule at line 103 ("n")
+--accepting rule at line 103 (")")
+--accepting rule at line 103 (";")
+--accepting rule at line 103 (" ")
+--accepting rule at line 103 (" ")
+--accepting rule at line 103 (" ")
+--accepting rule at line 103 (" ")
+--accepting rule at line 103 ("/")
+--accepting rule at line 103 ("/")
 --accepting rule at line 103 (" ")
 --accepting rule at line 103 ("T")
 --accepting rule at line 103 ("h")
@@ -675,61 +687,18 @@ Reading a token: --accepting default rule (" ")
 --accepting default rule (" ")
 --accepting default rule (" ")
 --accepting default rule (" ")
---accepting rule at line 91 ("on")
-Next token is token VAR ()
-Shifting token VAR ()
-Entering state 32
-Reading a token: --accepting default rule (" ")
---accepting rule at line 48 ("=")
-Next token is token EQUAL ()
-Shifting token EQUAL ()
-Entering state 61
-Reading a token: --accepting default rule (" ")
---accepting rule at line 47 ("!")
-Next token is token BANG ()
-Shifting token BANG ()
-Entering state 89
-Reading a token: --accepting rule at line 91 ("on")
-Next token is token VAR ()
-Shifting token VAR ()
-Entering state 85
-Reading a token: --accepting rule at line 45 (";")
-Next token is token SEMI ()
-Reducing stack by rule 74 (line 221):
-   $1 = token VAR ()
--> $$ = nterm expr ()
-Stack now 0 1 4 9 15 19 24 31 60 92 159 220 264 32 61 89
-Entering state 141
-Reducing stack by rule 56 (line 203):
-   $1 = token BANG ()
-   $2 = nterm expr ()
--> $$ = nterm expr ()
-Stack now 0 1 4 9 15 19 24 31 60 92 159 220 264 32 61
-Entering state 93
-Next token is token SEMI ()
-Shifting token SEMI ()
-Entering state 160
-Reducing stack by rule 53 (line 197):
-   $1 = token VAR ()
-   $2 = token EQUAL ()
-   $3 = nterm expr ()
-   $4 = token SEMI ()
--> $$ = nterm statementAssign ()
-Stack now 0 1 4 9 15 19 24 31 60 92 159 220 264
-Entering state 54
-Reducing stack by rule 9 (line 125):
-   $1 = nterm statementAssign ()
--> $$ = nterm statement ()
-Stack now 0 1 4 9 15 19 24 31 60 92 159 220 264
-Entering state 51
-Reducing stack by rule 8 (line 123):
-   $1 = nterm statementList ()
-   $2 = nterm statement ()
--> $$ = nterm statementList ()
-Stack now 0 1 4 9 15 19 24 31 60 92 159 220
-Entering state 264
-Reading a token: --accepting default rule ("")
---accepting rule at line 93 ("
+--accepting rule at line 101 ("//")
+--accepting rule at line 103 ("o")
+--accepting rule at line 103 ("n")
+--accepting rule at line 103 (" ")
+--accepting rule at line 103 ("=")
+--accepting rule at line 103 (" ")
+--accepting rule at line 103 ("!")
+--accepting rule at line 103 ("o")
+--accepting rule at line 103 ("n")
+--accepting rule at line 103 (";")
+--accepting rule at line 103 ("")
+--accepting rule at line 105 ("
 ")
 --accepting default rule (" ")
 --accepting default rule (" ")
@@ -760,7 +729,7 @@ Next token is token COMMA ()
 Shifting token COMMA ()
 Entering state 228
 Reading a token: --accepting default rule (" ")
---accepting rule at line 89 ("1000")
+--accepting rule at line 89 ("500")
 Next token is token CONST ()
 Shifting token CONST ()
 Entering state 86
@@ -806,28 +775,79 @@ Reading a token: --accepting default rule ("")
 --accepting default rule (" ")
 --accepting default rule (" ")
 --accepting default rule (" ")
---accepting rule at line 75 ("led")
-Next token is token LED ()
-Shifting token LED ()
-Entering state 37
+--accepting rule at line 86 ("getTemp")
+Next token is token GETTEMP ()
+Shifting token GETTEMP ()
+Entering state 48
 Reading a token: --accepting rule at line 42 ("(")
 Next token is token LPAREN ()
 Shifting token LPAREN ()
-Entering state 68
+Entering state 79
 Reading a token: --accepting rule at line 64 ("&")
 Next token is token BITWISEAND ()
 Shifting token BITWISEAND ()
-Entering state 106
+Entering state 128
 Reading a token: --accepting rule at line 91 ("x")
 Next token is token VAR ()
 Shifting token VAR ()
-Entering state 172
+Entering state 194
+Reading a token: --accepting rule at line 43 (")")
+Next token is token RPAREN ()
+Shifting token RPAREN ()
+Entering state 254
+Reading a token: --accepting rule at line 45 (";")
+Next token is token SEMI ()
+Shifting token SEMI ()
+Entering state 281
+Reducing stack by rule 43 (line 178):
+   $1 = token GETTEMP ()
+   $2 = token LPAREN ()
+   $3 = token BITWISEAND ()
+   $4 = token VAR ()
+   $5 = token RPAREN ()
+   $6 = token SEMI ()
+-> $$ = nterm statement ()
+Stack now 0 1 4 9 15 19 24 31 60 92 159 220 264
+Entering state 51
+Reducing stack by rule 8 (line 123):
+   $1 = nterm statementList ()
+   $2 = nterm statement ()
+-> $$ = nterm statementList ()
+Stack now 0 1 4 9 15 19 24 31 60 92 159 220
+Entering state 264
+Reading a token: --accepting default rule ("")
+--accepting rule at line 93 ("
+")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting rule at line 82 ("printNumber")
+Next token is token PRINTNUMBER ()
+Shifting token PRINTNUMBER ()
+Entering state 44
+Reading a token: --accepting rule at line 42 ("(")
+Next token is token LPAREN ()
+Shifting token LPAREN ()
+Entering state 75
+Reading a token: --accepting rule at line 64 ("&")
+Next token is token BITWISEAND ()
+Shifting token BITWISEAND ()
+Entering state 120
+Reading a token: --accepting rule at line 91 ("x")
+Next token is token VAR ()
+Shifting token VAR ()
+Entering state 186
 Reading a token: --accepting rule at line 44 (",")
 Next token is token COMMA ()
 Shifting token COMMA ()
-Entering state 232
+Entering state 246
 Reading a token: --accepting default rule (" ")
---accepting rule at line 91 ("on")
+--accepting rule at line 91 ("x")
 Next token is token VAR ()
 Shifting token VAR ()
 Entering state 85
@@ -836,17 +856,17 @@ Next token is token RPAREN ()
 Reducing stack by rule 74 (line 221):
    $1 = token VAR ()
 -> $$ = nterm expr ()
-Stack now 0 1 4 9 15 19 24 31 60 92 159 220 264 37 68 106 172 232
-Entering state 270
+Stack now 0 1 4 9 15 19 24 31 60 92 159 220 264 44 75 120 186 246
+Entering state 277
 Next token is token RPAREN ()
 Shifting token RPAREN ()
-Entering state 291
+Entering state 298
 Reading a token: --accepting rule at line 45 (";")
 Next token is token SEMI ()
 Shifting token SEMI ()
-Entering state 306
-Reducing stack by rule 21 (line 145):
-   $1 = token LED ()
+Entering state 313
+Reducing stack by rule 35 (line 166):
+   $1 = token PRINTNUMBER ()
    $2 = token LPAREN ()
    $3 = token BITWISEAND ()
    $4 = token VAR ()
@@ -865,6 +885,959 @@ Stack now 0 1 4 9 15 19 24 31 60 92 159 220
 Entering state 264
 Reading a token: --accepting default rule ("")
 --accepting rule at line 93 ("
+")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting rule at line 83 ("getInput")
+Next token is token GETINPUT ()
+Shifting token GETINPUT ()
+Entering state 45
+Reading a token: --accepting rule at line 42 ("(")
+Next token is token LPAREN ()
+Shifting token LPAREN ()
+Entering state 76
+Reading a token: --accepting rule at line 64 ("&")
+Next token is token BITWISEAND ()
+Shifting token BITWISEAND ()
+Entering state 122
+Reading a token: --accepting rule at line 91 ("x")
+Next token is token VAR ()
+Shifting token VAR ()
+Entering state 188
+Reading a token: --accepting rule at line 43 (")")
+Next token is token RPAREN ()
+Shifting token RPAREN ()
+Entering state 248
+Reading a token: --accepting rule at line 45 (";")
+Next token is token SEMI ()
+Shifting token SEMI ()
+Entering state 278
+Reducing stack by rule 37 (line 169):
+   $1 = token GETINPUT ()
+   $2 = token LPAREN ()
+   $3 = token BITWISEAND ()
+   $4 = token VAR ()
+   $5 = token RPAREN ()
+   $6 = token SEMI ()
+-> $$ = nterm statement ()
+Stack now 0 1 4 9 15 19 24 31 60 92 159 220 264
+Entering state 51
+Reducing stack by rule 8 (line 123):
+   $1 = nterm statementList ()
+   $2 = nterm statement ()
+-> $$ = nterm statementList ()
+Stack now 0 1 4 9 15 19 24 31 60 92 159 220
+Entering state 264
+Reading a token: --accepting default rule ("")
+--accepting rule at line 93 ("
+")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting rule at line 67 ("if")
+Next token is token IF ()
+Shifting token IF ()
+Entering state 30
+Reading a token: --accepting default rule (" ")
+--accepting rule at line 42 ("(")
+Next token is token LPAREN ()
+Shifting token LPAREN ()
+Entering state 59
+Reading a token: --accepting rule at line 91 ("x")
+Next token is token VAR ()
+Shifting token VAR ()
+Entering state 85
+Reading a token: --accepting default rule (" ")
+--accepting rule at line 64 ("&")
+Next token is token BITWISEAND ()
+Reducing stack by rule 74 (line 221):
+   $1 = token VAR ()
+-> $$ = nterm expr ()
+Stack now 0 1 4 9 15 19 24 31 60 92 159 220 264 30 59
+Entering state 91
+Next token is token BITWISEAND ()
+Shifting token BITWISEAND ()
+Entering state 144
+Reading a token: --accepting default rule (" ")
+--accepting rule at line 89 ("2")
+Next token is token CONST ()
+Shifting token CONST ()
+Entering state 86
+Reducing stack by rule 75 (line 222):
+   $1 = token CONST ()
+-> $$ = nterm expr ()
+Stack now 0 1 4 9 15 19 24 31 60 92 159 220 264 30 59 91 144
+Entering state 205
+Reading a token: --accepting rule at line 43 (")")
+Next token is token RPAREN ()
+Reducing stack by rule 66 (line 213):
+   $1 = nterm expr ()
+   $2 = token BITWISEAND ()
+   $3 = nterm expr ()
+-> $$ = nterm expr ()
+Stack now 0 1 4 9 15 19 24 31 60 92 159 220 264 30 59
+Entering state 91
+Next token is token RPAREN ()
+Shifting token RPAREN ()
+Entering state 158
+Reading a token: --accepting default rule (" ")
+--accepting rule at line 38 ("{")
+Next token is token LBRACE ()
+Shifting token LBRACE ()
+Entering state 219
+Reducing stack by rule 7 (line 122):
+-> $$ = nterm statementList ()
+Stack now 0 1 4 9 15 19 24 31 60 92 159 220 264 30 59 91 158 219
+Entering state 263
+Reading a token: --accepting default rule ("")
+--accepting rule at line 93 ("
+")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting rule at line 84 ("setOutput")
+Next token is token SETOUTPUT ()
+Shifting token SETOUTPUT ()
+Entering state 46
+Reading a token: --accepting rule at line 42 ("(")
+Next token is token LPAREN ()
+Shifting token LPAREN ()
+Entering state 77
+Reading a token: --accepting rule at line 64 ("&")
+Next token is token BITWISEAND ()
+Shifting token BITWISEAND ()
+Entering state 124
+Reading a token: --accepting rule at line 91 ("x")
+Next token is token VAR ()
+Shifting token VAR ()
+Entering state 190
+Reading a token: --accepting rule at line 44 (",")
+Next token is token COMMA ()
+Shifting token COMMA ()
+Entering state 250
+Reading a token: --accepting default rule (" ")
+--accepting rule at line 89 ("2")
+Next token is token CONST ()
+Shifting token CONST ()
+Entering state 86
+Reducing stack by rule 75 (line 222):
+   $1 = token CONST ()
+-> $$ = nterm expr ()
+Stack now 0 1 4 9 15 19 24 31 60 92 159 220 264 30 59 91 158 219 263 46 77 124 190 250
+Entering state 279
+Reading a token: --accepting rule at line 43 (")")
+Next token is token RPAREN ()
+Shifting token RPAREN ()
+Entering state 299
+Reading a token: --accepting rule at line 45 (";")
+Next token is token SEMI ()
+Shifting token SEMI ()
+Entering state 314
+Reducing stack by rule 39 (line 172):
+   $1 = token SETOUTPUT ()
+   $2 = token LPAREN ()
+   $3 = token BITWISEAND ()
+   $4 = token VAR ()
+   $5 = token COMMA ()
+   $6 = nterm expr ()
+   $7 = token RPAREN ()
+   $8 = token SEMI ()
+-> $$ = nterm statement ()
+Stack now 0 1 4 9 15 19 24 31 60 92 159 220 264 30 59 91 158 219 263
+Entering state 51
+Reducing stack by rule 8 (line 123):
+   $1 = nterm statementList ()
+   $2 = nterm statement ()
+-> $$ = nterm statementList ()
+Stack now 0 1 4 9 15 19 24 31 60 92 159 220 264 30 59 91 158 219
+Entering state 263
+Reading a token: --accepting default rule ("")
+--accepting rule at line 93 ("
+")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting rule at line 82 ("printNumber")
+Next token is token PRINTNUMBER ()
+Shifting token PRINTNUMBER ()
+Entering state 44
+Reading a token: --accepting rule at line 42 ("(")
+Next token is token LPAREN ()
+Shifting token LPAREN ()
+Entering state 75
+Reading a token: --accepting rule at line 64 ("&")
+Next token is token BITWISEAND ()
+Shifting token BITWISEAND ()
+Entering state 120
+Reading a token: --accepting rule at line 91 ("x")
+Next token is token VAR ()
+Shifting token VAR ()
+Entering state 186
+Reading a token: --accepting rule at line 44 (",")
+Next token is token COMMA ()
+Shifting token COMMA ()
+Entering state 246
+Reading a token: --accepting default rule (" ")
+--accepting rule at line 89 ("2")
+Next token is token CONST ()
+Shifting token CONST ()
+Entering state 86
+Reducing stack by rule 75 (line 222):
+   $1 = token CONST ()
+-> $$ = nterm expr ()
+Stack now 0 1 4 9 15 19 24 31 60 92 159 220 264 30 59 91 158 219 263 44 75 120 186 246
+Entering state 277
+Reading a token: --accepting rule at line 43 (")")
+Next token is token RPAREN ()
+Shifting token RPAREN ()
+Entering state 298
+Reading a token: --accepting rule at line 45 (";")
+Next token is token SEMI ()
+Shifting token SEMI ()
+Entering state 313
+Reducing stack by rule 35 (line 166):
+   $1 = token PRINTNUMBER ()
+   $2 = token LPAREN ()
+   $3 = token BITWISEAND ()
+   $4 = token VAR ()
+   $5 = token COMMA ()
+   $6 = nterm expr ()
+   $7 = token RPAREN ()
+   $8 = token SEMI ()
+-> $$ = nterm statement ()
+Stack now 0 1 4 9 15 19 24 31 60 92 159 220 264 30 59 91 158 219 263
+Entering state 51
+Reducing stack by rule 8 (line 123):
+   $1 = nterm statementList ()
+   $2 = nterm statement ()
+-> $$ = nterm statementList ()
+Stack now 0 1 4 9 15 19 24 31 60 92 159 220 264 30 59 91 158 219
+Entering state 263
+Reading a token: --accepting default rule ("")
+--accepting rule at line 93 ("
+")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting rule at line 39 ("}")
+Next token is token RBRACE ()
+Shifting token RBRACE ()
+Entering state 284
+Reading a token: --accepting default rule (" ")
+--accepting rule at line 68 ("else")
+Next token is token ELSE ()
+Shifting token ELSE ()
+Entering state 301
+Reading a token: --accepting default rule (" ")
+--accepting rule at line 38 ("{")
+Next token is token LBRACE ()
+Shifting token LBRACE ()
+Entering state 316
+Reducing stack by rule 7 (line 122):
+-> $$ = nterm statementList ()
+Stack now 0 1 4 9 15 19 24 31 60 92 159 220 264 30 59 91 158 219 263 284 301 316
+Entering state 319
+Reading a token: --accepting default rule ("")
+--accepting rule at line 93 ("
+")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting rule at line 84 ("setOutput")
+Next token is token SETOUTPUT ()
+Shifting token SETOUTPUT ()
+Entering state 46
+Reading a token: --accepting rule at line 42 ("(")
+Next token is token LPAREN ()
+Shifting token LPAREN ()
+Entering state 77
+Reading a token: --accepting rule at line 64 ("&")
+Next token is token BITWISEAND ()
+Shifting token BITWISEAND ()
+Entering state 124
+Reading a token: --accepting rule at line 91 ("x")
+Next token is token VAR ()
+Shifting token VAR ()
+Entering state 190
+Reading a token: --accepting rule at line 44 (",")
+Next token is token COMMA ()
+Shifting token COMMA ()
+Entering state 250
+Reading a token: --accepting default rule (" ")
+--accepting rule at line 89 ("0")
+Next token is token CONST ()
+Shifting token CONST ()
+Entering state 86
+Reducing stack by rule 75 (line 222):
+   $1 = token CONST ()
+-> $$ = nterm expr ()
+Stack now 0 1 4 9 15 19 24 31 60 92 159 220 264 30 59 91 158 219 263 284 301 316 319 46 77 124 190 250
+Entering state 279
+Reading a token: --accepting rule at line 43 (")")
+Next token is token RPAREN ()
+Shifting token RPAREN ()
+Entering state 299
+Reading a token: --accepting rule at line 45 (";")
+Next token is token SEMI ()
+Shifting token SEMI ()
+Entering state 314
+Reducing stack by rule 39 (line 172):
+   $1 = token SETOUTPUT ()
+   $2 = token LPAREN ()
+   $3 = token BITWISEAND ()
+   $4 = token VAR ()
+   $5 = token COMMA ()
+   $6 = nterm expr ()
+   $7 = token RPAREN ()
+   $8 = token SEMI ()
+-> $$ = nterm statement ()
+Stack now 0 1 4 9 15 19 24 31 60 92 159 220 264 30 59 91 158 219 263 284 301 316 319
+Entering state 51
+Reducing stack by rule 8 (line 123):
+   $1 = nterm statementList ()
+   $2 = nterm statement ()
+-> $$ = nterm statementList ()
+Stack now 0 1 4 9 15 19 24 31 60 92 159 220 264 30 59 91 158 219 263 284 301 316
+Entering state 319
+Reading a token: --accepting default rule ("")
+--accepting rule at line 93 ("
+")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting rule at line 82 ("printNumber")
+Next token is token PRINTNUMBER ()
+Shifting token PRINTNUMBER ()
+Entering state 44
+Reading a token: --accepting rule at line 42 ("(")
+Next token is token LPAREN ()
+Shifting token LPAREN ()
+Entering state 75
+Reading a token: --accepting rule at line 64 ("&")
+Next token is token BITWISEAND ()
+Shifting token BITWISEAND ()
+Entering state 120
+Reading a token: --accepting rule at line 91 ("x")
+Next token is token VAR ()
+Shifting token VAR ()
+Entering state 186
+Reading a token: --accepting rule at line 44 (",")
+Next token is token COMMA ()
+Shifting token COMMA ()
+Entering state 246
+Reading a token: --accepting default rule (" ")
+--accepting rule at line 89 ("0")
+Next token is token CONST ()
+Shifting token CONST ()
+Entering state 86
+Reducing stack by rule 75 (line 222):
+   $1 = token CONST ()
+-> $$ = nterm expr ()
+Stack now 0 1 4 9 15 19 24 31 60 92 159 220 264 30 59 91 158 219 263 284 301 316 319 44 75 120 186 246
+Entering state 277
+Reading a token: --accepting rule at line 43 (")")
+Next token is token RPAREN ()
+Shifting token RPAREN ()
+Entering state 298
+Reading a token: --accepting rule at line 45 (";")
+Next token is token SEMI ()
+Shifting token SEMI ()
+Entering state 313
+Reducing stack by rule 35 (line 166):
+   $1 = token PRINTNUMBER ()
+   $2 = token LPAREN ()
+   $3 = token BITWISEAND ()
+   $4 = token VAR ()
+   $5 = token COMMA ()
+   $6 = nterm expr ()
+   $7 = token RPAREN ()
+   $8 = token SEMI ()
+-> $$ = nterm statement ()
+Stack now 0 1 4 9 15 19 24 31 60 92 159 220 264 30 59 91 158 219 263 284 301 316 319
+Entering state 51
+Reducing stack by rule 8 (line 123):
+   $1 = nterm statementList ()
+   $2 = nterm statement ()
+-> $$ = nterm statementList ()
+Stack now 0 1 4 9 15 19 24 31 60 92 159 220 264 30 59 91 158 219 263 284 301 316
+Entering state 319
+Reading a token: --accepting default rule ("")
+--accepting rule at line 93 ("
+")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting rule at line 39 ("}")
+Next token is token RBRACE ()
+Shifting token RBRACE ()
+Entering state 322
+Reducing stack by rule 52 (line 195):
+   $1 = token IF ()
+   $2 = token LPAREN ()
+   $3 = nterm expr ()
+   $4 = token RPAREN ()
+   $5 = token LBRACE ()
+   $6 = nterm statementList ()
+   $7 = token RBRACE ()
+   $8 = token ELSE ()
+   $9 = token LBRACE ()
+   $10 = nterm statementList ()
+   $11 = token RBRACE ()
+-> $$ = nterm statementIf ()
+Stack now 0 1 4 9 15 19 24 31 60 92 159 220 264
+Entering state 53
+Reducing stack by rule 10 (line 126):
+   $1 = nterm statementIf ()
+-> $$ = nterm statement ()
+Stack now 0 1 4 9 15 19 24 31 60 92 159 220 264
+Entering state 51
+Reducing stack by rule 8 (line 123):
+   $1 = nterm statementList ()
+   $2 = nterm statement ()
+-> $$ = nterm statementList ()
+Stack now 0 1 4 9 15 19 24 31 60 92 159 220
+Entering state 264
+Reading a token: --accepting default rule ("")
+--accepting rule at line 93 ("
+")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting rule at line 82 ("printNumber")
+Next token is token PRINTNUMBER ()
+Shifting token PRINTNUMBER ()
+Entering state 44
+Reading a token: --accepting rule at line 42 ("(")
+Next token is token LPAREN ()
+Shifting token LPAREN ()
+Entering state 75
+Reading a token: --accepting rule at line 64 ("&")
+Next token is token BITWISEAND ()
+Shifting token BITWISEAND ()
+Entering state 120
+Reading a token: --accepting rule at line 91 ("x")
+Next token is token VAR ()
+Shifting token VAR ()
+Entering state 186
+Reading a token: --accepting rule at line 44 (",")
+Next token is token COMMA ()
+Shifting token COMMA ()
+Entering state 246
+Reading a token: --accepting default rule (" ")
+--accepting rule at line 91 ("testCount")
+Next token is token VAR ()
+Shifting token VAR ()
+Entering state 85
+Reading a token: --accepting rule at line 43 (")")
+Next token is token RPAREN ()
+Reducing stack by rule 74 (line 221):
+   $1 = token VAR ()
+-> $$ = nterm expr ()
+Stack now 0 1 4 9 15 19 24 31 60 92 159 220 264 44 75 120 186 246
+Entering state 277
+Next token is token RPAREN ()
+Shifting token RPAREN ()
+Entering state 298
+Reading a token: --accepting rule at line 45 (";")
+Next token is token SEMI ()
+Shifting token SEMI ()
+Entering state 313
+Reducing stack by rule 35 (line 166):
+   $1 = token PRINTNUMBER ()
+   $2 = token LPAREN ()
+   $3 = token BITWISEAND ()
+   $4 = token VAR ()
+   $5 = token COMMA ()
+   $6 = nterm expr ()
+   $7 = token RPAREN ()
+   $8 = token SEMI ()
+-> $$ = nterm statement ()
+Stack now 0 1 4 9 15 19 24 31 60 92 159 220 264
+Entering state 51
+Reducing stack by rule 8 (line 123):
+   $1 = nterm statementList ()
+   $2 = nterm statement ()
+-> $$ = nterm statementList ()
+Stack now 0 1 4 9 15 19 24 31 60 92 159 220
+Entering state 264
+Reading a token: --accepting default rule ("")
+--accepting rule at line 93 ("
+")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting rule at line 69 ("while")
+Next token is token WHILE ()
+Shifting token WHILE ()
+Entering state 31
+Reading a token: --accepting default rule (" ")
+--accepting rule at line 42 ("(")
+Next token is token LPAREN ()
+Shifting token LPAREN ()
+Entering state 60
+Reading a token: --accepting rule at line 91 ("testCount")
+Next token is token VAR ()
+Shifting token VAR ()
+Entering state 85
+Reading a token: --accepting default rule (" ")
+--accepting rule at line 58 ("<")
+Next token is token LSS ()
+Reducing stack by rule 74 (line 221):
+   $1 = token VAR ()
+-> $$ = nterm expr ()
+Stack now 0 1 4 9 15 19 24 31 60 92 159 220 264 31 60
+Entering state 92
+Next token is token LSS ()
+Shifting token LSS ()
+Entering state 147
+Reading a token: --accepting default rule (" ")
+--accepting rule at line 89 ("1000")
+Next token is token CONST ()
+Shifting token CONST ()
+Entering state 86
+Reducing stack by rule 75 (line 222):
+   $1 = token CONST ()
+-> $$ = nterm expr ()
+Stack now 0 1 4 9 15 19 24 31 60 92 159 220 264 31 60 92 147
+Entering state 208
+Reading a token: --accepting rule at line 43 (")")
+Next token is token RPAREN ()
+Reducing stack by rule 73 (line 220):
+   $1 = nterm expr ()
+   $2 = token LSS ()
+   $3 = nterm expr ()
+-> $$ = nterm expr ()
+Stack now 0 1 4 9 15 19 24 31 60 92 159 220 264 31 60
+Entering state 92
+Next token is token RPAREN ()
+Shifting token RPAREN ()
+Entering state 159
+Reading a token: --accepting default rule (" ")
+--accepting rule at line 38 ("{")
+Next token is token LBRACE ()
+Shifting token LBRACE ()
+Entering state 220
+Reducing stack by rule 7 (line 122):
+-> $$ = nterm statementList ()
+Stack now 0 1 4 9 15 19 24 31 60 92 159 220 264 31 60 92 159 220
+Entering state 264
+Reading a token: --accepting default rule ("")
+--accepting rule at line 93 ("
+")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting rule at line 101 ("//")
+--accepting rule at line 103 (" ")
+--accepting rule at line 103 ("1")
+--accepting rule at line 103 ("0")
+--accepting rule at line 103 ("0")
+--accepting rule at line 103 (" ")
+--accepting rule at line 103 ("i")
+--accepting rule at line 103 ("n")
+--accepting rule at line 103 ("s")
+--accepting rule at line 103 ("t")
+--accepting rule at line 103 ("r")
+--accepting rule at line 103 ("u")
+--accepting rule at line 103 ("c")
+--accepting rule at line 103 ("t")
+--accepting rule at line 103 ("i")
+--accepting rule at line 103 ("o")
+--accepting rule at line 103 ("n")
+--accepting rule at line 103 ("s")
+--accepting rule at line 103 (" ")
+--accepting rule at line 103 ("/")
+--accepting rule at line 103 (" ")
+--accepting rule at line 103 ("s")
+--accepting rule at line 103 ("e")
+--accepting rule at line 103 ("c")
+--accepting rule at line 103 (" ")
+--accepting rule at line 103 ("w")
+--accepting rule at line 103 ("i")
+--accepting rule at line 103 ("t")
+--accepting rule at line 103 ("h")
+--accepting rule at line 103 (" ")
+--accepting rule at line 103 ("s")
+--accepting rule at line 103 ("p")
+--accepting rule at line 103 ("e")
+--accepting rule at line 103 ("e")
+--accepting rule at line 103 ("d")
+--accepting rule at line 103 (" ")
+--accepting rule at line 103 ("o")
+--accepting rule at line 103 ("p")
+--accepting rule at line 103 ("t")
+--accepting rule at line 103 ("i")
+--accepting rule at line 103 ("m")
+--accepting rule at line 103 ("i")
+--accepting rule at line 103 ("z")
+--accepting rule at line 103 ("a")
+--accepting rule at line 103 ("t")
+--accepting rule at line 103 ("i")
+--accepting rule at line 103 ("o")
+--accepting rule at line 103 ("n")
+--accepting rule at line 103 (" ")
+--accepting rule at line 103 ("t")
+--accepting rule at line 103 ("u")
+--accepting rule at line 103 ("r")
+--accepting rule at line 103 ("n")
+--accepting rule at line 103 ("e")
+--accepting rule at line 103 ("d")
+--accepting rule at line 103 (" ")
+--accepting rule at line 103 ("o")
+--accepting rule at line 103 ("n")
+--accepting rule at line 103 (";")
+--accepting rule at line 103 (" ")
+--accepting rule at line 103 ("5")
+--accepting rule at line 103 ("0")
+--accepting rule at line 103 (" ")
+--accepting rule at line 103 ("w")
+--accepting rule at line 103 ("i")
+--accepting rule at line 103 ("t")
+--accepting rule at line 103 ("h")
+--accepting rule at line 103 ("o")
+--accepting rule at line 103 ("u")
+--accepting rule at line 103 ("t")
+--accepting rule at line 103 ("")
+--accepting rule at line 105 ("
+")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting rule at line 91 ("testCount")
+Next token is token VAR ()
+Shifting token VAR ()
+Entering state 32
+Reading a token: --accepting default rule (" ")
+--accepting rule at line 48 ("=")
+Next token is token EQUAL ()
+Shifting token EQUAL ()
+Entering state 61
+Reading a token: --accepting default rule (" ")
+--accepting rule at line 91 ("testCount")
+Next token is token VAR ()
+Shifting token VAR ()
+Entering state 85
+Reading a token: --accepting default rule (" ")
+--accepting rule at line 49 ("+")
+Next token is token PLUS ()
+Reducing stack by rule 74 (line 221):
+   $1 = token VAR ()
+-> $$ = nterm expr ()
+Stack now 0 1 4 9 15 19 24 31 60 92 159 220 264 31 60 92 159 220 264 32 61
+Entering state 93
+Next token is token PLUS ()
+Shifting token PLUS ()
+Entering state 154
+Reading a token: --accepting default rule (" ")
+--accepting rule at line 89 ("1")
+Next token is token CONST ()
+Shifting token CONST ()
+Entering state 86
+Reducing stack by rule 75 (line 222):
+   $1 = token CONST ()
+-> $$ = nterm expr ()
+Stack now 0 1 4 9 15 19 24 31 60 92 159 220 264 31 60 92 159 220 264 32 61 93 154
+Entering state 215
+Reading a token: --accepting rule at line 45 (";")
+Next token is token SEMI ()
+Reducing stack by rule 59 (line 206):
+   $1 = nterm expr ()
+   $2 = token PLUS ()
+   $3 = nterm expr ()
+-> $$ = nterm expr ()
+Stack now 0 1 4 9 15 19 24 31 60 92 159 220 264 31 60 92 159 220 264 32 61
+Entering state 93
+Next token is token SEMI ()
+Shifting token SEMI ()
+Entering state 160
+Reducing stack by rule 53 (line 197):
+   $1 = token VAR ()
+   $2 = token EQUAL ()
+   $3 = nterm expr ()
+   $4 = token SEMI ()
+-> $$ = nterm statementAssign ()
+Stack now 0 1 4 9 15 19 24 31 60 92 159 220 264 31 60 92 159 220 264
+Entering state 54
+Reducing stack by rule 9 (line 125):
+   $1 = nterm statementAssign ()
+-> $$ = nterm statement ()
+Stack now 0 1 4 9 15 19 24 31 60 92 159 220 264 31 60 92 159 220 264
+Entering state 51
+Reducing stack by rule 8 (line 123):
+   $1 = nterm statementList ()
+   $2 = nterm statement ()
+-> $$ = nterm statementList ()
+Stack now 0 1 4 9 15 19 24 31 60 92 159 220 264 31 60 92 159 220
+Entering state 264
+Reading a token: --accepting default rule ("")
+--accepting rule at line 93 ("
+")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting rule at line 39 ("}")
+Next token is token RBRACE ()
+Shifting token RBRACE ()
+Entering state 285
+Reducing stack by rule 50 (line 189):
+   $1 = token WHILE ()
+   $2 = token LPAREN ()
+   $3 = nterm expr ()
+   $4 = token RPAREN ()
+   $5 = token LBRACE ()
+   $6 = nterm statementList ()
+   $7 = token RBRACE ()
+-> $$ = nterm statementWhile ()
+Stack now 0 1 4 9 15 19 24 31 60 92 159 220 264
+Entering state 52
+Reducing stack by rule 11 (line 127):
+   $1 = nterm statementWhile ()
+-> $$ = nterm statement ()
+Stack now 0 1 4 9 15 19 24 31 60 92 159 220 264
+Entering state 51
+Reducing stack by rule 8 (line 123):
+   $1 = nterm statementList ()
+   $2 = nterm statement ()
+-> $$ = nterm statementList ()
+Stack now 0 1 4 9 15 19 24 31 60 92 159 220
+Entering state 264
+Reading a token: --accepting default rule ("")
+--accepting rule at line 93 ("
+")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting rule at line 82 ("printNumber")
+Next token is token PRINTNUMBER ()
+Shifting token PRINTNUMBER ()
+Entering state 44
+Reading a token: --accepting rule at line 42 ("(")
+Next token is token LPAREN ()
+Shifting token LPAREN ()
+Entering state 75
+Reading a token: --accepting rule at line 64 ("&")
+Next token is token BITWISEAND ()
+Shifting token BITWISEAND ()
+Entering state 120
+Reading a token: --accepting rule at line 91 ("x")
+Next token is token VAR ()
+Shifting token VAR ()
+Entering state 186
+Reading a token: --accepting rule at line 44 (",")
+Next token is token COMMA ()
+Shifting token COMMA ()
+Entering state 246
+Reading a token: --accepting default rule (" ")
+--accepting rule at line 91 ("testCount")
+Next token is token VAR ()
+Shifting token VAR ()
+Entering state 85
+Reading a token: --accepting rule at line 43 (")")
+Next token is token RPAREN ()
+Reducing stack by rule 74 (line 221):
+   $1 = token VAR ()
+-> $$ = nterm expr ()
+Stack now 0 1 4 9 15 19 24 31 60 92 159 220 264 44 75 120 186 246
+Entering state 277
+Next token is token RPAREN ()
+Shifting token RPAREN ()
+Entering state 298
+Reading a token: --accepting rule at line 45 (";")
+Next token is token SEMI ()
+Shifting token SEMI ()
+Entering state 313
+Reducing stack by rule 35 (line 166):
+   $1 = token PRINTNUMBER ()
+   $2 = token LPAREN ()
+   $3 = token BITWISEAND ()
+   $4 = token VAR ()
+   $5 = token COMMA ()
+   $6 = nterm expr ()
+   $7 = token RPAREN ()
+   $8 = token SEMI ()
+-> $$ = nterm statement ()
+Stack now 0 1 4 9 15 19 24 31 60 92 159 220 264
+Entering state 51
+Reducing stack by rule 8 (line 123):
+   $1 = nterm statementList ()
+   $2 = nterm statement ()
+-> $$ = nterm statementList ()
+Stack now 0 1 4 9 15 19 24 31 60 92 159 220
+Entering state 264
+Reading a token: --accepting default rule ("")
+--accepting rule at line 93 ("
+")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting rule at line 91 ("testCount")
+Next token is token VAR ()
+Shifting token VAR ()
+Entering state 32
+Reading a token: --accepting default rule (" ")
+--accepting rule at line 48 ("=")
+Next token is token EQUAL ()
+Shifting token EQUAL ()
+Entering state 61
+Reading a token: --accepting default rule (" ")
+--accepting rule at line 89 ("1")
+Next token is token CONST ()
+Shifting token CONST ()
+Entering state 86
+Reducing stack by rule 75 (line 222):
+   $1 = token CONST ()
+-> $$ = nterm expr ()
+Stack now 0 1 4 9 15 19 24 31 60 92 159 220 264 32 61
+Entering state 93
+Reading a token: --accepting rule at line 45 (";")
+Next token is token SEMI ()
+Shifting token SEMI ()
+Entering state 160
+Reducing stack by rule 53 (line 197):
+   $1 = token VAR ()
+   $2 = token EQUAL ()
+   $3 = nterm expr ()
+   $4 = token SEMI ()
+-> $$ = nterm statementAssign ()
+Stack now 0 1 4 9 15 19 24 31 60 92 159 220 264
+Entering state 54
+Reducing stack by rule 9 (line 125):
+   $1 = nterm statementAssign ()
+-> $$ = nterm statement ()
+Stack now 0 1 4 9 15 19 24 31 60 92 159 220 264
+Entering state 51
+Reducing stack by rule 8 (line 123):
+   $1 = nterm statementList ()
+   $2 = nterm statement ()
+-> $$ = nterm statementList ()
+Stack now 0 1 4 9 15 19 24 31 60 92 159 220
+Entering state 264
+Reading a token: --accepting default rule ("")
+--accepting rule at line 93 ("
+")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting default rule (" ")
+--accepting rule at line 101 ("//")
+--accepting rule at line 103 ("l")
+--accepting rule at line 103 ("e")
+--accepting rule at line 103 ("d")
+--accepting rule at line 103 ("(")
+--accepting rule at line 103 ("&")
+--accepting rule at line 103 ("x")
+--accepting rule at line 103 (",")
+--accepting rule at line 103 (" ")
+--accepting rule at line 103 ("o")
+--accepting rule at line 103 ("n")
+--accepting rule at line 103 (")")
+--accepting rule at line 103 (";")
+--accepting rule at line 103 ("")
+--accepting rule at line 105 ("
 ")
 --accepting default rule (" ")
 --accepting default rule (" ")
@@ -895,7 +1868,7 @@ Next token is token COMMA ()
 Shifting token COMMA ()
 Entering state 228
 Reading a token: --accepting default rule (" ")
---accepting rule at line 89 ("1000")
+--accepting rule at line 89 ("500")
 Next token is token CONST ()
 Shifting token CONST ()
 Entering state 86

@@ -145,6 +145,7 @@ nodeType stringToNodeType(const char* pc) {
     }
 }
 
+//__ramfunc nodeType intToNodeType(const int nt) {
 nodeType intToNodeType(const int nt) {
     switch (nt) {
     case nodeVariable:
@@ -1154,7 +1155,9 @@ void interpret::evaluateOperator(unsigned int op) {
 }
 
 void interpret::_pushTemporarySymbolOnEvaluationStack(unsigned int value) {
-    symbolTableEntry temporarySymbol(nodeTemporary, value); 
+    symbolTableEntry temporarySymbol(nodeTemporary, value);
+    //static symbolTableEntry temporarySymbol(nodeTemporary, 0);
+    //temporarySymbol.value(value);   // Optimization? Does this make a difference?    
 #if 1
     int availableSymbolTableIndex = _findFirstAvailableNodeInSymbolTable();
     if (availableSymbolTableIndex != NOT_FOUND) {

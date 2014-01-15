@@ -5,15 +5,34 @@ main () {
     on = 1;
     x = 0;
     limit = 15;
+    temp = 4;
+    testCount = 0;
     moveDistance = 1000;
     RPM(&x, 60, 120);
     while (count < 142) {
-        on = !on;
-        led(&x, on);    // The first paramater, &x, is the return value and is pass-by-reference
-        on = !on;
-        sleep(&x, 1000);
-        led(&x, on);
-        sleep(&x, 1000);
+        //on = !on;
+        //led(&x, on);    // The first paramater, &x, is the return value and is pass-by-reference
+        //on = !on;
+        sleep(&x, 500);
+        getTemp(&x);
+        printNumber(&x, x);
+        getInput(&x);
+        if (x & 2) {
+            setOutput(&x, 2);
+            printNumber(&x, 2);
+        } else {
+            setOutput(&x, 0);
+            printNumber(&x, 0);
+        }
+        printNumber(&x, testCount);
+        while (testCount < 1000) {
+            // 100 instructions / sec with speed optimization turned on; 50 without
+            testCount = testCount + 1;
+        }
+        printNumber(&x, testCount);
+        testCount = 1;
+        //led(&x, on);
+        sleep(&x, 500);
         count = count + 1;
         if (count > limit) {
             moveBack = moveDistance * -limit;
