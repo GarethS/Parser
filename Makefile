@@ -62,10 +62,12 @@ valve.tab.c valve.tab.h:	valve.y compiler.h compilerHelper.h
 motor.tab.c motor.tab.h:	motor.y
 	bison --verbose motor.y	# bison version 2.4.2
 
+# -pg outputs gmon.out which is used by gprof to get profiling information
 interpret.exe: interpret.cpp interpret.h ../motor/led.h ../motor/accel.cpp ../motor/accel.h ../motor/lmi.cpp ../motor/stepper.cpp ../motor/stepper.h ../motor/io.cpp ../motor/io.h ../motor/log.cpp ../motor/log.h compilerHelper.h parseTreeEntry.cpp parseTreeEntry.h symbolTableEntry.cpp symbolTableEntry.h tinyQueue.h valve.tab.h
 	echo "BUILDING INTERPRETER"
-	g++ $(GPP_FLAGS) $(DEBUG_FLAGS) -I. -I../motor -I$(includeRTOS) -I$(includeGPIO) interpret.cpp parseTreeEntry.cpp symbolTableEntry.cpp ../motor/accel.cpp ../motor/lmi.cpp ../motor/stepper.cpp ../motor/io.cpp ../motor/log.cpp -o interpret.exe 
-    
+	g++ $(GPP_FLAGS) $(DEBUG_FLAGS) -pg -I. -I../motor -I$(includeRTOS) -I$(includeGPIO) interpret.cpp parseTreeEntry.cpp symbolTableEntry.cpp ../motor/accel.cpp ../motor/lmi.cpp ../motor/stepper.cpp ../motor/io.cpp ../motor/log.cpp -o interpret.exe 
+	gprof interpret.exe > interpretProfile.txt
+   
 run:
 	./parsetest.exe >parse.txt 2>bison.txt
 	#mv log1.txt log2.txt
