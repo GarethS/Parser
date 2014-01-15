@@ -3,122 +3,121 @@ Flat profile:
 Each sample counts as 0.01 seconds.
   %   cumulative   self              self     total           
  time   seconds   seconds    calls  ms/call  ms/call  name    
- 33.33      0.01     0.01    30997     0.00     0.00  symbolTableEntry::dumpEntry()
- 33.33      0.02     0.01     1909     0.01     0.01  tinyQueue<int>::pop_front()
- 33.33      0.03     0.01                             _fu1___ZSt4cout
-  0.00      0.03     0.00   137935     0.00     0.00  logc::oss()
-  0.00      0.03     0.00    37666     0.00     0.00  logc::dump(std::string const&, bool, bool)
-  0.00      0.03     0.00    37666     0.00     0.00  logc::dump()
-  0.00      0.03     0.00    37666     0.00     0.00  logc::ossClear()
-  0.00      0.03     0.00    37666     0.00     0.00  std::basic_string<char, std::char_traits<char>, std::allocator<char> > std::operator+<char, std::char_traits<char>, std::allocator<char> >(std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, char const*)
-  0.00      0.03     0.00    37666     0.00     0.00  std::basic_string<char, std::char_traits<char>, std::allocator<char> > std::operator+<char, std::char_traits<char>, std::allocator<char> >(std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)
-  0.00      0.03     0.00    33039     0.00     0.00  symbolTableEntry::value() const
-  0.00      0.03     0.00    32118     0.00     0.00  symbolTableEntry::type() const
-  0.00      0.03     0.00    31240     0.00     0.00  symbolTableEntry::fcnLink() const
-  0.00      0.03     0.00    24359     0.00     0.00  parseTreeEntry::type() const
-  0.00      0.03     0.00     6986     0.00     0.00  interpret::_programNodeType(unsigned int) const
-  0.00      0.03     0.00     6509     0.00     0.00  tinyQueue<int>::spaceAvail() const
-  0.00      0.03     0.00     5803     0.00     0.00  tinyQueue<int>::size() const
-  0.00      0.03     0.00     4129     0.00     0.00  tinyQueue<int>::empty() const
-  0.00      0.03     0.00     3144     0.00     0.00  tinyQueue<int>::front() const
-  0.00      0.03     0.00     2540     0.00     0.00  parseTreeEntry::value() const
-  0.00      0.03     0.00     2227     0.00     0.00  tinyQueue<int>::stackFrameIndex() const
-  0.00      0.03     0.00     2000     0.00     0.00  interpret::_currentProgramNodeType() const
-  0.00      0.03     0.00     1900     0.00     0.00  interpret::_currentProgramNodeValue() const
-  0.00      0.03     0.00     1094     0.00     0.00  bool std::operator==<char, std::char_traits<char>, std::allocator<char> >(std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, char const*)
-  0.00      0.03     0.00     1001     0.00     0.00  tinyQueue<int>::tinyQueue()
-  0.00      0.03     0.00     1001     0.00     0.00  tinyQueue<int>::~tinyQueue()
-  0.00      0.03     0.00     1000     0.00     0.01  interpret::dumpSymbolTable()
-  0.00      0.03     0.00     1000     0.00     0.01  interpret::dumpEvaluationStack()
-  0.00      0.03     0.00      914     0.00     0.00  logc::~logc()
-  0.00      0.03     0.00      734     0.00     0.00  parseTreeEntry::level() const
-  0.00      0.03     0.00      728     0.00     0.00  logc::logc(std::string)
-  0.00      0.03     0.00      706     0.00     0.00  tinyQueue<int>::push_front(int)
-  0.00      0.03     0.00      690     0.00     0.00  interpret::_evalValuePeek() const
-  0.00      0.03     0.00      674     0.00     0.01  interpret::_evalValue()
-  0.00      0.03     0.00      578     0.00     0.00  interpret::symbolTableIndexMorph(int)
-  0.00      0.03     0.00      481     0.00     0.00  symbolTableEntry::~symbolTableEntry()
-  0.00      0.03     0.00      478     0.00     0.00  interpret::symbolFromIndex(int)
-  0.00      0.03     0.00      440     0.00     0.00  symbolTableEntry::type(nodeType)
-  0.00      0.03     0.00      427     0.00     0.00  parseTreeEntry::~parseTreeEntry()
-  0.00      0.03     0.00      404     0.00     0.00  interpret::_getLastSymbolTableIndex()
-  0.00      0.03     0.00      378     0.00     0.00  interpret::getLowWaterMarkForTemporarySymbolSearch() const
-  0.00      0.03     0.00      351     0.00     0.00  symbolTableEntry::value(int)
-  0.00      0.03     0.00      333     0.00     0.00  parseTreeEntry::parseTreeEntry()
-  0.00      0.03     0.00      326     0.00     0.00  bool std::operator!=<char, std::char_traits<char>, std::allocator<char> >(std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, char const*)
-  0.00      0.03     0.00      289     0.00     0.01  interpret::evaluateOperator(unsigned int)
-  0.00      0.03     0.00      266     0.00     0.00  parseTreeEntry::type(nodeType)
-  0.00      0.03     0.00      266     0.00     0.00  parseTreeEntry::level(unsigned int)
-  0.00      0.03     0.00      266     0.00     0.00  parseTreeEntry::value(int)
-  0.00      0.03     0.00      235     0.00     0.00  symbolTableEntry::fcnLink(int)
-  0.00      0.03     0.00      235     0.00     0.00  symbolTableEntry::operator=(symbolTableEntry const&)
-  0.00      0.03     0.00      205     0.00     0.00  symbolTableEntry::symbolTableEntry(nodeType, int)
-  0.00      0.03     0.00      189     0.00     0.00  interpret::_findFirstAvailableNodeInSymbolTable()
-  0.00      0.03     0.00      189     0.00     0.00  interpret::_pushTemporarySymbolOnEvaluationStack(unsigned int)
-  0.00      0.03     0.00      186     0.00     0.00  symbolTableEntry::symbolTableEntry(symbolTableEntry const&)
-  0.00      0.03     0.00      186     0.00     0.00  logc::logc(logc const&)
-  0.00      0.03     0.00      133     0.00     0.00  parseTreeEntry::position(nodePosition)
-  0.00      0.03     0.00      133     0.00     0.00  parseTreeEntry::dumpEntry()
-  0.00      0.03     0.00      133     0.00     0.00  parseTreeEntry::operator=(parseTreeEntry const&)
-  0.00      0.03     0.00      133     0.00     0.00  interpret::appendToProgram(parseTreeEntry const&)
-  0.00      0.03     0.00      133     0.00     0.00  interpret::_loadParseTreeEntry(std::string const&)
-  0.00      0.03     0.00      133     0.00     0.00  parseTreeEntry::position() const
-  0.00      0.03     0.00       96     0.00     0.00  interpret::_returnSymbolToAvailablePool(unsigned int)
-  0.00      0.03     0.00       94     0.00     0.00  parseTreeEntry::parseTreeEntry(nodeType, int, unsigned int)
-  0.00      0.03     0.00       94     0.00     0.00  interpret::_updateProgramIndex(nodeType, int)
-  0.00      0.03     0.00       94     0.00     0.00  interpret::_findFirstParseTreeEntry(parseTreeEntry const&, unsigned int)
-  0.00      0.03     0.00       94     0.00     0.00  interpret::_currentProgramNodeLevel() const
-  0.00      0.03     0.00       60     0.00     0.00  symbolTableEntry::symbolTableEntry()
-  0.00      0.03     0.00       30     0.00     0.00  symbolTableEntry::symbolTableEntry(nodeType, int, int)
-  0.00      0.03     0.00       30     0.00     0.00  interpret::appendToSymbolTable(symbolTableEntry const&)
-  0.00      0.03     0.00       30     0.00     0.00  interpret::_loadSymbolTableEntry(std::string const&)
-  0.00      0.03     0.00       25     0.00     0.00  tinyQueue<int>::peekAtIndex(unsigned int) const
-  0.00      0.03     0.00       10     0.00     0.01  interpret::_cleanUpEvaluationStack(unsigned int)
-  0.00      0.03     0.00        8     0.00     0.00  interpret::_cleanUpSymbolTable()
-  0.00      0.03     0.00        8     0.00     0.00  tinyQueue<int>::stackFrameIndex(unsigned int)
-  0.00      0.03     0.00        6     0.00     0.00  accel::_dumpCurveFreq()
-  0.00      0.03     0.00        6     0.00     0.00  accel::fmin() const
-  0.00      0.03     0.00        3     0.00     0.00  io::getTemperature()
-  0.00      0.03     0.00        3     0.00     0.00  accel::_initUnitCurve(int)
-  0.00      0.03     0.00        3     0.00     0.00  accel::_dumpCurveClockTicks()
-  0.00      0.03     0.00        3     0.00     0.00  accel::_dumpLinearInterpolate()
-  0.00      0.03     0.00        3     0.00     0.00  accel::_scaleYAxisToFrequency()
-  0.00      0.03     0.00        3     0.00     0.00  accel::_scaleYAxisToClockTicks()
-  0.00      0.03     0.00        3     0.00     0.00  accel::frequency(unsigned int, unsigned int)
-  0.00      0.03     0.00        3     0.00     0.00  accel::accelMicroSec() const
-  0.00      0.03     0.00        3     0.00     0.00  accel::_accelStepMicroSec() const
-  0.00      0.03     0.00        3     0.00     0.00  accel::fmax() const
-  0.00      0.03     0.00        2     0.00     0.00  io::io()
-  0.00      0.03     0.00        2     0.00     0.00  accel::_RPMx10ktoFreq(unsigned int)
-  0.00      0.03     0.00        2     0.00     0.00  accel::accel()
-  0.00      0.03     0.00        2     0.00     0.00  accel::~accel()
-  0.00      0.03     0.00        2     0.00     0.00  accel::operator=(accel const&)
-  0.00      0.03     0.00        2     0.00     0.00  stepper::microstepSet(microsteps)
-  0.00      0.03     0.00        2     0.00     0.00  parseTreeEntry::operator==(parseTreeEntry&) const
-  0.00      0.03     0.00        2     0.00     0.00  symbolTableEntry::operator==(symbolTableEntry&) const
-  0.00      0.03     0.00        1     0.00     0.00  io::init()
-  0.00      0.03     0.00        1     0.00     0.00  io::setOutput(unsigned int)
-  0.00      0.03     0.00        1     0.00     0.00  io::io()
-  0.00      0.03     0.00        1     0.00     0.00  io::~io()
-  0.00      0.03     0.00        1     0.00     0.00  led::On()
-  0.00      0.03     0.00        1     0.00     0.00  led::Off()
-  0.00      0.03     0.00        1     0.00     0.00  led::led(bool)
-  0.00      0.03     0.00        1     0.00     0.00  led::~led()
-  0.00      0.03     0.00        1     0.00     0.00  accel::RPMx10k(unsigned int, unsigned int)
-  0.00      0.03     0.00        1     0.00     0.00  stepper::RPM(unsigned int, unsigned int)
-  0.00      0.03     0.00        1     0.00     0.00  stepper::RPMx10k(unsigned int, unsigned int)
-  0.00      0.03     0.00        1     0.00     0.00  stepper::stepper()
-  0.00      0.03     0.00        1     0.00     0.00  stepper::~stepper()
-  0.00      0.03     0.00        1     0.00     0.00  interpret::dumpProgram()
-  0.00      0.03     0.00        1     0.00     0.00  interpret::_loadSymbolTable(std::string const&)
-  0.00      0.03     0.00        1     0.00     0.00  interpret::_resetSymbolTableTemporaryBoundary()
-  0.00      0.03     0.00        1     0.00     0.00  interpret::setLowWaterMarkForTemporarySymbolSearch()
-  0.00      0.03     0.00        1     0.00    19.98  interpret::run()
-  0.00      0.03     0.00        1     0.00     0.00  interpret::load()
-  0.00      0.03     0.00        1     0.00     0.00  interpret::_loadTree(std::string const&)
-  0.00      0.03     0.00        1     0.00     0.00  interpret::interpret()
-  0.00      0.03     0.00        1     0.00     0.00  interpret::~interpret()
-  0.00      0.03     0.00        1     0.00     0.00  io::getInput() const
+ 50.00      0.02     0.02     1000     0.02     0.03  interpret::dumpSymbolTable()
+ 25.00      0.03     0.01    37666     0.00     0.00  logc::dump(std::string const&, bool, bool)
+ 25.00      0.04     0.01        3     3.33     3.33  accel::_scaleYAxisToClockTicks()
+  0.00      0.04     0.00   137935     0.00     0.00  logc::oss()
+  0.00      0.04     0.00    37666     0.00     0.00  logc::dump()
+  0.00      0.04     0.00    37666     0.00     0.00  logc::ossClear()
+  0.00      0.04     0.00    37666     0.00     0.00  std::basic_string<char, std::char_traits<char>, std::allocator<char> > std::operator+<char, std::char_traits<char>, std::allocator<char> >(std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, char const*)
+  0.00      0.04     0.00    37666     0.00     0.00  std::basic_string<char, std::char_traits<char>, std::allocator<char> > std::operator+<char, std::char_traits<char>, std::allocator<char> >(std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)
+  0.00      0.04     0.00    33039     0.00     0.00  symbolTableEntry::value() const
+  0.00      0.04     0.00    32118     0.00     0.00  symbolTableEntry::type() const
+  0.00      0.04     0.00    31240     0.00     0.00  symbolTableEntry::fcnLink() const
+  0.00      0.04     0.00    30997     0.00     0.00  symbolTableEntry::dumpEntry()
+  0.00      0.04     0.00    24359     0.00     0.00  parseTreeEntry::type() const
+  0.00      0.04     0.00     6986     0.00     0.00  interpret::_programNodeType(unsigned int) const
+  0.00      0.04     0.00     6509     0.00     0.00  tinyQueue<int>::spaceAvail() const
+  0.00      0.04     0.00     5803     0.00     0.00  tinyQueue<int>::size() const
+  0.00      0.04     0.00     4129     0.00     0.00  tinyQueue<int>::empty() const
+  0.00      0.04     0.00     3144     0.00     0.00  tinyQueue<int>::front() const
+  0.00      0.04     0.00     2540     0.00     0.00  parseTreeEntry::value() const
+  0.00      0.04     0.00     2227     0.00     0.00  tinyQueue<int>::stackFrameIndex() const
+  0.00      0.04     0.00     2000     0.00     0.00  interpret::_currentProgramNodeType() const
+  0.00      0.04     0.00     1909     0.00     0.00  tinyQueue<int>::pop_front()
+  0.00      0.04     0.00     1900     0.00     0.00  interpret::_currentProgramNodeValue() const
+  0.00      0.04     0.00     1094     0.00     0.00  bool std::operator==<char, std::char_traits<char>, std::allocator<char> >(std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, char const*)
+  0.00      0.04     0.00     1001     0.00     0.00  tinyQueue<int>::tinyQueue()
+  0.00      0.04     0.00     1001     0.00     0.00  tinyQueue<int>::~tinyQueue()
+  0.00      0.04     0.00     1000     0.00     0.00  interpret::dumpEvaluationStack()
+  0.00      0.04     0.00      914     0.00     0.00  logc::~logc()
+  0.00      0.04     0.00      734     0.00     0.00  parseTreeEntry::level() const
+  0.00      0.04     0.00      728     0.00     0.00  logc::logc(std::string)
+  0.00      0.04     0.00      706     0.00     0.00  tinyQueue<int>::push_front(int)
+  0.00      0.04     0.00      690     0.00     0.00  interpret::_evalValuePeek() const
+  0.00      0.04     0.00      674     0.00     0.00  interpret::_evalValue()
+  0.00      0.04     0.00      578     0.00     0.00  interpret::symbolTableIndexMorph(int)
+  0.00      0.04     0.00      481     0.00     0.00  symbolTableEntry::~symbolTableEntry()
+  0.00      0.04     0.00      478     0.00     0.00  interpret::symbolFromIndex(int)
+  0.00      0.04     0.00      440     0.00     0.00  symbolTableEntry::type(nodeType)
+  0.00      0.04     0.00      427     0.00     0.00  parseTreeEntry::~parseTreeEntry()
+  0.00      0.04     0.00      404     0.00     0.00  interpret::_getLastSymbolTableIndex()
+  0.00      0.04     0.00      378     0.00     0.00  interpret::getLowWaterMarkForTemporarySymbolSearch() const
+  0.00      0.04     0.00      351     0.00     0.00  symbolTableEntry::value(int)
+  0.00      0.04     0.00      333     0.00     0.00  parseTreeEntry::parseTreeEntry()
+  0.00      0.04     0.00      326     0.00     0.00  bool std::operator!=<char, std::char_traits<char>, std::allocator<char> >(std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, char const*)
+  0.00      0.04     0.00      289     0.00     0.00  interpret::evaluateOperator(unsigned int)
+  0.00      0.04     0.00      266     0.00     0.00  parseTreeEntry::type(nodeType)
+  0.00      0.04     0.00      266     0.00     0.00  parseTreeEntry::level(unsigned int)
+  0.00      0.04     0.00      266     0.00     0.00  parseTreeEntry::value(int)
+  0.00      0.04     0.00      235     0.00     0.00  symbolTableEntry::fcnLink(int)
+  0.00      0.04     0.00      235     0.00     0.00  symbolTableEntry::operator=(symbolTableEntry const&)
+  0.00      0.04     0.00      205     0.00     0.00  symbolTableEntry::symbolTableEntry(nodeType, int)
+  0.00      0.04     0.00      189     0.00     0.00  interpret::_findFirstAvailableNodeInSymbolTable()
+  0.00      0.04     0.00      189     0.00     0.00  interpret::_pushTemporarySymbolOnEvaluationStack(unsigned int)
+  0.00      0.04     0.00      186     0.00     0.00  symbolTableEntry::symbolTableEntry(symbolTableEntry const&)
+  0.00      0.04     0.00      186     0.00     0.00  logc::logc(logc const&)
+  0.00      0.04     0.00      133     0.00     0.00  parseTreeEntry::position(nodePosition)
+  0.00      0.04     0.00      133     0.00     0.00  parseTreeEntry::dumpEntry()
+  0.00      0.04     0.00      133     0.00     0.00  parseTreeEntry::operator=(parseTreeEntry const&)
+  0.00      0.04     0.00      133     0.00     0.00  interpret::appendToProgram(parseTreeEntry const&)
+  0.00      0.04     0.00      133     0.00     0.00  interpret::_loadParseTreeEntry(std::string const&)
+  0.00      0.04     0.00      133     0.00     0.00  parseTreeEntry::position() const
+  0.00      0.04     0.00       96     0.00     0.00  interpret::_returnSymbolToAvailablePool(unsigned int)
+  0.00      0.04     0.00       94     0.00     0.00  parseTreeEntry::parseTreeEntry(nodeType, int, unsigned int)
+  0.00      0.04     0.00       94     0.00     0.00  interpret::_updateProgramIndex(nodeType, int)
+  0.00      0.04     0.00       94     0.00     0.00  interpret::_findFirstParseTreeEntry(parseTreeEntry const&, unsigned int)
+  0.00      0.04     0.00       94     0.00     0.00  interpret::_currentProgramNodeLevel() const
+  0.00      0.04     0.00       60     0.00     0.00  symbolTableEntry::symbolTableEntry()
+  0.00      0.04     0.00       30     0.00     0.00  symbolTableEntry::symbolTableEntry(nodeType, int, int)
+  0.00      0.04     0.00       30     0.00     0.00  interpret::appendToSymbolTable(symbolTableEntry const&)
+  0.00      0.04     0.00       30     0.00     0.00  interpret::_loadSymbolTableEntry(std::string const&)
+  0.00      0.04     0.00       25     0.00     0.00  tinyQueue<int>::peekAtIndex(unsigned int) const
+  0.00      0.04     0.00       10     0.00     0.00  interpret::_cleanUpEvaluationStack(unsigned int)
+  0.00      0.04     0.00        8     0.00     0.00  interpret::_cleanUpSymbolTable()
+  0.00      0.04     0.00        8     0.00     0.00  tinyQueue<int>::stackFrameIndex(unsigned int)
+  0.00      0.04     0.00        6     0.00     0.00  accel::_dumpCurveFreq()
+  0.00      0.04     0.00        6     0.00     0.00  accel::fmin() const
+  0.00      0.04     0.00        3     0.00     0.00  io::getTemperature()
+  0.00      0.04     0.00        3     0.00     0.00  accel::_initUnitCurve(int)
+  0.00      0.04     0.00        3     0.00     0.00  accel::_dumpCurveClockTicks()
+  0.00      0.04     0.00        3     0.00     0.00  accel::_dumpLinearInterpolate()
+  0.00      0.04     0.00        3     0.00     0.00  accel::_scaleYAxisToFrequency()
+  0.00      0.04     0.00        3     0.00     3.33  accel::frequency(unsigned int, unsigned int)
+  0.00      0.04     0.00        3     0.00     0.00  accel::accelMicroSec() const
+  0.00      0.04     0.00        3     0.00     0.00  accel::_accelStepMicroSec() const
+  0.00      0.04     0.00        3     0.00     0.00  accel::fmax() const
+  0.00      0.04     0.00        2     0.00     0.00  io::io()
+  0.00      0.04     0.00        2     0.00     0.00  accel::_RPMx10ktoFreq(unsigned int)
+  0.00      0.04     0.00        2     0.00     3.33  accel::accel()
+  0.00      0.04     0.00        2     0.00     0.00  accel::~accel()
+  0.00      0.04     0.00        2     0.00     0.00  accel::operator=(accel const&)
+  0.00      0.04     0.00        2     0.00     0.00  stepper::microstepSet(microsteps)
+  0.00      0.04     0.00        2     0.00     0.00  parseTreeEntry::operator==(parseTreeEntry&) const
+  0.00      0.04     0.00        2     0.00     0.00  symbolTableEntry::operator==(symbolTableEntry&) const
+  0.00      0.04     0.00        1     0.00     0.00  io::init()
+  0.00      0.04     0.00        1     0.00     0.00  io::setOutput(unsigned int)
+  0.00      0.04     0.00        1     0.00     0.00  io::io()
+  0.00      0.04     0.00        1     0.00     0.00  io::~io()
+  0.00      0.04     0.00        1     0.00     0.00  led::On()
+  0.00      0.04     0.00        1     0.00     0.00  led::Off()
+  0.00      0.04     0.00        1     0.00     0.00  led::led(bool)
+  0.00      0.04     0.00        1     0.00     0.00  led::~led()
+  0.00      0.04     0.00        1     0.00     3.33  accel::RPMx10k(unsigned int, unsigned int)
+  0.00      0.04     0.00        1     0.00     3.33  stepper::RPM(unsigned int, unsigned int)
+  0.00      0.04     0.00        1     0.00     3.33  stepper::RPMx10k(unsigned int, unsigned int)
+  0.00      0.04     0.00        1     0.00     6.67  stepper::stepper()
+  0.00      0.04     0.00        1     0.00     0.00  stepper::~stepper()
+  0.00      0.04     0.00        1     0.00     0.04  interpret::dumpProgram()
+  0.00      0.04     0.00        1     0.00     0.00  interpret::_loadSymbolTable(std::string const&)
+  0.00      0.04     0.00        1     0.00     0.00  interpret::_resetSymbolTableTemporaryBoundary()
+  0.00      0.04     0.00        1     0.00     0.00  interpret::setLowWaterMarkForTemporarySymbolSearch()
+  0.00      0.04     0.00        1     0.00    33.29  interpret::run()
+  0.00      0.04     0.00        1     0.00     0.00  interpret::load()
+  0.00      0.04     0.00        1     0.00     0.00  interpret::_loadTree(std::string const&)
+  0.00      0.04     0.00        1     0.00     6.67  interpret::interpret()
+  0.00      0.04     0.00        1     0.00     0.00  interpret::~interpret()
+  0.00      0.04     0.00        1     0.00     0.00  io::getInput() const
 
  %         the percentage of the total running time of the
 time       program used by this function.
@@ -150,710 +149,698 @@ name       the name of the function.  This is the minor sort
 		     Call graph (explanation follows)
 
 
-granularity: each sample hit covers 4 byte(s) for 33.33% of 0.03 seconds
+granularity: each sample hit covers 4 byte(s) for 25.00% of 0.04 seconds
 
 index % time    self  children    called     name
-                0.00    0.02       1/1           main [2]
-[1]     66.6    0.00    0.02       1         interpret::run() [1]
-                0.00    0.01    1000/1000        interpret::dumpSymbolTable() [6]
-                0.00    0.01    1000/1000        interpret::dumpEvaluationStack() [7]
-                0.00    0.00     289/289         interpret::evaluateOperator(unsigned int) [9]
-                0.00    0.00      96/674         interpret::_evalValue() [8]
-                0.00    0.00       8/10          interpret::_cleanUpEvaluationStack(unsigned int) [10]
-                0.00    0.00       8/30997       symbolTableEntry::dumpEntry() [3]
-                0.00    0.00    2009/137935      logc::oss() [14]
-                0.00    0.00    2009/37666       logc::dump() [16]
-                0.00    0.00    2000/2000        interpret::_currentProgramNodeType() const [31]
-                0.00    0.00    1806/1900        interpret::_currentProgramNodeValue() const [32]
-                0.00    0.00    1008/2227        tinyQueue<int>::stackFrameIndex() const [30]
-                0.00    0.00    1001/24359       parseTreeEntry::type() const [23]
-                0.00    0.00    1000/5803        tinyQueue<int>::size() const [26]
-                0.00    0.00     517/706         tinyQueue<int>::push_front(int) [39]
-                0.00    0.00     110/33039       symbolTableEntry::value() const [20]
-                0.00    0.00      96/96          interpret::_returnSymbolToAvailablePool(unsigned int) [67]
-                0.00    0.00      94/94          interpret::_updateProgramIndex(nodeType, int) [69]
-                0.00    0.00      25/25          tinyQueue<int>::peekAtIndex(unsigned int) const [76]
-                0.00    0.00      16/205         symbolTableEntry::symbolTableEntry(nodeType, int) [56]
-                0.00    0.00      16/235         symbolTableEntry::operator=(symbolTableEntry const&) [55]
-                0.00    0.00      16/481         symbolTableEntry::~symbolTableEntry() [42]
-                0.00    0.00      16/351         symbolTableEntry::value(int) [48]
-                0.00    0.00      16/3144        tinyQueue<int>::front() const [28]
-                0.00    0.00       8/31240       symbolTableEntry::fcnLink() const [22]
-                0.00    0.00       8/8           tinyQueue<int>::stackFrameIndex(unsigned int) [78]
-                0.00    0.00       1/4129        tinyQueue<int>::empty() const [27]
-                0.00    0.00       1/1           io::init() [99]
-                0.00    0.00       1/1           stepper::RPM(unsigned int, unsigned int) [108]
-                0.00    0.00       1/1           io::getInput() const [120]
-                0.00    0.00       1/1           io::setOutput(unsigned int) [100]
-                0.00    0.00       1/3           io::getTemperature() [81]
-                0.00    0.00       1/1           interpret::_resetSymbolTableTemporaryBoundary() [114]
------------------------------------------------
                                                  <spontaneous>
-[2]     66.6    0.00    0.02                 main [2]
-                0.00    0.02       1/1           interpret::run() [1]
-                0.00    0.00       1/1           interpret::interpret() [118]
-                0.00    0.00       1/1           interpret::load() [116]
-                0.00    0.00       1/1           interpret::dumpProgram() [112]
-                0.00    0.00       1/1           interpret::~interpret() [119]
------------------------------------------------
-                0.00    0.00       8/30997       interpret::run() [1]
-                0.01    0.00   30989/30997       interpret::dumpSymbolTable() [6]
-[3]     33.3    0.01    0.00   30997         symbolTableEntry::dumpEntry() [3]
-                0.00    0.00   61994/137935      logc::oss() [14]
-                0.00    0.00   30997/32118       symbolTableEntry::type() const [21]
-                0.00    0.00   30997/31240       symbolTableEntry::fcnLink() const [22]
-                0.00    0.00   30997/33039       symbolTableEntry::value() const [20]
-                0.00    0.00   30997/37666       logc::dump() [16]
------------------------------------------------
-                                                 <spontaneous>
-[4]     33.3    0.01    0.00                 _fu1___ZSt4cout [4]
-                0.00    0.00   37666/37666       logc::ossClear() [17]
------------------------------------------------
-                0.00    0.00      16/1909        interpret::_cleanUpEvaluationStack(unsigned int) [10]
-                0.00    0.00     674/1909        interpret::_evalValue() [8]
-                0.01    0.00    1219/1909        interpret::dumpEvaluationStack() [7]
-[5]     33.3    0.01    0.00    1909         tinyQueue<int>::pop_front() [5]
-                0.00    0.00    1909/4129        tinyQueue<int>::empty() const [27]
------------------------------------------------
-                0.00    0.01    1000/1000        interpret::run() [1]
-[6]     33.3    0.00    0.01    1000         interpret::dumpSymbolTable() [6]
-                0.01    0.00   30989/30997       symbolTableEntry::dumpEntry() [3]
-                0.00    0.00   31989/137935      logc::oss() [14]
-                0.00    0.00    1000/37666       logc::dump() [16]
------------------------------------------------
-                0.00    0.01    1000/1000        interpret::run() [1]
-[7]     21.3    0.00    0.01    1000         interpret::dumpEvaluationStack() [7]
-                0.01    0.00    1219/1909        tinyQueue<int>::pop_front() [5]
-                0.00    0.00    3219/137935      logc::oss() [14]
-                0.00    0.00    3219/37666       logc::dump() [16]
-                0.00    0.00    2438/3144        tinyQueue<int>::front() const [28]
-                0.00    0.00    2219/4129        tinyQueue<int>::empty() const [27]
-                0.00    0.00    1219/2227        tinyQueue<int>::stackFrameIndex() const [30]
-                0.00    0.00    1219/33039       symbolTableEntry::value() const [20]
-                0.00    0.00    1000/1001        tinyQueue<int>::tinyQueue() [34]
-                0.00    0.00    1000/1001        tinyQueue<int>::~tinyQueue() [35]
------------------------------------------------
-                0.00    0.00      96/674         interpret::run() [1]
-                0.00    0.00     578/674         interpret::evaluateOperator(unsigned int) [9]
-[8]     11.8    0.00    0.00     674         interpret::_evalValue() [8]
-                0.00    0.00     674/1909        tinyQueue<int>::pop_front() [5]
-                0.00    0.00     674/5803        tinyQueue<int>::size() const [26]
-                0.00    0.00     674/690         interpret::_evalValuePeek() const [40]
------------------------------------------------
-                0.00    0.00     289/289         interpret::run() [1]
-[9]     10.1    0.00    0.00     289         interpret::evaluateOperator(unsigned int) [9]
-                0.00    0.00     578/674         interpret::_evalValue() [8]
-                0.00    0.00     578/137935      logc::oss() [14]
-                0.00    0.00     478/478         interpret::symbolFromIndex(int) [43]
-                0.00    0.00     289/37666       logc::dump() [16]
-                0.00    0.00     189/189         interpret::_pushTemporarySymbolOnEvaluationStack(unsigned int) [58]
-                0.00    0.00     100/578         interpret::symbolTableIndexMorph(int) [41]
-                0.00    0.00     100/351         symbolTableEntry::value(int) [48]
------------------------------------------------
-                0.00    0.00       1/10          global destructors keyed to _ZN9interpretC2Ev [11]
-                0.00    0.00       1/10          global constructors keyed to _ZN9interpretC2Ev [12]
-                0.00    0.00       8/10          interpret::run() [1]
-[10]     0.3    0.00    0.00      10         interpret::_cleanUpEvaluationStack(unsigned int) [10]
-                0.00    0.00      16/1909        tinyQueue<int>::pop_front() [5]
-                0.00    0.00      16/690         interpret::_evalValuePeek() const [40]
-                0.00    0.00      16/440         symbolTableEntry::type(nodeType) [44]
-                0.00    0.00       8/8           interpret::_cleanUpSymbolTable() [77]
------------------------------------------------
-                                                 <spontaneous>
-[11]     0.0    0.00    0.00                 global destructors keyed to _ZN9interpretC2Ev [11]
-                0.00    0.00       1/10          interpret::_cleanUpEvaluationStack(unsigned int) [10]
------------------------------------------------
-                                                 <spontaneous>
-[12]     0.0    0.00    0.00                 global constructors keyed to _ZN9interpretC2Ev [12]
-                0.00    0.00       1/10          interpret::_cleanUpEvaluationStack(unsigned int) [10]
------------------------------------------------
-                0.00    0.00       1/137935      interpret::dumpProgram() [112]
-                0.00    0.00       1/137935      interpret::_loadSymbolTable(std::string const&) [113]
-                0.00    0.00       1/137935      interpret::_loadTree(std::string const&) [117]
-                0.00    0.00       1/137935      led::On() [103]
-                0.00    0.00       1/137935      led::Off() [104]
-                0.00    0.00       2/137935      accel::_RPMx10ktoFreq(unsigned int) [92]
-                0.00    0.00       3/137935      accel::_scaleYAxisToClockTicks() [86]
-                0.00    0.00       6/137935      accel::_scaleYAxisToFrequency() [85]
-                0.00    0.00       6/137935      accel::_initUnitCurve(int) [82]
-                0.00    0.00      48/137935      accel::_dumpLinearInterpolate() [84]
-                0.00    0.00      48/137935      accel::_dumpCurveClockTicks() [83]
-                0.00    0.00      96/137935      accel::_dumpCurveFreq() [79]
-                0.00    0.00     266/137935      parseTreeEntry::dumpEntry() [62]
-                0.00    0.00     578/137935      interpret::evaluateOperator(unsigned int) [9]
-                0.00    0.00    2009/137935      interpret::run() [1]
-                0.00    0.00    3219/137935      interpret::dumpEvaluationStack() [7]
-                0.00    0.00   31989/137935      interpret::dumpSymbolTable() [6]
-                0.00    0.00   37666/137935      logc::dump() [16]
-                0.00    0.00   61994/137935      symbolTableEntry::dumpEntry() [3]
-[14]     0.0    0.00    0.00  137935         logc::oss() [14]
------------------------------------------------
-                0.00    0.00   37666/37666       logc::dump() [16]
-[15]     0.0    0.00    0.00   37666         logc::dump(std::string const&, bool, bool) [15]
------------------------------------------------
-                0.00    0.00       1/37666       interpret::dumpProgram() [112]
-                0.00    0.00       1/37666       interpret::_loadSymbolTable(std::string const&) [113]
-                0.00    0.00       1/37666       interpret::_loadTree(std::string const&) [117]
-                0.00    0.00       1/37666       led::On() [103]
-                0.00    0.00       1/37666       led::Off() [104]
-                0.00    0.00       2/37666       accel::_RPMx10ktoFreq(unsigned int) [92]
-                0.00    0.00       3/37666       accel::_dumpLinearInterpolate() [84]
-                0.00    0.00       3/37666       accel::_dumpCurveClockTicks() [83]
-                0.00    0.00       6/37666       accel::_dumpCurveFreq() [79]
-                0.00    0.00     133/37666       parseTreeEntry::dumpEntry() [62]
-                0.00    0.00     289/37666       interpret::evaluateOperator(unsigned int) [9]
-                0.00    0.00    1000/37666       interpret::dumpSymbolTable() [6]
-                0.00    0.00    2009/37666       interpret::run() [1]
-                0.00    0.00    3219/37666       interpret::dumpEvaluationStack() [7]
-                0.00    0.00   30997/37666       symbolTableEntry::dumpEntry() [3]
-[16]     0.0    0.00    0.00   37666         logc::dump() [16]
-                0.00    0.00   37666/137935      logc::oss() [14]
-                0.00    0.00   37666/37666       logc::dump(std::string const&, bool, bool) [15]
------------------------------------------------
-                0.00    0.00   37666/37666       _fu1___ZSt4cout [4]
-[17]     0.0    0.00    0.00   37666         logc::ossClear() [17]
------------------------------------------------
-                0.00    0.00   37666/37666       _fu0___ZSt4cout [293]
-[18]     0.0    0.00    0.00   37666         std::basic_string<char, std::char_traits<char>, std::allocator<char> > std::operator+<char, std::char_traits<char>, std::allocator<char> >(std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, char const*) [18]
------------------------------------------------
-                0.00    0.00   37666/37666       _fu0___ZSt4cout [293]
-[19]     0.0    0.00    0.00   37666         std::basic_string<char, std::char_traits<char>, std::allocator<char> > std::operator+<char, std::char_traits<char>, std::allocator<char> >(std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) [19]
------------------------------------------------
-                0.00    0.00     110/33039       interpret::run() [1]
-                0.00    0.00     235/33039       symbolTableEntry::operator=(symbolTableEntry const&) [55]
-                0.00    0.00     478/33039       interpret::symbolFromIndex(int) [43]
-                0.00    0.00    1219/33039       interpret::dumpEvaluationStack() [7]
-                0.00    0.00   30997/33039       symbolTableEntry::dumpEntry() [3]
-[20]     0.0    0.00    0.00   33039         symbolTableEntry::value() const [20]
------------------------------------------------
-                0.00    0.00      26/32118       interpret::_cleanUpSymbolTable() [77]
-                0.00    0.00      96/32118       interpret::_returnSymbolToAvailablePool(unsigned int) [67]
-                0.00    0.00     186/32118       interpret::_findFirstAvailableNodeInSymbolTable() [57]
-                0.00    0.00     235/32118       symbolTableEntry::operator=(symbolTableEntry const&) [55]
-                0.00    0.00     578/32118       interpret::symbolTableIndexMorph(int) [41]
-                0.00    0.00   30997/32118       symbolTableEntry::dumpEntry() [3]
-[21]     0.0    0.00    0.00   32118         symbolTableEntry::type() const [21]
------------------------------------------------
-                0.00    0.00       8/31240       interpret::run() [1]
-                0.00    0.00     235/31240       symbolTableEntry::operator=(symbolTableEntry const&) [55]
-                0.00    0.00   30997/31240       symbolTableEntry::dumpEntry() [3]
-[22]     0.0    0.00    0.00   31240         symbolTableEntry::fcnLink() const [22]
------------------------------------------------
-                0.00    0.00     133/24359       parseTreeEntry::operator=(parseTreeEntry const&) [63]
-                0.00    0.00     133/24359       parseTreeEntry::dumpEntry() [62]
-                0.00    0.00     134/24359       interpret::dumpProgram() [112]
-                0.00    0.00    1001/24359       interpret::run() [1]
-                0.00    0.00    2000/24359       interpret::_currentProgramNodeType() const [31]
-                0.00    0.00    6986/24359       interpret::_programNodeType(unsigned int) const [24]
-                0.00    0.00   13972/24359       interpret::_findFirstParseTreeEntry(parseTreeEntry const&, unsigned int) [70]
-[23]     0.0    0.00    0.00   24359         parseTreeEntry::type() const [23]
------------------------------------------------
-                0.00    0.00    6986/6986        interpret::_findFirstParseTreeEntry(parseTreeEntry const&, unsigned int) [70]
-[24]     0.0    0.00    0.00    6986         interpret::_programNodeType(unsigned int) const [24]
-                0.00    0.00    6986/24359       parseTreeEntry::type() const [23]
------------------------------------------------
-                0.00    0.00     706/6509        tinyQueue<int>::push_front(int) [39]
-                0.00    0.00    5803/6509        tinyQueue<int>::size() const [26]
-[25]     0.0    0.00    0.00    6509         tinyQueue<int>::spaceAvail() const [25]
------------------------------------------------
-                0.00    0.00     674/5803        interpret::_evalValue() [8]
-                0.00    0.00    1000/5803        interpret::run() [1]
-                0.00    0.00    4129/5803        tinyQueue<int>::empty() const [27]
-[26]     0.0    0.00    0.00    5803         tinyQueue<int>::size() const [26]
-                0.00    0.00    5803/6509        tinyQueue<int>::spaceAvail() const [25]
------------------------------------------------
-                0.00    0.00       1/4129        interpret::run() [1]
-                0.00    0.00    1909/4129        tinyQueue<int>::pop_front() [5]
-                0.00    0.00    2219/4129        interpret::dumpEvaluationStack() [7]
-[27]     0.0    0.00    0.00    4129         tinyQueue<int>::empty() const [27]
-                0.00    0.00    4129/5803        tinyQueue<int>::size() const [26]
------------------------------------------------
-                0.00    0.00      16/3144        interpret::run() [1]
-                0.00    0.00     690/3144        interpret::_evalValuePeek() const [40]
-                0.00    0.00    2438/3144        interpret::dumpEvaluationStack() [7]
-[28]     0.0    0.00    0.00    3144         tinyQueue<int>::front() const [28]
------------------------------------------------
-                0.00    0.00     133/2540        parseTreeEntry::operator=(parseTreeEntry const&) [63]
-                0.00    0.00     133/2540        parseTreeEntry::dumpEntry() [62]
-                0.00    0.00     374/2540        interpret::_findFirstParseTreeEntry(parseTreeEntry const&, unsigned int) [70]
-                0.00    0.00    1900/2540        interpret::_currentProgramNodeValue() const [32]
-[29]     0.0    0.00    0.00    2540         parseTreeEntry::value() const [29]
------------------------------------------------
-                0.00    0.00    1008/2227        interpret::run() [1]
-                0.00    0.00    1219/2227        interpret::dumpEvaluationStack() [7]
-[30]     0.0    0.00    0.00    2227         tinyQueue<int>::stackFrameIndex() const [30]
------------------------------------------------
-                0.00    0.00    2000/2000        interpret::run() [1]
-[31]     0.0    0.00    0.00    2000         interpret::_currentProgramNodeType() const [31]
-                0.00    0.00    2000/24359       parseTreeEntry::type() const [23]
------------------------------------------------
-                0.00    0.00      94/1900        interpret::_updateProgramIndex(nodeType, int) [69]
-                0.00    0.00    1806/1900        interpret::run() [1]
-[32]     0.0    0.00    0.00    1900         interpret::_currentProgramNodeValue() const [32]
-                0.00    0.00    1900/2540        parseTreeEntry::value() const [29]
------------------------------------------------
-                0.00    0.00      31/1094        interpret::_loadSymbolTable(std::string const&) [113]
-                0.00    0.00     134/1094        interpret::_loadTree(std::string const&) [117]
-                0.00    0.00     326/1094        bool std::operator!=<char, std::char_traits<char>, std::allocator<char> >(std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, char const*) [50]
-                0.00    0.00     603/1094        interpret::_loadParseTreeEntry(std::string const&) [65]
-[33]     0.0    0.00    0.00    1094         bool std::operator==<char, std::char_traits<char>, std::allocator<char> >(std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, char const*) [33]
------------------------------------------------
-                0.00    0.00       1/1001        interpret::interpret() [118]
-                0.00    0.00    1000/1001        interpret::dumpEvaluationStack() [7]
-[34]     0.0    0.00    0.00    1001         tinyQueue<int>::tinyQueue() [34]
------------------------------------------------
-                0.00    0.00       1/1001        interpret::~interpret() [119]
-                0.00    0.00    1000/1001        interpret::dumpEvaluationStack() [7]
-[35]     0.0    0.00    0.00    1001         tinyQueue<int>::~tinyQueue() [35]
------------------------------------------------
-                0.00    0.00       1/914         io::~io() [102]
-                0.00    0.00       1/914         led::~led() [106]
-                0.00    0.00       1/914         stepper::~stepper() [111]
-                0.00    0.00       1/914         interpret::~interpret() [119]
-                0.00    0.00       2/914         accel::~accel() [94]
-                0.00    0.00     427/914         parseTreeEntry::~parseTreeEntry() [45]
-                0.00    0.00     481/914         symbolTableEntry::~symbolTableEntry() [42]
-[36]     0.0    0.00    0.00     914         logc::~logc() [36]
------------------------------------------------
-                0.00    0.00      94/734         interpret::_currentProgramNodeLevel() const [71]
-                0.00    0.00     133/734         parseTreeEntry::operator=(parseTreeEntry const&) [63]
-                0.00    0.00     133/734         parseTreeEntry::dumpEntry() [62]
-                0.00    0.00     374/734         interpret::_findFirstParseTreeEntry(parseTreeEntry const&, unsigned int) [70]
-[37]     0.0    0.00    0.00     734         parseTreeEntry::level() const [37]
------------------------------------------------
-                0.00    0.00       1/728         interpret::interpret() [118]
-                0.00    0.00       1/728         stepper::stepper() [110]
-                0.00    0.00       1/728         io::io() [101]
-                0.00    0.00       1/728         led::led(bool) [105]
-                0.00    0.00       2/728         accel::accel() [93]
-                0.00    0.00      30/728         symbolTableEntry::symbolTableEntry(nodeType, int, int) [73]
-                0.00    0.00      60/728         symbolTableEntry::symbolTableEntry() [72]
-                0.00    0.00      94/728         parseTreeEntry::parseTreeEntry(nodeType, int, unsigned int) [68]
-                0.00    0.00     205/728         symbolTableEntry::symbolTableEntry(nodeType, int) [56]
-                0.00    0.00     333/728         parseTreeEntry::parseTreeEntry() [49]
-[38]     0.0    0.00    0.00     728         logc::logc(std::string) [38]
------------------------------------------------
-                0.00    0.00     189/706         interpret::_pushTemporarySymbolOnEvaluationStack(unsigned int) [58]
-                0.00    0.00     517/706         interpret::run() [1]
-[39]     0.0    0.00    0.00     706         tinyQueue<int>::push_front(int) [39]
-                0.00    0.00     706/6509        tinyQueue<int>::spaceAvail() const [25]
------------------------------------------------
-                0.00    0.00      16/690         interpret::_cleanUpEvaluationStack(unsigned int) [10]
-                0.00    0.00     674/690         interpret::_evalValue() [8]
-[40]     0.0    0.00    0.00     690         interpret::_evalValuePeek() const [40]
-                0.00    0.00     690/3144        tinyQueue<int>::front() const [28]
------------------------------------------------
-                0.00    0.00     100/578         interpret::evaluateOperator(unsigned int) [9]
-                0.00    0.00     478/578         interpret::symbolFromIndex(int) [43]
-[41]     0.0    0.00    0.00     578         interpret::symbolTableIndexMorph(int) [41]
-                0.00    0.00     578/32118       symbolTableEntry::type() const [21]
-                0.00    0.00      93/440         symbolTableEntry::type(nodeType) [44]
------------------------------------------------
-                0.00    0.00      16/481         interpret::run() [1]
-                0.00    0.00      30/481         interpret::_loadSymbolTableEntry(std::string const&) [75]
-                0.00    0.00      60/481         interpret::~interpret() [119]
-                0.00    0.00     186/481         interpret::_findFirstAvailableNodeInSymbolTable() [57]
-                0.00    0.00     189/481         interpret::_pushTemporarySymbolOnEvaluationStack(unsigned int) [58]
-[42]     0.0    0.00    0.00     481         symbolTableEntry::~symbolTableEntry() [42]
-                0.00    0.00     481/914         logc::~logc() [36]
------------------------------------------------
-                0.00    0.00     478/478         interpret::evaluateOperator(unsigned int) [9]
-[43]     0.0    0.00    0.00     478         interpret::symbolFromIndex(int) [43]
-                0.00    0.00     478/578         interpret::symbolTableIndexMorph(int) [41]
-                0.00    0.00     478/33039       symbolTableEntry::value() const [20]
------------------------------------------------
-                0.00    0.00      16/440         interpret::_cleanUpEvaluationStack(unsigned int) [10]
-                0.00    0.00      93/440         interpret::symbolTableIndexMorph(int) [41]
-                0.00    0.00      96/440         interpret::_returnSymbolToAvailablePool(unsigned int) [67]
-                0.00    0.00     235/440         symbolTableEntry::operator=(symbolTableEntry const&) [55]
-[44]     0.0    0.00    0.00     440         symbolTableEntry::type(nodeType) [44]
------------------------------------------------
-                0.00    0.00      94/427         interpret::_updateProgramIndex(nodeType, int) [69]
-                0.00    0.00     133/427         interpret::_loadParseTreeEntry(std::string const&) [65]
-                0.00    0.00     200/427         interpret::~interpret() [119]
-[45]     0.0    0.00    0.00     427         parseTreeEntry::~parseTreeEntry() [45]
-                0.00    0.00     427/914         logc::~logc() [36]
------------------------------------------------
-                0.00    0.00      26/404         interpret::_cleanUpSymbolTable() [77]
-                0.00    0.00     378/404         interpret::_findFirstAvailableNodeInSymbolTable() [57]
-[46]     0.0    0.00    0.00     404         interpret::_getLastSymbolTableIndex() [46]
------------------------------------------------
-                0.00    0.00     378/378         interpret::_findFirstAvailableNodeInSymbolTable() [57]
-[47]     0.0    0.00    0.00     378         interpret::getLowWaterMarkForTemporarySymbolSearch() const [47]
------------------------------------------------
-                0.00    0.00      16/351         interpret::run() [1]
-                0.00    0.00     100/351         interpret::evaluateOperator(unsigned int) [9]
-                0.00    0.00     235/351         symbolTableEntry::operator=(symbolTableEntry const&) [55]
-[48]     0.0    0.00    0.00     351         symbolTableEntry::value(int) [48]
------------------------------------------------
-                0.00    0.00     133/333         interpret::_loadParseTreeEntry(std::string const&) [65]
-                0.00    0.00     200/333         interpret::interpret() [118]
-[49]     0.0    0.00    0.00     333         parseTreeEntry::parseTreeEntry() [49]
-                0.00    0.00     333/728         logc::logc(std::string) [38]
------------------------------------------------
-                0.00    0.00      60/326         interpret::_loadSymbolTableEntry(std::string const&) [75]
-                0.00    0.00     266/326         interpret::_loadParseTreeEntry(std::string const&) [65]
-[50]     0.0    0.00    0.00     326         bool std::operator!=<char, std::char_traits<char>, std::allocator<char> >(std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, char const*) [50]
-                0.00    0.00     326/1094        bool std::operator==<char, std::char_traits<char>, std::allocator<char> >(std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, char const*) [33]
------------------------------------------------
-                0.00    0.00     133/266         interpret::_loadParseTreeEntry(std::string const&) [65]
-                0.00    0.00     133/266         parseTreeEntry::operator=(parseTreeEntry const&) [63]
-[51]     0.0    0.00    0.00     266         parseTreeEntry::type(nodeType) [51]
------------------------------------------------
-                0.00    0.00     133/266         interpret::_loadParseTreeEntry(std::string const&) [65]
-                0.00    0.00     133/266         parseTreeEntry::operator=(parseTreeEntry const&) [63]
-[52]     0.0    0.00    0.00     266         parseTreeEntry::level(unsigned int) [52]
------------------------------------------------
-                0.00    0.00     133/266         interpret::_loadParseTreeEntry(std::string const&) [65]
-                0.00    0.00     133/266         parseTreeEntry::operator=(parseTreeEntry const&) [63]
-[53]     0.0    0.00    0.00     266         parseTreeEntry::value(int) [53]
------------------------------------------------
-                0.00    0.00     235/235         symbolTableEntry::operator=(symbolTableEntry const&) [55]
-[54]     0.0    0.00    0.00     235         symbolTableEntry::fcnLink(int) [54]
------------------------------------------------
-                0.00    0.00      16/235         interpret::run() [1]
-                0.00    0.00      30/235         interpret::appendToSymbolTable(symbolTableEntry const&) [74]
-                0.00    0.00     189/235         interpret::_pushTemporarySymbolOnEvaluationStack(unsigned int) [58]
-[55]     0.0    0.00    0.00     235         symbolTableEntry::operator=(symbolTableEntry const&) [55]
-                0.00    0.00     235/32118       symbolTableEntry::type() const [21]
-                0.00    0.00     235/440         symbolTableEntry::type(nodeType) [44]
-                0.00    0.00     235/33039       symbolTableEntry::value() const [20]
-                0.00    0.00     235/351         symbolTableEntry::value(int) [48]
-                0.00    0.00     235/31240       symbolTableEntry::fcnLink() const [22]
-                0.00    0.00     235/235         symbolTableEntry::fcnLink(int) [54]
------------------------------------------------
-                0.00    0.00      16/205         interpret::run() [1]
-                0.00    0.00     189/205         interpret::_pushTemporarySymbolOnEvaluationStack(unsigned int) [58]
-[56]     0.0    0.00    0.00     205         symbolTableEntry::symbolTableEntry(nodeType, int) [56]
-                0.00    0.00     205/728         logc::logc(std::string) [38]
------------------------------------------------
-                0.00    0.00     189/189         interpret::_pushTemporarySymbolOnEvaluationStack(unsigned int) [58]
-[57]     0.0    0.00    0.00     189         interpret::_findFirstAvailableNodeInSymbolTable() [57]
-                0.00    0.00     378/404         interpret::_getLastSymbolTableIndex() [46]
-                0.00    0.00     378/378         interpret::getLowWaterMarkForTemporarySymbolSearch() const [47]
-                0.00    0.00     186/186         symbolTableEntry::symbolTableEntry(symbolTableEntry const&) [59]
-                0.00    0.00     186/32118       symbolTableEntry::type() const [21]
-                0.00    0.00     186/481         symbolTableEntry::~symbolTableEntry() [42]
------------------------------------------------
-                0.00    0.00     189/189         interpret::evaluateOperator(unsigned int) [9]
-[58]     0.0    0.00    0.00     189         interpret::_pushTemporarySymbolOnEvaluationStack(unsigned int) [58]
-                0.00    0.00     189/205         symbolTableEntry::symbolTableEntry(nodeType, int) [56]
-                0.00    0.00     189/189         interpret::_findFirstAvailableNodeInSymbolTable() [57]
-                0.00    0.00     189/235         symbolTableEntry::operator=(symbolTableEntry const&) [55]
-                0.00    0.00     189/706         tinyQueue<int>::push_front(int) [39]
-                0.00    0.00     189/481         symbolTableEntry::~symbolTableEntry() [42]
------------------------------------------------
-                0.00    0.00     186/186         interpret::_findFirstAvailableNodeInSymbolTable() [57]
-[59]     0.0    0.00    0.00     186         symbolTableEntry::symbolTableEntry(symbolTableEntry const&) [59]
-                0.00    0.00     186/186         logc::logc(logc const&) [60]
------------------------------------------------
-                0.00    0.00     186/186         symbolTableEntry::symbolTableEntry(symbolTableEntry const&) [59]
-[60]     0.0    0.00    0.00     186         logc::logc(logc const&) [60]
------------------------------------------------
-                0.00    0.00     133/133         parseTreeEntry::operator=(parseTreeEntry const&) [63]
-[61]     0.0    0.00    0.00     133         parseTreeEntry::position(nodePosition) [61]
------------------------------------------------
-                0.00    0.00     133/133         interpret::dumpProgram() [112]
-[62]     0.0    0.00    0.00     133         parseTreeEntry::dumpEntry() [62]
-                0.00    0.00     266/137935      logc::oss() [14]
-                0.00    0.00     133/24359       parseTreeEntry::type() const [23]
-                0.00    0.00     133/2540        parseTreeEntry::value() const [29]
-                0.00    0.00     133/734         parseTreeEntry::level() const [37]
-                0.00    0.00     133/37666       logc::dump() [16]
------------------------------------------------
-                0.00    0.00     133/133         interpret::appendToProgram(parseTreeEntry const&) [64]
-[63]     0.0    0.00    0.00     133         parseTreeEntry::operator=(parseTreeEntry const&) [63]
-                0.00    0.00     133/24359       parseTreeEntry::type() const [23]
-                0.00    0.00     133/266         parseTreeEntry::type(nodeType) [51]
-                0.00    0.00     133/133         parseTreeEntry::position() const [66]
-                0.00    0.00     133/133         parseTreeEntry::position(nodePosition) [61]
-                0.00    0.00     133/734         parseTreeEntry::level() const [37]
-                0.00    0.00     133/266         parseTreeEntry::level(unsigned int) [52]
-                0.00    0.00     133/2540        parseTreeEntry::value() const [29]
-                0.00    0.00     133/266         parseTreeEntry::value(int) [53]
------------------------------------------------
-                0.00    0.00     133/133         interpret::_loadParseTreeEntry(std::string const&) [65]
-[64]     0.0    0.00    0.00     133         interpret::appendToProgram(parseTreeEntry const&) [64]
-                0.00    0.00     133/133         parseTreeEntry::operator=(parseTreeEntry const&) [63]
------------------------------------------------
-                0.00    0.00     133/133         interpret::_loadTree(std::string const&) [117]
-[65]     0.0    0.00    0.00     133         interpret::_loadParseTreeEntry(std::string const&) [65]
-                0.00    0.00     603/1094        bool std::operator==<char, std::char_traits<char>, std::allocator<char> >(std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, char const*) [33]
-                0.00    0.00     266/326         bool std::operator!=<char, std::char_traits<char>, std::allocator<char> >(std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, char const*) [50]
-                0.00    0.00     133/333         parseTreeEntry::parseTreeEntry() [49]
-                0.00    0.00     133/266         parseTreeEntry::level(unsigned int) [52]
-                0.00    0.00     133/266         parseTreeEntry::value(int) [53]
-                0.00    0.00     133/266         parseTreeEntry::type(nodeType) [51]
-                0.00    0.00     133/133         interpret::appendToProgram(parseTreeEntry const&) [64]
-                0.00    0.00     133/427         parseTreeEntry::~parseTreeEntry() [45]
------------------------------------------------
-                0.00    0.00     133/133         parseTreeEntry::operator=(parseTreeEntry const&) [63]
-[66]     0.0    0.00    0.00     133         parseTreeEntry::position() const [66]
------------------------------------------------
-                0.00    0.00      96/96          interpret::run() [1]
-[67]     0.0    0.00    0.00      96         interpret::_returnSymbolToAvailablePool(unsigned int) [67]
-                0.00    0.00      96/32118       symbolTableEntry::type() const [21]
-                0.00    0.00      96/440         symbolTableEntry::type(nodeType) [44]
------------------------------------------------
-                0.00    0.00      94/94          interpret::_updateProgramIndex(nodeType, int) [69]
-[68]     0.0    0.00    0.00      94         parseTreeEntry::parseTreeEntry(nodeType, int, unsigned int) [68]
-                0.00    0.00      94/728         logc::logc(std::string) [38]
------------------------------------------------
-                0.00    0.00      94/94          interpret::run() [1]
-[69]     0.0    0.00    0.00      94         interpret::_updateProgramIndex(nodeType, int) [69]
-                0.00    0.00      94/94          interpret::_currentProgramNodeLevel() const [71]
-                0.00    0.00      94/1900        interpret::_currentProgramNodeValue() const [32]
-                0.00    0.00      94/94          parseTreeEntry::parseTreeEntry(nodeType, int, unsigned int) [68]
-                0.00    0.00      94/94          interpret::_findFirstParseTreeEntry(parseTreeEntry const&, unsigned int) [70]
-                0.00    0.00      94/427         parseTreeEntry::~parseTreeEntry() [45]
------------------------------------------------
-                0.00    0.00      94/94          interpret::_updateProgramIndex(nodeType, int) [69]
-[70]     0.0    0.00    0.00      94         interpret::_findFirstParseTreeEntry(parseTreeEntry const&, unsigned int) [70]
-                0.00    0.00   13972/24359       parseTreeEntry::type() const [23]
-                0.00    0.00    6986/6986        interpret::_programNodeType(unsigned int) const [24]
-                0.00    0.00     374/734         parseTreeEntry::level() const [37]
-                0.00    0.00     374/2540        parseTreeEntry::value() const [29]
------------------------------------------------
-                0.00    0.00      94/94          interpret::_updateProgramIndex(nodeType, int) [69]
-[71]     0.0    0.00    0.00      94         interpret::_currentProgramNodeLevel() const [71]
-                0.00    0.00      94/734         parseTreeEntry::level() const [37]
------------------------------------------------
-                0.00    0.00      60/60          interpret::interpret() [118]
-[72]     0.0    0.00    0.00      60         symbolTableEntry::symbolTableEntry() [72]
-                0.00    0.00      60/728         logc::logc(std::string) [38]
------------------------------------------------
-                0.00    0.00      30/30          interpret::_loadSymbolTableEntry(std::string const&) [75]
-[73]     0.0    0.00    0.00      30         symbolTableEntry::symbolTableEntry(nodeType, int, int) [73]
-                0.00    0.00      30/728         logc::logc(std::string) [38]
------------------------------------------------
-                0.00    0.00      30/30          interpret::_loadSymbolTableEntry(std::string const&) [75]
-[74]     0.0    0.00    0.00      30         interpret::appendToSymbolTable(symbolTableEntry const&) [74]
-                0.00    0.00      30/235         symbolTableEntry::operator=(symbolTableEntry const&) [55]
------------------------------------------------
-                0.00    0.00      30/30          interpret::_loadSymbolTable(std::string const&) [113]
-[75]     0.0    0.00    0.00      30         interpret::_loadSymbolTableEntry(std::string const&) [75]
-                0.00    0.00      60/326         bool std::operator!=<char, std::char_traits<char>, std::allocator<char> >(std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, char const*) [50]
-                0.00    0.00      30/30          symbolTableEntry::symbolTableEntry(nodeType, int, int) [73]
-                0.00    0.00      30/30          interpret::appendToSymbolTable(symbolTableEntry const&) [74]
-                0.00    0.00      30/481         symbolTableEntry::~symbolTableEntry() [42]
------------------------------------------------
-                0.00    0.00      25/25          interpret::run() [1]
-[76]     0.0    0.00    0.00      25         tinyQueue<int>::peekAtIndex(unsigned int) const [76]
------------------------------------------------
-                0.00    0.00       8/8           interpret::_cleanUpEvaluationStack(unsigned int) [10]
-[77]     0.0    0.00    0.00       8         interpret::_cleanUpSymbolTable() [77]
-                0.00    0.00      26/404         interpret::_getLastSymbolTableIndex() [46]
-                0.00    0.00      26/32118       symbolTableEntry::type() const [21]
------------------------------------------------
-                0.00    0.00       8/8           interpret::run() [1]
-[78]     0.0    0.00    0.00       8         tinyQueue<int>::stackFrameIndex(unsigned int) [78]
------------------------------------------------
-                0.00    0.00       3/6           accel::_scaleYAxisToFrequency() [85]
-                0.00    0.00       3/6           accel::_initUnitCurve(int) [82]
-[79]     0.0    0.00    0.00       6         accel::_dumpCurveFreq() [79]
-                0.00    0.00      96/137935      logc::oss() [14]
-                0.00    0.00       6/37666       logc::dump() [16]
------------------------------------------------
-                0.00    0.00       6/6           accel::_scaleYAxisToFrequency() [85]
-[80]     0.0    0.00    0.00       6         accel::fmin() const [80]
------------------------------------------------
-                0.00    0.00       1/3           interpret::run() [1]
-                0.00    0.00       1/3           global destructors keyed to _ZN2ioC2Ev [144]
-                0.00    0.00       1/3           global constructors keyed to _ZN2ioC2Ev [150]
-[81]     0.0    0.00    0.00       3         io::getTemperature() [81]
------------------------------------------------
-                0.00    0.00       3/3           accel::frequency(unsigned int, unsigned int) [87]
-[82]     0.0    0.00    0.00       3         accel::_initUnitCurve(int) [82]
-                0.00    0.00       6/137935      logc::oss() [14]
-                0.00    0.00       3/6           accel::_dumpCurveFreq() [79]
------------------------------------------------
-                0.00    0.00       3/3           accel::_scaleYAxisToClockTicks() [86]
-[83]     0.0    0.00    0.00       3         accel::_dumpCurveClockTicks() [83]
-                0.00    0.00      48/137935      logc::oss() [14]
-                0.00    0.00       3/37666       logc::dump() [16]
------------------------------------------------
-                0.00    0.00       3/3           accel::_scaleYAxisToFrequency() [85]
-[84]     0.0    0.00    0.00       3         accel::_dumpLinearInterpolate() [84]
-                0.00    0.00      48/137935      logc::oss() [14]
-                0.00    0.00       3/37666       logc::dump() [16]
------------------------------------------------
-                0.00    0.00       3/3           accel::frequency(unsigned int, unsigned int) [87]
-[85]     0.0    0.00    0.00       3         accel::_scaleYAxisToFrequency() [85]
-                0.00    0.00       6/6           accel::fmin() const [80]
-                0.00    0.00       6/137935      logc::oss() [14]
-                0.00    0.00       3/3           accel::fmax() const [90]
-                0.00    0.00       3/3           accel::_accelStepMicroSec() const [89]
-                0.00    0.00       3/6           accel::_dumpCurveFreq() [79]
-                0.00    0.00       3/3           accel::_dumpLinearInterpolate() [84]
------------------------------------------------
-                0.00    0.00       3/3           accel::frequency(unsigned int, unsigned int) [87]
-[86]     0.0    0.00    0.00       3         accel::_scaleYAxisToClockTicks() [86]
-                0.00    0.00       3/137935      logc::oss() [14]
-                0.00    0.00       3/3           accel::_dumpCurveClockTicks() [83]
------------------------------------------------
-                0.00    0.00       1/3           accel::RPMx10k(unsigned int, unsigned int) [107]
-                0.00    0.00       2/3           accel::accel() [93]
-[87]     0.0    0.00    0.00       3         accel::frequency(unsigned int, unsigned int) [87]
-                0.00    0.00       3/3           accel::_initUnitCurve(int) [82]
-                0.00    0.00       3/3           accel::_scaleYAxisToFrequency() [85]
-                0.00    0.00       3/3           accel::_scaleYAxisToClockTicks() [86]
------------------------------------------------
-                0.00    0.00       3/3           accel::_accelStepMicroSec() const [89]
-[88]     0.0    0.00    0.00       3         accel::accelMicroSec() const [88]
------------------------------------------------
-                0.00    0.00       3/3           accel::_scaleYAxisToFrequency() [85]
-[89]     0.0    0.00    0.00       3         accel::_accelStepMicroSec() const [89]
-                0.00    0.00       3/3           accel::accelMicroSec() const [88]
------------------------------------------------
-                0.00    0.00       3/3           accel::_scaleYAxisToFrequency() [85]
-[90]     0.0    0.00    0.00       3         accel::fmax() const [90]
------------------------------------------------
-                0.00    0.00       1/2           global destructors keyed to _ZN4logc3_osE [145]
-                0.00    0.00       1/2           global constructors keyed to _ZN4logc3_osE [151]
-[91]     0.0    0.00    0.00       2         io::io() [91]
------------------------------------------------
-                0.00    0.00       2/2           accel::RPMx10k(unsigned int, unsigned int) [107]
-[92]     0.0    0.00    0.00       2         accel::_RPMx10ktoFreq(unsigned int) [92]
-                0.00    0.00       2/137935      logc::oss() [14]
-                0.00    0.00       2/37666       logc::dump() [16]
------------------------------------------------
-                0.00    0.00       2/2           stepper::stepper() [110]
-[93]     0.0    0.00    0.00       2         accel::accel() [93]
-                0.00    0.00       2/728         logc::logc(std::string) [38]
-                0.00    0.00       2/3           accel::frequency(unsigned int, unsigned int) [87]
------------------------------------------------
-                0.00    0.00       2/2           stepper::~stepper() [111]
-[94]     0.0    0.00    0.00       2         accel::~accel() [94]
-                0.00    0.00       2/914         logc::~logc() [36]
------------------------------------------------
-                0.00    0.00       1/2           global destructors keyed to _ZN5accelC2Ev [146]
-                0.00    0.00       1/2           global constructors keyed to _ZN5accelC2Ev [152]
-[95]     0.0    0.00    0.00       2         accel::operator=(accel const&) [95]
------------------------------------------------
-                0.00    0.00       1/2           global destructors keyed to _ZN7stepperC2Ev [147]
-                0.00    0.00       1/2           global constructors keyed to _ZN7stepperC2Ev [153]
-[96]     0.0    0.00    0.00       2         stepper::microstepSet(microsteps) [96]
------------------------------------------------
-                0.00    0.00       1/2           global destructors keyed to _ZN14parseTreeEntryC2Ev [142]
-                0.00    0.00       1/2           global constructors keyed to _ZN14parseTreeEntryC2Ev [148]
-[97]     0.0    0.00    0.00       2         parseTreeEntry::operator==(parseTreeEntry&) const [97]
------------------------------------------------
-                0.00    0.00       1/2           global destructors keyed to _ZN16symbolTableEntryC2Ev [143]
-                0.00    0.00       1/2           global constructors keyed to _ZN16symbolTableEntryC2Ev [149]
-[98]     0.0    0.00    0.00       2         symbolTableEntry::operator==(symbolTableEntry&) const [98]
------------------------------------------------
-                0.00    0.00       1/1           interpret::run() [1]
-[99]     0.0    0.00    0.00       1         io::init() [99]
------------------------------------------------
-                0.00    0.00       1/1           interpret::run() [1]
-[100]    0.0    0.00    0.00       1         io::setOutput(unsigned int) [100]
------------------------------------------------
-                0.00    0.00       1/1           interpret::interpret() [118]
-[101]    0.0    0.00    0.00       1         io::io() [101]
-                0.00    0.00       1/728         logc::logc(std::string) [38]
------------------------------------------------
-                0.00    0.00       1/1           interpret::~interpret() [119]
-[102]    0.0    0.00    0.00       1         io::~io() [102]
-                0.00    0.00       1/914         logc::~logc() [36]
------------------------------------------------
-                0.00    0.00       1/1           led::led(bool) [105]
-[103]    0.0    0.00    0.00       1         led::On() [103]
-                0.00    0.00       1/137935      logc::oss() [14]
-                0.00    0.00       1/37666       logc::dump() [16]
------------------------------------------------
-                0.00    0.00       1/1           led::~led() [106]
-[104]    0.0    0.00    0.00       1         led::Off() [104]
-                0.00    0.00       1/137935      logc::oss() [14]
-                0.00    0.00       1/37666       logc::dump() [16]
------------------------------------------------
-                0.00    0.00       1/1           interpret::interpret() [118]
-[105]    0.0    0.00    0.00       1         led::led(bool) [105]
-                0.00    0.00       1/728         logc::logc(std::string) [38]
-                0.00    0.00       1/1           led::On() [103]
------------------------------------------------
-                0.00    0.00       1/1           interpret::~interpret() [119]
-[106]    0.0    0.00    0.00       1         led::~led() [106]
-                0.00    0.00       1/1           led::Off() [104]
-                0.00    0.00       1/914         logc::~logc() [36]
------------------------------------------------
-                0.00    0.00       1/1           stepper::RPMx10k(unsigned int, unsigned int) [109]
-[107]    0.0    0.00    0.00       1         accel::RPMx10k(unsigned int, unsigned int) [107]
-                0.00    0.00       2/2           accel::_RPMx10ktoFreq(unsigned int) [92]
-                0.00    0.00       1/3           accel::frequency(unsigned int, unsigned int) [87]
------------------------------------------------
-                0.00    0.00       1/1           interpret::run() [1]
-[108]    0.0    0.00    0.00       1         stepper::RPM(unsigned int, unsigned int) [108]
-                0.00    0.00       1/1           stepper::RPMx10k(unsigned int, unsigned int) [109]
------------------------------------------------
-                0.00    0.00       1/1           stepper::RPM(unsigned int, unsigned int) [108]
-[109]    0.0    0.00    0.00       1         stepper::RPMx10k(unsigned int, unsigned int) [109]
-                0.00    0.00       1/1           accel::RPMx10k(unsigned int, unsigned int) [107]
------------------------------------------------
-                0.00    0.00       1/1           interpret::interpret() [118]
-[110]    0.0    0.00    0.00       1         stepper::stepper() [110]
-                0.00    0.00       2/2           accel::accel() [93]
-                0.00    0.00       1/728         logc::logc(std::string) [38]
------------------------------------------------
-                0.00    0.00       1/1           interpret::~interpret() [119]
-[111]    0.0    0.00    0.00       1         stepper::~stepper() [111]
-                0.00    0.00       2/2           accel::~accel() [94]
-                0.00    0.00       1/914         logc::~logc() [36]
------------------------------------------------
-                0.00    0.00       1/1           main [2]
-[112]    0.0    0.00    0.00       1         interpret::dumpProgram() [112]
-                0.00    0.00     134/24359       parseTreeEntry::type() const [23]
-                0.00    0.00     133/133         parseTreeEntry::dumpEntry() [62]
-                0.00    0.00       1/137935      logc::oss() [14]
-                0.00    0.00       1/37666       logc::dump() [16]
------------------------------------------------
-                0.00    0.00       1/1           interpret::load() [116]
-[113]    0.0    0.00    0.00       1         interpret::_loadSymbolTable(std::string const&) [113]
-                0.00    0.00      31/1094        bool std::operator==<char, std::char_traits<char>, std::allocator<char> >(std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, char const*) [33]
-                0.00    0.00      30/30          interpret::_loadSymbolTableEntry(std::string const&) [75]
-                0.00    0.00       1/137935      logc::oss() [14]
-                0.00    0.00       1/37666       logc::dump() [16]
-                0.00    0.00       1/1           interpret::setLowWaterMarkForTemporarySymbolSearch() [115]
------------------------------------------------
-                0.00    0.00       1/1           interpret::run() [1]
-[114]    0.0    0.00    0.00       1         interpret::_resetSymbolTableTemporaryBoundary() [114]
------------------------------------------------
-                0.00    0.00       1/1           interpret::_loadSymbolTable(std::string const&) [113]
-[115]    0.0    0.00    0.00       1         interpret::setLowWaterMarkForTemporarySymbolSearch() [115]
------------------------------------------------
-                0.00    0.00       1/1           main [2]
-[116]    0.0    0.00    0.00       1         interpret::load() [116]
-                0.00    0.00       1/1           interpret::_loadTree(std::string const&) [117]
-                0.00    0.00       1/1           interpret::_loadSymbolTable(std::string const&) [113]
------------------------------------------------
-                0.00    0.00       1/1           interpret::load() [116]
-[117]    0.0    0.00    0.00       1         interpret::_loadTree(std::string const&) [117]
-                0.00    0.00     134/1094        bool std::operator==<char, std::char_traits<char>, std::allocator<char> >(std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, char const*) [33]
-                0.00    0.00     133/133         interpret::_loadParseTreeEntry(std::string const&) [65]
-                0.00    0.00       1/137935      logc::oss() [14]
-                0.00    0.00       1/37666       logc::dump() [16]
------------------------------------------------
-                0.00    0.00       1/1           main [2]
-[118]    0.0    0.00    0.00       1         interpret::interpret() [118]
-                0.00    0.00     200/333         parseTreeEntry::parseTreeEntry() [49]
-                0.00    0.00      60/60          symbolTableEntry::symbolTableEntry() [72]
-                0.00    0.00       1/728         logc::logc(std::string) [38]
-                0.00    0.00       1/1001        tinyQueue<int>::tinyQueue() [34]
-                0.00    0.00       1/1           stepper::stepper() [110]
-                0.00    0.00       1/1           io::io() [101]
-                0.00    0.00       1/1           led::led(bool) [105]
------------------------------------------------
-                0.00    0.00       1/1           main [2]
-[119]    0.0    0.00    0.00       1         interpret::~interpret() [119]
-                0.00    0.00     200/427         parseTreeEntry::~parseTreeEntry() [45]
-                0.00    0.00      60/481         symbolTableEntry::~symbolTableEntry() [42]
-                0.00    0.00       1/1           led::~led() [106]
-                0.00    0.00       1/1           io::~io() [102]
-                0.00    0.00       1/1           stepper::~stepper() [111]
-                0.00    0.00       1/1001        tinyQueue<int>::~tinyQueue() [35]
-                0.00    0.00       1/914         logc::~logc() [36]
------------------------------------------------
-                0.00    0.00       1/1           interpret::run() [1]
-[120]    0.0    0.00    0.00       1         io::getInput() const [120]
+[1]    100.0    0.00    0.04                 main [1]
+                0.00    0.03       1/1           interpret::run() [2]
+                0.00    0.01       1/1           interpret::interpret() [9]
+                0.00    0.00       1/1           interpret::dumpProgram() [17]
+                0.00    0.00       1/1           interpret::load() [25]
+                0.00    0.00       1/1           interpret::~interpret() [32]
+-----------------------------------------------
+                0.00    0.03       1/1           main [1]
+[2]     83.2    0.00    0.03       1         interpret::run() [2]
+                0.02    0.01    1000/1000        interpret::dumpSymbolTable() [3]
+                0.00    0.00       1/1           stepper::RPM(unsigned int, unsigned int) [13]
+                0.00    0.00    1000/1000        interpret::dumpEvaluationStack() [15]
+                0.00    0.00    2009/37666       logc::dump() [7]
+                0.00    0.00     289/289         interpret::evaluateOperator(unsigned int) [16]
+                0.00    0.00       8/30997       symbolTableEntry::dumpEntry() [8]
+                0.00    0.00    2009/137935      logc::oss() [34]
+                0.00    0.00    2000/2000        interpret::_currentProgramNodeType() const [49]
+                0.00    0.00    1806/1900        interpret::_currentProgramNodeValue() const [51]
+                0.00    0.00    1008/2227        tinyQueue<int>::stackFrameIndex() const [48]
+                0.00    0.00    1001/24359       parseTreeEntry::type() const [41]
+                0.00    0.00    1000/5803        tinyQueue<int>::size() const [44]
+                0.00    0.00     517/706         tinyQueue<int>::push_front(int) [58]
+                0.00    0.00     110/33039       symbolTableEntry::value() const [38]
+                0.00    0.00      96/674         interpret::_evalValue() [60]
+                0.00    0.00      96/96          interpret::_returnSymbolToAvailablePool(unsigned int) [86]
+                0.00    0.00      94/94          interpret::_updateProgramIndex(nodeType, int) [88]
+                0.00    0.00      25/25          tinyQueue<int>::peekAtIndex(unsigned int) const [95]
+                0.00    0.00      16/205         symbolTableEntry::symbolTableEntry(nodeType, int) [76]
+                0.00    0.00      16/235         symbolTableEntry::operator=(symbolTableEntry const&) [75]
+                0.00    0.00      16/481         symbolTableEntry::~symbolTableEntry() [62]
+                0.00    0.00      16/351         symbolTableEntry::value(int) [68]
+                0.00    0.00      16/3144        tinyQueue<int>::front() const [46]
+                0.00    0.00       8/31240       symbolTableEntry::fcnLink() const [40]
+                0.00    0.00       8/8           tinyQueue<int>::stackFrameIndex(unsigned int) [98]
+                0.00    0.00       8/10          interpret::_cleanUpEvaluationStack(unsigned int) [96]
+                0.00    0.00       1/4129        tinyQueue<int>::empty() const [45]
+                0.00    0.00       1/1           io::init() [110]
+                0.00    0.00       1/1           io::getInput() const [117]
+                0.00    0.00       1/1           io::setOutput(unsigned int) [111]
+                0.00    0.00       1/3           io::getTemperature() [100]
+                0.00    0.00       1/1           interpret::_resetSymbolTableTemporaryBoundary() [115]
+-----------------------------------------------
+                0.02    0.01    1000/1000        interpret::run() [2]
+[3]     71.2    0.02    0.01    1000         interpret::dumpSymbolTable() [3]
+                0.00    0.01   30989/30997       symbolTableEntry::dumpEntry() [8]
+                0.00    0.00    1000/37666       logc::dump() [7]
+                0.00    0.00   31989/137935      logc::oss() [34]
+-----------------------------------------------
+                0.00    0.00       1/3           accel::RPMx10k(unsigned int, unsigned int) [12]
+                0.00    0.01       2/3           accel::accel() [10]
+[4]     25.0    0.00    0.01       3         accel::frequency(unsigned int, unsigned int) [4]
+                0.01    0.00       3/3           accel::_scaleYAxisToClockTicks() [5]
+                0.00    0.00       3/3           accel::_scaleYAxisToFrequency() [20]
+                0.00    0.00       3/3           accel::_initUnitCurve(int) [21]
+-----------------------------------------------
+                0.01    0.00       3/3           accel::frequency(unsigned int, unsigned int) [4]
+[5]     25.0    0.01    0.00       3         accel::_scaleYAxisToClockTicks() [5]
+                0.00    0.00       3/3           accel::_dumpCurveClockTicks() [22]
+                0.00    0.00       3/137935      logc::oss() [34]
+-----------------------------------------------
+                0.01    0.00   37666/37666       logc::dump() [7]
+[6]     25.0    0.01    0.00   37666         logc::dump(std::string const&, bool, bool) [6]
+-----------------------------------------------
+                0.00    0.00       1/37666       interpret::dumpProgram() [17]
+                0.00    0.00       1/37666       interpret::_loadSymbolTable(std::string const&) [30]
+                0.00    0.00       1/37666       interpret::_loadTree(std::string const&) [31]
+                0.00    0.00       1/37666       led::On() [26]
+                0.00    0.00       1/37666       led::Off() [27]
+                0.00    0.00       2/37666       accel::_RPMx10ktoFreq(unsigned int) [24]
+                0.00    0.00       3/37666       accel::_dumpLinearInterpolate() [23]
+                0.00    0.00       3/37666       accel::_dumpCurveClockTicks() [22]
+                0.00    0.00       6/37666       accel::_dumpCurveFreq() [19]
+                0.00    0.00     133/37666       parseTreeEntry::dumpEntry() [18]
+                0.00    0.00     289/37666       interpret::evaluateOperator(unsigned int) [16]
+                0.00    0.00    1000/37666       interpret::dumpSymbolTable() [3]
+                0.00    0.00    2009/37666       interpret::run() [2]
+                0.00    0.00    3219/37666       interpret::dumpEvaluationStack() [15]
+                0.00    0.01   30997/37666       symbolTableEntry::dumpEntry() [8]
+[7]     25.0    0.00    0.01   37666         logc::dump() [7]
+                0.01    0.00   37666/37666       logc::dump(std::string const&, bool, bool) [6]
+                0.00    0.00   37666/137935      logc::oss() [34]
+-----------------------------------------------
+                0.00    0.00       8/30997       interpret::run() [2]
+                0.00    0.01   30989/30997       interpret::dumpSymbolTable() [3]
+[8]     20.6    0.00    0.01   30997         symbolTableEntry::dumpEntry() [8]
+                0.00    0.01   30997/37666       logc::dump() [7]
+                0.00    0.00   61994/137935      logc::oss() [34]
+                0.00    0.00   30997/32118       symbolTableEntry::type() const [39]
+                0.00    0.00   30997/31240       symbolTableEntry::fcnLink() const [40]
+                0.00    0.00   30997/33039       symbolTableEntry::value() const [38]
+-----------------------------------------------
+                0.00    0.01       1/1           main [1]
+[9]     16.7    0.00    0.01       1         interpret::interpret() [9]
+                0.00    0.01       1/1           stepper::stepper() [11]
+                0.00    0.00       1/1           led::led(bool) [28]
+                0.00    0.00     200/333         parseTreeEntry::parseTreeEntry() [69]
+                0.00    0.00      60/60          symbolTableEntry::symbolTableEntry() [91]
+                0.00    0.00       1/728         logc::logc(std::string) [57]
+                0.00    0.00       1/1001        tinyQueue<int>::tinyQueue() [53]
+                0.00    0.00       1/1           io::io() [112]
+-----------------------------------------------
+                0.00    0.01       2/2           stepper::stepper() [11]
+[10]    16.7    0.00    0.01       2         accel::accel() [10]
+                0.00    0.01       2/3           accel::frequency(unsigned int, unsigned int) [4]
+                0.00    0.00       2/728         logc::logc(std::string) [57]
+-----------------------------------------------
+                0.00    0.01       1/1           interpret::interpret() [9]
+[11]    16.7    0.00    0.01       1         stepper::stepper() [11]
+                0.00    0.01       2/2           accel::accel() [10]
+                0.00    0.00       1/728         logc::logc(std::string) [57]
+-----------------------------------------------
+                0.00    0.00       1/1           stepper::RPMx10k(unsigned int, unsigned int) [14]
+[12]     8.3    0.00    0.00       1         accel::RPMx10k(unsigned int, unsigned int) [12]
+                0.00    0.00       1/3           accel::frequency(unsigned int, unsigned int) [4]
+                0.00    0.00       2/2           accel::_RPMx10ktoFreq(unsigned int) [24]
+-----------------------------------------------
+                0.00    0.00       1/1           interpret::run() [2]
+[13]     8.3    0.00    0.00       1         stepper::RPM(unsigned int, unsigned int) [13]
+                0.00    0.00       1/1           stepper::RPMx10k(unsigned int, unsigned int) [14]
+-----------------------------------------------
+                0.00    0.00       1/1           stepper::RPM(unsigned int, unsigned int) [13]
+[14]     8.3    0.00    0.00       1         stepper::RPMx10k(unsigned int, unsigned int) [14]
+                0.00    0.00       1/1           accel::RPMx10k(unsigned int, unsigned int) [12]
+-----------------------------------------------
+                0.00    0.00    1000/1000        interpret::run() [2]
+[15]     2.1    0.00    0.00    1000         interpret::dumpEvaluationStack() [15]
+                0.00    0.00    3219/37666       logc::dump() [7]
+                0.00    0.00    3219/137935      logc::oss() [34]
+                0.00    0.00    2438/3144        tinyQueue<int>::front() const [46]
+                0.00    0.00    2219/4129        tinyQueue<int>::empty() const [45]
+                0.00    0.00    1219/2227        tinyQueue<int>::stackFrameIndex() const [48]
+                0.00    0.00    1219/33039       symbolTableEntry::value() const [38]
+                0.00    0.00    1219/1909        tinyQueue<int>::pop_front() [50]
+                0.00    0.00    1000/1001        tinyQueue<int>::tinyQueue() [53]
+                0.00    0.00    1000/1001        tinyQueue<int>::~tinyQueue() [54]
+-----------------------------------------------
+                0.00    0.00     289/289         interpret::run() [2]
+[16]     0.2    0.00    0.00     289         interpret::evaluateOperator(unsigned int) [16]
+                0.00    0.00     289/37666       logc::dump() [7]
+                0.00    0.00     578/674         interpret::_evalValue() [60]
+                0.00    0.00     578/137935      logc::oss() [34]
+                0.00    0.00     478/478         interpret::symbolFromIndex(int) [63]
+                0.00    0.00     189/189         interpret::_pushTemporarySymbolOnEvaluationStack(unsigned int) [78]
+                0.00    0.00     100/578         interpret::symbolTableIndexMorph(int) [61]
+                0.00    0.00     100/351         symbolTableEntry::value(int) [68]
+-----------------------------------------------
+                0.00    0.00       1/1           main [1]
+[17]     0.1    0.00    0.00       1         interpret::dumpProgram() [17]
+                0.00    0.00     133/133         parseTreeEntry::dumpEntry() [18]
+                0.00    0.00       1/37666       logc::dump() [7]
+                0.00    0.00     134/24359       parseTreeEntry::type() const [41]
+                0.00    0.00       1/137935      logc::oss() [34]
+-----------------------------------------------
+                0.00    0.00     133/133         interpret::dumpProgram() [17]
+[18]     0.1    0.00    0.00     133         parseTreeEntry::dumpEntry() [18]
+                0.00    0.00     133/37666       logc::dump() [7]
+                0.00    0.00     266/137935      logc::oss() [34]
+                0.00    0.00     133/24359       parseTreeEntry::type() const [41]
+                0.00    0.00     133/2540        parseTreeEntry::value() const [47]
+                0.00    0.00     133/734         parseTreeEntry::level() const [56]
+-----------------------------------------------
+                0.00    0.00       3/6           accel::_scaleYAxisToFrequency() [20]
+                0.00    0.00       3/6           accel::_initUnitCurve(int) [21]
+[19]     0.0    0.00    0.00       6         accel::_dumpCurveFreq() [19]
+                0.00    0.00       6/37666       logc::dump() [7]
+                0.00    0.00      96/137935      logc::oss() [34]
+-----------------------------------------------
+                0.00    0.00       3/3           accel::frequency(unsigned int, unsigned int) [4]
+[20]     0.0    0.00    0.00       3         accel::_scaleYAxisToFrequency() [20]
+                0.00    0.00       3/6           accel::_dumpCurveFreq() [19]
+                0.00    0.00       3/3           accel::_dumpLinearInterpolate() [23]
+                0.00    0.00       6/6           accel::fmin() const [99]
+                0.00    0.00       6/137935      logc::oss() [34]
+                0.00    0.00       3/3           accel::fmax() const [103]
+                0.00    0.00       3/3           accel::_accelStepMicroSec() const [102]
+-----------------------------------------------
+                0.00    0.00       3/3           accel::frequency(unsigned int, unsigned int) [4]
+[21]     0.0    0.00    0.00       3         accel::_initUnitCurve(int) [21]
+                0.00    0.00       3/6           accel::_dumpCurveFreq() [19]
+                0.00    0.00       6/137935      logc::oss() [34]
+-----------------------------------------------
+                0.00    0.00       3/3           accel::_scaleYAxisToClockTicks() [5]
+[22]     0.0    0.00    0.00       3         accel::_dumpCurveClockTicks() [22]
+                0.00    0.00       3/37666       logc::dump() [7]
+                0.00    0.00      48/137935      logc::oss() [34]
+-----------------------------------------------
+                0.00    0.00       3/3           accel::_scaleYAxisToFrequency() [20]
+[23]     0.0    0.00    0.00       3         accel::_dumpLinearInterpolate() [23]
+                0.00    0.00       3/37666       logc::dump() [7]
+                0.00    0.00      48/137935      logc::oss() [34]
+-----------------------------------------------
+                0.00    0.00       2/2           accel::RPMx10k(unsigned int, unsigned int) [12]
+[24]     0.0    0.00    0.00       2         accel::_RPMx10ktoFreq(unsigned int) [24]
+                0.00    0.00       2/37666       logc::dump() [7]
+                0.00    0.00       2/137935      logc::oss() [34]
+-----------------------------------------------
+                0.00    0.00       1/1           main [1]
+[25]     0.0    0.00    0.00       1         interpret::load() [25]
+                0.00    0.00       1/1           interpret::_loadTree(std::string const&) [31]
+                0.00    0.00       1/1           interpret::_loadSymbolTable(std::string const&) [30]
+-----------------------------------------------
+                0.00    0.00       1/1           led::led(bool) [28]
+[26]     0.0    0.00    0.00       1         led::On() [26]
+                0.00    0.00       1/37666       logc::dump() [7]
+                0.00    0.00       1/137935      logc::oss() [34]
+-----------------------------------------------
+                0.00    0.00       1/1           led::~led() [29]
+[27]     0.0    0.00    0.00       1         led::Off() [27]
+                0.00    0.00       1/37666       logc::dump() [7]
+                0.00    0.00       1/137935      logc::oss() [34]
+-----------------------------------------------
+                0.00    0.00       1/1           interpret::interpret() [9]
+[28]     0.0    0.00    0.00       1         led::led(bool) [28]
+                0.00    0.00       1/1           led::On() [26]
+                0.00    0.00       1/728         logc::logc(std::string) [57]
+-----------------------------------------------
+                0.00    0.00       1/1           interpret::~interpret() [32]
+[29]     0.0    0.00    0.00       1         led::~led() [29]
+                0.00    0.00       1/1           led::Off() [27]
+                0.00    0.00       1/914         logc::~logc() [55]
+-----------------------------------------------
+                0.00    0.00       1/1           interpret::load() [25]
+[30]     0.0    0.00    0.00       1         interpret::_loadSymbolTable(std::string const&) [30]
+                0.00    0.00       1/37666       logc::dump() [7]
+                0.00    0.00      31/1094        bool std::operator==<char, std::char_traits<char>, std::allocator<char> >(std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, char const*) [52]
+                0.00    0.00      30/30          interpret::_loadSymbolTableEntry(std::string const&) [94]
+                0.00    0.00       1/137935      logc::oss() [34]
+                0.00    0.00       1/1           interpret::setLowWaterMarkForTemporarySymbolSearch() [116]
+-----------------------------------------------
+                0.00    0.00       1/1           interpret::load() [25]
+[31]     0.0    0.00    0.00       1         interpret::_loadTree(std::string const&) [31]
+                0.00    0.00       1/37666       logc::dump() [7]
+                0.00    0.00     134/1094        bool std::operator==<char, std::char_traits<char>, std::allocator<char> >(std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, char const*) [52]
+                0.00    0.00     133/133         interpret::_loadParseTreeEntry(std::string const&) [84]
+                0.00    0.00       1/137935      logc::oss() [34]
+-----------------------------------------------
+                0.00    0.00       1/1           main [1]
+[32]     0.0    0.00    0.00       1         interpret::~interpret() [32]
+                0.00    0.00       1/1           led::~led() [29]
+                0.00    0.00     200/427         parseTreeEntry::~parseTreeEntry() [65]
+                0.00    0.00      60/481         symbolTableEntry::~symbolTableEntry() [62]
+                0.00    0.00       1/1           io::~io() [113]
+                0.00    0.00       1/1           stepper::~stepper() [114]
+                0.00    0.00       1/1001        tinyQueue<int>::~tinyQueue() [54]
+                0.00    0.00       1/914         logc::~logc() [55]
+-----------------------------------------------
+                0.00    0.00       1/137935      interpret::dumpProgram() [17]
+                0.00    0.00       1/137935      interpret::_loadSymbolTable(std::string const&) [30]
+                0.00    0.00       1/137935      interpret::_loadTree(std::string const&) [31]
+                0.00    0.00       1/137935      led::On() [26]
+                0.00    0.00       1/137935      led::Off() [27]
+                0.00    0.00       2/137935      accel::_RPMx10ktoFreq(unsigned int) [24]
+                0.00    0.00       3/137935      accel::_scaleYAxisToClockTicks() [5]
+                0.00    0.00       6/137935      accel::_scaleYAxisToFrequency() [20]
+                0.00    0.00       6/137935      accel::_initUnitCurve(int) [21]
+                0.00    0.00      48/137935      accel::_dumpLinearInterpolate() [23]
+                0.00    0.00      48/137935      accel::_dumpCurveClockTicks() [22]
+                0.00    0.00      96/137935      accel::_dumpCurveFreq() [19]
+                0.00    0.00     266/137935      parseTreeEntry::dumpEntry() [18]
+                0.00    0.00     578/137935      interpret::evaluateOperator(unsigned int) [16]
+                0.00    0.00    2009/137935      interpret::run() [2]
+                0.00    0.00    3219/137935      interpret::dumpEvaluationStack() [15]
+                0.00    0.00   31989/137935      interpret::dumpSymbolTable() [3]
+                0.00    0.00   37666/137935      logc::dump() [7]
+                0.00    0.00   61994/137935      symbolTableEntry::dumpEntry() [8]
+[34]     0.0    0.00    0.00  137935         logc::oss() [34]
+-----------------------------------------------
+                0.00    0.00   37666/37666       _fu1___ZSt4cout [293]
+[35]     0.0    0.00    0.00   37666         logc::ossClear() [35]
+-----------------------------------------------
+                0.00    0.00   37666/37666       _fu0___ZSt4cout [292]
+[36]     0.0    0.00    0.00   37666         std::basic_string<char, std::char_traits<char>, std::allocator<char> > std::operator+<char, std::char_traits<char>, std::allocator<char> >(std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, char const*) [36]
+-----------------------------------------------
+                0.00    0.00   37666/37666       _fu0___ZSt4cout [292]
+[37]     0.0    0.00    0.00   37666         std::basic_string<char, std::char_traits<char>, std::allocator<char> > std::operator+<char, std::char_traits<char>, std::allocator<char> >(std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) [37]
+-----------------------------------------------
+                0.00    0.00     110/33039       interpret::run() [2]
+                0.00    0.00     235/33039       symbolTableEntry::operator=(symbolTableEntry const&) [75]
+                0.00    0.00     478/33039       interpret::symbolFromIndex(int) [63]
+                0.00    0.00    1219/33039       interpret::dumpEvaluationStack() [15]
+                0.00    0.00   30997/33039       symbolTableEntry::dumpEntry() [8]
+[38]     0.0    0.00    0.00   33039         symbolTableEntry::value() const [38]
+-----------------------------------------------
+                0.00    0.00      26/32118       interpret::_cleanUpSymbolTable() [97]
+                0.00    0.00      96/32118       interpret::_returnSymbolToAvailablePool(unsigned int) [86]
+                0.00    0.00     186/32118       interpret::_findFirstAvailableNodeInSymbolTable() [77]
+                0.00    0.00     235/32118       symbolTableEntry::operator=(symbolTableEntry const&) [75]
+                0.00    0.00     578/32118       interpret::symbolTableIndexMorph(int) [61]
+                0.00    0.00   30997/32118       symbolTableEntry::dumpEntry() [8]
+[39]     0.0    0.00    0.00   32118         symbolTableEntry::type() const [39]
+-----------------------------------------------
+                0.00    0.00       8/31240       interpret::run() [2]
+                0.00    0.00     235/31240       symbolTableEntry::operator=(symbolTableEntry const&) [75]
+                0.00    0.00   30997/31240       symbolTableEntry::dumpEntry() [8]
+[40]     0.0    0.00    0.00   31240         symbolTableEntry::fcnLink() const [40]
+-----------------------------------------------
+                0.00    0.00     133/24359       parseTreeEntry::operator=(parseTreeEntry const&) [82]
+                0.00    0.00     133/24359       parseTreeEntry::dumpEntry() [18]
+                0.00    0.00     134/24359       interpret::dumpProgram() [17]
+                0.00    0.00    1001/24359       interpret::run() [2]
+                0.00    0.00    2000/24359       interpret::_currentProgramNodeType() const [49]
+                0.00    0.00    6986/24359       interpret::_programNodeType(unsigned int) const [42]
+                0.00    0.00   13972/24359       interpret::_findFirstParseTreeEntry(parseTreeEntry const&, unsigned int) [89]
+[41]     0.0    0.00    0.00   24359         parseTreeEntry::type() const [41]
+-----------------------------------------------
+                0.00    0.00    6986/6986        interpret::_findFirstParseTreeEntry(parseTreeEntry const&, unsigned int) [89]
+[42]     0.0    0.00    0.00    6986         interpret::_programNodeType(unsigned int) const [42]
+                0.00    0.00    6986/24359       parseTreeEntry::type() const [41]
+-----------------------------------------------
+                0.00    0.00     706/6509        tinyQueue<int>::push_front(int) [58]
+                0.00    0.00    5803/6509        tinyQueue<int>::size() const [44]
+[43]     0.0    0.00    0.00    6509         tinyQueue<int>::spaceAvail() const [43]
+-----------------------------------------------
+                0.00    0.00     674/5803        interpret::_evalValue() [60]
+                0.00    0.00    1000/5803        interpret::run() [2]
+                0.00    0.00    4129/5803        tinyQueue<int>::empty() const [45]
+[44]     0.0    0.00    0.00    5803         tinyQueue<int>::size() const [44]
+                0.00    0.00    5803/6509        tinyQueue<int>::spaceAvail() const [43]
+-----------------------------------------------
+                0.00    0.00       1/4129        interpret::run() [2]
+                0.00    0.00    1909/4129        tinyQueue<int>::pop_front() [50]
+                0.00    0.00    2219/4129        interpret::dumpEvaluationStack() [15]
+[45]     0.0    0.00    0.00    4129         tinyQueue<int>::empty() const [45]
+                0.00    0.00    4129/5803        tinyQueue<int>::size() const [44]
+-----------------------------------------------
+                0.00    0.00      16/3144        interpret::run() [2]
+                0.00    0.00     690/3144        interpret::_evalValuePeek() const [59]
+                0.00    0.00    2438/3144        interpret::dumpEvaluationStack() [15]
+[46]     0.0    0.00    0.00    3144         tinyQueue<int>::front() const [46]
+-----------------------------------------------
+                0.00    0.00     133/2540        parseTreeEntry::operator=(parseTreeEntry const&) [82]
+                0.00    0.00     133/2540        parseTreeEntry::dumpEntry() [18]
+                0.00    0.00     374/2540        interpret::_findFirstParseTreeEntry(parseTreeEntry const&, unsigned int) [89]
+                0.00    0.00    1900/2540        interpret::_currentProgramNodeValue() const [51]
+[47]     0.0    0.00    0.00    2540         parseTreeEntry::value() const [47]
+-----------------------------------------------
+                0.00    0.00    1008/2227        interpret::run() [2]
+                0.00    0.00    1219/2227        interpret::dumpEvaluationStack() [15]
+[48]     0.0    0.00    0.00    2227         tinyQueue<int>::stackFrameIndex() const [48]
+-----------------------------------------------
+                0.00    0.00    2000/2000        interpret::run() [2]
+[49]     0.0    0.00    0.00    2000         interpret::_currentProgramNodeType() const [49]
+                0.00    0.00    2000/24359       parseTreeEntry::type() const [41]
+-----------------------------------------------
+                0.00    0.00      16/1909        interpret::_cleanUpEvaluationStack(unsigned int) [96]
+                0.00    0.00     674/1909        interpret::_evalValue() [60]
+                0.00    0.00    1219/1909        interpret::dumpEvaluationStack() [15]
+[50]     0.0    0.00    0.00    1909         tinyQueue<int>::pop_front() [50]
+                0.00    0.00    1909/4129        tinyQueue<int>::empty() const [45]
+-----------------------------------------------
+                0.00    0.00      94/1900        interpret::_updateProgramIndex(nodeType, int) [88]
+                0.00    0.00    1806/1900        interpret::run() [2]
+[51]     0.0    0.00    0.00    1900         interpret::_currentProgramNodeValue() const [51]
+                0.00    0.00    1900/2540        parseTreeEntry::value() const [47]
+-----------------------------------------------
+                0.00    0.00      31/1094        interpret::_loadSymbolTable(std::string const&) [30]
+                0.00    0.00     134/1094        interpret::_loadTree(std::string const&) [31]
+                0.00    0.00     326/1094        bool std::operator!=<char, std::char_traits<char>, std::allocator<char> >(std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, char const*) [70]
+                0.00    0.00     603/1094        interpret::_loadParseTreeEntry(std::string const&) [84]
+[52]     0.0    0.00    0.00    1094         bool std::operator==<char, std::char_traits<char>, std::allocator<char> >(std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, char const*) [52]
+-----------------------------------------------
+                0.00    0.00       1/1001        interpret::interpret() [9]
+                0.00    0.00    1000/1001        interpret::dumpEvaluationStack() [15]
+[53]     0.0    0.00    0.00    1001         tinyQueue<int>::tinyQueue() [53]
+-----------------------------------------------
+                0.00    0.00       1/1001        interpret::~interpret() [32]
+                0.00    0.00    1000/1001        interpret::dumpEvaluationStack() [15]
+[54]     0.0    0.00    0.00    1001         tinyQueue<int>::~tinyQueue() [54]
+-----------------------------------------------
+                0.00    0.00       1/914         io::~io() [113]
+                0.00    0.00       1/914         led::~led() [29]
+                0.00    0.00       1/914         stepper::~stepper() [114]
+                0.00    0.00       1/914         interpret::~interpret() [32]
+                0.00    0.00       2/914         accel::~accel() [105]
+                0.00    0.00     427/914         parseTreeEntry::~parseTreeEntry() [65]
+                0.00    0.00     481/914         symbolTableEntry::~symbolTableEntry() [62]
+[55]     0.0    0.00    0.00     914         logc::~logc() [55]
+-----------------------------------------------
+                0.00    0.00      94/734         interpret::_currentProgramNodeLevel() const [90]
+                0.00    0.00     133/734         parseTreeEntry::operator=(parseTreeEntry const&) [82]
+                0.00    0.00     133/734         parseTreeEntry::dumpEntry() [18]
+                0.00    0.00     374/734         interpret::_findFirstParseTreeEntry(parseTreeEntry const&, unsigned int) [89]
+[56]     0.0    0.00    0.00     734         parseTreeEntry::level() const [56]
+-----------------------------------------------
+                0.00    0.00       1/728         interpret::interpret() [9]
+                0.00    0.00       1/728         stepper::stepper() [11]
+                0.00    0.00       1/728         io::io() [112]
+                0.00    0.00       1/728         led::led(bool) [28]
+                0.00    0.00       2/728         accel::accel() [10]
+                0.00    0.00      30/728         symbolTableEntry::symbolTableEntry(nodeType, int, int) [92]
+                0.00    0.00      60/728         symbolTableEntry::symbolTableEntry() [91]
+                0.00    0.00      94/728         parseTreeEntry::parseTreeEntry(nodeType, int, unsigned int) [87]
+                0.00    0.00     205/728         symbolTableEntry::symbolTableEntry(nodeType, int) [76]
+                0.00    0.00     333/728         parseTreeEntry::parseTreeEntry() [69]
+[57]     0.0    0.00    0.00     728         logc::logc(std::string) [57]
+-----------------------------------------------
+                0.00    0.00     189/706         interpret::_pushTemporarySymbolOnEvaluationStack(unsigned int) [78]
+                0.00    0.00     517/706         interpret::run() [2]
+[58]     0.0    0.00    0.00     706         tinyQueue<int>::push_front(int) [58]
+                0.00    0.00     706/6509        tinyQueue<int>::spaceAvail() const [43]
+-----------------------------------------------
+                0.00    0.00      16/690         interpret::_cleanUpEvaluationStack(unsigned int) [96]
+                0.00    0.00     674/690         interpret::_evalValue() [60]
+[59]     0.0    0.00    0.00     690         interpret::_evalValuePeek() const [59]
+                0.00    0.00     690/3144        tinyQueue<int>::front() const [46]
+-----------------------------------------------
+                0.00    0.00      96/674         interpret::run() [2]
+                0.00    0.00     578/674         interpret::evaluateOperator(unsigned int) [16]
+[60]     0.0    0.00    0.00     674         interpret::_evalValue() [60]
+                0.00    0.00     674/5803        tinyQueue<int>::size() const [44]
+                0.00    0.00     674/690         interpret::_evalValuePeek() const [59]
+                0.00    0.00     674/1909        tinyQueue<int>::pop_front() [50]
+-----------------------------------------------
+                0.00    0.00     100/578         interpret::evaluateOperator(unsigned int) [16]
+                0.00    0.00     478/578         interpret::symbolFromIndex(int) [63]
+[61]     0.0    0.00    0.00     578         interpret::symbolTableIndexMorph(int) [61]
+                0.00    0.00     578/32118       symbolTableEntry::type() const [39]
+                0.00    0.00      93/440         symbolTableEntry::type(nodeType) [64]
+-----------------------------------------------
+                0.00    0.00      16/481         interpret::run() [2]
+                0.00    0.00      30/481         interpret::_loadSymbolTableEntry(std::string const&) [94]
+                0.00    0.00      60/481         interpret::~interpret() [32]
+                0.00    0.00     186/481         interpret::_findFirstAvailableNodeInSymbolTable() [77]
+                0.00    0.00     189/481         interpret::_pushTemporarySymbolOnEvaluationStack(unsigned int) [78]
+[62]     0.0    0.00    0.00     481         symbolTableEntry::~symbolTableEntry() [62]
+                0.00    0.00     481/914         logc::~logc() [55]
+-----------------------------------------------
+                0.00    0.00     478/478         interpret::evaluateOperator(unsigned int) [16]
+[63]     0.0    0.00    0.00     478         interpret::symbolFromIndex(int) [63]
+                0.00    0.00     478/578         interpret::symbolTableIndexMorph(int) [61]
+                0.00    0.00     478/33039       symbolTableEntry::value() const [38]
+-----------------------------------------------
+                0.00    0.00      16/440         interpret::_cleanUpEvaluationStack(unsigned int) [96]
+                0.00    0.00      93/440         interpret::symbolTableIndexMorph(int) [61]
+                0.00    0.00      96/440         interpret::_returnSymbolToAvailablePool(unsigned int) [86]
+                0.00    0.00     235/440         symbolTableEntry::operator=(symbolTableEntry const&) [75]
+[64]     0.0    0.00    0.00     440         symbolTableEntry::type(nodeType) [64]
+-----------------------------------------------
+                0.00    0.00      94/427         interpret::_updateProgramIndex(nodeType, int) [88]
+                0.00    0.00     133/427         interpret::_loadParseTreeEntry(std::string const&) [84]
+                0.00    0.00     200/427         interpret::~interpret() [32]
+[65]     0.0    0.00    0.00     427         parseTreeEntry::~parseTreeEntry() [65]
+                0.00    0.00     427/914         logc::~logc() [55]
+-----------------------------------------------
+                0.00    0.00      26/404         interpret::_cleanUpSymbolTable() [97]
+                0.00    0.00     378/404         interpret::_findFirstAvailableNodeInSymbolTable() [77]
+[66]     0.0    0.00    0.00     404         interpret::_getLastSymbolTableIndex() [66]
+-----------------------------------------------
+                0.00    0.00     378/378         interpret::_findFirstAvailableNodeInSymbolTable() [77]
+[67]     0.0    0.00    0.00     378         interpret::getLowWaterMarkForTemporarySymbolSearch() const [67]
+-----------------------------------------------
+                0.00    0.00      16/351         interpret::run() [2]
+                0.00    0.00     100/351         interpret::evaluateOperator(unsigned int) [16]
+                0.00    0.00     235/351         symbolTableEntry::operator=(symbolTableEntry const&) [75]
+[68]     0.0    0.00    0.00     351         symbolTableEntry::value(int) [68]
+-----------------------------------------------
+                0.00    0.00     133/333         interpret::_loadParseTreeEntry(std::string const&) [84]
+                0.00    0.00     200/333         interpret::interpret() [9]
+[69]     0.0    0.00    0.00     333         parseTreeEntry::parseTreeEntry() [69]
+                0.00    0.00     333/728         logc::logc(std::string) [57]
+-----------------------------------------------
+                0.00    0.00      60/326         interpret::_loadSymbolTableEntry(std::string const&) [94]
+                0.00    0.00     266/326         interpret::_loadParseTreeEntry(std::string const&) [84]
+[70]     0.0    0.00    0.00     326         bool std::operator!=<char, std::char_traits<char>, std::allocator<char> >(std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, char const*) [70]
+                0.00    0.00     326/1094        bool std::operator==<char, std::char_traits<char>, std::allocator<char> >(std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, char const*) [52]
+-----------------------------------------------
+                0.00    0.00     133/266         interpret::_loadParseTreeEntry(std::string const&) [84]
+                0.00    0.00     133/266         parseTreeEntry::operator=(parseTreeEntry const&) [82]
+[71]     0.0    0.00    0.00     266         parseTreeEntry::type(nodeType) [71]
+-----------------------------------------------
+                0.00    0.00     133/266         interpret::_loadParseTreeEntry(std::string const&) [84]
+                0.00    0.00     133/266         parseTreeEntry::operator=(parseTreeEntry const&) [82]
+[72]     0.0    0.00    0.00     266         parseTreeEntry::level(unsigned int) [72]
+-----------------------------------------------
+                0.00    0.00     133/266         interpret::_loadParseTreeEntry(std::string const&) [84]
+                0.00    0.00     133/266         parseTreeEntry::operator=(parseTreeEntry const&) [82]
+[73]     0.0    0.00    0.00     266         parseTreeEntry::value(int) [73]
+-----------------------------------------------
+                0.00    0.00     235/235         symbolTableEntry::operator=(symbolTableEntry const&) [75]
+[74]     0.0    0.00    0.00     235         symbolTableEntry::fcnLink(int) [74]
+-----------------------------------------------
+                0.00    0.00      16/235         interpret::run() [2]
+                0.00    0.00      30/235         interpret::appendToSymbolTable(symbolTableEntry const&) [93]
+                0.00    0.00     189/235         interpret::_pushTemporarySymbolOnEvaluationStack(unsigned int) [78]
+[75]     0.0    0.00    0.00     235         symbolTableEntry::operator=(symbolTableEntry const&) [75]
+                0.00    0.00     235/32118       symbolTableEntry::type() const [39]
+                0.00    0.00     235/440         symbolTableEntry::type(nodeType) [64]
+                0.00    0.00     235/33039       symbolTableEntry::value() const [38]
+                0.00    0.00     235/351         symbolTableEntry::value(int) [68]
+                0.00    0.00     235/31240       symbolTableEntry::fcnLink() const [40]
+                0.00    0.00     235/235         symbolTableEntry::fcnLink(int) [74]
+-----------------------------------------------
+                0.00    0.00      16/205         interpret::run() [2]
+                0.00    0.00     189/205         interpret::_pushTemporarySymbolOnEvaluationStack(unsigned int) [78]
+[76]     0.0    0.00    0.00     205         symbolTableEntry::symbolTableEntry(nodeType, int) [76]
+                0.00    0.00     205/728         logc::logc(std::string) [57]
+-----------------------------------------------
+                0.00    0.00     189/189         interpret::_pushTemporarySymbolOnEvaluationStack(unsigned int) [78]
+[77]     0.0    0.00    0.00     189         interpret::_findFirstAvailableNodeInSymbolTable() [77]
+                0.00    0.00     378/404         interpret::_getLastSymbolTableIndex() [66]
+                0.00    0.00     378/378         interpret::getLowWaterMarkForTemporarySymbolSearch() const [67]
+                0.00    0.00     186/186         symbolTableEntry::symbolTableEntry(symbolTableEntry const&) [79]
+                0.00    0.00     186/32118       symbolTableEntry::type() const [39]
+                0.00    0.00     186/481         symbolTableEntry::~symbolTableEntry() [62]
+-----------------------------------------------
+                0.00    0.00     189/189         interpret::evaluateOperator(unsigned int) [16]
+[78]     0.0    0.00    0.00     189         interpret::_pushTemporarySymbolOnEvaluationStack(unsigned int) [78]
+                0.00    0.00     189/205         symbolTableEntry::symbolTableEntry(nodeType, int) [76]
+                0.00    0.00     189/189         interpret::_findFirstAvailableNodeInSymbolTable() [77]
+                0.00    0.00     189/235         symbolTableEntry::operator=(symbolTableEntry const&) [75]
+                0.00    0.00     189/706         tinyQueue<int>::push_front(int) [58]
+                0.00    0.00     189/481         symbolTableEntry::~symbolTableEntry() [62]
+-----------------------------------------------
+                0.00    0.00     186/186         interpret::_findFirstAvailableNodeInSymbolTable() [77]
+[79]     0.0    0.00    0.00     186         symbolTableEntry::symbolTableEntry(symbolTableEntry const&) [79]
+                0.00    0.00     186/186         logc::logc(logc const&) [80]
+-----------------------------------------------
+                0.00    0.00     186/186         symbolTableEntry::symbolTableEntry(symbolTableEntry const&) [79]
+[80]     0.0    0.00    0.00     186         logc::logc(logc const&) [80]
+-----------------------------------------------
+                0.00    0.00     133/133         parseTreeEntry::operator=(parseTreeEntry const&) [82]
+[81]     0.0    0.00    0.00     133         parseTreeEntry::position(nodePosition) [81]
+-----------------------------------------------
+                0.00    0.00     133/133         interpret::appendToProgram(parseTreeEntry const&) [83]
+[82]     0.0    0.00    0.00     133         parseTreeEntry::operator=(parseTreeEntry const&) [82]
+                0.00    0.00     133/24359       parseTreeEntry::type() const [41]
+                0.00    0.00     133/266         parseTreeEntry::type(nodeType) [71]
+                0.00    0.00     133/133         parseTreeEntry::position() const [85]
+                0.00    0.00     133/133         parseTreeEntry::position(nodePosition) [81]
+                0.00    0.00     133/734         parseTreeEntry::level() const [56]
+                0.00    0.00     133/266         parseTreeEntry::level(unsigned int) [72]
+                0.00    0.00     133/2540        parseTreeEntry::value() const [47]
+                0.00    0.00     133/266         parseTreeEntry::value(int) [73]
+-----------------------------------------------
+                0.00    0.00     133/133         interpret::_loadParseTreeEntry(std::string const&) [84]
+[83]     0.0    0.00    0.00     133         interpret::appendToProgram(parseTreeEntry const&) [83]
+                0.00    0.00     133/133         parseTreeEntry::operator=(parseTreeEntry const&) [82]
+-----------------------------------------------
+                0.00    0.00     133/133         interpret::_loadTree(std::string const&) [31]
+[84]     0.0    0.00    0.00     133         interpret::_loadParseTreeEntry(std::string const&) [84]
+                0.00    0.00     603/1094        bool std::operator==<char, std::char_traits<char>, std::allocator<char> >(std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, char const*) [52]
+                0.00    0.00     266/326         bool std::operator!=<char, std::char_traits<char>, std::allocator<char> >(std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, char const*) [70]
+                0.00    0.00     133/333         parseTreeEntry::parseTreeEntry() [69]
+                0.00    0.00     133/266         parseTreeEntry::level(unsigned int) [72]
+                0.00    0.00     133/266         parseTreeEntry::value(int) [73]
+                0.00    0.00     133/266         parseTreeEntry::type(nodeType) [71]
+                0.00    0.00     133/133         interpret::appendToProgram(parseTreeEntry const&) [83]
+                0.00    0.00     133/427         parseTreeEntry::~parseTreeEntry() [65]
+-----------------------------------------------
+                0.00    0.00     133/133         parseTreeEntry::operator=(parseTreeEntry const&) [82]
+[85]     0.0    0.00    0.00     133         parseTreeEntry::position() const [85]
+-----------------------------------------------
+                0.00    0.00      96/96          interpret::run() [2]
+[86]     0.0    0.00    0.00      96         interpret::_returnSymbolToAvailablePool(unsigned int) [86]
+                0.00    0.00      96/32118       symbolTableEntry::type() const [39]
+                0.00    0.00      96/440         symbolTableEntry::type(nodeType) [64]
+-----------------------------------------------
+                0.00    0.00      94/94          interpret::_updateProgramIndex(nodeType, int) [88]
+[87]     0.0    0.00    0.00      94         parseTreeEntry::parseTreeEntry(nodeType, int, unsigned int) [87]
+                0.00    0.00      94/728         logc::logc(std::string) [57]
+-----------------------------------------------
+                0.00    0.00      94/94          interpret::run() [2]
+[88]     0.0    0.00    0.00      94         interpret::_updateProgramIndex(nodeType, int) [88]
+                0.00    0.00      94/94          interpret::_currentProgramNodeLevel() const [90]
+                0.00    0.00      94/1900        interpret::_currentProgramNodeValue() const [51]
+                0.00    0.00      94/94          parseTreeEntry::parseTreeEntry(nodeType, int, unsigned int) [87]
+                0.00    0.00      94/94          interpret::_findFirstParseTreeEntry(parseTreeEntry const&, unsigned int) [89]
+                0.00    0.00      94/427         parseTreeEntry::~parseTreeEntry() [65]
+-----------------------------------------------
+                0.00    0.00      94/94          interpret::_updateProgramIndex(nodeType, int) [88]
+[89]     0.0    0.00    0.00      94         interpret::_findFirstParseTreeEntry(parseTreeEntry const&, unsigned int) [89]
+                0.00    0.00   13972/24359       parseTreeEntry::type() const [41]
+                0.00    0.00    6986/6986        interpret::_programNodeType(unsigned int) const [42]
+                0.00    0.00     374/734         parseTreeEntry::level() const [56]
+                0.00    0.00     374/2540        parseTreeEntry::value() const [47]
+-----------------------------------------------
+                0.00    0.00      94/94          interpret::_updateProgramIndex(nodeType, int) [88]
+[90]     0.0    0.00    0.00      94         interpret::_currentProgramNodeLevel() const [90]
+                0.00    0.00      94/734         parseTreeEntry::level() const [56]
+-----------------------------------------------
+                0.00    0.00      60/60          interpret::interpret() [9]
+[91]     0.0    0.00    0.00      60         symbolTableEntry::symbolTableEntry() [91]
+                0.00    0.00      60/728         logc::logc(std::string) [57]
+-----------------------------------------------
+                0.00    0.00      30/30          interpret::_loadSymbolTableEntry(std::string const&) [94]
+[92]     0.0    0.00    0.00      30         symbolTableEntry::symbolTableEntry(nodeType, int, int) [92]
+                0.00    0.00      30/728         logc::logc(std::string) [57]
+-----------------------------------------------
+                0.00    0.00      30/30          interpret::_loadSymbolTableEntry(std::string const&) [94]
+[93]     0.0    0.00    0.00      30         interpret::appendToSymbolTable(symbolTableEntry const&) [93]
+                0.00    0.00      30/235         symbolTableEntry::operator=(symbolTableEntry const&) [75]
+-----------------------------------------------
+                0.00    0.00      30/30          interpret::_loadSymbolTable(std::string const&) [30]
+[94]     0.0    0.00    0.00      30         interpret::_loadSymbolTableEntry(std::string const&) [94]
+                0.00    0.00      60/326         bool std::operator!=<char, std::char_traits<char>, std::allocator<char> >(std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, char const*) [70]
+                0.00    0.00      30/30          symbolTableEntry::symbolTableEntry(nodeType, int, int) [92]
+                0.00    0.00      30/30          interpret::appendToSymbolTable(symbolTableEntry const&) [93]
+                0.00    0.00      30/481         symbolTableEntry::~symbolTableEntry() [62]
+-----------------------------------------------
+                0.00    0.00      25/25          interpret::run() [2]
+[95]     0.0    0.00    0.00      25         tinyQueue<int>::peekAtIndex(unsigned int) const [95]
+-----------------------------------------------
+                0.00    0.00       1/10          global destructors keyed to _ZN9interpretC2Ev [145]
+                0.00    0.00       1/10          global constructors keyed to _ZN9interpretC2Ev [152]
+                0.00    0.00       8/10          interpret::run() [2]
+[96]     0.0    0.00    0.00      10         interpret::_cleanUpEvaluationStack(unsigned int) [96]
+                0.00    0.00      16/690         interpret::_evalValuePeek() const [59]
+                0.00    0.00      16/440         symbolTableEntry::type(nodeType) [64]
+                0.00    0.00      16/1909        tinyQueue<int>::pop_front() [50]
+                0.00    0.00       8/8           interpret::_cleanUpSymbolTable() [97]
+-----------------------------------------------
+                0.00    0.00       8/8           interpret::_cleanUpEvaluationStack(unsigned int) [96]
+[97]     0.0    0.00    0.00       8         interpret::_cleanUpSymbolTable() [97]
+                0.00    0.00      26/404         interpret::_getLastSymbolTableIndex() [66]
+                0.00    0.00      26/32118       symbolTableEntry::type() const [39]
+-----------------------------------------------
+                0.00    0.00       8/8           interpret::run() [2]
+[98]     0.0    0.00    0.00       8         tinyQueue<int>::stackFrameIndex(unsigned int) [98]
+-----------------------------------------------
+                0.00    0.00       6/6           accel::_scaleYAxisToFrequency() [20]
+[99]     0.0    0.00    0.00       6         accel::fmin() const [99]
+-----------------------------------------------
+                0.00    0.00       1/3           interpret::run() [2]
+                0.00    0.00       1/3           global destructors keyed to _ZN2ioC2Ev [141]
+                0.00    0.00       1/3           global constructors keyed to _ZN2ioC2Ev [148]
+[100]    0.0    0.00    0.00       3         io::getTemperature() [100]
+-----------------------------------------------
+                0.00    0.00       3/3           accel::_accelStepMicroSec() const [102]
+[101]    0.0    0.00    0.00       3         accel::accelMicroSec() const [101]
+-----------------------------------------------
+                0.00    0.00       3/3           accel::_scaleYAxisToFrequency() [20]
+[102]    0.0    0.00    0.00       3         accel::_accelStepMicroSec() const [102]
+                0.00    0.00       3/3           accel::accelMicroSec() const [101]
+-----------------------------------------------
+                0.00    0.00       3/3           accel::_scaleYAxisToFrequency() [20]
+[103]    0.0    0.00    0.00       3         accel::fmax() const [103]
+-----------------------------------------------
+                0.00    0.00       1/2           global destructors keyed to _ZN4logc3_osE [142]
+                0.00    0.00       1/2           global constructors keyed to _ZN4logc3_osE [149]
+[104]    0.0    0.00    0.00       2         io::io() [104]
+-----------------------------------------------
+                0.00    0.00       2/2           stepper::~stepper() [114]
+[105]    0.0    0.00    0.00       2         accel::~accel() [105]
+                0.00    0.00       2/914         logc::~logc() [55]
+-----------------------------------------------
+                0.00    0.00       1/2           global destructors keyed to _ZN5accelC2Ev [143]
+                0.00    0.00       1/2           global constructors keyed to _ZN5accelC2Ev [150]
+[106]    0.0    0.00    0.00       2         accel::operator=(accel const&) [106]
+-----------------------------------------------
+                0.00    0.00       1/2           global destructors keyed to _ZN7stepperC2Ev [144]
+                0.00    0.00       1/2           global constructors keyed to _ZN7stepperC2Ev [151]
+[107]    0.0    0.00    0.00       2         stepper::microstepSet(microsteps) [107]
+-----------------------------------------------
+                0.00    0.00       1/2           global destructors keyed to _ZN14parseTreeEntryC2Ev [139]
+                0.00    0.00       1/2           global constructors keyed to _ZN14parseTreeEntryC2Ev [146]
+[108]    0.0    0.00    0.00       2         parseTreeEntry::operator==(parseTreeEntry&) const [108]
+-----------------------------------------------
+                0.00    0.00       1/2           global destructors keyed to _ZN16symbolTableEntryC2Ev [140]
+                0.00    0.00       1/2           global constructors keyed to _ZN16symbolTableEntryC2Ev [147]
+[109]    0.0    0.00    0.00       2         symbolTableEntry::operator==(symbolTableEntry&) const [109]
+-----------------------------------------------
+                0.00    0.00       1/1           interpret::run() [2]
+[110]    0.0    0.00    0.00       1         io::init() [110]
+-----------------------------------------------
+                0.00    0.00       1/1           interpret::run() [2]
+[111]    0.0    0.00    0.00       1         io::setOutput(unsigned int) [111]
+-----------------------------------------------
+                0.00    0.00       1/1           interpret::interpret() [9]
+[112]    0.0    0.00    0.00       1         io::io() [112]
+                0.00    0.00       1/728         logc::logc(std::string) [57]
+-----------------------------------------------
+                0.00    0.00       1/1           interpret::~interpret() [32]
+[113]    0.0    0.00    0.00       1         io::~io() [113]
+                0.00    0.00       1/914         logc::~logc() [55]
+-----------------------------------------------
+                0.00    0.00       1/1           interpret::~interpret() [32]
+[114]    0.0    0.00    0.00       1         stepper::~stepper() [114]
+                0.00    0.00       2/2           accel::~accel() [105]
+                0.00    0.00       1/914         logc::~logc() [55]
+-----------------------------------------------
+                0.00    0.00       1/1           interpret::run() [2]
+[115]    0.0    0.00    0.00       1         interpret::_resetSymbolTableTemporaryBoundary() [115]
+-----------------------------------------------
+                0.00    0.00       1/1           interpret::_loadSymbolTable(std::string const&) [30]
+[116]    0.0    0.00    0.00       1         interpret::setLowWaterMarkForTemporarySymbolSearch() [116]
+-----------------------------------------------
+                0.00    0.00       1/1           interpret::run() [2]
+[117]    0.0    0.00    0.00       1         io::getInput() const [117]
 -----------------------------------------------
 
  This table describes the call tree of the program, and was sorted by
@@ -941,42 +928,42 @@ index % time    self  children    called     name
 
 Index by function name
 
-  [51] parseTreeEntry::type(nodeType) [83] accel::_dumpCurveClockTicks() [118] interpret::interpret()
-  [52] parseTreeEntry::level(unsigned int) [84] accel::_dumpLinearInterpolate() [119] interpret::~interpret()
-  [53] parseTreeEntry::value(int) [85] accel::_scaleYAxisToFrequency() [39] tinyQueue<int>::push_front(int)
-  [61] parseTreeEntry::position(nodePosition) [86] accel::_scaleYAxisToClockTicks() [78] tinyQueue<int>::stackFrameIndex(unsigned int)
-  [62] parseTreeEntry::dumpEntry() [107] accel::RPMx10k(unsigned int, unsigned int) [5] tinyQueue<int>::pop_front()
-  [68] parseTreeEntry::parseTreeEntry(nodeType, int, unsigned int) [87] accel::frequency(unsigned int, unsigned int) [34] tinyQueue<int>::tinyQueue()
-  [49] parseTreeEntry::parseTreeEntry() [93] accel::accel() [35] tinyQueue<int>::~tinyQueue()
-  [45] parseTreeEntry::~parseTreeEntry() [94] accel::~accel() [23] parseTreeEntry::type() const
-  [63] parseTreeEntry::operator=(parseTreeEntry const&) [95] accel::operator=(accel const&) [37] parseTreeEntry::level() const
-  [44] symbolTableEntry::type(nodeType) [96] stepper::microstepSet(microsteps) [29] parseTreeEntry::value() const
-  [48] symbolTableEntry::value(int) [108] stepper::RPM(unsigned int, unsigned int) [66] parseTreeEntry::position() const
-  [54] symbolTableEntry::fcnLink(int) [109] stepper::RPMx10k(unsigned int, unsigned int) [97] parseTreeEntry::operator==(parseTreeEntry&) const
-   [3] symbolTableEntry::dumpEntry() [110] stepper::stepper() [21] symbolTableEntry::type() const
-  [56] symbolTableEntry::symbolTableEntry(nodeType, int) [111] stepper::~stepper() [20] symbolTableEntry::value() const
-  [73] symbolTableEntry::symbolTableEntry(nodeType, int, int) [8] interpret::_evalValue() [22] symbolTableEntry::fcnLink() const
-  [59] symbolTableEntry::symbolTableEntry(symbolTableEntry const&) [112] interpret::dumpProgram() [98] symbolTableEntry::operator==(symbolTableEntry&) const
-  [72] symbolTableEntry::symbolTableEntry() [64] interpret::appendToProgram(parseTreeEntry const&) [120] io::getInput() const
-  [42] symbolTableEntry::~symbolTableEntry() [6] interpret::dumpSymbolTable() [88] accel::accelMicroSec() const
-  [55] symbolTableEntry::operator=(symbolTableEntry const&) [43] interpret::symbolFromIndex(int) [89] accel::_accelStepMicroSec() const
-  [81] io::getTemperature()  [113] interpret::_loadSymbolTable(std::string const&) [90] accel::fmax() const
-  [99] io::init()              [9] interpret::evaluateOperator(unsigned int) [80] accel::fmin() const
- [100] io::setOutput(unsigned int) [77] interpret::_cleanUpSymbolTable() [40] interpret::_evalValuePeek() const
- [101] io::io()               [65] interpret::_loadParseTreeEntry(std::string const&) [24] interpret::_programNodeType(unsigned int) const
-  [91] io::io()               [69] interpret::_updateProgramIndex(nodeType, int) [31] interpret::_currentProgramNodeType() const
- [102] io::~io()              [74] interpret::appendToSymbolTable(symbolTableEntry const&) [71] interpret::_currentProgramNodeLevel() const
- [103] led::On()               [7] interpret::dumpEvaluationStack() [32] interpret::_currentProgramNodeValue() const
- [104] led::Off()             [75] interpret::_loadSymbolTableEntry(std::string const&) [47] interpret::getLowWaterMarkForTemporarySymbolSearch() const
- [105] led::led(bool)         [41] interpret::symbolTableIndexMorph(int) [25] tinyQueue<int>::spaceAvail() const
- [106] led::~led()            [10] interpret::_cleanUpEvaluationStack(unsigned int) [76] tinyQueue<int>::peekAtIndex(unsigned int) const
-  [14] logc::oss()            [70] interpret::_findFirstParseTreeEntry(parseTreeEntry const&, unsigned int) [30] tinyQueue<int>::stackFrameIndex() const
-  [15] logc::dump(std::string const&, bool, bool) [46] interpret::_getLastSymbolTableIndex() [26] tinyQueue<int>::size() const
-  [16] logc::dump()           [67] interpret::_returnSymbolToAvailablePool(unsigned int) [27] tinyQueue<int>::empty() const
-  [17] logc::ossClear()      [114] interpret::_resetSymbolTableTemporaryBoundary() [28] tinyQueue<int>::front() const
-  [60] logc::logc(logc const&) [57] interpret::_findFirstAvailableNodeInSymbolTable() [33] bool std::operator==<char, std::char_traits<char>, std::allocator<char> >(std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, char const*)
-  [38] logc::logc(std::string) [58] interpret::_pushTemporarySymbolOnEvaluationStack(unsigned int) [50] bool std::operator!=<char, std::char_traits<char>, std::allocator<char> >(std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, char const*)
-  [36] logc::~logc()         [115] interpret::setLowWaterMarkForTemporarySymbolSearch() [18] std::basic_string<char, std::char_traits<char>, std::allocator<char> > std::operator+<char, std::char_traits<char>, std::allocator<char> >(std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, char const*)
-  [92] accel::_RPMx10ktoFreq(unsigned int) [1] interpret::run() [19] std::basic_string<char, std::char_traits<char>, std::allocator<char> > std::operator+<char, std::char_traits<char>, std::allocator<char> >(std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)
-  [79] accel::_dumpCurveFreq() [116] interpret::load()     [4] _fu1___ZSt4cout
-  [82] accel::_initUnitCurve(int) [117] interpret::_loadTree(std::string const&)
+  [71] parseTreeEntry::type(nodeType) [22] accel::_dumpCurveClockTicks() [9] interpret::interpret()
+  [72] parseTreeEntry::level(unsigned int) [23] accel::_dumpLinearInterpolate() [32] interpret::~interpret()
+  [73] parseTreeEntry::value(int) [20] accel::_scaleYAxisToFrequency() [58] tinyQueue<int>::push_front(int)
+  [81] parseTreeEntry::position(nodePosition) [5] accel::_scaleYAxisToClockTicks() [98] tinyQueue<int>::stackFrameIndex(unsigned int)
+  [18] parseTreeEntry::dumpEntry() [12] accel::RPMx10k(unsigned int, unsigned int) [50] tinyQueue<int>::pop_front()
+  [87] parseTreeEntry::parseTreeEntry(nodeType, int, unsigned int) [4] accel::frequency(unsigned int, unsigned int) [53] tinyQueue<int>::tinyQueue()
+  [69] parseTreeEntry::parseTreeEntry() [10] accel::accel() [54] tinyQueue<int>::~tinyQueue()
+  [65] parseTreeEntry::~parseTreeEntry() [105] accel::~accel() [41] parseTreeEntry::type() const
+  [82] parseTreeEntry::operator=(parseTreeEntry const&) [106] accel::operator=(accel const&) [56] parseTreeEntry::level() const
+  [64] symbolTableEntry::type(nodeType) [107] stepper::microstepSet(microsteps) [47] parseTreeEntry::value() const
+  [68] symbolTableEntry::value(int) [13] stepper::RPM(unsigned int, unsigned int) [85] parseTreeEntry::position() const
+  [74] symbolTableEntry::fcnLink(int) [14] stepper::RPMx10k(unsigned int, unsigned int) [108] parseTreeEntry::operator==(parseTreeEntry&) const
+   [8] symbolTableEntry::dumpEntry() [11] stepper::stepper() [39] symbolTableEntry::type() const
+  [76] symbolTableEntry::symbolTableEntry(nodeType, int) [114] stepper::~stepper() [38] symbolTableEntry::value() const
+  [92] symbolTableEntry::symbolTableEntry(nodeType, int, int) [60] interpret::_evalValue() [40] symbolTableEntry::fcnLink() const
+  [79] symbolTableEntry::symbolTableEntry(symbolTableEntry const&) [17] interpret::dumpProgram() [109] symbolTableEntry::operator==(symbolTableEntry&) const
+  [91] symbolTableEntry::symbolTableEntry() [83] interpret::appendToProgram(parseTreeEntry const&) [117] io::getInput() const
+  [62] symbolTableEntry::~symbolTableEntry() [3] interpret::dumpSymbolTable() [101] accel::accelMicroSec() const
+  [75] symbolTableEntry::operator=(symbolTableEntry const&) [63] interpret::symbolFromIndex(int) [102] accel::_accelStepMicroSec() const
+ [100] io::getTemperature()   [30] interpret::_loadSymbolTable(std::string const&) [103] accel::fmax() const
+ [110] io::init()             [16] interpret::evaluateOperator(unsigned int) [99] accel::fmin() const
+ [111] io::setOutput(unsigned int) [97] interpret::_cleanUpSymbolTable() [59] interpret::_evalValuePeek() const
+ [112] io::io()               [84] interpret::_loadParseTreeEntry(std::string const&) [42] interpret::_programNodeType(unsigned int) const
+ [104] io::io()               [88] interpret::_updateProgramIndex(nodeType, int) [49] interpret::_currentProgramNodeType() const
+ [113] io::~io()              [93] interpret::appendToSymbolTable(symbolTableEntry const&) [90] interpret::_currentProgramNodeLevel() const
+  [26] led::On()              [15] interpret::dumpEvaluationStack() [51] interpret::_currentProgramNodeValue() const
+  [27] led::Off()             [94] interpret::_loadSymbolTableEntry(std::string const&) [67] interpret::getLowWaterMarkForTemporarySymbolSearch() const
+  [28] led::led(bool)         [61] interpret::symbolTableIndexMorph(int) [43] tinyQueue<int>::spaceAvail() const
+  [29] led::~led()            [96] interpret::_cleanUpEvaluationStack(unsigned int) [95] tinyQueue<int>::peekAtIndex(unsigned int) const
+  [34] logc::oss()            [89] interpret::_findFirstParseTreeEntry(parseTreeEntry const&, unsigned int) [48] tinyQueue<int>::stackFrameIndex() const
+   [6] logc::dump(std::string const&, bool, bool) [66] interpret::_getLastSymbolTableIndex() [44] tinyQueue<int>::size() const
+   [7] logc::dump()           [86] interpret::_returnSymbolToAvailablePool(unsigned int) [45] tinyQueue<int>::empty() const
+  [35] logc::ossClear()      [115] interpret::_resetSymbolTableTemporaryBoundary() [46] tinyQueue<int>::front() const
+  [80] logc::logc(logc const&) [77] interpret::_findFirstAvailableNodeInSymbolTable() [52] bool std::operator==<char, std::char_traits<char>, std::allocator<char> >(std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, char const*)
+  [57] logc::logc(std::string) [78] interpret::_pushTemporarySymbolOnEvaluationStack(unsigned int) [70] bool std::operator!=<char, std::char_traits<char>, std::allocator<char> >(std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, char const*)
+  [55] logc::~logc()         [116] interpret::setLowWaterMarkForTemporarySymbolSearch() [36] std::basic_string<char, std::char_traits<char>, std::allocator<char> > std::operator+<char, std::char_traits<char>, std::allocator<char> >(std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, char const*)
+  [24] accel::_RPMx10ktoFreq(unsigned int) [2] interpret::run() [37] std::basic_string<char, std::char_traits<char>, std::allocator<char> > std::operator+<char, std::char_traits<char>, std::allocator<char> >(std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)
+  [19] accel::_dumpCurveFreq() [25] interpret::load()
+  [21] accel::_initUnitCurve(int) [31] interpret::_loadTree(std::string const&)
