@@ -503,7 +503,7 @@ void interpret::run(void) {
     int localSymbolTableIndex;
     _io.init();
 #if CYGWIN
-#define CYGWIN_MAX_INFINITE_LOOP    (1000)
+#define CYGWIN_MAX_INFINITE_LOOP    (10000)
     static int infiniteLoopCounter = 0;
 #endif /* CYGWIN */    
     for (_programIndex = 0; _program[_programIndex].type() != nodeInvalid; ++_programIndex) {
@@ -948,6 +948,8 @@ int interpret::symbolTableIndexMorph(const int symbolTableIndex) {
 void interpret::evaluateOperator(unsigned int op) {
     int rightHandSymbolTableIndex = _evalValue(); // returns symbol table index
 #if CYGWIN
+    //static int count = 0;
+    //oss() << "interpret::evaluateOperator() count:" << ++count << " ";
     oss() << "rightHandSymbolTableIndex:" << rightHandSymbolTableIndex << " ";
 #endif /* CYGWIN */
     // rhs -> right-hand symbol; lhs -> left-hand symbol
