@@ -504,7 +504,7 @@ void interpret::run(void) {
     int localSymbolTableIndex;
     _io.init();
 #if CYGWIN
-#define CYGWIN_MAX_INFINITE_LOOP    (5000)
+#define CYGWIN_MAX_INFINITE_LOOP    (1000)
     static int infiniteLoopCounter = 0;
 #endif /* CYGWIN */    
     for (_programIndex = 0; _program[_programIndex].type() != nodeInvalid; ++_programIndex) {
@@ -1158,10 +1158,6 @@ void interpret::evaluateOperator(unsigned int op) {
 }
 
 void interpret::_pushTemporarySymbolOnEvaluationStack(unsigned int value) {
-#if CYGWIN
-    static float microSecCounter = 0.0;
-    profiler p(microSecCounter);
-#endif // CYGWIN
     static symbolTableEntry temporarySymbol(nodeTemporary, 0);
     temporarySymbol.value(value);   
 #if 1
@@ -1179,6 +1175,10 @@ void interpret::_pushTemporarySymbolOnEvaluationStack(unsigned int value) {
 }
 
 int interpret::_findFirstAvailableNodeInSymbolTable(void) {
+#if CYGWIN
+    static float microSecCounter = 0.0;
+    profiler p(microSecCounter);
+#endif // CYGWIN
     if (_symbolTableIndex == 0) {
         return NOT_FOUND;
     }
@@ -1187,9 +1187,8 @@ int interpret::_findFirstAvailableNodeInSymbolTable(void) {
 #if 0 //CYGWIN
         oss() << endl << "index:" << index;
         dump();
-#endif /* CYGWIN */    
-        symbolTableEntry ste = _symbolTable[index];
-        if (ste.type() == nodeAvailable) {
+#endif /* CYGWIN */
+        if (_symbolTable[index].type() == nodeAvailable) {
             return index;
         }
     }
