@@ -396,7 +396,11 @@ SYMBOLTABLEENTRY 28 nodeConst  4000 -1
 SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 INTERPRETER 
 Run programIndex=3 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:1 2(symbol index) = 0
+PROFILER rightHandSymbolTableIndex:1 
+profiler() usec: 0.00307959
+PROFILER 2(symbol index) = 0
+profiler() usec: 0.00554326
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -508,7 +512,11 @@ SYMBOLTABLEENTRY 28 nodeConst  4000 -1
 SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 INTERPRETER 
 Run programIndex=6 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:3 4(symbol index) = 1
+PROFILER rightHandSymbolTableIndex:3 
+profiler() usec: 0.00923877
+PROFILER 4(symbol index) = 1
+profiler() usec: 0.0123184
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -620,7 +628,11 @@ SYMBOLTABLEENTRY 28 nodeConst  4000 -1
 SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 INTERPRETER 
 Run programIndex=9 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:1 5(symbol index) = 0
+PROFILER rightHandSymbolTableIndex:1 
+profiler() usec: 0.0153979
+PROFILER 5(symbol index) = 0
+profiler() usec: 0.0184775
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -732,7 +744,11 @@ SYMBOLTABLEENTRY 28 nodeConst  4000 -1
 SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 INTERPRETER 
 Run programIndex=12 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:6 7(symbol index) = 15
+PROFILER rightHandSymbolTableIndex:6 
+profiler() usec: 0.0215571
+PROFILER 7(symbol index) = 15
+profiler() usec: 0.0246367
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -844,7 +860,11 @@ SYMBOLTABLEENTRY 28 nodeConst  4000 -1
 SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 INTERPRETER 
 Run programIndex=15 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:8 9(symbol index) = 4
+PROFILER rightHandSymbolTableIndex:8 
+profiler() usec: 0.0283322
+PROFILER 9(symbol index) = 4
+profiler() usec: 0.0320277
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -956,7 +976,11 @@ SYMBOLTABLEENTRY 28 nodeConst  4000 -1
 SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 INTERPRETER 
 Run programIndex=18 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:1 10(symbol index) = 0
+PROFILER rightHandSymbolTableIndex:1 
+profiler() usec: 0.0351073
+PROFILER 10(symbol index) = 0
+profiler() usec: 0.0388028
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -1068,7 +1092,11 @@ SYMBOLTABLEENTRY 28 nodeConst  4000 -1
 SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 INTERPRETER 
 Run programIndex=21 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:11 12(symbol index) = 1000
+PROFILER rightHandSymbolTableIndex:11 
+profiler() usec: 0.0424983
+PROFILER 12(symbol index) = 1000
+profiler() usec: 0.0455779
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -1497,7 +1525,9 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 INTERPRETER 
 Run programIndex=30 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:16 
-profiler() usec: 0.00307959
+profiler() usec: 0.0486575
+PROFILER 
+profiler() usec: 0.0517371
 INTERPRETER 0 < 142
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -2253,7 +2283,9 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 INTERPRETER 
 Run programIndex=49 programNodeType:2 programNodeValue:292
 PROFILER rightHandSymbolTableIndex:22 
-profiler() usec: 0.00615918
+profiler() usec: 0.0548167
+PROFILER 
+profiler() usec: 0.0578963
 INTERPRETER 0 & 2
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=0 stackFrameIndex():254
@@ -2967,7 +2999,9 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.00985469
+profiler() usec: 0.0609759
+PROFILER 
+profiler() usec: 0.0634395
 INTERPRETER 0 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -3162,7 +3196,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.0135502
+profiler() usec: 0.0665191
+PROFILER 
+profiler() usec: 0.0695987
 INTERPRETER 0 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():253
@@ -3203,7 +3239,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  1 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 1
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 0.0726783
+PROFILER 10(symbol index) = 1
+profiler() usec: 0.0757579
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -3356,7 +3396,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.0178616
+profiler() usec: 0.0794534
+PROFILER 
+profiler() usec: 0.0819171
 INTERPRETER 1 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -3551,7 +3593,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.0215571
+profiler() usec: 0.0856126
+PROFILER 
+profiler() usec: 0.0880763
 INTERPRETER 1 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=2 stackFrameIndex():253
@@ -3592,7 +3636,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  2 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 2
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 0.0911559
+PROFILER 10(symbol index) = 2
+profiler() usec: 0.0942355
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -3745,7 +3793,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  2 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.0252526
+profiler() usec: 0.0973151
+PROFILER 
+profiler() usec: 0.0997787
 INTERPRETER 2 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -3940,7 +3990,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.0295641
+profiler() usec: 0.103474
+PROFILER 
+profiler() usec: 0.105938
 INTERPRETER 2 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=3 stackFrameIndex():253
@@ -3981,7 +4033,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  3 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 3
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 0.109017
+PROFILER 10(symbol index) = 3
+profiler() usec: 0.112097
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -4134,7 +4190,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  3 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.0332596
+profiler() usec: 0.115177
+PROFILER 
+profiler() usec: 0.118256
 INTERPRETER 3 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -4329,7 +4387,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.037571
+profiler() usec: 0.121336
+PROFILER 
+profiler() usec: 0.124415
 INTERPRETER 3 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=4 stackFrameIndex():253
@@ -4370,7 +4430,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  4 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 4
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 0.128111
+PROFILER 10(symbol index) = 4
+profiler() usec: 0.131191
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -4523,7 +4587,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  4 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.0412665
+profiler() usec: 0.13427
+PROFILER 
+profiler() usec: 0.136734
 INTERPRETER 4 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -4718,7 +4784,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.044962
+profiler() usec: 0.139813
+PROFILER 
+profiler() usec: 0.142893
 INTERPRETER 4 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=5 stackFrameIndex():253
@@ -4759,7 +4827,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  5 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 5
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 0.146589
+PROFILER 10(symbol index) = 5
+profiler() usec: 0.149668
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -4912,7 +4984,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  5 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.0486575
+profiler() usec: 0.153364
+PROFILER 
+profiler() usec: 0.156443
 INTERPRETER 5 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -5107,7 +5181,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.0517371
+profiler() usec: 0.160139
+PROFILER 
+profiler() usec: 0.162602
 INTERPRETER 5 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=6 stackFrameIndex():253
@@ -5148,7 +5224,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  6 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 6
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 0.165682
+PROFILER 10(symbol index) = 6
+profiler() usec: 0.168762
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -5301,7 +5381,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  6 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.0542008
+profiler() usec: 0.171841
+PROFILER 
+profiler() usec: 0.174305
 INTERPRETER 6 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -5496,7 +5578,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.0572804
+profiler() usec: 0.177384
+PROFILER 
+profiler() usec: 0.180464
 INTERPRETER 6 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=7 stackFrameIndex():253
@@ -5537,7 +5621,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  7 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 7
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 0.18416
+PROFILER 10(symbol index) = 7
+profiler() usec: 0.187239
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -5690,7 +5778,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  7 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.059744
+profiler() usec: 0.190319
+PROFILER 
+profiler() usec: 0.194014
 INTERPRETER 7 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -5885,7 +5975,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.0622077
+profiler() usec: 0.19771
+PROFILER 
+profiler() usec: 0.200789
 INTERPRETER 7 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=8 stackFrameIndex():253
@@ -5926,7 +6018,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  8 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 8
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 0.204485
+PROFILER 10(symbol index) = 8
+profiler() usec: 0.207564
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -6079,7 +6175,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  8 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.0646714
+profiler() usec: 0.210644
+PROFILER 
+profiler() usec: 0.213108
 INTERPRETER 8 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -6274,7 +6372,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.067751
+profiler() usec: 0.217419
+PROFILER 
+profiler() usec: 0.220499
 INTERPRETER 8 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=9 stackFrameIndex():253
@@ -6315,7 +6415,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  9 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 9
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 0.224194
+PROFILER 10(symbol index) = 9
+profiler() usec: 0.227274
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -6468,7 +6572,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  9 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.0702146
+profiler() usec: 0.230353
+PROFILER 
+profiler() usec: 0.232817
 INTERPRETER 9 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -6663,7 +6769,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.0726783
+profiler() usec: 0.236513
+PROFILER 
+profiler() usec: 0.238976
 INTERPRETER 9 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=10 stackFrameIndex():253
@@ -6704,7 +6812,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  10 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 10
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 0.242672
+PROFILER 10(symbol index) = 10
+profiler() usec: 0.245751
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -6857,7 +6969,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  10 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.075142
+profiler() usec: 0.249447
+PROFILER 
+profiler() usec: 0.25191
 INTERPRETER 10 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -7052,7 +7166,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.0782216
+profiler() usec: 0.25499
+PROFILER 
+profiler() usec: 0.25807
 INTERPRETER 10 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=11 stackFrameIndex():253
@@ -7093,7 +7209,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  11 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 11
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 0.261149
+PROFILER 10(symbol index) = 11
+profiler() usec: 0.264229
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -7246,7 +7366,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  11 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.0806852
+profiler() usec: 0.267308
+PROFILER 
+profiler() usec: 0.269772
 INTERPRETER 11 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -7441,7 +7563,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.0837648
+profiler() usec: 0.272852
+PROFILER 
+profiler() usec: 0.275315
 INTERPRETER 11 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=12 stackFrameIndex():253
@@ -7482,7 +7606,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  12 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 12
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 0.277779
+PROFILER 10(symbol index) = 12
+profiler() usec: 0.280243
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -7635,7 +7763,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  12 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.0868444
+profiler() usec: 0.282706
+PROFILER 
+profiler() usec: 0.28517
 INTERPRETER 12 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -7830,7 +7960,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.0893081
+profiler() usec: 0.287634
+PROFILER 
+profiler() usec: 0.289481
 INTERPRETER 12 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=13 stackFrameIndex():253
@@ -7871,7 +8003,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  13 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 13
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 0.291945
+PROFILER 10(symbol index) = 13
+profiler() usec: 0.293793
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -8024,7 +8160,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  13 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.0923877
+profiler() usec: 0.296257
+PROFILER 
+profiler() usec: 0.298104
 INTERPRETER 13 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -8219,7 +8357,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.0954673
+profiler() usec: 0.300568
+PROFILER 
+profiler() usec: 0.302416
 INTERPRETER 13 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=14 stackFrameIndex():253
@@ -8260,7 +8400,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  14 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 14
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 0.304263
+PROFILER 10(symbol index) = 14
+profiler() usec: 0.306111
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -8413,7 +8557,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  14 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.0979309
+profiler() usec: 0.307959
+PROFILER 
+profiler() usec: 0.310423
 INTERPRETER 14 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -8608,7 +8754,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.100395
+profiler() usec: 0.312886
+PROFILER 
+profiler() usec: 0.31535
 INTERPRETER 14 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=15 stackFrameIndex():253
@@ -8649,7 +8797,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  15 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 15
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 0.317814
+PROFILER 10(symbol index) = 15
+profiler() usec: 0.319661
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -8802,7 +8954,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  15 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.102858
+profiler() usec: 0.322125
+PROFILER 
+profiler() usec: 0.323973
 INTERPRETER 15 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -8997,7 +9151,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.105938
+profiler() usec: 0.326436
+PROFILER 
+profiler() usec: 0.328284
 INTERPRETER 15 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=16 stackFrameIndex():253
@@ -9038,7 +9194,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  16 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 16
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 0.330748
+PROFILER 10(symbol index) = 16
+profiler() usec: 0.333212
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -9191,7 +9351,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  16 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.108402
+profiler() usec: 0.335675
+PROFILER 
+profiler() usec: 0.338139
 INTERPRETER 16 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -9386,7 +9548,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.110865
+profiler() usec: 0.341218
+PROFILER 
+profiler() usec: 0.343682
 INTERPRETER 16 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=17 stackFrameIndex():253
@@ -9427,7 +9591,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  17 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 17
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 0.346762
+PROFILER 10(symbol index) = 17
+profiler() usec: 0.349841
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -9580,7 +9748,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  17 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.113329
+profiler() usec: 0.352921
+PROFILER 
+profiler() usec: 0.356
 INTERPRETER 17 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -9775,7 +9945,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.115793
+profiler() usec: 0.358464
+PROFILER 
+profiler() usec: 0.360928
 INTERPRETER 17 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=18 stackFrameIndex():253
@@ -9816,7 +9988,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  18 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 18
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 0.363391
+PROFILER 10(symbol index) = 18
+profiler() usec: 0.365855
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -9969,7 +10145,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  18 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.118256
+profiler() usec: 0.367703
+PROFILER 
+profiler() usec: 0.370167
 INTERPRETER 18 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -10164,7 +10342,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.121952
+profiler() usec: 0.37263
+PROFILER 
+profiler() usec: 0.375094
 INTERPRETER 18 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=19 stackFrameIndex():253
@@ -10205,7 +10385,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  19 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 19
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 0.377558
+PROFILER 10(symbol index) = 19
+profiler() usec: 0.379405
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -10358,7 +10542,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  19 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.125031
+profiler() usec: 0.381869
+PROFILER 
+profiler() usec: 0.384333
 INTERPRETER 19 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -10553,7 +10739,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.127495
+profiler() usec: 0.386796
+PROFILER 
+profiler() usec: 0.38926
 INTERPRETER 19 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=20 stackFrameIndex():253
@@ -10594,7 +10782,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  20 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 20
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 0.391724
+PROFILER 10(symbol index) = 20
+profiler() usec: 0.393571
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -10747,7 +10939,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  20 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.130575
+profiler() usec: 0.395419
+PROFILER 
+profiler() usec: 0.397883
 INTERPRETER 20 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -10942,7 +11136,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.133038
+profiler() usec: 0.399731
+PROFILER 
+profiler() usec: 0.402194
 INTERPRETER 20 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=21 stackFrameIndex():253
@@ -10983,7 +11179,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  21 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 21
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 0.404658
+PROFILER 10(symbol index) = 21
+profiler() usec: 0.407122
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -11136,7 +11336,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  21 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.136118
+profiler() usec: 0.408969
+PROFILER 
+profiler() usec: 0.411433
 INTERPRETER 21 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -11331,7 +11533,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.139197
+profiler() usec: 0.413897
+PROFILER 
+profiler() usec: 0.415744
 INTERPRETER 21 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=22 stackFrameIndex():253
@@ -11372,7 +11576,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  22 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 22
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 0.418208
+PROFILER 10(symbol index) = 22
+profiler() usec: 0.420672
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -11525,7 +11733,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  22 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.142277
+profiler() usec: 0.423135
+PROFILER 
+profiler() usec: 0.425599
 INTERPRETER 22 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -11720,7 +11930,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.144741
+profiler() usec: 0.428063
+PROFILER 
+profiler() usec: 0.42991
 INTERPRETER 22 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=23 stackFrameIndex():253
@@ -11761,7 +11973,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  23 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 23
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 0.432374
+PROFILER 10(symbol index) = 23
+profiler() usec: 0.434838
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -11914,7 +12130,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  23 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.147204
+profiler() usec: 0.437301
+PROFILER 
+profiler() usec: 0.439765
 INTERPRETER 23 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -12109,7 +12327,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.149668
+profiler() usec: 0.442229
+PROFILER 
+profiler() usec: 0.444077
 INTERPRETER 23 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=24 stackFrameIndex():253
@@ -12150,7 +12370,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  24 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 24
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 0.44654
+PROFILER 10(symbol index) = 24
+profiler() usec: 0.449004
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -12303,7 +12527,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  24 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.152132
+profiler() usec: 0.450852
+PROFILER 
+profiler() usec: 0.453315
 INTERPRETER 24 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -12498,7 +12724,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.155211
+profiler() usec: 0.455779
+PROFILER 
+profiler() usec: 0.458243
 INTERPRETER 24 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=25 stackFrameIndex():253
@@ -12539,7 +12767,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  25 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 25
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 0.460706
+PROFILER 10(symbol index) = 25
+profiler() usec: 0.462554
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -12692,7 +12924,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  25 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.157675
+profiler() usec: 0.465634
+PROFILER 
+profiler() usec: 0.468097
 INTERPRETER 25 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -12887,7 +13121,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.160755
+profiler() usec: 0.470561
+PROFILER 
+profiler() usec: 0.473025
 INTERPRETER 25 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=26 stackFrameIndex():253
@@ -12928,7 +13164,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  26 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 26
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 0.475488
+PROFILER 10(symbol index) = 26
+profiler() usec: 0.477952
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -13081,7 +13321,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  26 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.163218
+profiler() usec: 0.480416
+PROFILER 
+profiler() usec: 0.482879
 INTERPRETER 26 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -13276,7 +13518,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.166298
+profiler() usec: 0.485343
+PROFILER 
+profiler() usec: 0.487807
 INTERPRETER 26 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=27 stackFrameIndex():253
@@ -13317,7 +13561,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  27 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 27
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 0.49027
+PROFILER 10(symbol index) = 27
+profiler() usec: 0.492118
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -13470,7 +13718,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  27 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.168761
+profiler() usec: 0.494582
+PROFILER 
+profiler() usec: 0.497045
 INTERPRETER 27 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -13665,7 +13915,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.171225
+profiler() usec: 0.499509
+PROFILER 
+profiler() usec: 0.501973
 INTERPRETER 27 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=28 stackFrameIndex():253
@@ -13706,7 +13958,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  28 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 28
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 0.503821
+PROFILER 10(symbol index) = 28
+profiler() usec: 0.506284
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -13859,7 +14115,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  28 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.174305
+profiler() usec: 0.508748
+PROFILER 
+profiler() usec: 0.510596
 INTERPRETER 28 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -14054,7 +14312,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.176768
+profiler() usec: 0.513059
+PROFILER 
+profiler() usec: 0.515523
 INTERPRETER 28 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=29 stackFrameIndex():253
@@ -14095,7 +14355,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  29 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 29
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 0.517371
+PROFILER 10(symbol index) = 29
+profiler() usec: 0.519835
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -14248,7 +14512,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  29 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.179848
+profiler() usec: 0.522298
+PROFILER 
+profiler() usec: 0.524146
 INTERPRETER 29 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -14443,7 +14709,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.182928
+profiler() usec: 0.52661
+PROFILER 
+profiler() usec: 0.529073
 INTERPRETER 29 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=30 stackFrameIndex():253
@@ -14484,7 +14752,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  30 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 30
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 0.530921
+PROFILER 10(symbol index) = 30
+profiler() usec: 0.534001
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -14637,7 +14909,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  30 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.187239
+profiler() usec: 0.53708
+PROFILER 
+profiler() usec: 0.54016
 INTERPRETER 30 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -14832,7 +15106,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.190935
+profiler() usec: 0.543855
+PROFILER 
+profiler() usec: 0.546935
 INTERPRETER 30 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=31 stackFrameIndex():253
@@ -14873,7 +15149,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  31 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 31
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 0.55063
+PROFILER 10(symbol index) = 31
+profiler() usec: 0.55371
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -15026,7 +15306,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  31 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.19463
+profiler() usec: 0.55679
+PROFILER 
+profiler() usec: 0.559253
 INTERPRETER 31 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -15221,7 +15503,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.19771
+profiler() usec: 0.562333
+PROFILER 
+profiler() usec: 0.565413
 INTERPRETER 31 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=32 stackFrameIndex():253
@@ -15262,7 +15546,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  32 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 32
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 0.568492
+PROFILER 10(symbol index) = 32
+profiler() usec: 0.571572
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -15415,7 +15703,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  32 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.202021
+profiler() usec: 0.574651
+PROFILER 
+profiler() usec: 0.577731
 INTERPRETER 32 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -15610,7 +15900,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.205101
+profiler() usec: 0.580195
+PROFILER 
+profiler() usec: 0.582042
 INTERPRETER 32 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=33 stackFrameIndex():253
@@ -15651,7 +15943,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  33 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 33
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 0.584506
+PROFILER 10(symbol index) = 33
+profiler() usec: 0.58697
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -15804,7 +16100,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  33 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.209412
+profiler() usec: 0.589433
+PROFILER 
+profiler() usec: 0.591897
 INTERPRETER 33 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -15999,7 +16297,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.213108
+profiler() usec: 0.594361
+PROFILER 
+profiler() usec: 0.596825
 INTERPRETER 33 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=34 stackFrameIndex():253
@@ -16040,7 +16340,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  34 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 34
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 0.599904
+PROFILER 10(symbol index) = 34
+profiler() usec: 0.601752
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -16193,7 +16497,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  34 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.216187
+profiler() usec: 0.604216
+PROFILER 
+profiler() usec: 0.606679
 INTERPRETER 34 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -16388,7 +16694,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.218651
+profiler() usec: 0.609143
+PROFILER 
+profiler() usec: 0.611607
 INTERPRETER 34 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=35 stackFrameIndex():253
@@ -16429,7 +16737,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  35 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 35
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 0.61407
+PROFILER 10(symbol index) = 35
+profiler() usec: 0.616534
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -16582,7 +16894,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  35 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.221115
+profiler() usec: 0.618998
+PROFILER 
+profiler() usec: 0.621461
 INTERPRETER 35 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -16777,7 +17091,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.224194
+profiler() usec: 0.623925
+PROFILER 
+profiler() usec: 0.626389
 INTERPRETER 35 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=36 stackFrameIndex():253
@@ -16818,7 +17134,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  36 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 36
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 0.628853
+PROFILER 10(symbol index) = 36
+profiler() usec: 0.631316
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -16971,7 +17291,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  36 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.227274
+profiler() usec: 0.63378
+PROFILER 
+profiler() usec: 0.636244
 INTERPRETER 36 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -17166,7 +17488,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.229737
+profiler() usec: 0.638091
+PROFILER 
+profiler() usec: 0.639939
 INTERPRETER 36 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=37 stackFrameIndex():253
@@ -17207,7 +17531,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  37 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 37
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 0.642403
+PROFILER 10(symbol index) = 37
+profiler() usec: 0.644867
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -17360,7 +17688,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  37 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.232817
+profiler() usec: 0.64733
+PROFILER 
+profiler() usec: 0.649178
 INTERPRETER 37 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -17555,7 +17885,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.235897
+profiler() usec: 0.651642
+PROFILER 
+profiler() usec: 0.654105
 INTERPRETER 37 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=38 stackFrameIndex():253
@@ -17596,7 +17928,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  38 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 38
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 0.656569
+PROFILER 10(symbol index) = 38
+profiler() usec: 0.659033
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -17749,7 +18085,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  38 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.238976
+profiler() usec: 0.661496
+PROFILER 
+profiler() usec: 0.66396
 INTERPRETER 38 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -17944,7 +18282,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.242056
+profiler() usec: 0.666424
+PROFILER 
+profiler() usec: 0.668888
 INTERPRETER 38 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=39 stackFrameIndex():253
@@ -17985,7 +18325,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  39 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 39
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 0.671351
+PROFILER 10(symbol index) = 39
+profiler() usec: 0.673815
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -18138,7 +18482,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  39 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.246367
+profiler() usec: 0.676279
+PROFILER 
+profiler() usec: 0.678126
 INTERPRETER 39 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -18333,7 +18679,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.250063
+profiler() usec: 0.679974
+PROFILER 
+profiler() usec: 0.682438
 INTERPRETER 39 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=40 stackFrameIndex():253
@@ -18374,7 +18722,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  40 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 40
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 0.684902
+PROFILER 10(symbol index) = 40
+profiler() usec: 0.686749
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -18527,7 +18879,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  40 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.254374
+profiler() usec: 0.689213
+PROFILER 
+profiler() usec: 0.691677
 INTERPRETER 40 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -18722,7 +19076,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.258685
+profiler() usec: 0.69414
+PROFILER 
+profiler() usec: 0.695988
 INTERPRETER 40 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=41 stackFrameIndex():253
@@ -18763,7 +19119,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  41 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 41
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 0.698452
+PROFILER 10(symbol index) = 41
+profiler() usec: 0.7003
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -18916,7 +19276,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  41 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.262381
+profiler() usec: 0.702763
+PROFILER 
+profiler() usec: 0.705227
 INTERPRETER 41 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -19111,7 +19473,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.265461
+profiler() usec: 0.707075
+PROFILER 
+profiler() usec: 0.709538
 INTERPRETER 41 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=42 stackFrameIndex():253
@@ -19152,7 +19516,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  42 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 42
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 0.712002
+PROFILER 10(symbol index) = 42
+profiler() usec: 0.714466
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -19305,7 +19673,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  42 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.269156
+profiler() usec: 0.716314
+PROFILER 
+profiler() usec: 0.718777
 INTERPRETER 42 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -19500,7 +19870,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.272852
+profiler() usec: 0.721241
+PROFILER 
+profiler() usec: 0.723705
 INTERPRETER 42 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=43 stackFrameIndex():253
@@ -19541,7 +19913,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  43 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 43
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 0.726168
+PROFILER 10(symbol index) = 43
+profiler() usec: 0.728632
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -19694,7 +20070,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  43 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.276547
+profiler() usec: 0.731096
+PROFILER 
+profiler() usec: 0.733559
 INTERPRETER 43 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -19889,7 +20267,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.280859
+profiler() usec: 0.736023
+PROFILER 
+profiler() usec: 0.739103
 INTERPRETER 43 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=44 stackFrameIndex():253
@@ -19930,7 +20310,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  44 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 44
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 0.742182
+PROFILER 10(symbol index) = 44
+profiler() usec: 0.745262
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -20083,7 +20467,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  44 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.284554
+profiler() usec: 0.748342
+PROFILER 
+profiler() usec: 0.750805
 INTERPRETER 44 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -20278,7 +20664,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.28825
+profiler() usec: 0.753269
+PROFILER 
+profiler() usec: 0.755733
 INTERPRETER 44 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=45 stackFrameIndex():253
@@ -20319,7 +20707,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  45 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 45
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 0.758196
+PROFILER 10(symbol index) = 45
+profiler() usec: 0.760044
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -20472,7 +20864,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  45 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.291945
+profiler() usec: 0.762508
+PROFILER 
+profiler() usec: 0.764971
 INTERPRETER 45 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -20667,7 +21061,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.296257
+profiler() usec: 0.767435
+PROFILER 
+profiler() usec: 0.769899
 INTERPRETER 45 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=46 stackFrameIndex():253
@@ -20708,7 +21104,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  46 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 46
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 0.772363
+PROFILER 10(symbol index) = 46
+profiler() usec: 0.77421
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -20861,7 +21261,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  46 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.299952
+profiler() usec: 0.776058
+PROFILER 
+profiler() usec: 0.778522
 INTERPRETER 46 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -21056,7 +21458,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.303648
+profiler() usec: 0.780369
+PROFILER 
+profiler() usec: 0.782833
 INTERPRETER 46 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=47 stackFrameIndex():253
@@ -21097,7 +21501,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  47 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 47
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 0.784681
+PROFILER 10(symbol index) = 47
+profiler() usec: 0.786529
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -21250,7 +21658,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  47 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.307343
+profiler() usec: 0.788992
+PROFILER 
+profiler() usec: 0.79084
 INTERPRETER 47 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -21445,7 +21855,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.311655
+profiler() usec: 0.793304
+PROFILER 
+profiler() usec: 0.795767
 INTERPRETER 47 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=48 stackFrameIndex():253
@@ -21486,7 +21898,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  48 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 48
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 0.798231
+PROFILER 10(symbol index) = 48
+profiler() usec: 0.800695
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -21639,7 +22055,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  48 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.315966
+profiler() usec: 0.803159
+PROFILER 
+profiler() usec: 0.805622
 INTERPRETER 48 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -21834,7 +22252,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.319046
+profiler() usec: 0.808086
+PROFILER 
+profiler() usec: 0.81055
 INTERPRETER 48 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=49 stackFrameIndex():253
@@ -21875,7 +22295,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  49 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 49
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 0.813013
+PROFILER 10(symbol index) = 49
+profiler() usec: 0.815477
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -22028,7 +22452,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  49 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.322741
+profiler() usec: 0.817941
+PROFILER 
+profiler() usec: 0.819789
 INTERPRETER 49 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -22223,7 +22649,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.325821
+profiler() usec: 0.822252
+PROFILER 
+profiler() usec: 0.824716
 INTERPRETER 49 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=50 stackFrameIndex():253
@@ -22264,7 +22692,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  50 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 50
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 0.82718
+PROFILER 10(symbol index) = 50
+profiler() usec: 0.829027
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -22417,7 +22849,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  50 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.3289
+profiler() usec: 0.831491
+PROFILER 
+profiler() usec: 0.833955
 INTERPRETER 50 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -22612,7 +23046,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.331364
+profiler() usec: 0.836418
+PROFILER 
+profiler() usec: 0.838266
 INTERPRETER 50 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=51 stackFrameIndex():253
@@ -22653,7 +23089,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  51 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 51
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 0.84073
+PROFILER 10(symbol index) = 51
+profiler() usec: 0.843194
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -22806,7 +23246,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  51 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.334443
+profiler() usec: 0.845657
+PROFILER 
+profiler() usec: 0.848121
 INTERPRETER 51 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -23001,7 +23443,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.336907
+profiler() usec: 0.850585
+PROFILER 
+profiler() usec: 0.853048
 INTERPRETER 51 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=52 stackFrameIndex():253
@@ -23042,7 +23486,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  52 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 52
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 0.855512
+PROFILER 10(symbol index) = 52
+profiler() usec: 0.85736
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -23195,7 +23643,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  52 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.339371
+profiler() usec: 0.859208
+PROFILER 
+profiler() usec: 0.861671
 INTERPRETER 52 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -23390,7 +23840,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.34245
+profiler() usec: 0.864135
+PROFILER 
+profiler() usec: 0.866599
 INTERPRETER 52 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=53 stackFrameIndex():253
@@ -23431,7 +23883,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  53 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 53
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 0.869062
+PROFILER 10(symbol index) = 53
+profiler() usec: 0.871526
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -23584,7 +24040,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  53 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.346762
+profiler() usec: 0.87399
+PROFILER 
+profiler() usec: 0.876453
 INTERPRETER 53 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -23779,7 +24237,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.350457
+profiler() usec: 0.878917
+PROFILER 
+profiler() usec: 0.881381
 INTERPRETER 53 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=54 stackFrameIndex():253
@@ -23820,7 +24280,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  54 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 54
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 0.883845
+PROFILER 10(symbol index) = 54
+profiler() usec: 0.886308
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -23973,7 +24437,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  54 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.354769
+profiler() usec: 0.888772
+PROFILER 
+profiler() usec: 0.891236
 INTERPRETER 54 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -24168,7 +24634,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.358464
+profiler() usec: 0.893699
+PROFILER 
+profiler() usec: 0.895547
 INTERPRETER 54 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=55 stackFrameIndex():253
@@ -24209,7 +24677,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  55 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 55
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 0.898011
+PROFILER 10(symbol index) = 55
+profiler() usec: 0.900474
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -24362,7 +24834,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  55 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.361544
+profiler() usec: 0.902938
+PROFILER 
+profiler() usec: 0.905402
 INTERPRETER 55 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -24557,7 +25031,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.364008
+profiler() usec: 0.90725
+PROFILER 
+profiler() usec: 0.909713
 INTERPRETER 55 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=56 stackFrameIndex():253
@@ -24598,7 +25074,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  56 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 56
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 0.911561
+PROFILER 10(symbol index) = 56
+profiler() usec: 0.913409
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -24751,7 +25231,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  56 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.366471
+profiler() usec: 0.915873
+PROFILER 
+profiler() usec: 0.91772
 INTERPRETER 56 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -24946,7 +25428,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.369551
+profiler() usec: 0.920184
+PROFILER 
+profiler() usec: 0.922032
 INTERPRETER 56 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=57 stackFrameIndex():253
@@ -24987,7 +25471,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  57 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 57
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 0.923879
+PROFILER 10(symbol index) = 57
+profiler() usec: 0.926343
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -25140,7 +25628,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  57 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.372014
+profiler() usec: 0.928807
+PROFILER 
+profiler() usec: 0.931271
 INTERPRETER 57 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -25335,7 +25825,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.375094
+profiler() usec: 0.933734
+PROFILER 
+profiler() usec: 0.935582
 INTERPRETER 57 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=58 stackFrameIndex():253
@@ -25376,7 +25868,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  58 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 58
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 0.938046
+PROFILER 10(symbol index) = 58
+profiler() usec: 0.939893
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -25529,7 +26025,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  58 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.378174
+profiler() usec: 0.942357
+PROFILER 
+profiler() usec: 0.944821
 INTERPRETER 58 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -25724,7 +26222,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.380637
+profiler() usec: 0.947285
+PROFILER 
+profiler() usec: 0.949748
 INTERPRETER 58 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=59 stackFrameIndex():253
@@ -25765,7 +26265,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  59 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 59
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 0.952212
+PROFILER 10(symbol index) = 59
+profiler() usec: 0.954676
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -25918,7 +26422,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  59 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.383101
+profiler() usec: 0.957139
+PROFILER 
+profiler() usec: 0.959603
 INTERPRETER 59 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -26113,7 +26619,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.385565
+profiler() usec: 0.962067
+PROFILER 
+profiler() usec: 0.963914
 INTERPRETER 59 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=60 stackFrameIndex():253
@@ -26154,7 +26662,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  60 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 60
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 0.966378
+PROFILER 10(symbol index) = 60
+profiler() usec: 0.968842
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -26307,7 +26819,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  60 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.388644
+profiler() usec: 0.971921
+PROFILER 
+profiler() usec: 0.974385
 INTERPRETER 60 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -26502,7 +27016,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.391108
+profiler() usec: 0.976849
+PROFILER 
+profiler() usec: 0.978697
 INTERPRETER 60 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=61 stackFrameIndex():253
@@ -26543,7 +27059,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  61 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 61
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 0.98116
+PROFILER 10(symbol index) = 61
+profiler() usec: 0.983624
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -26696,7 +27216,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  61 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.393572
+profiler() usec: 0.986088
+PROFILER 
+profiler() usec: 0.987935
 INTERPRETER 61 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -26891,7 +27413,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.396651
+profiler() usec: 0.990399
+PROFILER 
+profiler() usec: 0.992247
 INTERPRETER 61 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=62 stackFrameIndex():253
@@ -26932,7 +27456,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  62 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 62
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 0.994095
+PROFILER 10(symbol index) = 62
+profiler() usec: 0.995942
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -27085,7 +27613,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  62 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.399731
+profiler() usec: 0.998406
+PROFILER 
+profiler() usec: 1.00087
 INTERPRETER 62 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -27280,7 +27810,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.402194
+profiler() usec: 1.00333
+PROFILER 
+profiler() usec: 1.0058
 INTERPRETER 62 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=63 stackFrameIndex():253
@@ -27321,7 +27853,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  63 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 63
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 1.00826
+PROFILER 10(symbol index) = 63
+profiler() usec: 1.01011
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -27474,7 +28010,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  63 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.404658
+profiler() usec: 1.01257
+PROFILER 
+profiler() usec: 1.01504
 INTERPRETER 63 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -27669,7 +28207,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.407738
+profiler() usec: 1.0175
+PROFILER 
+profiler() usec: 1.01996
 INTERPRETER 63 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=64 stackFrameIndex():253
@@ -27710,7 +28250,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  64 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 64
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 1.02243
+PROFILER 10(symbol index) = 64
+profiler() usec: 1.02489
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -27863,7 +28407,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  64 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.410201
+profiler() usec: 1.02735
+PROFILER 
+profiler() usec: 1.02982
 INTERPRETER 64 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -28058,7 +28604,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.412665
+profiler() usec: 1.03228
+PROFILER 
+profiler() usec: 1.03475
 INTERPRETER 64 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=65 stackFrameIndex():253
@@ -28099,7 +28647,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  65 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 65
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 1.03721
+PROFILER 10(symbol index) = 65
+profiler() usec: 1.03906
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -28252,7 +28804,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  65 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.415129
+profiler() usec: 1.04152
+PROFILER 
+profiler() usec: 1.04398
 INTERPRETER 65 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -28447,7 +29001,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.418208
+profiler() usec: 1.04645
+PROFILER 
+profiler() usec: 1.0483
 INTERPRETER 65 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=66 stackFrameIndex():253
@@ -28488,7 +29044,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  66 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 66
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 1.05076
+PROFILER 10(symbol index) = 66
+profiler() usec: 1.05261
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -28641,7 +29201,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  66 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.421288
+profiler() usec: 1.05507
+PROFILER 
+profiler() usec: 1.05753
 INTERPRETER 66 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -28836,7 +29398,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.423752
+profiler() usec: 1.06
+PROFILER 
+profiler() usec: 1.06246
 INTERPRETER 66 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=67 stackFrameIndex():253
@@ -28877,7 +29441,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  67 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 67
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 1.06493
+PROFILER 10(symbol index) = 67
+profiler() usec: 1.06677
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -29030,7 +29598,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  67 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.426831
+profiler() usec: 1.06862
+PROFILER 
+profiler() usec: 1.07108
 INTERPRETER 67 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -29225,7 +29795,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.429295
+profiler() usec: 1.07293
+PROFILER 
+profiler() usec: 1.0754
 INTERPRETER 67 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=68 stackFrameIndex():253
@@ -29266,7 +29838,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  68 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 68
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 1.07786
+PROFILER 10(symbol index) = 68
+profiler() usec: 1.08032
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -29419,7 +29995,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  68 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.431758
+profiler() usec: 1.08279
+PROFILER 
+profiler() usec: 1.08525
 INTERPRETER 68 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -29614,7 +30192,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.434222
+profiler() usec: 1.08771
+PROFILER 
+profiler() usec: 1.08956
 INTERPRETER 68 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=69 stackFrameIndex():253
@@ -29655,7 +30235,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  69 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 69
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 1.09203
+PROFILER 10(symbol index) = 69
+profiler() usec: 1.09757
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -29808,7 +30392,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  69 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.436686
+profiler() usec: 1.10003
+PROFILER 
+profiler() usec: 1.10311
 INTERPRETER 69 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -30003,7 +30589,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.439765
+profiler() usec: 1.10558
+PROFILER 
+profiler() usec: 1.10804
 INTERPRETER 69 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=70 stackFrameIndex():253
@@ -30044,7 +30632,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  70 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 70
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 1.1105
+PROFILER 10(symbol index) = 70
+profiler() usec: 1.11297
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -30197,7 +30789,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  70 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.442845
+profiler() usec: 1.11666
+PROFILER 
+profiler() usec: 1.11913
 INTERPRETER 70 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -30392,7 +30986,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.445925
+profiler() usec: 1.12097
+PROFILER 
+profiler() usec: 1.12282
 INTERPRETER 70 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=71 stackFrameIndex():253
@@ -30433,7 +31029,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  71 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 71
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 1.12529
+PROFILER 10(symbol index) = 71
+profiler() usec: 1.12713
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -30586,7 +31186,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  71 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.448388
+profiler() usec: 1.1296
+PROFILER 
+profiler() usec: 1.13145
 INTERPRETER 71 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -30781,7 +31383,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.450852
+profiler() usec: 1.13514
+PROFILER 
+profiler() usec: 1.13822
 INTERPRETER 71 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=72 stackFrameIndex():253
@@ -30822,7 +31426,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  72 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 72
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 1.14192
+PROFILER 10(symbol index) = 72
+profiler() usec: 1.145
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -30975,7 +31583,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  72 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.453316
+profiler() usec: 1.14807
+PROFILER 
+profiler() usec: 1.15054
 INTERPRETER 72 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -31170,7 +31780,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.456395
+profiler() usec: 1.15362
+PROFILER 
+profiler() usec: 1.1567
 INTERPRETER 72 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=73 stackFrameIndex():253
@@ -31211,7 +31823,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  73 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 73
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 1.15978
+PROFILER 10(symbol index) = 73
+profiler() usec: 1.16286
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -31364,7 +31980,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  73 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.459475
+profiler() usec: 1.16594
+PROFILER 
+profiler() usec: 1.1684
 INTERPRETER 73 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -31559,7 +32177,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.462554
+profiler() usec: 1.1721
+PROFILER 
+profiler() usec: 1.17517
 INTERPRETER 73 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=74 stackFrameIndex():253
@@ -31600,7 +32220,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  74 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 74
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 1.17887
+PROFILER 10(symbol index) = 74
+profiler() usec: 1.18133
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -31753,7 +32377,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  74 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.46625
+profiler() usec: 1.18441
+PROFILER 
+profiler() usec: 1.18749
 INTERPRETER 74 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -31948,7 +32574,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.46933
+profiler() usec: 1.19057
+PROFILER 
+profiler() usec: 1.19365
 INTERPRETER 74 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=75 stackFrameIndex():253
@@ -31989,7 +32617,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  75 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 75
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 1.19673
+PROFILER 10(symbol index) = 75
+profiler() usec: 1.19981
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -32142,7 +32774,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  75 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.471793
+profiler() usec: 1.20289
+PROFILER 
+profiler() usec: 1.20597
 INTERPRETER 75 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -32337,7 +32971,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.474873
+profiler() usec: 1.20905
+PROFILER 
+profiler() usec: 1.21151
 INTERPRETER 75 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=76 stackFrameIndex():253
@@ -32378,7 +33014,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  76 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 76
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 1.21459
+PROFILER 10(symbol index) = 76
+profiler() usec: 1.21706
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -32531,7 +33171,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  76 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.477952
+profiler() usec: 1.22014
+PROFILER 
+profiler() usec: 1.22322
 INTERPRETER 76 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -32726,7 +33368,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.481032
+profiler() usec: 1.22691
+PROFILER 
+profiler() usec: 1.22938
 INTERPRETER 76 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=77 stackFrameIndex():253
@@ -32767,7 +33411,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  77 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 77
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 1.23307
+PROFILER 10(symbol index) = 77
+profiler() usec: 1.23615
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -32920,7 +33568,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  77 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.483496
+profiler() usec: 1.23985
+PROFILER 
+profiler() usec: 1.24293
 INTERPRETER 77 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -33115,7 +33765,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.485959
+profiler() usec: 1.246
+PROFILER 
+profiler() usec: 1.24908
 INTERPRETER 77 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=78 stackFrameIndex():253
@@ -33156,7 +33808,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  78 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 78
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 1.25278
+PROFILER 10(symbol index) = 78
+profiler() usec: 1.25524
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -33309,7 +33965,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  78 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.489039
+profiler() usec: 1.25894
+PROFILER 
+profiler() usec: 1.26202
 INTERPRETER 78 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -33504,7 +34162,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.491503
+profiler() usec: 1.26571
+PROFILER 
+profiler() usec: 1.26879
 INTERPRETER 78 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=79 stackFrameIndex():253
@@ -33545,7 +34205,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  79 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 79
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 1.27249
+PROFILER 10(symbol index) = 79
+profiler() usec: 1.27557
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -33698,7 +34362,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  79 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.493966
+profiler() usec: 1.27865
+PROFILER 
+profiler() usec: 1.28173
 INTERPRETER 79 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -33893,7 +34559,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.49643
+profiler() usec: 1.28481
+PROFILER 
+profiler() usec: 1.28789
 INTERPRETER 79 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=80 stackFrameIndex():253
@@ -33934,7 +34602,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  80 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 80
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 1.29158
+PROFILER 10(symbol index) = 80
+profiler() usec: 1.29466
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -34087,7 +34759,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  80 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.498894
+profiler() usec: 1.29836
+PROFILER 
+profiler() usec: 1.30082
 INTERPRETER 80 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -34282,7 +34956,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.501973
+profiler() usec: 1.3039
+PROFILER 
+profiler() usec: 1.30636
 INTERPRETER 80 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=81 stackFrameIndex():253
@@ -34323,7 +34999,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  81 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 81
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 1.30944
+PROFILER 10(symbol index) = 81
+profiler() usec: 1.31191
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -34476,7 +35156,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  81 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.505053
+profiler() usec: 1.31499
+PROFILER 
+profiler() usec: 1.31807
 INTERPRETER 81 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -34671,7 +35353,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.508132
+profiler() usec: 1.32115
+PROFILER 
+profiler() usec: 1.32423
 INTERPRETER 81 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=82 stackFrameIndex():253
@@ -34712,7 +35396,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  82 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 82
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 1.32792
+PROFILER 10(symbol index) = 82
+profiler() usec: 1.331
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -34865,7 +35553,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  82 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.510596
+profiler() usec: 1.3347
+PROFILER 
+profiler() usec: 1.33778
 INTERPRETER 82 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -35060,7 +35750,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.513676
+profiler() usec: 1.34085
+PROFILER 
+profiler() usec: 1.34393
 INTERPRETER 82 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=83 stackFrameIndex():253
@@ -35101,7 +35793,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  83 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 83
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 1.34701
+PROFILER 10(symbol index) = 83
+profiler() usec: 1.35009
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -35254,7 +35950,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  83 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.516755
+profiler() usec: 1.35379
+PROFILER 
+profiler() usec: 1.35687
 INTERPRETER 83 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -35449,7 +36147,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.519219
+profiler() usec: 1.36056
+PROFILER 
+profiler() usec: 1.36364
 INTERPRETER 83 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=84 stackFrameIndex():253
@@ -35490,7 +36190,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  84 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 84
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 1.36672
+PROFILER 10(symbol index) = 84
+profiler() usec: 1.36919
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -35643,7 +36347,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  84 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.522299
+profiler() usec: 1.37227
+PROFILER 
+profiler() usec: 1.37596
 INTERPRETER 84 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -35838,7 +36544,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.524762
+profiler() usec: 1.37966
+PROFILER 
+profiler() usec: 1.38274
 INTERPRETER 84 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=85 stackFrameIndex():253
@@ -35879,7 +36587,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  85 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 85
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 1.38643
+PROFILER 10(symbol index) = 85
+profiler() usec: 1.38951
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -36032,7 +36744,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  85 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.527842
+profiler() usec: 1.39321
+PROFILER 
+profiler() usec: 1.39629
 INTERPRETER 85 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -36227,7 +36941,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.530921
+profiler() usec: 1.39998
+PROFILER 
+profiler() usec: 1.40245
 INTERPRETER 85 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=86 stackFrameIndex():253
@@ -36268,7 +36984,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  86 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 86
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 1.40614
+PROFILER 10(symbol index) = 86
+profiler() usec: 1.40922
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -36421,7 +37141,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  86 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.533385
+profiler() usec: 1.4123
+PROFILER 
+profiler() usec: 1.41538
 INTERPRETER 86 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -36616,7 +37338,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.536465
+profiler() usec: 1.41908
+PROFILER 
+profiler() usec: 1.42154
 INTERPRETER 86 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=87 stackFrameIndex():253
@@ -36657,7 +37381,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  87 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 87
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 1.424
+PROFILER 10(symbol index) = 87
+profiler() usec: 1.42647
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -36810,7 +37538,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  87 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.538928
+profiler() usec: 1.43016
+PROFILER 
+profiler() usec: 1.43324
 INTERPRETER 87 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -37005,7 +37735,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.541392
+profiler() usec: 1.43632
+PROFILER 
+profiler() usec: 1.4394
 INTERPRETER 87 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=88 stackFrameIndex():253
@@ -37046,7 +37778,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  88 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 88
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 1.44186
+PROFILER 10(symbol index) = 88
+profiler() usec: 1.44433
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -37199,7 +37935,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  88 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.543856
+profiler() usec: 1.44741
+PROFILER 
+profiler() usec: 1.45049
 INTERPRETER 88 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -37394,7 +38132,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.546319
+profiler() usec: 1.45418
+PROFILER 
+profiler() usec: 1.45726
 INTERPRETER 88 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=89 stackFrameIndex():253
@@ -37435,7 +38175,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  89 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 89
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 1.46096
+PROFILER 10(symbol index) = 89
+profiler() usec: 1.46404
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -37588,7 +38332,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  89 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.548783
+profiler() usec: 1.46712
+PROFILER 
+profiler() usec: 1.4702
 INTERPRETER 89 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -37783,7 +38529,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.551247
+profiler() usec: 1.47389
+PROFILER 
+profiler() usec: 1.47697
 INTERPRETER 89 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=90 stackFrameIndex():253
@@ -37824,7 +38572,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  90 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 90
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 1.48005
+PROFILER 10(symbol index) = 90
+profiler() usec: 1.48251
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -37977,7 +38729,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  90 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.553711
+profiler() usec: 1.48498
+PROFILER 
+profiler() usec: 1.48744
 INTERPRETER 90 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -38172,7 +38926,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.55679
+profiler() usec: 1.48991
+PROFILER 
+profiler() usec: 1.49237
 INTERPRETER 90 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=91 stackFrameIndex():253
@@ -38213,7 +38969,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  91 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 91
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 1.49483
+PROFILER 10(symbol index) = 91
+profiler() usec: 1.4973
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -38366,7 +39126,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  91 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.55987
+profiler() usec: 1.49976
+PROFILER 
+profiler() usec: 1.50222
 INTERPRETER 91 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -38561,7 +39323,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.562949
+profiler() usec: 1.50407
+PROFILER 
+profiler() usec: 1.50592
 INTERPRETER 91 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=92 stackFrameIndex():253
@@ -38602,7 +39366,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  92 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 92
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 1.50838
+PROFILER 10(symbol index) = 92
+profiler() usec: 1.51023
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -38755,7 +39523,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  92 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.566029
+profiler() usec: 1.51269
+PROFILER 
+profiler() usec: 1.51516
 INTERPRETER 92 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
@@ -38950,7 +39720,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=82 programNodeType:2 programNodeValue:305
 PROFILER rightHandSymbolTableIndex:3 
-profiler() usec: 0.568493
+profiler() usec: 1.51762
+PROFILER 
+profiler() usec: 1.51947
 INTERPRETER 92 + 1
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=93 stackFrameIndex():253
@@ -38991,7 +39763,11 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  93 0
 INTERPRETER 
 Run programIndex=83 programNodeType:2 programNodeValue:261
-INTERPRETER rightHandSymbolTableIndex:30 10(symbol index) = 93
+PROFILER rightHandSymbolTableIndex:30 
+profiler() usec: 1.52255
+PROFILER 10(symbol index) = 93
+profiler() usec: 1.5244
+INTERPRETER 
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -39144,7 +39920,9 @@ SYMBOLTABLEENTRY 30 nodeAvailable  93 0
 INTERPRETER 
 Run programIndex=77 programNodeType:2 programNodeValue:297
 PROFILER rightHandSymbolTableIndex:11 
-profiler() usec: 0.571572
+profiler() usec: 1.52686
+PROFILER 
+profiler() usec: 1.52932
 INTERPRETER 93 < 1000
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER Symbol index=30 value=1 stackFrameIndex():254
