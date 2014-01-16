@@ -15,6 +15,7 @@
 #include <string>
 #include <istream>
 #include <sstream>
+#include "profiler.h"
 #else /* not CYGWIN */
 
 #include "stdio.h"
@@ -503,7 +504,7 @@ void interpret::run(void) {
     int localSymbolTableIndex;
     _io.init();
 #if CYGWIN
-#define CYGWIN_MAX_INFINITE_LOOP    (10000)
+#define CYGWIN_MAX_INFINITE_LOOP    (5000)
     static int infiniteLoopCounter = 0;
 #endif /* CYGWIN */    
     for (_programIndex = 0; _program[_programIndex].type() != nodeInvalid; ++_programIndex) {
@@ -1157,9 +1158,12 @@ void interpret::evaluateOperator(unsigned int op) {
 }
 
 void interpret::_pushTemporarySymbolOnEvaluationStack(unsigned int value) {
-    symbolTableEntry temporarySymbol(nodeTemporary, value);
-    //static symbolTableEntry temporarySymbol(nodeTemporary, 0);
-    //temporarySymbol.value(value);   // Optimization? Does this make a difference?    
+#if CYGWIN
+    static float microSecCounter = 0.0;
+    profiler p(microSecCounter);
+#endif // CYGWIN
+    static symbolTableEntry temporarySymbol(nodeTemporary, 0);
+    temporarySymbol.value(value);   
 #if 1
     int availableSymbolTableIndex = _findFirstAvailableNodeInSymbolTable();
     if (availableSymbolTableIndex != NOT_FOUND) {

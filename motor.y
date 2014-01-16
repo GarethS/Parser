@@ -107,7 +107,7 @@ int main ()
     yyin = fopen("treeMotor.txt", "r" );
 #endif    
 	int yyparseReturn = yyparse();
-    printf("parse=%d", yyparseReturn);
+    printf("parse=%d\n", yyparseReturn);
     //yyin = fopen("symbolTable.txt", "r" );
 	//yyparse ();
     return 0;
