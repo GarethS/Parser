@@ -846,6 +846,10 @@ void interpret::run(void) {
 }
 
 void interpret::_updateProgramIndex(const nodeType thisNodeType, const int programIndex) {
+#if 0
+    static float microSecCounter = 0.0;
+    profiler p(microSecCounter);
+#endif // CYGWIN
     parseTreeEntry pte(thisNodeType, _currentProgramNodeValue(), _currentProgramNodeLevel() );
     int newProgramIndex = _findFirstParseTreeEntry(pte, programIndex);
     if (newProgramIndex == NOT_FOUND) {
@@ -1175,10 +1179,6 @@ void interpret::_pushTemporarySymbolOnEvaluationStack(unsigned int value) {
 }
 
 int interpret::_findFirstAvailableNodeInSymbolTable(void) {
-#if CYGWIN
-    static float microSecCounter = 0.0;
-    profiler p(microSecCounter);
-#endif // CYGWIN
     if (_symbolTableIndex == 0) {
         return NOT_FOUND;
     }

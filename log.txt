@@ -2289,8 +2289,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeTemporary  0 0
 INTERPRETER 
 Run programIndex=50 programNodeType:19 programNodeValue:0
-PROFILER 
-profiler() usec: 0.0129343
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -3235,8 +3233,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  1 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 0.0412665
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -3622,8 +3618,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  2 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 0.0683669
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -4009,8 +4003,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  3 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 0.0948514
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -4396,8 +4388,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  4 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 0.122568
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -4783,8 +4773,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  5 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 0.149668
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -5170,8 +5158,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  6 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 0.178
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -5557,8 +5543,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  7 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 0.205101
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -5944,8 +5928,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  8 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 0.234049
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -6331,8 +6313,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  9 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 0.262997
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -6718,8 +6698,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  10 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 0.310423
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -7105,8 +7083,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  11 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 0.338139
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -7492,8 +7468,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  12 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 0.367087
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -7879,8 +7853,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  13 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 0.395419
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -8266,8 +8238,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  14 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 0.421904
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -8653,8 +8623,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  15 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 0.449004
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -9040,8 +9008,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  16 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 0.47672
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -9427,8 +9393,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  17 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 0.505053
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -9814,8 +9778,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  18 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 0.532153
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -10201,8 +10163,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  19 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 0.560485
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -10588,8 +10548,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  20 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 0.588202
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -10975,8 +10933,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  21 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 0.613454
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -11362,8 +11318,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  22 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 0.63378
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -11749,8 +11703,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  23 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 0.652873
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -12136,8 +12088,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  24 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 0.671966
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -12523,8 +12473,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  25 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 0.690444
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -12910,8 +12858,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  26 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 0.710769
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -13297,8 +13243,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  27 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 0.734174
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -13684,8 +13628,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  28 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 0.753268
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -14071,8 +14013,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  29 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 0.773593
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -14458,8 +14398,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  30 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 0.793302
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -14845,8 +14783,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  31 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 0.813012
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -15232,8 +15168,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  32 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 0.832105
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -15619,8 +15553,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  33 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 0.851199
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -16006,8 +15938,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  34 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 0.871524
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -16393,8 +16323,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  35 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 0.891233
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -16780,8 +16708,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  36 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 0.910327
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -17167,8 +17093,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  37 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 0.930036
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -17554,8 +17478,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  38 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 0.949745
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -17941,8 +17863,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  39 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 0.969455
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -18328,8 +18248,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  40 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 0.989164
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -18715,8 +18633,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  41 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 1.00764
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -19102,8 +19018,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  42 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 1.02797
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -19489,8 +19403,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  43 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 1.04644
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -19876,8 +19788,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  44 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 1.06492
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -20263,8 +20173,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  45 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 1.0834
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -20650,8 +20558,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  46 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 1.10434
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -21037,8 +20943,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  47 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 1.12282
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -21424,8 +21328,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  48 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 1.1413
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -21811,8 +21713,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  49 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 1.16162
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -22198,8 +22098,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  50 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 1.18195
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -22585,8 +22483,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  51 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 1.20104
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -22972,8 +22868,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  52 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 1.22075
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -23359,8 +23253,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  53 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 1.24107
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -23746,8 +23638,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  54 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 1.26017
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -24133,8 +24023,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  55 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 1.27988
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -24520,8 +24408,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  56 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 1.29959
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -24907,8 +24793,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  57 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 1.31806
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -25294,8 +25178,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  58 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 1.33777
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -25681,8 +25563,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  59 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 1.35748
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -26068,8 +25948,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  60 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 1.37658
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -26455,8 +26333,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  61 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 1.39567
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -26842,8 +26718,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  62 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 1.41538
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -27229,8 +27103,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  63 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 1.43509
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -27616,8 +27488,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  64 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 1.48559
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -28003,8 +27873,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  65 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 1.5053
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -28390,8 +28258,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  66 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 1.5244
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -28777,8 +28643,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  67 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 1.54472
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -29164,8 +29028,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  68 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 1.56382
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -29551,8 +29413,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  69 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 1.58291
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -29938,8 +29798,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  70 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 1.60139
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -30325,8 +30183,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  71 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 1.62171
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -30712,8 +30568,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  72 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 1.64081
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -31099,8 +30953,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  73 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 1.66729
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -31486,8 +31338,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  74 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 1.68762
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -31873,8 +31723,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  75 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 1.71472
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -32260,8 +32108,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  76 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 1.73381
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -32647,8 +32493,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  77 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 1.75352
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -33034,8 +32878,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  78 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 1.77261
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -33421,8 +33263,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  79 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 1.79232
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -33808,8 +33648,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  80 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 1.82065
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -34195,8 +34033,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  81 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 1.84036
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -34582,8 +34418,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  82 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 1.86931
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -34969,8 +34803,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  83 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 1.89764
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -35356,8 +35188,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  84 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 1.92536
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -35743,8 +35573,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  85 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 1.95308
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -36130,8 +35958,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  86 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 1.98141
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -36517,8 +36343,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  87 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 2.00851
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -36904,8 +36728,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  88 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 2.03561
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -37291,8 +37113,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  89 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 2.06456
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -37678,8 +37498,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  90 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 2.09289
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -38065,8 +37883,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  91 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 2.12122
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -38452,8 +38268,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  92 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 2.14955
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
@@ -38839,8 +38653,6 @@ SYMBOLTABLEENTRY 29 nodeConst  60000 -1
 SYMBOLTABLEENTRY 30 nodeAvailable  93 0
 INTERPRETER 
 Run programIndex=84 programNodeType:22 programNodeValue:1
-PROFILER 
-profiler() usec: 2.1785
 INTERPRETER ENTER interpret::dumpEvaluationStack
 INTERPRETER LEAVE interpret::dumpEvaluationStack
 INTERPRETER _bp:0 _evaluationStack.stackFrameIndex():255 _evaluationStack.size():0
