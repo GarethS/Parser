@@ -47,8 +47,8 @@ private:
     _LARGE_INTEGER _freq;
     _LARGE_INTEGER _tBegin;
     _LARGE_INTEGER _tEnd;
-    struct timeval _timevalBegin;
-    struct timeval _timevalEnd;
+    //struct timeval _timevalBegin;
+    //struct timeval _timevalEnd;
     float& _microsec;
 };
 
