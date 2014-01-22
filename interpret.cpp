@@ -84,7 +84,7 @@ void successMsg(void) {
 }
 
 void errMsg(void) {
-    static const char* msg = "<ERR>";
+    static const char* msg = "<ER>";
     UARTSend((unsigned char *)msg, strlen(msg));
 }
 
@@ -193,13 +193,17 @@ void bufferInput(unsigned char c) {
     // TODO - make sure _back really starts at 0 or yy_scan_bytes won't work
     static tinyQueue<unsigned char> serialInput(0);
 
-    static const char statementBegin[] = "<STMT>";
-    static const char statementEnd[] = "<stmt>";
+    static const char statementBegin[]  = "<ST>";  // StatemenT
+    static const char statementEnd[]    = "<st>";
 
-    static const char symbolBegin[] = "<SYMB>";
-    static const char symbolEnd[] = "<symb>";
+    static const char symbolBegin[]     = "<SL>";  // SymboL
+    static const char symbolEnd[]       = "<sl>";
     
-    static const char programRun[] = "<PRUN>";
+    static const char programRun[]      = "<RN>";  // RuN
+    static const char programStop[]     = "<SP>";  // StoP
+    static const char version[]         = "<VN>";  // VersioN
+    static const char flash[]           = "<FH>";  // save to FlasH
+    static const char bootloader[]      = "<BR>";  // BootloadeR
 
     if (c != EOT) {
         // We're called from an interrupt so get out quickly!

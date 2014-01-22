@@ -1,5 +1,5 @@
 /*************************************************
- *  Copyright (C) 2011, 2012, 2013 by Gareth Scott
+ *  Copyright (C) 2011, 2012, 2013, 2014 by Gareth Scott
  *  All Rights Reserved
  *************************************************/
 
@@ -20,21 +20,21 @@ int  yylex(void);
 #define NOT_FOUND       (-1)
 #define INVALID_VALUE   (-1)
 
-#define SYSTEM_VERSION_PREFIX                   "<VERS>"    // Used to note start of interpreter download
-#define SYSTEM_VERSION_SUFFIX                   "<vers>"
-#define SYSTEM_INTERPRET_DONE                   "<DONE>"    // Time to run the interpreter
+#define SYSTEM_VERSION_PREFIX                   "<VN>"    // Used to note start of interpreter download
+#define SYSTEM_VERSION_SUFFIX                   "<vn>"
+//#define SYSTEM_INTERPRET_DONE                   "<DONE>"    // Time to run the interpreter
 
-#define STATEMENT_PREFIX                        "<STMT>"
+#define STATEMENT_PREFIX                        "<ST>"
 #define STATEMENT_PREFIX_PLUS_SPACE             STATEMENT_PREFIX" "
-#define STATEMENT_SUFFIX                        "<stmt>"
+#define STATEMENT_SUFFIX                        "<st>"
 #define STATEMENT_SUFFIX_PLUS_SPACE_AND_EOL     " "STATEMENT_SUFFIX"\n" 
-#define STATEMENT_ACKNOWLEDGE                   "<ASTM>"    // After each statement there's an acknowledge before next statement is sent
+//#define STATEMENT_ACKNOWLEDGE                   "<ASTM>"    // After each statement there's an acknowledge before next statement is sent
 
-#define SYMBOL_PREFIX                           "<SYMB>"
+#define SYMBOL_PREFIX                           "<SL>"
 #define SYMBOL_PREFIX_PLUS_SPACE                SYMBOL_PREFIX" "
-#define SYMBOL_SUFFIX                           "<symb>"
+#define SYMBOL_SUFFIX                           "<sl>"
 #define SYMBOL_SUFFIX_PLUS_SPACE_AND_EOL        " "SYMBOL_SUFFIX"\n" 
-#define SYMBOL_ACKNOWLEDGE                      "<ASYM>"
+//#define SYMBOL_ACKNOWLEDGE                      "<ASYM>"
 
 #define VAR_FCN_LINK_UNDEFINED              (-1)
 // Used by interpreter to call intrinsic (built-in) functions. All intrinsics
