@@ -10,7 +10,7 @@
 
 #include "parseTreeEntry.h"
 #include "symbolTableEntry.h"
-#define YYSTYPE_IS_DECLARED // prevent compile errors from valve.tab.h
+//#define YYSTYPE_IS_DECLARED // prevent compile errors from valve.tab.h
 #define YYSTYPE int         // ditto
 #include "valve.tab.h"
 #include "stepper.h"
@@ -33,12 +33,14 @@ using namespace std;
 #define MAX_PROGRAM_ENTRY           (200)
 #define MAX_SYMBOL_TABLE_ENTRY      (60)
 #define PROGRAM_INDEX_START         (0)
-#define VERSION_STRING              "00.00.09"
-#define VERSION_NUMBER              000008
+#define VERSION_STRING              "00.00.10"
+#define VERSION_NUMBER              000010
 
 extern "C" {
 void bufferInput(unsigned char c);
 }
+
+enum interpreterState {STATE_HALT, STATE_RUN, STATE_CONTINUE, STATE_FLASH, STATE_POWER_UP};
 
 class interpret
 #if CYGWIN
@@ -60,7 +62,7 @@ public:
     stepper* getStepper(void) {return &_stepper;}
     void setLowWaterMarkForTemporarySymbolSearch(void) {_symbolTableTemporaryBoundaryIndex = _symbolTableIndex - 1;}
 #endif /* CYGWIN */    
-    void run(void);
+    int run(int initialProgramIndex = 0);
     void evaluateOperator(unsigned int op);
     void evaluateUnaryOperator(unsigned int op);
 
@@ -107,14 +109,18 @@ private:
     symbolTableEntry _symbolTable[MAX_SYMBOL_TABLE_ENTRY];
     int _programIndex;  // Negative values indicate a built-in function
     unsigned int _symbolTableIndex; // Always points to an available symbol location
+    
+    // A program may be running and then the user stops it and wants to download another program.
+    // Once a program has run, _resetIndicesOnNextProgramLoad is set to true so the next time a
+    //  statement or symbol entry comes over the USB, it goes in the right location
+    bool _resetIndicesOnNextProgramLoad;
     // Stack frames on the intel 8086 were set up using the idiom:
     //   push bp
     //   move bp, sp
     // A nod to posterity; the same idiom is used here
     unsigned int _bp;  // base pointer 
     unsigned int _symbolTableTemporaryBoundaryIndex; // Boundary between temporary symbols (higher index) and regular symbols (index from 0). Use for optimization later on.
-    tinyQueue<int> _evaluationStack;    // Contains the index of a symbol, not its value.
-    bool _evaluatingPattern;
+    tinyQueue<int> _evaluationStack;    // Contains index of a symbol, not its value.
     stepper _stepper;
     io _io;
     led _led;

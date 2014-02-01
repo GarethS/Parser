@@ -1,5 +1,5 @@
 /*
-	Copyright (c) Gareth Scott 2012, 2013
+	Copyright (c) Gareth Scott 2012, 2013, 2014
 
 	interpret.cpp 
 
@@ -25,12 +25,10 @@
 
 bool led::_enable = FALSE;
 
-typedef struct yy_buffer_state *YY_BUFFER_STATE;
-
 extern "C" {
 
 void UARTSend(const unsigned char *pucBuffer, unsigned long ulCount);
-void interpretRun(void);
+void interpretState(void);
 
 //FreeRTOS specific below
 static portTickType xTaskWakeTime;
@@ -45,10 +43,11 @@ unsigned portBASE_TYPE uxTaskGetStackHighWaterMark( void* xTask ) PRIVILEGED_FUN
 }   // extern "C"
 
 interpret interpreter;
-static bool interpreterRunBool = FALSE;
-extern stepper* sp;
+static interpreterState globalInterpretState = STATE_POWER_UP;
+//static interpreterState globalInterpretState = STATE_HALT;
+extern stepper* pStepper;
 
-void interpretRun(void) {
+void interpretState(void) {
 #if 0    
     //flashio f;
 #define FLASH_TEST_SIZE (4)    
@@ -56,24 +55,39 @@ void interpretRun(void) {
     //f.saveData(fArray, FLASH_TEST_SIZE);
 #endif    
     for (;;) {
-        if (interpreterRunBool) {
-#if 0            
-            // For testing
-            interpreter.saveToFlash(FLASH_PROGRAM);
-            interpreter.restoreFromFlash(FLASH_PROGRAM);
-#endif            
-            sp = interpreter.getStepper();
+        static int programIndex = 0;
+        switch (globalInterpretState) {
+        case STATE_RUN:
+            pStepper = interpreter.getStepper();
             
-            sp->microstepSet(MICROSTEPS_8);
-            sp->accelerationTimeMicrosecs(200000);
-            sp->RPM(12, 220);
+            pStepper->microstepSet(MICROSTEPS_8);
+            pStepper->accelerationTimeMicrosecs(200000);
+            pStepper->RPM(12, 220);
             
             led::enable(1);    
-            interpreter.run();
-            interpreterRunBool = FALSE;  // Send another <PRUN> command to start again.
-        } else {
-            // interpreter.stop();
+            programIndex = interpreter.run();
+            globalInterpretState = STATE_HALT;
+            break;
+        case STATE_POWER_UP:
+            interpreter.restoreFromFlash(FLASH_PROGRAM);
+            interpreter.restoreFromFlash(FLASH_SYMBOL_TABLE);
+            // Just going to try running the program. Halts if no program actually stored in flash.
+            globalInterpretState = STATE_RUN;
+            break;
+        case STATE_HALT:
             vTaskDelay(100 / portTICK_RATE_MS);
+            break;
+        case STATE_CONTINUE:
+            interpreter.run(programIndex);
+            globalInterpretState = STATE_HALT;
+            break;
+        case STATE_FLASH:
+            interpreter.saveToFlash(FLASH_PROGRAM);
+            interpreter.saveToFlash(FLASH_SYMBOL_TABLE);
+            globalInterpretState = STATE_HALT;
+            break;
+        default:
+            assert(false);
         }
     }
 }
@@ -190,7 +204,6 @@ static int symbValue;
 static int symbFcnLink;
 
 void bufferInput(unsigned char c) {
-    // TODO - make sure _back really starts at 0 or yy_scan_bytes won't work
     static tinyQueue<unsigned char> serialInput(0);
 
     static const char statementBegin[]  = "<ST>";  // StatemenT
@@ -201,9 +214,10 @@ void bufferInput(unsigned char c) {
     
     static const char programRun[]      = "<RN>";  // RuN
     static const char programStop[]     = "<SP>";  // StoP
+    static const char programContinue[] = "<CE>";  // ContinuE
     static const char version[]         = "<VN>";  // VersioN
     static const char flash[]           = "<FH>";  // save to FlasH
-    static const char bootloader[]      = "<BR>";  // BootloadeR
+    //static const char bootloader[]      = "<BR>";  // BootloadeR
 
     if (c != EOT) {
         // We're called from an interrupt so get out quickly!
@@ -216,6 +230,7 @@ void bufferInput(unsigned char c) {
         serialInput.clear();
         return;
     }
+    // Statement
     const char* pStatementBegin = strstr((const char*)serialInput.getBuffer(), (const char*)statementBegin);
     const char* pStatementEnd = strstr((const char*)serialInput.getBuffer(), (const char*)statementEnd);
     if (pStatementBegin != NULL && pStatementEnd != NULL) {
@@ -233,6 +248,7 @@ void bufferInput(unsigned char c) {
             return;
         }
     }
+    // Symbol
     const char* pSymbolBegin = strstr((const char*)serialInput.getBuffer(), (const char*)symbolBegin);
     const char* pSymbolEnd = strstr((const char*)serialInput.getBuffer(), (const char*)symbolEnd);
     if (pSymbolBegin != NULL && pSymbolEnd != NULL) {
@@ -249,12 +265,39 @@ void bufferInput(unsigned char c) {
             return;
         }
     }
-    const char* pProgramRun = strstr((const char*)serialInput.getBuffer(), (const char*)programRun);
-    if (pProgramRun != NULL) {
+    // Run 
+    if (strstr((const char*)serialInput.getBuffer(), (const char*)programRun) != NULL) {
         interpreter.setLowWaterMarkForTemporarySymbolSearch();
         serialInput.clear();
         postMsg(TRUE);
-        interpreterRunBool = TRUE;
+        globalInterpretState = STATE_RUN;
+        return;
+    }
+    // Stop 
+    if (strstr((const char*)serialInput.getBuffer(), (const char*)programStop) != NULL) {
+        serialInput.clear();
+        postMsg(TRUE);
+        globalInterpretState = STATE_HALT;
+        return;
+    }
+    // Continue 
+    if (strstr((const char*)serialInput.getBuffer(), (const char*)programContinue) != NULL) {
+        serialInput.clear();
+        postMsg(TRUE);
+        globalInterpretState = STATE_CONTINUE;
+        return;
+    }
+    // Flash 
+    if (strstr((const char*)serialInput.getBuffer(), (const char*)flash) != NULL) {
+        serialInput.clear();
+        postMsg(TRUE);
+        globalInterpretState = STATE_FLASH;
+        return;
+    }
+    // Version 
+    if (strstr((const char*)serialInput.getBuffer(), (const char*)version) != NULL) {
+        serialInput.clear();
+        UARTSend((unsigned char *)VERSION_STRING, strlen(VERSION_STRING));
         return;
     }
 }
@@ -268,7 +311,7 @@ interpret::interpret() :
 #else /* not CYGWIN */
                     _firstIntrinsicFcnDefnSleepUntil(true),
 #endif /* CYGWIN */		
-                    _programIndex(PROGRAM_INDEX_START), _symbolTableIndex(0), _bp(PROGRAM_INDEX_START), _evaluatingPattern(true) {
+                    _programIndex(PROGRAM_INDEX_START), _symbolTableIndex(0), _resetIndicesOnNextProgramLoad(false), _bp(PROGRAM_INDEX_START) {
 #if 0                    
     for (int i = 0; i < MAX_PROGRAM_ENTRY; ++i) {
         //printf("%d %d\n", i, _program[i].type());
@@ -291,6 +334,10 @@ void interpret::load(void) {
 }
 
 bool interpret::appendToProgram(const parseTreeEntry& pte) {
+    if (_resetIndicesOnNextProgramLoad) {
+        _programIndex = _symbolTableIndex = 0;
+        _resetIndicesOnNextProgramLoad = false;
+    }
     _program[_programIndex++] = pte;
     if (_programIndex >= MAX_PROGRAM_ENTRY) {
 #if CYGWIN        
@@ -498,20 +545,24 @@ void interpret::dumpEvaluationStack(void) {
 }
 #endif /* CYGWIN */
 
-void interpret::run(void) {
+int interpret::run(int initialProgramIndex /*= 0*/) {
 #if !CYGWIN    
 #ifndef NDEBUG    
     static unsigned portBASE_TYPE uxHighWaterMark;
 #endif // not NDEBUG 
-#endif // not CYGWIN   
-    assert(_evaluationStack.empty());
+#endif // not CYGWIN
+    _resetIndicesOnNextProgramLoad = true;
+    if (initialProgramIndex == 0) {
+        _evaluationStack.clear();
+    }
+    //assert(_evaluationStack.empty());
     int localSymbolTableIndex;
     _io.init();
 #if CYGWIN
 #define CYGWIN_MAX_INFINITE_LOOP    (1000)
     static int infiniteLoopCounter = 0;
 #endif /* CYGWIN */    
-    for (_programIndex = 0; _program[_programIndex].type() != nodeInvalid; ++_programIndex) {
+    for (_programIndex = initialProgramIndex; _program[_programIndex].type() != nodeInvalid; ++_programIndex) {
 #if CYGWIN
         if (++infiniteLoopCounter > CYGWIN_MAX_INFINITE_LOOP) {
             break;
@@ -520,6 +571,11 @@ void interpret::run(void) {
         dump();
         //dumpEvaluationStack();
 #else // not CYGWIN        
+        if (globalInterpretState == STATE_HALT) {
+            // Got an external command over the USB cable to halt the program. Return current _programIndex in case
+            //  we want to restart
+            return _programIndex;
+        }
 #ifndef NDEBUG    
         uxHighWaterMark = uxTaskGetStackHighWaterMark(NULL);
         if (uxHighWaterMark < 120) {
@@ -823,13 +879,17 @@ void interpret::run(void) {
             oss() << endl << "nodeProgramEnd";
             dump();
 #endif /* CYGWIN */    
-            return;
+            return 0;
         default:
 #if CYGWIN
             oss() << endl << "ERROR interpret::run, invalid node type:" << _currentProgramNodeType();
             dump();
-#endif /* CYGWIN */    
-            assert(false);
+#endif /* CYGWIN */
+            // Will get here if device has never had control program saved in FLASH_PROGRAM. Memory instead gets filled
+            //  with 0xffff which is the erased value of flash memory. Exiting here will cause state machine to revert
+            //  to STATE_HALT
+            return 0;
+            //assert(false);
         case nodeNOP:
         case nodeWhile:
         case nodeIf:
@@ -847,6 +907,7 @@ void interpret::run(void) {
 #endif /* CYGWIN */    
     }
     _resetSymbolTableTemporaryBoundary();
+    return 0;
 }
 
 void interpret::_updateProgramIndex(const nodeType thisNodeType, const int programIndex) {
@@ -1133,14 +1194,7 @@ void interpret::evaluateOperator(unsigned int op) {
         //oss() << "Array range: " << arrayRange;
 #endif /* CYGWIN */    
         if (rhs > arrayRange) {
-            // Exceeded array range so cancel pattern or action and print error
-            if (_evaluatingPattern) {
-                // Abandon all evaluation here since it's impossible to tell if the pattern is true or not.
-                // Move to start of next pattern and start evaluating. Probably need to reset evaluation stack.
-            } else {
-                // Can just abandon evaluation of this action statment and move on to the next
-                // Move to start of next action and reset evaluation stack.
-            }
+            // Exceeded array range
 #if CYGWIN
             oss() << "Array index out-of-bounds: " /*  TODO: Print symbol name. Currently not stored with symbol. */;
 #endif /* CYGWIN */    
@@ -1206,6 +1260,10 @@ void interpret::saveToFlash(flashRegion fr) {
         _flash.saveData((uint32_t*)_program, FLASH_START_ADDRESS_PROGRAM, _getIntSize(fr));
         break;
     case FLASH_SYMBOL_TABLE:
+        // _symbolTableIndex needs to be restored. Make sure that you flash just after program download and
+        //  not after program has been running which could affect _symbolTableIndex
+        // TODO: Find a more robust way to do this rather than just stuffing it in the last symbol table entry.
+        _symbolTable[MAX_SYMBOL_TABLE_ENTRY-1].value(_symbolTableIndex);
         _flash.saveData((uint32_t*)_symbolTable, FLASH_START_ADDRESS_SYMBOL_TABLE, _getIntSize(fr));
         break;
     default:
@@ -1223,6 +1281,8 @@ void interpret::restoreFromFlash(flashRegion fr) {
         break;
     case FLASH_SYMBOL_TABLE:
         _flash.retrieveData((uint32_t*)_symbolTable, FLASH_START_ADDRESS_SYMBOL_TABLE, _getIntSize(fr));
+        _symbolTableIndex = _symbolTable[MAX_SYMBOL_TABLE_ENTRY-1].value();
+        _symbolTableTemporaryBoundaryIndex = _symbolTableIndex - 1;
         break;
     default:
         assert(false);
